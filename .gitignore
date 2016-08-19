@@ -1,0 +1,45 @@
+# node.js / npm
+lib-cov
+*.seed
+*.log
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+node_modules
+
+.tags
+npm-debug.log
+
+
+# misc / editors
+*~
+*#
+.DS_STORE
+.netbeans
+nbproject
+.idea
+.nide
+*.iml
+*.swp
+*.swo
+# bower components
+src/bower
+
+
+# Test
+coverage.html
+test-results.xml
+report-html
+karma_html
+
+#gulp
+.tmp
+/dist
+
+# Base
