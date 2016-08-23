@@ -1,5 +1,5 @@
 export default class Network {
   echo() {
-    console.log('hellow work');
+    console.log('hellow word');
   }
 }

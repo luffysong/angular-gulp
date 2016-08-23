@@ -1,7 +1,8 @@
 import home from './home.route';
 
 
-function configRoute($stateProvider) {
+function configRoute($stateProvider, $locationProvider) {
+  $locationProvider.html5Mode(true);
   $stateProvider.state('home', home);
 }
 

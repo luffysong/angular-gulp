@@ -1,8 +1,8 @@
+import webpack from 'webpack';
 import _ from 'lodash';
 import set from './set';
-import webpack from 'webpack';
 export default {
-  base: 'src/',
+  base: 'src',
   getPrefix(url) {
     if (_.isObject(url)) {
       return url.prefix || url.replace(this.base, '');

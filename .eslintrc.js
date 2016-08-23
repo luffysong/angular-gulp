@@ -1,24 +1,31 @@
 module.exports = {
   plugins: [
     "babel",
-    "angular"
+    "angular",
   ],
   parserOptions: {
 	  "sourceType": "module",
 	  "allowImportExportEverywhere": false
 
   },
+  env: {
+    "browser": true,
+  },
   rules: {
     "no-debugger": 0,
     "new-cap": 0,
+    "babel/new-cap": 2,
     "no-console": 0,
     "no-restricted-syntax":0,
     "prefer-arrow-callback": 0,
+    "import/prefer-default-export": 0,
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "arrow-body-style": ["error", "as-needed"],
     "import/no-unresolved": ["error", {
       ignore: ['krData'],
     }],
+    "import/no-extraneous-dependencies": 0,
+    "import/newline-after-import": 0,
     'angular/angularelement': 1,
     'angular/controller-as': 2,
     'angular/controller-as-route': 2,

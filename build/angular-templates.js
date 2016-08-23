@@ -18,6 +18,8 @@ export default function buildTemplates() {
         processScripts: ['text/ng-template'],
       }))
       .pipe(g.angularTemplatecache(`${templateConfig.getPrefix(template)}/template.js`, {
+        standalone: true,
+        module: template,
         transformUrl: url => path.join(templateConfig.getPrefix(template), url),
       }))
       .pipe(gulp.dest(templateConfig.out));

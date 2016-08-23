@@ -4,7 +4,7 @@ class Test extends krData.Network {
 
 }
 
-@Inject('indexService')
+@Inject('indexService', '$timeout', '$window')
 export default class IndexController {
 
   constructor() {
@@ -13,6 +13,9 @@ export default class IndexController {
   }
 
   init() {
+    this.$timeout(() => {
+      this.name = 'sky 124';
+    });
     this.indexService.getPerson()
       .then(person => {
         this.name = person.name;
@@ -21,3 +24,4 @@ export default class IndexController {
   }
 
 }
+

@@ -1,13 +1,11 @@
 import assets from '../assets/script';
+import { getLoadBundle } from '../base/utls';
 export default {
-  url: '',
-  templateUrl: 'pages/home/templates/index.html',
+  url: '/home',
+  templateUrl: '/pages/home/templates/index.html',
   controllerAs: 'vm',
   controller: 'IndexController',
   resolve: {
-    loadBundle: function loadBundle($ocLazyLoad) {
-      'ngInject';
-      return $ocLazyLoad.load(assets.page.home);
-    },
+    loadBundle: getLoadBundle(assets.page.home),
   },
 };

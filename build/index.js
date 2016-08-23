@@ -1,18 +1,30 @@
 import vendor from './config/vendor';
 import set from './config/set';
 import buildTemplates from './angular-templates';
-import scripts, { babelHelper } from './scripts';
+import scripts, { babelHelper, concatTemplate, copyLib } from './scripts';
 import style from './style';
 
 const prod = {
-  cdn: 'https://cdn/',
+  cdn: '',
+};
+
+const proxyConfig = {
+  proxy: [
+    {
+      path: '/api',
+      target: '//rongtest01.36kr.com',
+    },
+  ],
 };
 export {
+  proxyConfig,
   vendor,
   set,
   buildTemplates,
   scripts,
   babelHelper,
+  concatTemplate,
+  copyLib,
   prod,
   style,
 };

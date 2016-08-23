@@ -1,4 +1,3 @@
 require('../routes/index');
-angular.module('templates', []);
-angular.module('@@app', ['@@app.routes', 'templates']);
+angular.module('@@app', ['@@app.routes']);
 angular.bootstrap(document, ['@@app']);

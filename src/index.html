@@ -1,26 +1,39 @@
-<html class="global">
+<html class="global" ng-strict-di>
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <link rel="stylesheet" href="styles/index.css"  type="text/css">
+  <base href="/" target="">
   <title></title>
+  <style>
+    @@include('../.tmp/header/index.css')
+  </style>
 </head>
 <body>
+  @@include('./header/index.html')
   <ui-view>
   </ui-view>
+  <img src="/images/test.png" alt="">
 </body>
-<!-- build:js lib/jq.js -->
-<script type="text/javascript" src="bower/jquery/dist/jquery.min.js" charset="utf-8"></script>
+
+<!-- build:css /styles/index.css -->
+<link rel="stylesheet" href="/fonts/font.css"  type="text/css">
+<link rel="stylesheet" href="/styles/index.css"  type="text/css">
 <!-- endbuild -->
 
-<!-- build:js lib/ag.js -->
-<script type="text/javascript" src="bower/angular/angular.min.js" charset="utf-8"></script>
+<!-- build:js /lib/jq.js -->
+<script type="text/javascript" src="/bower/jquery/dist/jquery.min.js" charset="utf-8"></script>
 <!-- endbuild -->
 
-<!-- build:js lib/boot.js -->
-<script type="text/javascript" src="bower/oclazyload/dist/ocLazyLoad.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="bower/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="babelHelpers.js" charset="utf-8"></script>
-<script type="text/javascript" src="common/index.js" charset="utf-8"></script>
+<!-- build:js /lib/ag.js -->
+<script type="text/javascript" src="/bower/angular/angular.min.js" charset="utf-8"></script>
+<!-- endbuild -->
+
+<!-- build:js /lib/vncommon.js -->
+<script type="text/javascript" src="/bower/oclazyload/dist/ocLazyLoad.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/bower/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
+<!-- endbuild -->
+<!-- build:js /kr/boot.js -->
+<script type="text/javascript" src="/babelHelpers.js" charset="utf-8"></script>
+<script type="text/javascript" src="/common/index.js" charset="utf-8"></script>
 <!-- endbuild -->
 </html>
