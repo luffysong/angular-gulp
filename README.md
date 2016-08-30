@@ -1,12 +1,5 @@
 #node版本需要
 需要使用node6.0版本
-# 运行项目
-
-	cnpm i
-	bower i
-	./gulp serve
-# 浏览器访问
-http://localhost:4242
 
 # nginx配置
 
@@ -25,4 +18,16 @@ http://localhost:4242
              expires 0;
          }
      }
+
+# 编辑/etc/hosts
+  127.0.0.1 xrz.com
+
+# 运行项目
+
+	cnpm i
+	bower i
+	./gulp serve
+# 浏览器访问
+http://xzr.com
+
 
