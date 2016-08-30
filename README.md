@@ -9,7 +9,7 @@
          gzip on;
          gzip_comp_level 9;
          gzip_types application/javascript text/css application/font-woff;
-         root /Users/sky/work/kr-data;  //使用自己的项目绝对路径
+         root /Users/sky/work/kr-data;  #使用自己的项目绝对路径
          location / {
              try_files  /dist/$uri  /.tmp/$uri  /src/$uri /dist/index.html =404;
          }
