@@ -1,6 +1,6 @@
-import Network from './base/network';
+import API from './base/api';
 /* eslint-disable */
 window.krData = {
-  Network,
+  API,
 };
 require('./bootstrap');

@@ -1,6 +1,6 @@
 import krData from 'krData';
 
-class Test extends krData.Network {
+class TestAPI extends krData.API {
 
 }
 
@@ -8,11 +8,12 @@ class Test extends krData.Network {
 export default class IndexController {
 
   constructor() {
-    new Test().echo();
+    this.api = new TestAPI();
     this.init();
   }
 
   init() {
+    this.api.get();
     this.$timeout(() => {
       this.name = 'sky 124';
     });

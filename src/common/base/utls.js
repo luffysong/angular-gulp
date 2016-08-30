@@ -4,4 +4,12 @@ export function getLoadBundle(page) {
     return $ocLazyLoad.load(page);
   };
 }
+let injector = null;
+export function getInjector() {
+  return injector || (injector = angular.element(document).injector());
+}
+
+export function getService(name) {
+  return getInjector().get(name);
+}
 

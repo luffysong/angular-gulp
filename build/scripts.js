@@ -43,7 +43,9 @@ export function babelHelper() {
     }))
     .pipe(g.babel({
       presets: scriptConfig.presets,
-      plugins: ['transform-es2015-modules-commonjs', 'external-helpers-2',
+      plugins: ['transform-es2015-modules-commonjs',
+        'transform-class-properties',
+        'external-helpers-2',
         'syntax-decorators',
         ['ng-annotate-2', { keepClass: true }],
       ],
