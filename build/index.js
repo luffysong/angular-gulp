@@ -8,6 +8,10 @@ const prod = {
   cdn: '',
 };
 
+const jsplugins = [
+
+];
+
 const proxyConfig = {
   proxy: [
     {
@@ -25,6 +29,7 @@ export {
   babelHelper,
   concatTemplate,
   copyLib,
+  jsplugins,
   prod,
   style,
 };

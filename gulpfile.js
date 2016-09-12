@@ -8,11 +8,13 @@ import { babelHelper,
   buildTemplates,
   concatTemplate,
   copyLib,
+  server,
   scripts,
   prod,
   style,
   set,
   proxyConfig,
+  jsplugins,
 } from './build';
 const g = loadPlugins();
 gulp.task('buildTemplates', buildTemplates);
@@ -31,9 +33,10 @@ gulp.task('scripts', ['babel-helper'], scripts);
 
 gulp.task('watch', function watch() {
   gulp.watch(['src/**/*.js'], ['scripts']);
-  gulp.watch(['src/styles/*.less'], ['style']);
-  gulp.watch(['src/svgs/*.svg'], ['iconfont']);
-  gulp.watch(['src/*.html', 'src/header/*.html', 'src/footer/*.html'], ['dev:html']);
+  gulp.watch(['src/styles/**/*.less'], ['style']);
+  gulp.watch(['src/svgs/**/*.svg'], ['iconfont']);
+  gulp.watch(['src/*.html', 'src/header/*.html', 'src/footer/*.html', 'src/header/*.less'],
+    ['dev:html']);
 });
 
 gulp.task('clean', function clean() {
@@ -41,8 +44,13 @@ gulp.task('clean', function clean() {
 });
 
 gulp.task('prod', function runSquence() {
-  return runSequence('clean', 'lint', ['scripts', 'buildTemplates', 'iconfont'], 'concatTemplate',
-    'prod:html', 'hash-replace');
+  return runSequence('clean', ['scripts', 'buildTemplates', 'iconfont'], 'concatTemplate',
+    'prod:html', 'hash-replace', 'prod:clean-unused');
+});
+
+gulp.task('prod:clean-unused', function cleanUnused() {
+  gulp.src(['dist/common', 'dist/babelHelpers.js'])
+    .pipe(g.clean());
 });
 
 gulp.task('copy:images', function copyImages() {
@@ -55,10 +63,18 @@ gulp.task('copy:images', function copyImages() {
 
 gulp.task('copy:lib', copyLib);
 
+gulp.task('server', server);
+
+gulp.task('copy:jsplugins', function copyJsplugins() {
+  return gulp.src(jsplugins, { base: 'src' })
+    .pipe(g.if(!set.debug || '!*.min.js', g.uglify()))
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task('hash-replace', function hashReplace() {
-  runSequence('copy:images', function revReplace() {
+  runSequence(['copy:images', 'copy:jsplugins'], function revReplace() {
     const manifest = gulp.src('.tmp/rev-manifest.json');
-    const jsFilter = g.filter(['dist/pages/**/*.js'], { restore: true });
+    const jsFilter = g.filter(['dist/pages/**/*.js', 'dist/bower/**/*.js'], { restore: true });
     return gulp.src(['dist/**/*.*', '!dist/lib/**/*.*', '!dist/common/**/*.*'], { base: 'dist' })
       .pipe(jsFilter)
       .pipe(g.rev())
@@ -79,6 +95,7 @@ gulp.task('concatTemplate', concatTemplate);
 
 
 gulp.task('prod:html', ['header:style', 'style'], function html() {
+  let jsFilter = null;
   return gulp.src(['src/*.html'])
     .pipe(g.fileInclude())
     .pipe(g.replaceTask({
@@ -89,8 +106,14 @@ gulp.task('prod:html', ['header:style', 'style'], function html() {
     .pipe(g.useref({
       searchPath: ['dist', 'src'],
     },
-    lazypipe.pipe(g.if(set.prod && '!*.min.js', g.uglifyjs())
-    )))
+    lazypipe()
+      .pipe(() => {
+        jsFilter = g.filter(['src/**/*.js', '!src/**/*.min.js'], { restore: true });
+        return jsFilter;
+      })
+      .pipe(g.uglify)
+      .pipe(() => jsFilter.restore)
+    ))
     .pipe(g.if('!*.html', g.rev()))
     .pipe(g.revReplace({
       prefix: prod.cdn,
@@ -154,12 +177,13 @@ function middleware() {
     });
   });
 }
+
 gulp.task('serve', () => {
   runSequence('clean', ['scripts', 'style', 'dev:html', 'watch', 'iconfont', 'copy:lib'],
     function serve() {
       g.connect.server({
         root: ['dist', '.tmp', 'src'],
-        port: 4242,
+        port: 4243,
         livereload: false,
         middleware,
       });

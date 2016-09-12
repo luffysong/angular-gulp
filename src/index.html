@@ -9,10 +9,11 @@
   </style>
 </head>
 <body>
-  @@include('./header/index.html')
-  <ui-view>
-  </ui-view>
-  <img src="/images/test.png" alt="">
+  @@include('./header/top.html')
+  @@include('./header/sidebar.html')
+  <div class="content-wrapper" ui-view>
+
+  </div>
 </body>
 
 <!-- build:css /styles/index.css -->

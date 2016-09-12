@@ -2,14 +2,21 @@
 import { getService } from './utls';
 export default class API {
 
-  domain=1;
-  constructor() {
+  domain = '//';
+  constructor(config) {
     this.$http = getService('$http');
     this.$q = getService('$q');
     this.$resource = getService('$resource');
+    this.config = config;
   }
 
-  get() {
+
+  send(config) {
+    this.config = config;
+  }
+
+  get(config) {
+    return this.send(config);
   }
 
   delete() {
