@@ -33,7 +33,7 @@ gulp.task('scripts', ['babel-helper'], scripts);
 
 gulp.task('watch', function watch() {
   gulp.watch(['src/**/*.js'], ['scripts']);
-  gulp.watch(['src/styles/**/*.less'], ['style']);
+  gulp.watch(['src/styles/**/*.less', 'src/pages/**/*.less', 'src/common/**/*.less'], ['style']);
   gulp.watch(['src/svgs/**/*.svg'], ['iconfont']);
   gulp.watch(['src/*.html', 'src/header/*.html', 'src/footer/*.html', 'src/header/*.less'],
     ['dev:html']);

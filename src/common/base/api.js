@@ -6,7 +6,7 @@ export default class API {
   constructor(config) {
     this.$http = getService('$http');
     this.$q = getService('$q');
-    this.$resource = getService('$resource');
+    this.request = getService('$resource');
     this.config = config;
   }
 
