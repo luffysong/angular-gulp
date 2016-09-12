@@ -1,0 +1,15 @@
+.square(@size) {
+  width: unit(@size, px);
+  height: unit(@size, px);
+}
+.border(@width:1, @color){
+  border: unit(@width, px) solid @color;
+}
+
+.border1(@color){
+  .border(1, @color);
+}
+
+.border2(@color){
+  .border(2, @color);
+}

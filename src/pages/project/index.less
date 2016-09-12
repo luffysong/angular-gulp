@@ -1,6 +1,21 @@
+@import "../../common/styles/function";
 .project-wrapper {
-  @bg-color: #F2F4F5;
-  background: @bg-color;
+  @bg-global-color: #F2F4F5;
+  @bg-color: #fff;
+  @border-color: #e7e7e7;
+  @content-width: 899px;
+  background: @bg-global-color;
   height: 3000px;
   width: 100%;
+
+  .base-info-wrapper {
+    padding: 43px 30px 30px;
+    width: @content-width;
+    background: @bg-color;
+    .logo {
+      .square(90);
+      border-radius: 6px;
+      .border1(#E7E7E7);
+    }
+  }
 }
