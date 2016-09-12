@@ -1,12 +1,55 @@
-@top-height: 60px;
+@top-height: 50px;
 .rz-header-wrapper {
   height: @top-height;
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
-  background: black;
+  background: #fff;
   z-index: 1;
+  padding:0 26px;
+  border-bottom: 1px solid #eee;
+  .section{
+    display: inline-block;
+    margin-top: 25px;
+    transform:translateY(-50%);
+    .kr-logo{
+      vertical-align: middle;
+      display: inline-block;
+    }
+    .kr-name{
+      font-size: 20px;
+      color: #5a626d;
+      vertical-align: middle;
+      line-height: 30px;
+    }
+  }
+  .right-content{
+    float: right;
+    padding-right: 50px;
+    vertical-align: middle;
+    .search{
+      width: 400px;
+      height: 28px;
+      padding: 4px 18px;
+      border:1px solid #ececec;
+      border-radius: 15px;
+      color:#ececec;
+      vertical-align: middle;
+      margin-right: 30px;
+    }
+    .usr-content{
+      display: inline-block;
+      vertical-align: middle;
+      
+      img{
+        width: 30px;
+        height: 30px;
+        border:1px solid #ececec;
+        border-radius: 15px;
+      }
+    }
+  }
 }
 
 
@@ -17,14 +60,27 @@
     left: 0;
     top: 0;
     bottom: 0;
-    width: 120px;
+    width: 140px;
     display: flex;
     flex-direction: column;
-    background: #ccc;
-    padding-top: @top-height;
+    background: #333742;
+    padding-top: @top-height + 20px;
+    color: #969fa9;
   }
   li{
     list-style: none;
+    height: 48px;
+    font-size: 18px;
+    padding-left: 20px;
+    line-height: 48px;
+    .kr-icon{
+      vertical-align: sub;
+    }
+  }
+  .active{
+    border-left: 3px solid #6ea4f9;
+    color: #FFF;
+    padding-left: 17px;
   }
 }
 
