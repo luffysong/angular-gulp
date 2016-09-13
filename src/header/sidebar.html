@@ -1,8 +1,8 @@
 <nav class="rz-sidebar-wrapper" >
-  <ul>
+  <ul class="nav">
     <li class='home'>
     	<a href="">
-    		<span class="icon-home kr-icon"></span>
+    		<span class="icon-home kr-icon" id="Img"></span>
 			<span class="kr-tags">首页</span>
     	</a>
     </li>
@@ -49,7 +49,7 @@
 	var local = location.pathname;
 	var arr = local.split('/');
 	var objLi = document.getElementsByTagName('li');
-	function hasClass(obj, cls) {  
+	function hasClass(obj, cls) {
         return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));  
     } 
 	function addClass(obj, cls) {  
@@ -69,6 +69,21 @@
 			addClass(objLi[i],'active');
 		}
 	}
+	var objUl = document.getElementsByTagName("ul");
+	var n = document.getElementById('Img');
+	var w = document.getElementById('showImg');
+    function narrow(obj){
+    	obj.addEventListener("click", function() {
+	       addClass(objUl[0],'narrow');
+	    });
+    }
+    function widen(obj){
+    	obj.addEventListener("click", function() {
+	       removeClass(objUl[0],'narrow');
+	    });
+    }
+    widen(n);
+    narrow(w);
 </script>
 
 

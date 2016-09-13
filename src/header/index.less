@@ -1,4 +1,5 @@
 @top-height: 50px;
+@padding-left: 20px;
 .rz-header-wrapper {
   height: @top-height;
   position: fixed;
@@ -18,7 +19,6 @@
       display: inline-block;
     }
     .kr-name{
-      vertical-align: middle;
       font-size: 14px;
       color: #5A626D;
       letter-spacing: 0.5px;
@@ -79,36 +79,62 @@
     display: flex;
     flex-direction: column;
     background: #333742;
-    padding-top: @top-height + 20px;
+    padding-top: @top-height + 40px;
     color: #969fa9;
   }
   li{
     list-style: none;
     height: 48px;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 48px;
+    border-left: 3px solid transparent;
+
     .kr-icon{
       vertical-align: sub;
       font-size: 18px;
+      &:before{
+        padding-top: 2px;
+      }
     }
     a{
       text-decoration:none;
       color:#969fa9;
-      padding-left: 20px;
+      padding-left: @padding-left;
       display: block;
-    }
-    .kr-tags{
-      // display: none;
     }
   }
   .active{
     border-left: 3px solid #6ea4f9;
     background-color: #24272E;
     a{
-      padding-left: 17px;
       color: #FFF;
     }
   }
+  @keyframes less {
+    from{
+      width:140px;
+    }
+    to{
+      width:50px;
+    }
+  }
+  .narrow{
+    animation:less 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode:forwards;
+    .kr-tags{
+      display: none;
+    }
+    a{
+      text-decoration:none;
+      color:#969fa9;
+      padding-left: 14px;
+      display: block;
+    }
+
+  }
 }
+
+
 
 //sidebar end
