@@ -1,4 +1,5 @@
 @import "../../common/styles/function";
+@import "../../common/styles/var";
 .project-wrapper {
   @bg-global-color: #F2F4F5;
   @bg-color: #fff;
@@ -11,13 +12,15 @@
   height: 3000px;
   width: 100%;
   font-size: 14px;
+  color: @text-color;
 
+  // base-info-wrapper start
   .base-info-wrapper {
-    padding: 43px 30px 30px;
     width: 100%;
     background: @bg-color;
     .base-info-content{
       width: @content-width;
+      padding: 30px;
       margin:0 auto;
       overflow: hidden;
       &>div{
@@ -44,23 +47,33 @@
       }
       h3{
         color: @text-color;
-        font-size: 16px;
-        line-height: 20px;
-        margin: 10px 0 14px;
+        font-size: 14px;
+        line-height: 19px;
+        margin: 10px 0 13px;
         font-weight: normal;
+      }
+      .kr-icon {
+        .dlk();
+        .vam();
+        font-size: 20px;
       }
       .icon-Weibo{
         color: rgb(231,61,54);
-        font-size: 20px;
+        vertical-align: middle;
       }
       .icon-Wechat{
-        font-size: 20px;
         color: rgb(61,190, 48);
         margin: 0 12px 0 11px;
       }
+      span.icon-Hot {
+        font-size: 16px;
+      }
+      .hot-text {
+        .font(14, 21);
+        .dlk();
+        .vam();
+      }
       p {
-        display: flex;
-        align-items: center;
         .icon-websitelink {
           font-size: 20px;
         }
@@ -68,7 +81,36 @@
           font-size: 12px;
           line-height: 16px;
           display: inline-block;
-          vertical-align: top;
+        }
+      }
+      .finance-brief {
+        width: 249px;
+        height: 90px;
+        float: right;
+        .rd(4px);
+        .border1(@border-color);
+        overflow: hidden;
+        p {
+          overflow: hidden;
+          span {
+            float: left;
+            width: 50%;
+            .text-center();
+          }
+        }
+        p:nth-child(2){
+          margin-top: 8px;
+          margin-bottom: 2px;
+          color: #222C38;
+          .font(14, 21);
+        }
+        p:last-child {
+          .font(12, 18);
+        }
+        p:first-child {
+          .font(14, 33);
+          background: #e7e7e7;
+          .text-center();
         }
       }
     }
@@ -78,4 +120,43 @@
       .border1(#E7E7E7);
     }
   }
+  //base-info-wrapper end
+
+  //nav start
+  .nav-wrapper {
+    width: 100%;
+    background: #fff;
+    box-shadow: 0px 8px 8px -8px;
+  }
+  nav{
+    width: @content-width;
+    padding: 30px 0 0;
+    margin:0 auto;
+    ul {
+      border-top: 1px solid #F2F4F5;
+      overflow: hidden;
+    }
+    li {
+      margin-right: 30px;
+      padding: 14px 0;
+      float: left;
+    }
+    li:last-child {
+      float: right;
+      padding: 10px 0px;
+      a {
+        .border1(@anchor-color);
+        color: @anchor-color;
+        .dlk();
+        padding: 3px 16px;
+        .rd(4px);
+        .font(12, 18);
+      }
+    }
+    li.active {
+      color: #222C38;
+    }
+  }
+  //nav end
+
 }
