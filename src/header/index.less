@@ -18,10 +18,11 @@
       display: inline-block;
     }
     .kr-name{
-      font-size: 20px;
-      color: #5a626d;
       vertical-align: middle;
-      line-height: 30px;
+      font-size: 14px;
+      color: #5A626D;
+      letter-spacing: 0.5px;
+      line-height: 21px;
     }
   }
   .right-content{
@@ -32,7 +33,7 @@
       width: 400px;
       height: 28px;
       padding: 4px 18px;
-      border:1px solid #ececec;
+      border:1px solid #e7e7e7;
       border-radius: 15px;
       color:#ececec;
       vertical-align: middle;
@@ -47,6 +48,20 @@
         height: 30px;
         border:1px solid #ececec;
         border-radius: 15px;
+        vertical-align: inherit;
+      }
+      .down{
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 13px;
+        color: #969fa9;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        &:hover{
+          transform:rotate(180deg);
+        }
       }
     }
   }
@@ -71,16 +86,28 @@
     list-style: none;
     height: 48px;
     font-size: 18px;
-    padding-left: 20px;
     line-height: 48px;
     .kr-icon{
       vertical-align: sub;
+      font-size: 18px;
+    }
+    a{
+      text-decoration:none;
+      color:#969fa9;
+      padding-left: 20px;
+      display: block;
+    }
+    .kr-tags{
+      // display: none;
     }
   }
   .active{
     border-left: 3px solid #6ea4f9;
-    color: #FFF;
-    padding-left: 17px;
+    background-color: #24272E;
+    a{
+      padding-left: 17px;
+      color: #FFF;
+    }
   }
 }
 

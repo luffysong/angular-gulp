@@ -1,30 +1,74 @@
-<nav class="rz-sidebar-wrapper">
+<nav class="rz-sidebar-wrapper" >
   <ul>
-    <li>
-		<span class="icon-BP kr-icon"></span>
-		<span>首页</span>
+    <li class='home'>
+    	<a href="">
+    		<span class="icon-home kr-icon"></span>
+			<span class="kr-tags">首页</span>
+    	</a>
     </li>
-    <li>
-    	<span class="icon-Hot kr-icon"></span>
-    	<span>创业公司</span>
+    <li class='company'>
+    	<a href="">
+    		<span class="icon-Company kr-icon"></span>
+    		<span class="kr-tags">创业公司</span>
+    	</a>
     </li>
-    <li class='active'>
-    	<span class="icon-down kr-icon"></span>
-    	<span>投资机构</span>
+    <li class='active institution'>
+    	<a href="">
+    		<span class="icon-institute kr-icon"></span>
+    		<span class="kr-tags">投资机构</span>
+    	</a>
     </li>
-    <li>
-		<span class="icon-open kr-icon"></span>
-    	<span>投资人</span>
+    <li class='investor'>
+    	<a href="">
+    		<span class="icon-Investor kr-icon"></span>
+    		<span class="kr-tags">投资人</span>
+    	</a>
+		
     </li>
-    <li>
-		<span class="icon-close kr-icon"></span>
-    	<span>投资事件</span>
+    <li class='issue'>
+    	<a href="">
+    		<span class="icon-Issue kr-icon"></span>
+    		<span class="kr-tags">投资事件</span>
+    	</a>
+		
     </li>
-    <li>
-		<span class="icon-1 kr-icon"></span>
-    	<span>我的工作台</span>
+    <li class='worker'>
+    	<a href="">
+    		<span class="icon-MyDesk kr-icon"></span>
+    		<span class="kr-tags">我的工作台</span>
+    	</a>
+		
     </li>
   </ul>
 </nav>
+
+
+
+
+<script>
+	var local = location.pathname;
+	var arr = local.split('/');
+	var objLi = document.getElementsByTagName('li');
+	function hasClass(obj, cls) {  
+        return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));  
+    } 
+	function addClass(obj, cls) {  
+        if (!this.hasClass(obj, cls)) obj.className += " " + cls;  
+    }  
+      
+    function removeClass(obj, cls) {  
+        if (hasClass(obj, cls)) {  
+            var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');  
+            obj.className = obj.className.replace(reg, ' ');  
+        }  
+    }  
+     
+	for (var i = objLi.length - 1; i >= 0; i--) {
+		removeClass(objLi[i],'active');
+		if(objLi[i].className === arr[1]){
+			addClass(objLi[i],'active');
+		}
+	}
+</script>
 
 
