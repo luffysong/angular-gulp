@@ -4,14 +4,74 @@
   @bg-color: #fff;
   @border-color: #e7e7e7;
   @content-width: 899px;
+  @tag-color: #2868d1;
+  @tag-bg-color: #6BA2FC;
+  @text-color: #5A626D;
   background: @bg-global-color;
   height: 3000px;
   width: 100%;
+  font-size: 14px;
 
   .base-info-wrapper {
     padding: 43px 30px 30px;
-    width: @content-width;
+    width: 100%;
     background: @bg-color;
+    .base-info-content{
+      width: @content-width;
+      margin:0 auto;
+      overflow: hidden;
+      &>div{
+        float: left;
+      }
+      &>div:nth-child(2){
+        margin-left: 18px;
+      }
+      h1 {
+      font-size: 20px;
+      color: #222C38;
+      line-height: 24px;
+      font-weight: normal;
+        span{
+          display: inline-block;
+          vertical-align: top;
+          line-height: 18px;
+          font-size: 12px;
+          color: @tag-color;
+          padding: 1px 6px;
+          border-radius: 1px;
+          background: fade(@tag-bg-color, 20%);
+        }
+      }
+      h3{
+        color: @text-color;
+        font-size: 16px;
+        line-height: 20px;
+        margin: 10px 0 14px;
+        font-weight: normal;
+      }
+      .icon-Weibo{
+        color: rgb(231,61,54);
+        font-size: 20px;
+      }
+      .icon-Wechat{
+        font-size: 20px;
+        color: rgb(61,190, 48);
+        margin: 0 12px 0 11px;
+      }
+      p {
+        display: flex;
+        align-items: center;
+        .icon-websitelink {
+          font-size: 20px;
+        }
+        a {
+          font-size: 12px;
+          line-height: 16px;
+          display: inline-block;
+          vertical-align: top;
+        }
+      }
+    }
     .logo {
       .square(90);
       border-radius: 6px;
