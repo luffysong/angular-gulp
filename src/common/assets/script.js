@@ -5,6 +5,7 @@ export default {
     ],
     project: [
       '/pages/project/index.js',
+      '/bower/ngSticky/dist/sticky.min.js',
     ],
   },
 };

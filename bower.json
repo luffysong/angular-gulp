@@ -23,5 +23,8 @@
     "jquery": "^3.1.0",
     "normalize-css": "^4.2.0",
     "angular-resource": "^1.5.8"
+  },
+  "devDependencies": {
+    "ngSticky": "^1.8.13"
   }
 }

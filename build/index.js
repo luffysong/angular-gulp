@@ -9,7 +9,7 @@ const prod = {
 };
 
 const jsplugins = [
-
+  '/bower/ngSticky/dist/sticky.min.js',
 ];
 
 const proxyConfig = {
