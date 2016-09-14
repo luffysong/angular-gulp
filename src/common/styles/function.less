@@ -34,3 +34,10 @@
 .text-center() {
   text-align: center;
 }
+.before(@width, @height, @position: absolute) {
+  content: " ";
+  display: block;
+  width: @width;
+  height: @height;
+  position: @position;
+}

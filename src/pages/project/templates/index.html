@@ -84,19 +84,18 @@
 
   </section>
 
-  <section id="baseInfo" class="project-module">
-    基本介绍
+  <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'">
   </section>
-  <section id="financeDetail" class="project-module">
+  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module">
     融资详情
   </section>
-  <section id="financeHistory" class="project-module">
+  <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module">
     融资经历
   </section>
-  <section id="founder" class="project-module">
+  <section id="founder" ng-include="'/pages/project/templates/founder.html'" class="project-module">
     创始团队
   </section>
-  <section id="product" class="project-module">
+  <section id="product" ng-include="'/pages/project/templates/product.html'" class="project-module">
     产品及数据
   </section>
   <section id="news" class="project-module" ng-include="'/pages/project/templates/new.html'">
