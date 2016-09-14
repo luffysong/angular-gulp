@@ -10,6 +10,7 @@ const prod = {
 
 const jsplugins = [
   '/bower/ngSticky/dist/sticky.min.js',
+  '/bower/angular-scroll/angular-scroll.min.js',
 ];
 
 const proxyConfig = {

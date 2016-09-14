@@ -34,33 +34,75 @@
   <section sticky offset="50" class="nav-wrapper">
     <nav>
       <ul>
-        <li class="active">投资亮点</li>
-        <li>基本介绍</li>
-        <li>融资详情</li>
-        <li>融资经历</li>
-        <li>创始团队</li>
-        <li>产品及数据</li>
-        <li>相关新闻</li>
-        <li>相似公司</li>
+        <li>
+          <a href="#light" du-smooth-scroll="" du-scrollspy="" class="active" offset="277" >
+            投资亮点
+          </a>
+        </li>
+        <li>
+          <a href="#baseInfo" du-smooth-scroll="" du-scrollspy="" offset="130" >
+            基本介绍
+          </a>
+        </li>
+        <li>
+          <a href="#financeDetail" du-smooth-scroll="" du-scrollspy="" offset="130" >
+            融资详情
+          </a>
+        </li>
+        <li>
+          <a href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="130" >
+            融资经历
+          </a>
+        </li>
+        <li>
+          <a href="#founder" du-smooth-scroll="" du-scrollspy="" offset="130" >
+            创始团队
+          </a>
+        </li>
+        <li>
+          <a href="#product" du-smooth-scroll="" du-scrollspy="" offset="130" >
+            产品及数据
+          </a>
+        </li>
+        <li>
+          <a href="#news" du-smooth-scroll="" du-scrollspy="" offset="130" >
+           相关新闻
+          </a>
+        </li>
+        <li>
+          <a href="#similarItem" du-smooth-scroll="" du-scrollspy="" offset="130" >
+            相似公司
+          </a>
+        </li>
         <li>
           <a href="#">认领</a>
         </li>
       </ul>
     </nav>
   </section>
-  <section class="project-module light" ng-include="'/pages/project/templates/light.html'">
+  <section id="light" class="project-module light" ng-include="'/pages/project/templates/light.html'">
 
   </section>
 
-  <section class="project-module">
+  <section id="baseInfo" class="project-module">
+    基本介绍
   </section>
-  <section class="project-module">
+  <section id="financeDetail" class="project-module">
+    融资详情
   </section>
-  <section class="project-module">
+  <section id="financeHistory" class="project-module">
+    融资经历
   </section>
-  <section class="project-module">
+  <section id="founder" class="project-module">
+    创始团队
   </section>
-  <section class="project-module" ng-include="'/pages/project/templates/similarItem.html'">
+  <section id="product" class="project-module">
+    产品及数据
+  </section>
+  <section id="news" class="project-module">
+    相关新闻
+  </section>
+  <section id="similarItem" class="project-module" ng-include="'/pages/project/templates/similarItem.html'">
 
   </section>
 </div>
