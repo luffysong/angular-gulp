@@ -1,12 +1,12 @@
+@import "../../../common/styles/function";
 @import "./var";
 .similar-item{
 	.project-var();
 	background-color: @bg-color;
   .h-name{
-    font-size: 16px;
+    .font(16,24);
     color: #222C38;
     letter-spacing: 0px;
-    line-height: 24px;
     position: relative;
     &:before{
       content: '';
@@ -25,10 +25,9 @@
 		float: right;
 		li{
 			display: inline-block;
-			font-size: 12px;
+      .font(12,18);
 			color: #222C38;
 			letter-spacing: 0px;
-			line-height: 18px;
 			padding:4px 12px;
 			border-right: 1px solid #E7E7E7;
 		}
@@ -76,25 +75,22 @@
             width: 200px;
             height: 42px;
             .i-brief{
-              font-size: 12px;
+              .font(12,18);
               color: #5A626D;
               letter-spacing: 0px;
               margin-top: 5px;
-              line-height: 18px;
               display: inline-block;
             }
             .i-name{
-              font-size: 14px;
+              .font(14,21);
               color: #5A626D;
               letter-spacing: 0px;
-              line-height: 21px;
               margin-right: 14px;
             }
             .i-industry{
-              font-size: 12px;
+              .font(12,18);
               color: #5A626D;
               letter-spacing: 0px;
-              line-height: 18px;
             }
           }
 				}
@@ -106,10 +102,9 @@
         }
 			}
         .similarity{
-          font-size: 14px;
+          .font(14,21);
           color: #5A626D;
           letter-spacing: 0px;
-          line-height: 21px;
         }
         .related-info{
           max-width: 340px;
@@ -154,10 +149,10 @@
         border: 1px solid #BBBBBB;
         border-radius: 4px;
         height: 28px;
-        font-size: 12px;
         color: #5A626D;
         letter-spacing: 0px;
-        line-height: 28px;
+        .font(12,28);
+
       }
 		}
 }

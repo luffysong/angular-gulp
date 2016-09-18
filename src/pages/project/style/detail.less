@@ -1,3 +1,4 @@
+@import "../../../common/styles/function";
 .finance-detail{
   .detail-content{
     .details{
@@ -5,10 +6,9 @@
     }
     width: 100%;
     .title{
-      font-size: 14px;
+      .font(14,21);
       color: #5A626D;
       letter-spacing: 0px;
-      line-height: 21px;
       display: inline-block;
       margin-right: 30px;
       font-weight: 600;
@@ -17,10 +17,11 @@
       width: 700px;
       vertical-align: top;
       display: inline-block;
-      font-size: 14px;
       color: #5A626D;
+      .font(14,21);
       letter-spacing: 0px;
       p{
+        .font(14,21);
         line-height: 21px;
       }
       p+p{
@@ -33,10 +34,9 @@
       border: 1px solid #BBBBBB;
       border-radius: 4px;
       padding:5px 35px;
-      font-size: 12px;
       color: #5A626D;
       letter-spacing: 0px;
-      line-height: 18px;
+      .font(12,18);
     }
   }
 }
