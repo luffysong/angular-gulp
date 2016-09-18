@@ -1,5 +1,5 @@
 <nav class="rz-sidebar-wrapper" >
-  <ul class="nav">
+  <ul class="nav" id='sidebar'>
     <li class='home'>
     	<a href="">
     		<span class="icon-home kr-icon" id="Img"></span>
@@ -48,7 +48,7 @@
 <script>
 	var local = location.pathname;
 	var arr = local.split('/');
-	var objLi = document.getElementsByTagName('li');
+	var objLi = document.getElementById('sidebar').getElementsByTagName('li');
 	function hasClass(obj, cls) {
         return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
     }
