@@ -4,11 +4,8 @@ export default class CommonInterceptor {
     if (angular.isUndefined(response.data.code)) {
       return response;
     }
-    const resCopy = angular.extend({}, response);
+    const resCopy = angular.copy(response);
     if (response.data.code !== 0) {
-      if (response.data.code === 4032) {
-        location.href = '/#/fail/forbidden';
-      }
       return this.$q.reject(response.data);
     }
 

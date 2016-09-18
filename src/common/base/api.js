@@ -1,33 +1,46 @@
 /* eslint-disable no-alert */
-import { getService } from './utls';
+import { getService, slice } from './utls';
 export default class API {
 
-  domain = '//';
-  constructor(config) {
-    this.$http = getService('$http');
+  API_PATH = `//${location.host}/api`;
+  constructor(url, actions) {
     this.$q = getService('$q');
-    this.request = getService('$resource');
-    this.config = config;
+    this.request = getService('$resource')(`${this.API_PATH}/${url}/:action`, actions);
+    this.actions = actions || {};
+  }
+
+  copyMethod(actions) {
+    Object.keys(actions).forEach((methodName) => {
+      this[methodName] = () => {
+        const parameters = slice.call(arguments, 0);
+        return this.request.apply(this.request, parameters).$promise;
+      };
+    });
   }
 
 
-  send(config) {
-    this.config = config;
+  send(method, params, data) {
+    return this.request[method](params, data).$promise;
   }
 
-  get(config) {
-    return this.send(config);
+  get(params) {
+    return this.send('get', params);
+  }
+  query(params) {
+    return this.send('query', params);
   }
 
-  delete() {
+  put(params, data) {
+    return this.send('put', params, data);
   }
 
-  query() {
+  post(params, data) {
+    return this.send('post', params, data);
   }
 
-  put() {
+  remove(params) {
+    return this.send('get', params);
   }
 
-  post() {
-  }
+
 }

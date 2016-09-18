@@ -13,3 +13,4 @@ export function getService(name) {
   return getInjector().get(name);
 }
 
+export const slice = Array.prototype.slice;

@@ -16,6 +16,7 @@ module.exports = {
     "new-cap": 0,
     "babel/new-cap": 2,
     "no-console": 0,
+    "prefer-rest-params": 0,
     "no-restricted-syntax":0,
     "prefer-arrow-callback": 0,
     "import/prefer-default-export": 0,

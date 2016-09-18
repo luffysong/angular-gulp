@@ -17,7 +17,7 @@ const proxyConfig = {
   proxy: [
     {
       path: '/api',
-      target: '//rongtest01.36kr.com',
+      target: 'http://nrongtest03.36kr.com',
     },
   ],
 };

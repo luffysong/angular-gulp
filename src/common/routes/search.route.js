@@ -13,12 +13,13 @@ const searchView = {
 const search = {
   url: '/:wd?page',
   parent: searchView,
-  resolave: {
+  resolve: {
     loadBundle: getLoadBundle(assets.page.search),
   },
   views: {
     left: {
       templateUrl: '/pages/search/templates/index.html',
+      controller: 'SearchIndexController',
     },
     right: {
       templateUrl: '/pages/project/templates/index.html',

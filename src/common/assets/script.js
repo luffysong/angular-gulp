@@ -8,5 +8,8 @@ export default {
       '/bower/ngSticky/dist/sticky.min.js',
       '/bower/angular-scroll/angular-scroll.min.js',
     ],
+    search: [
+      '/pages/search/index.js',
+    ],
   },
 };
