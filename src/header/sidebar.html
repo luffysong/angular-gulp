@@ -6,13 +6,13 @@
 			<span class="kr-tags">首页</span>
     	</a>
     </li>
-    <li class='company'>
+    <li class='project search'>
     	<a href="">
     		<span class="icon-Company kr-icon"></span>
     		<span class="kr-tags">创业公司</span>
     	</a>
     </li>
-    <li class='active institution'>
+    <li class='institution'>
     	<a href="">
     		<span class="icon-institute kr-icon"></span>
     		<span class="kr-tags">投资机构</span>
@@ -64,26 +64,15 @@
     }
 
 	for (var i = objLi.length - 1; i >= 0; i--) {
-		removeClass(objLi[i],'active');
-		if(objLi[i].className === arr[1]){
+		if(hasClass(objLi[i], arr[1])){
 			addClass(objLi[i],'active');
 		}
 	}
+
 	var objUl = document.getElementsByTagName("ul");
-	var n = document.getElementById('Img');
-	var w = document.getElementById('showImg');
-    function narrow(obj){
-    	obj.addEventListener("click", function() {
-	       addClass(objUl[0],'narrow');
-	    });
-    }
-    function widen(obj){
-    	obj.addEventListener("click", function() {
-	       removeClass(objUl[0],'narrow');
-	    });
-    }
-    widen(n);
-    narrow(w);
+  if(arr[1] === 'search'){
+    addClass(objUl[0],'narrow');
+  }
 </script>
 
 
