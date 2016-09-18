@@ -3,7 +3,8 @@ import { getLoadBundle } from '../base/utls';
 const searchView = {
   url: '/search',
   abstract: true,
-  template: '<div ui-view="left"></div><div ui-view="right"></div>',
+  template:
+  '<div class="search-wrapper"><div ui-view="left"></div><div ui-view="right"></div></div>',
   resolve: {
     loadBundle: getLoadBundle(assets.page.project),
   },
