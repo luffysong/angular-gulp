@@ -1,3 +1,4 @@
+@import "../../../common/styles/function";
 .base-info{
   .tags{
     padding-bottom: 16px;
@@ -11,18 +12,18 @@
       margin-right: 16px;
     }
     .type{
-      font-size: 12px;
+      .font(12,20);
       color: #FF5B00;
       letter-spacing: 0px;
-      line-height: 18px;
+      height: 20px;
       background: rgba(245, 166, 35, 0.2);
     }
     .tag{
+      .font(12,20);
+      height: 20px;
       background: rgba(107, 162, 252, 0.2);
-      font-size: 12px;
       color: #2868D1;
       letter-spacing: 0px;
-      line-height: 18px;
       padding: 1px 6px;
     }
     .tag-icon{
@@ -44,11 +45,10 @@
   }
   .company-info{
     &>li{
+      .font(12,15);
       display: inline-block;
-      font-size: 12px;
       color: #969FA9;
       letter-spacing: 0px;
-      line-height: 15px;
       padding: 1px 10px;
       height: 15px;
     }
@@ -60,6 +60,7 @@
     }
     .more{
       color: #6BA2FC;
+      cursor: pointer;
     }
   }
 }

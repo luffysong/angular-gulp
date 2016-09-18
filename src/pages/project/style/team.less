@@ -1,3 +1,4 @@
+@import "../../../common/styles/function";
 @import "./var";
 .found-team{
   .content{
@@ -6,10 +7,9 @@
       margin-bottom: 12px;
     }
     .name{
-      font-size: 14px;
+      .font(14,21);
       color: #5A626D;
       letter-spacing: 0px;
-      line-height: 21px;
       width: 70px;
       text-align: right;
       margin-right: 30px;
@@ -20,21 +20,21 @@
       li{
         display: inline-block;
         background: rgba(107, 162, 252, 0.2);
-        font-size: 12px;
         color: #2868D1;
         letter-spacing: 0px;
         line-height: 18px;
         padding: 1px 6px;
+        height: 19px;
+        .font(12,18);
       }
     }
     .ad-info{
       display: inline-block;
       max-width: 705px;
       vertical-align: top;
-      font-size: 14px;
       color: #5A626D;
       letter-spacing: 0px;
-      line-height: 21px;
+      .font(14,21);
     }
     .item-list{
       border-collapse:collapse;
@@ -45,10 +45,9 @@
       margin-top: 25px;
       .content-head{
         background-color: #F9f9f9;
-        font-size: 14px;
         color: #5A626D;
         letter-spacing: 0px;
-        line-height: 21px;
+        .font(14,21);
         td{
           padding: 12px 0;
         }
@@ -62,10 +61,9 @@
       .content-body{
         tr{
           border-bottom: 1px solid #F2F4F5;
-          font-size: 14px;
           color: #5A626D;
           letter-spacing: 0px;
-          line-height: 21px;
+          .font(14,21);
         }
 
         td{
@@ -78,13 +76,13 @@
           width: 120px;
           border: 1px solid #BBBBBB;
           border-radius: 4px;
-          font-size: 12px;
+          .font(12,18);
           color: #5A626D;
           letter-spacing: 0px;
-          line-height: 18px;
           padding: 5px 35px;
           margin-top: 25px;
           display: inline-block;
+          cursor: pointer;
         }
       }
     }

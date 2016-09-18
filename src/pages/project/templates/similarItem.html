@@ -31,7 +31,7 @@
 					</td>
 					<td class='similarity'>99.20%</td>
 					<td class="related-info">
-						<ul class='list'>
+						<ul class='list' ng-class='{"all":show[0]}'>
 							<li>轮次</li>
 							<li>企业服务</li>
 							<li>互联网媒体</li>
@@ -40,7 +40,7 @@
 							<li>互联网媒体</li>
 							<li>互联网媒体</li>
 						</ul>
-						<span class='icon-close curson'></span>
+						<span class='icon-close curson' ng-click='show[0]=!show[0]' ng-class='{"pointed":show[0]}'></span>
 					</td>
 				</tr>
         <tr>
@@ -52,9 +52,9 @@
               <p class='i-brief'>为创业者提供最好的产品和服务</p>
             </div>
           </td>
-          <td>99.20%</td>
+          <td class='similarity'>99.20%</td>
           <td class="related-info">
-            <ul class='list all'>
+            <ul class='list' ng-class='{"all":show[1]}'>
               <li>轮次</li>
               <li>企业服务</li>
               <li>互联网媒体</li>
@@ -63,7 +63,7 @@
               <li>互联网媒体</li>
               <li>互联网媒体</li>
             </ul>
-            <span class='icon-close curson'></span>
+            <span class='icon-close curson' ng-click='show[1]=!show[1]' ng-class='{"pointed":show[1]}'></span>
           </td>
         </tr>
 			</tbody>

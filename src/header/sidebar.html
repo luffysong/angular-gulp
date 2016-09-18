@@ -73,6 +73,18 @@
   if(arr[1] === 'search'){
     addClass(objUl[0],'narrow');
   }
+
+
+    function narrow(obj){
+      obj.addEventListener("click", function() {
+         addClass(objUl[0],'narrow');
+      });
+    }
+    function widen(obj){
+      obj.addEventListener("click", function() {
+         removeClass(objUl[0],'narrow');
+      });
+    }
 </script>
 
 

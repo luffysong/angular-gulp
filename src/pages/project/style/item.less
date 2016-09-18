@@ -113,7 +113,7 @@
             display: inline-block;
             width: 250px;
             height: 30px;
-            padding: 5px 0;
+            padding:0;
             overflow-y: hidden;
             vertical-align: middle;
           }
@@ -135,6 +135,10 @@
             transform: scale(0.7,0.7);
             display: inline-block;
             vertical-align: middle;
+            cursor: pointer;
+          }
+          .pointed{
+            transform:scale(0.7,0.7) rotate(180deg);
           }
         }
 			}
@@ -150,6 +154,7 @@
         border-radius: 4px;
         height: 28px;
         color: #5A626D;
+        cursor: pointer;
         letter-spacing: 0px;
         .font(12,28);
 
