@@ -1,3 +1,4 @@
+/* eslint-disable angular/on-watch */
 import home from './home.route';
 import project from './project.route';
 import { searchView, search } from './search.route';
@@ -11,5 +12,13 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider.state('search.result', search);
 }
 
-angular.module('@@app.routes', ['oc.lazyLoad', 'ui.router'])
-  .config(configRoute);
+function stateChangeError($rootScope, $log) {
+  $rootScope.$on('$stateChangeError', function onStateChangeError(event, toState, toParams,
+    fromState,
+    fromParams, error) {
+    $log.info(error);
+  });
+}
+angular.module('@@app.routes', ['oc.lazyLoad', 'ui.router', '@@app.constants'])
+  .config(configRoute)
+  .run(stateChangeError);

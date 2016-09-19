@@ -1,7 +1,9 @@
 import '../routes/index';
+import '../constants/index';
+import '../filters/index';
 import commonInterceptor from '../base/commonInterceptor';
 /* eslint-disable no-param-reassign,no-use-before-define */
-angular.module('@@app', ['@@app.routes', 'ngResource']);
+angular.module('@@app', ['@@app.routes', '@@app.constants', 'ngResource', '@@app.filters']);
 angular.module('@@app').service('commonInterceptor', commonInterceptor)
   .config(function configHttp($httpProvider) {
     $httpProvider.interceptors.push('commonInterceptor');

@@ -13,4 +13,19 @@ export function getService(name) {
   return getInjector().get(name);
 }
 
+export function extractMeta(from, to) {
+  to = to || {};
+  from.forEach((item) => {
+    to[item.value] = item.value;
+  });
+  return to;
+}
+
+export function getConstantFilterFactory(meta) {
+  return function constantFilterFacotry() {
+    return function constantFilter(input) {
+      return meta.filter(item => item.value === input)[0].desc;
+    };
+  };
+}
 export const slice = Array.prototype.slice;
