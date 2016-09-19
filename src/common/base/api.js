@@ -1,19 +1,39 @@
 /* eslint-disable no-alert */
 import { getService, slice } from './utls';
+
+function mergeActions(gets, actions) {
+  gets.forEach(methodName => {
+    actions[methodName] = {
+      params: {
+        action: methodName,
+      },
+    };
+  });
+}
 export default class API {
 
   API_PATH = `//${location.host}/api`;
-  constructor(url, actions) {
-    this.$q = getService('$q');
-    this.request = getService('$resource')(`${this.API_PATH}/${url}/:action`, actions);
+  constructor(url, getMethods, actions) {
+    // 参数调换
+    if (!angular.isArray(getMethods)) {
+      actions = getMethods;
+      getMethods = [];
+    }
+    this.getMethods = getMethods || [];
     this.actions = actions || {};
+    this.$q = getService('$q');
+    mergeActions(this.getMethods, this.actions);
+    this.request = getService('$resource')(`${this.API_PATH}${url}/:action`, null, this.actions);
+    this.copyMethod();
   }
 
-  copyMethod(actions) {
-    Object.keys(actions).forEach((methodName) => {
-      this[methodName] = () => {
+  copyMethod() {
+    Object.keys(this.actions).concat(this.getMethods).forEach((methodName) => {
+      this[methodName] = function request() {
         const parameters = slice.call(arguments, 0);
-        return this.request.apply(this.request, parameters).$promise;
+        parameters[0] = parameters[0] || {};
+        parameters[0] = angular.extend({ action: methodName }, parameters[0]);
+        return this.request[methodName](...parameters).$promise;
       };
     });
   }

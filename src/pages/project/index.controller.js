@@ -9,10 +9,10 @@ export default class ProjectIndexController {
   }
 
   loadCompanyBaseInfo() {
-    this.projectService.get({
+    this.projectService.allData({
       id: this.$stateParams.id,
     }).then((data) => {
-      console.log(data);
+      console.log(data.baseInfo);
     });
   }
 }
