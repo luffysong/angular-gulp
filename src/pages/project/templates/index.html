@@ -10,8 +10,8 @@
         </h1>
         <h3>{{::vm.baseInfoVM.brief}}</h3>
         <p>
-          <span ng-class="{disable: !vm.baseInfoVM.weibo}" class="kr-icon icon-Weibo"></span>
-          <span ng-class="{disable: !vm.baseInfoVM.weixin}" class="kr-icon icon-Wechat"></span>
+          <span ng-if="vm.baseInfoVM.weibo" class="kr-icon icon-Weibo"></span>
+          <span ng-if="vm.baseInfoVM.weixin" class="kr-icon icon-Wechat"></span>
           <span class="kr-icon icon-websitelink"></span>
           <a ng-href="{{::vm.baseInfoVM.website}}">
             {{::vm.baseInfoVM.website}}
@@ -83,13 +83,13 @@
       </ul>
     </nav>
   </section>
-  <section id="light" class="project-module light" ng-include="'/pages/project/templates/light.html'">
+  <section id="light" class="project-module light" ng-include="'/pages/project/templates/light.html'" ng-show="{{::vm.baseInfoVM.advantage}}">
 
   </section>
 
   <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'">
   </section>
-  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module">
+  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module" ng-show="{{::vm.fundsVM.funds}}">
     融资详情
   </section>
   <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module">

@@ -7,6 +7,7 @@ export default {
       '/pages/project/index.js',
       '/bower/ngSticky/dist/sticky.min.js',
       '/bower/angular-scroll/angular-scroll.min.js',
+      '/bower/angular-clamp/ng-clamp.js',
     ],
     search: [
       '/pages/search/index.js',

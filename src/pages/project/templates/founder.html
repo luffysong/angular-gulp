@@ -1,21 +1,19 @@
 <div class="found-team">
   <h4>创始团队</h4>
-  <div class="content">
-    <div class="team-key">
+  <div class="content" ng-show="{{::(vm.memberVM.story || vm.memberVM.members.length || vm.memberVM.teamTags.length)}}">
+    <div class="team-key" ng-show="{{::vm.memberVM.teamTags.length}}">
       <span class="name">团队关键字</span>
       <ul class="key-list">
-        <li>金融背景</li>
-        <li>阿里系</li>
-        <li>金融</li>
+        <li ng-repeat="tag in ::vm.memberVM.teamTags">{{tag}}</li>
       </ul>
     </div>
-    <div class="advantage">
+    <div class="advantage" ng-show="{{::vm.memberVM.story}}">
       <span class="name">团队优势</span>
       <div class="ad-info">
-        36氪的团队是业内最全面、专业的团队。我们团队有多年创业的经验的合伙人，也有多年投资经历的合伙人，以及36氪从0做起的合伙人。我们分工明确，战略清晰，团队能力比较完整的同时，也保持着高效的团队迭代速度。相信这样一个团队是我们最大的财富。
+        {{::vm.memberVM.story}}
       </div>
     </div>
-    <div class="team-people">
+    <div class="team-people" ng-show="{{::vm.memberVM.members.length}}">
       <table class='item-list'>
       <thead class='content-head'>
         <tr>
@@ -25,22 +23,13 @@
         </tr>
       </thead>
       <tbody class='content-body'>
-        <tr>
+        <tr ng-repeat="member in ::vm.memberVM.members">
           <td>
-            刘成成
+            {{member.name}}
           </td>
-          <td>创始人 & CEO</td>
+          <td>{{member.position}}</td>
           <td>
-            36氪创始人，湖畔大学、中欧创投营一期学员
-          </td>
-        </tr>
-        <tr>
-          <td>
-            刘成成
-          </td>
-          <td>创始人 & CEO</td>
-          <td>
-              36氪创始人，湖畔大学、中欧创投营一期学员36氪创始人，湖畔大学、中欧创投营一期学员
+            {{member.intro}}
           </td>
         </tr>
       </tbody>
@@ -53,5 +42,8 @@
       </tfoot>
     </table>
     </div>
+  </div>
+  <div ng-show="{{::(vm.memberVM.teamTags.length && vm.memberVM.story && !vm.memberVM.members.length)}}">
+    暂无数据
   </div>
 </div>

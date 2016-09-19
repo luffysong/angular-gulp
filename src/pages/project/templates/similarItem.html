@@ -3,15 +3,15 @@
 
 		<span class="h-name">相似项目</span>
 		<ul class='h-title'>
-			<li class="active">综合</li>
-			<li>股权投资</li>
-			<li>金融</li>
-			<li>创业服务</li>
-			<li>媒体</li>
+			<li ng-class="{'active':vm.similarVM.tagName == '综合'}" ng-click="vm.similarVM.changeType('综合')">综合</li>
+			<li ng-click="vm.similarVM.changeType('股权投资')" ng-class="{'active':vm.similarVM.tagName == '股权投资'}">股权投资</li>
+			<li ng-click="vm.similarVM.changeType('金融')" ng-class="{'active':vm.similarVM.tagName == '金融'}">金融</li>
+			<li ng-click="vm.similarVM.changeType('创业服务')" ng-class="{'active':vm.similarVM.tagName == '创业服务'}">创业服务</li>
+			<li ng-click="vm.similarVM.changeType('媒体')" ng-class="{'active':vm.similarVM.tagName == '媒体'}">媒体</li>
 		</ul>
 	</div>
 	<div class="content">
-		<table class='item-list'>
+		<table class='item-list' ng-show="{{::vm.similarVM.companyList.length}}">
 			<thead class='content-head'>
 				<tr>
 					<td>项目</td>
@@ -20,52 +20,23 @@
 				</tr>
 			</thead>
 			<tbody class='content-body'>
-				<tr>
+				<tr ng-repeat="item in vm.similarVM.companyList">
 					<td class='item-info'>
-						<img src="" alt="">
+						<img ng-src="{{item.logo}}" alt="">
 						<div class="info">
-							<span class='i-name'>36氪</span>
-							<span class='i-industry'>电子商务</span>
-							<p class='i-brief'>为创业者提供最好的产品和服务</p>
+							<span class='i-name'>{{item.name}}</span>
+							<span class='i-industry'>{{item.industry}}</span>
+							<p class='i-brief' clamp="1" ng-bind="item.brief"></p>
 						</div>
 					</td>
-					<td class='similarity'>99.20%</td>
+					<td class='similarity'>{{item.similar}}</td>
 					<td class="related-info">
 						<ul class='list' ng-class='{"all":show[0]}'>
-							<li>轮次</li>
-							<li>企业服务</li>
-							<li>互联网媒体</li>
-							<li>相似企业</li>
-							<li>企业服务</li>
-							<li>互联网媒体</li>
-							<li>互联网媒体</li>
+							<li ng-repeat="tag in item.similarInfo">{{tag}}</li>
 						</ul>
-						<span class='icon-close curson' ng-click='show[0]=!show[0]' ng-class='{"pointed":show[0]}'></span>
+						<span class='icon-close curson' ng-click='show[index]=!show[index]' ng-class='{"pointed":show[index]}'></span>
 					</td>
 				</tr>
-        <tr>
-          <td class='item-info'>
-            <img src="" alt="">
-            <div class="info">
-              <span class='i-name'>36氪</span>
-              <span class='i-industry'>电子商务</span>
-              <p class='i-brief'>为创业者提供最好的产品和服务</p>
-            </div>
-          </td>
-          <td class='similarity'>99.20%</td>
-          <td class="related-info">
-            <ul class='list' ng-class='{"all":show[1]}'>
-              <li>轮次</li>
-              <li>企业服务</li>
-              <li>互联网媒体</li>
-              <li>相似企业</li>
-              <li>企业服务</li>
-              <li>互联网媒体</li>
-              <li>互联网媒体</li>
-            </ul>
-            <span class='icon-close curson' ng-click='show[1]=!show[1]' ng-class='{"pointed":show[1]}'></span>
-          </td>
-        </tr>
 			</tbody>
 			<tfoot>
           <tr>
@@ -75,5 +46,8 @@
           </tr>
 			</tfoot>
 		</table>
+    <div ng-show="{{::!vm.similarVM.companyList.length}}">
+      暂无数据
+    </div>
 	</div>
 </div>

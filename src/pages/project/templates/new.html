@@ -1,29 +1,18 @@
 <div class="similar-item">
   <h4>相关新闻</h4>
-  <div class="content">
+  <div class="content" ng-show="{{::vm.newsVm.data.length}}">
     <ul>
-      <li class="new-detail">
-        <span class="time">2016-07-02</span>
+      <li class="new-detail" ng-repeat="new in ::vm.newsVm.data">
+        <span class="time">{{new.publishDateStr}}</span>
         <span class="point"></span>
         <div class="new-info">
-          <span class="tag">人员变动</span>
+          <span class="tag">{{data.newsType}}</span>
           <div class="new-article">
-            <p class="n-title">36氪分拆媒体业务独立运营 冯大刚加盟任总裁</p>
-            <p>
-              <span class="from">来源</span><span class='address'>36kr</span>
+            <p class="n-title">
+              <a ng-href="{{::vm.data.newsUrl}}">{{data.title}}</a>
             </p>
-          </div>
-        </div>
-      </li>
-      <li class="new-detail">
-        <span class="time">2016-07-02</span>
-        <span class="point"></span>
-        <div class="new-info">
-          <span class="tag">人员变动</span>
-          <div class="new-article">
-            <p class="n-title">36氪分拆媒体业务独立运营 冯大刚加盟任总裁</p>
             <p>
-              <span class="from">来源</span><span class='address'>36kr</span>
+              <span class="from">来源</span><span class='address'>{{data.source}}</span>
             </p>
           </div>
         </div>
@@ -32,5 +21,8 @@
     <div class="more">
       <span class="get-more">展开全部新闻</span>
     </div>
+  </div>
+  <div ng-show="{{::!vm.newsVm.data.length}}">
+    暂无数据
   </div>
 </div>

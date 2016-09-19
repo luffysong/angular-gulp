@@ -3,10 +3,11 @@
   <div>
     <ul class="tags" >
       <li class="tag-icon"><span class="icon-Tags"></span></li>
-      <li class="type">金融</li>
+      <li class="tag" ng-repeat="tag in ::vm.baseInfoVM.industryTag">{{tag}}</li>
+      <!-- <li class="type">金融</li>
       <li class="type">众筹</li>
       <li class="tag">媒体门户</li>
-      <li class="tag">股权投资</li>
+      <li class="tag">股权投资</li> -->
     </ul>
     <div class="info">
       <p>36氪还有创业媒体、氪空间、NEXT等业务，全方位为互联网创业公司、创业者提供服务。截至目前，36氪每个月能收到的创业项目的数量、和服务的公司的数量已经遥遥领先行业其他类型公司。</p>
@@ -15,9 +16,9 @@
       </p>
     </div>
     <ul class="company-info">
-      <li>公司全称：北京协力筑成金融信息服务股份有限公司</li>
-      <li>成立时间：2016年</li>
-      <li>公司规模：300–400人</li>
+      <li>公司全称：{{::vm.baseInfoVM.fullName}}</li>
+      <li>成立时间：{{::(vm.baseInfoVM.startDate | date: 'yyyy-MM-dd')}}</li>
+      <li>公司规模：{{::vm.baseInfoVM.scale}}</li>
       <li class="more">查看更多工商信息</li>
     </ul>
   </div>
