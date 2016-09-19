@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import { getService, slice } from './utls';
 
 function mergeActions(gets, actions) {

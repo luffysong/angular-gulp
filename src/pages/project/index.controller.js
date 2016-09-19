@@ -1,3 +1,4 @@
+import BaseInfoVM from './baseInfo.vm';
 @Inject('$stateParams', 'projectService')
 export default class ProjectIndexController {
   constructor() {
@@ -12,7 +13,7 @@ export default class ProjectIndexController {
     this.projectService.allData({
       id: this.$stateParams.id,
     }).then((data) => {
-      console.log(data.baseInfo);
+      this.baseInfoVM = new BaseInfoVM(data.baseInfo);
     });
   }
 }

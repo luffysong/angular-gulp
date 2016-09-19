@@ -2,17 +2,20 @@
   <section class="base-info-wrapper">
     <div class="base-info-content">
       <div>
-        <img src="" class="logo" alt="">
+        <img ng-src="{{::vm.baseInfoVM.logo}}" class="logo" alt="">
       </div>
       <div>
-        <h1>36氪 <span>B2B</span></h1>
-        <h3>为创业者提供好的产品和服务</h3>
+        <h1>{{::vm.baseInfoVM.name}}
+          <span ng-repeat="tag in ::vm.baseInfoVM.industryTag">{{tag}}</span>
+        </h1>
+        <h3>{{::vm.baseInfoVM.brief}}</h3>
         <p>
-          <span class="kr-icon icon-Weibo"></span>
-          <span class="kr-icon icon-Wechat"></span>
+          <span ng-if="vm.baseInfoVM.weibo" class="kr-icon icon-Weibo"></span>
+          <span ng-if="vm.baseInfoVM.weixin" class="kr-icon icon-Wechat"></span>
           <span class="kr-icon icon-websitelink"></span>
-          <a href="http://www.36kr.com">
-            www.36kr.com</a>
+          <a ng-href="{{::vm.baseInfoVM.website}}">
+            {{::vm.baseInfoVM.website}}
+          </a>
           <span class="kr-icon icon-Hot"></span>
           <span class="hot-text">联系创业者</span>
         </p>
