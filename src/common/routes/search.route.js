@@ -15,6 +15,7 @@ const search = {
   parent: searchView,
   resolve: {
     loadBundle: getLoadBundle(assets.page.search),
+    projectData: () => undefined,
   },
   views: {
     left: {
