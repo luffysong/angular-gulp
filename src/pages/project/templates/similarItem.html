@@ -14,9 +14,9 @@
 		<table class='item-list' ng-show="{{::vm.similarVM.companyList.length}}">
 			<thead class='content-head'>
 				<tr>
-					<td>项目</td>
-					<td>相似度</td>
-					<td>相关信息</td>
+					<td class="item">项目</td>
+					<td class="silimar">相似度</td>
+					<td class="silimar-info">相关信息</td>
 				</tr>
 			</thead>
 			<tbody class='content-body'>
@@ -30,12 +30,15 @@
 						</div>
 					</td>
 					<td class='similarity'>{{item.similar}}</td>
-					<td class="related-info">
+					<td class="related-info" ng-show="{{::item.similarInfo.length}}">
 						<ul class='list' ng-class='{"all":show[0]}'>
 							<li ng-repeat="tag in item.similarInfo">{{tag}}</li>
 						</ul>
 						<span class='icon-close curson' ng-click='show[index]=!show[index]' ng-class='{"pointed":show[index]}'></span>
 					</td>
+          <td class="related-info" ng-show="{{::!item.similarInfo.length}}">
+            <span>暂无数据</span>
+          </td>
 				</tr>
 			</tbody>
 			<tfoot>

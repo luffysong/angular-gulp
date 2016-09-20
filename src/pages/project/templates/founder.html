@@ -1,19 +1,20 @@
 <div class="found-team">
   <h4>创始团队</h4>
-  <div class="content" ng-show="{{::(vm.memberVM.story || vm.memberVM.members.length || vm.memberVM.teamTags.length)}}">
-    <div class="team-key" ng-show="{{::vm.memberVM.teamTags.length}}">
+  <div class="content" ng-show="{{::(vm.memberVM.data.story || vm.memberVM.data.members.length || vm.memberVM.data.teamTags.length)}}">
+    <div class="team-key" ng-show="{{::vm.memberVM.data.teamTags.length}}">
       <span class="name">团队关键字</span>
       <ul class="key-list">
-        <li ng-repeat="tag in ::vm.memberVM.teamTags">{{tag}}</li>
+        <li ng-repeat="tag in ::vm.memberVM.data.teamTags">{{tag}}</li>
       </ul>
     </div>
-    <div class="advantage" ng-show="{{::vm.memberVM.story}}">
+    <div class="advantage" ng-show="{{::!vm.memberVM.data.story}}">
       <span class="name">团队优势</span>
-      <div class="ad-info">
-        {{::vm.memberVM.story}}
-      </div>
+      <span class="ad-info" ng-bind="::vm.memberVM.data.story"></span>
+      <!-- <div class="ad-info">
+        {{::vm.memberVM.data.story}}
+      </div> -->
     </div>
-    <div class="team-people" ng-show="{{::vm.memberVM.members.length}}">
+    <div class="team-people" ng-show="{{::vm.memberVM.data.members.length}}">
       <table class='item-list'>
       <thead class='content-head'>
         <tr>
@@ -23,7 +24,7 @@
         </tr>
       </thead>
       <tbody class='content-body'>
-        <tr ng-repeat="member in ::vm.memberVM.members">
+        <tr ng-repeat="member in ::vm.memberVM.data.membersList">
           <td>
             {{member.name}}
           </td>
@@ -36,14 +37,14 @@
       <tfoot class="content-footer">
           <tr>
             <td class='t-foot' colspan='3'>
-              <div class="get-more">查看更多</div>
+              <div class="get-more" ng-click="vm.memberVM.more()" ng-show="{{vm.memberVM.data.members.length>1 && vm.memberVM.moreShow}}">查看更多</div>
             </td>
           </tr>
       </tfoot>
     </table>
     </div>
   </div>
-  <div ng-show="{{::(vm.memberVM.teamTags.length && vm.memberVM.story && !vm.memberVM.members.length)}}">
+  <div ng-show="{{::(vm.memberVM.data.teamTags.length && vm.memberVM.data.story && !vm.memberVM.data.members.length)}}">
     暂无数据
   </div>
 </div>
