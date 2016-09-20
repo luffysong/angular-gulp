@@ -4,15 +4,20 @@ export default class MemberVM {
     this.init();
   }
   init() {
-    if (this.data.members.length > 1) {
-      this.data.membersList = this.data.members.slice(0, 1);
-      this.moreShow = true;
+    let num = 1;
+    function getList(limitlist, list, n) {
+      if (list.length > (5 * n)) {
+        limitlist = list.slice(0, (5 * n));
+      } else {
+        limitlist = list;
+      }
+      return limitlist;
     }
     function more() {
-      this.data.membersList = this.data.members;
-      this.moreShow = false;
-      console.log('list', this.data.membersList, this.moreShow);
+      ++num;
+      this.members = getList(this.members, this.data.members, num);
     }
+    this.members = getList(this.members, this.data.members, 1);
     this.more = more;
   }
 }

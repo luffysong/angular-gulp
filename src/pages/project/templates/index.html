@@ -83,13 +83,13 @@
       </ul>
     </nav>
   </section>
-  <section id="light" class="project-module light" ng-include="'/pages/project/templates/light.html'" ng-show="{{::vm.baseInfoVM.advantage}}">
+  <section id="light" class="project-module light" ng-include="'/pages/project/templates/light.html'" ng-show="vm.baseInfoVM.advantage">
 
   </section>
 
   <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'">
   </section>
-  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module" ng-show="{{::vm.fundsVM.funds}}">
+  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module" ng-show="vm.fundsVM.funds">
     融资详情
   </section>
   <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module">

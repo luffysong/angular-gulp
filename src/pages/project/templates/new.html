@@ -1,28 +1,31 @@
 <div class="similar-item">
   <h4>相关新闻</h4>
-  <div class="content" ng-show="{{::vm.newsVm.data.length}}">
+  <div class="content" ng-show="vm.newsVM.newsList">
     <ul>
-      <li class="new-detail" ng-repeat="new in ::vm.newsVm.data">
+      <li class="new-detail" ng-repeat="new in vm.newsVM.newsList">
         <span class="time">{{new.publishDateStr}}</span>
         <span class="point"></span>
         <div class="new-info">
-          <span class="tag">{{data.newsType}}</span>
+          <span class="tag">{{new.newsType}}</span>
           <div class="new-article">
             <p class="n-title">
-              <a ng-href="{{::vm.data.newsUrl}}">{{data.title}}</a>
+              <a ng-href="{{new.newsUrl}}" ng-bind="new.title"></a>
             </p>
             <p>
-              <span class="from">来源</span><span class='address'>{{data.source}}</span>
+              <span class="from">来源</span><span class='address'>{{new.source}}</span>
             </p>
           </div>
         </div>
       </li>
     </ul>
     <div class="more">
-      <span class="get-more">展开全部新闻</span>
+      <span class="get-more" ng-click="vm.newsVM.more()" ng-show="vm.newsVM.showMore()">查看更多</span>
     </div>
   </div>
-  <div ng-show="{{::!vm.newsVm.data.length}}">
-    暂无数据
+  <div ng-show="!vm.newsVM.newsList" class="none-data">
+    <span>
+        <span class="icon-Company icon"></span>
+        <span>未收录相关信息</span>
+      </span>
   </div>
 </div>

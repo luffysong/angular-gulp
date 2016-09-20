@@ -3,15 +3,11 @@
 
 		<span class="h-name">相似项目</span>
 		<ul class='h-title'>
-			<li ng-class="{'active':vm.similarVM.tagName == '综合'}" ng-click="vm.similarVM.changeType('综合')">综合</li>
-			<li ng-click="vm.similarVM.changeType('股权投资')" ng-class="{'active':vm.similarVM.tagName == '股权投资'}">股权投资</li>
-			<li ng-click="vm.similarVM.changeType('金融')" ng-class="{'active':vm.similarVM.tagName == '金融'}">金融</li>
-			<li ng-click="vm.similarVM.changeType('创业服务')" ng-class="{'active':vm.similarVM.tagName == '创业服务'}">创业服务</li>
-			<li ng-click="vm.similarVM.changeType('媒体')" ng-class="{'active':vm.similarVM.tagName == '媒体'}">媒体</li>
+      <li ng-class="{'active':vm.similarVM.tagName == item.tagName}" ng-click="vm.similarVM.changeType(item.tagName)" ng-repeat="item in vm.similarVM.list">{{item.tagName}}</li>
 		</ul>
 	</div>
-	<div class="content">
-		<table class='item-list' ng-show="{{::vm.similarVM.companyList.length}}">
+	<div class="content" ng-show="vm.similarVM.companyList.length">
+		<table class='item-list' >
 			<thead class='content-head'>
 				<tr>
 					<td class="item">项目</td>
@@ -30,27 +26,31 @@
 						</div>
 					</td>
 					<td class='similarity'>{{item.similar}}</td>
-					<td class="related-info" ng-show="{{::item.similarInfo.length}}">
+					<td class="related-info" ng-show="item.similarInfo.length">
 						<ul class='list' ng-class='{"all":show[0]}'>
 							<li ng-repeat="tag in item.similarInfo">{{tag}}</li>
 						</ul>
 						<span class='icon-close curson' ng-click='show[index]=!show[index]' ng-class='{"pointed":show[index]}'></span>
 					</td>
-          <td class="related-info" ng-show="{{::!item.similarInfo.length}}">
-            <span>暂无数据</span>
+          <td class="related-info" ng-show="!item.similarInfo.length">
+            <span class="none-data">暂无数据</span>
           </td>
 				</tr>
 			</tbody>
 			<tfoot>
           <tr>
             <td class='t-foot' colspan='3'>
-              <div class="get-more">查看更多</div>
+              <div class="get-more" ng-click="vm.similarVM.more()" ng-show="vm.similarVM.showMore()">查看更多</div>
             </td>
           </tr>
 			</tfoot>
 		</table>
-    <div ng-show="{{::!vm.similarVM.companyList.length}}">
-      暂无数据
-    </div>
+
 	</div>
+  <div ng-show="!vm.similarVM.companyList.length" class="none-list">
+      <span>
+        <span class="icon-Company icon"></span>
+        <span>未收录相关信息</span>
+      </span>
+    </div>
 </div>
