@@ -14,13 +14,16 @@
              try_files  /dist/$uri  /.tmp/$uri  /src/$uri /dist/index.html =404;
          }
          location /api {
-             proxy_pass http://127.0.0.1:4242;
+             proxy_pass http://127.0.0.1:4243;
              expires 0;
          }
      }
 
 # 编辑/etc/hosts
   127.0.0.1 xrz.com
+
+# host 映射
+  192.168.2.8 nrongtest03.36kr.com
 
 # 运行项目
 
