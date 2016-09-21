@@ -1,12 +1,13 @@
 <div class="base-info">
   <h4>基本介绍</h4>
   <div>
-    <ul class="tags" >
+    <ul class="tags" ng-show="vm.baseInfoVM.industryTag">
       <li class="tag-icon"><span class="icon-Tags"></span></li>
-      <li class="tag" ng-repeat="tag in ::vm.baseInfoVM.industryTag">{{tag}}</li>
+      <li class="tag" ng-repeat="tag in vm.baseInfoVM.industryTag">{{tag}}</li>
     </ul>
     <div class="info">
-      <p ng-bind="vm.baseInfoVM.intro"></p>
+      <span id="node" text-overflow >{{vm.baseInfoVM.intro}}
+      </span>
     </div>
     <ul class="company-info">
       <li>公司全称：{{::vm.baseInfoVM.fullName}}</li>

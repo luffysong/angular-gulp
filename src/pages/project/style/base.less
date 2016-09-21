@@ -36,11 +36,22 @@
     color: #5A626D;
     letter-spacing: 0px;
     margin-bottom: 16px;
-    p{
+    &>span{
       line-height: 21px;
+      max-height: 100px;
+      display: inline-block;
     }
-    p+p{
-      margin-top: 10px;
+    &>span.is-truncated{
+      a.toggle{
+        display: inline-block;
+      }
+    }
+    &>span.opened{
+      height: auto;
+      max-height: inherit;
+      a.toggle{
+        display: none;
+      }
     }
   }
   .company-info{

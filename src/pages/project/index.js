@@ -1,6 +1,10 @@
 import ProjectIndexController from './index.controller';
 import ProjectService from './project.service';
+import textMoreDirective from './textMore.directive';
+import textOverflowDirective from './textOverflow.directive';
 angular.module('@@pages.project', [])
   .controller('ProjectIndexController', ProjectIndexController)
-  .service('projectService', ProjectService);
+  .service('projectService', ProjectService)
+  .directive('textOverflow', textOverflowDirective)
+  .directive('textMore', textMoreDirective);
 

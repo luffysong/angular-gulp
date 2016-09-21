@@ -1,22 +1,30 @@
 <div class="finance-history">
   <h4>融资经历</h4>
-  <div ng-show="{{::vm.financeVM.data.length}}">
+  <div ng-show="vm.financeVM.data.length">
     <ul class="history-list">
-      <li class="history-info" ng-repeat="data in ::vm.financeVM.data">
-        <span class="info-year">{{data.financeDate}}</span>
+      <li class="history-info" ng-repeat="data in vm.financeVM.list">
+        <span class="info-year">{{data.financeDate | date: 'yyyy.MM' }}</span>
         <span class="info-lun">
-          <a href="">{{data.phase}}</a>
+          <a href="">{{data.phase}}轮</a>
         </span>
-        <span class="info-company">
-          <a href="">{{data.participantVos.entityName}}</a>
+        <span class="info-company" >
+          <a href="" ng-repeat="entity in data.participantVos">{{entity.entityName}}</a>
         </span>
-        <span class="info-level">{{data.financeAmount}}{{data.financeAmountUnit}}</span>
-        <span class="info-news">相关新闻</span>
+        <span class="info-level">{{data.financeAmount}}
+          <span ng-show="data.financeAmountUnit == 'USD'">美元</span>
+          <span ng-show="data.financeAmountUnit == 'CNY'">人民币</span>
+        </span>
+        <span class="info-news">
+          <a href="data.newsUrl">相关新闻</a>
+        </span>
       </li>
     </ul>
-    <div class="more">展开全部</div>
+    <div class="more" ng-click="vm.financeVM.more()" ng-show="vm.financeVM.showMore()">显示更多</div>
   </div>
-  <div ng-show="{{::!vm.financeVM.data.length}}">
-    暂无数据
+  <div ng-show="!vm.financeVM.data.length" class="none">
+    <span>
+        <span class="icon-Company icon"></span>
+        <span>未收录相关信息</span>
+      </span>
   </div>
 </div>

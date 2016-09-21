@@ -2,7 +2,7 @@
 @import "./var";
 .found-team{
   .content{
-    padding: 24px 0;
+    padding-bottom: 24px;
     .team-key{
       margin-bottom: 12px;
     }
@@ -31,11 +31,19 @@
     }
     .ad-info{
       display: inline-block;
+      max-height: 100px;
       max-width: 705px;
       vertical-align: top;
       color: #5A626D;
       letter-spacing: 0px;
       .font(14,21);
+    }
+    .ad-info.opened{
+      height: auto;
+      max-height: inherit;
+      a.toggle{
+        display: none;
+      }
     }
     .item-list{
       border-collapse:collapse;
@@ -86,6 +94,19 @@
           cursor: pointer;
         }
       }
+    }
+  }
+  .none{
+    padding: 30px 0;
+    padding-top: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #969FA9;
+    letter-spacing: 0px;
+    line-height: 21px;
+    .icon{
+      font-size: 16px;
+      vertical-align: sub;
     }
   }
 }

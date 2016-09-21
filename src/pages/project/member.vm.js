@@ -17,7 +17,19 @@ export default class MemberVM {
       ++num;
       this.members = getList(this.members, this.data.members, num);
     }
+    function showMore() {
+      return !(this.members === this.data.members);
+    }
+    function displayData() {
+      return !(this.data.story && this.data.teamTags && this.data.members.length);
+    }
+    function show() {
+      return this.data.story || this.data.teamTags || this.data.members.length;
+    }
     this.members = getList(this.members, this.data.members, 1);
     this.more = more;
+    this.showMore = showMore;
+    this.displayData = displayData;
+    this.show = show;
   }
 }

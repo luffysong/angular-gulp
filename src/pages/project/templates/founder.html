@@ -1,7 +1,7 @@
 <div class="found-team">
   <h4>创始团队</h4>
-  <div class="content" ng-show="vm.memberVM.data.story || vm.memberVM.data.members.length || vm.memberVM.data.teamTags.length">
-    <div class="team-key" ng-show="{{::vm.memberVM.data.teamTags.length}}">
+  <div class="content" ng-show="vm.memberVM.show()">
+    <div class="team-key" ng-show="vm.memberVM.data.teamTags.length">
       <span class="name">团队关键字</span>
       <ul class="key-list">
         <li ng-repeat="tag in vm.memberVM.data.teamTags">{{tag}}</li>
@@ -9,7 +9,7 @@
     </div>
     <div class="advantage" ng-show="vm.memberVM.data.story">
       <span class="name">团队优势</span>
-      <span class="ad-info" ng-bind="::vm.memberVM.data.story"></span>
+      <span class="ad-info" ng-bind="vm.memberVM.data.story" text-overflow></span>
       <!-- <div class="ad-info">
         {{::vm.memberVM.data.story}}
       </div> -->
@@ -24,7 +24,7 @@
         </tr>
       </thead>
       <tbody class='content-body'>
-        <tr ng-repeat="member in vm.memberVM.data.membersList">
+        <tr ng-repeat="member in vm.memberVM.members">
           <td>
             {{member.name}}
           </td>
@@ -37,14 +37,17 @@
       <tfoot class="content-footer">
           <tr>
             <td class='t-foot' colspan='3'>
-              <div class="get-more" ng-show="vm.memberVM.data.membersList!=vm.memberVM.data.members" ng-click="vm.memberVM.more()" >查看更多</div>
+              <div class="get-more" ng-show="vm.memberVM.showMore()" ng-click="vm.memberVM.more()" >查看更多</div>
             </td>
           </tr>
       </tfoot>
     </table>
     </div>
   </div>
-  <div ng-show="vm.memberVM.data.teamTags.length && vm.memberVM.data.story && !vm.memberVM.data.members.length">
-    暂无数据
+  <div ng-show="vm.memberVM.displayData()" class="none">
+    <span>
+        <span class="icon-Company icon"></span>
+        <span>未收录相关信息</span>
+      </span>
   </div>
 </div>

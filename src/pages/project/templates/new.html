@@ -1,6 +1,6 @@
 <div class="similar-item">
   <h4>相关新闻</h4>
-  <div class="content" ng-show="vm.newsVM.newsList">
+  <div class="content" ng-show="vm.newsVM.newsList.length">
     <ul>
       <li class="new-detail" ng-repeat="new in vm.newsVM.newsList">
         <span class="time">{{new.publishDateStr}}</span>
@@ -22,7 +22,7 @@
       <span class="get-more" ng-click="vm.newsVM.more()" ng-show="vm.newsVM.showMore()">查看更多</span>
     </div>
   </div>
-  <div ng-show="!vm.newsVM.newsList" class="none-data">
+  <div ng-show="!vm.newsVM.newsList.length" class="none-data">
     <span>
         <span class="icon-Company icon"></span>
         <span>未收录相关信息</span>

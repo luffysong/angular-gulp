@@ -27,7 +27,7 @@ export default class ProjectService extends API {
       finance: this.finance(id),
       similar: this.similar(id),
       member: this.member(id),
-      // funds: this.funds(id),
+      funds: this.funds(id),
       news: this.news(id),
     });
   }
