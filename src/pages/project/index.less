@@ -140,23 +140,19 @@
         .logo();
         display: block;
       }
-      & > div {
-        float: left;
-      }
-
       & > div:first-child {
+        float: left;
         .text-center();
       }
 
       & > div:nth-child(2) {
+        float: left;
         width: @input-base-width;
         margin-left: 60px;
         .clear();
       }
-      .splitter {
-        clear: left;
-        width: 100%;
-        border-top: 2px dotted #e7e7e7;
+      .cancel {
+        margin-bottom: 10px;
       }
     }
     .logo {
@@ -217,7 +213,7 @@
   }
   //nav end
 }
-
+// project common
 .project-wrapper {
   .project-var();
   .project-module {
@@ -265,3 +261,36 @@
   }
 
 }
+
+.project-wrapper {
+  .form-bottom {
+    div {
+      .text-center();
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      width: 87px;
+      .font(14, 37);
+      border-radius: 4px;
+      color: #fff;
+      background: @anchor-color;
+    }
+    .cancel {
+      background: #fff;
+      color: @tip-color;
+      .border1(#ccc);
+      margin-left: 30px;
+    }
+  }
+  .splitter {
+    clear: both;
+    width: 100%;
+    margin-top: 5px;
+    border-top: 2px dotted #e7e7e7;
+  }
+  .tip-text {
+    margin-top: 6px;
+  }
+}
+//project common

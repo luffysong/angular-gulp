@@ -1,3 +1,4 @@
+@import "var";
 .square(@size) {
   width: unit(@size, px);
   height: unit(@size, px);
@@ -40,6 +41,18 @@
   width: @width;
   height: @height;
   position: @position;
+}
+.button(@w, @lh, @font-size, @bg, @color,@border:none,@radius:4) {
+  .font(@font-size, @lh);
+  width: unit(@w, px);
+  background: @bg;
+  color: @color;
+  .border1(@border);
+  border-radius: unit(@radius, px);
+}
+.tip-text() {
+  .font(12,18);
+  color: @tip-color;
 }
 .clear() {
   &:after {
