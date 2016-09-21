@@ -93,7 +93,19 @@ select.form-control {
       clear: both;
     }
   }
+  .error-tip{
+    .form-tip();
+    color: @error-color;
+    > p {
+      line-height: 18px;
+    }
+  }
 }
+// angular integrate
+.ng-dirty.ng-invalid.form-control{
+  border-color: @error-color;
+}
+//
 .required{
   color: @require-color;
 }

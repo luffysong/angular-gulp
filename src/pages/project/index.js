@@ -7,4 +7,3 @@ angular.module('@@pages.project', [])
   .service('projectService', ProjectService)
   .directive('textOverflow', textOverflowDirective)
   .directive('textMore', textMoreDirective);
-

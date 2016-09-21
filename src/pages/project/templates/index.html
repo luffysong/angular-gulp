@@ -40,32 +40,49 @@
         <p>90*90px</p>
       </div>
       <div>
-        <form>
+        <form name="projectInfo">
+
           <div class="form-group">
             <label for=""><span class="required">*</span> 项目名称</label>
             <span class="form-tip">30天内只能修改一次</span>
             <input  ng-model="vm.editBaseInfoVM.name"
               placeholder="请填写项目名称或核心产品名称"
+              message-id="messageName"
+              no-validation-message="true"
+              maxlength="30"
+              validator="required"
               type="text" name="name" class="form-control" />
           </div>
 
           <div class="form-group">
             <label for="">项目别称</label>
+
+            <span id="messageFullName"
+              class="error-tip"></span>
             <input  ng-model="vm.editBaseInfoVM.fullName"
               placeholder="请填写项目别名或曾用名，非必填"
+              validator="notEqual=vm.editBaseInfoVM.name"
+              message-id="messageFullName"
+              not-equal-error-message="请不要再次填写项目名称"
               type="text" name="fullName" class="form-control" />
           </div>
 
           <div class="form-group">
             <label for=""><span class="required">*</span> 一句话简介</label>
+            <span class="error-tip" id="messageBrief"></span>
             <input  ng-model="vm.editBaseInfoVM.brief"
-              placeholder="一句话概括产品与服务，30字内"
-              type="text" name="brief" class="form-control" />
+            validator="minlength=5" message-id="messageBrief"
+            minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
+            maxlength="30"
+            placeholder="一句话概括产品与服务，30字内"
+            type="text" name="brief" class="form-control" />
           </div>
           <div class="form-group">
             <label for="">公司官网</label>
+            <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
             <input  ng-model="vm.editBaseInfoVM.website"
               placeholder="请填写公司的官网，请以http://开头"
+              validator="http" message-id="messageWebsite"
               type="text" name="website" class="form-control" />
           </div>
           <div class="form-group">
