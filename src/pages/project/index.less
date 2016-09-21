@@ -151,6 +151,17 @@
         margin-left: 60px;
         .clear();
       }
+      .upload-logo{
+        .font(12, 18);
+        color: @tip-color;
+        &>p:last-child {
+          margin-top: 5px;
+        }
+      }
+      .btn-upload-logo {
+        margin:12px 0 8px;
+        .btn-upload-logo();
+      }
       .cancel {
         margin-bottom: 10px;
       }
@@ -263,6 +274,10 @@
 }
 
 .project-wrapper {
+  form{
+    padding-bottom: 5px;
+    overflow: hidden;
+  }
   .form-bottom {
     div {
       .text-center();
@@ -286,7 +301,6 @@
   .splitter {
     clear: both;
     width: 100%;
-    margin-top: 5px;
     border-top: 2px dotted #e7e7e7;
   }
   .tip-text {

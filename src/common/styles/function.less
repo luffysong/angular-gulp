@@ -50,6 +50,19 @@
   .border1(@border);
   border-radius: unit(@radius, px);
 }
+
+.btn-upload-logo() {
+  color: #fff;
+  padding: 4px 10px;
+  line-height: 21px;
+  font-size: 14px;
+  border-radius: 4px;
+  display: inline-block;
+  background: @anchor-color;
+  &:before {
+    content: "上传LOGO";
+  }
+}
 .tip-text() {
   .font(12,18);
   color: @tip-color;
