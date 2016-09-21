@@ -6,7 +6,7 @@ import SimilarVM from './similar.vm';
 import NewsVM from './news.vm';
 import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
-@Inject('$stateParams', 'projectService', 'projectData', 'ngDialog')
+@Inject('$stateParams', 'projectService', 'projectData', 'ngDialog', '$validation')
 export default class ProjectIndexController {
   constructor() {
     this.init();
