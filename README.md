@@ -21,8 +21,6 @@
 
 # 编辑/etc/hosts
   127.0.0.1 xrz.com
-
-# host 映射
   192.168.2.8 nrongtest03.36kr.com
 
 # 运行项目

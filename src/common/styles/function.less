@@ -41,3 +41,10 @@
   height: @height;
   position: @position;
 }
+.clear() {
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+}

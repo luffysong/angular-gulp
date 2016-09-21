@@ -23,5 +23,10 @@ export default class ProjectIndexController {
       this.productVM = new ProductVM(this.projectData.product);
       this.claimVM = new ClaimVM(this.ngDialog);
     }
+    this.setEditObject();
+  }
+
+  setEditObject() {
+    this.editBaseInfoVM = new BaseInfoVM({});
   }
 }

@@ -1,6 +1,6 @@
 <div class="project-wrapper">
   <section class="base-info-wrapper">
-    <div class="base-info-content">
+    <div ng-if="false" class="base-info-content">
       <div>
         <img ng-src="{{::vm.baseInfoVM.logo}}" class="logo" alt="">
       </div>
@@ -31,7 +31,60 @@
          <span>金额</span>
         </p>
       </div>
+    </div>
+    <div class="base-info-content-edit">
+      <div>
+        <img ng-src="{{::vm.baseInfoVM.logo}}" class="logo" alt="">
+        <a href="#">上传LOGO</a>
+        <p>建议上传大小</p>
+        <p>90*90px</p>
+      </div>
+      <div>
+        <form>
+          <div class="form-group">
+            <label for=""><span class="required">*</span> 项目名称</label>
+            <span class="form-tip">30天内只能修改一次</span>
+            <input  ng-model="vm.editBaseInfoVM.name"
+              placeholder="请填写项目名称或核心产品名称"
+              type="text" name="name" class="form-control" />
+          </div>
 
+          <div class="form-group">
+            <label for="">项目别称</label>
+            <input  ng-model="vm.editBaseInfoVM.fullName"
+              placeholder="请填写项目别名或曾用名，非必填"
+              type="text" name="fullName" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for=""><span class="required">*</span> 一句话简介</label>
+            <input  ng-model="vm.editBaseInfoVM.brief"
+              placeholder="一句话概括产品与服务，30字内"
+              type="text" name="brief" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="">公司官网</label>
+            <input  ng-model="vm.editBaseInfoVM.website"
+              placeholder="请填写公司的官网，请以http://开头"
+              type="text" name="website" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="">新浪微博</label>
+            <input  ng-model="vm.editBaseInfoVM.weibo"
+              placeholder="请填写新浪微博主页链接"
+              type="text" name="weibo" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="">微信公众号</label>
+            <input  ng-model="vm.editBaseInfoVM.weixin"
+              placeholder="请填写微信公众号"
+              type="text" name="weixin" class="form-control" />
+          </div>
+
+        </form>
+      </div>
+
+      <div class="splitter"> </div>
     </div>
   </section>
   <section sticky offset="50" class="nav-wrapper">

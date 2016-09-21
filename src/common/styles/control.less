@@ -1,9 +1,10 @@
 @import "var.less";
+@import "function.less";
 .form-control {
   display: block;
   width: 100%;
   // // Make inputs at least the height of their button counterpart (base line-height + padding + border)
-  // height: @input-height;
+  height: @input-height;
   padding: @input-padding-y @input-padding-x;
   font-size: @font-size-base;
   line-height: @input-line-height;
@@ -72,4 +73,27 @@ select.form-control {
     color: @input-color;
     background-color: @input-bg;
   }
+}
+
+.form-group {
+  .form-control {
+    margin-top: 4px;
+    margin-bottom: 16px;
+  }
+  label {
+    .font(14, 21);
+  }
+  .form-tip {
+    float: right;
+    .font(12, 18);
+    color: @tip-color;
+    &:after {
+      display: table;
+      content:" ";
+      clear: both;
+    }
+  }
+}
+.required{
+  color: @require-color;
 }

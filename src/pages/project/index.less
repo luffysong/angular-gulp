@@ -130,6 +130,35 @@
         }
       }
     }
+
+    .base-info-content-edit {
+      width: @content-width;
+      padding: 30px;
+      margin:0 auto;
+      overflow: hidden;
+      .logo {
+        .logo();
+        display: block;
+      }
+      & > div {
+        float: left;
+      }
+
+      & > div:first-child {
+        .text-center();
+      }
+
+      & > div:nth-child(2) {
+        width: @input-base-width;
+        margin-left: 60px;
+        .clear();
+      }
+      .splitter {
+        clear: left;
+        width: 100%;
+        border-top: 2px dotted #e7e7e7;
+      }
+    }
     .logo {
       .square(90);
       border-radius: 6px;
