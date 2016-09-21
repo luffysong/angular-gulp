@@ -1,0 +1,20 @@
+<div class="similar-item">
+  <div class="content">
+    <div class="form-group">
+      <label for=""><span class="required">*</span> 新闻链接</label>
+      <span class="error-tip" id="newEditLink"></span>
+      <input  ng-model="vm.editNewVM.link"
+              placeholder="请填写和项目相关的新闻链接"
+              message-id="newEditLink"
+              required-error-message="请填写新闻链接"
+              validator="required"
+              type="text" name="name" class="form-control" />
+    </div>
+  </div>
+  <div ng-show="!vm.newsVM.newsList" class="none-data">
+    <span>
+        <span class="icon-Company icon"></span>
+        <span>未收录相关信息</span>
+      </span>
+  </div>
+</div>

@@ -1,6 +1,10 @@
 <div class="similar-item">
   <h4>相关新闻</h4>
   <div class="content" ng-show="vm.newsVM.newsList.length">
+  <section id="news" ng-include="'/pages/project/templates/newEdit.html'">
+    相关新闻编辑
+  </section>
+  <div class="content" ng-show="vm.newsVM.newsList">
     <ul>
       <li class="new-detail" ng-repeat="new in vm.newsVM.newsList">
         <span class="time">{{new.publishDateStr}}</span>
