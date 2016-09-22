@@ -28,8 +28,15 @@ export default class NewsVM extends krData.FormVM {
     this.more = more;
     this.showMore = showMore;
   }
-  setData() {
-  }
-  recovery() {
+  update(form, $event) {
+    if (!this.validate(form, $event)) return;
+    // angular.extend(this.originalData, this);
+    // this.projectService.update({
+    //     id: this.id,
+    //   }, this.getCopy(['name', 'fullName']))
+    //   .then((data) => {
+    //     this.refresh(data);
+    //     this.ok();
+    //   });
   }
 }
