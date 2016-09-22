@@ -1,13 +1,15 @@
 import krData from 'krData';
 export default class BaseInfoVM extends krData.FormVM {
-  constructor(data) {
+  constructor(data, $scope) {
     super(data);
+    this.$scope = $scope;
     this.initData(data);
     this.projectService = krData.utls.getService('projectService');
   }
 
   initData(data) {
     angular.extend(this, data);
+    this.watch();
   }
 
   setData(data) {
@@ -21,6 +23,20 @@ export default class BaseInfoVM extends krData.FormVM {
       this[key] = this.originalData[key];
     });
   }
+
+  watchName() {
+    const that = this;
+    this.$scope.$watch('vm.baseInfoVM.name', function watchName(nv, ov) {
+      if (nv !== ov) {
+        that.$validation.validate(that.projectInfo.fullName);
+      }
+    });
+  }
+
+  watch() {
+    this.watchName();
+  }
+
 
   refresh(data) {
     angular.extend(this, data);

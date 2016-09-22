@@ -6,7 +6,7 @@ import SimilarVM from './similar.vm';
 import NewsVM from './news.vm';
 import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
-@Inject('$stateParams', 'projectService', 'projectData', 'ngDialog', '$validation')
+@Inject('$stateParams', 'projectService', 'projectData', 'ngDialog', '$validation', '$scope')
 export default class ProjectIndexController {
   constructor() {
     this.init();
@@ -14,7 +14,7 @@ export default class ProjectIndexController {
 
   init() {
     if (this.projectData) {
-      this.baseInfoVM = new BaseInfoVM(this.projectData.baseInfo);
+      this.baseInfoVM = new BaseInfoVM(this.projectData.baseInfo, this.$scope);
       this.fundsVM = new FundsVM(this.projectData.funds);
       this.financeVM = new FinanceVM(this.projectData.finance);
       this.memberVM = new MemberVM(this.projectData.member);
@@ -23,10 +23,6 @@ export default class ProjectIndexController {
       this.productVM = new ProductVM(this.projectData.product);
       this.claimVM = new ClaimVM(this.ngDialog);
     }
-    this.setEditObject();
   }
 
-  setEditObject() {
-    this.editBaseInfoVM = new BaseInfoVM({});
-  }
 }
