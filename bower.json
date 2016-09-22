@@ -31,6 +31,7 @@
     "jQuery.dotdotdot": "^1.8.3",
     "highcharts-ng": "^0.0.12",
     "ng-dialog": "^0.6.4",
-    "angular-validation": "^1.4.2"
+    "angular-validation": "^1.4.2",
+    "highcharts": "^4.2.7"
   }
 }
