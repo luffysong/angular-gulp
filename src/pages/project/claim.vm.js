@@ -6,8 +6,19 @@ export default class ClaimVM {
   init() {
     let claimDialog;
     function claimController() {
+      this.claimform = {
+        realname: '',
+        position: '',
+        phone: '',
+        email: '',
+        weixin: '',
+        card: '',
+      };
       this.claimCancle = function () {
         claimDialog.close();
+      };
+      this.save = function () {
+        console.log(this.claimform);
       };
     }
     const str = '<div ng-include="' +
