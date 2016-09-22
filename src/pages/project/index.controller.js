@@ -4,6 +4,7 @@ import FinanceVM from './finance.vm';
 import MemberVM from './member.vm';
 import SimilarVM from './similar.vm';
 import NewsVM from './news.vm';
+import ProductVM from './product.vm';
 @Inject('$stateParams', 'projectService', 'projectData')
 export default class ProjectIndexController {
   constructor() {
@@ -18,6 +19,7 @@ export default class ProjectIndexController {
       this.memberVM = new MemberVM(this.projectData.member);
       this.similarVM = new SimilarVM(this.projectData.similar);
       this.newsVM = new NewsVM(this.projectData.news);
+      this.productVM = new ProductVM(this.projectData.product);
     }
   }
 }

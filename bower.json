@@ -28,6 +28,7 @@
     "ngSticky": "^1.8.13",
     "angular-scroll": "^1.0.0",
     "angular-clamp": "*",
-    "jQuery.dotdotdot": "^1.8.3"
+    "jQuery.dotdotdot": "^1.8.3",
+    "highcharts-ng": "^0.0.12"
   }
 }

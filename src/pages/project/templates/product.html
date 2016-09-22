@@ -1,3 +1,65 @@
-<div>
+<div class="product-data">
   <h4>产品及数据</h4>
+  <div class="content">
+    <div class="detail">
+      <div class="product-name">
+        36氪媒体
+      </div>
+      <div class="base-info">
+        <p class="info">报道最新的互联网科技新闻以及最具潜力的互联网创业企业</p>
+        <p>
+          <span class="kr-icon icon-Weibo"></span>
+          <span class="kr-icon icon-Wechat"></span>
+          <span class="kr-icon icon-Apple"></span>
+          <span class="kr-icon icon-Andriod"></span>
+          <span class="kr-icon icon-websitelink"></span>
+          <a ng-href="{{}}">www.36kr.com</a>
+        </p>
+      </div>
+    </div>
+    <div class="data-info">
+      <div class="tab">
+        <span>
+          <span class="text" ng-click="vm.productVM.setType('MONTH')" ng-class="{'active':vm.productVM.curType === 'MONTH'}">月活跃数据</span></span>
+        <span>
+          <span class="text" ng-click="vm.productVM.setType('DAY')" ng-class="{'active':vm.productVM.curType === 'DAY'}">日活跃数据</span>
+        </span>
+        <span ><span class="text" ng-click="vm.productVM.setType('AVERAGE')" ng-class="{'active':vm.productVM.curType === 'AVERAGE'}">人均使用数据</span></span>
+        <span><span class="text" ng-click="vm.productVM.setType('DOWNLOAD')" ng-class="{'active':vm.productVM.curType === 'DOWNLOAD'}">下载数据</span></span>
+        <span><span class="text" ng-click="vm.productVM.setType('KEEP')" ng-class="{'active':vm.productVM.curType === 'KEEP'}">留存数据</span></span>
+      </div>
+      <div class="chart">
+        <highchart id="monthChart" config="vm.chartConfig"></highchart>
+      </div>
+    </div>
+    <div class="more-data">
+      <div class="getMore" ng-click="vm.productVM.getData()" ng-show="vm.productVM.hideData">查看完整数据
+      </div>
+      <div class="complete-data" ng-show="!vm.productVM.hideData">
+        <div class="plate">
+          <span><span class="text">iOS数据</span></span>
+          <span><span class="text">Android数据</span></span>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <td>月份</td>
+              <td>月度活跃用户数/万人</td>
+              <td>月度总使用次数/万次</td>
+              <td>月度总使用时长/万分钟</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in vm.productVM.completeData">
+              <td>{{item}}</td>
+              <td>{{}}</td>
+              <td>{{}}</td>
+              <td>{{}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="hideData" ng-click="vm.productVM.hide()">收起</div>
+      </div>
+    </div>
+  </div>
 </div>
