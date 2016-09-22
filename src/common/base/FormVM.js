@@ -42,11 +42,15 @@ export default class FormVM {
     this.$validation.reset(form);
   }
 
+  ok() {
+    this.isEdit = false;
+  }
+
   enterEditMode() {
     this.isEdit = true;
   }
 
-  exitEditMode(projectInfo) {
+  cancel(projectInfo) {
     this.isEdit = false;
     this.reset(projectInfo);
     this.recovery();

@@ -11,8 +11,12 @@ export default class BaseInfoVM extends krData.FormVM {
 
   update(form, $event) {
     if (!this.validate(form, $event)) return;
+    angular.extend(this.originalData, this);
     this.projectService.update({
       id: this.id,
-    }, this.getCopy(['name', 'fullName']));
+    }, this.getCopy(['name', 'fullName']))
+      .then(() => {
+        this.ok();
+      });
   }
 }
