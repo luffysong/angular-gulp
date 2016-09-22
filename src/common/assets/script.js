@@ -13,6 +13,7 @@ export default {
       '/bower/angular-clamp/ng-clamp.js',
       '/bower/jquery/dist/jquery.min.js',
       '/bower/jQuery.dotdotdot/src/jquery.dotdotdot.min.js',
+      '/bower/highcharts/highcharts.js',
       '/bower/highcharts-ng/dist/highcharts-ng.min.js',
     ],
     search: [
