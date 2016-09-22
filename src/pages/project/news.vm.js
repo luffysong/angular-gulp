@@ -1,5 +1,8 @@
-export default class NewsVM {
+import krData from 'krData';
+export default class NewsVM extends krData.FormVM {
   constructor(data) {
+    super(data);
+    angular.extend(this, data);
     this.list = data;
     this.init();
   }
@@ -24,5 +27,9 @@ export default class NewsVM {
     console.log(this.list);
     this.more = more;
     this.showMore = showMore;
+  }
+  setData() {
+  }
+  recovery() {
   }
 }
