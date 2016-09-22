@@ -6,10 +6,7 @@ export default class FormVM {
     this.setData(data);
   }
 
-  setData(data) {
-    this.propNames = Object.keys(data);
-    this.originalData = {};
-    angular.copy(data, this.originalData);
+  setData() {
   }
 
   getCopy(arr) {
@@ -20,9 +17,6 @@ export default class FormVM {
   }
 
   recovery() {
-    this.propNames.forEach(key => {
-      this[key] = this.originalData[key];
-    });
   }
 
   preventDefault($e) {

@@ -10,6 +10,18 @@ export default class BaseInfoVM extends krData.FormVM {
     angular.extend(this, data);
   }
 
+  setData(data) {
+    this.propNames = Object.keys(data);
+    this.originalData = {};
+    angular.copy(data, this.originalData);
+  }
+
+  recovery() {
+    this.propNames.forEach(key => {
+      this[key] = this.originalData[key];
+    });
+  }
+
   refresh(data) {
     angular.extend(this, data);
     this.setData(data);
