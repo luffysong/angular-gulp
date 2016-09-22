@@ -1,0 +1,63 @@
+<div class="dialog-claim">
+  <div class="claim-header">
+    <p>认证信息 <span class="icon-dialogTags"></span></p>
+    <div class="claimant">
+      <div class="claimant-info">
+        已有认领人<a href="">刘成城</a>，若非真实可<a href="">举报更改</a>
+      </div>
+      <div class="report">
+        请将举报材料（个人名片、公司营业执照等可证明对公司有实际控制权的证明材料）提交至“融资小秘书：*******”，会在3个工作日内联系您，并给出结果反馈。
+      </div>
+    </div>
+  </div>
+  <div class="claim-form">
+    <form action="" >
+      <div class="form-list">
+        <p>
+          <span class="require">*</span><span class="title">真实姓名</span>
+        </p>
+        <input type="text" class="content" name="realName" placeholder="输入中文真实姓名">
+      </div>
+      <div class="form-list">
+        <p>
+          <span class="require">*</span><span class="title">职位</span>
+        </p>
+        <select name="position" id="">
+          <option value="">创始人</option>
+          <option value="">创始人</option>
+        </select>
+        <input type="text" class="position content" placeholder="输入职位" >
+      </div>
+      <div class="form-list">
+        <p>
+          <span class="require">*</span><span class="title">手机号码</span>
+        </p>
+        <input type="text" class="content" placeholder="输入真实手机号">
+      </div>
+      <div class="form-list">
+        <p>
+          <span class="require">*</span><span class="title">公司邮箱</span>
+        </p>
+        <input type="text" class="content" placeholder="输入公司邮箱，便于审核">
+      </div>
+      <div class="form-list">
+        <p>
+          <span class="require">*</span><span class="title">个人微信</span>
+        </p>
+        <input type="text" class="content" placeholder="输入个人微信号，方便联系">
+      </div>
+      <div class="form-list">
+        <p>
+          <span class="require">*</span><span class="title">个人名片</span>
+        </p>
+        <span class="uploading"><span class="icon-UserWhite"></span>上传照片</span>
+      </div>
+    </form>
+  </div>
+  <div class="claim-bottom">
+    <input type="button" value="保存" class="save"><input type="button" value="取消" class="cancle" ng-click="vm.claimCancle()">
+  </div>
+  <span class="icon-dialogClose" ng-click="vm.claimCancle()"></span>
+
+
+</div>

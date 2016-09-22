@@ -29,6 +29,7 @@
     "angular-scroll": "^1.0.0",
     "angular-clamp": "*",
     "jQuery.dotdotdot": "^1.8.3",
-    "highcharts-ng": "^0.0.12"
+    "highcharts-ng": "^0.0.12",
+    "ng-dialog": "^0.6.4"
   }
 }
