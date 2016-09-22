@@ -4,7 +4,8 @@ import FinanceVM from './finance.vm';
 import MemberVM from './member.vm';
 import SimilarVM from './similar.vm';
 import NewsVM from './news.vm';
-@Inject('$stateParams', 'projectService', 'projectData')
+import ClaimVM from './claim.vm';
+@Inject('$stateParams', 'projectService', 'projectData', 'ngDialog')
 export default class ProjectIndexController {
   constructor() {
     this.init();
@@ -18,6 +19,7 @@ export default class ProjectIndexController {
       this.memberVM = new MemberVM(this.projectData.member);
       this.similarVM = new SimilarVM(this.projectData.similar);
       this.newsVM = new NewsVM(this.projectData.news);
+      this.claimVM = new ClaimVM(this.ngDialog);
     }
   }
 }
