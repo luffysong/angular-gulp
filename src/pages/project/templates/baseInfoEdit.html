@@ -14,12 +14,12 @@
       <div class="form-group company-name">
         <label>公司全称</label>
         <label class="explain">请填写工商注册公司全称</label>
-        <input type="text" ng-model="vm.editBaseInfoVM.company_name" class="form-control" placeholder="请填写工商注册公司全称" />
+        <input type="text" ng-model="vm.editBaseInfoVM.fullName" class="form-control" placeholder="请填写工商注册公司全称" />
       </div>
 
       <div class="form-group select-inline">
         <label>成立时间</label>
-        <select class="form-control" ng-model="vm.editBaseInfoVM.create_date" >
+        <select class="form-control" ng-model="vm.editBaseInfoVM.startDate" >
           <option></option>
           <option>11111111111</option>
           <option>22222222222</option>
@@ -31,7 +31,7 @@
       <div class="form-group select-inline select-margin">
         <label><span class="required">*</span>运营状态</label>
         <span class="error-tip" id="messageState"></span>
-        <select class="form-control" ng-model="vm.editBaseInfoVM.operation_state" validator="required" message-id="messageState" >
+        <select class="form-control" ng-model="vm.editBaseInfoVM.operationStatus" validator="required" message-id="messageState" >
           <option></option>
           <option>aaaaaaa</option>
           <option>bbbbbbb</option>
@@ -56,7 +56,7 @@
         <div class="select-inline select-margin">
           <label><span class="required">*</span>所在地</label>
           <span class="error-tip" id="messageAddress"></span>
-          <select class="form-control" ng-model="vm.editBaseInfoVM.address" validator="required" message-id="messageAddress" >
+          <select class="form-control" ng-model="vm.editBaseInfoVM.address1" validator="required" message-id="messageAddress" >
             <option></option>
             <option>aaaaaaa</option>
             <option>bbbbbbb</option>
