@@ -27,6 +27,11 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       return clonedData;
     }
   })
+  .config(function configResource($resourceProvider) {
+    $resourceProvider.defaults.actions.update = {
+      method: 'PUT',
+    };
+  })
   .config(function sameValidate($validationProvider) {
     $validationProvider.setExpression({
       notEqual: function sameName(value, scope, element, attrs, param) {

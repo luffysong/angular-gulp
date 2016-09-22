@@ -49,16 +49,16 @@ export default class API {
     return this.send('query', params);
   }
 
-  put(params, data) {
-    return this.send('put', params, data);
+  update(params, data) {
+    return this.send('update', params, data);
   }
 
-  post(params, data) {
-    return this.send('post', params, data);
+  save(params, data) {
+    return this.send('save', params, data);
   }
 
   remove(params) {
-    return this.send('get', params);
+    return this.send('remove', params);
   }
 
 

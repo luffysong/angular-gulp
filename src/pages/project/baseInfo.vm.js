@@ -1,7 +1,7 @@
 import krData from 'krData';
 export default class BaseInfoVM extends krData.FormVM {
   constructor(data) {
-    super();
+    super(data);
     angular.extend(this, data);
     this.init();
   }
@@ -9,16 +9,9 @@ export default class BaseInfoVM extends krData.FormVM {
     this.projectService = krData.utls.getService('projectService');
   }
 
-  getCopy(arr) {
-    const copy = {};
-    arr.forEach(key => {
-      copy[key] = this[key];
-    });
-  }
-
   update(form, $event) {
     if (!this.validate(form, $event)) return;
-    this.projectService.put({
+    this.projectService.update({
       id: this.id,
     }, this.getCopy(['name', 'fullName']));
   }
