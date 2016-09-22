@@ -31,7 +31,10 @@
         <label><span class="required">*</span>时间</label>
         <div>
           <div class="select-data">
-            <select class="form-control" ng-model="vm.editNewsInfoVM.publishDateYear" validator="required" message-id="editNewsDateYear" >
+            <select class="form-control" ng-model="vm.editNewsInfoVM.publishDateYear"
+                    validator="required"
+                    message-id="editNewsDateYear"
+                    required-error-message="请选择报道时间">
               <option></option>
               <option>aaaaaaa</option>
               <option>bbbbbbb</option>
@@ -42,7 +45,10 @@
             <span class="error-tip" id="editNewsDateYear"></span>
            </div>
          <div class="select-data">
-           <select class="form-control" ng-model="vm.editNewsInfoVM.publishDateMonth" validator="required" message-id="editNewsDateMonth" >
+           <select class="form-control" ng-model="vm.editNewsInfoVM.publishDateMonth"
+                   validator="required"
+                   message-id="editNewsDateMonth"
+                   required-error-message="请选择报道时间">
              <option></option>
              <option>aaaaaaa</option>
              <option>bbbbbbb</option>
