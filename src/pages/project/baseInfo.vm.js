@@ -24,6 +24,13 @@ export default class BaseInfoVM extends krData.FormVM {
     });
   }
 
+  uploadBp($files) {
+    krData.utls.uploadBp('我随便起的名字', $files[0])
+      .then(function uploadSuccess(data) {
+        console.log(data);
+      });
+  }
+
   watchName() {
     const that = this;
     this.$scope.$watch('vm.baseInfoVM.name', function watchName(nv, ov) {
@@ -43,8 +50,8 @@ export default class BaseInfoVM extends krData.FormVM {
     this.setData(data);
   }
 
-  update(form, $event) {
-    if (!this.validate(form, $event)) return;
+  update($event) {
+    if (!this.validate($event)) return;
     angular.extend(this.originalData, this);
     this.projectService.update({
       id: this.id,

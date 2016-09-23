@@ -24,16 +24,16 @@ export default class FormVM {
       $e.preventDefault();
     }
   }
-  validate(form) {
-    if (!this.$validation.checkValid(form)) {
-      this.$validation.validate(form);
+  validate() {
+    if (!this.$validation.checkValid(this.form)) {
+      this.$validation.validate(this.form);
       return false;
     }
     return true;
   }
 
-  reset(form) {
-    this.$validation.reset(form);
+  reset() {
+    this.$validation.reset(this.form);
   }
 
   ok() {
@@ -44,9 +44,9 @@ export default class FormVM {
     this.isEdit = true;
   }
 
-  cancel(projectInfo) {
+  cancel() {
     this.isEdit = false;
-    this.reset(projectInfo);
+    this.reset();
     this.recovery();
   }
 }

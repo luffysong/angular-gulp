@@ -38,12 +38,13 @@
     <div ng-if="vm.baseInfoVM.isEdit" class="base-info-content-edit">
       <div class="upload-logo">
         <img ng-src="{{::vm.baseInfoVM.logo}}" class="logo" alt="">
-        <a class="btn-upload-logo" href="#"></a>
+        <a ngf-select="vm.baseInfoVM.uploadBp($files)"
+          class="btn-upload-logo" href="javascript:;"></a>
         <p>建议上传大小
         <p>90*90px</p>
       </div>
       <div>
-        <form name="vm.baseInfoVM.projectInfo">
+        <form name="vm.baseInfoVM.form">
 
           <div class="form-group">
             <label for=""><span class="required">*</span> 项目名称</label>
@@ -109,8 +110,8 @@
         <p class="tip-text">注意：行业不开放编辑；所有更改内容均会提交审核，审核期间不可对此模块做任何的更改，
           通过后对所有用户公开</p>
         <div>
-          <a class="save" ng-click="vm.baseInfoVM.update(projectInfo)" href="javascript:void(0)">保存</a>
-          <a class="cancel" ng-click="vm.baseInfoVM.cancel(projectInfo)" href="javascript:void(0)">取消</a>
+          <a class="save" ng-click="vm.baseInfoVM.update(vm.baseInfoVM.projectInfo)" href="javascript:void(0)">保存</a>
+          <a class="cancel" ng-click="vm.baseInfoVM.cancel(vm.baseInfoVM.projectInfo)" href="javascript:void(0)">取消</a>
         </div>
       </div>
 

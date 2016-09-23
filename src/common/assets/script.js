@@ -12,6 +12,7 @@ export default {
       '/bower/angular-scroll/angular-scroll.min.js',
       '/bower/angular-clamp/ng-clamp.js',
       '/bower/jquery/dist/jquery.min.js',
+      '/bower/ng-file-upload/ng-file-upload-all.min.js',
       '/bower/jQuery.dotdotdot/src/jquery.dotdotdot.min.js',
       '/bower/highcharts/highcharts.js',
       '/bower/highcharts-ng/dist/highcharts-ng.min.js',
