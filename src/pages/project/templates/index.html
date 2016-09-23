@@ -135,7 +135,7 @@
           </a>
         </li>
         <li>
-          <a href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="130" ng-class="{'active':!(vm.fundsVM.funds&& vm.baseInfoVM.advantage && (vm.baseInfoVM.industryTag || vm.baseInfoVM.intro))}">
+          <a href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="130" ng-class="{'active':!vm.baseInfoVM.advantage && !(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro) && !vm.fundsVM.funds}">
             融资经历
           </a>
         </li>
