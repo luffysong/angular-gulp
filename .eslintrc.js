@@ -27,7 +27,7 @@ module.exports = {
     }],
     "import/no-extraneous-dependencies": 0,
     "import/newline-after-import": 0,
-    'angular/angularelement': 1,
+    'angular/angularelement': 0,
     'angular/controller-as': 2,
     'angular/controller-as-route': 2,
     'angular/controller-as-vm': [2, 'vm'],
@@ -74,6 +74,7 @@ module.exports = {
     Inject: true,
     angular: true,
     jquery: true,
+    $: true,
   },
   parser: "babel-eslint",
   extends: 'airbnb'

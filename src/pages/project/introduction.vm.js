@@ -12,32 +12,6 @@ export default class IntroductionVM extends krData.FormVM {
     // this.watch();
   }
 
-  // setData(data) {
-  //   this.propNames = Object.keys(data);
-  //   this.originalData = {};
-  //   angular.copy(data, this.originalData);
-  // }
-
-  // recovery() {
-  //   this.propNames.forEach(key => {
-  //     this[key] = this.originalData[key];
-  //   });
-  // }
-
-  // watchName() {
-  //   const that = this;
-  //   this.$scope.$watch('vm.baseInfoVM.name', function watchName(nv, ov) {
-  //     if (nv !== ov) {
-  //       that.$validation.validate(that.projectInfo.fullName);
-  //     }
-  //   });
-  // }
-
-  // watch() {
-  //   this.watchName();
-  // }
-
-
   // refresh(data) {
   //   angular.extend(this, data);
   //   this.setData(data);

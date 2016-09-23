@@ -1,52 +1,38 @@
 
-function textOverflowDirective($timeout) {
+function textOverflowDirective() {
   return {
     restrict: 'AE',
-    link(scope, element, attrs) {
-      const str = ' <a class="toggle" href="#"><span class="open">查看更多</a>';
-      element.append(str);
+    scope: {
+      text: '=',
+    },
+    link(scope, element) {
+      const more = $('<a class="toggle" href="#"><span class="open">查看更多</a>');
+      element.text(scope.text);
+      element.append(more);
+      function createDots() {
+        element.dotdotdot({
+          after: 'a.toggle',
+        });
+      }
+      createDots();
+      function destroyDots() {
+        element.trigger('destroy');
+      }
 
+      element.on('click',
+        'a.toggle',
+        function moreClick() {
+          element.toggleClass('opened');
 
-      $timeout(function () {
-        let text = $('#' + attrs.id);
-        console.log(text);
-        if (text) {
-          createDots();
-        } else {
-          text = $('#' + attrs.id);
-        }
-        function createDots()
-        {
-          console.log('text', text);
-          text.dotdotdot({
-            after: 'a.toggle',
-          });
-        }
-        function destroyDots() {
-          text.trigger('destroy');
-        }
-
-        text.on(
-          'click',
-          'a.toggle',
-          function () {
-            element.toggleClass('opened');
-
-            if (element.hasClass('opened')) {
-              destroyDots();
-            } else {
-              createDots();
-            }
-            return false;
+          if (element.hasClass('opened')) {
+            destroyDots();
+          } else {
+            createDots();
           }
-        );
-      }, 100);
+          return false;
+        });
     },
   };
 }
-angular
-  .module('@@pages.project', [])
-  .directive('textOverflow', textOverflowDirective);
-textOverflowDirective.$inject = ['$timeout'];
 
 export default textOverflowDirective;

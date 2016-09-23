@@ -1,5 +1,5 @@
 <div class="base-info-edit">
-  <form name="baseInfo">
+  <form name="vm.introductionVM.form">
     <div class="form-group">
       <label>文字介绍</label>
       <label class="explain">可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字</label>
@@ -75,14 +75,4 @@
     </div>
   </div>
 </div>
-<script language="javascript">
-  document.onkeydown=function()
-  {
-    str= $('.introduction').val().replace(/[^x00-xff]/g,"")
-    num.innerHTML=str.length+1 + '/1000';
 
-    if(str.length+1>50){
-      console.log('不能超过50字');
-    }
-  }
-</script>

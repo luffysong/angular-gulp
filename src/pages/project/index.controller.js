@@ -16,7 +16,7 @@ export default class ProjectIndexController {
   init() {
     if (this.projectData) {
       this.baseInfoVM = new BaseInfoVM(this.projectData.baseInfo, this.$scope);
-      this.introductionVM = new IntroductionVM(this.projectData.introduction);
+      this.introductionVM = new IntroductionVM(this.projectData.baseInfo);
       this.fundsVM = new FundsVM(this.projectData.funds);
       this.financeVM = new FinanceVM(this.projectData.finance);
       this.memberVM = new MemberVM(this.projectData.member);
@@ -26,6 +26,7 @@ export default class ProjectIndexController {
       this.claimVM = new ClaimVM(this.ngDialog);
     }
     let talkDialog;
+
     function talkController() {
       this.talkCancle = function () {
         talkDialog.close();

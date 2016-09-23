@@ -1,49 +1,42 @@
 
-function textMoreDirective($timeout) {
+function textMoreDirective() {
   return {
     restrict: 'AE',
-    link(scope, element, attrs) {
-      const str = ' <div class="more">查看更多</div>';
-      element.parent().append(str);
-      $timeout(function () {
-        let text = $('#' + attrs.id);
-        const open = element.parent().children('.more');
-        console.log(text);
-        if (text) {
-          createDots();
-        } else {
-          text = $('#' + attrs.id);
-        }
-        function createDots()
-        {
-          text.dotdotdot({
-            after: 'div.more',
-          });
-          if (!element.hasClass('is-truncated')) {
-            open.css('display', 'none');
-          }
-        }
-        function destroyDots() {
-          text.trigger('destroy');
-        }
-        open.click(function () {
-          element.toggleClass('opened');
-
-          if (element.hasClass('opened')) {
-            destroyDots();
-            open.css('display', 'none');
-          } else {
-            createDots();
-          }
-          return false;
+    scope: {
+      text: '=',
+    },
+    link(scope, element) {
+      const more = $('<div class="more">查看更多</div>');
+      element.html(scope.text);
+      element.parent().append(more);
+      function createDots() {
+        element.dotdotdot({
+          after: 'div.more',
         });
-      }, 100);
+        if (!element.hasClass('is-truncated')) {
+          more.css('display', 'none');
+        }
+      }
+      createDots();
+      function destroyDots() {
+        element.trigger('destroy');
+      }
+      more.click(function moreClick() {
+        element.toggleClass('opened');
+
+        if (element.hasClass('opened')) {
+          destroyDots();
+          more.css('display', 'none');
+        } else {
+          createDots();
+        }
+        return false;
+      });
     },
   };
 }
 angular
   .module('@@pages.project', [])
   .directive('textMore', textMoreDirective);
-textMoreDirective.$inject = ['$timeout'];
 
 export default textMoreDirective;

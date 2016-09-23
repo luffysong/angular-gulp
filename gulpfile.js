@@ -194,3 +194,12 @@ gulp.task('serve', () => {
     });
 });
 
+gulp.task('proxy', () => {
+  g.connect.server({
+    root: ['dist', '.tmp', 'src'],
+    port: 4243,
+    livereload: false,
+    middleware,
+  });
+});
+
