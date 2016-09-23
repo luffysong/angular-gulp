@@ -23,6 +23,28 @@ export default class ProjectIndexController {
       this.productVM = new ProductVM(this.projectData.product);
       this.claimVM = new ClaimVM(this.ngDialog);
     }
+    let talkDialog;
+    function talkController() {
+      this.talkCancle = function () {
+        talkDialog.close();
+      };
+    }
+    const str = '<div ng-include="' +
+    "'" + '/pages/project/templates/talk.html' + "'" +
+    '" center>/div>';
+    function talking() {
+      talkDialog = this.ngDialog.open({
+        template: str,
+        plain: true,
+        appendTo: '.project-wrapper',
+        controller: talkController,
+        controllerAs: 'vm',
+      });
+    }
+
+
+    this.talking = talking;
   }
+
 
 }

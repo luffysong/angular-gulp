@@ -8,9 +8,16 @@ function textOverflowDirective($timeout) {
 
 
       $timeout(function () {
-        const text = $('#' + attrs.id);
+        let text = $('#' + attrs.id);
+        console.log(text);
+        if (text) {
+          createDots();
+        } else {
+          text = $('#' + attrs.id);
+        }
         function createDots()
         {
+          console.log('text', text);
           text.dotdotdot({
             after: 'a.toggle',
           });
@@ -18,7 +25,7 @@ function textOverflowDirective($timeout) {
         function destroyDots() {
           text.trigger('destroy');
         }
-        createDots();
+
         text.on(
           'click',
           'a.toggle',

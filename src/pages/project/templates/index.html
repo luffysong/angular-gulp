@@ -118,24 +118,24 @@
   </section>
   <section sticky offset="50" class="nav-wrapper">
     <nav>
-      <ul>
-        <li>
+      <ul navigate>
+        <li ng-hide="!vm.baseInfoVM.advantage">
           <a href="#light" du-smooth-scroll="" du-scrollspy=""  offset="277"  class="active">
             投资亮点
           </a>
         </li>
-        <li>
-          <a href="#baseInfo" du-smooth-scroll="" du-scrollspy="" offset="130" >
+        <li ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
+          <a href="#baseInfo" du-smooth-scroll="" du-scrollspy="" offset="130" ng-class="{'active':!vm.baseInfoVM.advantage}" >
             基本介绍
           </a>
         </li>
-        <li>
-          <a href="#financeDetail" du-smooth-scroll="" du-scrollspy="" offset="130" >
+        <li ng-hide="!vm.fundsVM.funds">
+          <a href="#financeDetail" du-smooth-scroll="" du-scrollspy="" offset="130" ng-class="{'active':!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)}">
             融资详情
           </a>
         </li>
         <li>
-          <a href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="130" >
+          <a href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="130" ng-class="{'active':!(vm.fundsVM.funds&& vm.baseInfoVM.advantage && (vm.baseInfoVM.industryTag || vm.baseInfoVM.intro))}">
             融资经历
           </a>
         </li>
@@ -165,17 +165,17 @@
       </ul>
     </nav>
   </section>
-  <section id="light" class="project-module light" ng-include="'/pages/project/templates/light.html'" ng-show="vm.baseInfoVM.advantage">
+  <section id="light" class="project-module light" ng-include="'/pages/project/templates/light.html'" ng-hide="!vm.baseInfoVM.advantage">
 
   </section>
 
-  <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'">
+  <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'" ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
   </section>
 
   <section id="baseInfoEdit" class="project-module" ng-include="'/pages/project/templates/baseInfoEdit.html'">
   </section>
 
-  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module" ng-show="vm.fundsVM.funds">
+  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module" ng-hide="!vm.fundsVM.funds">
     融资详情
   </section>
   <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module">

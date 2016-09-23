@@ -23,7 +23,7 @@ export default class ClaimVM {
     }
     const str = '<div ng-include="' +
     "'" + '/pages/project/templates/claim.html' + "'" +
-    '">/div>';
+    '" center>/div>';
     function claim() {
       claimDialog = this.ngDialog.open({
         template: str,
@@ -33,7 +33,6 @@ export default class ClaimVM {
         controllerAs: 'vm',
       });
     }
-
     this.claim = claim;
   }
 }

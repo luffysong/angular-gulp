@@ -8,13 +8,32 @@
     font-weight: 600;
     margin-bottom: 12px;
   }
-  .content{
-    width: 100%;
-    display: block;
-    .font(14, 21);
+  .info{
+    font-size: 14px;
     color: #5A626D;
     letter-spacing: 0px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
+    &>span{
+      line-height: 21px;
+      max-height: 100px;
+      margin-bottom: 16px;
+      display: inline-block;
+      div.more{
+        visibility: hidden;
+      }
+    }
+    &>span.is-truncated{
+      div.more{
+        visibility: inherit;
+      }
+    }
+    &>span.opened{
+      height: auto;
+      max-height: inherit;
+      div.more{
+        visibility: hidden;
+      }
+    }
   }
   .more{
     .font(12, 18);

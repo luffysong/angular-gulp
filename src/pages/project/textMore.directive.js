@@ -3,42 +3,41 @@ function textMoreDirective($timeout) {
   return {
     restrict: 'AE',
     link(scope, element, attrs) {
-      const text = $('#' + attrs.id);
       const str = ' <div class="more">查看更多</div>';
-      element.append(str);
-
-      function createDots()
-        {
-        text.dotdotdot({
-          after: 'a.toggle',
-        });
-      }
-      function destroyDots() {
-        text.trigger('destroy');
-      }
+      element.parent().append(str);
       $timeout(function () {
-        createDots();
-        console.log(element.hasClass('is-truncated'));
-        // if (element.hasClass('is-truncated')) {
-        //   console.log($('#' + attrs.id+'>a.toggle'));
-        //   $('#' + attrs.id+'>a.toggle').css({ 'display': 'none' });
-        // }
-      }, 100);
-
-      text.on(
-          'click',
-          'a.toggle',
-          function () {
-            element.toggleClass('opened');
-
-            if (element.hasClass('opened')) {
-              destroyDots();
-            } else {
-              createDots();
-            }
-            return false;
+        let text = $('#' + attrs.id);
+        const open = element.parent().children('.more');
+        console.log(text);
+        if (text) {
+          createDots();
+        } else {
+          text = $('#' + attrs.id);
+        }
+        function createDots()
+        {
+          text.dotdotdot({
+            after: 'div.more',
+          });
+          if (!element.hasClass('is-truncated')) {
+            open.css('display', 'none');
           }
-        );
+        }
+        function destroyDots() {
+          text.trigger('destroy');
+        }
+        open.click(function () {
+          element.toggleClass('opened');
+
+          if (element.hasClass('opened')) {
+            destroyDots();
+            open.css('display', 'none');
+          } else {
+            createDots();
+          }
+          return false;
+        });
+      }, 100);
     },
   };
 }
