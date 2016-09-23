@@ -18,6 +18,7 @@
   }
   .t-content{
     padding: 0 20px;
+    padding-bottom: 20px;
     .content-left{
       display: inline-block;
       width: 140px;
@@ -34,12 +35,22 @@
       display: inline-block;
       width: 180px;
       height: 140px;
+      margin-left: 40px;
+      vertical-align: top;
+      position: relative;
+      .list{
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform:translateY(-50%);
+      }
       .info{
-        display: table-row;
+        display: block;
         text-align: left;
         font-size: 14px;
         color: #222C38;
         letter-spacing: 0px;
+        margin-bottom: 10px;
         line-height: 21px;
       }
     }
