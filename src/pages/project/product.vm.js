@@ -2,11 +2,15 @@ export default class ProductVM {
   constructor(data) {
     this.data = data;
     this.init();
+    console.log(this.data.companyDataList);
   }
 
   init() {
     function setType(type) {
       this.curType = type;
+    }
+    function setPlate(plate) {
+      this.curPlate = plate;
     }
 
     function getData() {
@@ -17,8 +21,10 @@ export default class ProductVM {
     }
 
     this.curType = 'MONTH';
+    this.curPlate = 'IOS';
     this.hideData = true;
     this.setType = setType;
+    this.setPlate = setPlate;
     this.getData = getData;
     this.hide = hide;
   }

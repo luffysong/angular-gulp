@@ -1,3 +1,4 @@
+@import "../../../common/styles/function";
 .product-data{
   width: 100%;
   .content{
@@ -49,6 +50,7 @@
 
       }
     }
+    .investor{
       .data-info{
         .tab{
           margin-top: 30px;
@@ -71,47 +73,86 @@
             }
           }
         }
+        .chart{
+          margin-top: 35px;
+        }
       }
-    .more-data{
-      text-align: center;
-      margin: 30px auto;
-      .getMore{
-        width: 118px;
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 12px;
-        line-height: 27px;
-        border: 1px solid #BBBBBB;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      .complete-data{
-        .plate{
-          font-size: 14px;
-          &>span{
-            padding-left: 12px;
-            padding-right: 12px;
-            border-right: 1px solid #E7E7E7;
-            &:last-child{
-              border-right: none;
-            }
-            .text{
-              padding-bottom: 4px;
-              cursor: pointer;
-              &.active{
-                border-bottom: 2px solid #5A626D;
+      .more-data{
+        text-align: center;
+        margin: 30px auto;
+        .getMore{
+          width: 118px;
+          margin-left: auto;
+          margin-right: auto;
+          font-size: 12px;
+          line-height: 27px;
+          border: 1px solid #BBBBBB;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        .complete-data{
+          .plate{
+            font-size: 14px;
+            &>span{
+              padding-left: 12px;
+              padding-right: 12px;
+              border-right: 1px solid #E7E7E7;
+              &:last-child{
+                border-right: none;
+              }
+              .text{
+                padding-bottom: 4px;
+                cursor: pointer;
+                &.active{
+                  border-bottom: 2px solid #5A626D;
+                }
               }
             }
           }
-        }
-        .table{
-          margin: 24px 24px 24px 20px;
-          text-align: center;
-          thead{
-            font-size: 14px;
+          .table{
+            width: 100%;
+            margin: 24px auto;
             text-align: center;
+            border-collapse: collapse;
+            thead{
+              font-size: 14px;
+              border-bottom: 1px solid #E7E7E7;
+              .font(14,38);
+            }
+            tbody{
+              &:nth-child(even){
+                background-color: #F9F9F9;
+              }
+              tr{
+                border-bottom: 1px solid #E7E7E7;
+                td{
+                  padding: 12px 0px;
+                }
+              }
+            }
+          }
+          .hideData{
+            width: 118px;
+            line-height: 28px;
+            text-align: center;
+            border: 1px solid #BBBBBB;
+            border-radius: 4px;
+            margin-left: auto;
+            margin-right: auto;
+            cursor: pointer;
           }
         }
+      }
+      .no-data{
+        margin-top: 15px;
+        font-size: 14px;
+      }
+    }
+    .uninvestor{
+      height: 382px;
+      text-align: center;
+      .link{
+
       }
     }
   }
