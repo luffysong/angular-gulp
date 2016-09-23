@@ -45,6 +45,7 @@ export function babelHelper() {
       presets: scriptConfig.presets,
       plugins: ['transform-es2015-modules-commonjs',
         'transform-class-properties',
+        'transform-es2015-parameters',
         'external-helpers-2',
         'syntax-decorators',
         ['ng-annotate-2', { keepClass: true }],

@@ -24,18 +24,20 @@ export default class BaseInfoVM extends krData.FormVM {
     });
   }
 
-  uploadBp($files) {
-    krData.utls.uploadBp('我随便起的名字', $files[0])
-      .then(function uploadSuccess(data) {
-        console.log(data);
-      });
+  uploadImage($files) {
+    if ($files.length) {
+      krData.utls.uploadImage($files[0])
+        .then(data => {
+          this.logo = data.src;
+        });
+    }
   }
 
   watchName() {
     const that = this;
     this.$scope.$watch('vm.baseInfoVM.name', function watchName(nv, ov) {
       if (nv !== ov) {
-        that.$validation.validate(that.projectInfo.fullName);
+        that.$validation.validate(that.form.fullName);
       }
     });
   }

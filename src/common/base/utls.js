@@ -1,15 +1,17 @@
 export const upyun = {
-  api: '//v0.api.upyun.com',
+  apiHost: 'https://v0.api.upyun.com',
   bucket: {
     name: 'krplus-pic',
-    url: 'https://pic.36krcnd.com',
+    host: 'https://pic.36krcnd.com',
+    basePath: 'https://pic.36krcnd.com/krplus-pic',
   },
   fileBucket: {
     name: 'krplus-priv',
-    url: 'http://krplus-priv.b0.upaiyun.com',
+    host: 'https://krplus-priv.b0.upaiyun.com',
+    basePatH: 'https://krplus-priv.b0.upaiyun.com/krplus-priv',
   },
 };
-const UPLOAD_TYPE = {
+export const UPLOAD_TYPE = {
   FILE: 'file',
   PIC: 'pic',
 };
@@ -51,10 +53,10 @@ export function getUpToken(options, type) {
     'save-key': options.pattern || '/{year}{mon}/{day}{hour}{min}{sec}/{random}{.suffix}',
   }, options);
 
-  return getService('$http').post('/api/upload/form-api',angular.toJson({
+  return getService('$http').post('/api/upload/form-api', {
     param: angular.toJson(data),
     type, // UPLOAD_TYPE
-  }));
+  });
 }
 
 export function uploadBp(name, file) {
@@ -64,14 +66,36 @@ export function uploadBp(name, file) {
   }, UPLOAD_TYPE.FILE)
   .then(function uploadStart(data) {
     return getService('Upload').upload({
-      url: `${upyun}/${upyun.fileBucket.name}/`,
-      data,
+      url: `${upyun.apiHost}/${upyun.fileBucket.name}/`,
+      data: data.data,
       file,
       withCredentials: false,
     });
-  }).then(null, null, function progress(evt) {
-    console.log(evt);
+  })
+  .then(function setUrl(data) {
+    return {
+      data: data.data,
+      src: `${upyun.fileBucket.host}${data.url}`,
+    };
   });
+}
+
+export function uploadImage(image, options = {}) {
+  return getUpToken(options, UPLOAD_TYPE.PIC)
+    .then(function uploadImageStart(data) {
+      return getService('Upload').upload({
+        url: `${upyun.apiHost}/${upyun.bucket.name}/`,
+        data: data.data,
+        file: image,
+        withCredentials: false,
+      });
+    })
+    .then(function setUrl(data) {
+      return {
+        data: data.data,
+        src: `${upyun.bucket.host}${data.data.url}`,
+      };
+    });
 }
 
 export const slice = Array.prototype.slice;

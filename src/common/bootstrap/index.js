@@ -12,9 +12,19 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
   .config(function configHttp($httpProvider) {
     $httpProvider.interceptors.push('commonInterceptor');
     $httpProvider.defaults.withCredentials = true;
-    $httpProvider.defaults.transformRequest = delete$;
+    $httpProvider.defaults.transformRequest = param;
+    $httpProvider.useLegacyPromiseExtensions(true);
+    $httpProvider.defaults.headers.post = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    $httpProvider.defaults.headers.put = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    $httpProvider.defaults.headers.delete = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    };
 
-    function delete$(data) {
+    function param(data) {
       if (angular.isUndefined(data)) return data;
       if (!angular.isObject(data)) return data;
       const clonedData = angular.copy(data);
@@ -24,7 +34,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
           delete clonedData[k];
         }
       }
-      return clonedData;
+      return $.param(clonedData);
     }
   })
   .config(function configResource($resourceProvider) {

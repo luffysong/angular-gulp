@@ -73,6 +73,7 @@ module.exports = {
   globals: {
     Inject: true,
     angular: true,
+    jquery: true,
   },
   parser: "babel-eslint",
   extends: 'airbnb'

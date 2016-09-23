@@ -2,7 +2,7 @@
   <section class="base-info-wrapper">
     <div ng-if="!vm.baseInfoVM.isEdit" class="base-info-content">
       <div>
-        <img ng-src="{{::vm.baseInfoVM.logo}}" class="logo" alt="">
+        <img ng-src="{{vm.baseInfoVM.logo}}" class="logo" alt="">
       </div>
       <div>
         <h1>{{::vm.baseInfoVM.name}}
@@ -37,8 +37,9 @@
     </div>
     <div ng-if="vm.baseInfoVM.isEdit" class="base-info-content-edit">
       <div class="upload-logo">
-        <img ng-src="{{::vm.baseInfoVM.logo}}" class="logo" alt="">
-        <a ngf-select="vm.baseInfoVM.uploadBp($files)"
+        <img ng-src="{{vm.baseInfoVM.logo}}" class="logo" alt="">
+        <a ngf-select="vm.baseInfoVM.uploadImage($files)"
+          ngf-accept="'image/*'"
           class="btn-upload-logo" href="javascript:;"></a>
         <p>建议上传大小
         <p>90*90px</p>
