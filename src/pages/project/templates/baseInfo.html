@@ -1,5 +1,8 @@
 <div class="base-info">
-  <h4>基本介绍</h4>
+  <h4>基本介绍<a href="javascript:void(0)" ng-click="vm.baseInfoVM.enterEditMode()" ng-if="!vm.baseInfoVM.isEdit">添加+</a></h4>
+  <section id="baseInfoEdit" ng-include="'/pages/project/templates/baseInfoEdit.html'" ng-if="vm.baseInfoVM.isEdit">
+    基本介绍编辑
+  </section>
   <div>
     <ul class="tags" ng-show="vm.baseInfoVM.industryTag">
       <li class="tag-icon"><span class="icon-Tags"></span></li>

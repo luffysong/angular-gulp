@@ -173,18 +173,11 @@
 
   <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'" ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
   </section>
-
-  <section id="baseInfoEdit" class="project-module" ng-include="'/pages/project/templates/baseInfoEdit.html'">
-  </section>
-
-  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module" ng-hide="!vm.fundsVM.funds">
+  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module" ng-show="vm.fundsVM.funds">
     融资详情
   </section>
   <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module">
     融资经历
-  </section>
-  <section id="financeHistoryEdit" ng-include="'/pages/project/templates/financeHistoryEdit.html'" class="project-module">
-    融资经历编辑页
   </section>
   <section id="founder" ng-include="'/pages/project/templates/founder.html'" class="project-module">
     创始团队

@@ -1,66 +1,63 @@
 <div class="finance-history-edit">
-  <h4>融资经历</h4>
-    <div class="info">
-      <div class="form-group select-inline">
-        <label><span class="required">*</span>融资轮次</label>
-        <select class="form-control" ng-model="vm.editFinanceHistoryVM.phase" >
-          <option>选择轮次</option>
+  <form name="financeInfo">
+    <div class="form-group select-inline">
+      <label><span class="required">*</span>融资轮次</label>
+      <select class="form-control" ng-model="vm.editFinanceHistoryVM.phase" >
+        <option>选择轮次</option>
+        <option>11111111111</option>
+        <option>22222222222</option>
+        <option>33333333333</option>
+        <option>44444444444</option>
+        <option>55555555555</option>
+      </select>
+    </div>
+    <div class="form-group select-inline select-margin">
+      <label class="amount-title">融资金额</label>
+      <input type="text" ng-model="vm.editFinanceHistoryVM.financeAmount" class="form-control finance-amount" placeholder="请填写本轮融资金额或区间" />万
+      <select class="form-control finance-amount-unit" ng-model="vm.editBaseInfoVM.financeAmountUnit" >
+        <option>人民币</option>
+        <option>美元</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <div class="select-inline">
+        <label class="date-title"><span class="required">*</span>融资时间</label>
+        <select class="form-control finance-date" ng-model="vm.editBaseInfoVM.financeDate" >
+          <option>年份</option>
           <option>11111111111</option>
           <option>22222222222</option>
           <option>33333333333</option>
           <option>44444444444</option>
           <option>55555555555</option>
         </select>
-      </div>
-      <div class="form-group select-inline select-margin">
-        <label class="amount-title">融资金额</label>
-        <input type="text" ng-model="vm.editFinanceHistoryVM.financeAmount" class="form-control finance-amount" placeholder="请填写本轮融资金额或区间" />万
-        <select class="form-control finance-amount-unit" ng-model="vm.editBaseInfoVM.financeAmountUnit" >
-          <option>人民币</option>
-          <option>美元</option>
+        <select class="form-control finance-date" ng-model="vm.editBaseInfoVM.financeDate">
+          <option>月份</option>
+          <option>aaaaaaa</option>
+          <option>bbbbbbb</option>
+          <option>ccccccc</option>
+          <option>ddddddd</option>
+          <option>eeeeeee</option>
         </select>
       </div>
-
-      <div class="form-group">
-        <div class="select-inline">
-          <label class="date-title"><span class="required">*</span>融资时间</label>
-          <select class="form-control finance-date" ng-model="vm.editBaseInfoVM.financeDate" >
-            <option>年份</option>
-            <option>11111111111</option>
-            <option>22222222222</option>
-            <option>33333333333</option>
-            <option>44444444444</option>
-            <option>55555555555</option>
-          </select>
-          <select class="form-control finance-date" ng-model="vm.editBaseInfoVM.financeDate">
-            <option>月份</option>
-            <option>aaaaaaa</option>
-            <option>bbbbbbb</option>
-            <option>ccccccc</option>
-            <option>ddddddd</option>
-            <option>eeeeeee</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>投资方</label>
-        <input type="text" ng-model="vm.editBaseInfoVM.entityName" class="form-control entity-name" placeholder="请填写本轮投资机构或天使投资人" />
-      </div>
-
-      <div class="form-group">
-        <label>相关报道</label>
-        <input type="text" ng-model="vm.editBaseInfoVM.newsUrl" class="form-control news-url" placeholder="请填写融资相关报道" />
-      </div>
-
-      <div class="form-bottom">
-        <p class="splitter"> </p>
-        <p class="tip-text">注意：提交融资事件会提交审核，审核期间不可对此事件做任何的更改，通过后对所有用户公开</p>
-        <div>
-          <a class="save" href="#">保存</a>
-          <a class="cancel" href="#">取消</a>
-        </div>
-      </div>
-
     </div>
+
+    <div class="form-group">
+      <label>投资方</label>
+      <input type="text" ng-model="vm.editBaseInfoVM.entityName" class="form-control entity-name" placeholder="请填写本轮投资机构或天使投资人" />
+    </div>
+
+    <div class="form-group">
+      <label>相关报道</label>
+      <input type="text" ng-model="vm.editBaseInfoVM.newsUrl" class="form-control news-url" placeholder="请填写融资相关报道" />
+    </div>
+  </form>
+  <div class="form-bottom">
+    <p class="splitter"> </p>
+    <p class="tip-text">注意：提交融资事件会提交审核，审核期间不可对此事件做任何的更改，通过后对所有用户公开</p>
+    <div>
+      <a class="save" href="#">保存</a>
+      <a class="cancel"ng-click="vm.financeVM.cancel(financeInfo, $event)" href="javascript:void(0)">取消</a>
+    </div>
+  </div>
 </div>
