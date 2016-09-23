@@ -4,7 +4,7 @@
       <label>文字介绍</label>
       <label class="explain">可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字</label>
       <span class="error-tip" id="messageIntroduction"></span>
-      <textarea ng-model="vm.editBaseInfoVM.introduction" class="introduction form-control" maxlength=1000 validator="maxlength=1000"
+      <textarea ng-model="vm.introductionVM.introduction" class="introduction form-control" maxlength=1000 validator="maxlength=1000"
       message-id="messageIntroduction" maxlength-error-message="介绍不能超过50字"
       placeholder="可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字"></textarea>
       <div id="num" style="float: right;">0/1000</div>
@@ -13,12 +13,12 @@
     <div class="form-group company-name">
       <label>公司全称</label>
       <label class="explain">请填写工商注册公司全称</label>
-      <input type="text" ng-model="vm.editBaseInfoVM.fullName" class="form-control" placeholder="请填写工商注册公司全称" />
+      <input type="text" ng-model="vm.introductionVM.fullName" class="form-control" placeholder="请填写工商注册公司全称" />
     </div>
 
     <div class="form-group select-inline">
       <label>成立时间</label>
-      <select class="form-control" ng-model="vm.editBaseInfoVM.startDate" >
+      <select class="form-control" ng-model="vm.introductionVM.startDate" >
         <option></option>
         <option>11111111111</option>
         <option>22222222222</option>
@@ -30,7 +30,7 @@
     <div class="form-group select-inline select-margin">
       <label><span class="required">*</span>运营状态</label>
       <span class="error-tip" id="messageState"></span>
-      <select class="form-control" ng-model="vm.editBaseInfoVM.operationStatus" validator="required" message-id="messageState" >
+      <select class="form-control" ng-model="vm.introductionVM.operationStatus" validator="required" message-id="messageState" >
         <option></option>
         <option>aaaaaaa</option>
         <option>bbbbbbb</option>
@@ -43,7 +43,7 @@
     <div class="form-group">
       <div class="select-inline">
         <label>公司规模</label>
-        <select class="form-control" ng-model="vm.editBaseInfoVM.company_scale" >
+        <select class="form-control" ng-model="vm.introductionVM.company_scale" >
           <option></option>
           <option>11111111111</option>
           <option>22222222222</option>
@@ -55,7 +55,7 @@
       <div class="select-inline select-margin">
         <label><span class="required">*</span>所在地</label>
         <span class="error-tip" id="messageAddress"></span>
-        <select class="form-control" ng-model="vm.editBaseInfoVM.address1" validator="required" message-id="messageAddress" >
+        <select class="form-control" ng-model="vm.introductionVM.address1" validator="required" message-id="messageAddress" >
           <option></option>
           <option>aaaaaaa</option>
           <option>bbbbbbb</option>
@@ -71,7 +71,7 @@
     <p class="tip-text">注意：标签不开放编辑；所有更改内容均会提交审核，审核期间不可对此模块做任何的更改，通过后对所有用户公开</p>
     <div>
       <a class="save" href="#">保存</a>
-      <a class="cancel" ng-click="vm.baseInfoVM.cancel(baseInfo, $event)" href="javascript:void(0)">取消</a>
+      <a class="cancel" ng-click="vm.introductionVM.cancel(baseInfo, $event)" href="javascript:void(0)">取消</a>
     </div>
   </div>
 </div>

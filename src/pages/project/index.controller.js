@@ -1,4 +1,5 @@
 import BaseInfoVM from './baseInfo.vm';
+import IntroductionVM from './introduction.vm';
 import FundsVM from './funds.vm';
 import FinanceVM from './finance.vm';
 import MemberVM from './member.vm';
@@ -15,6 +16,7 @@ export default class ProjectIndexController {
   init() {
     if (this.projectData) {
       this.baseInfoVM = new BaseInfoVM(this.projectData.baseInfo, this.$scope);
+      this.introductionVM = new IntroductionVM(this.projectData.introduction);
       this.fundsVM = new FundsVM(this.projectData.funds);
       this.financeVM = new FinanceVM(this.projectData.finance);
       this.memberVM = new MemberVM(this.projectData.member);

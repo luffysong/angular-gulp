@@ -1,21 +1,21 @@
 <div class="base-info">
-  <h4>基本介绍<a href="javascript:void(0)" ng-click="vm.baseInfoVM.enterEditMode()" ng-if="!vm.baseInfoVM.isEdit">添加+</a></h4>
-  <section id="baseInfoEdit" ng-include="'/pages/project/templates/baseInfoEdit.html'" ng-if="vm.baseInfoVM.isEdit">
+  <h4>基本介绍<a href="javascript:void(0)" ng-click="vm.introductionVM.enterEditMode()" ng-if="!vm.introductionVM.isEdit">添加+</a></h4>
+  <section id="baseInfoEdit" ng-include="'/pages/project/templates/baseInfoEdit.html'" ng-if="vm.introductionVM.isEdit">
     基本介绍编辑
   </section>
   <div>
-    <ul class="tags" ng-show="vm.baseInfoVM.industryTag">
+    <ul class="tags" ng-show="vm.introductionVM.industryTag">
       <li class="tag-icon"><span class="icon-Tags"></span></li>
-      <li class="tag" ng-repeat="tag in vm.baseInfoVM.industryTag">{{tag}}</li>
+      <li class="tag" ng-repeat="tag in vm.introductionVM.industryTag">{{tag}}</li>
     </ul>
     <div class="info">
-      <span id="node" text-overflow >{{vm.baseInfoVM.intro}}
+      <span id="node" text-overflow >{{vm.introductionVM.intro}}
       </span>
     </div>
     <ul class="company-info">
-      <li>公司全称：{{::vm.baseInfoVM.fullName}}</li>
-      <li>成立时间：{{::(vm.baseInfoVM.startDate | date: 'yyyy-MM-dd')}}</li>
-      <li>公司规模：{{::vm.baseInfoVM.scale}}</li>
+      <li>公司全称：{{::vm.introductionVM.fullName}}</li>
+      <li>成立时间：{{::(vm.introductionVM.startDate | date: 'yyyy-MM-dd')}}</li>
+      <li>公司规模：{{::vm.introductionVM.scale}}</li>
       <li class="more">查看更多工商信息</li>
     </ul>
   </div>
