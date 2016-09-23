@@ -21,8 +21,12 @@ export default class MemberVM {
       return !(this.members === this.data.members);
     }
     function displayData() {
-      return !(this.data.story && this.data.teamTags && this.data.members.length);
+      if (this.data.teamTags === 'undefined' && this.data.story) {
+        return !this.data.members;
+      }
+      return false;
     }
+    console.log('display', !this.data.story, this.data.teamTags, !this.data.members);
     function show() {
       return this.data.story || this.data.teamTags || this.data.members.length;
     }
