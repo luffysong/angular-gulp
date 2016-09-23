@@ -24,7 +24,6 @@ export default class NewsVM extends krData.FormVM {
       return !(this.newsList.length === this.list.length);
     }
     this.newsList = getList(this.newsList, this.list, 1);
-    console.log(this.list);
     this.more = more;
     this.showMore = showMore;
   }

@@ -26,7 +26,6 @@ export default class MemberVM {
       }
       return false;
     }
-    console.log('display', !this.data.story, this.data.teamTags, !this.data.members);
     function show() {
       return this.data.story || this.data.teamTags || this.data.members.length;
     }

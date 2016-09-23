@@ -120,14 +120,14 @@
   </section>
   <section sticky offset="50" class="nav-wrapper">
     <nav>
-      <ul>
+      <ul class='navigate'>
         <li ng-hide="!vm.baseInfoVM.advantage">
           <a href="#light" du-smooth-scroll="" du-scrollspy=""  offset="277"  class="active">
             投资亮点
           </a>
         </li>
         <li ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
-          <a href="#baseInfo" du-smooth-scroll="" du-scrollspy="" offset="130" ng-class="{'active':!vm.baseInfoVM.advantage}" >
+          <a href="#baseInfo" du-smooth-scroll="" du-scrollspy="" offset="130" ng-class="{'active':!vm.baseInfoVM.advantage}" navigate>
             基本介绍
           </a>
         </li>
