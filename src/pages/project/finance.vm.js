@@ -1,8 +1,39 @@
-export default class FinanceVM {
-  constructor(data) {
-    this.data = data;
-    this.init();
+import krData from 'krData';
+export default class FinanceVM extends krData.FormVM {
+  constructor(data, $scope) {
+    super(data);
+    this.$scope = $scope;
+    this.initData(data);
+    this.projectService = krData.utls.getService('projectService');
   }
+
+  initData(data) {
+    angular.extend(this, data);
+    // this.watch();
+  }
+
+  setData(data) {
+    this.originalData = {};
+    angular.copy(data, this.originalData);
+  }
+
+  recovery() {
+    angular.extend(this, this.originalData);
+  }
+
+  // watchName() {
+  //   const that = this;
+  //   this.$scope.$watch('vm.baseInfoVM.name', function watchName(nv, ov) {
+  //     if (nv !== ov) {
+  //       that.$validation.validate(that.form.fullName);
+  //     }
+  //   });
+  // }
+
+  // watch() {
+  //   this.watchName();
+  // }
+
   init() {
     let num = 1;
     function getlist(limitlist, list, n) {
@@ -24,5 +55,20 @@ export default class FinanceVM {
 
     this.more = more;
     this.showMore = showMore;
+  }
+
+  update($event) {
+    if (!this.validate($event)) return;
+    this.projectService.editHeader({
+      id: this.id,
+    }, this.getCopy(['phase',
+      'financeAmount',
+      'financeAmountUnit',
+      'entityName',
+    ]))
+      .then(() => {
+        this.recovery();
+        this.ok();
+      });
   }
 }
