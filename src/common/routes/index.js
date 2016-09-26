@@ -1,6 +1,7 @@
 /* eslint-disable angular/on-watch */
 import home from './home.route';
 import project from './project.route';
+import createProject from './createProject.route';
 import { searchView, search } from './search.route';
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
@@ -10,6 +11,7 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider.state('project', project);
   $stateProvider.state('search', searchView);
   $stateProvider.state('search.result', search);
+  $stateProvider.state('createProject', createProject);
 }
 
 function stateChangeError($rootScope, $log) {

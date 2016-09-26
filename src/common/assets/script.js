@@ -16,6 +16,9 @@ export default {
       '/bower/highcharts/highcharts.js',
       '/bower/highcharts-ng/dist/highcharts-ng.min.js',
     ],
+    createProject: [
+      '/pages/createProject/index.js',
+    ],
     search: [
       '/pages/search/index.js',
     ],
