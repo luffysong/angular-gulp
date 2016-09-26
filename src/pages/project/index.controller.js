@@ -7,6 +7,7 @@ import SimilarVM from './similar.vm';
 import NewsVM from './news.vm';
 import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
+import CollectionVM from './collection.vm';
 @Inject('$stateParams', 'projectService', 'projectData', 'ngDialog', '$validation', '$scope')
 export default class ProjectIndexController {
   constructor() {
@@ -24,6 +25,7 @@ export default class ProjectIndexController {
       this.newsVM = new NewsVM(this.projectData.news);
       this.productVM = new ProductVM(this.projectData.product);
       this.claimVM = new ClaimVM(this.ngDialog);
+      this.collectionVM = new CollectionVM(this.ngDialog);
     }
     let talkDialog;
 

@@ -11,42 +11,73 @@
     </div>
   </div>
   <div class="claim-form">
-    <form action="" >
-      <div class="form-list">
+    <form action="" name="claim">
+      <div class="form-list form-group">
         <p>
           <span class="require">*</span><span class="title">真实姓名</span>
         </p>
-        <input type="text" class="content" name="realName" placeholder="输入中文真实姓名" ng-model="vm.claimform.realname">
+        <span id="claimFullName"
+              class="error-tip"></span>
+        <input type="text" class="content form-control" name="realName" placeholder="输入中文真实姓名" ng-model="vm.claimform.realname"
+        message-id="claimFullName"
+        required-error-message="输入中文真实姓名"
+        validator="required">
       </div>
-      <div class="form-list">
+      <div class="form-list form-group">
         <p>
           <span class="require">*</span><span class="title">职位</span>
         </p>
-        <select name="position" id="">
-          <option value="">创始人</option>
-          <option value="">创始人</option>
-        </select>
-        <input type="text" class="position content" placeholder="输入职位" ng-model="vm.claimform.position">
+        <div class="form-group">
+          <select name="position" id="" class="form-control">
+            <option value="">创始人</option>
+            <option value="">创始人</option>
+          </select>
+          <input type="text" class="position content form-control" placeholder="输入职位" ng-model="vm.claimform.position" >
+        </div>
+
       </div>
-      <div class="form-list">
+      <div class="form-list form-group">
         <p>
           <span class="require">*</span><span class="title">手机号码</span>
         </p>
-        <input type="number" class="content" placeholder="输入真实手机号" ng-model="vm.claimform.phone">
+        <span id="claimPhone" class="error-tip"></span>
+        <input type="text"
+        class="content form-control"
+        placeholder="输入真实手机号"
+        ng-model="vm.claimform.phone"
+        validator="number"
+        message-id="claimPhone"
+        number-error-message="输入真实手机号">
       </div>
-      <div class="form-list">
+      <div class="form-list form-group">
         <p>
           <span class="require">*</span><span class="title">公司邮箱</span>
         </p>
-        <input type="text" class="content" placeholder="输入公司邮箱，便于审核" ng-model="vm.claimform.email">
+        <span id="claimEmail" class="error-tip"></span>
+        <input type="text"
+        class="content form-control"
+        placeholder="输入公司邮箱，便于审核"
+        ng-model="vm.claimform.email"
+        validator="email"
+        email-error-message="输入公司邮箱"
+        required-success-message="false"
+        id="claimEmail"
+        message-id="claimEmail">
       </div>
-      <div class="form-list">
+      <div class="form-list form-group">
         <p>
           <span class="require">*</span><span class="title">个人微信</span>
         </p>
-        <input type="text" class="content" placeholder="输入个人微信号，方便联系" ng-model="vm.claimform.weixin">
+        <span id="claimWeixin" class="error-tip"></span>
+        <input type="text"
+        class="content form-control"
+        placeholder="输入个人微信号，方便联系"
+        ng-model="vm.claimform.weixin"
+        validator="required"
+        message-id="claimWeixin"
+        required-error-message="输入个人微信号，方便联系">
       </div>
-      <div class="form-list">
+      <div class="form-list form-group">
         <p>
           <span class="require">*</span><span class="title">个人名片</span>
         </p>

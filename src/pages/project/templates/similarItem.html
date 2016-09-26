@@ -10,8 +10,9 @@
 		<table class='item-list' >
 			<thead class='content-head'>
 				<tr>
-					<td class="item">项目</td>
-					<td class="silimar">相似度</td>
+          <td class="item">项目</td>
+					<td class="round">当前轮次</td>
+					<td class="invest">过往投资方</td>
 					<td class="silimar-info">相关信息</td>
 				</tr>
 			</thead>
@@ -25,12 +26,19 @@
 							<p class='i-brief' clamp="1" ng-bind="item.brief"></p>
 						</div>
 					</td>
-					<td class='similarity'>{{item.similar}}</td>
+          <td class='round'>{{item.financePhase}}</td>
+					<td class='invest'>
+            <ul>
+              <li ng-repeat="invest in item.pastInvestor">
+                {{invest}}
+              </li>
+            </ul>
+          </td>
 					<td class="related-info" ng-show="item.similarInfo.length">
-						<ul class='list' ng-class='{"all":show[0]}'>
+						<ul class='list' ng-class='{"all":show[item.similarInfo.index]}'>
 							<li ng-repeat="tag in item.similarInfo">{{tag}}</li>
 						</ul>
-						<span class='icon-close curson' ng-click='show[index]=!show[index]' ng-class='{"pointed":show[index]}'></span>
+						<span class='icon-close curson' ng-click='show[item.similarInfo.index]=!show[item.similarInfo.index]' ng-class='{"pointed":show[item.similarInfo.index]}' ng-show="item.similarInfo.length>3"></span>
 					</td>
           <td class="related-info" ng-show="!item.similarInfo.length">
             <span class="none-data">暂无数据</span>
@@ -39,7 +47,7 @@
 			</tbody>
 			<tfoot>
           <tr>
-            <td class='t-foot' colspan='3'>
+            <td class='t-foot' colspan='4'>
               <div class="get-more" ng-click="vm.similarVM.more()" ng-show="vm.similarVM.showMore()">查看更多</div>
             </td>
           </tr>

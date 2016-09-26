@@ -54,11 +54,14 @@
 					padding:12px 0;
 				}
         .item{
-          width: 40%;
+          width: 35%;
           min-width: 300px;
         }
-        .silimar{
-          width: 25%;
+        .round{
+          width: 15%;
+        }
+        .invest{
+          width: 15%;
         }
         .silimar-info{
           width: 30%;
@@ -71,7 +74,20 @@
         }
 				td{
 					padding: 12px 20px;
+          padding-right: 0;
 				}
+        td.invest{
+          padding: 0;
+          .font(14,21);
+          color: #5A626D;
+          li{
+            line-height: 1.4;
+          }
+        }
+        .round{
+          .font(14,21);
+          color: #5A626D;
+        }
 				.item-info{
           text-align: left;
           min-width: 300px;
@@ -85,7 +101,7 @@
           }
           .info{
             display: inline-block;
-            width: 200px;
+            width: 220px;
             height: 42px;
             .i-brief{
               .font(12,18);
@@ -100,17 +116,28 @@
               .font(14,21);
               color: #5A626D;
               letter-spacing: 0px;
-              margin-right: 14px;
+              display: inline-block;
+              max-width: 160px;
+              margin-right: 8px;
+              text-overflow:ellipsis;
+              vertical-align: middle;
+              white-space:nowrap;
+              overflow: hidden;
+              color: #6BA2FC;
             }
             .i-industry{
               .font(12,18);
               color: #5A626D;
               letter-spacing: 0px;
+              display: inline-block;
+              width: 45px;
+              color: #6BA2FC;
             }
           }
 				}
         .related-info{
           max-width: 340px;
+          min-width: 295px;
           li{
             display: inline-block;
           }
