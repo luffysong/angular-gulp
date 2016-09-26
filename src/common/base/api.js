@@ -1,14 +1,65 @@
 import { getService, slice } from './utls';
 
+const METHOD_META = [{
+  nameReg: /^(?:update|edit)(.*)$/,
+  method: 'PUT',
+}, {
+  nameReg: /^(?:get|query)(.*)$/,
+  method: 'GET',
+}, {
+  nameReg: /^(?:save|add|create)(.*)$/,
+  method: 'POST',
+}, {
+  nameReg: /^(?:delete|remove)(.*)$/,
+  method: 'DELETE',
+},
+];
+function resolveMethod(name) {
+  name = name.toLowerCase();
+  for (let i = 0, l = METHOD_META.length; i < l; i++) {
+    const meta = METHOD_META[i];
+    if (meta.nameReg.test(name)) {
+      return {
+        method: meta.method,
+        params: {
+          action: `${RegExp.$1}`,
+        },
+      };
+    }
+  }
+
+  return {
+    method: 'GET',
+    params: {
+      action: name,
+    },
+  };
+}
+
 function mergeActions(gets, actions) {
   gets.forEach(methodName => {
-    actions[methodName] = {
-      params: {
-        action: methodName,
-      },
-    };
+    actions[methodName] = resolveMethod(methodName);
   });
 }
+
+function resolveActions(actions) {
+  Object.keys(actions).forEach(key => {
+    const action = resolveMethod(key);
+    if (angular.isString(actions[key])) {
+      action.params.action = actions[key];
+      actions[key] = action;
+    } else if (!actions[key].method) {
+      actions[key].method = action.method;
+    }
+    if (actions[key].action) {
+      actions[key].params = actions[key].params || {};
+      actions[key].params.action = actions[key].action;
+      delete actions[key].action;
+    }
+  });
+}
+
+
 export default class API {
 
   API_PATH = `//${location.host}/api`;
@@ -21,6 +72,7 @@ export default class API {
     this.getMethods = getMethods || [];
     this.actions = actions || {};
     this.$q = getService('$q');
+    resolveActions(this.actions);
     mergeActions(this.getMethods, this.actions);
     this.request = getService('$resource')(`${this.API_PATH}${url}/:action`, null, this.actions);
     this.copyMethod();
