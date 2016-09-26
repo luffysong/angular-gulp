@@ -1,10 +1,11 @@
 import '../routes/index';
 import '../constants/index';
 import '../filters/index';
-import commonInterceptor from '../base/commonInterceptor';
+import commonInterceptor from '../base/commonInterceptor.service';
 import { getService } from '../base/utls';
 /* eslint-disable no-param-reassign,no-use-before-define */
 angular.module('@@app', ['@@app.routes',
+  'cgNotify',
   '@@app.constants', 'ngResource', '@@app.filters',
   'validation', 'validation.rule',
 ]);
@@ -15,13 +16,13 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     $httpProvider.defaults.transformRequest = param;
     $httpProvider.useLegacyPromiseExtensions(true);
     $httpProvider.defaults.headers.post = {
-        'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
     };
     $httpProvider.defaults.headers.put = {
-        'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
     };
     $httpProvider.defaults.headers.delete = {
-        'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
     };
 
     function param(data) {

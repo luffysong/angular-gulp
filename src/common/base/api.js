@@ -18,11 +18,12 @@ function resolveMethod(name) {
   name = name.toLowerCase();
   for (let i = 0, l = METHOD_META.length; i < l; i++) {
     const meta = METHOD_META[i];
-    if (meta.nameReg.test(name)) {
+    const matches = name.match(meta.nameReg);
+    if (matches) {
       return {
         method: meta.method,
         params: {
-          action: `${RegExp.$1}`,
+          action: `${matches[1]}`,
         },
       };
     }
@@ -79,11 +80,13 @@ export default class API {
   }
 
   copyMethod() {
-    Object.keys(this.actions).concat(this.getMethods).forEach((methodName) => {
+    Object.keys(this.actions).forEach((methodName) => {
       this[methodName] = function request() {
         const parameters = slice.call(arguments, 0);
         parameters[0] = parameters[0] || {};
-        parameters[0] = angular.extend({ action: methodName }, parameters[0]);
+        parameters[0] = angular.extend({ action: methodName },
+          this.actions[methodName].params || {},
+          parameters[0]);
         return this.request[methodName](...parameters).$promise;
       };
     });
