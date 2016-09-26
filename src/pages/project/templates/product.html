@@ -6,19 +6,20 @@
         {{vm.productVM.data.companyProductList[0].name}}
       </div>
       <div class="base-info">
-        <p class="info">{{vm.productVM.data.companyProductList[0].desc}}</p>
-        <p>
-          <!-- <a ng-href="{{vm.productVM.data.companyProductList[0].}}"><span class="kr-icon icon-Weibo"></span></a> -->
-          <a ng-show="{{vm.productVM.data.companyProductList[0].weixin}}" ng-href="{{vm.productVM.data.companyProductList[0].weixin}}"><span class="kr-icon icon-Wechat"></span></a>
-          <a ng-show="{{vm.productVM.data.companyProductList[0].ios}}" ng-href="{{vm.productVM.data.companyProductList[0].ios}}"><span class="kr-icon icon-Apple"></span></a>
-          <a ng-show="{{vm.productVM.data.companyProductList[0].android}}" ng-href="{{vm.productVM.data.companyProductList[0].android}}"><span class="kr-icon icon-Andriod"></span></a>
-          <span class="kr-icon icon-websitelink"></span>
-          <a target="_blank" ng-href="{{vm.productVM.data.companyProductList[0].url}}">{{vm.productVM.data.companyProductList[0].url}}</a>
-        </p>
+        <div class="inner">
+          <div class="info" ng-if="vm.productVM.data.companyProductList[0].desc!=='' && typeOf (vm.productVM.data.companyProductList[0].desc)!=undefined">{{vm.productVM.data.companyProductList[0].desc}}</div>
+          <div>
+            <!-- <a ng-href="{{vm.productVM.data.companyProductList[0].}}"><span class="kr-icon icon-Weibo"></span></a> -->
+            <a ng-if="vm.productVM.data.companyProductList[0].weixin!==''" ng-href="{{vm.productVM.data.companyProductList[0].weixin}}"><span class="kr-icon icon-Wechat"></span></a>
+            <a ng-if="vm.productVM.data.companyProductList[0].ios!==''" ng-href="{{vm.productVM.data.companyProductList[0].ios}}"><span class="kr-icon icon-Apple"></span></a>
+            <a ng-if="vm.productVM.data.companyProductList[0].android!==''" ng-href="{{vm.productVM.data.companyProductList[0].android}}"><span class="kr-icon icon-Andriod"></span></a>
+            <span class="kr-icon icon-websitelink"></span>
+            <a target="_blank" ng-href="{{vm.productVM.data.companyProductList[0].url}}">{{vm.productVM.data.companyProductList[0].url}}</a>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- <div class="investor" ng-show="{{vm.productVM.data.hasDataPrivilege}}"> -->
-    <div class="investor" >
+    <div class="investor" ng-show="{{vm.productVM.data.hasDataPrivilege}}">
       <div class="companyData" ng-show="{{vm.productVM.data.companyDataList}}">
         <div class="data-info">
           <div class="tab">
@@ -32,7 +33,7 @@
             <span><span class="text" ng-click="vm.productVM.setType('KEEP')" ng-class="{'active':vm.productVM.curType === 'KEEP'}">留存数据</span></span>
           </div>
           <div class="chart">
-            <highchart id="monthChart" config="vm.chartConfig"></highchart>
+            <highchart id="monthChart" config="vm.productVM.chartConfig"></highchart>
           </div>
         </div>
         <div class="more-data">
@@ -70,11 +71,11 @@
         <p>暂无数据</p>
       </div>
     </div>
-    <!-- <div class="uninvestor" ng-show="!{{vm.productVM.data.hasData}}">
-      <div class="link">
-        <p class="certify">认证投资人</p>
-        <p>查看更多产品数据</p>
+    <div class="uninvestor" ng-show="{{!vm.productVM.data.hasDataPrivilege}}">
+      <div class="index">
+        <div class="certify"><a ng-href="">认证投资人</a></div>
+        <div class="text">查看更多产品数据</div>
       </div>
-    </div> -->
+    </div>
   </div>
 </div>
