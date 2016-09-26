@@ -7,21 +7,19 @@ export default class BaseInfoVM extends krData.FormVM {
     this.projectService = krData.utls.getService('projectService');
   }
 
+
   initData(data) {
     angular.extend(this, data);
     this.watch();
   }
 
   setData(data) {
-    this.propNames = Object.keys(data);
     this.originalData = {};
     angular.copy(data, this.originalData);
   }
 
   recovery() {
-    this.propNames.forEach(key => {
-      this[key] = this.originalData[key];
-    });
+    angular.extend(this, this.originalData);
   }
 
   uploadImage($files) {
@@ -46,20 +44,20 @@ export default class BaseInfoVM extends krData.FormVM {
     this.watchName();
   }
 
-
-  refresh(data) {
-    angular.extend(this, data);
-    this.setData(data);
-  }
-
   update($event) {
     if (!this.validate($event)) return;
-    angular.extend(this.originalData, this);
-    this.projectService.update({
+    this.projectService.editHeader({
       id: this.id,
-    }, this.getCopy(['name', 'fullName']))
-      .then((data) => {
-        this.refresh(data);
+    }, this.getCopy(['name',
+      'fullName:remarkName',
+      'website',
+      'weibo',
+      'weixin',
+      'logo',
+      'brief',
+    ]))
+      .then(() => {
+        this.recovery();
         this.ok();
       });
   }

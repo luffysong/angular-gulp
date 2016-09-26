@@ -7,7 +7,7 @@ export default class ProjectService extends API {
       'product',
       'funds',
       'member',
-      'editHead',
+      'editHeader',
     ], {
       news: {
         isArray: true,
