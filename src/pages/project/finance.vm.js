@@ -1,7 +1,14 @@
-export default class FinanceVM {
-  constructor(data) {
-    this.data = data;
-    this.init();
+import krData from 'krData';
+export default class FinanceVM extends krData.FormVM {
+  constructor(data, $scope) {
+    super(data);
+    this.$scope = $scope;
+    this.initData(data);
+    this.projectService = krData.utls.getService('projectService');
+  }
+  initData(data) {
+    angular.extend(this, data);
+    // this.watch();
   }
   init() {
     let num = 1;
