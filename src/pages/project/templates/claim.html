@@ -45,7 +45,7 @@
         class="content form-control"
         placeholder="输入真实手机号"
         ng-model="vm.claimform.phone"
-        validator="number"
+        validator="number, required"
         message-id="claimPhone"
         number-error-message="输入真实手机号">
       </div>
@@ -58,11 +58,11 @@
         class="content form-control"
         placeholder="输入公司邮箱，便于审核"
         ng-model="vm.claimform.email"
-        validator="email"
+        validator="email,required"
         email-error-message="输入公司邮箱"
-        required-success-message="false"
         id="claimEmail"
-        message-id="claimEmail">
+        message-id="claimEmail"
+        initial-validity="true">
       </div>
       <div class="form-list form-group">
         <p>
@@ -75,7 +75,8 @@
         ng-model="vm.claimform.weixin"
         validator="required"
         message-id="claimWeixin"
-        required-error-message="输入个人微信号，方便联系">
+        required-error-message="输入个人微信号"
+        valid-method="watch">
       </div>
       <div class="form-list form-group">
         <p>

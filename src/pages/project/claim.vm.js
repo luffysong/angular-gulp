@@ -5,7 +5,9 @@ export default class ClaimVM {
   }
   init() {
     let claimDialog;
+
     function claimController() {
+      let vm = this;
       this.claimform = {
         realname: '',
         position: '',
@@ -18,7 +20,7 @@ export default class ClaimVM {
         claimDialog.close();
       };
       this.save = function () {
-        console.log(this.claimform);
+        console.log(vm.validate());
       };
     }
     const str = '<div ng-include="' +
