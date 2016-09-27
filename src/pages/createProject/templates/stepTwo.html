@@ -1,1 +1,81 @@
-2222444
+<div  class="step-two-wrapper">
+
+  <h4>基本信息</h4>
+
+  <div>
+    <form >
+      <div class="form-group">
+        <label for=""><span class="required">*</span> 真实姓名</label>
+        <input  ng-model="vm.baseInfoVM.name"
+          placeholder="输入中文真实姓名"
+          message-id="messageName"
+          no-validation-message="true"
+          maxlength="30"
+          validator="required"
+          type="text" name="name" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for=""><span class="required">*</span>职位</label>
+
+        <span id="messageFullName"
+          class="error-tip"></span>
+        <input  ng-model="vm.baseInfoVM.fullName"
+          placeholder="输入公司全称"
+          validator="notEqual=vm.baseInfoVM.name"
+          message-id="messageFullName"
+          not-equal-error-message="请不要再次填写项目名称"
+          type="text" name="fullName" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for=""><span class="required">*</span> 手机号码</label>
+        <span class="error-tip" id="messageBrief"></span>
+        <input  ng-model="vm.baseInfoVM.brief"
+        validator="required,minlength=5" message-id="messageBrief"
+        minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
+        maxlength="30"
+        placeholder="输入真实手机号"
+        type="text" name="brief" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for=""><span class="required">*</span> 公司邮箱</label>
+        <span class="error-tip" id="messageBrief"></span>
+        <input  ng-model="vm.baseInfoVM.brief"
+        validator="required,minlength=5" message-id="messageBrief"
+        minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
+        maxlength="30"
+        placeholder="输入公司邮箱，便于审核"
+        type="text" name="brief" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for=""><span class="required">*</span> 个人微信</label>
+        <span class="error-tip" id="messageBrief"></span>
+        <input  ng-model="vm.baseInfoVM.brief"
+        validator="required,minlength=5" message-id="messageBrief"
+        minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
+        maxlength="30"
+        placeholder="输入个人微信号，方便联系"
+        type="text" name="brief" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for=""><span class="required">*</span> 个人名片</label>
+        <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
+        <a   ng-model="vm.baseInfoVM.website"
+          validator="http" message-id="messageWebsite"
+          type="text" name="website" class="btn-id-card" href="javascript:;" >上传名片</a>
+      </div>
+      <div class="form-group">
+        <a class="next" href="javascript:;">下一步</a>
+      </div>
+    </form>
+  </div>
+  <div class="form-bottom">
+    <p class="splitter"> </p>
+    <pre class="tip-text">请上传真实有效的个人名片，名片上的公司名称应该与所认领的公司名称保持一致；
+请确保你是该公司的创始人或者其他相关在职成员；
+请勿上传其他不相关的证件，以免影响审核通过率；
+上传图片支持2M以内的PNG、JPG、GIF格式。</pre>
+  </div>
+</div>

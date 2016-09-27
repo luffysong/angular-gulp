@@ -1,16 +1,25 @@
 @import "../../common/styles/var";
 @import "./style/stepOne";
+@import "./style/common";
 .create-project-wrapper {
   background: #F2F4F5;
+  border: 1px transparent solid;
   .create-project-module {
     background: #fff;
     width: @content-width;
-    margin:0 auto;
+    margin: 30px auto 40px;
   }
   h1 {
     background: #F9F9F9;
     .font(18, 59);
     color: @title-color;
     .text-center;
+  }
+}
+
+.step-two-wrapper {
+  .btn-id-card {
+    .button(139, 37, 14, @anchor-color, #fff);
+    display: block;
   }
 }

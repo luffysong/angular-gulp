@@ -2,7 +2,7 @@
   <h4>基本信息</h4>
   <div class="upload-logo">
     <img ng-src="{{vm.baseInfoVM.logo}}" class="logo" alt="">
-    <a ngf-select="vm.baseInfoVM.uploadImage($files)"
+    <a ngf-select=""
       ngf-accept="'image/*'"
       class="btn-upload-logo" href="javascript:;"></a>
     <p>建议上传大小
@@ -13,7 +13,6 @@
 
       <div class="form-group">
         <label for=""><span class="required">*</span> 项目名称</label>
-        <span class="form-tip">30天内只能修改一次</span>
         <input  ng-model="vm.baseInfoVM.name"
           placeholder="输入项目名称"
           message-id="messageName"
@@ -37,14 +36,21 @@
       </div>
 
       <div class="form-group">
-        <label for=""><span class="required">*</span> 工商注册公司全称</label>
+        <label for=""><span class="required">*</span> 一句话简介</label>
         <span class="error-tip" id="messageBrief"></span>
         <input  ng-model="vm.baseInfoVM.brief"
         validator="required,minlength=5" message-id="messageBrief"
         minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
         maxlength="30"
-        placeholder="一句话概括产品与服务，30字内"
+        placeholder="输入项目一句话简介，30字内"
         type="text" name="brief" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for=""><span class="required">*</span> 所属领域</label>
+        <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
+        <select  ng-model="vm.baseInfoVM.website"
+          validator="http" message-id="messageWebsite"
+          type="text" name="website" class="form-control" > </select>
       </div>
       <div class="form-group">
         <label for="">公司官网</label>
@@ -66,7 +72,20 @@
           placeholder="请填写微信公众号"
           type="text" name="weixin" class="form-control" />
       </div>
-
+      <div class="form-group">
+        <label for=""><span class="required">*</span> 你的角色</label>
+        <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
+        <select  ng-model="vm.baseInfoVM.website"
+          validator="http" message-id="messageWebsite"
+          type="text" name="website" class="form-control" > </select>
+      </div>
+      <div class="form-group">
+        <label for=""><span class="required">*</span> 融资需求</label>
+        <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
+        <select  ng-model="vm.baseInfoVM.website"
+          validator="http" message-id="messageWebsite"
+          type="text" name="website" class="form-control" > </select>
+      </div>
       <div class="form-group">
         <a class="next" href="javascript:;">下一步</a>
       </div>

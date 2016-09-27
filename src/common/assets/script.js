@@ -18,6 +18,7 @@ export default {
     ],
     createProject: [
       '/pages/createProject/index.js',
+      '/bower/ng-file-upload/ng-file-upload-all.min.js',
     ],
     search: [
       '/pages/search/index.js',
