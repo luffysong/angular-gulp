@@ -30,7 +30,7 @@
 
 .size(@width, @height) {
   width: unit(@width, px);
-  height: unit(@width, px);
+  height: unit(@height, px);
 }
 .text-center() {
   text-align: center;
@@ -62,6 +62,12 @@
   &:before {
     content: "上传LOGO";
   }
+}
+
+.splitter(@style: dotted, @height: 2px) {
+  clear: both;
+  width: 100%;
+  border-top: @height @style #e7e7e7;
 }
 .tip-text() {
   .font(12,18);
