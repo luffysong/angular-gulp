@@ -57,6 +57,8 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       required: {},
       minlength: {},
       maxlength: {},
+      email: {},
+      number: {},
       http: {
         error: '请以http://开头',
       },
