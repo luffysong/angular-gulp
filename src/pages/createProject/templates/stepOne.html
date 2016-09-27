@@ -1,1 +1,83 @@
-123333
+<div  class="step-one-wrapper">
+  <h4>基本信息</h4>
+  <div class="upload-logo">
+    <img ng-src="{{vm.baseInfoVM.logo}}" class="logo" alt="">
+    <a ngf-select="vm.baseInfoVM.uploadImage($files)"
+      ngf-accept="'image/*'"
+      class="btn-upload-logo" href="javascript:;"></a>
+    <p>建议上传大小
+    <p>90*90px</p>
+  </div>
+  <div>
+    <form name="vm.baseInfoVM.form">
+
+      <div class="form-group">
+        <label for=""><span class="required">*</span> 项目名称</label>
+        <span class="form-tip">30天内只能修改一次</span>
+        <input  ng-model="vm.baseInfoVM.name"
+          placeholder="输入项目名称"
+          message-id="messageName"
+          no-validation-message="true"
+          maxlength="30"
+          validator="required"
+          type="text" name="name" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="">工商注册公司全称</label>
+
+        <span id="messageFullName"
+          class="error-tip"></span>
+        <input  ng-model="vm.baseInfoVM.fullName"
+          placeholder="输入公司全称"
+          validator="notEqual=vm.baseInfoVM.name"
+          message-id="messageFullName"
+          not-equal-error-message="请不要再次填写项目名称"
+          type="text" name="fullName" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for=""><span class="required">*</span> 工商注册公司全称</label>
+        <span class="error-tip" id="messageBrief"></span>
+        <input  ng-model="vm.baseInfoVM.brief"
+        validator="required,minlength=5" message-id="messageBrief"
+        minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
+        maxlength="30"
+        placeholder="一句话概括产品与服务，30字内"
+        type="text" name="brief" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="">公司官网</label>
+        <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
+        <input  ng-model="vm.baseInfoVM.website"
+          placeholder="请填写公司的官网，请以http://开头"
+          validator="http" message-id="messageWebsite"
+          type="text" name="website" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="">新浪微博</label>
+        <input  ng-model="vm.baseInfoVM.weibo"
+          placeholder="请填写新浪微博主页链接"
+          type="text" name="weibo" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="">微信公众号</label>
+        <input  ng-model="vm.baseInfoVM.weixin"
+          placeholder="请填写微信公众号"
+          type="text" name="weixin" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <a class="next" href="javascript:;">下一步</a>
+      </div>
+
+    </form>
+  </div>
+  <div class="form-bottom">
+    <p class="splitter"> </p>
+    <p class="tip-text">注意：为保证审核效率，请仔细查看建议结果中是否有需要添加的项目，若有直接认领</p>
+  </div>
+
+</div>
+
+
