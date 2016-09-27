@@ -1,22 +1,26 @@
+import krData from 'krData';
 export default class CollectionVM {
-  constructor(fn) {
+  constructor(fn, data) {
     this.ngDialog = fn;
-    this.init();
+    this.init(data);
   }
-  init() {
+  init(data) {
     let collectDialog;
+    const projectService = krData.utls.getService('projectService');
+    const list = data;
+    console.log(projectService.createCollect);
+    function createCollect(form) {
+      console.log(form);
+      projectService.createCollect(form)
+          .then(() => {
+            console.log('ok');
+          });
+    }
     function collectController() {
-      let vm = this;
+      const vm = this;
       vm.selected = [];
       vm.createShow = false;
-      vm.list = [
-        { id: 1, name: 'xxx', num: 23 },
-        { id: 2, name: 'xxx', num: 23 },
-        { id: 3, name: 'xxx', num: 23 },
-        { id: 4, name: 'xxx', num: 23 },
-        { id: 5, name: 'xxx', num: 23 },
-      ];
-
+      vm.collections = list;
       vm.collectCancle = function () {
         collectDialog.close();
       };
@@ -30,6 +34,10 @@ export default class CollectionVM {
         if (!this.collectionName) {
           return false;
         }
+        const name = {
+          name: vm.collectionName,
+        };
+        createCollect(name);
       };
 
       vm.change = function (item) {
@@ -56,6 +64,8 @@ export default class CollectionVM {
         controllerAs: 'vm',
       });
     }
+
     this.collection = collection;
   }
+
 }

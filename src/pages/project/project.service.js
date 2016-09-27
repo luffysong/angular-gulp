@@ -9,6 +9,7 @@ export default class ProjectService extends API {
       'member',
       'editHeader',
       'editBase',
+      'addprivilege',
     ], {
       news: {
         isArray: true,
@@ -21,6 +22,20 @@ export default class ProjectService extends API {
       },
     });
   }
+  // 获取用户收藏夹
+  collect(id) {
+    this.collection = new API('/user/follow/company/:id', {
+      group: {
+        isArray: true,
+      } })
+    .group(id);
+    return this.collection;
+  }
+  createCollect(form) {
+    this.createCollection = new API('/user/follow/company', ['savegroup']).savegroup(form);
+    return this.createCollection;
+  }
+
 
   getArea(id) {
     return new API('/dict/area').get({
@@ -29,6 +44,7 @@ export default class ProjectService extends API {
   }
   allData(id) {
     return this.$q.all({
+      collection: this.collect(id),
       baseInfo: this.get(id),
       product: this.product(id),
       finance: this.finance(id),

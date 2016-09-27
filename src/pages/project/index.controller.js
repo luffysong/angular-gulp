@@ -16,6 +16,7 @@ export default class ProjectIndexController {
 
   init() {
     if (this.projectData) {
+      this.id = this.$stateParams.id;
       this.baseInfoVM = new BaseInfoVM(this.projectData.baseInfo, this.$scope);
       this.introductionVM = new IntroductionVM(this.projectData.baseInfo, this.$scope);
       this.fundsVM = new FundsVM(this.projectData.funds);
@@ -24,9 +25,10 @@ export default class ProjectIndexController {
       this.similarVM = new SimilarVM(this.projectData.similar);
       this.newsVM = new NewsVM(this.projectData.news);
       this.productVM = new ProductVM(this.projectData.product);
-      this.claimVM = new ClaimVM(this.ngDialog);
-      this.collectionVM = new CollectionVM(this.ngDialog);
+      this.claimVM = new ClaimVM(this.ngDialog, this.id);
+      this.collectionVM = new CollectionVM(this.ngDialog, this.projectData.collection);
     }
+
     let talkDialog;
 
     function talkController() {

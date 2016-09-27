@@ -3,10 +3,10 @@
   <span class="title">添加到收藏夹</span>
   <div class="content-list">
     <ul>
-      <li ng-repeat="item in vm.list">
-        <input type="checkbox" class="checkbox" name='collection' ng-model="item.checked" ng-change="vm.change(item)">
+      <li ng-repeat="item in vm.collections">
+        <input type="checkbox" class="checkbox" name='collection' ng-model="item.checked" ng-change="vm.change(item)" value="item.id">
         <span class="collection-name">{{item.name}}</span>
-        <span class="collections">{{item.num}}</span>
+        <span class="collections">共{{item.count}}家</span>
       </li>
 
 
