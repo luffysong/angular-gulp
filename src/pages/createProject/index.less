@@ -23,5 +23,63 @@
   .btn-id-card {
     .button(139, 37, 14, @anchor-color, #fff);
     display: block;
+    margin-top: 4px;
+    .icon-Investor {
+      font-size: 18px;
+      vertical-align: middle;
+    }
+  }
+
+  select {
+    .dlk();
+  }
+  .position-name {
+    .dlk();
+    width: 370px;
+    margin-left: 10px;
+  }
+}
+
+.finance-apply-wrapper {
+  .money {
+    width: 200px;
+    margin-right: 10px;
+    &+select {
+      margin-left: 6px;
+    }
+  }
+  .btn-bp {
+    .button(139, 37, 14, @anchor-color, #fff);
+    display: block;
+    margin-top: 4px;
+  }
+  .bp-check-group {
+    margin-top: 32px;
+  }
+  .bp-check {
+    margin-top: 8px;
+    .font(14, 21);
+    input {
+      margin-right: 11px;
+    }
+    span{
+      color: @input-color;
+      .dlk();
+      vertical-align: middle;
+    }
+  }
+  .protocal-read {
+    margin-top: 45px;
+    .font(14, 21);
+    input {
+      margin-right: 11px;
+    }
+    color: @title-color;
+    .text-center();
+  }
+  .save {
+    margin-top: 16px;
+    background: @anchor-color;
+    color: #fff;
   }
 }

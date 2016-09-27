@@ -20,12 +20,19 @@
 
         <span id="messageFullName"
           class="error-tip"></span>
-        <input  ng-model="vm.baseInfoVM.fullName"
-          placeholder="输入公司全称"
-          validator="notEqual=vm.baseInfoVM.name"
-          message-id="messageFullName"
-          not-equal-error-message="请不要再次填写项目名称"
-          type="text" name="fullName" class="form-control" />
+        <div>
+          <select  ng-model="vm.baseInfoVM.fullName"
+            placeholder="输入公司全称"
+            validator="notEqual=vm.baseInfoVM.name"
+            message-id="messageFullName"
+            not-equal-error-message="请不要再次填写项目名称"
+            type="text" name="fullName" class="form-control" >
+          </select><input
+            placeholder="输入公司全称"
+          type="text" name="" id="" value="" class="form-control position-name"  />
+
+        </div>
+
       </div>
 
       <div class="form-group">
@@ -64,12 +71,13 @@
         <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
         <a   ng-model="vm.baseInfoVM.website"
           validator="http" message-id="messageWebsite"
-          type="text" name="website" class="btn-id-card" href="javascript:;" >上传名片</a>
-      </div>
-      <div class="form-group">
-        <a class="next" href="javascript:;">下一步</a>
+          type="text" name="website" class="btn-id-card" href="javascript:;" >
+          <span class="icon-Investor"></span>上传名片</a>
       </div>
     </form>
+  </div>
+  <div class="form-group">
+    <a class="next" href="javascript:;">下一步</a>
   </div>
   <div class="form-bottom">
     <p class="splitter"> </p>
