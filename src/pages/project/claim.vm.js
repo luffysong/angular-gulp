@@ -2,22 +2,29 @@ import { getService } from '../../common/base/utls';
 import krData from 'krData';
 export default class ClaimVM {
   $validation = getService('$validation');
-  constructor(fn, id) {
+  constructor(fn, id, usr) {
     this.ngDialog = fn;
     this.init();
     this.Cid = id;
+    this.user = usr;
     this.projectService = krData.utls.getService('projectService');
   }
   init() {
     let claimDialog;
     const vm = this;
     function claimController() {
+      vm.getManager(vm.Cid);
+      if (vm.user === 'commen') {
+        this.position = true;
+      } else {
+        this.position = false;
+      }
       this.claimform = {
         userName: '',
         userPosition: '',
         userPhone: '',
         userEmail: '',
-        userWeixin: '',
+        userWeiXin: '',
         userBusinessCard: '',
         privilegeEnum: 'MEMBER',
         id: vm.Cid,
@@ -28,7 +35,6 @@ export default class ClaimVM {
       this.save = function () {
         if (!vm.$validation.checkValid(this.claim.form)) {
           vm.$validation.validate(this.claim.form);
-          console.log(this.claimform, vm.$validation.checkValid(this.claim.form));
           return false;
         }
         vm.update(this.claimform, vm.Cid);
@@ -58,10 +64,17 @@ export default class ClaimVM {
   }
   update(form, id) {
     this.projectService.addprivilege({
-      id: id,
+      id,
     }, form)
       .then(() => {
         console.log('ok');
       });
+  }
+  getManager(id) {
+    this.projectService.getManager({
+      id,
+    }).then((data) => {
+      this.manager = data;
+    });
   }
 }

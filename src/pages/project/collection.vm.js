@@ -1,31 +1,23 @@
 import krData from 'krData';
 export default class CollectionVM {
-  constructor(fn, data) {
+  constructor(fn, data, id) {
     this.ngDialog = fn;
-    this.init(data);
+    this.init(data, id);
   }
-  init(data) {
+  init(data, id) {
     let collectDialog;
     const projectService = krData.utls.getService('projectService');
     const list = data;
-    console.log(projectService.createCollect);
-    function createCollect(form) {
-      console.log(form);
-      projectService.createCollect(form)
-          .then(() => {
-            console.log('ok');
-          });
-    }
+    const Cid = id;
     function collectController() {
       const vm = this;
       vm.selected = [];
       vm.createShow = false;
       vm.collections = list;
+      vm.suc = false;
+      vm.cancle = false;
       vm.collectCancle = function () {
         collectDialog.close();
-      };
-      vm.save = function () {
-        console.log(vm.selected);
       };
       vm.createNew = function () {
         this.createShow = true;
@@ -37,17 +29,38 @@ export default class CollectionVM {
         const name = {
           name: vm.collectionName,
         };
-        createCollect(name);
+        projectService.createCollect(name)
+          .then(() => {
+            vm.createShow = false;
+            vm.suc = true;
+            hidden(vm.suc);
+            projectService.collect(Cid)
+            .then((data) => vm.collections = data);
+          });
       };
 
       vm.change = function (item) {
-        if (item.checked) {
-          vm.selected.push(item.id);
+        let form = {
+          cid: Cid,
+          groupId: item.id,
+        };
+        if (item.followed) {
+          projectService.collectCompany(form)
+          .then(() => {
+            vm.suc = true;
+            setTimeout(() => {
+              vm.suc = false; console.log('hidden', name)
+            }, 3000);
+            ++item.count;
+          });
         } else {
-          vm.selected.map(function (value, key) {
-            if (item.id === value) {
-              vm.selected.splice(key, 1);
-            }
+          projectService.deleteCompany(form)
+          .then(() => {
+            vm.cancle = true;
+            setTimeout(() => {
+              vm.cancle = false; console.log('hidden', name)
+            }, 3000);
+            --item.count;
           });
         }
       };

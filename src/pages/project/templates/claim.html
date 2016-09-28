@@ -1,7 +1,7 @@
 <div class="dialog-claim">
   <div class="claim-header">
     <p>认证信息 <span class="icon-dialogTags"></span></p>
-    <div class="claimant">
+    <div class="claimant" ng-hide='!vm.manager.hasManager'>
       <div class="claimant-info">
         已有认领人<a href="">刘成城</a>，若非真实可<a href="" ng-click="vm.claimVM.report=!vm.claimVM.report">举报更改</a>
       </div>
@@ -34,8 +34,8 @@
           validator="required"
           message-id="claimPosition"
           number-error-message="请选择职位">
-            <option value="START_UP_MEMBER">创始人</option>
-            <option value="START_UP_MEMBER">创始人</option>
+            <option value="START_UP_MEMBER">维护者</option>
+            <option value="START_UP_MEMBER" ng-show="vm.position">认领人</option>
           </select>
           <span id="claimPosition" class="error-tip"></span>
           <input type="text" class="position content form-control" placeholder="输入职位" ng-model="vm.claimform.position" >
@@ -79,7 +79,7 @@
         <input type="text"
         class="content form-control"
         placeholder="输入个人微信号，方便联系"
-        ng-model="vm.claimform.userWeixin"
+        ng-model="vm.claimform.userWeiXin"
         validator="required"
         message-id="claimWeixin"
         required-error-message="输入个人微信号"

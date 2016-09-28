@@ -1,10 +1,12 @@
 <div class="collection">
   <span class="icon-dialogClose" ng-click="vm.collectCancle()"></span>
   <span class="title">添加到收藏夹</span>
+  <span class="suc" ng-class="{'hidden':vm.suc}">添加成功！</span>
+  <span class="cancle" ng-class="{'hidden':vm.cancle}">取消成功！</span>
   <div class="content-list">
     <ul>
       <li ng-repeat="item in vm.collections">
-        <input type="checkbox" class="checkbox" name='collection' ng-model="item.checked" ng-change="vm.change(item)" value="item.id">
+        <input type="checkbox" class="checkbox" name='collection' ng-model="item.followed" ng-change="vm.change(item)" ng-checked="item.followed">
         <span class="collection-name">{{item.name}}</span>
         <span class="collections">共{{item.count}}家</span>
       </li>
@@ -24,9 +26,9 @@
 
   </div>
 
-  <div class="operate">
+  <!-- <div class="operate">
     <span class="save" ng-hide="!vm.selected.length" ng-click="vm.save()">保存</span>
     <span class="save display" ng-hide="vm.selected.length">保存</span>
     <span class="cancle" ng-click='vm.collectCancle()'>取消</span>
-  </div>
+  </div> -->
 </div>
