@@ -1,4 +1,4 @@
-import { getService } from './utls';
+import { getService, mapProps } from './utls';
 import Alert from './Alert';
 export default class FormVM {
   $validation = getService('$validation');
@@ -10,13 +10,8 @@ export default class FormVM {
   setData() {
   }
 
-  getCopy(arr) {
-    const copy = {};
-    arr.forEach(key => {
-      const keys = key.split(':');
-      copy[keys[1] || keys[0]] = this[keys[0]];
-    });
-    return copy;
+  mapProps(arr, from, to, isReverse) {
+    return mapProps(arr, from, to, isReverse);
   }
 
   recovery() {

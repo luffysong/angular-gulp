@@ -17,7 +17,7 @@ export default class ProjectIndexController {
   init() {
     if (this.projectData) {
       this.baseInfoVM = new BaseInfoVM(this.projectData.baseInfo, this.$scope);
-      this.introductionVM = new IntroductionVM(this.projectData.baseInfo);
+      this.introductionVM = new IntroductionVM(this.projectData.baseInfo, this.$scope);
       this.fundsVM = new FundsVM(this.projectData.funds);
       this.financeVM = new FinanceVM(this.projectData.finance);
       this.memberVM = new MemberVM(this.projectData.member);

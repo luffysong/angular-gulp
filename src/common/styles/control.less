@@ -149,11 +149,8 @@ select.form-control {
   .tip-text();
 }
 // angular integrate
-.ng-invalid.form-control{
-  border-color: @error-color;
-}
-.ng-empty.ng-touched.form-control{
-  border-color: @error-color;
+.ng-invalid.form-control, .textarea-control  .ng-invalid.form-control + .textarea-border{
+  border-color: @error-color !important;
 }
 //
 .required{

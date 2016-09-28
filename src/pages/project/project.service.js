@@ -8,6 +8,7 @@ export default class ProjectService extends API {
       'funds',
       'member',
       'editHeader',
+      'editBase',
     ], {
       news: {
         isArray: true,
@@ -21,6 +22,11 @@ export default class ProjectService extends API {
     });
   }
 
+  getArea(id) {
+    return new API('/dict/area').get({
+      parentId: id || 0,
+    }).then(data => data.data);
+  }
   allData(id) {
     return this.$q.all({
       baseInfo: this.get(id),

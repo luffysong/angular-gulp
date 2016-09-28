@@ -6,7 +6,7 @@
       </div>
       <div>
         <h1>{{::vm.baseInfoVM.name}}
-          <span>{{vm.baseInfoVM.industryEnum}}</span>
+          <span>{{vm.baseInfoVM.industryEnum | industry}}</span>
           <a class="btn-edit"
             ng-click="vm.baseInfoVM.enterEditMode()"
             href="javascript:void(0)">编辑</a>

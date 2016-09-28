@@ -1,18 +1,6 @@
 import { extractMeta } from '../base/utls';
 
 const FINANCE_PHASE_META = [{
-  desc: '未知轮次',
-  id: -100,
-  value: 'UNKNOWN',
-}, {
-  desc: '非正式轮次',
-  id: -50,
-  value: 'INFORMAL',
-}, {
-  desc: '未融资',
-  id: 0,
-  value: 'NONE',
-}, {
   desc: '天使轮',
   id: 10,
   value: 'ANGEL',
@@ -60,7 +48,7 @@ const FINANCE_PHASE_META = [{
 
 const FINANCE_PHASE = extractMeta(FINANCE_PHASE_META);
 
-export default FINANCE_PHASE;
 export {
+  FINANCE_PHASE,
   FINANCE_PHASE_META,
 };

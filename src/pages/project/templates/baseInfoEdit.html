@@ -1,13 +1,21 @@
 <div class="base-info-edit">
   <form name="vm.introductionVM.form">
-    <div class="form-group">
-      <label>文字介绍</label>
-      <label class="explain">可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字</label>
-      <span class="error-tip" id="messageIntroduction"></span>
-      <textarea ng-model="vm.introductionVM.introduction" class="introduction form-control" maxlength=1000 validator="maxlength=1000"
-      message-id="messageIntroduction" maxlength-error-message="介绍不能超过50字"
-      placeholder="可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字"></textarea>
-      <div id="num" style="float: right;">0/1000</div>
+
+   <div class="form-group">
+      <label for=""><span class="required">*</span> 发展规划</label>
+      <span class="error-tip" id="messageIntro"></span>
+      <div class="textarea-control">
+        <textarea  ng-model="vm.introductionVM.intro"
+          validator="minlength=60"
+          message-id="messageIntro"
+          maxlength="1000"
+          minlength-error-message="可以描述的更加详细一些（不得少于60个字）"
+          placeholder="可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字"
+          type="text" name="name" class="form-control" />
+        <div class="textarea-border">
+        </div>
+        <span class="text-length">{{vm.introductionVM.intro.length || 0}}/1000</span>
+      </div>
     </div>
 
     <div class="form-group company-name">
@@ -18,50 +26,42 @@
 
     <div class="form-group select-inline">
       <label>成立时间</label>
-      <select class="form-control" ng-model="vm.introductionVM.startDate" >
-        <option></option>
-        <option>11111111111</option>
-        <option>22222222222</option>
-        <option>33333333333</option>
-        <option>44444444444</option>
-        <option>55555555555</option>
+      <select class="form-control" ng-options="item for item in root.fromYear2000"
+        ng-model="vm.introductionVM.startDate" >
       </select>
     </div>
     <div class="form-group select-inline select-margin">
       <label><span class="required">*</span>运营状态</label>
       <span class="error-tip" id="messageState"></span>
-      <select class="form-control" ng-model="vm.introductionVM.operationStatus" validator="required" message-id="messageState" >
-        <option></option>
-        <option>aaaaaaa</option>
-        <option>bbbbbbb</option>
-        <option>ccccccc</option>
-        <option>ddddddd</option>
-        <option>eeeeeee</option>
+      <select class="form-control"
+        ng-options="item.value as item.desc for item in root.OPERATION_STATUS_META"
+        ng-model="vm.introductionVM.operationStatusEnum" validator="required" message-id="messageState" >
       </select>
     </div>
 
     <div class="form-group">
       <div class="select-inline">
         <label>公司规模</label>
-        <select class="form-control" ng-model="vm.introductionVM.company_scale" >
-          <option></option>
-          <option>11111111111</option>
-          <option>22222222222</option>
-          <option>33333333333</option>
-          <option>44444444444</option>
-          <option>55555555555</option>
+        <select
+          ng-options="item for item in root.SCALES_META"
+          class="form-control"  ng-model="vm.introductionVM.scale" >
+          <option>选择规模</option>
         </select>
       </div>
       <div class="select-inline select-margin">
         <label><span class="required">*</span>所在地</label>
         <span class="error-tip" id="messageAddress"></span>
-        <select class="form-control" ng-model="vm.introductionVM.address1" validator="required" message-id="messageAddress" >
-          <option></option>
-          <option>aaaaaaa</option>
-          <option>bbbbbbb</option>
-          <option>ccccccc</option>
-          <option>ddddddd</option>
-          <option>eeeeeee</option>
+        <select
+          ng-options="item.id as item.name for item in vm.introductionVM.cities0"
+          required-error-message="请选择地区"
+          class="form-control" ng-model="vm.introductionVM.address1" validator="required" message-id="messageAddress" >
+        </select>
+      </div>
+      <div class="select-inline select-margin">
+        <select
+          ng-options="item.id as item.name for item in vm.introductionVM.cities1"
+          required-error-message="请选择地区"
+          class="form-control" ng-model="vm.introductionVM.address2" validator="required" message-id="messageAddress" >
         </select>
       </div>
     </div>
@@ -70,8 +70,8 @@
     <p class="splitter"> </p>
     <p class="tip-text">注意：标签不开放编辑；所有更改内容均会提交审核，审核期间不可对此模块做任何的更改，通过后对所有用户公开</p>
     <div>
-      <a class="save" href="#">保存</a>
-      <a class="cancel" ng-click="vm.introductionVM.cancel(baseInfo, $event)" href="javascript:void(0)">取消</a>
+      <a class="save" ng-click="vm.introductionVM.save()" href="#">保存</a>
+      <a class="cancel" ng-click="vm.introductionVM.cancel()" href="javascript:void(0)">取消</a>
     </div>
   </div>
 </div>

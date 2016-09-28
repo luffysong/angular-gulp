@@ -2,7 +2,7 @@ import '../routes/index';
 import '../constants/index';
 import '../filters/index';
 import commonInterceptor from '../base/commonInterceptor.service';
-import { getService } from '../base/utls';
+import { getService, fromYear } from '../base/utls';
 /* eslint-disable no-param-reassign,no-use-before-define */
 angular.module('@@app', ['@@app.routes',
   'cgNotify',
@@ -63,5 +63,17 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
         error: '请以http://开头',
       },
     });
+  })
+  .run(function run($rootScope, OPERATION_STATUS_META) {
+    const root = {};
+    root.fromYear2000 = fromYear(2000);
+    root.OPERATION_STATUS_META = OPERATION_STATUS_META;
+    root.SCALES_META = [
+      '少于50人',
+      '100-500人',
+      '500-1000人',
+      '1000人以上',
+    ];
+    $rootScope.root = root;
   });
 angular.bootstrap(document, ['@@app'], { strictDi: true });

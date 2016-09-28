@@ -11,6 +11,8 @@ export const upyun = {
     basePatH: 'https://krplus-priv.b0.upaiyun.com/krplus-priv',
   },
 };
+
+// 上传类型
 export const UPLOAD_TYPE = {
   FILE: 'file',
   PIC: 'pic',
@@ -26,10 +28,12 @@ export function getInjector() {
   return injector || (injector = angular.element(document).injector());
 }
 
+// 获取angular中的服务
 export function getService(name) {
   return getInjector().get(name);
 }
 
+// 提取标准的服务端字典
 export function extractMeta(from, to) {
   to = to || {};
   from.forEach((item) => {
@@ -98,4 +102,37 @@ export function uploadImage(image, options = {}) {
     });
 }
 
+
+export function mapProps(arr, from, to = {}, isReverse) {
+  if (angular.isUndefined(from)) {
+    throw new Error('mapError: data source is undefined');
+  }
+  let fromIndex = 0;
+  let toIndex = 1;
+  if (to === true || isReverse === true) {
+    isReverse = true;
+    to = to || {};
+    fromIndex = 1;
+    toIndex = 0;
+  }
+  arr.forEach(key => {
+    const keys = key.split(':');
+    to[keys[toIndex] || keys[fromIndex]] = from[keys[fromIndex] || keys[toIndex]];
+  });
+  return to;
+}
+
+
+export function fromYear(year) {
+  let nowYear = new Date().getFullYear();
+  const years = [];
+  if (year > nowYear) {
+    throw new Error('年份超过当前时间');
+  }
+  years.push(nowYear);
+  while (--nowYear >= year) {
+    years.push(nowYear);
+  }
+  return years;
+}
 export const slice = Array.prototype.slice;
