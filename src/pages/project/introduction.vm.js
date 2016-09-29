@@ -8,12 +8,12 @@ export default class IntroductionVM extends krData.FormVM {
   }
 
   props = ['id', 'intro', 'fullName', 'scale',
-    'operationStatusEnum', 'address1', 'address2',
+    'operationStatus', 'address1', 'address2',
     'startDate']
   initData(data) {
     this.mapProps(this.props, data, this);
     this.startDate = 2016;
-    this.operationStatusEnum = krData.META.OPERATION_STATUS.OPEN;
+    this.operationStatus = krData.META.OPERATION_STATUS.OPEN;
     this.scale = '少于50人';
     this.loadArea0();
     this.watch();

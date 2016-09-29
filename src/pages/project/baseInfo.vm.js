@@ -7,9 +7,18 @@ export default class BaseInfoVM extends krData.FormVM {
     this.projectService = krData.utls.getService('projectService');
   }
 
+  props = ['name',
+      'fullName:remarkName',
+      'website',
+      'weibo',
+      'weixin',
+      'logo',
+      'brief',
+    ];
 
   initData(data) {
     angular.extend(this, data);
+    this.mapProps(this.props, data, this);
     this.watch();
   }
 
@@ -48,14 +57,7 @@ export default class BaseInfoVM extends krData.FormVM {
     if (!this.validate($event)) return;
     this.projectService.editHeader({
       id: this.id,
-    }, this.getCopy(['name',
-      'fullName:remarkName',
-      'website',
-      'weibo',
-      'weixin',
-      'logo',
-      'brief',
-    ]))
+    }, this.mapProps(this.props, this))
       .then(() => {
         this.recovery();
         krData.Alert.success('数据保存成功');
