@@ -23,16 +23,23 @@
           <span class="hot-text">联系创业者</span>
         </p>
       </div>
-      <div class="finance-brief">
+      <div class="finance-brief" ng-show='vm.fundsVM.funds'>
         <p>融资中</p>
         <p>
-          <span>Pre-A轮</span>
-          <span>＄3000万</span>
+          <span>{{vm.fundsVM.fundsPhase}}</span>
+          <span>{{vm.fundsVM.financeAmountUnit}}{{vm.fundsVM.financeAmount}}</span>
         </p>
         <p>
          <span>轮次</span>
          <span>金额</span>
         </p>
+      </div>
+      <div class="finance-brief" ng-show='!vm.fundsVM.funds'>
+        <p>当前轮次</p>
+        <p class="finance-now">
+          {{vm.fundsVM.fundsPhase | financePahse}}
+        </p>
+
       </div>
     </div>
     <div ng-if="vm.baseInfoVM.isEdit" class="base-info-content-edit">

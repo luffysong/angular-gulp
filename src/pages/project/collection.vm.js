@@ -36,7 +36,7 @@ export default class CollectionVM {
             setTimeout(() => {
               vm.suc = false;
             }, 3000);
-            projectService.collect(Cid)
+            projectService.collect({id:Cid})
             .then((data) => vm.collections = data);
           });
       };

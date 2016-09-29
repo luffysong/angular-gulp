@@ -53,13 +53,13 @@ export default class ProjectService extends API {
     return this.collect;
   }
   // 取消收藏
-  deleteCompany(form) {
+  deconsteCompany(form) {
     const id = {
       id: form.cid,
     };
-    this.delete = new API('/user/follow/company/:id?' + $.param(form), ['delete'])
-    .delete(id, form);
-    return this.delete;
+    this.deconste = new API('/user/follow/company/:id?' + $.param(form), ['deconste'])
+    .deconste(id, form);
+    return this.deconste;
   }
   // 获取公司认领人信息
   getManager(id) {
@@ -79,8 +79,8 @@ export default class ProjectService extends API {
     const id = {
       id: cid,
     };
-    this.send = new API('/company/:id/funds/bp?action=send2email', ['post'])
-    .post(id);
+    this.send = new API('/company/:id/funds/bp?action=send2email', ['save'])
+    .save(id, id);
     return this.send;
   }
   // // 申请查看bp
@@ -88,9 +88,8 @@ export default class ProjectService extends API {
     const id = {
       id: cid,
     };
-    this.apply = new API('/company/:id/funds/bp/permission', ['post'])
-    .post(id);
-    return this.apply;
+    this.permission = new API('/company/:id/funds/bp/permission', ['add']).add(id, id);
+    return this.permission;
   }
 
   getArea(id) {

@@ -52,8 +52,6 @@ export default class ProjectIndexController {
         }
         vm.claimVM = new ClaimVM(vm.ngDialog, vm.id, vm.user);
         vm.collectionVM = new CollectionVM(vm.ngDialog, vm.id);
-      } else if (data.code === 403) {
-
       }
     });
 
@@ -96,6 +94,11 @@ export default class ProjectIndexController {
       this.BPCancle = function () {
         bpDialog.close();
       };
+      this.apply = function () {
+        console.log(vm.id);
+        vm.projectService.applyBP(vm.id)
+        .then((data) => { console.log('suc'); this.suc = true; });
+      };
     }
     function bp() {
       bpDialog = this.ngDialog.open({
@@ -106,17 +109,23 @@ export default class ProjectIndexController {
         controllerAs: 'vm',
       });
     }
+    function send(){
+      vm.projectService.sendBP(vm.id)
+      .then((data)=>{console.log('suc');});
+    }
 
     // 判断BP查看权限
+    this.bpPermission = true;
     this.projectService.getBPPermission(this.id)
-    .then((data)=>{console.log(data)});
-    const bpPermission = false;
-    if (bpPermission) {
+    .then((data) => { this.bpPermission = true; });
+    if (this.bpPermission) {
       this.bpLink = 'https://www.baidu.com/';
       this.target = '_blank';
+      this.sendbp = send;
     } else {
       this.bpLink = '#';
       this.bp = bp;
+      this.sendbp = bp;
     }
 
     this.talking = talking;
