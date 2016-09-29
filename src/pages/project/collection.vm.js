@@ -1,19 +1,19 @@
 import krData from 'krData';
 export default class CollectionVM {
-  constructor(fn, data, id) {
+  constructor(fn, id) {
     this.ngDialog = fn;
-    this.init(data, id);
+    this.init(id);
   }
-  init(data, id) {
+  init(id) {
     let collectDialog;
     const projectService = krData.utls.getService('projectService');
-    const list = data;
     const Cid = id;
     function collectController() {
       const vm = this;
       vm.selected = [];
       vm.createShow = false;
-      vm.collections = list;
+      projectService.collect(Cid)
+      .then((data) => vm.collections = data);
       vm.suc = false;
       vm.cancle = false;
       vm.collectCancle = function () {
@@ -29,18 +29,20 @@ export default class CollectionVM {
         const name = {
           name: vm.collectionName,
         };
-        // projectService.createCollect(name)
-        //   .then(() => {
-        //     vm.createShow = false;
-        //     vm.suc = true;
-        //     hidden(vm.suc);
-        //     projectService.collect(Cid)
-        //     .then((data) => vm.collections = data);
-        //   });
+        projectService.createCollect(name)
+          .then(() => {
+            vm.createShow = false;
+            vm.suc = true;
+            setTimeout(() => {
+              vm.suc = false;
+            }, 3000);
+            projectService.collect(Cid)
+            .then((data) => vm.collections = data);
+          });
       };
 
       vm.change = function (item) {
-        let form = {
+        const form = {
           cid: Cid,
           groupId: item.id,
         };
@@ -49,7 +51,7 @@ export default class CollectionVM {
           .then(() => {
             vm.suc = true;
             setTimeout(() => {
-              vm.suc = false; console.log('hidden', name)
+              vm.suc = false;
             }, 3000);
             ++item.count;
           });
@@ -58,7 +60,7 @@ export default class CollectionVM {
           .then(() => {
             vm.cancle = true;
             setTimeout(() => {
-              vm.cancle = false; console.log('hidden', name)
+              vm.cancle = false;
             }, 3000);
             --item.count;
           });

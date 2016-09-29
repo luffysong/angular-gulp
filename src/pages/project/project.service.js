@@ -45,7 +45,7 @@ export default class ProjectService extends API {
   }
   // 收藏公司
   collectCompany(form) {
-    let id = {
+    const id = {
       id: form.cid,
     };
     this.collect = new API('/user/follow/company/:id', ['save'])
@@ -54,17 +54,43 @@ export default class ProjectService extends API {
   }
   // 取消收藏
   deleteCompany(form) {
-    let id = {
+    const id = {
       id: form.cid,
     };
-    this.delete = new API('/user/follow/company/:id?'+ $.param(form), ['delete'])
+    this.delete = new API('/user/follow/company/:id?' + $.param(form), ['delete'])
     .delete(id, form);
     return this.delete;
   }
   // 获取公司认领人信息
-  getManager(id){
+  getManager(id) {
     this.manager = new API('/company/:id/privilege?type=manager').get(id);
     return this.manager;
+  }
+  // 校验是否有权限查看bp
+  getBPPermission(cid) {
+    const id = {
+      id: cid,
+    };
+    this.permission = new API('/company/:id/funds/bp/permission-check').get(id);
+    return this.permission;
+  }
+  // 发送bp到邮箱
+  sendBP(cid) {
+    const id = {
+      id: cid,
+    };
+    this.send = new API('/company/:id/funds/bp?action=send2email', ['post'])
+    .post(id);
+    return this.send;
+  }
+  // // 申请查看bp
+  applyBP(cid) {
+    const id = {
+      id: cid,
+    };
+    this.apply = new API('/company/:id/funds/bp/permission', ['post'])
+    .post(id);
+    return this.apply;
   }
 
   getArea(id) {
@@ -74,7 +100,6 @@ export default class ProjectService extends API {
   }
   allData(id) {
     return this.$q.all({
-      // collection: this.collect(id),
       baseInfo: this.get(id),
       product: this.product(id),
       finance: this.finance(id),

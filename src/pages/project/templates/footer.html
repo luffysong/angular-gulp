@@ -7,12 +7,16 @@
     <span class="icon-Collected footer-icon"></span>
     <span>收藏</span>
   </span>
-  <span class="bp">
-    <span class="icon-BP footer-icon"></span>
-    <span>查看BP</span>
-  </span>
-  <span class="bp">
-    <span class="icon-BP footer-icon"></span>
-    <span>发送BP至邮箱</span>
-  </span>
+  <a href="{{vm.bpLink}}" class="bp" ng-click="vm.bp()" target="{{vm.target}}">
+    <span>
+      <span class="icon-BP footer-icon"></span>
+      <span>查看BP</span>
+    </span>
+  </a>
+    <span ng-click="vm.bp()">
+      <span class="icon-BP footer-icon"></span>
+      <span>发送BP至邮箱</span>
+    </span>
+
+
 </div>

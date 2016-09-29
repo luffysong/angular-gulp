@@ -28,8 +28,15 @@ export default class ProjectIndexController {
     }
 
     let talkDialog;
+    let bpDialog;
     const vm = this;
-
+    const talkHtml = '<div ng-include="' +
+    "'" + '/pages/project/templates/talk.html' + "'" +
+    '" center>/div>';
+    const BPHtml = '<div ng-include="' +
+    "'" + '/pages/project/templates/checkBP.html' + "'" +
+    '" center>/div>';
+    // 获取当前用户身份
     this.projectService.getUser()
     .then((data) => {
       if (!data.code) {
@@ -38,14 +45,13 @@ export default class ProjectIndexController {
           vm.user = 'admin';
         } else if (vm.baseInfoVM.member) {
           // 维护者身份
-         vm.user = 'assert';
+          vm.user = 'assert';
         } else {
           // 普通用户
           vm.user = 'commen';
         }
-      vm.claimVM = new ClaimVM(vm.ngDialog, vm.id, vm.user);
-      vm.collectionVM = new CollectionVM(vm.ngDialog, vm.projectData.collection, vm.id);
-
+        vm.claimVM = new ClaimVM(vm.ngDialog, vm.id, vm.user);
+        vm.collectionVM = new CollectionVM(vm.ngDialog, vm.id);
       } else if (data.code === 403) {
 
       }
@@ -57,18 +63,17 @@ export default class ProjectIndexController {
         talkDialog.close();
       };
     }
-    const str = '<div ng-include="' +
-    "'" + '/pages/project/templates/talk.html' + "'" +
-    '" center>/div>';
     function talking() {
       talkDialog = this.ngDialog.open({
-        template: str,
+        template: talkHtml,
         plain: true,
         appendTo: '.project-wrapper',
         controller: talkController,
         controllerAs: 'vm',
       });
     }
+
+    // 导航栏定位
     this.baseInfo = 130;
     this.financeDetail = 130;
     this.financeHistory = 130;
@@ -86,7 +91,33 @@ export default class ProjectIndexController {
       }
     }
     setOffset();
+    // BP弹窗
+    function BPController() {
+      this.BPCancle = function () {
+        bpDialog.close();
+      };
+    }
+    function bp() {
+      bpDialog = this.ngDialog.open({
+        template: BPHtml,
+        plain: true,
+        appendTo: '.project-wrapper',
+        controller: BPController,
+        controllerAs: 'vm',
+      });
+    }
 
+    // 判断BP查看权限
+    this.projectService.getBPPermission(this.id)
+    .then((data)=>{console.log(data)});
+    const bpPermission = false;
+    if (bpPermission) {
+      this.bpLink = 'https://www.baidu.com/';
+      this.target = '_blank';
+    } else {
+      this.bpLink = '#';
+      this.bp = bp;
+    }
 
     this.talking = talking;
   }
