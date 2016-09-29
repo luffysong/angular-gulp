@@ -29,14 +29,14 @@ export default class CollectionVM {
         const name = {
           name: vm.collectionName,
         };
-        projectService.createCollect(name)
-          .then(() => {
-            vm.createShow = false;
-            vm.suc = true;
-            hidden(vm.suc);
-            projectService.collect(Cid)
-            .then((data) => vm.collections = data);
-          });
+        // projectService.createCollect(name)
+        //   .then(() => {
+        //     vm.createShow = false;
+        //     vm.suc = true;
+        //     hidden(vm.suc);
+        //     projectService.collect(Cid)
+        //     .then((data) => vm.collections = data);
+        //   });
       };
 
       vm.change = function (item) {

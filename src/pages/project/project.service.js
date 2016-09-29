@@ -74,9 +74,9 @@ export default class ProjectService extends API {
   }
   allData(id) {
     return this.$q.all({
-      collection: this.collect(id),
+      // collection: this.collect(id),
       baseInfo: this.get(id),
-      // product: this.product(id),
+      product: this.product(id),
       finance: this.finance(id),
       similar: this.similar(id),
       member: this.member(id),

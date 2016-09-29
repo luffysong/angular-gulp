@@ -25,7 +25,6 @@ export default class ProjectIndexController {
       this.similarVM = new SimilarVM(this.projectData.similar);
       this.newsVM = new NewsVM(this.projectData.news);
       this.productVM = new ProductVM(this.projectData.product);
-      this.collectionVM = new CollectionVM(this.ngDialog, this.projectData.collection, this.id);
     }
 
     let talkDialog;
@@ -45,6 +44,7 @@ export default class ProjectIndexController {
           vm.user = 'commen';
         }
       vm.claimVM = new ClaimVM(vm.ngDialog, vm.id, vm.user);
+      vm.collectionVM = new CollectionVM(vm.ngDialog, vm.projectData.collection, vm.id);
 
       } else if (data.code === 403) {
 
