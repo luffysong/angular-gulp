@@ -7,7 +7,6 @@ export default class NewsVM extends krData.FormVM {
     this.id = id;
     angular.extend(this, data);
     this.list = data;
-    this.months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
     this.init(data);
     // console.log('news', this.id);
   }
@@ -39,6 +38,17 @@ export default class NewsVM extends krData.FormVM {
 
     this.mapProps(this.props, data, this);
   }
+
+  // 获取新闻标题
+  getNewsTitle() {
+    if (this.url) {
+      this.projectService.getNewsTitle(this.url).then((data) => {
+        console.log(data);
+        this.title = data.title;
+      });
+    }
+  }
+
   update(form, $event) {
     // console.log('newsId', this);
     // console.log(this);

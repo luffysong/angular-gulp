@@ -103,6 +103,16 @@ export default class ProjectService extends API {
       parentId: id || 0,
     }).then(data => data.data);
   }
+
+  // 获取新闻标题
+  getNewsTitle(newsUrl) {
+    const urlTitle = {
+      url: newsUrl,
+    };
+    this.getTitle = new API('/company/fetch-link-title?' + $.param(urlTitle)).get();
+    return this.getTitle;
+  }
+
   allData(id) {
     return this.$q.all({
       baseInfo: this.get(id),
