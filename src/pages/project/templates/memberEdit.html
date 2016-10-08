@@ -1,0 +1,27 @@
+<div class="member-edit">
+
+  <!-- <form action="" name='vm.memberVM.form'> -->
+    <div class="key-words">
+      <p>团队关键字</p>
+      <input type="text" placeholder="添加团队关键优势，最多3个" class="key-name" ng-model='vm.memberVM.key' ng-keyup='vm.memberVM.keyup($event)'>
+      <ul>
+        <li ng-repeat="tag in vm.memberVM.teamTags"><span class="k-content">{{tag}}</span><span class="delete icon-dialogClose" ng-click='vm.memberVM.deletetag($index)'> </span></li>
+      </ul>
+    </div>
+    <div class="team-advantage">
+      <p>团队优势
+        <span class="hint">相对于竞争对手，说说你们的团队优势以及核心团队成员的背景</span>
+      </p>
+      <textarea name="" id="" cols="30" rows="10" placeholder="首先简要概括团队做这个项目的核心优势，然后分别介绍创始团队成员的背景和工作分工" class="form-group" ng-model='vm.memberVM.story'></textarea>
+    </div>
+  <!-- </form> -->
+
+  <div class="form-bottom">
+    <p class="splitter"> </p>
+    <p class="tip-text">注意：所有更改内容均会提交审核，审核期间不可对此模块做任何的更改，通过后对所有用户公开</p>
+    <div>
+      <a class="save" ng-click="vm.memberVM.save()" href="#">保存</a>
+      <a class="cancel" ng-click="vm.memberVM.cancel()" href="javascript:void(0)">取消</a>
+    </div>
+  </div>
+</div>

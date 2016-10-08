@@ -169,7 +169,9 @@
           </a>
         </li>
         <li>
-          <a href="#" ng-click="vm.claimVM.claim()" ng-hide="vm.user == 'admin'">认领</a>
+          <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user != 'admin'" navigate>认领</a>
+          <a href="#"  ng-show="vm.user == 'admin'" >融资设置</a>
+          <a href="#"  ng-show="vm.user != 'commen'" >编辑项目</a>
         </li>
       </ul>
     </nav>

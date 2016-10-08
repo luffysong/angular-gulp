@@ -8,6 +8,7 @@ import NewsVM from './news.vm';
 import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
+// import Alert from '../../common/base/Alert';
 @Inject('$stateParams', 'projectService', 'projectData', 'ngDialog', '$validation', '$scope')
 export default class ProjectIndexController {
   constructor() {
@@ -21,7 +22,7 @@ export default class ProjectIndexController {
       this.introductionVM = new IntroductionVM(this.projectData.baseInfo, this.$scope);
       this.fundsVM = new FundsVM(this.projectData.funds);
       this.financeVM = new FinanceVM(this.projectData.finance);
-      this.memberVM = new MemberVM(this.projectData.member);
+      this.memberVM = new MemberVM(this.projectData.member, this.id);
       this.similarVM = new SimilarVM(this.projectData.similar);
       this.newsVM = new NewsVM(this.projectData.news);
       this.productVM = new ProductVM(this.projectData.product);
@@ -50,6 +51,7 @@ export default class ProjectIndexController {
           // 普通用户
           vm.user = 'commen';
         }
+        console.log(vm.user);
         vm.claimVM = new ClaimVM(vm.ngDialog, vm.id, vm.user);
         vm.collectionVM = new CollectionVM(vm.ngDialog, vm.id);
       }
@@ -95,9 +97,8 @@ export default class ProjectIndexController {
         bpDialog.close();
       };
       this.apply = function () {
-        console.log(vm.id);
         vm.projectService.applyBP(vm.id)
-        .then((data) => { console.log('suc'); this.suc = true; });
+        .then((data) => { this.suc = true; });
       };
     }
     function bp() {
@@ -109,15 +110,17 @@ export default class ProjectIndexController {
         controllerAs: 'vm',
       });
     }
-    function send(){
+    function send() {
       vm.projectService.sendBP(vm.id)
-      .then((data)=>{console.log('suc');});
+      .then((data) => { console.log('suc'); });
     }
 
     // 判断BP查看权限
-    this.bpPermission = true;
+    this.bpPermission = false;
     this.projectService.getBPPermission(this.id)
-    .then((data) => { this.bpPermission = true; });
+    .then((data) => {
+      this.bpPermission = true;
+    });
     if (this.bpPermission) {
       this.bpLink = 'https://www.baidu.com/';
       this.target = '_blank';

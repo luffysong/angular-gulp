@@ -9,6 +9,7 @@ export default class ProjectService extends API {
       'member',
       'editHeader',
       'editBase',
+      'editmember',
       'addprivilege',
     ], {
       news: {

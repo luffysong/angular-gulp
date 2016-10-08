@@ -1,5 +1,10 @@
 <div class="found-team">
-  <h4>创始团队</h4>
+  <h4>创始团队<a href="javascript:void(0)" ng-click="vm.memberVM.enterEditMode()"
+      ng-if="!vm.memberVM.isEdit">添加+</a></h4>
+  <section id="memberEdit" ng-include="'/pages/project/templates/memberEdit.html'"
+    ng-if="vm.memberVM.isEdit">
+    基本介绍编辑
+  </section>
   <div class="content" ng-show="vm.memberVM.show()">
     <div class="team-key" ng-show="vm.memberVM.data.teamTags.length">
       <span class="name">团队关键字</span>
