@@ -8,11 +8,8 @@ import NewsVM from './news.vm';
 import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
-<<<<<<< Updated upstream
 // import Alert from '../../common/base/Alert';
-=======
 import EditFinanceVM from './editFinance.vm';
->>>>>>> Stashed changes
 @Inject('$stateParams', 'projectService', 'projectData', 'ngDialog', '$validation', '$scope')
 export default class ProjectIndexController {
   constructor() {
