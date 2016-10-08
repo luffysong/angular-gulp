@@ -52,11 +52,14 @@ function resolveActions(actions) {
     } else if (!actions[key].method) {
       actions[key].method = action.method;
     }
-    if (actions[key].action) {
-      actions[key].params = actions[key].params || {};
-      actions[key].params.action = actions[key].action;
-      delete actions[key].action;
+    if (actions[key].dataType === 'json') {
+      actions[key].headers = actions[key].headers || {};
+      actions[key].headers['Content-Type'] = 'application/json;charset=UTF-8';
+      actions[key].transformRequest = data => angular.toJson(data);
+      delete actions[key].dataType;
     }
+    actions[key].params = actions[key].params || {};
+    actions[key].params.action = actions[key].action || action.params.action;
   });
 }
 

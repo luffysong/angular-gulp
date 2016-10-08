@@ -24,10 +24,7 @@ export default class ProjectService extends API {
         isArray: true,
       },
       addfinance: {
-
-        headers: [{
-          'Content-Type': 'application/json',
-        }],
+        dataType: 'json',
       },
     });
   }
