@@ -12,6 +12,7 @@ const jsplugins = [
   '/bower/ngSticky/dist/sticky.min.js',
   '/bower/angular-scroll/angular-scroll.min.js',
   '/bower/angular-clamp/ng-clamp.js',
+  '/local_lib/angular-mass-autocomplete/massautocomplete.min.js',
 ];
 
 const proxyConfig = {

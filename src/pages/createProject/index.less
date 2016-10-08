@@ -7,7 +7,6 @@
   background: #F2F4F5;
   border: 1px transparent solid;
   .create-project-module {
-    background: #fff;
     width: @content-width;
     margin: 30px auto 40px;
   }
@@ -82,4 +81,46 @@
     background: @anchor-color;
     color: #fff;
   }
+}
+
+
+.ac-container{
+  background:#f9f9f9;
+  border: 1px solid #DDDDDD;
+  .rd(4px);
+  li{
+    padding: 12px 20px;
+    img {
+      .square(42);
+      .rd(4px);
+      margin-right: 16px;
+      .border1(@border-color);
+      .vam();
+    }
+  }
+  .suggest-project-text {
+    .dlk();
+    .vam();
+    span {
+      .font(14, 21);
+    }
+    span:first-child {
+      border-right: 1px solid #ccc;
+      padding-right: 12px;
+    }
+    span:last-child{
+      padding-left: 12px;
+    }
+    .brief {
+      .font(12,18);
+      color: @tip-color;
+    }
+  }
+}
+.suggest-result-wrapper {
+  .ac-container();
+  border: none;
+}
+.ac-container .ac-menu .ac-state-focus {
+    background: #e7e7e7;
 }

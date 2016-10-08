@@ -59,7 +59,8 @@ export function babelHelper() {
 }
 
 export function copyLib() {
-  return gulp.src(['src/bower/**/*.js', '!src/bower/**/src/**'], { base: 'src' })
+  return gulp.src(['src/bower/**/*.js', 'src/local_lib/**/*.js', '!src/bower/**/src/**'],
+    { base: 'src' })
     .pipe(g.if(set.debug, g.rename({
       extname: '.min.js',
     })))

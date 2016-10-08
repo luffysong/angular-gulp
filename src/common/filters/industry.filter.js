@@ -89,4 +89,7 @@ const INDUSTRY_META = [
 }
 ];
 
+export  {
+  INDUSTRY_META
+}
 export default getConstantFilterFactory(INDUSTRY_META);

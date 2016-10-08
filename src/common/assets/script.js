@@ -18,6 +18,7 @@ export default {
     ],
     createProject: [
       '/pages/createProject/index.js',
+      '/local_lib/angular-mass-autocomplete/massautocomplete.min.js',
       '/bower/ng-file-upload/ng-file-upload-all.min.js',
     ],
     search: [

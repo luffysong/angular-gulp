@@ -1,6 +1,7 @@
 import '../routes/index';
 import '../constants/index';
 import '../filters/index';
+import { INDUSTRY_META } from '../filters/industry.filter';
 import commonInterceptor from '../base/commonInterceptor.service';
 import { getService, fromYear, getMonth } from '../base/utls';
 /* eslint-disable no-param-reassign,no-use-before-define */
@@ -50,7 +51,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
         return value !== getter(scope);
       },
       http: function httpValidator(value) {
-        return /^http:\/\/[^/]+/.test(value);
+        return value ? /^http[s]?:\/\/[^/]+/.test(value) : true;
       },
     }).setDefaultMsg({
       notEqual: {},
@@ -60,16 +61,20 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       email: {},
       number: {},
       http: {
-        error: '请以http://开头',
+        error: '请以http(s)://开头',
       },
     });
   })
   .run(function run($rootScope, OPERATION_STATUS_META, COMPANY_NEWS_META, FINANCE_PHASE_META,
-    CURRENCY_UNIT_META) {
+    CURRENCY_UNIT_META, ROLE_META, FINANCE_NEED_META, PROJECT_TYPE_META) {
     const root = {};
     root.fromYear2000 = fromYear(2000);
     root.getAllMonths = getMonth(12);
     root.OPERATION_STATUS_META = OPERATION_STATUS_META;
+    root.INDUSTRY_META = INDUSTRY_META;
+    root.ROLE_META = ROLE_META;
+    root.FINANCE_NEED_META = FINANCE_NEED_META;
+    root.PROJECT_TYPE_META = PROJECT_TYPE_META;
     root.SCALES_META = [
       '少于50人',
       '100-500人',
