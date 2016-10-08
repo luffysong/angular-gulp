@@ -1,9 +1,9 @@
 <div class="finance-history-edit">
-  <form name="vm.editFinanceVM.form">
+  <form name="vm.financeVM.form">
     <div class="form-group select-inline">
       <label><span class="required">*</span>融资轮次</label>
       <span class="error-tip" id="editPhase"></span>
-      <select class="form-control" ng-model="vm.editFinanceVM.phase"
+      <select class="form-control" ng-model="vm.financeVM.phase"
       validator="required"
       message-id="editPhase"
       required-error-message="请选择轮次"
@@ -13,9 +13,9 @@
     </div>
     <div class="form-group select-inline select-margin">
       <label class="amount-title">融资金额</label>
-      <input type="text" ng-model="vm.editFinanceVM.financeAmount" class="form-control finance-amount" placeholder="请填写本轮融资金额或区间" />万
+      <input type="text" ng-model="vm.financeVM.financeAmount" class="form-control finance-amount" placeholder="请填写本轮融资金额或区间" />万
       <select class="form-control finance-amount-unit"
-      ng-model="vm.editFinanceVM.financeAmountUnit"
+      ng-model="vm.financeVM.financeAmountUnit"
       ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META">
        <option>币种</option>
       </select>
@@ -25,14 +25,14 @@
       <div class="select-inline">
         <label class="date-title"><span class="required">*</span>融资时间</label>
         <span class="error-tip" id="editFinanceDateYear"></span>
-        <select class="form-control finance-date" ng-model="vm.editFinanceVM.financeDateYear"
+        <select class="form-control finance-date" ng-model="vm.financeVM.financeDateYear"
         validator="required"
         message-id="editFinanceDateYear"
         required-error-message="请选择融资时间"
         ng-options="item for item in root.fromYear2000">
           <option>年份</option>
         </select>
-        <select class="form-control finance-date" ng-model="vm.editFinanceVM.financeDateMonth"
+        <select class="form-control finance-date" ng-model="vm.financeVM.financeDateMonth"
         ng-options="item for item in root.getAllMonths">
           <option>月份</option>
         </select>
@@ -41,20 +41,20 @@
 
     <div class="form-group">
       <label>投资方</label>
-      <input type="text" ng-model="vm.editFinanceVM.entityName" class="form-control entity-name" placeholder="请填写本轮投资机构或天使投资人" />
+      <input type="text" ng-model="vm.financeVM.entityName" class="form-control entity-name" placeholder="请填写本轮投资机构或天使投资人" />
     </div>
 
     <div class="form-group">
       <label>相关报道</label>
-      <input type="text" ng-model="vm.editFinanceVM.newsUrl" class="form-control news-url" placeholder="请填写融资相关报道" />
+      <input type="text" ng-model="vm.financeVM.newsUrl" class="form-control news-url" placeholder="请填写融资相关报道" />
     </div>
   </form>
   <div class="form-bottom">
     <p class="splitter"> </p>
     <p class="tip-text">注意：提交融资事件会提交审核，审核期间不可对此事件做任何的更改，通过后对所有用户公开</p>
     <div>
-      <a class="save" ng-click="vm.editFinanceVM.update()" href="javascript:void(0)">保存</a>
-      <a class="cancel" ng-click="vm.editFinanceVM.cancel()" href="javascript:void(0)">取消</a>
+      <a class="save" ng-click="vm.financeVM.update()" href="javascript:void(0)">保存</a>
+      <a class="cancel" ng-click="vm.financeVM.cancel()" href="javascript:void(0)">取消</a>
     </div>
   </div>
 </div>

@@ -9,7 +9,7 @@ import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
 // import Alert from '../../common/base/Alert';
-import EditFinanceVM from './editFinance.vm';
+// import EditFinanceVM from './editFinance.vm';
 @Inject('$stateParams', 'projectService', 'projectData', 'ngDialog', '$validation', '$scope')
 export default class ProjectIndexController {
   constructor() {
@@ -22,12 +22,12 @@ export default class ProjectIndexController {
       this.baseInfoVM = new BaseInfoVM(this.projectData.baseInfo, this.$scope);
       this.introductionVM = new IntroductionVM(this.projectData.baseInfo, this.$scope);
       this.fundsVM = new FundsVM(this.projectData.funds);
-      this.financeVM = new FinanceVM(this.projectData.finance);
+      this.financeVM = new FinanceVM(this.projectData.finance, this.$scope, this.id);
       this.memberVM = new MemberVM(this.projectData.member, this.id);
       this.similarVM = new SimilarVM(this.projectData.similar);
       this.newsVM = new NewsVM(this.projectData.news, this.$scope, this.id);
       this.productVM = new ProductVM(this.projectData.product);
-      this.editFinanceVM = new EditFinanceVM(this.projectData.finance, this.$scope, this.id);
+      // this.editFinanceVM = new EditFinanceVM(this.projectData.finance, this.$scope, this.id);
     }
 
     let talkDialog;

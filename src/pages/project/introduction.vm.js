@@ -5,7 +5,6 @@ export default class IntroductionVM extends krData.FormVM {
     super(data);
     this.$scope = $scope;
     this.initData(data);
-    console.log('introduction',data);
   }
 
   props = ['id', 'intro', 'fullName', 'scale',

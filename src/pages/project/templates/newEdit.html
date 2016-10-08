@@ -10,7 +10,10 @@
                 required-error-message="请填写新闻链接"
                 validator="required"
                 type="text" name="newsUrl" class="form-control" />
-        <label for="" class="url-title">新闻标题：<a href="#" class="n-title">{{vm.newsVM.title}}</a></label>
+        <label for="" class="url-title">新闻标题：
+        <!-- <a href="#" class="n-title" ng-if="{{vm.newsVM.title}}">{{vm.newsVM.title}}</a> -->
+        <input type="text" ng-model="vm.newsVM.title" name="newsTitle" class="form-control" />
+        </label>
       </div>
       <div class="form-group news-select">
         <label><span class="required">*</span>类型</label>
