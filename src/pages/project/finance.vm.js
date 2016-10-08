@@ -4,7 +4,7 @@ export default class FinanceVM extends krData.FormVM {
     super(data);
     this.$scope = $scope;
     this.initData(data);
-    this.projectService = krData.utls.getService('projectService');
+    // this.projectService = krData.utls.getService('projectService');
   }
 
   initData(data) {
@@ -57,18 +57,18 @@ export default class FinanceVM extends krData.FormVM {
     this.showMore = showMore;
   }
 
-  update($event) {
-    if (!this.validate($event)) return;
-    this.projectService.editHeader({
-      id: this.id,
-    }, this.getCopy(['phase',
-      'financeAmount',
-      'financeAmountUnit',
-      'entityName',
-    ]))
-      .then(() => {
-        this.recovery();
-        this.ok();
-      });
-  }
+  // update($event) {
+  //   if (!this.validate($event)) return;
+  //   this.projectService.editHeader({
+  //     id: this.id,
+  //   }, this.getCopy(['phase',
+  //     'financeAmount',
+  //     'financeAmountUnit',
+  //     'entityName',
+  //   ]))
+  //     .then(() => {
+  //       this.recovery();
+  //       this.ok();
+  //     });
+  // }
 }

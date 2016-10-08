@@ -1,12 +1,21 @@
 import krData from 'krData';
 export default class NewsVM extends krData.FormVM {
-  constructor(data) {
+  projectService = krData.utls.getService('projectService');
+  constructor(data, $scope, id) {
     super(data);
+    this.$scope = $scope;
+    this.id = id;
     angular.extend(this, data);
     this.list = data;
-    this.init();
+    this.months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+    this.init(data);
+    // console.log('news', this.id);
   }
-  init() {
+
+  props = ['url', 'type', 'title', 'publishDate'];
+
+  init(data) {
+    // console.log(data);
     let num = 1;
     function getList(limitlist, list, n) {
       if (list.length > (5 * n)) {
@@ -26,9 +35,21 @@ export default class NewsVM extends krData.FormVM {
     this.newsList = getList(this.newsList, this.list, 1);
     this.more = more;
     this.showMore = showMore;
+
+
+    this.mapProps(this.props, data, this);
   }
   update(form, $event) {
+    // console.log('newsId', this);
+    // console.log(this);
+    this.publishDate = `${this.publishDateYear}-${this.publishDateMonth}-01`;
     if (!this.validate(form, $event)) return;
+    this.projectService.addnews({
+      id: this.id,
+    }, this.mapProps(this.props, this))
+    .then(function () {
+      krData.Alert.success('数据保存成功');
+    });
     // angular.extend(this.originalData, this);
     // this.projectService.update({
     //     id: this.id,

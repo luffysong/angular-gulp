@@ -2,7 +2,7 @@ import '../routes/index';
 import '../constants/index';
 import '../filters/index';
 import commonInterceptor from '../base/commonInterceptor.service';
-import { getService, fromYear } from '../base/utls';
+import { getService, fromYear, getMonth } from '../base/utls';
 /* eslint-disable no-param-reassign,no-use-before-define */
 angular.module('@@app', ['@@app.routes',
   'cgNotify',
@@ -64,9 +64,11 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       },
     });
   })
-  .run(function run($rootScope, OPERATION_STATUS_META) {
+  .run(function run($rootScope, OPERATION_STATUS_META, COMPANY_NEWS_META, FINANCE_PHASE_META,
+    CURRENCY_UNIT_META) {
     const root = {};
     root.fromYear2000 = fromYear(2000);
+    root.getAllMonths = getMonth(12);
     root.OPERATION_STATUS_META = OPERATION_STATUS_META;
     root.SCALES_META = [
       '少于50人',
@@ -74,6 +76,9 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       '500-1000人',
       '1000人以上',
     ];
+    root.COMPANY_NEWS_META = COMPANY_NEWS_META;
+    root.FINANCE_PHASE_META = FINANCE_PHASE_META;
+    root.CURRENCY_UNIT_META = CURRENCY_UNIT_META;
     $rootScope.root = root;
   });
 angular.bootstrap(document, ['@@app'], { strictDi: true });

@@ -4,20 +4,21 @@
       <div class="form-group news-url">
         <label for=""><span class="required">*</span> 新闻链接</label>
         <span class="error-tip" id="editNewsUrl"></span>
-        <input  ng-model="vm.newsVM.newsUrl"
+        <input  ng-model="vm.newsVM.url"
                 placeholder="请填写和项目相关的新闻链接"
                 message-id="editNewsUrl"
                 required-error-message="请填写新闻链接"
                 validator="required"
                 type="text" name="newsUrl" class="form-control" />
-        <label for="" class="url-title">新闻标题：<a href="#" class="n-title">36氪分拆媒体业务独立运营 冯大刚加盟任总裁</a></label>
+        <label for="" class="url-title">新闻标题：<a href="#" class="n-title">{{vm.newsVM.title}}</a></label>
       </div>
       <div class="form-group news-select">
         <label><span class="required">*</span>类型</label>
-        <select class="form-control news-type" ng-model="vm.newsVM.newsType"
+        <select class="form-control news-type" ng-model="vm.newsVM.type"
                 validator="required"
                 message-id="editNewsType"
-                required-error-message="请选择新闻类型">
+                required-error-message="请选择新闻类型"
+                ng-options="item.value as item.desc for item in root.COMPANY_NEWS_META">
         </select>
         <span class="error-tip" id="editNewsType"></span>
       </div>
@@ -28,7 +29,9 @@
             <select class="form-control" ng-model="vm.newsVM.publishDateYear"
                     validator="required"
                     message-id="editNewsDateYear"
-                    required-error-message="请选择报道时间">
+                    required-error-message="请选择报道时间"
+                    ng-options="item for item in root.fromYear2000">
+                    <option>--年份--</option>
             </select>
             <p class="data-error">
               <span class="error-tip" id="editNewsDateYear"></span>
@@ -39,7 +42,9 @@
            <select class="form-control" ng-model="vm.newsVM.publishDateMonth"
                    validator="required"
                    message-id="editNewsDateMonth"
-                   required-error-message="请选择报道时间">
+                   required-error-message="请选择报道时间"
+                   ng-options="item for item in vm.newsVM.months">
+                   <option>--月份--</option>
            </select>
 
          </div>

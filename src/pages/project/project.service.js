@@ -11,6 +11,8 @@ export default class ProjectService extends API {
       'editBase',
       'editmember',
       'addprivilege',
+      'addnews',
+      'addfinance',
     ], {
       news: {
         isArray: true,

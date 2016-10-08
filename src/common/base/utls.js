@@ -135,4 +135,17 @@ export function fromYear(year) {
   }
   return years;
 }
+
+//  获取月份
+export function getMonth(month) {
+  const months = [];
+  for (let i = 1; i <= month; i++) {
+    if (i < 10) {
+      i = `0${i}`;
+    }
+    months.push(i);
+  }
+  return months;
+}
+
 export const slice = Array.prototype.slice;

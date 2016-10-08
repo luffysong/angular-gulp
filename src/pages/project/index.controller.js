@@ -8,7 +8,11 @@ import NewsVM from './news.vm';
 import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
+<<<<<<< Updated upstream
 // import Alert from '../../common/base/Alert';
+=======
+import EditFinanceVM from './editFinance.vm';
+>>>>>>> Stashed changes
 @Inject('$stateParams', 'projectService', 'projectData', 'ngDialog', '$validation', '$scope')
 export default class ProjectIndexController {
   constructor() {
@@ -24,8 +28,9 @@ export default class ProjectIndexController {
       this.financeVM = new FinanceVM(this.projectData.finance);
       this.memberVM = new MemberVM(this.projectData.member, this.id);
       this.similarVM = new SimilarVM(this.projectData.similar);
-      this.newsVM = new NewsVM(this.projectData.news);
+      this.newsVM = new NewsVM(this.projectData.news, this.$scope, this.id);
       this.productVM = new ProductVM(this.projectData.product);
+      this.editFinanceVM = new EditFinanceVM(this.projectData.finance, this.$scope, this.id);
     }
 
     let talkDialog;
