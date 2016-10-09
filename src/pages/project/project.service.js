@@ -63,9 +63,9 @@ export default class ProjectService extends API {
     const id = {
       id: form.cid,
     };
-    this.collect = new API('/user/follow/company/:id', ['save'])
+    this.collected = new API('/user/follow/company/:id', ['save'])
     .save(id, form);
-    return this.collect;
+    return this.collected;
   }
   // 取消收藏
   deconsteCompany(form) {

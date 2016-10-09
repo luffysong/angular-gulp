@@ -4,10 +4,12 @@ import textMoreDirective from './textMore.directive';
 import textOverflowDirective from './textOverflow.directive';
 import centerDirective from './center.directive';
 import loginBtnDirective from './loginBtn.directive';
+import moreShowDirective from './moreShow.directive';
 angular.module('@@pages.project', [])
   .controller('ProjectIndexController', ProjectIndexController)
   .service('projectService', ProjectService)
   .directive('textOverflow', textOverflowDirective)
   .directive('textMore', textMoreDirective)
   .directive('center', centerDirective)
-  .directive('loginBtn', loginBtnDirective);
+  .directive('loginBtn', loginBtnDirective)
+  .directive('moreShow', moreShowDirective);

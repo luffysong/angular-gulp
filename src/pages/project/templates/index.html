@@ -27,7 +27,7 @@
         <p>融资中</p>
         <p>
           <span>{{vm.fundsVM.fundsPhase}}</span>
-          <span>{{vm.fundsVM.financeAmountUnit}}{{vm.fundsVM.financeAmount}}</span>
+          <span><small ng-show="vm.fundsVM.financeAmountUnit =='USD'">$</small><small ng-show="vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}</span>
         </p>
         <p>
          <span>轮次</span>
