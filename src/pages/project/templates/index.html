@@ -26,12 +26,12 @@
       <div class="finance-brief" ng-show='vm.fundsVM.funds'>
         <p>融资中</p>
         <p>
+          <span>轮次</span>
           <span>{{vm.fundsVM.fundsPhase}}</span>
-          <span><small ng-show="vm.fundsVM.financeAmountUnit =='USD'">$</small><small ng-show="vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}</span>
         </p>
         <p>
-         <span>轮次</span>
          <span>金额</span>
+         <span><small ng-show="vm.fundsVM.financeAmountUnit =='USD'">$</small><small ng-show="vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}万</span>
         </p>
       </div>
       <div class="finance-brief" ng-show='!vm.fundsVM.funds'>

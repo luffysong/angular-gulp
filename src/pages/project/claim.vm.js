@@ -32,20 +32,36 @@ export default class ClaimVM {
       this.claimCancle = function () {
         claimDialog.close();
       };
+      this.changePic = function () {
+        this.claimform.userBusinessCard = '';
+        this.suc = false;
+      };
       this.save = function () {
         if (!vm.$validation.checkValid(this.claim.form)) {
           vm.$validation.validate(this.claim.form);
           return false;
         }
-        vm.update(this.claimform, vm.Cid);
+        this.update(this.claimform, vm.Cid);
       };
       this.uploadImage = function ($files) {
         if ($files.length) {
           krData.utls.uploadImage($files[0])
             .then(data => {
               this.claimform.userBusinessCard = data.src;
+              this.suc = true;
             });
         }
+      };
+      this.update = function (form, id) {
+        vm.projectService.addprivilege({
+          id,
+        }, form)
+          .then(() => {
+            claimDialog.close();
+            krData.Alert.success('数据保存成功');
+          }, (data) => {
+            krData.Alert.alert(data.msg);
+          });
       };
     }
     const str = '<div ng-include="' +
@@ -61,14 +77,6 @@ export default class ClaimVM {
       });
     }
     this.claim = claim;
-  }
-  update(form, id) {
-    this.projectService.addprivilege({
-      id,
-    }, form)
-      .then(() => {
-        console.log('ok');
-      });
   }
   getManager(id) {
     this.projectService.getManager({

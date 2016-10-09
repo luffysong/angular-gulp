@@ -35,7 +35,7 @@
           message-id="claimPosition"
           number-error-message="请选择职位">
             <option value="START_UP_MEMBER">维护者</option>
-            <option value="START_UP_MEMBER" ng-show="vm.position">认领人</option>
+            <option value="START_UP_MEMBER" ng-show="!vm.manager.hasManager">认领人</option>
           </select>
           <span id="claimPosition" class="error-tip"></span>
           <input type="text" class="position content form-control" placeholder="输入职位" ng-model="vm.claimform.position" >
@@ -89,8 +89,9 @@
         <p>
           <span class="require">*</span><span class="title">个人名片</span>
         </p>
+        <span ng-show='vm.suc' class="suc-load">我的名片<span class="icon-dialogClose" ng-click='vm.changePic()'></span></span>
         <span class="uploading" ngf-select="vm.uploadImage($files)"
-          ngf-accept="'image/*'"><span class="icon-UserWhite"></span>上传照片</span>
+          ngf-accept="'image/*'"><span class="icon-UserWhite"></span>{{vm.suc?'更新图片':'上传图片'}}</span>
       </div>
     </form>
   </div>

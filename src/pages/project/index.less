@@ -110,20 +110,20 @@
         overflow: hidden;
         p {
           overflow: hidden;
-          span {
-            float: left;
-            width: 50%;
+          span:first-child {
+            .font(12,18);
+            color: #969FA9;
+            width: 30%;
+            display: inline-block;
             .text-center();
+          }
+          span:last-child{
+            color: #222C38;
           }
         }
         p:nth-child(2){
           margin-top: 8px;
           margin-bottom: 2px;
-          color: #222C38;
-          .font(14, 21);
-        }
-        p:last-child {
-          .font(12, 18);
         }
         p:first-child {
           .font(14, 33);
