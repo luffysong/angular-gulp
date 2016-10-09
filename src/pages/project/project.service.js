@@ -41,7 +41,10 @@ export default class ProjectService extends API {
     return this.user;
   }
   // 获取用户收藏夹
-  collect(id) {
+  collect(cid) {
+    const id = {
+      id: cid,
+    };
     this.collection = new API('/user/follow/company/:id', {
       group: {
         isArray: true,
@@ -69,8 +72,8 @@ export default class ProjectService extends API {
     const id = {
       id: form.cid,
     };
-    this.deconste = new API('/user/follow/company/:id?' + $.param(form), ['deconste'])
-    .deconste(id, form);
+    this.deconste = new API('/user/follow/company/:id?' + $.param(form),['delete'])
+    .delete(id, form);
     return this.deconste;
   }
   // 获取公司认领人信息

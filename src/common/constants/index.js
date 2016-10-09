@@ -28,7 +28,7 @@ angular.module('@@app.constants', [])
   .constant('FINANCE_NEED', FINANCE_NEED)
   .constant('PROJECT_TYPE_META', PROJECT_TYPE_META)
   .constant('PROJECT_TYPE', PROJECT_TYPE)
-  .constant('ROLE_META', ROLE_META);
+  .constant('ROLE_META', ROLE_META)
   .constant('COMPANY_FINANCE_PHASE', COMPANY_FINANCE_PHASE)
   .constant('COMPANY_FINANCE_PHASE_META', COMPANY_FINANCE_PHASE_META);
 

@@ -56,7 +56,7 @@ export default class CollectionVM {
             ++item.count;
           });
         } else {
-          projectService.deleteCompany(form)
+          projectService.deconsteCompany(form)
           .then(() => {
             vm.cancle = true;
             setTimeout(() => {
