@@ -1,5 +1,5 @@
 
-function loginBtnDirective(projectService) {
+function navigateDirective(projectService) {
   return {
     restrict: 'AE',
     link(scope, element) {
@@ -18,6 +18,6 @@ function loginBtnDirective(projectService) {
 }
 angular
   .module('@@pages.project', [])
-  .directive('loginBtn', loginBtnDirective);
+  .directive('navigate', navigateDirective);
 
-export default loginBtnDirective;
+export default navigateDirective;

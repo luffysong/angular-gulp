@@ -42,6 +42,8 @@ export default class ProjectIndexController {
     // 获取当前用户身份
     this.projectService.getUser()
     .then((data) => {
+      // this.userId = data.id;
+      this.talking = talking;
       if (!data.code) {
         // 判断认领人
         if (vm.baseInfoVM.managerUid === data.id) {
@@ -49,11 +51,13 @@ export default class ProjectIndexController {
         } else if (vm.baseInfoVM.member) {
           // 维护者身份
           vm.user = 'assert';
+        } else if (data.investorType < 100) {
+          // 投资人
+          vm.user = 'investor';
         } else {
           // 普通用户
           vm.user = 'commen';
         }
-        console.log(vm.user);
         vm.claimVM = new ClaimVM(vm.ngDialog, vm.id, vm.user);
         vm.collectionVM = new CollectionVM(vm.ngDialog, vm.id);
       }
@@ -82,11 +86,11 @@ export default class ProjectIndexController {
     this.light = 277;
     function setOffset() {
       const baseInfo = (vm.baseInfoVM.industryTag || vm.baseInfoVM.intro);
-      if (vm.baseInfoVM.advantage) {
+      if (vm.baseInfoVM.advantage && vm.user != 'commen') {
         vm.light = 277;
       } else if (baseInfo) {
         vm.baseInfo = 277;
-      } else if (vm.fundsVM.funds) {
+      } else if (vm.fundsVM.funds && vm.user != 'commen') {
         vm.financeDetail = 277;
       } else {
         vm.financeHistory = 277;
@@ -133,7 +137,22 @@ export default class ProjectIndexController {
       this.sendbp = bp;
     }
 
-    this.talking = talking;
+
+    // 获取相关用户
+    this.projectService.relateUser({ id: this.id })
+    .then((data) => {
+      console.log(data);
+      // if(data.data){
+      //   this.usrShow = true;
+      // }
+      // this.usrlist = data;
+      // this.relateUser = data.slice(0, 3);
+    });
+    function getMore() {
+      this.relateUser = this.usrlist;
+      this.usrShow = false;
+    }
+    this.getMore = getMore;
   }
 
 

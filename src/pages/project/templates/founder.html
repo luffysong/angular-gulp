@@ -5,7 +5,7 @@
     ng-if="vm.memberVM.isEdit">
     基本介绍编辑
   </section>
-  <div class="content" ng-show="vm.memberVM.show()">
+  <div class="content" ng-show="vm.memberVM.show()" ng-if="!vm.memberVM.isEdit">
     <div class="team-key" ng-show="vm.memberVM.data.teamTags.length">
       <span class="name">团队关键字</span>
       <ul class="key-list">

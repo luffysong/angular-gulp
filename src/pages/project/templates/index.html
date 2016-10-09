@@ -37,7 +37,7 @@
       <div class="finance-brief" ng-show='!vm.fundsVM.funds'>
         <p>当前轮次</p>
         <p class="finance-now">
-          {{vm.fundsVM.fundsPhase | financePahse}}
+          {{vm.fundsVM.fundsPhase | companyFinancePhase}}
         </p>
 
       </div>
@@ -128,7 +128,7 @@
   <section sticky offset="50" class="nav-wrapper">
     <nav>
       <ul class='navigate'>
-        <li ng-hide="!vm.baseInfoVM.advantage">
+        <li ng-hide="!vm.baseInfoVM.advantage || vm.user=='commen'">
           <a href="#light" du-smooth-scroll="" du-scrollspy=""  offset="{{vm.light}}"  class="active">
             投资亮点
           </a>
@@ -138,7 +138,7 @@
             基本介绍
           </a>
         </li>
-        <li ng-hide="!vm.fundsVM.funds">
+        <li ng-hide="!vm.fundsVM.funds || vm.user == 'commen'">
           <a href="#financeDetail" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeDetail}}" ng-class="{'active':!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)}">
             融资详情
           </a>
@@ -169,20 +169,20 @@
           </a>
         </li>
         <li>
-          <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user != 'admin'" navigate>认领</a>
+          <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user != 'admin'" login-btn>认领</a>
           <a href="#"  ng-show="vm.user == 'admin'" >融资设置</a>
-          <a href="#"  ng-show="vm.user != 'commen'" >编辑项目</a>
+          <a href="#"  ng-show="vm.user != 'commen' && userId" >编辑项目</a>
         </li>
       </ul>
     </nav>
   </section>
-  <section id="light" class="project-module light" ng-include="'/pages/project/templates/light.html'" ng-hide="!vm.baseInfoVM.advantage">
+  <section id="light" class="project-module light" ng-include="'/pages/project/templates/light.html'" ng-hide="!vm.baseInfoVM.advantage || vm.user == 'commen'">
 
   </section>
 
   <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'" ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
   </section>
-  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module" ng-show="vm.fundsVM.funds">
+  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module" ng-show="vm.fundsVM.funds && vm.user != 'commen'">
     融资详情
   </section>
   <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module">
@@ -198,6 +198,10 @@
     相关新闻
   </section>
   <section id="similarItem" class="project-module" ng-include="'/pages/project/templates/similarItem.html'">
+
+  </section>
+  <!-- 相关人员只有在编辑模式下才有 -->
+  <section id="similarItem" class="project-module" ng-include="'/pages/project/templates/relatedUser.html'">
 
   </section>
   <section ng-include="'/pages/project/templates/footer.html'" >

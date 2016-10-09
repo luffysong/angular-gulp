@@ -6,7 +6,7 @@
     基本介绍编辑
   </section>
   <div ng-if="!vm.introductionVM.isEdit">
-    <ul class="tags" ng-show="vm.introductionVM.industryTag">
+    <ul class="tags" ng-show="vm.introductionVM.industryTag && vm.user!='commen'">
       <li class="tag-icon"><span class="icon-Tags"></span></li>
       <li class="tag" ng-repeat="tag in vm.introductionVM.industryTag">{{tag}}</li>
     </ul>

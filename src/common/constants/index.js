@@ -5,6 +5,7 @@ import { COMPANY_NEWS_META, COMPANY_NEWS } from './companyNews.cs.js';
 import { ROLE_META } from './role.cs';
 import { FINANCE_NEED_META, FINANCE_NEED } from './financeNeed.cs';
 import { PROJECT_TYPE_META, PROJECT_TYPE } from './projectType.cs';
+import { COMPANY_FINANCE_PHASE_META, COMPANY_FINANCE_PHASE } from './companyFinancePhase.cs.js';
 export {
   FINANCE_PHASE_META, FINANCE_PHASE,
   CURRENCY_UNIT, CURRENCY_UNIT_META,
@@ -12,6 +13,7 @@ export {
   COMPANY_NEWS_META, COMPANY_NEWS,
   ROLE_META,
   FINANCE_NEED_META, FINANCE_NEED,
+  COMPANY_FINANCE_PHASE_META, COMPANY_FINANCE_PHASE,
 };
 angular.module('@@app.constants', [])
   .constant('FINANCE_PHASE', FINANCE_PHASE)
@@ -27,4 +29,6 @@ angular.module('@@app.constants', [])
   .constant('PROJECT_TYPE_META', PROJECT_TYPE_META)
   .constant('PROJECT_TYPE', PROJECT_TYPE)
   .constant('ROLE_META', ROLE_META);
+  .constant('COMPANY_FINANCE_PHASE', COMPANY_FINANCE_PHASE)
+  .constant('COMPANY_FINANCE_PHASE_META', COMPANY_FINANCE_PHASE_META);
 

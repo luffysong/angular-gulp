@@ -12,7 +12,7 @@ export default class ProjectService extends API {
       'editmember',
       'addprivilege',
       'addnews',
-      // addfinance,
+      'addfinance',
     ], {
       news: {
         isArray: true,
@@ -27,6 +27,12 @@ export default class ProjectService extends API {
         dataType: 'json',
       },
     });
+  }
+
+  relateUser(id) {
+    this.user = new API('/company/:id/relate-user')
+    .get(id);
+    return this.user;
   }
   // 获取当前登录用户
   getUser() {
