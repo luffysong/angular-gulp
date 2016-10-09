@@ -151,6 +151,9 @@ select.form-control {
 // angular integrate
 .ng-invalid.form-control, .textarea-control  .ng-invalid.form-control + .textarea-border{
   border-color: @error-color !important;
+  &::placeholder{
+    color: @error-color !important;
+  }
 }
 //
 .required{

@@ -1,16 +1,16 @@
 import { getService, slice } from './utls';
 
 const METHOD_META = [{
-  nameReg: /^(?:update|edit)(.*)$/,
+  nameReg: /^(?:update|edit)(.+)$/,
   method: 'PUT',
 }, {
-  nameReg: /^(?:get|query)(.*)$/,
+  nameReg: /^(?:get|query)(.+)$/,
   method: 'GET',
 }, {
-  nameReg: /^(?:save|add|create)(.*)$/,
+  nameReg: /^(?:save|add|create)(.+)$/,
   method: 'POST',
 }, {
-  nameReg: /^(?:delete|remove)(.*)$/,
+  nameReg: /^(?:delete|remove)(.+)$/,
   method: 'DELETE',
 },
 ];
@@ -23,7 +23,7 @@ function resolveMethod(name) {
       return {
         method: meta.method,
         params: {
-          action: `${matches[1]}`,
+          action: `${matches[2]}`,
         },
       };
     }

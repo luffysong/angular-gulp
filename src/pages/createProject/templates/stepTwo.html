@@ -6,73 +6,68 @@
     <form >
       <div class="form-group">
         <label for=""><span class="required">*</span> 真实姓名</label>
-        <input  ng-model="vm.baseInfoVM.name"
+        <input  ng-model="vm.user.userName"
           placeholder="输入中文真实姓名"
-          message-id="messageName"
-          no-validation-message="true"
           maxlength="30"
           validator="required"
-          type="text" name="name" class="form-control" />
+          type="text" name="userName" class="form-control" />
       </div>
 
       <div class="form-group">
         <label for=""><span class="required">*</span>职位</label>
-
-        <span id="messageFullName"
-          class="error-tip"></span>
         <div>
-          <select  ng-model="vm.baseInfoVM.fullName"
-            placeholder="输入公司全称"
+          <select
+            ng-if="!vm.baseInfo.companyRole"
+            ng-model="vm.baseInfo.companyRole"
+            placeholder="输入"
             validator="notEqual=vm.baseInfoVM.name"
             message-id="messageFullName"
             not-equal-error-message="请不要再次填写项目名称"
             type="text" name="fullName" class="form-control" >
-          </select><input
-            placeholder="输入公司全称"
-          type="text" name="" id="" value="" class="form-control position-name"  />
-
+          </select><input ng-model="vm.user.userPosition"
+            placeholder="输入职位"
+          type="text" name="userPosition" class="form-control position-name"  />
         </div>
 
       </div>
 
       <div class="form-group">
         <label for=""><span class="required">*</span> 手机号码</label>
-        <span class="error-tip" id="messageBrief"></span>
-        <input  ng-model="vm.baseInfoVM.brief"
-        validator="required,minlength=5" message-id="messageBrief"
-        minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
+        <span class="error-tip" id=""></span>
+        <input  ng-model="vm.user.userPhone"
+        validator="required" message-id="messageBrief"
         maxlength="30"
         placeholder="输入真实手机号"
-        type="text" name="brief" class="form-control" />
+        type="text" name="userPhone" class="form-control" />
       </div>
       <div class="form-group">
         <label for=""><span class="required">*</span> 公司邮箱</label>
-        <span class="error-tip" id="messageBrief"></span>
-        <input  ng-model="vm.baseInfoVM.brief"
-        validator="required,minlength=5" message-id="messageBrief"
-        minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
+        <span class="error-tip" id=""></span>
+        <input  ng-model="vm.user.userEmail"
+        validator="required" message-id="messageBrief"
         maxlength="30"
         placeholder="输入公司邮箱，便于审核"
-        type="text" name="brief" class="form-control" />
+        type="text" name="userEmail" class="form-control" />
       </div>
       <div class="form-group">
         <label for=""><span class="required">*</span> 个人微信</label>
-        <span class="error-tip" id="messageBrief"></span>
-        <input  ng-model="vm.baseInfoVM.brief"
-        validator="required,minlength=5" message-id="messageBrief"
-        minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
+        <span class="error-tip" id=""></span>
+        <input  ng-model="vm.user.userWeiXin"
+        validator="required" message-id="messageBrief"
         maxlength="30"
         placeholder="输入个人微信号，方便联系"
-        type="text" name="brief" class="form-control" />
+        type="text" name="userWeiXin" class="form-control" />
       </div>
 
       <div class="form-group">
         <label for=""><span class="required">*</span> 个人名片</label>
         <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
-        <a   ng-model="vm.baseInfoVM.website"
+        <a   ng-model="vm.user.userBusinessCard"
           validator="http" message-id="messageWebsite"
-          type="text" name="website" class="btn-id-card" href="javascript:;" >
-          <span class="icon-Investor"></span>上传名片</a>
+          type="text" name="userBusinessCard" class="btn-id-card" href="javascript:;" >
+          <span class="icon-Investor"></span>上传名片
+          <input type="file">
+        </a>
       </div>
     </form>
   </div>

@@ -53,6 +53,16 @@
   .dlk();
 }
 
+.btn-file() {
+  input{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+}
 .btn-upload-logo() {
   color: #fff;
   padding: 4px 10px;
@@ -64,6 +74,8 @@
   &:before {
     content: "上传LOGO";
   }
+  position: relative;
+  .btn-file();
 }
 
 .splitter(@style: dotted, @height: 2px) {

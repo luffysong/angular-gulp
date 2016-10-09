@@ -17,7 +17,7 @@ module.exports = {
     "babel/new-cap": 2,
     "no-param-reassign": 0,
     "prefer-rest-params": 1,
-    "no-restricted-syntax":0,
+    "no-restricted-syntax": 0,
     "prefer-arrow-callback": 0,
     "import/prefer-default-export": 0,
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
