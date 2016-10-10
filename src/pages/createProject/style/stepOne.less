@@ -2,11 +2,6 @@
 @import "../../../common/styles/var";
 .step-one-wrapper  {
 
-  & > div:nth-child(2) {
-    float: left;
-    .text-center();
-  }
-
   .logo {
     .square(90);
     border-radius: 6px;
@@ -21,6 +16,8 @@
     .clear();
   }
   .upload-logo{
+    float: left;
+    .text-center();
     .font(12, 18);
     color: @tip-color;
     &>p:last-child {
@@ -30,6 +27,9 @@
   .btn-upload-logo {
     margin:12px 0 8px;
     .btn-upload-logo();
+  }
+  .textarea-control {
+    width: 520px;
   }
 
 }

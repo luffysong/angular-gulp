@@ -1,3 +1,4 @@
+import { extractMeta } from '../base/utls';
 const ROLE_META = [
   {
     desc: '创始成员',
@@ -21,6 +22,8 @@ const ROLE_META = [
   },
 ];
 
+const ROLE = extractMeta(ROLE_META);
 export {
   ROLE_META,
+  ROLE,
 };

@@ -1,7 +1,10 @@
 import krData from 'krData';
 import FinanceVM from './financeApply.vm';
+import CreateProject from './createProject.service';
 const $validation = krData.utls.getService('$validation');
 const PROJECT_TYPE = krData.utls.getService('PROJECT_TYPE');
+const ROLE_META = krData.utls.getService('ROLE_META');
+const ROLE = krData.utls.getService('ROLE');
 function isInvalid(ctl) {
   return ctl ? ctl.$invalid : false;
 }
@@ -18,13 +21,17 @@ export default class CreateProjectController {
     full_match: angular.noop,
   };
 
-  baseInfo = {};
+  CLAIM_ROLE = [ROLE_META[0], ROLE_META[1]];
+
+  project = new CreateProject();
+  baseInfo = {
+    financingNeed: this.FINANCE_NEED.UNKNOWN,
+  };
   user = {};
   financeVM = new FinanceVM(this.$scope);
-  step =3;
+  step = 1;
 
   constructor() {
-    this.baseInfo.financeNeed = this.FINANCE_NEED.UNKNOWN;
     this.setProjectTypeValidator();
     this.setApplinkValidator();
     this.watchCompanyType();
@@ -60,6 +67,34 @@ export default class CreateProjectController {
 
   isIdea() {
     return this.baseInfo.companyType === PROJECT_TYPE.IDEA;
+  }
+
+  hasRole() {
+    return this.baseInfo.companyRole || this.user.companyRole;
+  }
+
+  isFunder() {
+    return this.baseInfo.companyRole === ROLE.START_UP_MEMBER ||
+      this.user.companyRole === ROLE.START_UP_MEMBER;
+  }
+
+  isMaintainer() {
+    return this.baseInfo.companyRole === ROLE.MEMBER ||
+      this.user.companyRole === ROLE.MEMBER;
+  }
+
+  notSelectRole() {
+    return angular.isUndefined(this.baseInfo.companyRole);
+  }
+
+  isInvestorOrUser() {
+    const role = this.baseInfo.companyRole;
+    return role === ROLE.INVESTOR || role === ROLE.USER;
+  }
+
+  needFinance() {
+    return this.isFunder() &&
+    this.baseInfo.financingNeed === this.FINANCE_NEED.FINANCING;
   }
 
   watchCompanyType() {
@@ -131,9 +166,44 @@ export default class CreateProjectController {
     });
   }
 
+  claim(company) {
+    this.claimCompany = company;
+  }
+
   go(step, form) {
     if (this.validate(form)) {
       this.step = step;
+    }
+  }
+
+  saveBaseInfo(form) {
+    if (this.validate(form)) {
+      const projectInfo = angular.extend({}, this.baseInfo, this.user);
+      delete projectInfo.form;
+      this.project.create(projectInfo)
+        .then(() => {
+          this.step = 4;
+        })
+        .catch((err) => {
+          krData.Alert.alert(`创建公司失败:${err.msg}`);
+        });
+    }
+  }
+
+  next(form) {
+    switch (this.step) {
+      case 1:
+        this.go(2, form);
+        break;
+      case 2:
+        if (this.isFunder() && this.needFinance()) {
+          this.go(3, form);
+        } else {
+          this.saveBaseInfo(form);
+        }
+        break;
+      case 3: break;
+      default: return;
     }
   }
   validate(form) {
@@ -151,7 +221,6 @@ export default class CreateProjectController {
     }
     return '';
   }
-
 
   suggest() {
     return [

@@ -1,78 +1,124 @@
 <div  class="step-two-wrapper">
 
-  <h4>基本信息</h4>
+  <h4 ng-if="vm.notSelectRole() || vm.isFunder() || vm.isMaintainer()">基本信息</h4>
 
   <div>
-    <form >
-      <div class="form-group">
-        <label for=""><span class="required">*</span> 真实姓名</label>
-        <input  ng-model="vm.user.userName"
-          placeholder="输入中文真实姓名"
-          maxlength="30"
-          validator="required"
-          type="text" name="userName" class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for=""><span class="required">*</span>职位</label>
-        <div>
-          <select
-            ng-if="!vm.baseInfo.companyRole"
-            ng-model="vm.baseInfo.companyRole"
-            placeholder="输入"
-            validator="notEqual=vm.baseInfoVM.name"
-            message-id="messageFullName"
-            not-equal-error-message="请不要再次填写项目名称"
-            type="text" name="fullName" class="form-control" >
-          </select><input ng-model="vm.user.userPosition"
-            placeholder="输入职位"
-          type="text" name="userPosition" class="form-control position-name"  />
+    <form name="vm.user.form">
+      <div ng-if="vm.notSelectRole() || vm.isFunder() || vm.isMaintainer()">
+        <div class="form-group">
+          <label for=""><span class="required">*</span> 真实姓名</label>
+          <input  ng-model="vm.user.userName"
+            placeholder="输入中文真实姓名"
+            maxlength="30"
+            validator="required"
+            type="text" name="userName" class="form-control" />
         </div>
 
+        <div class="form-group">
+          <label for=""><span class="required">*</span>职位</label>
+          <div>
+            <select ng-options="item.value as item.desc for item in vm.CLAIM_ROLE"
+              ng-if="!vm.baseInfo.companyRole"
+              ng-model="vm.user.companyRole"
+              placeholder="输入"
+              validator="notEqual=vm.baseInfoVM.name"
+              message-id="messageFullName"
+              not-equal-error-message="请不要再次填写项目名称"
+              type="text" name="userCompanyRole" class="form-control"
+            >
+              <option value="">选择角色</option>
+            </select><input ng-model="vm.user.userPosition"
+              placeholder="输入职位"
+              validator="required"
+            type="text" name="userPosition" class="form-control position-name"  />
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label for=""><span class="required">*</span> 手机号码</label>
+          <span class="error-tip" id=""></span>
+          <input  ng-model="vm.user.userPhone"
+          validator="required" message-id="messageBrief"
+          maxlength="30"
+          placeholder="输入真实手机号"
+          type="text" name="userPhone" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for=""><span class="required">*</span> 公司邮箱</label>
+          <span class="error-tip" id=""></span>
+          <input  ng-model="vm.user.userEmail"
+          validator="required" message-id="messageBrief"
+          maxlength="30"
+          placeholder="输入公司邮箱，便于审核"
+          type="text" name="userEmail" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for=""><span class="required">*</span> 个人微信</label>
+          <span class="error-tip" id=""></span>
+          <input  ng-model="vm.user.userWeiXin"
+          validator="required" message-id="messageBrief"
+          maxlength="30"
+          placeholder="输入个人微信号，方便联系"
+          type="text" name="userWeiXin" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <input ng-model="vm.user.userBusinessCard" validator="required"
+            type="hidden" name="userBusinessCard" >
+          <div>
+            {{vm.user.userBusinessCard}}
+          </div>
+          <label for=""><span class="required">*</span> 个人名片</label>
+          <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
+          <a message-id="messageWebsite"
+             name="userBusinessCard" class="btn-id-card" href="javascript:;" >
+            <span class="icon-Investor"></span>上传名片
+            <input ngf-select="vm.uploadIdCard($files)" ngf-accept="'image/*'" type="file">
+          </a>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for=""><span class="required">*</span> 手机号码</label>
-        <span class="error-tip" id=""></span>
-        <input  ng-model="vm.user.userPhone"
-        validator="required" message-id="messageBrief"
-        maxlength="30"
-        placeholder="输入真实手机号"
-        type="text" name="userPhone" class="form-control" />
-      </div>
-      <div class="form-group">
-        <label for=""><span class="required">*</span> 公司邮箱</label>
-        <span class="error-tip" id=""></span>
-        <input  ng-model="vm.user.userEmail"
-        validator="required" message-id="messageBrief"
-        maxlength="30"
-        placeholder="输入公司邮箱，便于审核"
-        type="text" name="userEmail" class="form-control" />
-      </div>
-      <div class="form-group">
-        <label for=""><span class="required">*</span> 个人微信</label>
-        <span class="error-tip" id=""></span>
-        <input  ng-model="vm.user.userWeiXin"
-        validator="required" message-id="messageBrief"
-        maxlength="30"
-        placeholder="输入个人微信号，方便联系"
-        type="text" name="userWeiXin" class="form-control" />
-      </div>
+      <div ng-if="!vm.isFunder()">
+        <div class="form-group creator-title">
+          <label>创始人联系方式</label>
+          <span  class="form-tip" >便于更好完善该项目信息</span>
+        </div>
 
-      <div class="form-group">
-        <label for=""><span class="required">*</span> 个人名片</label>
-        <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
-        <a   ng-model="vm.user.userBusinessCard"
-          validator="http" message-id="messageWebsite"
-          type="text" name="userBusinessCard" class="btn-id-card" href="javascript:;" >
-          <span class="icon-Investor"></span>上传名片
-          <input type="file">
-        </a>
+        <div class="form-group">
+          <label for="">真实姓名</label>
+          <input  ng-model="vm.user.starterName"
+            placeholder="输入中文真实姓名"
+            maxlength="30"
+            type="text" name="starterName" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="">职位</label>
+          <div>
+            <input ng-model="vm.user.starterPosition"
+              placeholder="输入职位"
+            type="text" name="starterPosition" class="form-control position-name"  />
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label for="">手机号码</label>
+          <span class="error-tip" id=""></span>
+          <input  ng-model="vm.user.starterPhone"
+          maxlength="30"
+          placeholder="输入真实手机号"
+          type="text" name="starterPhone" class="form-control" />
+        </div>
       </div>
     </form>
   </div>
   <div class="form-group">
-    <a class="next" href="javascript:;">下一步</a>
+    <a ng-class="{active: !vm.needFinance()}"
+      class="next" ng-click="vm.next(vm.user.form)" href="javascript:;">
+          {{vm.needFinance() ? '下一步' : '提交'}}
+    </a>
   </div>
   <div class="form-bottom">
     <p class="splitter"> </p>

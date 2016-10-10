@@ -6,6 +6,6 @@
     <div ng-if="vm.step === 2" ng-include="'/pages/createProject/templates/stepTwo.html'"> </div>
     <div ng-if="vm.step === 3" ng-include="'/pages/createProject/templates/finance-apply.html'"> </div>
     <div ng-if="vm.step === 4" ng-include="'/pages/createProject/templates/stepFour.html'"> </div>
-    <div ng-include="'/pages/createProject/templates/similar-item.html'"></div>
+    <div ng-if="vm.step === 4" ng-include="'/pages/createProject/templates/similar-item.html'"></div>
   </div>
 </section>

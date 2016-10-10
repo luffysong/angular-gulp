@@ -113,10 +113,11 @@
             placeholder="输入产品介绍"
             maxlength="100"
             validator="required"
+            message-id="none"
             type="text" name="intro" class="form-control" />
           <div class="textarea-border">
           </div>
-          <span class="text-length">0/100</span>
+          <span class="text-length">{{vm.baseInfo.intro.length || 0}}/100</span>
         </div>
       </div>
       <div class="form-group">
@@ -130,13 +131,16 @@
       </div>
       <div class="form-group">
         <label for=""><span class="required">*</span> 融资需求</label>
-        <select  ng-model="vm.baseInfo.financeNeed"
+        <select  ng-model="vm.baseInfo.financingNeed"
           ng-options="item.value as item.desc for item in root.FINANCE_NEED_META"
           validator="required"
-          type="text" name="financeNeed" class="form-control" > </select>
+          type="text" name="financingNeed" class="form-control" > </select>
       </div>
+
       <div class="form-group">
-        <a class="next" href="javascript:;" ng-click="vm.go(2, vm.baseInfo.form)">下一步</a>
+        <a class="next" href="javascript:;" ng-click="vm.next(vm.baseInfo.form)">
+          下一步
+        </a>
       </div>
 
     </form>
@@ -153,14 +157,24 @@
     <div>
       <ul>
         <li>
-          <img src='' />
-          <div class="suggest-project-text">
+          <img src='' /><div class="suggest-project-text">
             <p><span>36氪</span><span>电子商务</span></p>
             <p class="brief">为创业者提供更好的服务</p>
           </div>
-          <div>
+          <div class="website">
             <a href="http://www.baidu.com">http://www.baidu.com</a>
           </div>
+          <a class="claim" href="javascript:;">认领</a>
+        </li>
+        <li>
+          <img src='' /><div class="suggest-project-text">
+            <p><span>36氪</span><span>电子商务</span></p>
+            <p class="brief">为创业者提供更好的服务</p>
+          </div>
+          <div class="website">
+            <a href="http://www.baidu.com">http://www.baidu.com</a>
+          </div>
+          <a class="claim" href="javascript:;">认领</a>
         </li>
       </ul>
     </div>
