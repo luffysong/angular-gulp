@@ -173,6 +173,8 @@ export default class CreateProjectController {
 
   claim(company) {
     this.claimProject = company;
+    this.claiming = true;
+    this.step = 2;
   }
 
   go(step, form) {
