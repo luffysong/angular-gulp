@@ -104,7 +104,7 @@ export default class ProjectIndexController {
       };
       this.apply = function () {
         vm.projectService.applyBP(vm.id)
-        .then((data) => { this.suc = true; });
+        .then((data) => { this.apply = true; });
       };
     }
     function bp() {
@@ -122,31 +122,33 @@ export default class ProjectIndexController {
     }
 
     // 判断BP查看权限
-    this.bpPermission = false;
+    // this.bpPermission = false;
     this.projectService.getBPPermission(this.id)
     .then((data) => {
-      this.bpPermission = true;
+      if (data.hasPermission || data.applyBpStatus === 'AGREE') {
+        this.bpLink = 'https://www.baidu.com/';
+        this.target = '_blank';
+        this.sendbp = send;
+      } else {
+        console.log(data.applyBpStatus);
+        if (data.applyBpStatus === 'APPLY') {
+          this.apply = true;
+        }
+        this.bpLink = '#';
+        this.bp = bp;
+        this.sendbp = bp;
+      }
     });
-    if (this.bpPermission) {
-      this.bpLink = 'https://www.baidu.com/';
-      this.target = '_blank';
-      this.sendbp = send;
-    } else {
-      this.bpLink = '#';
-      this.bp = bp;
-      this.sendbp = bp;
-    }
 
 
     // 获取相关用户
     this.projectService.relateUser({ id: this.id })
     .then((data) => {
-      console.log(data);
-      // if(data.data){
-      //   this.usrShow = true;
-      // }
-      // this.usrlist = data;
-      // this.relateUser = data.slice(0, 3);
+      if (data.length > 3) {
+        this.usrShow = true;
+      }
+      this.usrlist = data;
+      this.relateUser = data.slice(0, 3);
     });
     function getMore() {
       this.relateUser = this.usrlist;

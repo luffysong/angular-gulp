@@ -9,7 +9,7 @@
         <label for=""><span class="required">*</span> 融资需求</label>
         <span id="financeRound" class="error-tip"></span>
         <select  ng-model="vm.financeVM.finance.financePhase"
-          validator="required" message-id="financeRound" type="text" name="financePhase" class="form-control" ng-options="item.value as item.desc for item in root.FINANCE_PHASE_META">
+          validator="required" message-id="financeRound" type="text" name="financePhase" class="form-control" ng-options="item.value as item.desc for item in root.FUNDS_PHASE_ENUM_META">
           <option value="" disabled selected hidden>选择轮次</option>
           </select>
       </div>
@@ -19,10 +19,13 @@
         <span id="fundValue" class="error-tip"></span>
         <div class="inline-control">
           <input
-            type="text" name="fundValue" class="form-control money" ng-model="vm.financeVM.finance.fundValue"
+            type="text" name="fundValue" class="form-control money" ng-model="vm.financeVM.finance.investAmountMin"
+            validator="required" message-id="fundValue"
+            placeholder="输入具体区间或金额" />~<input
+            type="text" name="fundValue" class="form-control money" ng-model="vm.financeVM.finance.investAmountMax"
             validator="required" message-id="fundValue"
             placeholder="输入具体区间或金额" />万
-          <select  ng-model="vm.financeVM.finance.fundValueUnit"
+          <select  ng-model="vm.financeVM.finance.financeAmountUnit"
             type="text" name="fundValueUnit" class="form-control" ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"> </select>
 
         </div>
@@ -123,7 +126,7 @@
       <div class="bp-check-group form-group" >
         <label for="">BP查看设置</label>
         <div class="bp-check">
-          <input type="checkbox" ng-model='vm.financeVM.finance.privilege'/><span>需要投资人申请查看BP</span>
+          <input type="checkbox" ng-model='vm.financeVM.privileges' ng-change='vm.financeVM.privilege()'/><span>需要投资人申请查看BP</span>
         </div>
       </div>
 

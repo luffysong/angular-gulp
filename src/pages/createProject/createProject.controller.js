@@ -198,6 +198,19 @@ export default class CreateProjectController {
         });
     }
   }
+  saveFinance(form) {
+    if (this.validate(form)) {
+      const projectInfo = angular.extend({}, this.baseInfo, this.user, this.financeVM.finance);
+      delete projectInfo.form;
+      this.project.create(projectInfo)
+        .then(() => {
+          this.step = 4;
+        })
+        .catch((err) => {
+          krData.Alert.alert(`创建公司失败:${err.msg}`);
+        });
+    }
+  }
 
   next(form) {
     switch (this.step) {
@@ -211,7 +224,13 @@ export default class CreateProjectController {
           this.saveBaseInfo(form);
         }
         break;
-      case 3: break;
+      case 3:
+        if (!validate(form) && this.financeVM.readed) {
+          break;
+        } else {
+          this.saveFinance(form);
+        }
+        break;
       default: return;
     }
   }

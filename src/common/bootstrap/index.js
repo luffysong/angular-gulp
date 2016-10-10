@@ -66,7 +66,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     });
   })
   .run(function run($rootScope, OPERATION_STATUS_META, COMPANY_NEWS_META, FINANCE_PHASE_META,
-    CURRENCY_UNIT_META, ROLE_META, FINANCE_NEED_META, PROJECT_TYPE_META) {
+    CURRENCY_UNIT_META, ROLE_META, FINANCE_NEED_META, PROJECT_TYPE_META, FUNDS_PHASE_ENUM_META) {
     const root = {};
     root.fromYear2000 = fromYear(2000);
     root.getAllMonths = getMonth(12);
@@ -74,6 +74,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     root.INDUSTRY_META = INDUSTRY_META;
     root.ROLE_META = ROLE_META;
     root.FINANCE_NEED_META = FINANCE_NEED_META;
+    root.FUNDS_PHASE_ENUM_META = FUNDS_PHASE_ENUM_META;
     root.PROJECT_TYPE_META = PROJECT_TYPE_META;
     root.SCALES_META = [
       '少于50人',

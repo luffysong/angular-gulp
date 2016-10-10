@@ -8,8 +8,8 @@ export default class financeVM {
   }
 
   finance = {
-    privilege: false,
-    fundValueUnit: 'CNY',
+    privilege: 'INVESTOR',
+    financeAmountUnit: 'CNY',
   };
   disable = true;
 
@@ -34,7 +34,7 @@ export default class financeVM {
   }
   show() {
     this.$scope.$watch('vm.financeVM.readed', () => {
-        console.log('dasd');
+      console.log('dasd');
 
       if ($validation.checkValid('vm.finance.form') && this.readed) {
         this.disable = false;
@@ -51,8 +51,15 @@ export default class financeVM {
     }
     return true;
   }
-  deletebp(){
+  deletebp() {
     this.finance.bp = '';
     this.bpName = '';
+  }
+  privilege() {
+    if (this.privileges) {
+      this.finance.privilege = 'MUST_APPLY';
+    } else {
+      this.finance.privilege = 'INVESTOR';
+    }
   }
 }
