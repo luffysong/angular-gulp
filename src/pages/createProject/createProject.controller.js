@@ -33,8 +33,10 @@ export default class CreateProjectController {
   project = new CreateProject();
   baseInfo = {};
   user = {};
+
   financeVM = new FinanceVM(this.$scope);
   step = 1;
+
 
   constructor() {
     this.initBaseInfo();

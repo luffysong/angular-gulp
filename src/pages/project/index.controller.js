@@ -10,7 +10,7 @@ import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
 // import Alert from '../../common/base/Alert';
 // import EditFinanceVM from './editFinance.vm';
-@Inject('$stateParams', 'projectService', 'projectData', 'ngDialog', '$validation', '$scope')
+@Inject('$stateParams', 'projectService', 'projectData', 'ngDialog', '$validation', '$scope', '$sce')
 export default class ProjectIndexController {
   constructor() {
     this.init();
@@ -22,7 +22,7 @@ export default class ProjectIndexController {
       this.baseInfoVM = new BaseInfoVM(this.projectData.baseInfo, this.$scope);
       this.introductionVM = new IntroductionVM(this.projectData.baseInfo, this.$scope);
       this.fundsVM = new FundsVM(this.projectData.funds);
-      this.financeVM = new FinanceVM(this.projectData.finance, this.$scope, this.id);
+      this.financeVM = new FinanceVM(this.projectData.finance, this.$scope, this.id, this.$sce);
       this.memberVM = new MemberVM(this.projectData.member, this.id);
       this.similarVM = new SimilarVM(this.projectData.similar);
       this.newsVM = new NewsVM(this.projectData.news, this.$scope, this.id);

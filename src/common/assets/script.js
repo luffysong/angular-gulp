@@ -15,6 +15,7 @@ export default {
       '/bower/jQuery.dotdotdot/src/jquery.dotdotdot.js',
       '/bower/highcharts/highcharts.js',
       '/bower/highcharts-ng/dist/highcharts-ng.min.js',
+      '/local_lib/angular-mass-autocomplete/massautocomplete.min.js',
     ],
     createProject: [
       '/pages/createProject/index.js',

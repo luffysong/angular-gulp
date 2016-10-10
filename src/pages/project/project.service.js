@@ -12,7 +12,7 @@ export default class ProjectService extends API {
       'editmember',
       'addprivilege',
       'addnews',
-      'addfinance',
+      // 'addfinance',
     ], {
       news: {
         isArray: true,
