@@ -13,41 +13,42 @@ function validate(ctl) {
   $validation.validate(ctl);
 }
 
-@Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', '$scope')
+@Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', '$scope', '$q', '$filter')
 export default class CreateProjectController {
 
   autocompleteOptions = {
     suggest: this.suggest.bind(this),
     full_match: angular.noop,
+    on_select: item => {
+      const obj = item.obj;
+      this.baseInfo.brief = obj.brief;
+      this.baseInfo.logo = obj.logo;
+      this.baseInfo.website = obj.website;
+      this.baseInfo.industry = obj.industry;
+    },
   };
 
   CLAIM_ROLE = [ROLE_META[0], ROLE_META[1]];
 
   project = new CreateProject();
-  baseInfo = {
-    financingNeed: this.FINANCE_NEED.UNKNOWN,
-  };
+  baseInfo = {};
   user = {};
   financeVM = new FinanceVM(this.$scope);
   step = 1;
 
   constructor() {
+    this.initBaseInfo();
     this.setProjectTypeValidator();
     this.setApplinkValidator();
     this.watchCompanyType();
     this.watchApplink();
   }
 
-
-  template = `
-    <div>
-      <img src='' />
-      <div class="suggest-project-text">
-        <p><span>36氪</span><span>电子商务</span></p>
-        <p class="brief">为创业者提供更好的服务</p>
-      </div>
-    </div>
-  `
+  initBaseInfo() {
+    this.baseInfo = {
+      financingNeed: this.FINANCE_NEED.UNKNOWN,
+    };
+  }
 
   isWeb() {
     return this.baseInfo.companyType === PROJECT_TYPE.WEB;
@@ -85,6 +86,10 @@ export default class CreateProjectController {
 
   notSelectRole() {
     return angular.isUndefined(this.baseInfo.companyRole);
+  }
+
+  getIndustry(industry) {
+    return this.$filter('industry')(industry);
   }
 
   isInvestorOrUser() {
@@ -167,7 +172,7 @@ export default class CreateProjectController {
   }
 
   claim(company) {
-    this.claimCompany = company;
+    this.claimProject = company;
   }
 
   go(step, form) {
@@ -222,24 +227,30 @@ export default class CreateProjectController {
     return '';
   }
 
-  suggest() {
-    return [
-      {
-        label: this.$sce.trustAsHtml(this.template),
-        value: 'sky',
-        obj: { name: 'skyname' },
-      },
-      {
-        label: this.$sce.trustAsHtml(this.template),
-        value: 'sky2',
-        obj: { name: 'skyname' },
-      },
-      {
-        label: this.$sce.trustAsHtml(this.template),
-        value: 'sky3',
-        obj: { name: 'skyname' },
-      },
-    ];
+  makeSuggestResult(kw, list = []) {
+    const that = this;
+    return list.map(function mapList(com) {
+      return {
+        label: that.$sce.trustAsHtml(`<div>
+          <img src='${com.logo}' />
+          <div class="suggest-project-text">
+            <p><span>${com.name}</span><span>${that.getIndustry(com.industry)}</span></p>
+            <p class="brief">${com.brief}</p>
+          </div>
+          </div> `),
+        value: com.name,
+        obj: com,
+      };
+    });
+  }
+  suggest(kw) {
+    const deferred = this.$q.defer();
+    this.project.suggest(kw).then((list) => {
+      this.suggestList = list;
+      deferred.resolve(this.makeSuggestResult(kw, list));
+    });
+
+    return deferred.promise;
   }
 
 }

@@ -152,29 +152,19 @@
 
 </div>
 
-<div class="step-one-wrapper suggest-result-wrapper">
+<div ng-if="vm.suggestList.length" class="step-one-wrapper suggest-result-wrapper">
   <h4>建议结果</h4>
     <div>
       <ul>
-        <li>
-          <img src='' /><div class="suggest-project-text">
-            <p><span>36氪</span><span>电子商务</span></p>
-            <p class="brief">为创业者提供更好的服务</p>
+        <li ng-repeat="item in vm.suggestList">
+          <img ng-src='{{item.logo}}' /><div class="suggest-project-text">
+            <p><span>{{item.name}}</span><span>{{item.industry | industry}}</span></p>
+            <p class="brief">item.breif</p>
           </div>
-          <div class="website">
-            <a href="http://www.baidu.com">http://www.baidu.com</a>
+          <div ng-if="item.website" class="website">
+            <a ng-href="{{item.website}}">{{item.website}}</a>
           </div>
-          <a class="claim" href="javascript:;">认领</a>
-        </li>
-        <li>
-          <img src='' /><div class="suggest-project-text">
-            <p><span>36氪</span><span>电子商务</span></p>
-            <p class="brief">为创业者提供更好的服务</p>
-          </div>
-          <div class="website">
-            <a href="http://www.baidu.com">http://www.baidu.com</a>
-          </div>
-          <a class="claim" href="javascript:;">认领</a>
+          <a class="claim" ng-click="claim(item)" href="javascript:;">认领</a>
         </li>
       </ul>
     </div>
