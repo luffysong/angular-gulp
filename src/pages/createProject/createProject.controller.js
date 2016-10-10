@@ -35,7 +35,7 @@ export default class CreateProjectController {
   user = {};
 
   financeVM = new FinanceVM(this.$scope);
-  step = 1;
+  step = 3;
 
 
   constructor() {

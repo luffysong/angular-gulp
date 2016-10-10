@@ -104,7 +104,7 @@ export default class ProjectIndexController {
       };
       this.apply = function () {
         vm.projectService.applyBP(vm.id)
-        .then((data) => { this.apply = true; });
+        .then((data) => { this.suc = true; });
       };
     }
     function bp() {

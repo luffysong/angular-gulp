@@ -21,6 +21,8 @@ export default {
       '/pages/createProject/index.js',
       '/local_lib/angular-mass-autocomplete/massautocomplete.min.js',
       '/bower/ng-file-upload/ng-file-upload-all.min.js',
+      '/bower/angular-tooltips/dist/angular-tooltips.js',
+      '/bower/angular-tooltips/dist/angular-tooltips.css',
     ],
     search: [
       '/pages/search/index.js',
