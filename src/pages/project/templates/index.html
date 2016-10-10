@@ -182,7 +182,7 @@
 
   <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'" ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
   </section>
-  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module" ng-show="vm.fundsVM.funds && vm.user != 'commen'">
+  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module finance" ng-show="vm.fundsVM.funds && vm.user != 'commen'">
     融资详情
   </section>
   <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module">

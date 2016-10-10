@@ -46,6 +46,7 @@ export default class FinanceVM extends krData.FormVM {
     this.autocomplete_options = {
       suggest: this.suggest.bind(this),
       on_select: this.onSelect.bind(this),
+      full_match: angular.noop,
     };
   }
 
