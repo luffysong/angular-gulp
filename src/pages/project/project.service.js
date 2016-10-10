@@ -63,7 +63,7 @@ export default class ProjectService extends API {
     const id = {
       id: form.cid,
     };
-    this.collected = new API('/user/follow/company/:id', ['save'])
+    this.collected = new API('/user/follow/company/:id')
     .save(id, form);
     return this.collected;
   }
@@ -72,8 +72,8 @@ export default class ProjectService extends API {
     const id = {
       id: form.cid,
     };
-    this.deconste = new API('/user/follow/company/:id?' + $.param(form),['delete'])
-    .delete(id, form);
+    this.deconste = new API('/user/follow/company/:id?' + $.param(form))
+    .remove(id, form);
     return this.deconste;
   }
   // 获取公司认领人信息

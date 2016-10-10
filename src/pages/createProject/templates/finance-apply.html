@@ -10,7 +10,8 @@
         <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
         <select  ng-model="vm.baseInfoVM.website"
           validator="http" message-id="messageWebsite"
-          type="text" name="website" class="form-control" > </select>
+          type="text" name="website" class="form-control" >
+          </select>
       </div>
 
       <div class="form-group">
@@ -18,7 +19,8 @@
         <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
         <div class="inline-control">
           <input
-            type="text" name="" class="form-control money" />万
+            type="text" name="" class="form-control money"
+            placeholder="输入具体区间或金额" />万
           <select  ng-model="vm.baseInfoVM.website"
             validator="http" message-id="messageWebsite"
             type="text" name="website" class="form-control" > </select>
@@ -30,7 +32,7 @@
         <label for=""><span class="required">*</span> 目标市场规模及分析</label>
         <div class="textarea-control">
           <textarea  ng-model="vm.baseInfoVM.name"
-            placeholder="输入中文真实姓名"
+            placeholder="所在细分市场的大致市场规模 ；未来发展空间（如：历史上的变化、预计今后几年内的增长及特点变化）；市场成长驱动因素分析（如：消费习惯，政策，技术开启新的可能性，潜在用户群体 …）"
             message-id="messageName"
             no-validation-message="true"
             maxlength="1000"
@@ -46,7 +48,7 @@
         <label for=""><span class="required">*</span> 业务数据亮点</label>
         <div class="textarea-control">
           <textarea  ng-model="vm.baseInfoVM.name"
-            placeholder="输入中文真实姓名"
+            placeholder="项目希望满足的市场需求，或现有解决方案存在的问题。 数据对于早期项目非必须，但如可提供能帮助投资人判断。包括但不限于： 累计及活跃用户数 ；PV／UV／留存／用户增长趋势 ；ARPU／重复购买率"
             message-id="messageName"
             no-validation-message="true"
             maxlength="1000"
@@ -62,7 +64,7 @@
         <label for=""><span class="required">*</span> 项目的主要优势</label>
         <div class="textarea-control">
           <textarea  ng-model="vm.baseInfoVM.name"
-            placeholder="输入中文真实姓名"
+            placeholder="可能包括以下的一些方面，但不限于 商业模式 、技术 、行业资源 、团队背景及能力"
             message-id="messageName"
             no-validation-message="true"
             maxlength="1000"
@@ -78,7 +80,7 @@
         <label for=""><span class="required">*</span> 主要竞争对手情况</label>
         <div class="textarea-control">
           <textarea  ng-model="vm.baseInfoVM.name"
-            placeholder="输入中文真实姓名"
+            placeholder="该细分市场已有哪些主要公司，它们的基本情况？ 对比竞争对手，你的优势？ 如有国外标杆公司，可以提供信息，帮助投资人判断"
             message-id="messageName"
             no-validation-message="true"
             maxlength="1000"
@@ -94,7 +96,7 @@
         <label for=""><span class="required">*</span> 发展规划</label>
         <div class="textarea-control">
           <textarea  ng-model="vm.baseInfoVM.name"
-            placeholder="输入中文真实姓名"
+            placeholder="可能包括以下的一些方面，但不限于 ：可分阶段描述未来项目定位演变／产品里程碑 ；可简述本次融资的用途 ；中长期愿景"
             message-id="messageName"
             no-validation-message="true"
             maxlength="1000"
