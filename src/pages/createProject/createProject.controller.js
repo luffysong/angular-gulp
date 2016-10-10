@@ -1,5 +1,5 @@
 import krData from 'krData';
-
+import FinanceVM from './financeApply.vm';
 const $validation = krData.utls.getService('$validation');
 const PROJECT_TYPE = krData.utls.getService('PROJECT_TYPE');
 function isInvalid(ctl) {
@@ -20,7 +20,7 @@ export default class CreateProjectController {
 
   baseInfo = {};
   user = {};
-
+  financeVM = new FinanceVM(this.$scope);
   step =3;
 
   constructor() {

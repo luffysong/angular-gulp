@@ -3,123 +3,127 @@
   <h4>申请融资</h4>
 
   <div>
-    <form >
+    <form name='vm.finance.form'>
 
       <div class="form-group">
         <label for=""><span class="required">*</span> 融资需求</label>
-        <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
-        <select  ng-model="vm.baseInfoVM.website"
-          validator="http" message-id="messageWebsite"
-          type="text" name="website" class="form-control" >
+        <span id="financeRound" class="error-tip"></span>
+        <select  ng-model="vm.financeVM.finance.financePhase"
+          validator="required" message-id="financeRound" type="text" name="financePhase" class="form-control" ng-options="item.value as item.desc for item in root.FINANCE_PHASE_META">
+          <option value="" disabled selected hidden>选择轮次</option>
           </select>
       </div>
 
       <div class="form-group">
         <label for=""><span class="required">*</span> 计划金额</label>
-        <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
+        <span id="fundValue" class="error-tip"></span>
         <div class="inline-control">
           <input
-            type="text" name="" class="form-control money"
+            type="text" name="fundValue" class="form-control money" ng-model="vm.financeVM.finance.fundValue"
+            validator="required" message-id="fundValue"
             placeholder="输入具体区间或金额" />万
-          <select  ng-model="vm.baseInfoVM.website"
-            validator="http" message-id="messageWebsite"
-            type="text" name="website" class="form-control" > </select>
+          <select  ng-model="vm.financeVM.finance.fundValueUnit"
+            type="text" name="fundValueUnit" class="form-control" ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"> </select>
 
         </div>
       </div>
 
+
+
       <div class="form-group">
         <label for=""><span class="required">*</span> 目标市场规模及分析</label>
         <div class="textarea-control">
-          <textarea  ng-model="vm.baseInfoVM.name"
+          <textarea  ng-model="vm.financeVM.finance.scale"
             placeholder="所在细分市场的大致市场规模 ；未来发展空间（如：历史上的变化、预计今后几年内的增长及特点变化）；市场成长驱动因素分析（如：消费习惯，政策，技术开启新的可能性，潜在用户群体 …）"
-            message-id="messageName"
+            message-id="scale"
             no-validation-message="true"
             maxlength="1000"
             validator="required"
-            type="text" name="name" class="form-control" />
+            type="text" name="scale" class="form-control" />
           <div class="textarea-border">
           </div>
-          <span class="text-length">0/1000</span>
+          <span class="text-length">{{vm.financeVM.finance.scale.length || 0}}/1000</span>
         </div>
       </div>
 
       <div class="form-group">
         <label for=""><span class="required">*</span> 业务数据亮点</label>
         <div class="textarea-control">
-          <textarea  ng-model="vm.baseInfoVM.name"
+          <textarea  ng-model="vm.financeVM.finance.dataLights"
             placeholder="项目希望满足的市场需求，或现有解决方案存在的问题。 数据对于早期项目非必须，但如可提供能帮助投资人判断。包括但不限于： 累计及活跃用户数 ；PV／UV／留存／用户增长趋势 ；ARPU／重复购买率"
-            message-id="messageName"
+            message-id="dataLights"
             no-validation-message="true"
             maxlength="1000"
             validator="required"
-            type="text" name="name" class="form-control" />
+            type="text" name="dataLights" class="form-control" />
           <div class="textarea-border">
           </div>
-          <span class="text-length">0/1000</span>
+          <span class="text-length">{{vm.financeVM.finance.dataLights.length || 0}}/1000</span>
         </div>
       </div>
 
       <div class="form-group">
         <label for=""><span class="required">*</span> 项目的主要优势</label>
         <div class="textarea-control">
-          <textarea  ng-model="vm.baseInfoVM.name"
+          <textarea  ng-model="vm.financeVM.finance.projectAdvantage"
             placeholder="可能包括以下的一些方面，但不限于 商业模式 、技术 、行业资源 、团队背景及能力"
-            message-id="messageName"
+            message-id="projectAdvantage"
             no-validation-message="true"
             maxlength="1000"
             validator="required"
-            type="text" name="name" class="form-control" />
+            type="text" name="projectAdvantage" class="form-control" />
           <div class="textarea-border">
           </div>
-          <span class="text-length">0/1000</span>
+          <span class="text-length">{{vm.financeVM.finance.projectAdvantage.length || 0}}/1000</span>
         </div>
       </div>
 
       <div class="form-group">
         <label for=""><span class="required">*</span> 主要竞争对手情况</label>
         <div class="textarea-control">
-          <textarea  ng-model="vm.baseInfoVM.name"
+          <textarea  ng-model="vm.financeVM.finance.competitor"
             placeholder="该细分市场已有哪些主要公司，它们的基本情况？ 对比竞争对手，你的优势？ 如有国外标杆公司，可以提供信息，帮助投资人判断"
-            message-id="messageName"
+            message-id="competitor"
             no-validation-message="true"
             maxlength="1000"
             validator="required"
-            type="text" name="name" class="form-control" />
+            type="text" name="competitor" class="form-control" />
           <div class="textarea-border">
           </div>
-          <span class="text-length">0/1000</span>
+          <span class="text-length">{{vm.financeVM.finance.competitor.length || 0}}/1000</span>
         </div>
       </div>
 
       <div class="form-group">
         <label for=""><span class="required">*</span> 发展规划</label>
         <div class="textarea-control">
-          <textarea  ng-model="vm.baseInfoVM.name"
+          <textarea  ng-model="vm.financeVM.finance.projectPlan"
             placeholder="可能包括以下的一些方面，但不限于 ：可分阶段描述未来项目定位演变／产品里程碑 ；可简述本次融资的用途 ；中长期愿景"
-            message-id="messageName"
+            message-id="projectPlan"
             no-validation-message="true"
             maxlength="1000"
             validator="required"
-            type="text" name="name" class="form-control" />
+            type="text" name="projectPlan" class="form-control" />
           <div class="textarea-border">
           </div>
-          <span class="text-length">0/1000</span>
+          <span class="text-length">{{vm.financeVM.finance.projectPlan.length || 0}}/1000</span>
         </div>
       </div>
 
       <div class="form-group">
         <label for=""><span class="required">*</span> 商业计划书</label>
-        <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
-        <a   ng-model="vm.baseInfoVM.website"
-          validator="http" message-id="messageWebsite"
-          type="text" name="website" class="btn-bp" href="javascript:;" >上传BP</a>
+        <span id="bp" class="error-tip" id="messageBrief"></span>
+        <span class="suc-name" ng-show='vm.financeVM.bpName'><span>{{vm.financeVM.bpName}}</span> <span class="icon-dialogClose" ng-click='vm.financeVM.deletebp()'></span></span>
+        <a   ng-model="vm.financeVM.finance.bp"
+          validator="required" message-id="bp" required-error-message="请上传BP"
+          type="text" name="website" class="btn-bp" href="javascript:;" ngf-select="vm.financeVM.uploadImage($files)"
+          ngf-accept="'pdf/*'"><span class="icon-BP"></span><span>{{vm.financeVM.bpName?'更新BP ':'上传BP'}}</span></a>
       </div>
 
       <div class="bp-check-group form-group" >
         <label for="">BP查看设置</label>
         <div class="bp-check">
-          <input type="checkbox" /><span>需要投资人申请查看BP</span>
+          <input type="checkbox" ng-model='vm.financeVM.finance.privilege'/><span>需要投资人申请查看BP</span>
         </div>
       </div>
 
@@ -127,11 +131,11 @@
   </div>
 
   <div class="protocal-read">
-    <input type="checkbox" /><span>已阅读<a href="#">《融资申请协议》</a></span>
+    <input type="checkbox" ng-checked='vm.financeVM.readed' /><span>已阅读<a href="#">《融资申请协议》</a></span>
   </div>
 
   <div>
-    <a class="save next" href="javascript:;">提交</a>
+    <a class="save next" href="javascript:;" ng-click='vm.financeVM.save(vm.finance.form)' ng-class="{'disable':vm.financeVM.disable}">提交</a>
   </div>
   <div class="form-bottom">
     <p class="splitter"> </p>

@@ -31,14 +31,14 @@ export default class ProjectService extends API {
 
   relateUser(id) {
     this.user = new API('/company/:id/relate-user')
-    .get(id);
+    .query(id);
     return this.user;
   }
   // 获取当前登录用户
   getUser() {
-    this.user = new API('/user')
+    this.userinfo = new API('/user')
     .get();
-    return this.user;
+    return this.userinfo;
   }
   // 获取用户收藏夹
   collect(cid) {
@@ -94,8 +94,8 @@ export default class ProjectService extends API {
     const id = {
       id: cid,
     };
-    this.send = new API('/company/:id/funds/bp?action=send2email', ['save'])
-    .save(id, id);
+    this.send = new API('/company/:id/funds/bp?action=send2email')
+    .add(id, id);
     return this.send;
   }
   // // 申请查看bp
@@ -103,7 +103,7 @@ export default class ProjectService extends API {
     const id = {
       id: cid,
     };
-    this.permission = new API('/company/:id/funds/bp/permission', ['add']).add(id, id);
+    this.permission = new API('/company/:id/funds/bp/permission').add(id, id);
     return this.permission;
   }
 
