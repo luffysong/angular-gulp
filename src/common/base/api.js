@@ -23,7 +23,7 @@ function resolveMethod(name) {
       return {
         method: meta.method,
         params: {
-          action: `${matches[2]}`,
+          action: `${matches[1]}`,
         },
       };
     }
