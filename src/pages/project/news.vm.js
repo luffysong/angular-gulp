@@ -9,6 +9,7 @@ export default class NewsVM extends krData.FormVM {
     this.list = data;
     this.init(data);
     // console.log('news', this.id);
+    this.type = krData.META.COMPANY_NEWS.MEMBER_CHANGE;
   }
 
   props = ['url', 'type', 'title', 'publishDate'];
@@ -35,7 +36,7 @@ export default class NewsVM extends krData.FormVM {
     this.more = more;
     this.showMore = showMore;
 
-
+    // this.noTitle = true;
     this.mapProps(this.props, data, this);
   }
 
@@ -43,17 +44,19 @@ export default class NewsVM extends krData.FormVM {
   getNewsTitle() {
     if (this.url) {
       this.projectService.getNewsTitle(this.url).then((data) => {
-        console.log(data);
         this.title = data.title;
+        // if (this.title) {
+        //   this.noTitle = false;
+        // }
       });
     }
   }
 
-  update(form, $event) {
+  update() {
     // console.log('newsId', this);
     // console.log(this);
     this.publishDate = `${this.publishDateYear}-${this.publishDateMonth}-01`;
-    if (!this.validate(form, $event)) return;
+    if (!this.validate()) return;
     this.projectService.addnews({
       id: this.id,
     }, this.mapProps(this.props, this))

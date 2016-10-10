@@ -13,6 +13,8 @@ export default class FinanceVM extends krData.FormVM {
 
   initData(data) {
     angular.extend(this, data);
+    this.financeAmountUnit = krData.META.CURRENCY_UNIT.CNY;
+    this.investorList = [];
     // this.watch();
   }
 
@@ -62,18 +64,14 @@ export default class FinanceVM extends krData.FormVM {
   }
 
   update() {
-    if (this.validate()) {
-      this.financeDate = `${this.financeDateYear}-${this.financeDateMonth}-01`;
-      this.investorList = {
-        entityName: this.entityName,
-      };
+    if (!this.validate()) return;
+    this.financeDate = `${this.financeDateYear}-${this.financeDateMonth}-01`;
 
-      this.projectService.addfinance({
-        id: this.id,
-      }, this.mapProps(this.props, this))
+    this.projectService.addfinance({
+      id: this.id,
+    }, this.mapProps(this.props, this))
       .then(() => {
         krData.Alert.success('数据保存成功');
       });
-    }
   }
 }

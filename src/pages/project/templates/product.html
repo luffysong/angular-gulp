@@ -19,8 +19,10 @@
         </div>
       </div>
     </div>
-    <div class="investor" ng-show="{{vm.productVM.data.hasDataPrivilege}}">
-      <div class="companyData" ng-show="{{vm.productVM.data.companyDataList}}">
+    <!-- <div class="investor" ng-show="{{vm.productVM.data.hasDataPrivilege}}"> -->
+    <div class="investor">
+      <!-- <div class="companyData" ng-show="{{vm.productVM.data.companyDataList}}"> -->
+      <div class="companyData">
         <div class="data-info">
           <div class="tab">
             <span>
@@ -30,7 +32,20 @@
             </span>
             <span ><span class="text" ng-click="vm.productVM.setType('AVERAGE')" ng-class="{'active':vm.productVM.curType === 'AVERAGE'}">人均使用数据</span></span>
             <span><span class="text" ng-click="vm.productVM.setType('DOWNLOAD')" ng-class="{'active':vm.productVM.curType === 'DOWNLOAD'}">下载数据</span></span>
-            <span><span class="text" ng-click="vm.productVM.setType('KEEP')" ng-class="{'active':vm.productVM.curType === 'KEEP'}">留存数据</span></span>
+            <span><span class="text" ng-mouseenter="vm.productVM.setHovered()"
+            ng-class="{'active':vm.productVM.curType === 'KEEP'}">留存数据</span>
+            </span>
+            <div class="keepData" ng-if="vm.productVM.hasHovered"
+            ng-mouseleave="vm.productVM.setHovered()">
+              <span class="angle"><span class="little-angle"></span></span>
+              <span ng-click="vm.productVM.setType('DAYKEEP')" ng-class="{'active':vm.productVM.curType === 'DAYKEEP'}">日留存</span>
+              <span ng-click="vm.productVM.setType('3DAYKEEP')"
+              ng-class="{'active':vm.productVM.curType === '3DAYKEEP'}">3日留存</span>
+              <span ng-click="vm.productVM.setType('WEEKKEEP')"
+              ng-class="{'active':vm.productVM.curType === 'WEEKKEEP'}">周留存</span>
+              <span ng-click="vm.productVM.setType('MONTHKEEP')"
+              ng-class="{'active':vm.productVM.curType === 'MONTHKEEP'}">月留存</span>
+            </div>
           </div>
           <div class="chart">
             <highchart id="monthChart" config="vm.productVM.chartConfig"></highchart>
@@ -40,10 +55,10 @@
           <div class="getMore" ng-click="vm.productVM.getData()" ng-show="vm.productVM.hideData">查看完整数据
           </div>
           <div class="complete-data" ng-show="!vm.productVM.hideData">
-            <div class="plate">
+            <!-- <div class="plate">
               <span><span class="text" ng-click="vm.productVM.setPlate('IOS')" ng-class="{'active':vm.productVM.curPlate === 'IOS'}">iOS数据</span></span>
               <span><span class="text" ng-click="vm.productVM.setPlate('ANDROID')" ng-class="{'active':vm.productVM.curPlate === 'ANDROID'}">Android数据</span></span>
-            </div>
+            </div> -->
             <table class="table">
               <thead>
                 <tr>
@@ -67,15 +82,15 @@
           </div>
         </div>
       </div>
-      <div ng-show="{{!vm.productVM.data.companyDataList}}" class="no-data">
+      <!-- <div ng-show="{{!vm.productVM.data.companyDataList}}" class="no-data">
         <p>暂无数据</p>
-      </div>
+      </div> -->
     </div>
-    <div class="uninvestor" ng-show="{{!vm.productVM.data.hasDataPrivilege}}">
+    <!-- <div class="uninvestor" ng-show="{{!vm.productVM.data.hasDataPrivilege}}">
       <div class="index">
         <div class="certify"><a ng-href="">认证投资人</a></div>
         <div class="text">查看更多产品数据</div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

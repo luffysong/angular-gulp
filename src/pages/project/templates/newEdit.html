@@ -11,10 +11,14 @@
                 validator="required"
                 type="text" name="newsUrl" class="form-control"
                 ng-blur="vm.newsVM.getNewsTitle()" />
-        <label for="" class="url-title">新闻标题：
-        <!-- <a href="#" class="n-title" ng-if="{{vm.newsVM.title}}">{{vm.newsVM.title}}</a> -->
-        <input type="text" ng-model="vm.newsVM.title" name="newsTitle" class="form-control" size="140" />
-        </label>
+        <label for=""><span class="required">*</span>新闻标题</label>
+        <!-- <a href="#" class="n-title" ng-if="!vm.newsVM.noTitle">{{vm.newsVM.title}}</a> -->
+        <span class="error-tip" id="editNewsTitle"></span>
+        <input type="text" ng-model="vm.newsVM.title" name="newsTitle"
+               message-id="editNewsTitle"
+               required-error-message="请填写新闻标题"
+               validator="required"
+               class="form-control" size="140" />
       </div>
       <div class="form-group news-select">
         <label><span class="required">*</span>类型</label>
@@ -34,7 +38,8 @@
                     validator="required"
                     message-id="editNewsDateYear"
                     required-error-message="请选择报道时间"
-                    ng-options="item for item in root.fromYear2000">
+                    ng-options="item for item in root.fromYear2000"
+                    name="publishDateYear">
                     <option value="">年份</option>
             </select>
             <p class="data-error">
@@ -47,7 +52,8 @@
                    validator="required"
                    message-id="editNewsDateMonth"
                    required-error-message="请选择报道时间"
-                   ng-options="item for item in root.getAllMonths">
+                   ng-options="item for item in root.getAllMonths"
+                   name="publishDateMonth">
                    <option value="">月份</option>
            </select>
 
@@ -61,7 +67,7 @@
     <p class="splitter"> </p>
     <p class="tip-text">注意：所有更改内容均会提交审核，审核期间不可对此模块做任何的更改，通过后对所有用户公开</p>
     <div>
-      <a class="save" ng-click="vm.newsVM.update(newsInfo, $event)" href="javascript:void(0)">保存</a>
+      <a class="save" ng-click="vm.newsVM.update()" href="javascript:void(0)">保存</a>
       <a class="cancel" ng-click="vm.newsVM.cancel(newsInfo, $event)" href="javascript:void(0)">取消</a>
     </div>
   </div>

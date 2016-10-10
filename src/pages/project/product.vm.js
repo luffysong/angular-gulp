@@ -6,6 +6,7 @@ export default class ProductVM {
   }
 
   init() {
+    this.hasHovered = false;
     function setType(type) {
       this.curType = type;
     }
@@ -68,4 +69,8 @@ export default class ProductVM {
 
     this.chartConfig = setBasicConfig();
   }
+  setHovered() {
+    this.hasHovered = !this.hasHovered;
+  }
+
 }
