@@ -180,10 +180,33 @@ export default class CreateProjectController {
     });
   }
 
-  claim(company) {
-    this.claimProject = company;
+  claim(project) {
     this.claiming = true;
-    this.step = 2;
+    this.project.getPrivilege(project.id)
+      .then((projectData) => {
+        this.claimProject = project;
+        this.claimer = projectData;
+        this.isClaiming = true;
+        this.step = 2;
+      });
+  }
+
+  claimRemote() {
+    const userCopy = angular.copy(this.user);
+    userCopy.privilegeEnum = userCopy.companyRole;
+    delete userCopy.companyRole;
+    delete userCopy.form;
+    userCopy.id = this.claimProject.id;
+    this.project.claim(this.claimProject.id, userCopy)
+      .then(() => {
+        this.step = 4;
+      })
+      .catch((err) => {
+        krData.Alert.alert(`创建公司失败:${err.msg}`);
+      });
+  }
+  call110() {
+    this['110'] = true;
   }
 
   go(step, form) {
@@ -227,8 +250,10 @@ export default class CreateProjectController {
       case 2:
         if (this.isFunder() && this.needFinance()) {
           this.go(3, form);
-        } else {
+        } else if (!this.isClaiming) {
           this.saveBaseInfo(form);
+        } else {
+          this.claimRemote();
         }
         break;
       case 3:
