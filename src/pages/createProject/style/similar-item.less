@@ -3,15 +3,39 @@
 .similar-item-wrapper{
   .item-tab{
     width: 100%;
-    text-align: center;
+    // text-align: center;
     border-collapse: collapse;
     thead{
       .font(14,21);
+      text-align: center;
       letter-spacing: 0px;
       color: #5A626D;
       background: #F9F9F9;
       td{
         height: 45px;
+      }
+    }
+    tbody{
+      .item-logo{
+        .square(42);
+        border-radius: 4px;
+        .border1(#E7E7E7);
+        display: block;
+        margin: 14px 16px;
+        float: left;
+      }
+      .item-info{
+        display: block;
+        margin-top: 14px;
+        margin-bottom: 14px;
+        .item-name{
+          .font(14,21);
+          color: #6BA2FC;
+        }
+        .item-breif{
+          .font(12,26);
+          color: #5A626D;
+        }
       }
     }
   }

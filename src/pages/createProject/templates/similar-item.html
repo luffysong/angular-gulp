@@ -9,8 +9,18 @@
       <td>过往投资方</td>
     </thead>
     <tbody>
-      <tr >
-
+      <tr ng-repeat="item in vm.similar_item">
+      <td>
+        <img ng-src="../../../images/test.png" class="item-logo">
+        <span class="item-info">
+          <div class="item-name">{{item.name}}</div>
+          <div class="item-breif">{{item.info}}</div>
+        </span>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
       </tr>
     </tbody>
   </table>

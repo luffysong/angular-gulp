@@ -34,8 +34,15 @@ export default class CreateProjectController {
   baseInfo = {};
   user = {};
 
+  similar_item = [
+    {
+      name: '36氪',
+      info: '为创业者提供最好的产品和服务',
+    },
+  ];
+
   financeVM = new FinanceVM(this.$scope);
-  step = 3;
+  step = 4;
 
 
   constructor() {
