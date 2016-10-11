@@ -26,7 +26,7 @@ export default class ClaimVM {
         userEmail: '',
         userWeiXin: '',
         userBusinessCard: '',
-        privilegeEnum: 'MEMBER',
+        privilegeEnum: '',
         id: vm.Cid,
       };
       this.claimCancle = function () {
@@ -62,6 +62,12 @@ export default class ClaimVM {
           }, (data) => {
             krData.Alert.alert(data.msg);
           });
+      };
+      this.isFunder = function () {
+        if (this.claimform.privilegeEnum === 'MEMBER') {
+          return true;
+        }
+        return false;
       };
     }
     const str = '<div ng-include="' +

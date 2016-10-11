@@ -30,15 +30,15 @@
         <div class="form-group">
           <select name="position" class="form-control"
           class="content form-control"
-          ng-model="vm.claimform.userPosition"
+          ng-model="vm.claimform.privilegeEnum"
           validator="required"
           message-id="claimPosition"
           number-error-message="请选择职位">
-            <option value="START_UP_MEMBER">维护者</option>
-            <option value="START_UP_MEMBER" ng-show="!vm.manager.hasManager">认领人</option>
+            <option value="MEMBER">公司员工</option>
+            <option value="START_UP_MEMBER" ng-show="!vm.manager.hasManager">创始成员</option>
           </select>
           <span id="claimPosition" class="error-tip"></span>
-          <input type="text" class="position content form-control" placeholder="输入职位" ng-model="vm.claimform.position" >
+          <input type="text" class="position content form-control" placeholder="输入职位" ng-model="vm.claimform.userPosition" >
         </div>
 
       </div>
@@ -92,6 +92,39 @@
         <span ng-show='vm.suc' class="suc-load">我的名片<span class="icon-dialogClose" ng-click='vm.changePic()'></span></span>
         <span class="uploading" ngf-select="vm.uploadImage($files)"
           ngf-accept="'image/*'"><span class="icon-UserWhite"></span>{{vm.suc?'更新图片':'上传图片'}}</span>
+      </div>
+      <div ng-if="vm.isFunder()">
+        <div class="form-group creator-title">
+          <label>创始人联系方式</label>
+          <span  class="form-tip" >便于更好完善该项目信息</span>
+        </div>
+
+        <div class="form-group">
+          <label for="">真实姓名</label>
+          <input  ng-model="vm.claimform.starterName"
+            placeholder="输入中文真实姓名"
+            maxlength="30"
+            type="text" name="starterName" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="">职位</label>
+          <div>
+            <input ng-model="vm.claimform.starterPosition"
+              placeholder="输入职位"
+            type="text" name="starterPosition" class="form-control position-name"  />
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label for="">手机号码</label>
+          <span class="error-tip" id=""></span>
+          <input  ng-model="vm.claimform.starterPhone"
+          maxlength="30"
+          placeholder="输入真实手机号"
+          type="text" name="starterPhone" class="form-control" />
+        </div>
       </div>
     </form>
   </div>

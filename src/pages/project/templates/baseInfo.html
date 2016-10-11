@@ -6,9 +6,9 @@
     基本介绍编辑
   </section>
   <div ng-if="!vm.introductionVM.isEdit">
-    <ul class="tags" ng-show="vm.introductionVM.industryTag && vm.user!='commen'">
+    <ul class="tags" ng-show="vm.projectData.baseInfo.industryTag && vm.user!='commen'">
       <li class="tag-icon"><span class="icon-Tags"></span></li>
-      <li class="tag" ng-repeat="tag in vm.introductionVM.industryTag">{{tag}}</li>
+      <li class="tag" ng-repeat="tag in vm.projectData.baseInfo.industryTag">{{tag}}</li>
     </ul>
     <div class="info">
       <span id="node" text-overflow text="vm.introductionVM.intro" >

@@ -45,12 +45,12 @@ export default class ProjectService extends API {
     const id = {
       id: cid,
     };
-    this.collection = new API('/user/follow/company/:id', {
+    this.collections = new API('/user/follow/company/:id', {
       group: {
         isArray: true,
       } })
     .group(id);
-    return this.collection;
+    return this.collections;
   }
   // 创建收藏夹
   createCollect(form) {
@@ -89,13 +89,21 @@ export default class ProjectService extends API {
     this.permission = new API('/company/:id/funds/bp/permission-check').get(id);
     return this.permission;
   }
+  // 获取bp链接
+  getBPUrl(cid) {
+    const id = {
+      id: cid,
+    };
+    this.bpUrl = new API('/company/:id/funds/bp').get(id);
+    return this.bpUrl;
+  }
   // 发送bp到邮箱
   sendBP(cid) {
     const id = {
       id: cid,
     };
-    this.send = new API('/company/:id/funds/bp?action=send2email')
-    .add(id, id);
+    this.send = new API('/company/:id/funds/bp?action=send2email',[''])
+    .save(id, id);
     return this.send;
   }
   // // 申请查看bp
@@ -103,8 +111,8 @@ export default class ProjectService extends API {
     const id = {
       id: cid,
     };
-    this.permission = new API('/company/:id/funds/bp/permission').add(id, id);
-    return this.permission;
+    this.applyPermission = new API('/company/:id/funds/bp/permission',['']).save(id, id);
+    return this.applyPermission;
   }
 
   getArea(id) {

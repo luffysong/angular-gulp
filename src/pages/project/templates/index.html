@@ -19,8 +19,8 @@
           <a ng-href="{{::vm.baseInfoVM.website}}">
             {{::vm.baseInfoVM.website}}
           </a>
-          <span class="kr-icon icon-Hot"></span>
-          <span class="hot-text">联系创业者</span>
+          <span class="kr-icon icon-Hot" ng-show="vm.baseInfoVM.advantage"></span>
+          <span class="hot-text" ng-show="vm.baseInfoVM.advantage">{{vm.baseInfoVM.advantage | limitTo: 10}}</span>
         </p>
       </div>
       <div class="finance-brief" ng-show='vm.fundsVM.funds'>
@@ -171,7 +171,7 @@
         <li>
           <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user != 'admin'" login-btn>认领</a>
           <a href="#"  ng-show="vm.user == 'admin'" >融资设置</a>
-          <a href="#"  ng-show="vm.user != 'commen' && userId" >编辑项目</a>
+          <a href="#"  ng-show="vm.user != 'commen' && vm.userId" >编辑项目</a>
         </li>
       </ul>
     </nav>

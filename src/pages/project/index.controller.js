@@ -8,6 +8,8 @@ import NewsVM from './news.vm';
 import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
+import krData from 'krData';
+
 // import Alert from '../../common/base/Alert';
 // import EditFinanceVM from './editFinance.vm';
 @Inject('$stateParams', 'projectService', 'projectData', 'ngDialog', '$validation', '$scope', '$sce')
@@ -39,10 +41,25 @@ export default class ProjectIndexController {
     const BPHtml = '<div ng-include="' +
     "'" + '/pages/project/templates/checkBP.html' + "'" +
     '" center>/div>';
+
+    function talkController() {
+      this.talkCancle = function () {
+        talkDialog.close();
+      };
+    }
+    function talking() {
+      talkDialog = this.ngDialog.open({
+        template: talkHtml,
+        plain: true,
+        appendTo: '.project-wrapper',
+        controller: talkController,
+        controllerAs: 'vm',
+      });
+    }
     // 获取当前用户身份
     this.projectService.getUser()
     .then((data) => {
-      // this.userId = data.id;
+      this.userId = data.id;
       this.talking = talking;
       if (!data.code) {
         // 判断认领人
@@ -64,21 +81,6 @@ export default class ProjectIndexController {
     });
 
 
-    function talkController() {
-      this.talkCancle = function () {
-        talkDialog.close();
-      };
-    }
-    function talking() {
-      talkDialog = this.ngDialog.open({
-        template: talkHtml,
-        plain: true,
-        appendTo: '.project-wrapper',
-        controller: talkController,
-        controllerAs: 'vm',
-      });
-    }
-
     // 导航栏定位
     this.baseInfo = 130;
     this.financeDetail = 130;
@@ -99,12 +101,15 @@ export default class ProjectIndexController {
     setOffset();
     // BP弹窗
     function BPController() {
+      this.applyBpStatus = vm.applyBpStatus;
       this.BPCancle = function () {
         bpDialog.close();
       };
       this.apply = function () {
         vm.projectService.applyBP(vm.id)
-        .then((data) => { this.suc = true; });
+        .then((data) => { this.suc = true; }, (err) => {
+          krData.Alert.alert(err.msg);
+        });
       };
     }
     function bp() {
@@ -118,23 +123,29 @@ export default class ProjectIndexController {
     }
     function send() {
       vm.projectService.sendBP(vm.id)
-      .then((data) => { console.log('suc'); });
+      .then((data) => {
+        krData.Alert.alert('发送成功');
+      });
     }
 
+    // 获取BP-URL
+    this.projectService.getBPUrl(this.id)
+    .then(data => {
+      if (data.bpUrl) {
+        this.bpLink = data.bpUrl;
+        this.target = '_blank';
+      }
+    }, () => {
+      this.bpLink = '#';
+    });
+
     // 判断BP查看权限
-    // this.bpPermission = false;
     this.projectService.getBPPermission(this.id)
     .then((data) => {
       if (data.hasPermission || data.applyBpStatus === 'AGREE') {
-        this.bpLink = 'https://www.baidu.com/';
-        this.target = '_blank';
         this.sendbp = send;
       } else {
-        console.log(data.applyBpStatus);
-        if (data.applyBpStatus === 'APPLY') {
-          this.apply = true;
-        }
-        this.bpLink = '#';
+        this.applyBpStatus = data.applyBpStatus;
         this.bp = bp;
         this.sendbp = bp;
       }

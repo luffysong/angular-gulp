@@ -1,5 +1,7 @@
 <div class="similar-item">
-  <h4>相关新闻<a href="javascript:void(0)" ng-click="vm.newsVM.enterEditMode()" ng-if="!vm.newsVM.isEdit">添加+</a></h4>
+  <h4>相关新闻
+  <!-- <a href="javascript:void(0)" ng-click="vm.newsVM.enterEditMode()" ng-if="!vm.newsVM.isEdit">添加+</a></h4> -->
+  </h4>
   <section id="news" ng-include="'/pages/project/templates/newEdit.html'" ng-if="vm.newsVM.isEdit">
     相关新闻编辑
   </section>
