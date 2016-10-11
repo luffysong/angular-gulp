@@ -19,12 +19,14 @@
         <span id="fundValue" class="error-tip"></span>
         <div class="inline-control">
           <input
-            type="text" name="fundValue" class="form-control money" ng-model="vm.financeVM.finance.investAmountMin"
+            type="text" name="investAmountMin" class="form-control money" ng-model="vm.financeVM.finance.investAmountMin"
             validator="required" message-id="fundValue"
-            placeholder="输入具体区间或金额" />~<input
-            type="text" name="fundValue" class="form-control money" ng-model="vm.financeVM.finance.investAmountMax"
+            placeholder="金额下限" />~
+
+            <input
+            type="text" name="investAmountMax" class="form-control money" ng-model="vm.financeVM.finance.investAmountMax"
             validator="required" message-id="fundValue"
-            placeholder="输入具体区间或金额" />万
+            placeholder="金额上线" />万
           <select  ng-model="vm.financeVM.finance.financeAmountUnit"
             type="text" name="fundValueUnit" class="form-control" ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"> </select>
 
@@ -126,7 +128,7 @@
       <div class="bp-check-group form-group" >
         <label for="">BP查看设置</label>
         <div class="bp-check">
-          <input type="checkbox" ng-model='vm.financeVM.privileges' ng-change='vm.financeVM.privilege()'/><span tooltips tooltip-template="请下载创投助手App处理投资人的申请" tooltip-side="right" tooltip-class="tooltip">需要投资人申请查看BP</span>
+          <input type="checkbox" ng-model='vm.financeVM.privileges' ng-change='vm.financeVM.privilege()'/><span tooltips tooltip-template="请下载创投助手App处理投资人的申请" tooltip-side="right" tooltip-class="tooltip" tooltip-smart="true">需要投资人申请查看BP</span>
         </div>
       </div>
 
@@ -134,11 +136,11 @@
   </div>
 
   <div class="protocal-read">
-    <input type="checkbox" ng-checked='vm.financeVM.readed' /><span>已阅读<a href="#">《融资申请协议》</a></span>
+    <input type="checkbox" ng-model='vm.financeVM.readed'/><span>已阅读<a href="#">《融资申请协议》</a></span>
   </div>
 
   <div>
-    <a class="save next" href="javascript:;" ng-click='vm.next(vm.finance.form)' ng-class="{'disable':vm.financeVM.disable}">提交</a>
+    <a class="save next" href="javascript:;" ng-click='vm.next(vm.finance.form)' ng-class="{'disable':vm.financeVM.show(vm.finance.form)}">提交</a>
   </div>
   <div class="form-bottom">
     <p class="splitter"> </p>

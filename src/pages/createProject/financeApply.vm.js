@@ -24,6 +24,10 @@ export default class financeVM {
         });
     }
   }
+  //处理bp名字
+  // dealBPName(name){
+
+  // }
   validate(form) {
     if (!$validation.checkValid(form)) {
       $validation.validate(form);
@@ -32,21 +36,8 @@ export default class financeVM {
     }
     return true;
   }
-  show() {
-    this.$scope.$watch('vm.financeVM.readed', () => {
-      console.log('dasd');
-
-      if ($validation.checkValid('vm.finance.form') && this.readed) {
-        this.disable = false;
-        console.log('dasd');
-      }
-    });
-  }
-
-
-  save(form) {
-    console.log(this.finance);
-    if (!$validation.checkValid(form) && this.readed) {
+  show(form) {
+    if ($validation.checkValid(form) && this.readed) {
       return false;
     }
     return true;
