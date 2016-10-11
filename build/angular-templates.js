@@ -13,7 +13,6 @@ export default function buildTemplates() {
   pages.forEach((template) => {
     const source = gulp.src(`${template}/**/*.html`)
       .pipe(g.htmlmin({
-        collapseWhitespace: true,
         removeComments: true,
         processScripts: ['text/ng-template'],
       }))
