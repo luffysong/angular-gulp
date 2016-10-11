@@ -14,6 +14,7 @@ export default function buildTemplates() {
     const source = gulp.src(`${template}/**/*.html`)
       .pipe(g.htmlmin({
         removeComments: true,
+        collapseWhitespace: true,
         processScripts: ['text/ng-template'],
       }))
       .pipe(g.angularTemplatecache(`${templateConfig.getPrefix(template)}/template.js`, {
