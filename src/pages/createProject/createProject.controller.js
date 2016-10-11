@@ -256,7 +256,7 @@ export default class CreateProjectController {
         }
         break;
       case 3:
-        if (!validate(form) && this.financeVM.readed) {
+        if (!this.validate(form) && this.financeVM.readed) {
           break;
         } else {
           this.saveFinance(form);
@@ -267,7 +267,7 @@ export default class CreateProjectController {
   }
   validate(form) {
     if (!$validation.checkValid(form)) {
-      $validation.validate(form);
+      validate(form);
       krData.Alert.alert('表单不合法，请更正红色表示部分');
       return false;
     }
