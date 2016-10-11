@@ -89,7 +89,7 @@ export default class ProjectIndexController {
     this.light = 277;
     function setOffset() {
       const baseInfo = (vm.baseInfoVM.industryTag || vm.baseInfoVM.intro);
-      if (vm.baseInfoVM.advantage && vm.user != 'commen') {
+      if (vm.baseInfoVM.investAdvantage && vm.user != 'commen') {
         vm.light = 277;
       } else if (baseInfo) {
         vm.baseInfo = 277;
