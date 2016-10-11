@@ -69,15 +69,20 @@ gulp.task('copy:lib', copyLib);
 gulp.task('server', server);
 
 gulp.task('copy:jsplugins', function copyJsplugins() {
-  return gulp.src(jsplugins, { base: 'src' })
-    .pipe(g.if(!set.debug || '!*.min.js', g.uglify()))
+  const jspluginsInSrc = jsplugins.map((file) => `src/${file}`);
+  const jsFilter = g.filter(['**/*.js', '!**/*.min.js'], { restore: true });
+  return gulp.src(jspluginsInSrc, { base: 'src' })
+    .pipe(jsFilter)
+    .pipe(g.if(set.prod, g.uglify()))
+    .pipe(jsFilter.restore)
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('hash-replace', function hashReplace() {
   runSequence(['copy:images', 'copy:jsplugins'], function revReplace() {
     const manifest = gulp.src('.tmp/rev-manifest.json');
-    const jsFilter = g.filter(['dist/pages/**/*.js', 'dist/bower/**/*.js'], { restore: true });
+    const jsFilter = g.filter(['dist/pages/**/*.js', 'dist/bower/**/*.js', 'dist/bower/**/*.css'],
+      { restore: true });
     return gulp.src(['dist/**/*.*', '!dist/lib/**/*.*', '!dist/common/**/*.*'], { base: 'dist' })
       .pipe(jsFilter)
       .pipe(g.rev())
