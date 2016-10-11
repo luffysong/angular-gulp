@@ -14,6 +14,7 @@ export default class ClaimVM {
     const vm = this;
     function claimController() {
       vm.getManager(vm.Cid);
+      this.background = '../images/cardBackground.png';
       if (vm.user === 'commen') {
         this.position = true;
       } else {
@@ -48,6 +49,7 @@ export default class ClaimVM {
           krData.utls.uploadImage($files[0])
             .then(data => {
               this.claimform.userBusinessCard = data.src;
+              this.background = data.src;
               this.suc = true;
             });
         }

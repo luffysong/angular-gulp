@@ -128,7 +128,7 @@
   <section sticky offset="50" class="nav-wrapper">
     <nav>
       <ul class='navigate'>
-        <li ng-hide="!vm.baseInfoVM.advantage || vm.user=='commen'">
+        <li ng-hide="!vm.baseInfoVM.advantage || vm.user=='commen' || !vm.investorType">
           <a href="#light" du-smooth-scroll="" du-scrollspy=""  offset="{{vm.light}}"  class="active">
             投资亮点
           </a>
@@ -138,7 +138,7 @@
             基本介绍
           </a>
         </li>
-        <li ng-hide="!vm.fundsVM.funds || vm.user == 'commen'">
+        <li ng-hide="!vm.fundsVM.funds || vm.user == 'commen' || !vm.investorType">
           <a href="#financeDetail" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeDetail}}" ng-class="{'active':!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)}">
             融资详情
           </a>
@@ -176,13 +176,13 @@
       </ul>
     </nav>
   </section>
-  <section id="light" class="project-module light" ng-include="'/pages/project/templates/light.html'" ng-hide="!vm.baseInfoVM.advantage || vm.user == 'commen'">
+  <section id="light" class="project-module light" ng-include="'/pages/project/templates/light.html'" ng-hide="!vm.baseInfoVM.advantage || vm.user == 'commen' || !vm.investorType">
 
   </section>
 
   <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'" ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
   </section>
-  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module finance" ng-show="vm.fundsVM.funds && vm.user != 'commen'">
+  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module finance" ng-show="vm.fundsVM.funds && (vm.user != 'commen' || vm.investorType)">
     融资详情
   </section>
   <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module">

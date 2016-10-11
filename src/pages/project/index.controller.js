@@ -68,12 +68,13 @@ export default class ProjectIndexController {
         } else if (vm.baseInfoVM.member) {
           // 维护者身份
           vm.user = 'assert';
-        } else if (data.investorType < 100) {
-          // 投资人
-          vm.user = 'investor';
         } else {
           // 普通用户
           vm.user = 'commen';
+        }
+        if (data.investorType < 100) {
+          // 投资人
+          vm.investorType = true;
         }
         vm.claimVM = new ClaimVM(vm.ngDialog, vm.id, vm.user);
         vm.collectionVM = new CollectionVM(vm.ngDialog, vm.id);

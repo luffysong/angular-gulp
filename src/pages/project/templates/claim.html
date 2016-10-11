@@ -89,9 +89,11 @@
         <p>
           <span class="require">*</span><span class="title">个人名片</span>
         </p>
-        <span ng-show='vm.suc' class="suc-load">我的名片<span class="icon-dialogClose" ng-click='vm.changePic()'></span></span>
+        <img ng-src="{{vm.background}}" alt="" class="upload-img">
         <span class="uploading" ngf-select="vm.uploadImage($files)"
-          ngf-accept="'image/*'"><span class="icon-UserWhite"></span>{{vm.suc?'更新图片':'上传图片'}}</span>
+          ngf-accept="'image/*'">{{vm.suc?'点击更新图片':'点击上传名片'}}</span>
+          <span class="warn-img">建议上传尺寸：90mm*50mm</span>
+
       </div>
       <div ng-if="vm.isFunder()">
         <div class="form-group creator-title">
@@ -100,7 +102,7 @@
         </div>
 
         <div class="form-group">
-          <label for="">真实姓名</label>
+          <label for="">姓名</label>
           <input  ng-model="vm.claimform.starterName"
             placeholder="输入中文真实姓名"
             maxlength="30"
