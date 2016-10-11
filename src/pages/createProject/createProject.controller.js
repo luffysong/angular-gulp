@@ -33,8 +33,7 @@ export default class CreateProjectController {
   project = new CreateProject();
   baseInfo = {};
   user = {};
-
-  similar_item = [
+  similarItem = [
     {
       name: '36氪',
       info: '为创业者提供最好的产品和服务',
@@ -42,7 +41,7 @@ export default class CreateProjectController {
   ];
 
   financeVM = new FinanceVM(this.$scope);
-  step = 4;
+  step = 1;
 
 
   constructor() {
@@ -170,7 +169,7 @@ export default class CreateProjectController {
   setApplinkValidator() {
     $validation.setExpression({
       applink: () => {
-        if (this.baseInfo.ioslink || this.baseInfo.androidlink) {
+        if (this.baseInfo.iosLink || this.baseInfo.androidLink) {
           return true;
         }
         return false;
