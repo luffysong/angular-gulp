@@ -1,3 +1,4 @@
+import krData from 'krData';
 import BaseInfoVM from './baseInfo.vm';
 import IntroductionVM from './introduction.vm';
 import FundsVM from './funds.vm';
@@ -8,11 +9,11 @@ import NewsVM from './news.vm';
 import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
-import krData from 'krData';
 
 // import Alert from '../../common/base/Alert';
 // import EditFinanceVM from './editFinance.vm';
-@Inject('$stateParams', 'projectService', 'projectData', 'ngDialog', '$validation', '$scope', '$sce')
+@Inject('$stateParams', 'projectService', 'projectData', 'ngDialog',
+  '$validation', '$scope', '$sce', '$state')
 export default class ProjectIndexController {
   constructor() {
     this.init();
@@ -35,21 +36,14 @@ export default class ProjectIndexController {
     let talkDialog;
     let bpDialog;
     const vm = this;
-    const talkHtml = '<div ng-include="' +
-    "'" + '/pages/project/templates/talk.html' + "'" +
-    '" center>/div>';
-    const BPHtml = '<div ng-include="' +
-    "'" + '/pages/project/templates/checkBP.html' + "'" +
-    '" center>/div>';
-
     function talkController() {
-      this.talkCancle = function () {
+      this.talkCancle = function talkCancle() {
         talkDialog.close();
       };
     }
     function talking() {
       talkDialog = this.ngDialog.open({
-        template: talkHtml,
+        template: '<div ng-include="\'/pages/project/templates/talk.html\'" center></div>',
         plain: true,
         appendTo: '.project-wrapper',
         controller: talkController,
@@ -93,7 +87,7 @@ export default class ProjectIndexController {
         vm.light = 277;
       } else if (baseInfo) {
         vm.baseInfo = 277;
-      } else if (vm.fundsVM.funds && vm.user != 'commen') {
+      } else if (vm.fundsVM.funds && vm.user !== 'commen') {
         vm.financeDetail = 277;
       } else {
         vm.financeHistory = 277;
@@ -103,19 +97,19 @@ export default class ProjectIndexController {
     // BP弹窗
     function BPController() {
       this.applyBpStatus = vm.applyBpStatus;
-      this.BPCancle = function () {
+      this.BPCancle = function BPCancle() {
         bpDialog.close();
       };
-      this.apply = function () {
+      this.apply = function apply() {
         vm.projectService.applyBP(vm.id)
-        .then((data) => { this.suc = true; }, (err) => {
+        .then(() => { this.suc = true; }, (err) => {
           krData.Alert.alert(err.msg);
         });
       };
     }
     function bp() {
       bpDialog = this.ngDialog.open({
-        template: BPHtml,
+        template: '<div ng-include="\'/pages/project/templates/checkBP.html\'" center></div>',
         plain: true,
         appendTo: '.project-wrapper',
         controller: BPController,
@@ -124,7 +118,7 @@ export default class ProjectIndexController {
     }
     function send() {
       vm.projectService.sendBP(vm.id)
-      .then((data) => {
+      .then(() => {
         krData.Alert.alert('发送成功');
       });
     }

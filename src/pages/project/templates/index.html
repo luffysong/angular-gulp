@@ -8,6 +8,7 @@
         <h1>{{::vm.baseInfoVM.name}}
           <span>{{vm.baseInfoVM.industryEnum | industry}}</span>
           <a class="btn-edit"
+            ng-if="vm.isEditMode"
             ng-click="vm.baseInfoVM.enterEditMode()"
             href="javascript:void(0)">编辑</a>
         </h1>
@@ -171,18 +172,22 @@
         <li>
           <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user != 'admin'" login-btn>认领</a>
           <a href="#"  ng-show="vm.user == 'admin'" >融资设置</a>
-          <a href="#"  ng-show="vm.user != 'commen' && vm.userId" >编辑项目</a>
+          <a href="#" ui-sref="project.edit({id: vm.id})"
+            ng-show="vm.user != 'commen' && vm.userId && !vm.isEditMode" >编辑项目</a>
         </li>
       </ul>
     </nav>
   </section>
-  <section id="light" class="project-module light" ng-include="'/pages/project/templates/light.html'" ng-hide="!vm.baseInfoVM.investAdvantage || vm.user == 'commen' || !vm.investorType">
-
+  <section id="light" class="project-module light"
+  ng-include="'/pages/project/templates/light.html'"
+  ng-hide="!vm.baseInfoVM.investAdvantage || vm.user == 'commen' || !vm.investorType">
   </section>
 
-  <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'" ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
+  <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'"
+    ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
   </section>
-  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module finance" ng-show="vm.fundsVM.funds && (vm.user != 'commen' || vm.investorType)">
+  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module finance"
+    ng-show="vm.fundsVM.funds && (vm.user != 'commen' || vm.investorType)">
     融资详情
   </section>
   <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module">
@@ -201,10 +206,12 @@
 
   </section>
   <!-- 相关人员只有在编辑模式下才有 -->
-  <section id="similarItem" class="project-module" ng-include="'/pages/project/templates/relatedUser.html'">
+  <section id="similarItem" ng-if="vm.isEditMode" class="project-module"
+    ng-include="'/pages/project/templates/relatedUser.html'">
 
   </section>
   <section ng-include="'/pages/project/templates/footer.html'" >
 
   </section>
+  <ui-view></ui-view>
 </div>

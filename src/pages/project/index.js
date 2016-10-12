@@ -5,8 +5,10 @@ import textOverflowDirective from './textOverflow.directive';
 import centerDirective from './center.directive';
 import loginBtnDirective from './loginBtn.directive';
 import moreShowDirective from './moreShow.directive';
+import EditProjectController from './EditProject.controller';
 angular.module('@@pages.project', [])
   .controller('ProjectIndexController', ProjectIndexController)
+  .controller('EditProjectController', EditProjectController)
   .service('projectService', ProjectService)
   .directive('textOverflow', textOverflowDirective)
   .directive('textMore', textMoreDirective)

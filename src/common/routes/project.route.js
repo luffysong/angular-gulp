@@ -17,3 +17,13 @@ export default {
   },
 };
 
+const editProject = {
+  url: '/edit',
+  template: '',
+  controllerAs: 'editProjectVM',
+  controller: 'EditProjectController',
+};
+
+export {
+  editProject,
+};
