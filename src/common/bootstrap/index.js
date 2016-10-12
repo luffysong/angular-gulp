@@ -65,6 +65,11 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       },
     });
   })
+  .run(function run(notify) {
+    notify.config({
+      duration: 2000,
+    });
+  })
   .run(function run($rootScope, OPERATION_STATUS_META, COMPANY_NEWS_META, FINANCE_PHASE_META,
     CURRENCY_UNIT_META, ROLE_META, FINANCE_NEED_META, PROJECT_TYPE_META, FUNDS_PHASE_ENUM_META) {
     const root = {};
