@@ -13,28 +13,24 @@ export default class NewsVM extends krData.FormVM {
   }
 
   props = ['url', 'type', 'title', 'publishDate'];
-
+  num = 1;
+  getList(limitlist, list, n) {
+    if (list.length > (5 * n)) {
+      limitlist = list.slice(0, (5 * n));
+    } else {
+      limitlist = list;
+    }
+    return limitlist;
+  }
+  more() {
+    ++this.num;
+    this.newsList = this.getList(this.newsList, this.list, this.num);
+  }
+  showMore() {
+    return !(this.newsList.length === this.list.length);
+  }
   init(data) {
-    // console.log(data);
-    let num = 1;
-    function getList(limitlist, list, n) {
-      if (list.length > (5 * n)) {
-        limitlist = list.slice(0, (5 * n));
-      } else {
-        limitlist = list;
-      }
-      return limitlist;
-    }
-    function more() {
-      ++num;
-      this.newsList = getList(this.newsList, this.list, num);
-    }
-    function showMore() {
-      return !(this.newsList.length === this.list.length);
-    }
-    this.newsList = getList(this.newsList, this.list, 1);
-    this.more = more;
-    this.showMore = showMore;
+    this.newsList = this.getList(this.newsList, this.list, 1);
 
     // this.noTitle = true;
     this.mapProps(this.props, data, this);

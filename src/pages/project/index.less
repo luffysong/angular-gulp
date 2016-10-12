@@ -73,13 +73,27 @@
         .vam();
         font-size: 20px;
       }
-      .icon-Weibo{
+      .link-none{
+        color: #ccc;
+      }
+      .icon-Weibo-active{
         color: rgb(231,61,54);
         vertical-align: middle;
       }
+      .tooltip{
+        background: rgba(150,159,169,1);
+        box-shadow: 0px 0px 4px 0px #969FA9;
+        border-radius: 0px 0px 0px 4px 4px 4px 4px;
+        min-width: 80px;
+        tip-arrow{
+          border-top:6px solid rgba(150,159,169,1);
+        }
+      }
       .icon-Wechat{
-        color: rgb(61,190, 48);
         margin: 0 12px 0 11px;
+      }
+      .icon-Wechat-active{
+        color: rgb(61,190, 48);
       }
       .icon-websitelink{
         color: #6BA2FC;
@@ -283,6 +297,9 @@
     min-width: 500px !important;
     display: inline-block;
     width: auto !important;
+    .ngdialog-close{
+      display: none!important;
+    }
   }
   .project-dialog{
     padding: 30px 80px;

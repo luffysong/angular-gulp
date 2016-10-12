@@ -2,46 +2,45 @@ import krData from 'krData';
 export default class CollectionVM {
   constructor(fn, id) {
     this.ngDialog = fn;
-    this.init(id);
+    this.id = id;
   }
-  init(id) {
-    let collectDialog;
+  collection() {
     const projectService = krData.utls.getService('projectService');
-    const Cid = id;
+    const Cid = this.id;
+    const vm = this;
     function collectController() {
-      const vm = this;
-      vm.selected = [];
-      vm.createShow = false;
+      this.selected = [];
+      this.createShow = false;
       projectService.collect(Cid)
-      .then((data) => vm.collections = data);
-      vm.suc = false;
-      vm.cancle = false;
-      vm.collectCancle = function () {
-        collectDialog.close();
+      .then((data) => this.collections = data);
+      this.suc = false;
+      this.cancle = false;
+      this.collectCancle = () => {
+        vm.collectDialog.close();
       };
-      vm.createNew = function () {
+      this.createNew = () => {
         this.createShow = true;
       };
-      vm.create = function () {
+      this.create = () => {
         if (!this.collectionName) {
           return false;
         }
         const name = {
-          name: vm.collectionName,
+          name: this.collectionName,
         };
         projectService.createCollect(name)
           .then(() => {
-            vm.createShow = false;
-            vm.suc = true;
+            this.createShow = false;
+            this.suc = true;
             setTimeout(() => {
-              vm.suc = false;
+              this.suc = false;
             }, 3000);
             projectService.collect(Cid)
-            .then((data) => vm.collections = data);
+            .then((data) => this.collections = data);
           });
       };
 
-      vm.change = function (item) {
+      this.change = (item) => {
         const form = {
           cid: Cid,
           groupId: item.id,
@@ -49,38 +48,31 @@ export default class CollectionVM {
         if (item.followed) {
           projectService.collectCompany(form)
           .then(() => {
-            vm.suc = true;
+            this.suc = true;
             setTimeout(() => {
-              vm.suc = false;
+              this.suc = false;
             }, 3000);
             ++item.count;
           });
         } else {
           projectService.deconsteCompany(form)
           .then(() => {
-            vm.cancle = true;
+            this.cancle = true;
             setTimeout(() => {
-              vm.cancle = false;
+              this.cancle = false;
             }, 3000);
             --item.count;
           });
         }
       };
     }
-    const str = '<div ng-include="' +
-    "'" + '/pages/project/templates/collection.html' + "'" +
-    '" center>/div>';
-    function collection() {
-      collectDialog = this.ngDialog.open({
-        template: str,
-        plain: true,
-        appendTo: '.project-wrapper',
-        controller: collectController,
-        controllerAs: 'vm',
-      });
-    }
-
-    this.collection = collection;
+    this.collectDialog = this.ngDialog.open({
+      template: '<div ng-include="\'/pages/project/templates/collection.html\'" center>/div>',
+      plain: true,
+      appendTo: '.project-wrapper',
+      controller: collectController,
+      controllerAs: 'vm',
+    });
   }
 
 }

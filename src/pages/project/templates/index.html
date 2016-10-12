@@ -14,8 +14,11 @@
         </h1>
         <h3>{{::vm.baseInfoVM.brief}}</h3>
         <p>
-          <span ng-if="vm.baseInfoVM.weibo" class="kr-icon icon-Weibo"></span>
-          <span ng-if="vm.baseInfoVM.weixin" class="kr-icon icon-Wechat"></span>
+          <a ng-if="vm.baseInfoVM.weibo"
+          class="kr-icon icon-Weibo link-none" href="" ng-class="{'icon-Weibo-active':vm.baseInfoVM.weibo}"
+          ng-href="{{::vm.baseInfoVM.weibo}}" target="_blank"></a>
+          <span class="kr-icon icon-Weibo link-none" ng-if="!vm.baseInfoVM.weibo" tooltips tooltip-template="未填写" tooltip-smart="true" tooltip-class="tooltip"></span>
+          <a class="kr-icon icon-Wechat link-none" ng-class="{'icon-Wechat-active':vm.baseInfoVM.weixin}" tooltips tooltip-template="{{vm.baseInfoVM.weixin?vm.baseInfoVM.weixin:'未填写'}}" tooltip-class="tooltip"></a>
           <span class="kr-icon icon-websitelink"></span>
           <a ng-href="{{::vm.baseInfoVM.website}}">
             {{::vm.baseInfoVM.website}}

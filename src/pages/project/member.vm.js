@@ -9,39 +9,35 @@ export default class MemberVM extends krData.FormVM {
     this.story = this.data.story || '';
     this.projectService = krData.utls.getService('projectService');
   }
+
+  num = 1;
+  getList(limitlist, list, n) {
+    if (list.length > (5 * n)) {
+      limitlist = list.slice(0, (5 * n));
+    } else {
+      limitlist = list;
+    }
+    return limitlist;
+  }
+  more() {
+    ++this.num;
+    this.members = this.getList(this.members, this.data.members, this.num);
+  }
+  showMore() {
+    return !(this.members === this.data.members);
+  }
+  displayData() {
+    const display = (!this.data.teamTags && !this.data.story && this.data.members.length === 0);
+    if (display) {
+      return true;
+    }
+    return false;
+  }
+  show() {
+    return this.data.story || this.data.teamTags || this.data.members.length;
+  }
   init() {
-    let num = 1;
-    function getList(limitlist, list, n) {
-      if (list.length > (5 * n)) {
-        limitlist = list.slice(0, (5 * n));
-      } else {
-        limitlist = list;
-      }
-      return limitlist;
-    }
-    function more() {
-      ++num;
-      this.members = getList(this.members, this.data.members, num);
-    }
-    function showMore() {
-      return !(this.members === this.data.members);
-    }
-    function displayData() {
-      const display = (!this.data.teamTags && !this.data.story && this.data.members.length === 0);
-      if (display) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    function show() {
-      return this.data.story || this.data.teamTags || this.data.members.length;
-    }
-    this.members = getList(this.members, this.data.members, 1);
-    this.more = more;
-    this.showMore = showMore;
-    this.displayData = displayData;
-    this.show = show;
+    this.members = this.getList(this.members, this.data.members, 1);
   }
 
   setData() {
@@ -55,11 +51,9 @@ export default class MemberVM extends krData.FormVM {
         });
         if (this.teamTags.length === 3) {
           krData.Alert.alert('团队关键优势最多添加三个');
-        } else {
-          if (this.key) {
-            this.teamTags.push(this.key);
-            this.key = '';
-          }
+        } else if (this.key) {
+          this.teamTags.push(this.key);
+          this.key = '';
         }
       }
     }
@@ -69,10 +63,10 @@ export default class MemberVM extends krData.FormVM {
     this.keyup = keyup;
     this.deletetag = deletetag;
   }
-  save(){
+  save() {
     const form = {
       story: this.story,
-      teamTags:this.teamTags.toString()
+      teamTags: this.teamTags.toString(),
     };
     this.projectService.editmember({
       id: this.id,

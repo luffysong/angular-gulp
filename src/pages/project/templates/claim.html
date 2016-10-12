@@ -38,7 +38,7 @@
             <option value="START_UP_MEMBER" ng-show="!vm.manager.hasManager">创始成员</option>
           </select>
           <span id="claimPosition" class="error-tip"></span>
-          <input type="text" class="position content form-control" placeholder="输入职位" ng-model="vm.claimform.userPosition" >
+          <input type="text" class="position content form-control" placeholder="输入职位" ng-model="vm.claimform.userPosition" validator="required" name='userPosition'>
         </div>
 
       </div>

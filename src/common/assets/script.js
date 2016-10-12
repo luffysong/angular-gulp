@@ -16,6 +16,8 @@ export default {
       '/bower/highcharts/highcharts.js',
       '/bower/highcharts-ng/dist/highcharts-ng.min.js',
       '/local_lib/angular-mass-autocomplete/massautocomplete.min.js',
+      '/bower/angular-tooltips/dist/angular-tooltips.js',
+      '/bower/angular-tooltips/dist/angular-tooltips.css',
     ],
     createProject: [
       '/pages/createProject/index.js',

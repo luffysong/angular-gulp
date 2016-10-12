@@ -4,17 +4,16 @@ export default class ClaimVM {
   $validation = getService('$validation');
   constructor(fn, id, usr) {
     this.ngDialog = fn;
-    this.init();
     this.Cid = id;
     this.user = usr;
     this.projectService = krData.utls.getService('projectService');
   }
-  init() {
+  claim() {
     let claimDialog;
     const vm = this;
     function claimController() {
       vm.getManager(vm.Cid);
-      this.background = '../images/cardBackground.png';
+      this.background = '/images/cardBackground.png';
       if (vm.user === 'commen') {
         this.position = true;
       } else {
@@ -72,19 +71,13 @@ export default class ClaimVM {
         return false;
       };
     }
-    const str = '<div ng-include="' +
-    "'" + '/pages/project/templates/claim.html' + "'" +
-    '" center>/div>';
-    function claim() {
-      claimDialog = this.ngDialog.open({
-        template: str,
-        plain: true,
-        appendTo: '.project-wrapper',
-        controller: claimController,
-        controllerAs: 'vm',
-      });
-    }
-    this.claim = claim;
+    claimDialog = this.ngDialog.open({
+      template: '<div ng-include="\'/pages/project/templates/claim.html\'"center>/div>',
+      plain: true,
+      appendTo: '.project-wrapper',
+      controller: claimController,
+      controllerAs: 'vm',
+    });
   }
   getManager(id) {
     this.projectService.getManager({
