@@ -87,14 +87,26 @@ export default class CreateProjectController {
       this.user.companyRole === ROLE.START_UP_MEMBER;
   }
 
+  loadUserInfo() {
+    if (this.isFunder() || this.isMaintainer() || this.isClaiming) {
+      krData.User.getUserInfo()
+        .then((user) => {
+          this.user.userPhone = user.phone;
+          this.user.userName = user.name;
+          this.user.userEmail = user.email;
+          this.user.userWeiXin = user.weixin;
+        });
+    }
+  }
+
   isMaintainer() {
     return this.baseInfo.companyRole === ROLE.MEMBER ||
       this.user.companyRole === ROLE.MEMBER;
   }
 
-  notSelectRole() {
-    return angular.isUndefined(this.baseInfo.companyRole);
-  }
+  // notSelectRole() {
+  //   return angular.isUndefined(this.baseInfo.companyRole);
+  // }
 
   getIndustry(industry) {
     return this.$filter('industry')(industry);
@@ -187,6 +199,7 @@ export default class CreateProjectController {
         this.claimer = projectData;
         this.isClaiming = true;
         this.step = 2;
+        this.loadUserInfo();
       });
   }
 
@@ -208,12 +221,17 @@ export default class CreateProjectController {
     this['110'] = true;
   }
 
+  // 走创建公司流程，角色已选
   go(step, form) {
     if (this.validate(form)) {
       this.step = step;
+      if (step === 2) {
+        this.loadUserInfo();
+      }
     }
   }
 
+  // 投资人或者用户直接创建公司
   saveBaseInfo(form) {
     if (this.validate(form)) {
       const projectInfo = angular.extend({}, this.baseInfo, this.user);
@@ -227,6 +245,7 @@ export default class CreateProjectController {
         });
     }
   }
+
   saveFinance(form) {
     if (this.validate(form)) {
       const projectInfo = angular.extend({}, this.baseInfo, this.user, this.financeVM.finance);
@@ -247,6 +266,7 @@ export default class CreateProjectController {
         this.go(2, form);
         break;
       case 2:
+        if (!this.validate(this.user.form)) return;
         if (this.isFunder() && this.needFinance()) {
           this.go(3, form);
         } else if (!this.isClaiming) {
