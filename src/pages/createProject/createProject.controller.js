@@ -122,6 +122,32 @@ export default class CreateProjectController {
     this.baseInfo.financingNeed === this.FINANCE_NEED.FINANCING;
   }
 
+  // 移除与所选产品类型不相关的属性
+  removeProps(obj) {
+    let props = [];
+    const all = ['iosLink', 'androidLink', 'intro', 'website'];
+    switch (this.baseInfo.companyType) {
+      case PROJECT_TYPE.WEB:
+        props = ['website'];
+        break;
+      case PROJECT_TYPE.APP:
+      case PROJECT_TYPE.WEB_APP:
+        props = ['website', 'iosLink', 'androidLink'];
+        break;
+      case PROJECT_TYPE.WECHAT:
+        props = ['weixin'];
+        break;
+      case PROJECT_TYPE.IDEA:
+        props = ['intro'];
+        break;
+      default:
+        props = all;
+    }
+    const copy = krData.utls.mapProps(props, obj);
+    all.forEach(v => delete obj[v]);
+    angular.extend(obj, copy);
+  }
+
   watchCompanyType() {
     this.$scope.$watch('vm.baseInfo.companyType', (nv) => {
       if (!nv) return;
@@ -236,6 +262,7 @@ export default class CreateProjectController {
     if (this.validate(form)) {
       const projectInfo = angular.extend({}, this.baseInfo, this.user);
       delete projectInfo.form;
+      this.removeProps(projectInfo);
       this.project.create(projectInfo)
         .then(() => {
           this.step = 4;
@@ -250,6 +277,7 @@ export default class CreateProjectController {
     if (this.validate(form)) {
       const projectInfo = angular.extend({}, this.baseInfo, this.user, this.financeVM.finance);
       delete projectInfo.form;
+      this.removeProps(projectInfo);
       this.project.create(projectInfo)
         .then(() => {
           this.step = 4;
