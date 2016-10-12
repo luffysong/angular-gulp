@@ -79,7 +79,7 @@ export function uploadBp(name, file) {
   .then(function setUrl(data) {
     return {
       data: data.data,
-      src: `${upyun.fileBucket.host}${data.url}`,
+      src: `${upyun.fileBucket.host}${data.data.url}`,
     };
   });
 }

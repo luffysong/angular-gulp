@@ -119,17 +119,20 @@
       <div class="form-group">
         <label for=""><span class="required">*</span> 商业计划书</label>
         <span id="bp" class="error-tip" id="messageBrief"></span>
-        <span class="suc-name" ng-show='vm.financeVM.bpName'><span>{{vm.financeVM.bpName}}</span> <span class="icon-dialogClose" ng-click='vm.financeVM.deletebp()'></span></span>
+        <span class="suc-name" ng-show='vm.financeVM.bpName'><span>{{vm.financeVM.bpName}}</span>
+          <span class="icon-dialogClose" ng-click='vm.financeVM.deletebp()'></span></span>
         <a   ng-model="vm.financeVM.finance.bp"
           validator="required" message-id="bp" required-error-message="请上传BP"
-          type="text" name="website" class="btn-bp" href="javascript:;" ngf-select="vm.financeVM.uploadImage($files)"
+          type="text" name="website" class="btn-bp" href="javascript:;" ngf-select="vm.financeVM.uploadBp($files)"
           ngf-accept="'application/pdf'"><span class="icon-BP"></span><span>{{vm.financeVM.bpName?'更新BP ':'上传BP'}}</span></a>
       </div>
 
       <div class="bp-check-group form-group" >
         <label for="">BP查看设置</label>
         <div class="bp-check">
-          <input type="checkbox" ng-model='vm.financeVM.privileges' ng-change='vm.financeVM.privilege()'/><span tooltips tooltip-template="请下载创投助手App处理投资人的申请" tooltip-side="right" tooltip-class="tooltip" tooltip-smart="true">需要投资人申请查看BP</span>
+          <input type="checkbox" ng-model='vm.financeVM.privileges' ng-change='vm.financeVM.privilege()'/>
+          <span tooltips tooltip-template="请下载创投助手App处理投资人的申请" tooltip-side="right"
+            tooltip-class="tooltip" tooltip-smart="true">需要投资人申请查看BP</span>
         </div>
       </div>
 

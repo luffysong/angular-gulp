@@ -1,10 +1,8 @@
 import krData from 'krData';
 const $validation = krData.utls.getService('$validation');
-// @Inject('$sce', '$scope')
 export default class financeVM {
   constructor(scope) {
     this.$scope = scope;
-    this.show();
   }
 
   finance = {
@@ -13,21 +11,19 @@ export default class financeVM {
   };
   disable = true;
 
-  uploadImage($files) {
+  uploadBp($files) {
+    const name = this.$scope.vm.baseInfo.name || 'test';
     if ($files.length) {
-      krData.utls.uploadBp($files[0].name, $files[0])
+      krData.utls.uploadBp(name, $files[0])
         .then(data => {
           this.finance.bp = data.src;
-          this.bpName = $files[0].name + '_20161010.pdf';
-        }, data => {
-          console.log(data, $files[0].name);
+          this.bpName = `[${name}]商业计划书.pdf`;
+        }, err => {
+          krData.Alert.alert(`上传BP失败:${err.msg}`);
         });
     }
   }
-  //处理bp名字
-  // dealBPName(name){
 
-  // }
   validate(form) {
     if (!$validation.checkValid(form)) {
       $validation.validate(form);
