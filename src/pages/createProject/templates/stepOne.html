@@ -1,14 +1,17 @@
 <div  class="step-one-wrapper">
   <h4>基本信息</h4>
   <div class="upload-logo">
-    <img ng-src="{{vm.baseInfo.logo}}" class="logo" alt="">
+    <img ng-src="{{vm.baseInfo.logo || '/images/default-logo.png'}}" class="logo" alt="">
     <a
       class="btn-upload-logo" href="javascript:;">
       <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/*'"
       type="file" />
     </a>
-    <p>建议上传大小
-    <p>90*90px</p>
+    <div ng-if="vm.baseInfo.form.logo.$invalid !== true">
+      <p>建议上传大小</p>
+      <p>90*90px</p>
+    </div>
+    <p ng-if="vm.baseInfo.form.logo.$invalid === true" class="logo-msg">请上传LOGO</p>
   </div>
   <div>
     <form name="vm.baseInfo.form">
