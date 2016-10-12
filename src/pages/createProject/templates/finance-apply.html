@@ -123,7 +123,7 @@
         <a   ng-model="vm.financeVM.finance.bp"
           validator="required" message-id="bp" required-error-message="请上传BP"
           type="text" name="website" class="btn-bp" href="javascript:;" ngf-select="vm.financeVM.uploadImage($files)"
-          ngf-accept="'pdf/*'"><span class="icon-BP"></span><span>{{vm.financeVM.bpName?'更新BP ':'上传BP'}}</span></a>
+          ngf-accept="'application/pdf'"><span class="icon-BP"></span><span>{{vm.financeVM.bpName?'更新BP ':'上传BP'}}</span></a>
       </div>
 
       <div class="bp-check-group form-group" >
