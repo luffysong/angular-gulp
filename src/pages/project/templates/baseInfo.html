@@ -19,8 +19,11 @@
       <li>公司全称：{{::vm.introductionVM.fullName}}</li>
       <li>地点：{{::vm.projectData.baseInfo.address1Desc}}</li>
       <li>成立时间：{{::(vm.introductionVM.startDate | date: 'yyyy-MM-dd')}}</li>
+    </ul>
+    <ul class="company-info">
       <li>公司规模：{{::vm.introductionVM.scale}}</li>
-      <li class="more"><a ng-href="{{vm.projectData.baseInfo.businessInfoUrl}}" target="_blank">查看更多工商信息</a></li>
+      <li>运营状态：{{vm.projectData.baseInfo.operationStatusEnum | operationStatus}}</li>
+      <li class="more" ng-if="vm.projectData.baseInfo.businessInfoUrl"><a ng-href="{{vm.projectData.baseInfo.businessInfoUrl}}" target="_blank">查看更多工商信息</a></li>
     </ul>
   </div>
 </div>
