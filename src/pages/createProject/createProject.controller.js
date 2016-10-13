@@ -248,47 +248,42 @@ export default class CreateProjectController {
   }
 
   // 走创建公司流程，角色已选
-  go(step, form) {
-    if (this.validate(form)) {
-      this.step = step;
-      if (step === 2) {
-        this.loadUserInfo();
-      }
+  go(step) {
+    this.step = step;
+    if (step === 2) {
+      this.loadUserInfo();
     }
   }
 
   // 投资人或者用户直接创建公司
-  saveBaseInfo(form) {
-    if (this.validate(form)) {
-      const projectInfo = angular.extend({}, this.baseInfo, this.user);
-      delete projectInfo.form;
-      this.removeProps(projectInfo);
-      this.project.create(projectInfo)
-        .then(() => {
-          this.step = 4;
-        })
-        .catch((err) => {
-          krData.Alert.alert(`创建公司失败:${err.msg}`);
-        });
-    }
+  saveBaseInfo() {
+    const projectInfo = angular.extend({}, this.baseInfo, this.user);
+    delete projectInfo.form;
+    this.removeProps(projectInfo);
+    this.createRemote(projectInfo);
   }
 
-  saveFinance(form) {
-    if (this.validate(form)) {
-      const projectInfo = angular.extend({}, this.baseInfo, this.user, this.financeVM.finance);
-      delete projectInfo.form;
-      this.removeProps(projectInfo);
-      this.project.create(projectInfo)
-        .then(() => {
-          this.step = 4;
-        })
-        .catch((err) => {
-          krData.Alert.alert(`创建公司失败:${err.msg}`);
-        });
-    }
+  createRemote(projectInfo) {
+    this.project.create(projectInfo)
+      .then(() => {
+        this.step = 4;
+      })
+      .catch((err) => {
+        krData.Alert.alert(`创建公司失败:${err.msg}`);
+      });
+  }
+
+  saveFinance() {
+    const projectInfo = angular.extend({}, this.baseInfo, this.user, this.financeVM.finance);
+    delete projectInfo.form;
+    this.removeProps(projectInfo);
+    this.createRemote(projectInfo);
   }
 
   next(form) {
+    if (!this.validate(form)) {
+      return;
+    }
     switch (this.step) {
       case 1:
         this.go(2, form);

@@ -13,7 +13,13 @@ export default class financeVM {
 
   uploadBp($files) {
     const name = this.$scope.vm.baseInfo.name || 'test';
+    let validObj = null;
     if ($files.length) {
+      validObj = krData.utls.validateBP($files[0]);
+      if (!validObj.valid) {
+        krData.Alert.alert(validObj.msg);
+        return;
+      }
       krData.utls.uploadBp(name, $files[0])
         .then(data => {
           this.finance.bp = data.src;
@@ -24,14 +30,6 @@ export default class financeVM {
     }
   }
 
-  validate(form) {
-    if (!$validation.checkValid(form)) {
-      $validation.validate(form);
-      krData.Alert.alert('表单不合法，请更正红色表示部分');
-      return false;
-    }
-    return true;
-  }
   show(form) {
     if ($validation.checkValid(form) && this.readed) {
       return false;
@@ -41,6 +39,9 @@ export default class financeVM {
   deletebp() {
     this.finance.bp = '';
     this.bpName = '';
+    krData.utls.getService('$timeout')(() => {
+      $validation.validate(this.form.bp);
+    });
   }
   privilege() {
     if (this.privileges) {

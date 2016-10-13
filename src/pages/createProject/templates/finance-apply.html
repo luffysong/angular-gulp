@@ -3,7 +3,7 @@
   <h4>申请融资</h4>
 
   <div>
-    <form name='vm.finance.form'>
+    <form name='vm.financeVM.form'>
 
       <div class="form-group">
         <label for=""><span class="required">*</span> 融资需求</label>
@@ -117,20 +117,23 @@
       </div>
 
       <div class="form-group">
+        <input
+        validator="required" required-error-message="请上传BP" message-id="bp"
+        type="hidden" ng-model="vm.financeVM.finance.bp" name="bp">
         <label for=""><span class="required">*</span> 商业计划书</label>
-        <span id="bp" class="error-tip" id="messageBrief"></span>
+        <span id="bp" class="error-tip bp-error" ></span>
         <span class="suc-name" ng-show='vm.financeVM.bpName'><span>{{vm.financeVM.bpName}}</span>
           <span class="icon-dialogClose" ng-click='vm.financeVM.deletebp()'></span></span>
-        <a   ng-model="vm.financeVM.finance.bp"
-          validator="required" message-id="bp" required-error-message="请上传BP"
-          type="text" name="website" class="btn-bp" href="javascript:;" ngf-select="vm.financeVM.uploadBp($files)"
-          ngf-accept="'application/pdf'"><span class="icon-BP"></span><span>{{vm.financeVM.bpName?'更新BP ':'上传BP'}}</span></a>
+        <a
+          class="btn-bp" href="javascript:;" ngf-select="vm.financeVM.uploadBp($files)"
+          ngf-accept="'application/pdf'">
+          <span class="icon-BP"></span><span>{{vm.financeVM.bpName?'更新BP ':'上传BP'}}</span></a>
       </div>
 
       <div class="bp-check-group form-group" >
         <label for="">BP查看设置</label>
         <div class="bp-check">
-          <input type="checkbox" ng-model='vm.financeVM.privileges' ng-change='vm.financeVM.privilege()'/>
+          <input type="checkbox" ng-model='vm.financeVM.privileges' ng-select='vm.financeVM.privilege()'/>
           <span tooltips tooltip-template="请下载创投助手App处理投资人的申请" tooltip-side="right"
             tooltip-class="tooltip" tooltip-smart="true">需要投资人申请查看BP</span>
         </div>
@@ -144,7 +147,8 @@
   </div>
 
   <div>
-    <a class="save next" href="javascript:;" ng-click='vm.next(vm.finance.form)' ng-class="{'disable':vm.financeVM.show(vm.finance.form)}">提交</a>
+    <a class="save next" href="javascript:;" ng-click='vm.next(vm.financeVM.form)'
+      ng-class="{'disable':vm.financeVM.show(vm.financeVM.form)}">提交</a>
   </div>
   <div class="form-bottom">
     <p class="splitter"> </p>

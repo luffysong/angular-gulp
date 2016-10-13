@@ -84,6 +84,26 @@ export function uploadBp(name, file) {
   });
 }
 
+export function validateBP(file) {
+  const MAX_SIZE = 7.5 * 1024 * 1024;
+  const suffixReg = /.pdf$/;
+  if (!suffixReg.test(file.name)) {
+    return {
+      valid: false,
+      msg: 'BP文件必须是PDF格式',
+    };
+  }
+  if (file.size > MAX_SIZE) {
+    return {
+      valid: false,
+      msg: 'BP文件不能超过7.5M',
+    };
+  }
+  return {
+    valid: true,
+  };
+}
+
 export function uploadImage(image, options = {}) {
   return getUpToken(options, UPLOAD_TYPE.PIC)
     .then(function uploadImageStart(data) {
