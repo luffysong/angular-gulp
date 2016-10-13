@@ -5,7 +5,7 @@
     ng-if="vm.financeVM.isEdit">
     融资经历编辑
   </section>
-  <div ng-show="vm.financeVM.data.length">
+  <div ng-show="vm.financeVM.financeList.length">
     <ul class="history-list">
       <li class="history-info" ng-repeat="data in vm.financeVM.list">
         <span class="info-year">{{data.financeDate | date: 'yyyy.MM' }}</span>
@@ -26,7 +26,7 @@
     </ul>
     <div class="more" ng-click="vm.financeVM.more()" ng-show="vm.financeVM.showMore()">显示更多</div>
   </div>
-  <div ng-show="!vm.financeVM.data.length" class="none">
+  <div ng-show="!vm.financeVM.financeList.length" class="none">
     <span>
         <span class="icon-Company icon"></span>
         <span>未收录相关信息</span>

@@ -24,7 +24,7 @@
             {{::vm.baseInfoVM.website}}
           </a>
           <span class="kr-icon icon-Hot" ng-show="vm.baseInfoVM.advantage"></span>
-          <span class="hot-text" ng-show="vm.baseInfoVM.advantage">{{vm.baseInfoVM.advantage | limitTo: 10}}</span>
+          <span class="hot-text" ng-show="vm.baseInfoVM.advantage">{{vm.baseInfoVM.advantage}}</span>
         </p>
       </div>
       <div class="finance-brief" ng-show='vm.fundsVM.funds'>
@@ -202,9 +202,9 @@
   <section id="product" ng-include="'/pages/project/templates/product.html'" class="project-module">
     产品及数据
   </section>
-  <section id="news" class="project-module" ng-include="'/pages/project/templates/new.html'">
+  <!-- <section id="news" class="project-module" ng-include="'/pages/project/templates/new.html'">
     相关新闻
-  </section>
+  </section> -->
   <section id="similarItem" class="project-module" ng-include="'/pages/project/templates/similarItem.html'">
 
   </section>

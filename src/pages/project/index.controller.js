@@ -27,7 +27,7 @@ export default class ProjectIndexController {
       this.financeVM = new FinanceVM(this.projectData.finance, this.$scope, this.id, this.$sce);
       this.memberVM = new MemberVM(this.projectData.member, this.id);
       this.similarVM = new SimilarVM(this.projectData.similar);
-      this.newsVM = new NewsVM(this.projectData.news, this.$scope, this.id);
+      // this.newsVM = new NewsVM(this.projectData.news, this.$scope, this.id);
       this.productVM = new ProductVM(this.projectData.product);
       // this.editFinanceVM = new EditFinanceVM(this.projectData.finance, this.$scope, this.id);
     }
@@ -36,6 +36,7 @@ export default class ProjectIndexController {
     this.getBPUrl(this.id);
     this.setNavigation();
     this.getUser();
+    console.log(this.financeVM.data);
   }
   getUser() {
     // 获取当前用户身份

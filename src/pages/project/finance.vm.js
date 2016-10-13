@@ -6,7 +6,7 @@ export default class FinanceVM extends krData.FormVM {
     this.$sce = $sce;
     this.id = id;
     this.initData(data);
-    // this.init();
+    this.init(data);
     this.projectService = krData.utls.getService('projectService');
   }
 
@@ -58,29 +58,27 @@ export default class FinanceVM extends krData.FormVM {
   // recovery() {
   //   angular.extend(this, this.originalData);
   // }
-
-
-  init() {
-    let num = 1;
-    function getlist(limitlist, list, n) {
-      if (list.length > (5 * n)) {
-        limitlist = list.slice(0, (5 * n));
-      } else {
-        limitlist = list;
-      }
-      return limitlist;
+  num = 1;
+  financeList ;
+  getlist(limitlist, list, n) {
+    this.financeList = list;
+    if (list.length > (5 * n)) {
+      limitlist = list.slice(0, (5 * n));
+    } else {
+      limitlist = list;
     }
-    function more() {
-      ++num;
-      this.list = getlist(this.list, this.data, num);
-    }
-    function showMore() {
-      return !(this.list.length === this.data.length);
-    }
-    this.list = getlist(this.list, this.data, 1);
+    return limitlist;
+  }
+  more() {
+    ++this.num;
+    this.list = this.getlist(this.list, this.financeList, this.num);
+  }
+  showMore() {
+    return !(this.list.length === this.financeList.length);
+  }
 
-    this.more = more;
-    this.showMore = showMore;
+  init(data) {
+    this.list = this.getlist(this.list, data, 1);
   }
 
   update() {
