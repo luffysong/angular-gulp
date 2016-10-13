@@ -7,6 +7,7 @@ export default class ClaimVM {
     this.Cid = id;
     this.user = usr;
     this.projectService = krData.utls.getService('projectService');
+    this.getUser();
   }
   claim() {
     let claimDialog;
@@ -20,13 +21,13 @@ export default class ClaimVM {
         this.position = false;
       }
       this.claimform = {
-        userName: '',
+        userName: vm.userInfo.name || '',
         userPosition: '',
-        userPhone: '',
-        userEmail: '',
+        userPhone: vm.userInfo.phone || '',
+        userEmail: vm.userInfo.email || '',
         userWeiXin: '',
         userBusinessCard: '',
-        privilegeEnum: '',
+        privilegeEnum: 'MEMBER',
         id: vm.Cid,
       };
       this.claimCancle = function () {
@@ -77,6 +78,12 @@ export default class ClaimVM {
       appendTo: '.project-wrapper',
       controller: claimController,
       controllerAs: 'vm',
+    });
+  }
+  getUser() {
+    this.projectService.getUser()
+    .then(data => {
+      this.userInfo = data;
     });
   }
   getManager(id) {

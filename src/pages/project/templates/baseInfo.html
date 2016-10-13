@@ -17,6 +17,7 @@
     </div>
     <ul class="company-info">
       <li>公司全称：{{::vm.introductionVM.fullName}}</li>
+      <li>地点：{{::vm.projectData.baseInfo.address1Desc}}</li>
       <li>成立时间：{{::(vm.introductionVM.startDate | date: 'yyyy-MM-dd')}}</li>
       <li>公司规模：{{::vm.introductionVM.scale}}</li>
       <li class="more"><a ng-href="{{vm.projectData.baseInfo.businessInfoUrl}}" target="_blank">查看更多工商信息</a></li>

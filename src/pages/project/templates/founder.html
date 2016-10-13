@@ -14,10 +14,7 @@
     </div>
     <div class="advantage" ng-show="vm.memberVM.data.story">
       <span class="name">团队优势</span>
-      <span class="ad-info" ng-bind="vm.memberVM.data.story" text-overflow id="advantage"></span>
-      <!-- <div class="ad-info">
-        {{::vm.memberVM.data.story}}
-      </div> -->
+      <span class="ad-info"  text-overflow text="vm.memberVM.data.story"></span>
     </div>
     <div class="team-people" ng-show="vm.memberVM.members.length">
       <table class='item-list'>

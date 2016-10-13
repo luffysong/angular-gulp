@@ -53,12 +53,17 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       http: function httpValidator(value) {
         return value ? /^http[s]?:\/\/[^/]+/.test(value) : true;
       },
+      isEmial: function emialValidator(value) {
+        // return value ? /^http[s]?:\/\/[^/]+/.test(value) : true;
+        return value ? /^([a-zA-Z0-9]+[_|\_|\.|\+]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/.test(value) : true;
+      },
     }).setDefaultMsg({
       notEqual: {},
       required: {},
       minlength: {},
       maxlength: {},
       email: {},
+      isEmial: {},
       number: {},
       http: {
         error: '请以http(s)://开头',
