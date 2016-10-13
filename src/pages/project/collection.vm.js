@@ -32,6 +32,7 @@ export default class CollectionVM {
           .then(() => {
             this.createShow = false;
             this.suc = true;
+            this.collectionName = '';
             setTimeout(() => {
               this.suc = false;
             }, 3000);

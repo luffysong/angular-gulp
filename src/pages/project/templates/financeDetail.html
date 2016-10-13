@@ -2,25 +2,25 @@
   <h4>融资详情</h4>
   <div class="detail-content">
     <div class="container" more-show>
-      <div class="details">
+      <div class="details" ng-if="vm.fundsVM.fundsVo.scale">
         <span class="title">目标市场</span>
         <span class="content">
           {{vm.fundsVM.fundsVo.scale}}
         </span>
       </div>
-      <div class="details">
+      <div class="details" ng-if="vm.fundsVM.fundsVo.dataLights">
         <span class="title">用户需求</span>
         <span class="content">
           {{vm.fundsVM.fundsVo.dataLights}}
         </span>
       </div>
-      <div class="details">
+      <div class="details" ng-if="vm.fundsVM.fundsVo.competitor">
         <span class="title">竞争对手情况</span>
         <span class="content">
           {{vm.fundsVM.fundsVo.competitor}}
         </span>
       </div>
-      <div class="details">
+      <div class="details" ng-if='vm.fundsVM.fundsVo.projectPlan'>
         <span class="title">  发展规划</span>
         <span class="content">
           {{vm.fundsVM.fundsVo.projectPlan}}

@@ -50,14 +50,14 @@ export default class FinanceVM extends krData.FormVM {
     };
   }
 
-  setData(data) {
-    this.originalData = {};
-    angular.copy(data, this.originalData);
-  }
+  // setData(data) {
+  //   this.originalData = {};
+  //   angular.copy(data, this.originalData);
+  // }
 
-  recovery() {
-    angular.extend(this, this.originalData);
-  }
+  // recovery() {
+  //   angular.extend(this, this.originalData);
+  // }
 
 
   init() {
