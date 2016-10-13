@@ -19,7 +19,7 @@
           ng-href="{{::vm.baseInfoVM.weibo}}" target="_blank"></a>
           <span class="kr-icon icon-Weibo link-none" ng-if="!vm.baseInfoVM.weibo" tooltips tooltip-template="未填写" tooltip-smart="true" tooltip-class="tooltip"></span>
           <a class="kr-icon icon-Wechat link-none" ng-class="{'icon-Wechat-active':vm.baseInfoVM.weixin}" tooltips tooltip-template="{{vm.baseInfoVM.weixin?vm.baseInfoVM.weixin:'未填写'}}" tooltip-class="tooltip"></a>
-          <span class="kr-icon icon-websitelink"></span>
+          <span class="kr-icon icon-websitelink" ng-show=""></span>
           <a ng-href="{{::vm.baseInfoVM.website}}">
             {{::vm.baseInfoVM.website}}
           </a>
