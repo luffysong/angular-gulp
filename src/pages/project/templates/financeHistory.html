@@ -5,7 +5,7 @@
     ng-if="vm.financeVM.isEdit">
     融资经历编辑
   </section>
-  <div ng-show="vm.financeVM.financeList.length" ng-if="!vm.financeVM.isEdit && vm.isEditMode && vm.userId"
+  <div ng-show="vm.financeVM.financeList.length" ng-if="!vm.financeVM.isEdit && vm.userId"
   class='finance-content'>
     <ul class="history-list">
       <li class="history-info" ng-repeat="data in vm.financeVM.list">
