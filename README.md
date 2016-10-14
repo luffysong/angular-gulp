@@ -1,4 +1,3 @@
-
 # nginx配置
 
     server {
@@ -19,6 +18,7 @@
 
 # 编辑/etc/hosts
   127.0.0.1 xrz.36kr.com
+  
   192.168.2.8 nrongtest03.36kr.com
 
 # 运行项目
