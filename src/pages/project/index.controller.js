@@ -5,7 +5,6 @@ import FundsVM from './funds.vm';
 import FinanceVM from './finance.vm';
 import MemberVM from './member.vm';
 import SimilarVM from './similar.vm';
-import NewsVM from './news.vm';
 import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';

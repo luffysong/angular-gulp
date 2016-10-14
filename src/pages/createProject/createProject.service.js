@@ -2,6 +2,7 @@ import krData from 'krData';
 const projectApi = new krData.API('/company/:id', [
   'addPrivilege',
   'privilege',
+  'addFunds',
 ]);
 export default class CreateProject {
 
@@ -26,6 +27,12 @@ export default class CreateProject {
 
   claim(id, data) {
     return projectApi.addPrivilege({
+      id,
+    }, data);
+  }
+
+  funds(id, data) {
+    return projectApi.addFunds({
       id,
     }, data);
   }

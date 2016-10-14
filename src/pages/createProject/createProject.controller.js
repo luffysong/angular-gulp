@@ -5,6 +5,7 @@ const $validation = krData.utls.getService('$validation');
 const PROJECT_TYPE = krData.utls.getService('PROJECT_TYPE');
 const ROLE_META = krData.utls.getService('ROLE_META');
 const ROLE = krData.utls.getService('ROLE');
+const FINANCE = 'finance';
 function isInvalid(ctl) {
   return ctl ? ctl.$invalid : false;
 }
@@ -13,7 +14,8 @@ function validate(ctl) {
   $validation.validate(ctl);
 }
 
-@Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', '$scope', '$q', '$filter')
+@Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE',
+  '$scope', '$q', '$filter', '$stateParams')
 export default class CreateProjectController {
 
   autocompleteOptions = {
@@ -21,10 +23,7 @@ export default class CreateProjectController {
     full_match: angular.noop,
     on_select: item => {
       const obj = item.obj;
-      this.baseInfo.brief = obj.brief;
-      this.baseInfo.logo = obj.logo;
-      this.baseInfo.website = obj.website;
-      this.baseInfo.industry = obj.industry;
+      angular.extend(this.baseInfo, obj.brief);
     },
   };
 
@@ -45,17 +44,30 @@ export default class CreateProjectController {
 
 
   constructor() {
-    this.initBaseInfo();
     this.setProjectTypeValidator();
     this.setApplinkValidator();
+    this.init();
+  }
+
+  init() {
+    this.initBaseInfo();
     this.watchCompanyType();
     this.watchApplink();
+    this.initView();
   }
 
   initBaseInfo() {
     this.baseInfo = {
       financingNeed: this.FINANCE_NEED.UNKNOWN,
     };
+  }
+
+  initView() {
+    if (this.$stateParams.type === FINANCE) {
+      this.step = 3;
+      this.title = '融资申请';
+      this.id = this.$stateParams.id;
+    }
   }
 
   isWeb() {
@@ -274,10 +286,22 @@ export default class CreateProjectController {
   }
 
   saveFinance() {
+    // 融资入口则调用融资接口
+    if (this.$stateParams.type === FINANCE) {
+      this.funds();
+      return;
+    }
     const projectInfo = angular.extend({}, this.baseInfo, this.user, this.financeVM.finance);
     delete projectInfo.form;
     this.removeProps(projectInfo);
     this.createRemote(projectInfo);
+  }
+
+  funds() {
+    const fundsInfo = angular.extend({}, this.financeVM.finance);
+    this.project.funds(this.id, fundsInfo)
+      .then(() => { this.step = 4; })
+      .catch((err) => { krData.Alert.alert(`申请融资失败：${err.msg}`); });
   }
 
   next(form) {
