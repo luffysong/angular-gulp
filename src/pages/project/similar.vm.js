@@ -40,7 +40,6 @@ export default class SimilarVM {
     return false;
   }
   init() {
-    console.log(this.list[0]);
     if (this.list[0]) {
       this.changeType(this.list[0].tagName);
     } else {

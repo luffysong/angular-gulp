@@ -8,7 +8,6 @@ export default class CollectionVM {
   }
   collection;
   init() {
-    console.log(this.investor);
     if (this.investor< 100) {
       this.collection = this.collect;
     } else {
