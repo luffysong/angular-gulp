@@ -72,8 +72,10 @@
 
         <div class="form-group">
           <input ng-model="vm.user.userBusinessCard" validator="required"
+            required-error-message="请上传名片" message-id="messageCard"
             type="hidden" name="userBusinessCard" >
           <label for=""><span class="required">*</span> 个人名片</label>
+          <span class="inline-error-tip" id="messageCard"></span>
           <img ng-src="{{vm.user.userBusinessCard || '/images/cardBackground.png'}}" alt="" class="upload-img">
           <span class="btn-id-card uploading" >{{vm.suc?'点击更新图片':'点击上传名片'}}
             <input ngf-select="vm.uploadIdCard($files)" ngf-accept="'image/*'" type="file">

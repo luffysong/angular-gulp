@@ -23,7 +23,7 @@ export default class CreateProjectController {
     full_match: angular.noop,
     on_select: item => {
       const obj = item.obj;
-      angular.extend(this.baseInfo, obj.brief);
+      angular.extend(this.baseInfo, obj);
     },
   };
 
