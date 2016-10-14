@@ -1,0 +1,25 @@
+      <div class="details" ng-if="!funds.scale">
+        <span class="title">目标市场</span>
+        <span class="content">
+          {{$scope.funds.scale}}
+        </span>
+      </div>
+      <div class="details" ng-if="funds.dataLights">
+        <span class="title">用户需求</span>
+        <span class="content">
+          {{funds.dataLights}}
+        </span>
+      </div>
+      <div class="details" ng-if="funds.competitor">
+        <span class="title">竞争对手情况</span>
+        <span class="content">
+          {{funds.competitor}}
+        </span>
+      </div>
+      <div class="details" ng-if='funds.projectPlan'>
+        <span class="title">  发展规划</span>
+        <span class="content">
+          {{funds.projectPlan}}
+        </span>
+      </div>
+<div>{{funds}}</div>
