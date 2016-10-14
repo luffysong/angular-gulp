@@ -20,6 +20,7 @@
               class="error-tip"></span>
         <input type="text" class="content form-control" name="realName" placeholder="输入中文真实姓名" ng-model="vm.claimform.userName"
         message-id="claimFullName"
+        maxlength="16"
         required-error-message="输入中文真实姓名"
         validator="required">
       </div>
@@ -35,10 +36,10 @@
           message-id="claimPosition"
           number-error-message="请选择职位">
             <option value="MEMBER">公司员工</option>
-            <option value="START_UP_MEMBER" ng-show="!vm.manager.hasManager">创始成员</option>
+            <option value="START_UP_MEMBER">创始成员</option>
           </select>
           <span id="claimPosition" class="error-tip"></span>
-          <input type="text" class="position content form-control" placeholder="输入职位" ng-model="vm.claimform.userPosition" validator="required" name='userPosition'>
+          <input type="text" class="position content form-control" placeholder="输入职位" ng-model="vm.claimform.userPosition" validator="required" name='userPosition' maxlength="20">
         </div>
 
       </div>
@@ -55,7 +56,6 @@
         validator="number, required, minlength=11"
         message-id="claimPhone"
         maxlength='13'
-        minlength-error-message="输入真实手机号"
         number-error-message="输入真实手机号">
       </div>
       <div class="form-list form-group">
