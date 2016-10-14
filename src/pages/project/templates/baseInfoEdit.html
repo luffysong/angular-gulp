@@ -49,19 +49,20 @@
         </select>
       </div>
       <div class="select-inline select-margin">
-        <label><span class="required">*</span>所在地</label>
-        <span class="error-tip" id="messageAddress"></span>
+        <div><label class="address"><span class="required">*</span>所在地</label>
+        <span class="error-tip" id="messageAddress"></span></div>
         <select
           ng-options="item.id as item.name for item in vm.introductionVM.cities0"
           required-error-message="请选择地区"
-          class="form-control" ng-model="vm.introductionVM.address1" validator="required" message-id="messageAddress" >
+          class="form-control address-select" ng-model="vm.introductionVM.address1" validator="required" message-id="messageAddress" >
         </select>
-      </div>
-      <div class="select-inline select-margin">
+      <!-- </div> -->
+      <!-- <div class="select-inline select-margin"> -->
+
         <select
           ng-options="item.id as item.name for item in vm.introductionVM.cities1"
           required-error-message="请选择地区"
-          class="form-control" ng-model="vm.introductionVM.address2" validator="required" message-id="messageAddress" >
+          class="form-control address-select" ng-model="vm.introductionVM.address2" validator="required" message-id="messageAddress" >
         </select>
       </div>
     </div>

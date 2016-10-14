@@ -162,11 +162,11 @@
             产品及数据
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a href="#news" du-smooth-scroll="" du-scrollspy="" offset="130" >
            相关新闻
           </a>
-        </li>
+        </li> -->
         <li>
           <a href="#similarItem" du-smooth-scroll="" du-scrollspy="" offset="130" >
             相似公司
@@ -176,7 +176,7 @@
           <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user != 'admin'" login-btn>认领</a>
           <a ui-sref="createProject({id: vm.id, type: 'finance'})" ng-show="vm.user == 'admin'" >融资设置</a>
           <a href="#" ui-sref="project.edit({id: vm.id})"
-            ng-show="vm.user != 'commen' && vm.userId && !vm.isEditMode" >编辑项目</a>
+            ng-show="true || vm.user != 'commen' && vm.userId && !vm.isEditMode" >编辑项目</a>
         </li>
       </ul>
     </nav>

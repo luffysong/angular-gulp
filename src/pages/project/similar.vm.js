@@ -3,7 +3,6 @@ export default class SimilarVM {
     this.list = data;
     this.init();
   }
-  tagName = '综合';
   num = 1;
   item;
   getList(limitlist, list, n) {
@@ -38,6 +37,6 @@ export default class SimilarVM {
     return !(this.companyList.length === this.item.length);
   }
   init() {
-    this.changeType(this.tagName);
+    this.changeType(this.list[0].tagName);
   }
 }

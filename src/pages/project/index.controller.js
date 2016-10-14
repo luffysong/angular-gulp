@@ -35,14 +35,29 @@ export default class ProjectIndexController {
     this.getBPUrl(this.id);
     this.setNavigation();
     this.getUser();
-    console.log(this.financeVM.data);
   }
+  userId;
   getUser() {
+    function talking() {
+      const vm = this;
+      function talkController() {
+        this.talkCancle = function talkCancle() {
+          vm.talkDialog.close();
+        };
+      }
+      vm.talkDialog = this.ngDialog.open({
+        template: '<div ng-include="\'/pages/project/templates/talk.html\'" center></div>',
+        plain: true,
+        appendTo: '.project-wrapper',
+        controller: talkController,
+        controllerAs: 'vm',
+      });
+    }
     // 获取当前用户身份
     this.projectService.getUser()
     .then((data) => {
       this.userId = data.id;
-      // this.talking = talking;
+      this.talking = talking;
       if (!data.code) {
         // 判断认领人
         if (this.baseInfoVM.managerUid === data.id) {
@@ -84,22 +99,6 @@ export default class ProjectIndexController {
     }
   }
 
-
-  talking() {
-    const vm = this;
-    function talkController() {
-      this.talkCancle = function talkCancle() {
-        vm.talkDialog.close();
-      };
-    }
-    vm.talkDialog = this.ngDialog.open({
-      template: '<div ng-include="\'/pages/project/templates/talk.html\'" center></div>',
-      plain: true,
-      appendTo: '.project-wrapper',
-      controller: talkController,
-      controllerAs: 'vm',
-    });
-  }
 
   bp() {
     const vm = this;

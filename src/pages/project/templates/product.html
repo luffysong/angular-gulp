@@ -11,16 +11,16 @@
           <div>
             <!-- <a ng-href="{{vm.productVM.data.companyProductList[0].}}"><span class="kr-icon icon-Weibo"></span></a> -->
             <a ng-if="vm.productVM.data.companyProductList[0].weixin==''" ng-href="{{vm.productVM.data.companyProductList[0].weixin}}"><span class="kr-icon icon-Wechat"></span></a>
-            <a ng-if="vm.productVM.data.companyProductList[0].ios==''" ng-href="{{vm.productVM.data.companyProductList[0].ios}}"><span class="kr-icon icon-Apple"></span></a>
-            <a ng-if="vm.productVM.data.companyProductList[0].android==''" ng-href="{{vm.productVM.data.companyProductList[0].android}}"><span class="kr-icon icon-Andriod"></span></a>
+            <a ng-if="vm.productVM.data.companyProductList[0].ios==''" ng-href="{{vm.productVM.data.companyProductList[0].ios}}" target="_blank"><span class="kr-icon icon-Apple"></span></a>
+            <a ng-if="vm.productVM.data.companyProductList[0].android==''" ng-href="{{vm.productVM.data.companyProductList[0].android}}" target="_blank"><span class="kr-icon icon-Andriod"></span></a>
             <span class="kr-icon icon-websitelink"></span>
-            <a target="_blank" ng-href="{{vm.productVM.data.companyProductList[0].url}}">{{vm.productVM.data.companyProductList[0].url}}</a>
+            <a target="_blank" ng-href="{{vm.productVM.data.companyProductList[0].url}}" ng-if="vm.productVM.data.companyProductList[0].url">{{vm.productVM.data.companyProductList[0].url}}</a>
           </div>
         </div>
       </div>
     </div>
-    <!-- <div class="investor" ng-show="{{vm.productVM.data.hasDataPrivilege}}"> -->
-    <div class="investor">
+    <div class="investor" ng-show="{{vm.productVM.data.hasDataPrivilege}}">
+    <!-- <div class="investor"> -->
       <!-- <div class="companyData" ng-show="{{vm.productVM.data.companyDataList}}"> -->
       <div class="companyData">
         <div class="data-info">
@@ -86,11 +86,11 @@
         <p>暂无数据</p>
       </div> -->
     </div>
-    <!-- <div class="uninvestor" ng-show="{{!vm.productVM.data.hasDataPrivilege}}">
+    <div class="uninvestor" ng-show="{{!vm.productVM.data.hasDataPrivilege}}">
       <div class="index">
         <div class="certify"><a ng-href="">认证投资人</a></div>
         <div class="text">查看更多产品数据</div>
       </div>
     </div>
-  </div> -->
+  </div>
 </div>

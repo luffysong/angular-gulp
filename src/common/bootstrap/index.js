@@ -88,7 +88,8 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     root.PROJECT_TYPE_META = PROJECT_TYPE_META;
     root.SCALES_META = [
       '少于50人',
-      '100-500人',
+      '50-100人',
+      '150-500人',
       '500-1000人',
       '1000人以上',
     ];

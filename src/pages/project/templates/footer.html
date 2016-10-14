@@ -7,13 +7,13 @@
     <span class="icon-Collected footer-icon"></span>
     <span>收藏</span>
   </span>
-  <a href="{{vm.bpLink}}" class="bp" ng-click="vm.bp()" target="{{vm.target}}" ng-show='vm.fundsVM.funds'>
+  <a href="{{vm.bpLink}}" class="bp" ng-click="vm.bp()" target="{{vm.target}}" ng-show='vm.fundsVM.funds && vm.user=="commen"'>
     <span>
       <span class="icon-BP footer-icon"></span>
       <span>查看BP</span>
     </span>
   </a>
-  <span ng-click="vm.sendbp()" class="bp" ng-show='vm.fundsVM.funds'>
+  <span ng-click="vm.sendbp()" class="bp" ng-show='vm.fundsVM.funds && vm.user=="commen"'>
     <span class="icon-BP footer-icon"></span>
     <span>发送BP至邮箱</span>
   </span>
