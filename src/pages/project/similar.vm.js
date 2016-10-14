@@ -34,9 +34,17 @@ export default class SimilarVM {
     this.companyList = this.getList(this.companyList, this.item, this.num);
   }
   showMore() {
-    return !(this.companyList.length === this.item.length);
+    if (this.list[0]) {
+      return !(this.companyList.length === this.item.length);
+    }
+    return false;
   }
   init() {
-    this.changeType(this.list[0].tagName);
+    console.log(this.list[0]);
+    if (this.list[0]) {
+      this.changeType(this.list[0].tagName);
+    } else {
+      this.changeType('');
+    }
   }
 }

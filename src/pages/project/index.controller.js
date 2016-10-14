@@ -37,27 +37,42 @@ export default class ProjectIndexController {
     this.getUser();
   }
   userId;
-  getUser() {
-    function talking() {
-      const vm = this;
-      function talkController() {
-        this.talkCancle = function talkCancle() {
-          vm.talkDialog.close();
-        };
-      }
-      vm.talkDialog = this.ngDialog.open({
-        template: '<div ng-include="\'/pages/project/templates/talk.html\'" center></div>',
-        plain: true,
-        appendTo: '.project-wrapper',
-        controller: talkController,
-        controllerAs: 'vm',
-      });
+  talk() {
+    const vm = this;
+    function talkController() {
+      this.talkCancle = function talkCancle() {
+        vm.talkDialog.close();
+      };
     }
+    vm.talkDialog = this.ngDialog.open({
+      template: '<div ng-include="\'/pages/project/templates/talk.html\'" center></div>',
+      plain: true,
+      appendTo: '.project-wrapper',
+      controller: talkController,
+      controllerAs: 'vm',
+    });
+  }
+  investor() {
+    const vm = this;
+    function investorController() {
+      this.investorCancle = function investorCancle() {
+        vm.investorDialog.close();
+      };
+    }
+    vm.investorDialog = this.ngDialog.open({
+      template: '<div ng-include="\'/pages/project/templates/investorLink.html\'" center></div>',
+      plain: true,
+      appendTo: '.project-wrapper',
+      controller: investorController,
+      controllerAs: 'vm',
+    });
+  }
+  getUser() {
     // 获取当前用户身份
     this.projectService.getUser()
     .then((data) => {
       this.userId = data.id;
-      this.talking = talking;
+
       if (!data.code) {
         // 判断认领人
         if (this.baseInfoVM.managerUid === data.id) {
@@ -72,9 +87,12 @@ export default class ProjectIndexController {
         if (data.investorType < 100) {
           // 投资人
           this.investorType = true;
+          this.talking = this.talk;
+        } else {
+          this.talking = this.investor;
         }
         this.claimVM = new ClaimVM(this.ngDialog, this.id, this.user);
-        this.collectionVM = new CollectionVM(this.ngDialog, this.id);
+        this.collectionVM = new CollectionVM(this.ngDialog, this.id, data.investorType);
       }
     });
   }

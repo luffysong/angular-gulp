@@ -1,10 +1,36 @@
 import krData from 'krData';
 export default class CollectionVM {
-  constructor(fn, id) {
+  constructor(fn, id, investor) {
     this.ngDialog = fn;
     this.id = id;
+    this.investor = investor;
+    this.init();
   }
-  collection() {
+  collection;
+  init() {
+    console.log(this.investor);
+    if (this.investor< 100) {
+      this.collection = this.collect;
+    } else {
+      this.collection = this.getInvestor;
+    }
+  }
+  getInvestor() {
+    const vm = this;
+    function investorController() {
+      this.investorCancle = function investorCancle() {
+        vm.investorDialog.close();
+      };
+    }
+    vm.investorDialog = this.ngDialog.open({
+      template: '<div ng-include="\'/pages/project/templates/investorLink.html\'" center></div>',
+      plain: true,
+      appendTo: '.project-wrapper',
+      controller: investorController,
+      controllerAs: 'vm',
+    });
+  }
+  collect() {
     const projectService = krData.utls.getService('projectService');
     const Cid = this.id;
     const vm = this;
