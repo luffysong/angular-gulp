@@ -3,6 +3,7 @@ const $validation = krData.utls.getService('$validation');
 export default class financeVM {
   constructor(scope) {
     this.$scope = scope;
+    this.setBiggerValidator();
   }
 
   finance = {
@@ -35,6 +36,23 @@ export default class financeVM {
       return false;
     }
     return true;
+  }
+
+  setBiggerValidator() {
+    $validation.setExpression({
+      bigger: (number) => {
+        if (angular.isUndefined(number) || number === '') {
+          return true;
+        }
+        number = parseFloat(number);
+        if (number >= parseFloat(this.finance.investAmountMin)) {
+          return true;
+        }
+        return false;
+      },
+    }).setDefaultMsg({
+      bigger: {},
+    });
   }
   deletebp() {
     this.finance.bp = '';

@@ -9,27 +9,30 @@
         <label for=""><span class="required">*</span> 融资需求</label>
         <span id="financeRound" class="error-tip"></span>
         <select  ng-model="vm.financeVM.finance.financePhase"
-          validator="required" message-id="financeRound" type="text" name="financePhase" class="form-control" ng-options="item.value as item.desc for item in root.FUNDS_PHASE_ENUM_META">
+          validator="required" message-id="financeRound" type="text" name="financePhase" class="form-control"
+          ng-options="item.value as item.desc for item in root.FUNDS_PHASE_ENUM_META">
           <option value="" disabled selected hidden>选择轮次</option>
           </select>
       </div>
 
       <div class="form-group">
         <label for=""><span class="required">*</span> 计划金额</label>
-        <span id="fundValue" class="error-tip"></span>
         <div class="inline-control">
           <input
-            type="text" name="investAmountMin" class="form-control money" ng-model="vm.financeVM.finance.investAmountMin"
-            validator="required" message-id="fundValue"
-            placeholder="金额下限" />~
-
-            <input
-            type="text" name="investAmountMax" class="form-control money" ng-model="vm.financeVM.finance.investAmountMax"
-            validator="required" message-id="fundValue"
-            placeholder="金额上线" />万
-          <select  ng-model="vm.financeVM.finance.financeAmountUnit"
-            type="text" name="fundValueUnit" class="form-control" ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"> </select>
-
+          type="text" name="investAmountMin"
+            class="form-control money" ng-model="vm.financeVM.finance.investAmountMin"
+            validator="required, number"
+            placeholder="输入具体金额" /><span>万</span><span class="to">至</span
+            ><input
+            type="text" name="investAmountMax"
+            class="form-control money"
+            ng-model="vm.financeVM.finance.investAmountMax"
+            validator="bigger"
+            placeholder="输入具体金额" /><span>万</span
+              ><select  ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
+                ng-model="vm.financeVM.finance.financeAmountUnit"
+            type="text" name="fundValueUnit" class="form-control unit" > </select
+            ><span class="form-tip money-tip">若非区间则仅填写前输入框即可</span>
         </div>
       </div>
 
