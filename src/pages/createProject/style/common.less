@@ -26,6 +26,7 @@
   }
   .next {
     display: block;
+    pointer-events: none;
     .size(180, 37);
     .font(14, 37);
     border-radius: 4px;
@@ -33,6 +34,10 @@
     background: #ccc;
     .text-center();
     margin: 40px auto 30px;
+  }
+  .next.active {
+    background: @anchor-color;
+    pointer-events: auto;
   }
   .tip-text {
     margin-top: 6px;

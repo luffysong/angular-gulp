@@ -1,11 +1,12 @@
 import '../routes/index';
 import '../constants/index';
 import '../filters/index';
+import '../components/index.js';
 import { INDUSTRY_META } from '../filters/industry.filter';
 import commonInterceptor from '../base/commonInterceptor.service';
 import { getService, fromYear, getMonth } from '../base/utls';
 /* eslint-disable no-param-reassign,no-use-before-define */
-angular.module('@@app', ['@@app.routes',
+angular.module('@@app', ['@@app.routes', '@@app.components',
   'cgNotify',
   '@@app.constants', 'ngResource', '@@app.filters',
   'validation', 'validation.rule',

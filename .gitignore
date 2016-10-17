@@ -24,6 +24,7 @@ npm-debug.log
 .netbeans
 nbproject
 .idea
+.tern-project
 .nide
 *.iml
 *.swp

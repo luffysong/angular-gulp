@@ -22,7 +22,6 @@ gulp.task('babel-helper', babelHelper);
 gulp.task('style', function buildStyle() {
   return style('src/styles/*.less', 'dist/styles');
 });
-
 gulp.task('lint', () => gulp.src(['src/**/*.js', '!src/bower/**'])
   .pipe(g.eslint('.eslintrc.js'))
   .pipe(g.eslint.format())

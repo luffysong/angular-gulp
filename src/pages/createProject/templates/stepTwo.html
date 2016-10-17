@@ -120,7 +120,7 @@
     </form>
   </div>
   <div class="form-group">
-    <a ng-class="{actived: !vm.needFinance()}"
+    <a ng-class="{active: !vm.needFinance() || vm.user.form.$valid === true}"
       class="next" ng-click="vm.next(vm.user.form)" href="javascript:;">
           {{vm.needFinance() ? '下一步' : '提交'}}
     </a>

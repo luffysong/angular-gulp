@@ -4,13 +4,13 @@ export default class financeVM {
   constructor(scope) {
     this.$scope = scope;
     this.setBiggerValidator();
+    this.watchInvestAmountMin();
   }
 
   finance = {
     privilege: 'INVESTOR',
     financeAmountUnit: 'CNY',
   };
-  disable = true;
 
   uploadBp($files) {
     const name = this.$scope.vm.baseInfo.name || 'test';
@@ -31,11 +31,20 @@ export default class financeVM {
     }
   }
 
-  show(form) {
-    if ($validation.checkValid(form) && this.readed) {
-      return false;
+  setValid(name) {
+    this.form[name].$setValidity(name, true);
+  }
+
+  watchInvestAmountMin() {
+    this.$scope.$watch(() => this.finance.investAmountMin, nv => {
+      $validation.validate(this.form.investAmountMax);
+    });
+  }
+  isActive() {
+    if ($validation.checkValid(this.form) && this.readed) {
+      return true;
     }
-    return true;
+    return false;
   }
 
   setBiggerValidator() {

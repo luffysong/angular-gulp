@@ -9,11 +9,9 @@ const FINANCE = 'finance';
 function isInvalid(ctl) {
   return ctl ? ctl.$invalid : false;
 }
-
 function validate(ctl) {
   $validation.validate(ctl);
 }
-
 @Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE',
   '$scope', '$q', '$filter', '$stateParams')
 export default class CreateProjectController {
