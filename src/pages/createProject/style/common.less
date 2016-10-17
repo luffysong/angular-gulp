@@ -1,7 +1,7 @@
 @import "../../../common/styles/function";
 @import "../../../common/styles/var";
 .step-one-wrapper,  .step-two-wrapper, .finance-apply-wrapper, .similar-item-wrapper {
-  overflow: hidden;
+  .border1(transparent);
   padding:0 41px 20px;
   background: #fff;
   h4{
@@ -20,6 +20,9 @@
   }
   form {
     width: @input-base-width;
+  }
+  .form-bottom {
+    clear: both;
   }
   .splitter{
     .splitter();

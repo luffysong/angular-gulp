@@ -27,6 +27,21 @@ a:focus, input:focus, button:focus{
 .text-center {
   .text-center();
 }
+.tool-tip {
+  color:#fff;
+  padding: 12px 20px;
+  background: rgba(90, 98, 109,0.7);
+  box-shadow: 0px 0px 4px 0px #969FA9;
+  .font(14, 21);
+  .rd(4px);
+}
+.clear-both {
+  &:after {
+    display: table;
+    content: " ";
+    clear: both;
+  }
+}
 .alert-danger {
   background-color: #f2dede;
   border-color: #ebccd1;

@@ -36,6 +36,20 @@
   .textarea-control {
     width: 520px;
   }
+  input[name="cname"]:focus,
+  input[name="cname"]:hover {
+    &+.name-tool-tip {
+      display: block;
+    }
+  }
+  .name-tool-tip {
+    position: absolute;
+    display: none;
+    right: -220px;
+    top: 25px;
+    width: 205px;
+  }
+
 
 }
 
