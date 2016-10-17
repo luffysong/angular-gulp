@@ -90,7 +90,7 @@
           iOS与Android下载链接至少填写一个</span>
         <span id="messageIoslink" class="error-tip" ></span>
         <input  ng-model="vm.baseInfo.iosLink"
-          validator="applink" message-id="messageIoslink"
+          validator="applink,http" message-id="messageIoslink"
           applink-error-message="iOS与Android下载链接至少填写一个"
           placeholder="请填写产品iOS下载地址"
           type="text" name="ioslink" class="form-control" />
@@ -102,7 +102,7 @@
         <span id="messageAndroidlink" class="error-tip" ></span>
         <input  ng-model="vm.baseInfo.androidLink"
           placeholder="请填写产品的Android下载地址"
-          validator="applink" message-id="messageAndroidlink"
+          validator="applink,http" message-id="messageAndroidlink"
           applink-error-message="iOS与Android下载链接至少填写一个"
           type="text" name="androidlink" class="form-control" />
       </div>

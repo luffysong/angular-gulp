@@ -165,11 +165,19 @@ export default class CreateProjectController {
       if (isInvalid(website)) {
         validate(website);
       }
+      if (nv === PROJECT_TYPE.APP || nv === PROJECT_TYPE.WEB_APP) {
+        if (this.baseInfo.iosLink || this.baseInfo.androidLink) {
+          krData.utls.getService('$timeout')(() => {
+            validate(this.baseInfo.form.ioslink);
+            validate(this.baseInfo.form.androidlink);
+          });
+        }
+      }
     });
   }
 
   watchApplink() {
-    this.$scope.$watch('[vm.baseInfo.ioslink, vm.baseInfo.androidlink]', (nv) => {
+    this.$scope.$watch('[vm.baseInfo.iosLink, vm.baseInfo.androidLink]', (nv) => {
       if (angular.isUndefined(nv[0]) && angular.isUndefined(nv[1])) return;
       const ioslink = this.baseInfo.form.ioslink;
       const androidlink = this.baseInfo.form.androidlink;
