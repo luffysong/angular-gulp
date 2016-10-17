@@ -11,6 +11,7 @@
     </div>
   </div>
   <div class="view">
-    <a class="investor" href="javascript:;">查看投资人</a>
+    <a ng-if="vm.isFunder() || vm.isMaintainer() || vm.financeVM.id" class="investor" href="javascript:;">
+      查看投资人</a>
   </div>
 </div>
