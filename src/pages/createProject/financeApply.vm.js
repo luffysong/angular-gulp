@@ -1,8 +1,9 @@
 import krData from 'krData';
 const $validation = krData.utls.getService('$validation');
 export default class financeVM {
-  constructor(scope) {
+  constructor(scope, name) {
     this.$scope = scope;
+    this.name = name;
     this.setBiggerValidator();
     this.watchInvestAmountMin();
   }
@@ -13,7 +14,7 @@ export default class financeVM {
   };
 
   uploadBp($files) {
-    const name = this.$scope.vm.baseInfo.name || 'test';
+    const name = this.$scope.vm.baseInfo.name || this.name;
     let validObj = null;
     if ($files.length) {
       validObj = krData.utls.validateBP($files[0]);
@@ -36,8 +37,10 @@ export default class financeVM {
   }
 
   watchInvestAmountMin() {
-    this.$scope.$watch(() => this.finance.investAmountMin, nv => {
-      $validation.validate(this.form.investAmountMax);
+    this.$scope.$watch(() => this.finance.investAmountMin, () => {
+      if (this.form) {
+        $validation.validate(this.form.investAmountMax);
+      }
     });
   }
   isActive() {

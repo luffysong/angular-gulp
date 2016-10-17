@@ -2,7 +2,7 @@ import assets from '../assets/script';
 import { getLoadBundle } from '../base/utls';
 
 export default {
-  url: '/project/create?id&type',
+  url: '/project/create?id&type&name',
   templateUrl: '/pages/createProject/templates/index.html',
   controllerAs: 'vm',
   controller: 'CreateProjectController',

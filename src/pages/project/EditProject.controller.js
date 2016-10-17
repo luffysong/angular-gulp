@@ -1,4 +1,4 @@
-@Inject('$scope', 'projectService', '$stateParams')
+@Inject('$scope', 'projectService', '$stateParams', '$state')
 export default class EditProjectController {
   constructor() {
     this.$scope.vm.isEditMode = true;
@@ -17,9 +17,10 @@ export default class EditProjectController {
     this.projectService.get({ id: this.id })
     .then((data) => {
       if (!data.member) {
-        window.location.href = '/project/' + this.id;
+        this.$state.go('project', {
+          id: this.id,
+        });
       }
-      return;
     });
   }
 }
