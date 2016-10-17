@@ -94,6 +94,7 @@ export default class FinanceVM extends krData.FormVM {
     }, this.mapProps(this.props, this))
       .then(() => {
         krData.Alert.success('数据保存成功');
+        this.isEdit = false;
       });
   }
 
@@ -115,7 +116,22 @@ export default class FinanceVM extends krData.FormVM {
   }
 
   onSelect(selectedItem) {
-    this.investorList.push(selectedItem);
+    console.log(this.investorList);
+    if (!this.investorList.length) {
+      this.investorList.push(selectedItem);
+    } else {
+      this.investorList.map((value) => {
+        if (value.entityId === selectedItem.entityId) {
+          this.entityName = '';
+          krData.Alert.alert('此投资方已存在');
+          return;
+        }
+      });
+      if (this.entityName) {
+        this.investorList.push(selectedItem);
+      }
+    }
+
     angular.element('.entity-name')[0].value = null;
   }
 

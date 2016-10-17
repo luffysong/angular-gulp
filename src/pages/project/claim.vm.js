@@ -1,5 +1,9 @@
 import { getService } from '../../common/base/utls';
 import krData from 'krData';
+const $validation = krData.utls.getService('$validation');
+function validate(ctl) {
+  $validation.validate(ctl);
+}
 export default class ClaimVM {
   $validation = getService('$validation');
   constructor(fn, id, usr) {
@@ -38,9 +42,10 @@ export default class ClaimVM {
         this.claimform.userBusinessCard = '';
         this.suc = false;
       };
-      this.save = function () {
-        if (!vm.$validation.checkValid(this.claim.form)) {
-          vm.$validation.validate(this.claim.form);
+      this.save = function (form) {
+        // console.log(this.claimform);
+        if (!vm.$validation.checkValid(form)) {
+          vm.$validation.validate(form);
           return false;
         }
         this.update(this.claimform, vm.Cid);
@@ -81,6 +86,7 @@ export default class ClaimVM {
       controllerAs: 'vm',
     });
   }
+
   getUser() {
     this.projectService.getUser()
     .then(data => {

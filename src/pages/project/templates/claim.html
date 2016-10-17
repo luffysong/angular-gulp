@@ -98,7 +98,7 @@
           <span class="warn-img">建议上传尺寸：90mm*50mm</span>
 
       </div>
-      <div ng-if="vm.isFunder()">
+      <div ng-show="vm.isFunder()">
         <div class="form-group creator-title">
           <label>创始人联系方式</label>
           <span  class="form-tip" >便于更好完善该项目信息</span>
@@ -126,17 +126,17 @@
           <label for="">手机号码</label>
           <span class="error-tip" id="starterPhone"></span>
           <input  ng-model="vm.claimform.starterPhone"
-          maxlength="30"
-          validator="number, minlength=11"
+          maxlength="13"
+          minlength='11'
+          ng-pattern="/^[0-9]*$/"
           placeholder="输入真实手机号"
-          type="text" name="starterPhone" class="form-control"
-          number-error-message="输入真实手机号" message-id='starterPhone'/>
+          type="text" name="starterPhone" class="form-control"/>
         </div>
       </div>
     </form>
   </div>
   <div class="claim-bottom">
-    <input type="button" value="保存" class="save" ng-click="vm.save()">
+    <input type="button" value="保存" class="save" ng-click="vm.save(vm.claim.form)">
     <input type="button" value="取消" class="cancle" ng-click="vm.claimCancle()">
   </div>
   <span class="icon-dialogClose" ng-click="vm.claimCancle()"></span>

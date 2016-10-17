@@ -2,7 +2,7 @@ export default class ProductVM {
   constructor(data) {
     this.data = data;
     this.init();
-    // console.log(this.data.companyProductList[0].weixin==='');
+    console.log(this.data);
   }
 
   init() {
