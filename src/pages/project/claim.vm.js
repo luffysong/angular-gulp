@@ -57,7 +57,7 @@ export default class ClaimVM {
               this.claimform.userBusinessCard = data.src;
               this.background = data.src;
               this.suc = true;
-            });
+            }).catch(err => krData.Alert.alert(err.msg));
         }
       };
       this.update = function (form, id) {
