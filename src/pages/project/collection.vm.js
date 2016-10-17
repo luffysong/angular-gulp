@@ -63,6 +63,8 @@ export default class CollectionVM {
             }, 3000);
             projectService.collect(Cid)
             .then((data) => this.collections = data);
+          },(err)=>{
+            krData.Alert.alert(err.msg);
           });
       };
 
