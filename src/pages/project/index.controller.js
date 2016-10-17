@@ -91,7 +91,7 @@ export default class ProjectIndexController {
         } else {
           this.talking = this.investor;
         }
-        console.log(this.user);
+        console.log(this.user, this.investorType);
         this.claimVM = new ClaimVM(this.ngDialog, this.id, this.user);
         this.collectionVM = new CollectionVM(this.ngDialog, this.id, data.investorType);
       }

@@ -132,7 +132,7 @@
   <section sticky offset="50" class="nav-wrapper">
     <nav>
       <ul class='navigate'>
-        <li ng-hide="!vm.baseInfoVM.investAdvantage || vm.user=='commen' || !vm.investorType">
+        <li ng-show="vm.baseInfoVM.investAdvantage && (vm.user != 'commen' || vm.investorType)">
           <a href="#light" du-smooth-scroll="" du-scrollspy=""  offset="{{vm.light}}"  class="active">
             投资亮点
           </a>
@@ -186,7 +186,7 @@
   </section>
   <section id="light" class="project-module light"
   ng-include="'/pages/project/templates/light.html'"
-  ng-hide="!vm.baseInfoVM.investAdvantage || vm.user == 'commen' || !vm.investorType">
+  ng-show="vm.baseInfoVM.investAdvantage && (vm.user != 'commen' || vm.investorType)">
   </section>
 
   <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'"
