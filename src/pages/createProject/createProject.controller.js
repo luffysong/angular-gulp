@@ -191,7 +191,7 @@ export default class CreateProjectController {
       krData.utls.uploadImage($files[0])
         .then(data => {
           this.baseInfo.logo = data.src;
-        });
+        }).catch((err) => krData.Alert.alert(err.msg));
     }
   }
 
@@ -200,7 +200,7 @@ export default class CreateProjectController {
       krData.utls.uploadImage($files[0])
         .then(data => {
           this.user.userBusinessCard = data.src;
-        });
+        }).catch((err) => krData.Alert.alert(err.msg));
     }
   }
 

@@ -12,6 +12,8 @@ export const upyun = {
   },
 };
 
+const SUCCESS = 0;
+const FAILED = 1;
 // 上传类型
 export const UPLOAD_TYPE = {
   FILE: 'file',
@@ -104,7 +106,34 @@ export function validateBP(file) {
   };
 }
 
+export function validateImage(file) {
+  const MAX_SIZE = 2 * 1024 * 1024;
+  const suffixReg = /\.gif|\.png|\.jpg$/i;
+  if (!suffixReg.test(file.name)) {
+    return {
+      code: FAILED,
+      valid: false,
+      msg: '图片文件必须是PNG,JPG,GIF格式',
+    };
+  }
+  if (file.size > MAX_SIZE) {
+    return {
+      valid: false,
+      code: FAILED,
+      msg: '图片文件不能超过2M',
+    };
+  }
+  return {
+    code: SUCCESS,
+    valid: true,
+  };
+}
+
 export function uploadImage(image, options = {}) {
+  const validateObj = validateImage(image);
+  if (validateObj.code === FAILED) {
+    return getService('$q').reject(validateObj);
+  }
   return getUpToken(options, UPLOAD_TYPE.PIC)
     .then(function uploadImageStart(data) {
       return getService('Upload').upload({
