@@ -24,19 +24,27 @@
   .splitter{
     .splitter();
   }
-  .next {
-    display: block;
-    pointer-events: none;
+  .prev,.next {
+    .dlk();
     .size(180, 37);
     .font(14, 37);
-    border-radius: 4px;
+    .rd(4px);
+    .text-center();
+  }
+  .next {
+    pointer-events: none;
     color: #fff;
     background: #ccc;
-    .text-center();
+    .border1(#ccc);
     margin: 40px auto 30px;
+  }
+  .prev {
+    .border1(@anchor-color);
+    margin-right: 30px;
   }
   .next.active {
     background: @anchor-color;
+    .border1(@anchor-color);
     pointer-events: auto;
   }
   .tip-text {

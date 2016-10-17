@@ -150,8 +150,10 @@
     <span>已阅读<a href="#">《融资申请协议》</a></span>
   </div>
 
-  <div>
-    <a class="save next" href="javascript:;" ng-click='vm.next(vm.financeVM.form)'
+  <div class="text-center">
+
+    <a class="prev" ng-if="!vm.financeVM.name" ng-click="vm.prev()" href="javascript:;">上一步</a
+    ><a class="save next" href="javascript:;" ng-click='vm.next(vm.financeVM.form)'
       ng-class="{active:vm.financeVM.isActive()}">提交</a>
   </div>
   <div class="form-bottom">

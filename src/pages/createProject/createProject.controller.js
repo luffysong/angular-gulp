@@ -302,6 +302,9 @@ export default class CreateProjectController {
       .catch((err) => { krData.Alert.alert(`申请融资失败：${err.msg}`); });
   }
 
+  prev() {
+    this.step--;
+  }
   next(form) {
     if (!this.validate(form)) {
       return;
