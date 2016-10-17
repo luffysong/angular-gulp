@@ -130,7 +130,10 @@ export default class ProjectIndexController {
       };
       this.apply = function apply() {
         vm.projectService.applyBP(vm.id)
-          .then(() => { this.suc = true; }, (err) => {
+          .then(() => {
+            this.suc = true;
+            this.applyBpStatus = 'APPLY';
+          }, (err) => {
             krData.Alert.alert(err.msg);
           });
       };
