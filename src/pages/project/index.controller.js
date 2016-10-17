@@ -121,7 +121,7 @@ export default class ProjectIndexController {
   }
 
 
-  bp() {
+  bpDialogs() {
     const vm = this;
     function BPController() {
       this.applyBpStatus = vm.applyBpStatus;
@@ -173,8 +173,8 @@ export default class ProjectIndexController {
         this.sendbp = this.send;
       } else {
         this.applyBpStatus = data.applyBpStatus;
-        this.bp = this.bp;
-        this.sendbp = this.bp;
+        this.bp = this.bpDialogs;
+        this.sendbp = this.bpDialogs;
       }
     });
   }
