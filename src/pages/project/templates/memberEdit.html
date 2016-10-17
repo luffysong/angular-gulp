@@ -3,7 +3,7 @@
   <form action="" name='vm.memberVM.form'>
     <div class="key-words form-group">
       <p>团队关键字</p>
-      <input type="text" placeholder="添加团队关键优势，最多3个" class="form-control key-name" ng-model='vm.memberVM.key' ng-keyup='vm.memberVM.keyup($event)' name='keyWords'>
+      <input type="text" placeholder="添加团队关键优势，最多3个" class="form-control key-name" ng-model='vm.memberVM.key' ng-keyup='vm.memberVM.keyup($event)' name='keyWords' maxlength="10">
       <input type="text" style="display:none;">
       <ul>
         <li ng-repeat="tag in vm.memberVM.teamTags"><span class="k-content">{{tag}}</span><span class="delete icon-dialogClose" ng-click='vm.memberVM.deletetag($index)'> </span></li>
@@ -13,7 +13,16 @@
       <p>团队优势
         <span class="hint">相对于竞争对手，说说你们的团队优势以及核心团队成员的背景</span>
       </p>
-      <textarea name="advantage" id="" placeholder="首先简要概括团队做这个项目的核心优势，然后分别介绍创始团队成员的背景和工作分工" class="form-control" ng-model='vm.memberVM.story'></textarea>
+      <div class="textarea-control">
+        <textarea  name="advantage" id="" placeholder="首先简要概括团队做这个项目的核心优势，然后分别介绍创始团队成员的背景和工作分工" class="form-control" ng-model='vm.memberVM.story'
+          message-id="messageIntro"
+          maxlength="500"
+          minlength-error-message="可以描述的更加详细一些（不得少于60个字）"
+          type="text"class="form-control" ></textarea>
+        <div class="textarea-border">
+        </div>
+        <span class="text-length">{{vm.memberVM.story.length || 0}}/500</span>
+      </div>
     </div>
   </form>
 

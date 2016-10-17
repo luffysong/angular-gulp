@@ -27,7 +27,7 @@
           <span class="hot-text" ng-show="vm.baseInfoVM.advantage">{{vm.baseInfoVM.advantage}}</span>
         </p>
       </div>
-      <div class="finance-brief" ng-show='vm.fundsVM.funds'>
+      <div class="finance-brief" ng-if='vm.fundsVM.funds'>
         <p>融资中</p>
         <p>
           <span>轮次</span>
@@ -38,7 +38,7 @@
          <span><small ng-show="vm.fundsVM.financeAmountUnit =='USD'">$</small><small ng-show="vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}万</span>
         </p>
       </div>
-      <div class="finance-brief" ng-show='!vm.fundsVM.funds'>
+      <div class="finance-brief" ng-if='!vm.fundsVM.funds'>
         <p>当前轮次</p>
         <p class="finance-now">
           {{vm.fundsVM.fundsPhase | companyFinancePhase}}
@@ -173,9 +173,10 @@
           </a>
         </li>
         <li>
-          <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user == 'commen'" login-btn>认领</a>
           <a ui-sref="createProject({id: vm.id, type: 'finance', name: vm.name})"
             ng-show="true || vm.user == 'admin'" >融资设置</a>
+          <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user != 'admin'" login-btn>认领</a>
+
           <a href="#" ui-sref="project.edit({id: vm.id})"
             ng-show="vm.user != 'commen' && vm.userId && !vm.isEditMode" >编辑项目</a>
         </li>

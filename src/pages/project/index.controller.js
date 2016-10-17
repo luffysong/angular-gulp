@@ -73,7 +73,6 @@ export default class ProjectIndexController {
     this.projectService.getUser()
     .then((data) => {
       this.userId = data.id;
-
       if (!data.code) {
         // 判断认领人
         if (this.baseInfoVM.managerUid === data.id) {
@@ -92,9 +91,12 @@ export default class ProjectIndexController {
         } else {
           this.talking = this.investor;
         }
+        console.log(this.user);
         this.claimVM = new ClaimVM(this.ngDialog, this.id, this.user);
         this.collectionVM = new CollectionVM(this.ngDialog, this.id, data.investorType);
       }
+    }, ()=>{
+      this.user = 'commen';
     });
   }
 

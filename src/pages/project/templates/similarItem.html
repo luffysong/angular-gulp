@@ -22,16 +22,16 @@
             <a ui-sref="project({id: item.id})"><img ng-src="{{item.logo}}" alt=""></a>
 
 						<div class="info">
-							<a class='i-name' ui-sref="project({id: item.id})">{{item.name}}</a>
-							<span class='i-industry'>{{item.industry}}</span>
-							<p class='i-brief' clamp="1" ng-bind="item.brief"></p>
+							<a class='i-name' ui-sref="project({id: item.id})" ng-bind="item.name"></a>
+							<span class='i-industry' ng-bind="item.industry"></span>
+							<p class='i-brief' ng-bind="item.brief"></p>
 						</div>
 					</td>
-          <td class='round'>{{item.financePhase}}</td>
+          <td class='round' ng-bind="item.financePhase"></td>
 					<td class='invest'>
             <ul>
-              <li ng-repeat="invest in item.pastInvestor">
-                {{invest}}
+              <li ng-repeat="invest in item.pastInvestor" ng-bind="invest">
+
               </li>
             </ul>
           </td>

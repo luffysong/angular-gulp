@@ -8,12 +8,13 @@ export default class ClaimVM {
     this.user = usr;
     this.projectService = krData.utls.getService('projectService');
     this.getUser();
+    this.getManager(this.Cid);
   }
   claim() {
     let claimDialog;
     const vm = this;
     function claimController() {
-      vm.getManager(vm.Cid);
+      this.manager = vm.manager;
       this.background = '/images/cardBackground.png';
       if (vm.user === 'commen') {
         this.position = true;
@@ -87,9 +88,10 @@ export default class ClaimVM {
     });
   }
   getManager(id) {
-    this.projectService.getManager({
-      id,
-    }).then((data) => {
+    const cid = {
+      'id': id,
+    };
+    this.projectService.getManager(cid).then((data) => {
       this.manager = data;
     });
   }
