@@ -9,7 +9,7 @@
       required-error-message="请选择轮次"
       ng-options="item.value as item.desc for item in root.FINANCE_PHASE_META"
       name="phase">
-        <option value=""></option>
+        <option value="">选择轮次</option>
       </select>
     </div>
     <div class="form-group select-inline select-margin">
@@ -32,12 +32,12 @@
         required-error-message="请选择融资时间"
         ng-options="item for item in root.fromYear2000"
         name="financeDateYear">
-          <option>年份</option>
+          <option value="">年份</option>
         </select>
         <select class="form-control finance-date" ng-model="vm.financeVM.financeDateMonth"
         ng-options="item for item in root.getAllMonths" validator="required"
         name="financeDateMonth">
-          <option>月份</option>
+          <option value="">月份</option>
         </select>
       </div>
     </div>

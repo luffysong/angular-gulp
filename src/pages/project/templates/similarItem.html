@@ -19,10 +19,10 @@
 			<tbody class='content-body'>
 				<tr ng-repeat="item in vm.similarVM.companyList">
 					<td class='item-info'>
-            <a ui-sref="project({id: item.id})"><img ng-src="{{item.logo}}" alt=""></a>
+            <a ui-sref="project({id: item.id})" target="_blank"><img ng-src="{{item.logo}}" alt=""></a>
 
 						<div class="info">
-							<a class='i-name' ui-sref="project({id: item.id})" ng-bind="item.name"></a>
+							<a class='i-name' ui-sref="project({id: item.id})" ng-bind="item.name" target="_blank"></a>
 							<span class='i-industry' ng-bind="item.industry"></span>
 							<p class='i-brief' ng-bind="item.brief"></p>
 						</div>

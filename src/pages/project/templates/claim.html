@@ -3,7 +3,7 @@
     <p>认证信息 <span class="icon-dialogTags"></span></p>
     <div class="claimant" ng-hide='!vm.manager.hasManager'>
       <div class="claimant-info">
-        已有认领人<a href="">{{vm.manager.name}}</a>，若非真实可<a href="" ng-click="vm.claimVM.report=!vm.claimVM.report">举报更改</a>
+        已有认领人<a href="" class="claim-name">{{vm.manager.name}}</a>，若非真实可<a href="" ng-click="vm.claimVM.report=!vm.claimVM.report">举报更改</a>
       </div>
       <div class="report" ng-show="vm.claimVM.report">
         请将举报材料（个人名片、公司营业执照等可证明对公司有实际控制权的证明材料）提交至“融资小秘书：*******”，会在3个工作日内联系您，并给出结果反馈。
