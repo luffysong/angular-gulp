@@ -16,8 +16,8 @@
           <label for=""><span class="required">*</span> 真实姓名</label>
           <input  ng-model="vm.user.userName"
             placeholder="输入中文真实姓名"
-            maxlength="30"
-            validator="required"
+            maxlength="16"
+            validator="required,maxlength=16"
             type="text" name="userName" class="form-control" />
         </div>
 
@@ -28,16 +28,15 @@
               ng-if="!vm.baseInfo.companyRole"
               ng-model="vm.user.companyRole"
               placeholder="输入"
-              validator="notEqual=vm.baseInfoVM.name"
               message-id="messageFullName"
               not-equal-error-message="请不要再次填写项目名称"
               type="text" name="userCompanyRole" class="form-control"
             >
               <option value="">选择角色</option>
             </select><input ng-model="vm.user.userPosition"
-              placeholder="输入职位"
-              validator="required"
-            type="text" name="userPosition" class="form-control position-name"  />
+              placeholder="输入职位" maxlength="20"
+              validator="required,maxlength=20"
+              type="text" name="userPosition" class="form-control position-name"  />
           </div>
 
         </div>
@@ -46,8 +45,8 @@
           <label for=""><span class="required">*</span> 手机号码</label>
           <span class="error-tip" id=""></span>
           <input  ng-model="vm.user.userPhone"
-          validator="required" message-id="messageBrief"
-          maxlength="30"
+          validator="required,maxlength=13,number" message-id="messageBrief"
+          maxlength="13"
           placeholder="输入真实手机号"
           type="text" name="userPhone" class="form-control" />
         </div>
@@ -64,8 +63,8 @@
           <label for=""><span class="required">*</span> 个人微信</label>
           <span class="error-tip" id=""></span>
           <input  ng-model="vm.user.userWeiXin"
-          validator="required" message-id="messageBrief"
-          maxlength="30"
+          validator="required,maxlength=20,minlength=6" message-id="messageBrief"
+          maxlength="20" minlength="6"
           placeholder="输入个人微信号，方便联系"
           type="text" name="userWeiXin" class="form-control" />
         </div>
@@ -121,7 +120,7 @@
   </div>
   <div class="form-group text-center">
     <a class="prev" ng-click="vm.prev()" href="javascript:;">上一步</a
-    ><a ng-class="{active: !vm.needFinance() || vm.user.form.$valid === true}"
+    ><a ng-class="{active: vm.isInvestorOrUser() || vm.user.form.$valid === true}"
       class="next" ng-click="vm.next(vm.user.form)" href="javascript:;">
           {{vm.needFinance() ? '下一步' : '提交'}}
     </a>
