@@ -1,8 +1,8 @@
 <div class="finance-history-edit">
   <form name="vm.financeVM.form">
-    <div class="form-group select-inline">
+    <div class="form-group select-inline error-inline">
       <label><span class="required">*</span>融资轮次</label>
-      <span class="error-tip" id="editPhase"></span>
+
       <select class="form-control" ng-model="vm.financeVM.phase"
       validator="required"
       message-id="editPhase"
@@ -11,6 +11,7 @@
       name="phase">
         <option value="">选择轮次</option>
       </select>
+      <span class="error-tip" id="editPhase"></span>
     </div>
     <div class="form-group select-inline select-margin">
       <label class="amount-title">融资金额</label>
@@ -23,9 +24,8 @@
     </div>
 
     <div class="form-group">
-      <div class="select-inline">
+      <div class="select-inline error-inline">
         <label class="date-title"><span class="required">*</span>融资时间</label>
-        <span class="error-tip" id="editFinanceDateYear"></span>
         <select class="form-control finance-date" ng-model="vm.financeVM.financeDateYear"
         validator="required"
         message-id="editFinanceDateYear"
@@ -39,6 +39,9 @@
         name="financeDateMonth">
           <option value="">月份</option>
         </select>
+        <div>
+        <span class="error-tip" id="editFinanceDateYear"></span>
+        </div>
       </div>
     </div>
 
