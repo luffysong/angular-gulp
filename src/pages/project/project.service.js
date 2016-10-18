@@ -130,6 +130,14 @@ export default class ProjectService extends API {
     return this.getTitle;
   }
 
+  // 投资人联想
+  suggest(kw) {
+    const api = new API('/suggest/org');
+    return api.query({
+      kw,
+    });
+  }
+
   allData(id) {
     return this.$q.all({
       baseInfo: this.get(id),

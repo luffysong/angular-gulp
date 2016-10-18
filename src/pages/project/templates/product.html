@@ -1,5 +1,8 @@
 <div class="product-data">
-  <h4>产品及数据</h4>
+  <h4>产品及数据<a href="javascript:void(0)" ng-click="vm.productVM.enterEditMode()" ng-if="!vm.productVM.isEdit">添加+</a></h4>
+  <section id="productEdit" ng-include="'/pages/project/templates/productEdit.html'" ng-if="vm.productVM.isEdit">
+    产品数据添加
+  </section>
   <div class="content">
     <div class="detail">
       <div class="product-name">
@@ -32,8 +35,10 @@
             </span>
             <span ><span class="text" ng-click="vm.productVM.setType('AVERAGE')" ng-class="{'active':vm.productVM.curType === 'AVERAGE'}">人均使用数据</span></span>
             <span><span class="text" ng-click="vm.productVM.setType('DOWNLOAD')" ng-class="{'active':vm.productVM.curType === 'DOWNLOAD'}">下载数据</span></span>
-            <span><span class="text" ng-mouseenter="vm.productVM.setHovered()"
-            ng-class="{'active':vm.productVM.curType === 'KEEP'}">留存数据</span>
+            <span>
+              <span class="text" ng-mouseenter="vm.productVM.setHovered()"
+                    ng-class="{'active':vm.productVM.curType === 'KEEP'}">留存数据
+              </span>
             </span>
             <div class="keepData" ng-if="vm.productVM.hasHovered"
             ng-mouseleave="vm.productVM.setHovered()">

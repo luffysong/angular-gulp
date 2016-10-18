@@ -1,6 +1,10 @@
-export default class ProductVM {
-  constructor(data) {
+import krData from 'krData';
+export default class ProductVM extends krData.FormVM {
+  constructor(data, $scope, $compile) {
+    super(data);
     this.data = data;
+    this.$scope = $scope;
+    this.$compile = $compile;
     this.init();
     console.log(this.data);
   }
@@ -69,8 +73,30 @@ export default class ProductVM {
 
     this.chartConfig = setBasicConfig();
   }
+
   setHovered() {
     this.hasHovered = !this.hasHovered;
+  }
+
+  save() {
+    if (this.validate()) {
+      console.log();
+    }
+  }
+
+  addLink() {
+    angular.element('#productsUrl').append(this.$compile(`<div class="ios-address">
+        <span class="error-tip" id="editProductIos"></span>
+        <select class="form-control">
+          <option>111</option>
+          <option>222</option>
+        </select>
+        <input type="text" name="ios" placeholder="请填写产品链接"
+               ng-model="vm.productVM.ios"
+               message-id="editProductIos"
+               required-error-message="请填写产品的链接"
+               validator="required" class="form-control product-ios"/>
+      </div>)`));
   }
 
 }

@@ -1,9 +1,10 @@
 import krData from 'krData';
 export default class FinanceVM extends krData.FormVM {
-  constructor(data, $scope, id, $sce) {
+  constructor(data, $scope, id, $sce, $q) {
     super(data);
     this.$scope = $scope;
     this.$sce = $sce;
+    this.$q = $q;
     this.id = id;
     this.initData(data);
     this.init(data);
@@ -20,28 +21,28 @@ export default class FinanceVM extends krData.FormVM {
     this.investorList = [];
     // this.watch();
 
-    this.suggestInvestorList = [
-      {
-        entityId: 101,
-        entityName: '红杉资本',
-        entityType: 'COMPANY',
-      },
-      {
-        entityId: 102,
-        entityName: '经纬中国',
-        entityType: 'COMPANY',
-      },
-      {
-        entityId: 103,
-        entityName: '蚂蚁金服',
-        entityType: 'AGENCY',
-      },
-      {
-        entityId: 104,
-        entityName: '大石头',
-        entityType: 'PERSON',
-      },
-    ];
+    // this.suggestInvestorList = [
+    //   {
+    //     entityId: 101,
+    //     entityName: '红杉资本',
+    //     entityType: 'COMPANY',
+    //   },
+    //   {
+    //     entityId: 102,
+    //     entityName: '经纬中国',
+    //     entityType: 'COMPANY',
+    //   },
+    //   {
+    //     entityId: 103,
+    //     entityName: '蚂蚁金服',
+    //     entityType: 'AGENCY',
+    //   },
+    //   {
+    //     entityId: 104,
+    //     entityName: '大石头',
+    //     entityType: 'PERSON',
+    //   },
+    // ];
 
     this.autocomplete_options = {
       suggest: this.suggest.bind(this),
@@ -84,10 +85,10 @@ export default class FinanceVM extends krData.FormVM {
   update() {
     if (!this.validate()) return;
     this.financeDate = `${this.financeDateYear}-${this.financeDateMonth}-01`;
-    this.investorList.map((val) => {
-      delete (val.label);
-      delete (val.value);
-    });
+    // this.investorList.map((val) => {
+    //   delete (val.label);
+    //   delete (val.value);
+    // });
 
     this.projectService.addfinance({
       id: this.id,
@@ -99,20 +100,40 @@ export default class FinanceVM extends krData.FormVM {
   }
 
 
-  suggest() {
-    const result = [];
+  suggest(kw) {
+    // const result = [];
 
-    this.suggestInvestorList.map((val) => {
-      const change = {};
-      change.label = this.$sce.trustAsHtml(
-        `<div class="suggest-label"><p>${val.entityName}</p></div>`);
-      change.value = val.entityName;
-      change.entityId = val.entityId;
-      change.entityName = val.entityName;
-      change.entityType = val.entityType;
-      result.push(change);
+    // this.suggestInvestorList.map((val) => {
+    //   const change = {};
+    //   change.label = this.$sce.trustAsHtml(
+    //     `<div class="suggest-label"><p>${val.entityName}</p></div>`);
+    //   change.value = val.entityName;
+    //   change.entityId = val.entityId;
+    //   change.entityName = val.entityName;
+    //   change.entityType = val.entityType;
+    //   result.push(change);
+    // });
+    // return result;
+
+    const defered = this.$q.defer();
+    this.projectService.suggest(kw).then((list) => {
+      this.investorList = list;
+      defered.resolve(this.makeSuggestResult(kw, list));
     });
-    return result;
+    return defered.promise;
+  }
+
+  makeSuggestResult(kw, list) {
+    const that = this;
+    return list.map(function mapList(val) {
+      return {
+        label: that.$sce.trustAsHtml(
+          `<div class="suggest-label"><p>${val.entityName}</p></div>`
+          ),
+        value: val.entityName,
+        obj: val,
+      };
+    });
   }
 
   onSelect(selectedItem) {

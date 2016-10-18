@@ -1,0 +1,63 @@
+<div class="product-edit">
+  <form name="vm.productVM.form">
+    <div class="form-group">
+      <label><span class="required">*</span>产品名称</label>
+      <span class="error-tip" id="editProductName"></span>
+      <input type="text" name="product-name" placeholder="请输入产品的名称"
+             ng-model="vm.productVM.name"
+             message-id="editProductName"
+             required-error-message="请输入产品名称"
+             validator="required" class="form-control product-name" size="140" />
+    </div>
+    <div class="form-group">
+      <label><span class="required">*</span>产品描述</label>
+      <span class="error-tip" id="editProductInfo"></span>
+      <input type="text" name="product-info" placeholder="请添加产品的描述功能"
+             ng-model="vm.productVM.desc"
+             message-id="editProductInfo"
+             required-error-message="请添加产品的描述功能"
+             validator="required" class="form-control product-info" size="140" />
+      <span class="descNum">{{vm.productVM.desc.length || 0}}/30</span>
+    </div>
+    <div class="form-group" id="productsUrl">
+      <label><span class="required">*</span>产品链接</label>
+      <div class="web-address">
+        <span class="error-tip" id="editProductUrl"></span>
+        <select class="form-control">
+          <option>111</option>
+          <option>222</option>
+                </select>
+        <input type="text" name="website" placeholder="请填写产品链接"
+               ng-model="vm.productVM.url"
+               message-id="editProductUrl"
+               required-error-message="请填写产品的链接"
+               validator="required" class="form-control product-url" />
+      </div>
+      <div class="ios-address">
+        <span class="error-tip" id="editProductIos"></span>
+        <select class="form-control">
+          <option>111</option>
+          <option>222</option>
+        </select>
+        <input type="text" name="ios" placeholder="请填写产品链接"
+               ng-model="vm.productVM.ios"
+               message-id="editProductIos"
+               required-error-message="请填写产品的链接"
+               validator="required" class="form-control product-ios"/>
+      </div>
+
+        <a href="javascript:void(0)" class="add-link"
+           ng-click="vm.productVM.addLink()"><div>产品链接+ </div></a>
+
+    </div>
+    <div class="form-bottom">
+      <p class="splitter"> </p>
+      <p class="tip-text">注意：所有更改内容均会提交审核，审核期间不可对此事件做任何的更改，通过后对所有用户公开</p>
+      <div class="btn">
+        <a class="save" href="javascript:void(0)" ng-click="vm.productVM.save()">保存</a>
+        <a class="cancel" href="javascript:void(0)" ng-click="vm.productVM.cancel()">取消</a>
+      </div>
+    </div>
+  </form>
+
+</div>
