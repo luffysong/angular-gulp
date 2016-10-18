@@ -36,7 +36,9 @@ export default class IntroductionVM extends krData.FormVM {
     this.projectService.getArea(id)
       .then(data => {
         this.cities1 = data;
-        this.address2 = data[0].id;
+        if (data.length) {
+          this.address2 = data[0].id;
+        }
       });
   }
 

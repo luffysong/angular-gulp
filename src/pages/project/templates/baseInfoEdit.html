@@ -60,9 +60,8 @@
       <!-- <div class="select-inline select-margin"> -->
 
         <select
-          ng-options="item.id as item.name for item in vm.introductionVM.cities1"
-          required-error-message="请选择地区"
-          class="form-control address-select" ng-model="vm.introductionVM.address2" validator="required" message-id="messageAddress" >
+          ng-options="item.id as item.name for item in vm.introductionVM.cities1" ng-show='vm.introductionVM.cities1.length'
+          class="form-control address-select" ng-model="vm.introductionVM.address2" >
         </select>
       </div>
     </div>

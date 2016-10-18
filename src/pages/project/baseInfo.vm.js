@@ -62,6 +62,8 @@ export default class BaseInfoVM extends krData.FormVM {
         this.recovery();
         krData.Alert.success('数据保存成功');
         this.ok();
+      },(data)=>{
+        krData.Alert.alert(data.msg);
       });
   }
 }

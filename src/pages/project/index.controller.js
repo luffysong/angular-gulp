@@ -12,7 +12,7 @@ import CollectionVM from './collection.vm';
 // import Alert from '../../common/base/Alert';
 // import EditFinanceVM from './editFinance.vm';
 @Inject('$stateParams', 'projectService', 'projectData', 'ngDialog',
-  '$validation', '$scope', '$sce', '$state')
+  '$validation', '$scope', '$sce', '$state', '$q')
 export default class ProjectIndexController {
   constructor() {
     this.init();
