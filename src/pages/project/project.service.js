@@ -102,7 +102,7 @@ export default class ProjectService extends API {
     const id = {
       id: cid,
     };
-    this.send = new API('/company/:id/funds/bp?action=send2email',[''])
+    this.send = new API('/company/:id/funds/bp?action=send2email', [''])
     .save(id, id);
     return this.send;
   }
@@ -111,7 +111,7 @@ export default class ProjectService extends API {
     const id = {
       id: cid,
     };
-    this.applyPermission = new API('/company/:id/funds/bp/permission',['']).save(id, id);
+    this.applyPermission = new API('/company/:id/funds/bp/permission', ['']).save(id, id);
     return this.applyPermission;
   }
 
@@ -137,6 +137,16 @@ export default class ProjectService extends API {
       kw,
     });
   }
+  // 判断当前用户是否在审核认领
+  claimPeding(cid) {
+    const id = {
+      id: cid,
+    };
+    this.claimpeding = new API('/company/:id/privilege?type=claim-pending')
+    .get(id);
+    return this.claimpeding;
+  }
+
 
   allData(id) {
     return this.$q.all({

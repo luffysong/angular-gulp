@@ -48,7 +48,7 @@
              placeholder="请填写本轮投资机构或天使投资人"
              mass-autocomplete-item="vm.financeVM.autocomplete_options"/>
       <div class="investor-list">
-        <span ng-repeat="item in vm.financeVM.investorList">{{item.entityName}}
+        <span ng-repeat="item in vm.financeVM.investorList">{{item.value}}
           <span class="delete" ng-click="vm.financeVM.deleteInvestor(item)">×</span>
         </span>
       </div>

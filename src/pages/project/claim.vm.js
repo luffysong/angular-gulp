@@ -13,8 +13,9 @@ export default class ClaimVM {
     this.projectService = krData.utls.getService('projectService');
     this.getUser();
     this.getManager(this.Cid);
+    this.getClaimPending();
   }
-  claim() {
+  claimForm() {
     let claimDialog;
     const vm = this;
     function claimController() {
@@ -86,7 +87,18 @@ export default class ClaimVM {
       controllerAs: 'vm',
     });
   }
-
+  getClaimPending() {
+    // 判断当前用户是否在审核认领
+    this.projectService.claimPeding(this.Cid)
+    .then((data) => {
+      this.claim = this.claimForm;
+    }, () => {
+      this.claim = this.applied;
+    });
+  }
+  applied() {
+    krData.Alert.alert('已收到认领申请，正在审核中，请勿重复提交！');
+  }
   getUser() {
     this.projectService.getUser()
     .then(data => {

@@ -36,6 +36,7 @@
       <select class="form-control"
         ng-options="item.value as item.desc for item in root.OPERATION_STATUS_META"
         ng-model="vm.introductionVM.operationStatus" validator="required" message-id="messageState" >
+        <option value="">请选择</option>
       </select>
     </div>
 
@@ -55,6 +56,7 @@
           ng-options="item.id as item.name for item in vm.introductionVM.cities0"
           required-error-message="请选择地区"
           class="form-control address-select" ng-model="vm.introductionVM.address1" validator="required" message-id="messageAddress" >
+        <option value="">请选择</option>
         </select>
       <!-- </div> -->
       <!-- <div class="select-inline select-margin"> -->
@@ -62,6 +64,7 @@
         <select
           ng-options="item.id as item.name for item in vm.introductionVM.cities1" ng-show='vm.introductionVM.cities1.length'
           class="form-control address-select" ng-model="vm.introductionVM.address2" >
+        <option value="">请选择</option>
         </select>
       </div>
     </div>
