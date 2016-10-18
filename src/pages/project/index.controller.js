@@ -27,13 +27,8 @@ export default class ProjectIndexController {
       this.financeVM = new FinanceVM(this.projectData.finance, this.$scope, this.id, this.$sce, this.$q);
       this.memberVM = new MemberVM(this.projectData.member, this.id);
       this.similarVM = new SimilarVM(this.projectData.similar);
-<<<<<<< Updated upstream
       // this.newsVM = new NewsVM(this.projectData.news, this.$scope, this.id);
       this.productVM = new ProductVM(this.projectData.product);
-=======
-      this.newsVM = new NewsVM(this.projectData.news, this.$scope, this.id);
-      this.productVM = new ProductVM(this.projectData.product, this.$scope, this.$compile);
->>>>>>> Stashed changes
       // this.editFinanceVM = new EditFinanceVM(this.projectData.finance, this.$scope, this.id);
     }
     this.getRelateUser();
@@ -100,7 +95,7 @@ export default class ProjectIndexController {
         this.claimVM = new ClaimVM(this.ngDialog, this.id, this.user);
         this.collectionVM = new CollectionVM(this.ngDialog, this.id, data.investorType);
       }
-    }, ()=>{
+    }, () => {
       this.user = 'commen';
     });
   }
