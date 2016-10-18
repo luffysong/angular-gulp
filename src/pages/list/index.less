@@ -1,0 +1,193 @@
+.filter-container {
+  position: relative;
+  padding: 8px 60px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 8px 0px #CCCCCC;
+  .filter-list {
+    height:50px;
+    padding:12px 0;
+    border-bottom: 1px dashed #F2F4F5;
+    &:last-of-type {
+      border-bottom-color: transparent;
+    }
+    .filter-col {
+      height:auto;
+      .clear-both();
+      .col-type {
+        display: inline-block;
+        width:48px;
+        vertical-align: middle;
+        text-align: right;
+        margin-right:24px;
+        font-size: 12px;
+        color: #5A626D;
+        letter-spacing: 0px;
+        line-height: 18px;
+      }
+      .col-content {
+        display: inline-block;
+        height: auto;
+        .col-item {
+          display: inline-block;
+          padding: 4px 6px;
+          font-size: 12px;
+          letter-spacing: 0px;
+          line-height: 18px;
+          margin-right: 28px;
+          color: #222C38;
+          cursor: pointer;
+          .clear-btn {
+            position: relative;
+            top:1px;
+            vertical-align: middle;
+          }
+          &.active {
+            color: #2868D1;
+            background: rgba(107,162,252,.2);
+          }
+        }
+      }
+    }
+  }
+  .spread-btn {
+      position: absolute;
+      width: 90px;
+      height: 16px;
+      bottom: -16px;
+      left: 50%;
+      margin-left: -45px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      box-shadow: 0px 1px 0px 1px #CCCCCC;
+      background: #fff;
+  }
+}
+
+.result-container {
+  background: #F2F4F5;
+  padding:0 30px 40px;
+  .result-tip {
+    height:35px;
+    line-height: 35px;
+    font-size: 12px;
+    color: #5A626D;
+    letter-spacing: 0px;
+    padding-left:10px;
+  }
+  .result-content {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 6px 0px #CCCCCC;
+    table {
+      width:100%;
+      text-align: center;
+      tr {
+
+        td {
+          border-bottom:1px solid #F2F4F5;
+          padding:14px 0;
+
+          .project-logo {
+            float: left;
+            display: inline-block;
+            width: 42px;
+            height: 42px;
+            margin-right: 16px;
+            border: 1px solid #ebebeb;
+            background: #fff no-repeat 50%;
+            background-size: contain;
+            border-radius: 4px;
+            cursor: pointer;
+            background-image: url('https://krplus-pic.b0.upaiyun.com/201604/05042043/4mxy3xi5g9id4zl6.jpg!100');
+          }
+
+          .project-info {
+            margin-left:58px;
+            .project-name {
+              font-size: 14px;
+              color: #222C38;
+              letter-spacing: 0px;
+              line-height: 21px;
+              margin-bottom:8px;
+              .company-name {
+                margin-right:10px;
+              }
+              .hot-tag {
+                display: inline-block;
+                width:auto;
+                height:18px;
+                line-height:18px;
+                background: #F8627E;
+                border-radius: 2px;
+                font-size:12px;
+                color: #fff;
+                text-align: center;
+                padding:0 5px;
+                margin-right:10px;
+                vertical-align: top;
+              }
+              .fund-state {
+                .hot-tag;
+                background: #6BA2FC;
+              }
+            }
+            .project-intro {
+              font-size: 12px;
+              color: #5A626D;
+              letter-spacing: 0px;
+              line-height: 18px;
+            }
+            .project-tag {
+              font-size: 12px;
+              color: #F8627E;
+              letter-spacing: 0px;
+              line-height: 18px;
+            }
+          }
+
+          .collect-btn {
+            display: inline-block;
+            width:80px;
+            height:30px;
+            line-height:28px;
+            border: 1px solid #6BA2FC;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #6BA2FC;
+            letter-spacing: 0px;
+            &.collected {
+              border:none;
+            }
+          }
+
+          &:first-of-type {
+            text-align: left;
+            padding-left:30px;
+          }
+          &:last-of-type {
+            padding-right:38px;
+          }
+        }
+
+        &:first-of-type {
+          height:46px;
+          padding:0;
+          text-align: center;
+          td {
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .load-more {
+      height:50px;
+      line-height: 50px;
+      background: #F9F9F9;
+      text-align: center;
+      font-size: 12px;
+      color: #5A626D;
+      letter-spacing: 0px;
+      margin-top:-2px;
+    }
+  }
+}

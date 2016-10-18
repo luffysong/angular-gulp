@@ -3,6 +3,9 @@ export default {
     home: [
       '/pages/home/index.js',
     ],
+    list: [
+      '/pages/list/index.js',
+    ],
     project: [
       '/pages/project/index.js',
       '/bower/ngSticky/dist/sticky.min.js',
