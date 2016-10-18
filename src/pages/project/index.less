@@ -577,13 +577,19 @@
           line-height: 21px;
           padding-top: 4px;
           &>span{
-            margin: 0 10px;
+            margin: 0 5px;
           }
           span:first-child{
             margin-left: 0;
           }
           span:last-child{
             margin-right: 0;
+            display: inline-block;
+            width: 80px;
+            height: 16px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
         }
       }
