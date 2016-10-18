@@ -54,7 +54,7 @@
           <label for=""><span class="required">*</span> 公司邮箱</label>
           <span class="error-tip" id=""></span>
           <input  ng-model="vm.user.userEmail"
-          validator="required" message-id="messageBrief"
+          validator="required,email" message-id="messageBrief"
           maxlength="30"
           placeholder="输入公司邮箱，便于审核"
           type="text" name="userEmail" class="form-control" />
