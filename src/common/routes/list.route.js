@@ -1,7 +1,7 @@
 import assets from '../assets/script';
 import { getLoadBundle } from '../base/utls';
 export default {
-  url: '/list',
+  url: '/list?{status}${round}&{industry}',
   templateUrl: '/pages/list/templates/index.html',
   controllerAs: 'vm',
   controller: 'listIndexController',
