@@ -125,6 +125,11 @@
         type="hidden" ng-model="vm.financeVM.finance.bp" name="bp">
         <label for=""><span class="required">*</span> 商业计划书</label>
         <span id="bp" class="error-tip bp-error" ></span>
+        <span ng-if="vm.financeVM.bpUploading" width="100%"
+          class="progress-bar">
+          <span>BP上传中</span
+          ><span class="bar"><span ng-style="{width: vm.financeVM.bpProgress}" class="progress"></span></span>
+        </span>
         <span class="suc-name" ng-show='vm.financeVM.bpName'><span>{{vm.financeVM.bpName}}</span>
           <span class="icon-dialogClose" ng-click='vm.financeVM.deletebp()'></span></span>
         <a

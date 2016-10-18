@@ -27,7 +27,16 @@ export default class financeVM {
           this.finance.bp = data.src;
           this.bpName = `[${name}]商业计划书.pdf`;
         }, err => {
+          this.bpUploading = false;
           krData.Alert.alert(`上传BP失败:${err.msg}`);
+        }).then(null, null, (progress) => {
+          if (progress.type === 'load') {
+            this.bpProgress = '100%';
+            this.bpUploading = false;
+          } else if (progress.type === 'progress') {
+            this.bpProgress = `${(progress.loaded * 100) / progress.total}%`;
+            this.bpUploading = true;
+          }
         });
     }
   }
