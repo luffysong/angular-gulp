@@ -109,11 +109,11 @@ export default class ProjectIndexController {
     this.financeHistory = other;
     this.light = first;
     const baseInfo = (this.baseInfoVM.industryTag || this.baseInfoVM.intro);
-    if (this.baseInfoVM.investAdvantage && this.user !== 'commen') {
+    if (this.baseInfoVM.investAdvantage && this.investorType) {
       this.light = first;
     } else if (baseInfo) {
       this.baseInfo = first;
-    } else if (this.fundsVM.funds && this.user !== 'commen') {
+    } else if (this.fundsVM.funds && this.user !== 'commen' && this.investorType) {
       this.financeDetail = first;
     } else {
       this.financeHistory = first;

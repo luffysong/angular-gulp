@@ -174,7 +174,7 @@
           </a>
         </li>
         <li>
-        <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user != 'admin'" login-btn>认领</a>
+        <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user == 'commen'" login-btn>认领</a>
           <a ui-sref="createProject({id: vm.id, type: 'finance', name: vm.name})"
             ng-show="vm.user == 'admin'" >融资设置</a>
 
