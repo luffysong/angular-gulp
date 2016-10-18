@@ -3,8 +3,14 @@ const projectApi = new krData.API('/company/:id', [
   'addPrivilege',
   'privilege',
   'addFunds',
-]);
+], {
+  fundState: 'funds-state',
+});
 export default class CreateProject {
+
+  FINANCE_NONE = 0;
+  FINANCE_ALLOW = 1;
+  FINANCE_AUDITING = 2;
 
   create(data) {
     const api = new krData.API('/company/action/create');
@@ -23,6 +29,13 @@ export default class CreateProject {
       id,
       type: 'manager',
     });
+  }
+
+  financeState(id) {
+    return projectApi.fundState({
+      id,
+    }).then(data => data.state)
+      .catch(() => this.FINANCE_NONE);
   }
 
   claim(id, data) {

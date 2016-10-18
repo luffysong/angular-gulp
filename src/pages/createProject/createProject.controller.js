@@ -1,6 +1,5 @@
 import krData from 'krData';
 import FinanceVM from './financeApply.vm';
-import CreateProject from './createProject.service';
 const $validation = krData.utls.getService('$validation');
 const PROJECT_TYPE = krData.utls.getService('PROJECT_TYPE');
 const ROLE_META = krData.utls.getService('ROLE_META');
@@ -12,8 +11,8 @@ function isInvalid(ctl) {
 function validate(ctl) {
   $validation.validate(ctl);
 }
-@Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE',
-  '$scope', '$q', '$filter', '$stateParams')
+@Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', 'step', 'financeState', 'type',
+  '$scope', '$q', '$filter', '$stateParams', '$state', 'createProjectService')
 export default class CreateProjectController {
 
   autocompleteOptions = {
@@ -27,7 +26,7 @@ export default class CreateProjectController {
 
   CLAIM_ROLE = [ROLE_META[0], ROLE_META[1]];
 
-  project = new CreateProject();
+  project = this.createProjectService;
   baseInfo = {};
   user = {};
   similarItem = [
@@ -38,7 +37,6 @@ export default class CreateProjectController {
   ];
 
   financeVM = new FinanceVM(this.$scope, this.$stateParams.name);
-  step = 1;
 
 
   constructor() {
@@ -61,11 +59,21 @@ export default class CreateProjectController {
   }
 
   initView() {
-    if (this.$stateParams.type === FINANCE) {
-      this.step = 3;
+    if (this.type === FINANCE) {
       this.title = '融资申请';
       this.id = this.$stateParams.id;
+      if (this.financeState === this.project.FINANCE_AUDITING) {
+        this.step = 4;
+      } else if (this.financeState === this.project.FINANCE_NONE) {
+        this.ensureFinanceAllow();
+      }
     }
+  }
+
+  ensureFinanceAllow() {
+    this.$state.go('project', {
+      id: this.$stateParams.id,
+    });
   }
 
   isWeb() {
@@ -293,7 +301,7 @@ export default class CreateProjectController {
 
   saveFinance() {
     // 融资入口则调用融资接口
-    if (this.$stateParams.type === FINANCE) {
+    if (this.type === FINANCE) {
       this.funds();
       return;
     }
