@@ -143,7 +143,7 @@
             基本介绍
           </a>
         </li>
-        <li ng-hide="!vm.fundsVM.funds || vm.user == 'commen' || !vm.investorType">
+        <li ng-hide="!(vm.fundsVM.funds.scale && vm.fundsVM.funds.dataLights && vm.fundsVM.funds.competitor && vm.fundsVM.funds.projectPlan) || vm.user == 'commen' || !vm.investorType">
           <a href="#financeDetail" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeDetail}}" ng-class="{'active':!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)}">
             融资详情
           </a>
@@ -194,7 +194,7 @@
     ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
   </section>
   <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module finance"
-    ng-show="vm.fundsVM.funds && (vm.user != 'commen' || vm.investorType)">
+    ng-show="(vm.fundsVM.funds.scale && vm.fundsVM.funds.dataLights && vm.fundsVM.funds.competitor && vm.fundsVM.funds.projectPlan) && (vm.user != 'commen' || vm.investorType)">
     融资详情
   </section>
   <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module">
