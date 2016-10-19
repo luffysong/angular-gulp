@@ -6,6 +6,7 @@ import centerDirective from './center.directive';
 import loginBtnDirective from './loginBtn.directive';
 import moreShowDirective from './moreShow.directive';
 import EditProjectController from './EditProject.controller';
+import krScrollClick from './krScrollClick.directive.js';
 angular.module('@@pages.project', [])
   .controller('ProjectIndexController', ProjectIndexController)
   .controller('EditProjectController', EditProjectController)
@@ -14,4 +15,5 @@ angular.module('@@pages.project', [])
   .directive('textMore', textMoreDirective)
   .directive('center', centerDirective)
   .directive('loginBtn', loginBtnDirective)
+  .directive('krScrollClick', krScrollClick)
   .directive('moreShow', moreShowDirective);
