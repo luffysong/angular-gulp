@@ -117,8 +117,7 @@ export default class FinanceVM extends krData.FormVM {
 
     const defered = this.$q.defer();
     this.projectService.suggest(kw).then((list) => {
-      this.suggestInvestorList = list;
-      defered.resolve(this.makeSuggestResult(kw, list));
+      defered.resolve(this.makeSuggestResult(kw, list.slice(0, 5)));
     });
     return defered.promise;
   }
@@ -148,7 +147,7 @@ export default class FinanceVM extends krData.FormVM {
         }
       });
       if (this.name) {
-        this.investorList.push(selectedItem);
+        this.investorList.push(selectedItem.obj);
       }
     }
 

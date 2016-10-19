@@ -26,6 +26,7 @@ export default class ProjectService extends API {
       addfinance: {
         dataType: 'json',
       },
+      fundState: 'funds-state',
     });
   }
 

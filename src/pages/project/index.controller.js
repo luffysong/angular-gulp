@@ -36,8 +36,20 @@ export default class ProjectIndexController {
     this.getBPUrl(this.id);
     this.setNavigation();
     this.getUser();
+    this.getfundsState(this.id);
   }
   userId;
+  getfundsState(cid) {
+    const id = {
+      id: cid,
+    };
+    this.projectService.fundState(id)
+    .then(data => {
+      if (data.code === 1) {
+        this.fundsState = true;
+      }
+    });
+  }
   talk() {
     const vm = this;
     function talkController() {

@@ -16,9 +16,9 @@
         <span class="info-company" >
           <a href="" ng-repeat="entity in data.participantVos">{{entity.entityName}}</a>
         </span>
-        <span class="info-level">{{data.financeAmount}}
-          <span ng-show="data.financeAmountUnit == 'USD'">美元</span>
-          <span ng-show="data.financeAmountUnit == 'CNY'">人民币</span>
+        <span class="info-level">{{data.financeAmount}}万{{data.financeAmountUnit | currencyUnit}}
+          <!-- <span ng-show="data.financeAmountUnit == 'USD'">美元</span>
+          <span ng-show="data.financeAmountUnit == 'CNY'">人民币</span> -->
         </span>
         <span class="info-news" ng-show="data.newsUrl">
           <a ng-href="{{data.newsUrl}}" target="_blank">相关新闻</a>
