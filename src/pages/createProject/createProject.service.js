@@ -1,10 +1,26 @@
 import krData from 'krData';
+
+function filterIndustry(data) {
+  return data.filter(item => item.industry);
+}
 const projectApi = new krData.API('/company/:id', [
   'addPrivilege',
   'privilege',
   'addFunds',
 ], {
   fundState: 'funds-state',
+});
+const suggestApi = new krData.API('/suggest', [
+  'company',
+], {
+  suggestProject: {
+    action: 'company',
+    isArray: true,
+  },
+  suggestClaim: {
+    action: 'claim-com',
+    isArray: true,
+  },
 });
 export default class CreateProject {
 
@@ -17,11 +33,20 @@ export default class CreateProject {
     return api.save(null, data);
   }
 
+  /* 此处需要处理脏数据，
+   * 过滤industry不存在的数据，
+   * industry不存在会引发严重的错误
+   * 线上环境并不存在此类问题
+   */
   suggest(kw) {
-    const api = new krData.API('/suggest/company');
-    return api.query({
+    return suggestApi.suggestProject({
       kw,
-    });
+    }).then(filterIndustry);
+  }
+
+  suggestClaim(searchObj) {
+    return suggestApi.suggestClaim(searchObj)
+      .then(filterIndustry);
   }
 
   getPrivilege(id) {

@@ -43,6 +43,7 @@
         <input  ng-model="vm.baseInfo.fullName"
           maxlength="50"
           placeholder="输入公司全称"
+          ng-blur="vm.searchClaimList()"
           message-id="messageFullName"
           type="text" name="fullName" class="form-control" />
       </div>
@@ -80,6 +81,7 @@
         <span id="messageWebsite" class="error-tip" ></span>
         <input  ng-model="vm.baseInfo.website"
           placeholder="请填写公司的官网，请以http(s)://开头"
+          ng-blur="vm.searchClaimList()"
           validator="http,projectType=website" message-id="messageWebsite"
           type="text" name="website" class="form-control" />
       </div>
@@ -91,6 +93,7 @@
         <span id="messageIoslink" class="error-tip" ></span>
         <input  ng-model="vm.baseInfo.iosLink"
           validator="applink,http" message-id="messageIoslink"
+          ng-blur="vm.searchClaimList()"
           applink-error-message="iOS与Android下载链接至少填写一个"
           placeholder="请填写产品iOS下载地址"
           type="text" name="ioslink" class="form-control" />
@@ -102,6 +105,7 @@
         <span id="messageAndroidlink" class="error-tip" ></span>
         <input  ng-model="vm.baseInfo.androidLink"
           placeholder="请填写产品的Android下载地址"
+          ng-blur="vm.searchClaimList()"
           validator="applink,http" message-id="messageAndroidlink"
           applink-error-message="iOS与Android下载链接至少填写一个"
           type="text" name="androidlink" class="form-control" />
@@ -110,6 +114,7 @@
         <label for=""><span class="required">*</span>微信公众号</label>
         <input  ng-model="vm.baseInfo.weixin"
           placeholder="请填写微信公众号"
+          ng-blur="vm.searchClaimList()"
           validator="required"
           type="text" name="weixin" class="form-control" />
       </div>
@@ -160,11 +165,11 @@
 
 </div>
 
-<div ng-if="vm.suggestList.length" class="step-one-wrapper suggest-result-wrapper">
+<div ng-if="vm.claimList.length" class="step-one-wrapper suggest-result-wrapper">
   <h4>建议结果</h4>
     <div>
       <ul>
-        <li ng-repeat="item in vm.suggestList">
+        <li ng-repeat="item in vm.claimList">
           <img ng-src='{{item.logo}}' /><div class="suggest-project-text">
             <p><span>{{item.name}}</span><span>{{item.industry | industry}}</span></p>
             <p class="brief">item.breif</p>

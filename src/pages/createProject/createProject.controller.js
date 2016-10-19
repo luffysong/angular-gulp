@@ -5,9 +5,6 @@ const PROJECT_TYPE = krData.utls.getService('PROJECT_TYPE');
 const ROLE_META = krData.utls.getService('ROLE_META');
 const ROLE = krData.utls.getService('ROLE');
 const FINANCE = 'finance';
-function isInvalid(ctl) {
-  return ctl ? ctl.$invalid : false;
-}
 function validate(ctl) {
   $validation.validate(ctl);
 }
@@ -18,9 +15,14 @@ export default class CreateProjectController {
   autocompleteOptions = {
     suggest: this.suggest.bind(this),
     full_match: angular.noop,
+    on_detach: () => this.searchClaimList(),
     on_select: item => {
       const obj = item.obj;
       angular.extend(this.baseInfo, obj);
+    },
+    on_leaveSelect: word => {
+      this.initBaseInfo();
+      this.baseInfo.name = word;
     },
   };
 
@@ -171,9 +173,11 @@ export default class CreateProjectController {
   watchCompanyType() {
     this.$scope.$watch('vm.baseInfo.companyType', (nv) => {
       if (!nv) return;
-      const website = this.baseInfo.form.website;
-      if (isInvalid(website)) {
-        validate(website);
+      if (nv === PROJECT_TYPE.APP) {
+        krData.utls.getService('$timeout')(() => {
+          const website = this.baseInfo.form.website;
+          validate(website);
+        });
       }
       if (nv === PROJECT_TYPE.APP || nv === PROJECT_TYPE.WEB_APP) {
         if (this.baseInfo.iosLink || this.baseInfo.androidLink) {
@@ -382,6 +386,22 @@ export default class CreateProjectController {
         obj: com,
       };
     });
+  }
+
+  searchClaimList() {
+    const baseInfo = this.baseInfo;
+    const searchObj = {
+      name: baseInfo.name,
+      fullName: baseInfo.fullName,
+      ios: baseInfo.ios,
+      website: baseInfo.website,
+      weixin: baseInfo.weixin,
+    };
+    this.removeProps(searchObj);
+    this.project.suggestClaim(searchObj)
+      .then(list => {
+        this.claimList = list;
+      });
   }
   suggest(kw) {
     const deferred = this.$q.defer();
