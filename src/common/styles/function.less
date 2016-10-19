@@ -35,6 +35,16 @@
 .text-center() {
   text-align: center;
 }
+.underline{
+  &:hover{
+    text-decoration:underline;
+  }
+}
+.darkColor{
+  &:hover{
+    color: #2868D1 !important;
+  }
+}
 .before(@width, @height, @position: absolute) {
   content: " ";
   display: block;
@@ -87,6 +97,7 @@
   .font(12,18);
   color: @tip-color;
 }
+
 .clear() {
   &:after {
     content: " ";
