@@ -25,7 +25,7 @@
           <label for=""><span class="required">*</span>职位</label>
           <div>
             <select ng-options="item.value as item.desc for item in vm.CLAIM_ROLE"
-              ng-if="!vm.baseInfo.companyRole"
+              ng-if="!vm.baseInfo.companyRole || vm.isClaiming"
               ng-model="vm.user.companyRole"
               placeholder="输入"
               message-id="messageFullName"
