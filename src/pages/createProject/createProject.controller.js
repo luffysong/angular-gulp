@@ -57,6 +57,7 @@ export default class CreateProjectController {
   initBaseInfo() {
     this.baseInfo = {
       financingNeed: this.FINANCE_NEED.UNKNOWN,
+      form: this.baseInfo.form,
     };
   }
 
@@ -107,6 +108,10 @@ export default class CreateProjectController {
   isFunder() {
     return this.baseInfo.companyRole === ROLE.START_UP_MEMBER ||
       this.user.companyRole === ROLE.START_UP_MEMBER;
+  }
+
+  isClaimingMember() {
+    return this.user.companyRole === ROLE.MEMBER && this.isClaiming;
   }
 
   loadUserInfo() {
@@ -173,12 +178,12 @@ export default class CreateProjectController {
   watchCompanyType() {
     this.$scope.$watch('vm.baseInfo.companyType', (nv) => {
       if (!nv) return;
-      if (nv === PROJECT_TYPE.APP) {
-        krData.utls.getService('$timeout')(() => {
-          const website = this.baseInfo.form.website;
+      krData.utls.getService('$timeout')(() => {
+        const website = this.baseInfo.form.website;
+        if (website) {
           validate(website);
-        });
-      }
+        }
+      });
       if (nv === PROJECT_TYPE.APP || nv === PROJECT_TYPE.WEB_APP) {
         if (this.baseInfo.iosLink || this.baseInfo.androidLink) {
           krData.utls.getService('$timeout')(() => {

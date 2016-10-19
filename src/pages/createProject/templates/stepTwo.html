@@ -91,7 +91,7 @@
         </div>
       </div>
 
-      <div ng-if="!vm.isFunder()">
+      <div ng-if="!vm.isFunder() || vm.isClaimingMember()">
         <div class="form-group creator-title">
           <label>创始人联系方式</label>
           <span  class="form-tip" >便于更好完善该项目信息</span>
@@ -119,7 +119,7 @@
           <label for="">手机号码</label>
           <span class="error-tip" ng-if="vm.user.form.starterPhone.$invalid === true">
           请输入真实的手机号码</span>
-          <input kr-valid  ng-model="vm.user.starterPhone" validator="number,maxlength=13"
+          <input kr-valid  ng-model="vm.user.starterPhone" validator="integer,maxlength=13"
           maxlength="13" no-validation-message
           placeholder="输入真实手机号"
           type="text" name="starterPhone" class="form-control" />
