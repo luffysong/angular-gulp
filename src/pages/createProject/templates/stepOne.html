@@ -112,10 +112,13 @@
       </div>
       <div ng-if="vm.isWeixin()" class="form-group">
         <label for=""><span class="required">*</span>微信公众号</label>
+        <span ng-if="vm.baseInfo.form.weixin.$invalid === true" class="error-tip" >
+          微信号最小长度为6位</span>
         <input  ng-model="vm.baseInfo.weixin"
           placeholder="请填写微信公众号"
           ng-blur="vm.searchClaimList()"
-          validator="required"
+          validator="required,minlength=6,maxlength=16"
+          maxlength="16"
           type="text" name="weixin" class="form-control" />
       </div>
       <div ng-if="vm.isIdea()" class="form-group">

@@ -96,22 +96,30 @@
           </div>
           <div class="form-group">
             <label for="">公司官网</label>
-            <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
+            <span id="messageWebsite" class="error-tip" ></span>
             <input  ng-model="vm.baseInfoVM.website"
-              placeholder="请填写公司的官网，请以http://开头"
+              placeholder="请填写公司的官网，请以http(s)://开头"
               validator="http" message-id="messageWebsite"
               type="text" name="website" class="form-control" />
           </div>
           <div class="form-group">
             <label for="">新浪微博</label>
+            <span id="messageweibo" class="error-tip" ></span>
             <input  ng-model="vm.baseInfoVM.weibo"
               placeholder="请填写新浪微博主页链接"
+              validator="http"
               type="text" name="weibo" class="form-control" />
           </div>
           <div class="form-group">
             <label for="">微信公众号</label>
+            <span ng-if="vm.baseInfoVM.form.weixin.$invalid === true" class="error-tip" >
+              微信公众号为6-20个字符
+            </span>
             <input  ng-model="vm.baseInfoVM.weixin"
               placeholder="请填写微信公众号"
+              validator="minlength=6,maxlength=20"
+              maxlength="20"
+              no-validation-message="true"
               type="text" name="weixin" class="form-control" />
           </div>
 

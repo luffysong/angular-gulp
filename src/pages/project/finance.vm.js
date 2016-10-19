@@ -94,6 +94,9 @@ export default class FinanceVM extends krData.FormVM {
       id: this.id,
     }, this.mapProps(this.props, this))
       .then(() => {
+        krData.utls.deleteProps(this.props.concat(['financeDateYear', 'financeDateMonth']), this);
+        this.investorList = [];
+        this.financeAmountUnit = krData.META.CURRENCY_UNIT.CNY;
         krData.Alert.success('数据保存成功');
         this.isEdit = false;
       });

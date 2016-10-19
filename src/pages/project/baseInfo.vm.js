@@ -53,17 +53,18 @@ export default class BaseInfoVM extends krData.FormVM {
     this.watchName();
   }
 
-  update($event) {
-    if (!this.validate($event)) return;
-    this.projectService.editHeader({
-      id: this.id,
-    }, this.mapProps(this.props, this))
-      .then(() => {
-        this.recovery();
-        krData.Alert.success('数据保存成功');
-        this.ok();
-      },(data)=>{
-        krData.Alert.alert(data.msg);
-      });
+  update() {
+    this.validate2().then(() => {
+      this.projectService.editHeader({
+        id: this.id,
+      }, this.mapProps(this.props, this))
+        .then(() => {
+          this.recovery();
+          krData.Alert.success('数据保存成功');
+          this.ok();
+        }, (data) => {
+          krData.Alert.alert(data.msg);
+        });
+    });
   }
 }

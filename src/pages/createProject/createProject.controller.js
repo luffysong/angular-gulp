@@ -145,7 +145,7 @@ export default class CreateProjectController {
   }
 
   needFinance() {
-    return this.isFunder() &&
+    return this.isFunder() && !this.isClaiming &&
     this.baseInfo.financingNeed === this.FINANCE_NEED.FINANCING;
   }
 
