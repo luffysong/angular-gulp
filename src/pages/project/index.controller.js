@@ -28,7 +28,7 @@ export default class ProjectIndexController {
       this.memberVM = new MemberVM(this.projectData.member, this.id);
       this.similarVM = new SimilarVM(this.projectData.similar);
       // this.newsVM = new NewsVM(this.projectData.news, this.$scope, this.id);
-      this.productVM = new ProductVM(this.projectData.product);
+      this.productVM = new ProductVM(this.projectData.product, this.id);
       // this.editFinanceVM = new EditFinanceVM(this.projectData.finance, this.$scope, this.id);
     }
     this.getRelateUser();

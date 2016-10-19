@@ -12,6 +12,7 @@ export default class ProjectService extends API {
       'editmember',
       'addprivilege',
       'addnews',
+      'addproduct',
       // 'addfinance',
     ], {
       news: {
