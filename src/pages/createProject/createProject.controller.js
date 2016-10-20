@@ -14,7 +14,8 @@ export default class CreateProjectController {
 
   autocompleteOptions = {
     suggest: this.suggest.bind(this),
-    full_match: angular.noop,
+    auto_select_first: true,
+    full_match: (item, word) => item.obj.name.toLowerCase() === word.toLowerCase(),
     on_detach: () => this.searchClaimList(),
     on_select: item => {
       const obj = item.obj;
@@ -247,6 +248,11 @@ export default class CreateProjectController {
     });
   }
 
+  resetClaim() {
+    this.claimProject = undefined;
+    this.claimer = undefined;
+    this.isClaiming = false;
+  }
   claim(project) {
     this.claiming = true;
     this.project.getPrivilege(project.id)
@@ -333,6 +339,7 @@ export default class CreateProjectController {
     }
     switch (this.step) {
       case 1:
+        this.resetClaim();
         this.go(2, form);
         break;
       case 2:

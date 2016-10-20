@@ -1,4 +1,4 @@
-/*globals angular*/
+/* eslint-disable */
 angular.module('MassAutoComplete', [])
 	.directive('massAutocomplete', ["$timeout", "$window", "$document", "$q",
 		function($timeout, $window, $document, $q) {
@@ -204,7 +204,7 @@ angular.module('MassAutoComplete', [])
 											label: ''
 										}].concat(suggestions);
    										$scope.show_autocomplete = true;
-                                        testContainerWidth();
+                      testContainerWidth();
 										if (current_options.auto_select_first &&
                                             current_options.
                                             full_match($scope.results[1], term))
@@ -231,7 +231,7 @@ angular.module('MassAutoComplete', [])
                             var $last = $('a', $scope.container).last();
                             $timeout(function (){
                                 if($last.html() !== $(lastResult.label)[0].outerHTML){
-                                    if($scope.results.length > 1){
+                                    if($scope.results && $scope.results.length > 1){
                                         testContainerWidth();
                                     }
                                     return;
