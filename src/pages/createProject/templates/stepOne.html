@@ -76,13 +76,25 @@
           <option value="">选择项目类型</option>
         </select>
       </div>
-      <div ng-if="vm.isWebApp() || vm.isWeb() || vm.isApp()" class="form-group">
-        <label for=""><span ng-if="vm.isWeb() || vm.isWebApp()" class="required">*</span> 公司官网</label>
+
+      <div ng-if="vm.isWeb() || vm.isWebApp()" class="form-group">
+        <label for=""><span class="required">*</span> 公司官网</label>
         <span id="messageWebsite" class="error-tip" ></span>
         <input  ng-model="vm.baseInfo.website"
           placeholder="请填写公司的官网，请以http(s)://开头"
           ng-blur="vm.searchClaimList()"
-          validator="http,projectType=website" message-id="messageWebsite"
+          validator="required,http" message-id="messageWebsite"
+          type="text" name="website" class="form-control" />
+        </div>
+
+      <div ng-if="vm.isApp()" class="form-group">
+        <label for="">公司官网</label>
+        <span id="messageWebsite" class="error-tip" ></span>
+        <input  ng-model="vm.baseInfo.website"
+          placeholder="请填写公司的官网，请以http(s)://开头"
+          ng-blur="vm.searchClaimList()"
+          kr-valid
+          validator="http" message-id="messageWebsite"
           type="text" name="website" class="form-control" />
       </div>
 

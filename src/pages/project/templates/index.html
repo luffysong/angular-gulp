@@ -17,14 +17,19 @@
           <a ng-if="vm.baseInfoVM.weibo"
           class="kr-icon icon-Weibo link-none" href="" ng-class="{'icon-Weibo-active':vm.baseInfoVM.weibo}"
           ng-href="{{::vm.baseInfoVM.weibo}}" target="_blank"></a>
-          <span class="kr-icon icon-Weibo link-none" ng-if="!vm.baseInfoVM.weibo" tooltips tooltip-template="未填写" tooltip-smart="true" tooltip-class="tooltip"></span>
-          <a class="kr-icon icon-Wechat link-none" ng-class="{'icon-Wechat-active':vm.baseInfoVM.weixin}" tooltips tooltip-template="{{vm.baseInfoVM.weixin?vm.baseInfoVM.weixin:'未填写'}}" tooltip-class="tooltip"></a>
+        <span class="kr-icon icon-Weibo link-none" ng-if="!vm.baseInfoVM.weibo" tooltips tooltip-template="未填写"
+          tooltip-smart="true" tooltip-class="tooltip"></span>
+          <a class="kr-icon icon-Wechat link-none" ng-class="{'icon-Wechat-active':vm.baseInfoVM.weixin}"
+            tooltips tooltip-template="{{vm.baseInfoVM.weixin?vm.baseInfoVM.weixin:'未填写'}}" tooltip-class="tooltip">
+          </a>
           <span class="kr-icon icon-websitelink" ng-show=""></span>
-          <a ng-href="{{::vm.baseInfoVM.website}}">
+          <a class="website ellipsis" ng-href="{{::vm.baseInfoVM.website}}">
             {{::vm.baseInfoVM.website}}
           </a>
-          <span class="kr-icon icon-Hot" ng-show="vm.baseInfoVM.advantage"></span>
-          <span class="hot-text" ng-show="vm.baseInfoVM.advantage">{{vm.baseInfoVM.advantage}}</span>
+          <span class="hot-container">
+            <span class="kr-icon icon-Hot" ng-show="vm.baseInfoVM.advantage"></span>
+            <span class="hot-text" ng-show="vm.baseInfoVM.advantage">{{vm.baseInfoVM.advantage}}</span>
+          </span>
         </p>
       </div>
       <div class="finance-brief" ng-if='vm.fundsVM.funds'>
@@ -35,7 +40,9 @@
         </p>
         <p>
          <span>金额</span>
-         <span><small ng-show="vm.fundsVM.financeAmountUnit =='USD'">$</small><small ng-show="vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}万</span>
+         <span>
+           <small ng-show="vm.fundsVM.financeAmountUnit =='USD'">$</small
+           ><small ng-show="vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}万</span>
         </p>
       </div>
       <div class="finance-brief" ng-if='!vm.fundsVM.funds'>

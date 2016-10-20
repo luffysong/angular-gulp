@@ -18,11 +18,15 @@ export default class CreateProjectController {
     on_detach: () => this.searchClaimList(),
     on_select: item => {
       const obj = item.obj;
+      this.selectProject = obj;
       angular.extend(this.baseInfo, obj);
     },
     on_leaveSelect: word => {
-      this.initBaseInfo();
-      this.baseInfo.name = word;
+      if (this.selectProject) {
+        this.selectProject = null;
+        this.initBaseInfo();
+        this.baseInfo.name = word;
+      }
     },
   };
 
@@ -178,12 +182,7 @@ export default class CreateProjectController {
   watchCompanyType() {
     this.$scope.$watch('vm.baseInfo.companyType', (nv) => {
       if (!nv) return;
-      krData.utls.getService('$timeout')(() => {
-        const website = this.baseInfo.form.website;
-        if (website) {
-          validate(website);
-        }
-      });
+
       if (nv === PROJECT_TYPE.APP || nv === PROJECT_TYPE.WEB_APP) {
         if (this.baseInfo.iosLink || this.baseInfo.androidLink) {
           krData.utls.getService('$timeout')(() => {
