@@ -187,7 +187,7 @@
         <li ng-repeat="item in vm.claimList">
           <img ng-src='{{item.logo}}' /><div class="suggest-project-text">
             <p><span>{{item.name}}</span><span>{{item.industry | industry}}</span></p>
-            <p class="brief">item.breif</p>
+            <p class="brief">{{item.brief}}</p>
           </div>
           <div ng-if="item.website" class="website">
             <a ng-href="{{item.website}}">{{item.website}}</a>
