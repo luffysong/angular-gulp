@@ -29,13 +29,13 @@
           <option></option>
         </select>
         <input type="url" name={{$index}} placeholder="请填写产品链接"
-               class="form-control product-url"
+               class="form-control product-url vam"
                ng-model="vm.productVM.productLink[$index].urlAddr"/>
-        <span class="delete-product" ng-click="vm.productVM.deletePro(item)">×</span>
+        <span class="delete-product icon-dialogClose" ng-click="vm.productVM.deletePro(item)"></span>
       </div>
 
         <a href="javascript:void(0)" class="add-link"
-           ng-click="vm.productVM.addLink()"><div>产品链接+ </div></a>
+           ng-click="vm.productVM.addLink()"><div>产品链接 + </div></a>
 
     </div>
     <div class="form-bottom">
