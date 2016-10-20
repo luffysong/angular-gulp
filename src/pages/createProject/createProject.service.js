@@ -45,8 +45,13 @@ export default class CreateProject {
   }
 
   suggestClaim(searchObj) {
-    return suggestApi.suggestClaim(searchObj)
-      .then(filterIndustry);
+    for (const prop in searchObj) {
+      if (searchObj[prop]) {
+        return suggestApi.suggestClaim(searchObj)
+          .then(filterIndustry);
+      }
+    }
+    return krData.utls.getService('$q').reject([]);
   }
 
   getPrivilege(id) {

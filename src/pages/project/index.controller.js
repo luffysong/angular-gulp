@@ -113,7 +113,7 @@ export default class ProjectIndexController {
   }
 
   setNavigation() {
-    const first = 277;
+    const first = 287;
     const other = 130;
     // 导航栏定位
     this.baseInfo = other;
