@@ -7,7 +7,7 @@
     <ul>
       <li ng-repeat="item in vm.collections">
         <input type="checkbox" class="checkbox" name='collection' ng-model="item.followed" ng-change="vm.change(item)" ng-checked="item.followed">
-        <span class="collection-name">{{item.name}}</span>
+        <span class="collection-name">({{item.name}})</span>
         <span class="collections">共{{item.count}}家</span>
       </li>
 

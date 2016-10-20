@@ -1,86 +1,109 @@
-<div>
-  <div class="filter-container">
-    <div class="spread-btn"></div>
-    <div class="filter-list">
-      <div class="filter-col">
-        <div class="col-type">
-          行业
+<div class="filter-container">
+  <div class="spread-btn" ng-click="parentVm.open.filter = !parentVm.open.filter"></div>
+  <div class="filter-list">
+    <div class="filter-col">
+      <div class="col-type">
+        行业
+      </div>
+      <div class="col-content">
+        <div class="col-list-container">
+          <ul filter-cal ng-class="{'height-auto':parentVm.open.industry}">
+            <!--ng-if="$index < parentVm.open.maxNumber || ($index >= parentVm.open.maxNumber && parentVm.open.address)"-->
+            <li class="col-item" ng-repeat="item in parentVm.data.industry" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'industry')">
+              {{item.name}}({{item.number}})
+              <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry('industry');$event.stopPropagation();"></span>
+            </li>
+          </ul>
         </div>
-        <div class="col-content">
-          <div class="col-item" ng-repeat="item in vm.data.industry" ng-class="{'active': item.active}" ng-click="vm.selectIndustry($index)">
-            {{item.name}}({{item.number}})
-            <span class="clear-btn icon-dialogClose" ng-show="item.active" ng-click="vm.clearIndustry()"></span>
-          </div>
-        </div>
+      </div>
+      <div class="col-handle">
+        <a href="javascript:void(0)" class="open-btn icon-open" ng-click="parentVm.spreadMore('industry')" ng-class="{'open': parentVm.open.industry}"></a>
       </div>
     </div>
   </div>
-  <div class="result-container">
-    <div class="result-tip">
-      找到关于 <b>“36”</b> 的结果 <b>1867</b> 条
+  <div class="filter-list">
+    <div class="filter-col">
+      <div class="col-type">
+        标签
+      </div>
+      <div class="col-content">
+        <div class="col-list-container">
+          <ul filter-cal ng-class="{'height-auto':parentVm.open.address}">
+            <li class="col-item" ng-repeat="item in parentVm.data.tag" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'tag')">
+              {{item.name}}({{item.number}})
+              <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry('tag');$event.stopPropagation();"></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-handle">
+        <a href="javascript:void(0)" class="open-btn icon-open" ng-click="parentVm.spreadMore('tag')" ng-class="{'open': parentVm.open.tag}"></a>
+      </div>
     </div>
-    <div class="result-content">
-      <table>
-        <thead></thead>
-        <tbody>
-          <tr>
-            <td width="355">项目</td>
-            <td>行业</td>
-            <td>轮次</td>
-            <td>投资方</td>
-            <td>所在地</td>
-            <td>时间</td>
-            <td>操作</td>
-          </tr>
-          <tr ng-repeat="item in [1,2,3,4]">
-            <td>
-              <a href="" class="project-logo"></a>
-              <div class="project-info">
-                <div class="project-name">
-                  <span class="company-name">36氪</span><span class="hot-tag">热门</span><span class="fund-state">融资中</span>
-                </div>
-                <div class="project-intro">
-                  为创业者提供最好的产品和服务
-                </div>
-                <div class="project-tag">
-                  联系创业者 政府IP专家顾问
-                </div>
-              </div>
-            </td>
-            <td>电子商务</td>
-            <td>Pre-A轮</td>
-            <td>达承创投</td>
-            <td>北京市</td>
-            <td>今天</td>
-            <td>
-              <a href="" class="collect-btn">收藏</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="load-more">
-        正在加载更多...
+  </div>
+  <div class="filter-list">
+    <div class="filter-col">
+      <div class="col-type">
+        轮次
+      </div>
+      <div class="col-content">
+        <div class="col-list-container">
+          <ul filter-cal ng-class="{'height-auto':parentVm.open.fundPhase}">
+            <li class="col-item" ng-repeat="item in parentVm.data.fundPhase" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'fundPhase')">
+              {{item.name}}({{item.number}})
+              <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry('fundPhase');$event.stopPropagation();"></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-handle">
+        <a href="javascript:void(0)" class="open-btn icon-open" ng-click="parentVm.spreadMore('fundPhase')" ng-class="{'open': parentVm.open.fundPhase}"></a>
+      </div>
+    </div>
+  </div>
+  <div class="filter-list" ng-if="parentVm.open.filter">
+    <div class="filter-col">
+      <div class="col-type">
+        所在地
+      </div>
+      <div class="col-content">
+        <div class="col-list-container">
+          <ul filter-cal ng-class="{'height-auto':parentVm.open.address}">
+            <li class="col-item" ng-repeat="item in parentVm.data.address" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'address')">
+              {{item.name}}({{item.number}})
+              <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry('address');$event.stopPropagation();"></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-handle">
+        <a href="javascript:void(0)" class="open-btn icon-open" ng-click="parentVm.spreadMore('address')" ng-class="{'open': parentVm.open.address}"></a>
+      </div>
+    </div>
+  </div>
+  <div class="filter-list" ng-if="parentVm.open.filter">
+    <div class="filter-col">
+      <div class="col-type">
+        融资需求
+      </div>
+      <div class="col-content">
+        <div class="col-list-container">
+          <ul filter-cal ng-class="{'height-auto':parentVm.open.address}">
+            <li class="col-item" ng-repeat="item in parentVm.data.requirement" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'requirement')">
+              {{item.name}}({{item.number}})
+              <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry('requirement');$event.stopPropagation();"></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-handle">
+        <a href="javascript:void(0)" class="open-btn icon-open" ng-click="parentVm.spreadMore('requirement')" ng-class="{'open': parentVm.open.requirement}"></a>
       </div>
     </div>
   </div>
 </div>
+<ui-view></ui-view>
+<!--<ui-view></ui-view>-->
 
 
 
-<!--
-<div class="col-item" ng-repeat="item in vm.data.tag" ng-class="{'active': item.active}" ng-click="vm.selectIndustry($index,'tag')">
-  {{item.name}}({{item.number}})
-  <span class="clear-btn" ng-show="item.active" ng-click="vm.clearSelect()">x</span>
-</div>
-<div class="col-item" ng-repeat="item in vm.data.fundPhase" ng-class="{'active': item.active}" ng-click="vm.selectIndustry($index,'fundPhase')">
-  {{item.name}}({{item.number}})
-  <span class="clear-btn" ng-show="item.active" ng-click="vm.clearSelect()">x</span>
-</div>
-<div class="col-item" ng-repeat="item in vm.data.address" ng-class="{'active': item.active}" ng-click="vm.selectIndustry($index,'address')">
-  {{item.name}}({{item.number}})
-  <span class="clear-btn" ng-show="item.active" ng-click="vm.clearSelect()">x</span>
-</div>
-<div class="col-item" ng-repeat="item in vm.data.requirement" ng-class="{'active': item.active}" ng-click="vm.selectIndustry($index,'requirement')">
-  {{item.name}}({{item.number}})
-  <span class="clear-btn" ng-show="item.active" ng-click="vm.clearSelect()">x</span>
-</div>-->
