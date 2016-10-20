@@ -47,7 +47,8 @@ export default class FinanceVM extends krData.FormVM {
     this.autocomplete_options = {
       suggest: this.suggest.bind(this),
       on_select: this.onSelect.bind(this),
-      full_match: angular.noop,
+      auto_select_first: true,
+      full_match: (item, word) => item.value.toLowerCase() === word.toLowerCase(),
     };
   }
 
@@ -139,15 +140,13 @@ export default class FinanceVM extends krData.FormVM {
   }
 
   onSelect(selectedItem) {
-    console.log(selectedItem);
     if (!this.investorList.length) {
       this.investorList.push(selectedItem.obj);
     } else {
-      this.investorList.map((value) => {
+      this.investorList.forEach(value => {
         if (value.entityId === selectedItem.obj.entityId) {
           this.entityName = '';
           krData.Alert.alert('此投资方已存在');
-          return;
         }
       });
       if (this.entityName) {

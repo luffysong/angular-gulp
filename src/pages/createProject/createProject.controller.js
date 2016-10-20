@@ -15,7 +15,7 @@ export default class CreateProjectController {
   autocompleteOptions = {
     suggest: this.suggest.bind(this),
     auto_select_first: true,
-    full_match: (item, word) => item.obj.name.toLowerCase() === word.toLowerCase(),
+    full_match: (item, word) => item.value.toLowerCase() === word.toLowerCase(),
     on_detach: () => this.searchClaimList(),
     on_select: item => {
       const obj = item.obj;
