@@ -19,8 +19,8 @@
 
       <input validator="required"
       type="hidden" name="logo" ng-model="vm.baseInfo.logo">
-      <div mass-autocomplete="{debounce_blur:700,top:65,left:0.01,maxWidth:518,
-            position:'parent'}" class="form-group prlt">
+      <div mass-autocomplete="{debounce_blur:700,top:65,left:0.01,maxWidth:518, position:'parent'}"
+        class="form-group prlt">
         <label for=""><span class="required">*</span> 项目名称</label>
         <input  ng-model="vm.baseInfo.name"
           placeholder="输入项目名称"
@@ -185,12 +185,15 @@
     <div>
       <ul>
         <li ng-repeat="item in vm.claimList">
-          <img ng-src='{{item.logo}}' /><div class="suggest-project-text">
-            <p><span>{{item.name}}</span><span>{{item.industry | industry}}</span></p>
+          <a ui-sref="project({id: item.id})" target="_blank">
+            <img ng-src='{{item.logo}}' /></a
+          ><div class="suggest-project-text">
+            <p><a target="_blank" ui-sref="project({id: item.id})">{{item.name}}</a
+              ><a>{{item.industry | industry}}</a></p>
             <p class="brief">{{item.brief}}</p>
           </div>
           <div ng-if="item.website" class="website">
-            <a ng-href="{{item.website}}">{{item.website}}</a>
+            <a target="_blank" ng-href="{{item.website}}">{{item.website}}</a>
           </div>
           <a class="claim" ng-click="vm.claim(item)" href="javascript:;">认领</a>
         </li>
