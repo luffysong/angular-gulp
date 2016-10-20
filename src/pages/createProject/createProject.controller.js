@@ -1,44 +1,42 @@
 import krData from 'krData';
 import FinanceVM from './financeApply.vm';
-import CreateProject from './createProject.service';
 const $validation = krData.utls.getService('$validation');
 const PROJECT_TYPE = krData.utls.getService('PROJECT_TYPE');
 const ROLE_META = krData.utls.getService('ROLE_META');
 const ROLE = krData.utls.getService('ROLE');
 const FINANCE = 'finance';
-function isInvalid(ctl) {
-  return ctl ? ctl.$invalid : false;
-}
 function validate(ctl) {
   $validation.validate(ctl);
 }
-@Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE',
-  '$scope', '$q', '$filter', '$stateParams')
+@Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', 'step', 'financeState', 'type',
+  '$scope', '$q', '$filter', '$stateParams', '$state', 'createProjectService')
 export default class CreateProjectController {
 
   autocompleteOptions = {
     suggest: this.suggest.bind(this),
     full_match: angular.noop,
+    on_detach: () => this.searchClaimList(),
     on_select: item => {
       const obj = item.obj;
+      this.selectProject = obj;
       angular.extend(this.baseInfo, obj);
+    },
+    on_leaveSelect: word => {
+      if (this.selectProject) {
+        this.selectProject = null;
+        this.initBaseInfo();
+        this.baseInfo.name = word;
+      }
     },
   };
 
   CLAIM_ROLE = [ROLE_META[0], ROLE_META[1]];
 
-  project = new CreateProject();
+  project = this.createProjectService;
   baseInfo = {};
   user = {};
-  similarItem = [
-    {
-      name: '36氪',
-      info: '为创业者提供最好的产品和服务',
-    },
-  ];
 
   financeVM = new FinanceVM(this.$scope, this.$stateParams.name);
-  step = 1;
 
 
   constructor() {
@@ -57,15 +55,28 @@ export default class CreateProjectController {
   initBaseInfo() {
     this.baseInfo = {
       financingNeed: this.FINANCE_NEED.UNKNOWN,
+      form: this.baseInfo.form,
     };
   }
 
   initView() {
-    if (this.$stateParams.type === FINANCE) {
-      this.step = 3;
+    if (this.type === FINANCE) {
       this.title = '融资申请';
       this.id = this.$stateParams.id;
+      if (this.financeState === this.project.FINANCE_AUDITING) {
+        this.step = 4;
+      } else if (this.financeState === this.project.FINANCE_NONE) {
+        this.ensureFinanceAllow();
+      } else if (this.financeState !== this.project.FINANCE_ALLOW) {
+        krData.Alert.alert(`出错啦：${this.financeState.msg || '未知错误'}`);
+      }
     }
+  }
+
+  ensureFinanceAllow() {
+    this.$state.go('project', {
+      id: this.$stateParams.id,
+    });
   }
 
   isWeb() {
@@ -95,6 +106,10 @@ export default class CreateProjectController {
   isFunder() {
     return this.baseInfo.companyRole === ROLE.START_UP_MEMBER ||
       this.user.companyRole === ROLE.START_UP_MEMBER;
+  }
+
+  isClaimingMember() {
+    return this.user.companyRole === ROLE.MEMBER && this.isClaiming;
   }
 
   loadUserInfo() {
@@ -128,7 +143,7 @@ export default class CreateProjectController {
   }
 
   needFinance() {
-    return this.isFunder() &&
+    return this.isFunder() && !this.isClaiming &&
     this.baseInfo.financingNeed === this.FINANCE_NEED.FINANCING;
   }
 
@@ -161,10 +176,7 @@ export default class CreateProjectController {
   watchCompanyType() {
     this.$scope.$watch('vm.baseInfo.companyType', (nv) => {
       if (!nv) return;
-      const website = this.baseInfo.form.website;
-      if (isInvalid(website)) {
-        validate(website);
-      }
+
       if (nv === PROJECT_TYPE.APP || nv === PROJECT_TYPE.WEB_APP) {
         if (this.baseInfo.iosLink || this.baseInfo.androidLink) {
           krData.utls.getService('$timeout')(() => {
@@ -256,9 +268,10 @@ export default class CreateProjectController {
     this.project.claim(this.claimProject.id, userCopy)
       .then(() => {
         this.step = 4;
+        this.loadSimilarProjects(this.claimProject.industry);
       })
       .catch((err) => {
-        krData.Alert.alert(`创建公司失败:${err.msg}`);
+        krData.Alert.alert(`认领公司失败:${err.msg}`);
       });
   }
   call110() {
@@ -285,6 +298,7 @@ export default class CreateProjectController {
     this.project.create(projectInfo)
       .then(() => {
         this.step = 4;
+        this.loadSimilarProjects(this.baseInfo.industry);
       })
       .catch((err) => {
         krData.Alert.alert(`创建公司失败:${err.msg}`);
@@ -293,7 +307,7 @@ export default class CreateProjectController {
 
   saveFinance() {
     // 融资入口则调用融资接口
-    if (this.$stateParams.type === FINANCE) {
+    if (this.type === FINANCE) {
       this.funds();
       return;
     }
@@ -372,6 +386,27 @@ export default class CreateProjectController {
         obj: com,
       };
     });
+  }
+
+  loadSimilarProjects(industry) {
+    this.project.similarProjects(industry)
+      .then(data => (this.similarProjects = data));
+  }
+
+  searchClaimList() {
+    const baseInfo = this.baseInfo;
+    const searchObj = {
+      name: baseInfo.name,
+      fullName: baseInfo.fullName,
+      ios: baseInfo.ios,
+      website: baseInfo.website,
+      weixin: baseInfo.weixin,
+    };
+    this.removeProps(searchObj);
+    this.project.suggestClaim(searchObj)
+      .then(list => {
+        this.claimList = list;
+      });
   }
   suggest(kw) {
     const deferred = this.$q.defer();

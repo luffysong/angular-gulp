@@ -1,7 +1,7 @@
 /* eslint-disable angular/on-watch */
 import home from './home.route';
 import project, { editProject } from './project.route';
-import createProject from './createProject.route';
+import createProject, { financeRoute } from './createProject.route';
 import { searchView, search } from './search.route';
 import { listView,list } from './list.route';
 
@@ -17,6 +17,7 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider.state('list', listView);
   $stateProvider.state('list.result', list);
   $urlRouterProvider.when('^/list', '^/list/result');
+  $stateProvider.state('financeRoute', financeRoute);
 }
 
 function stateChangeError($rootScope, $log) {

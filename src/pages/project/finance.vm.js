@@ -94,6 +94,9 @@ export default class FinanceVM extends krData.FormVM {
       id: this.id,
     }, this.mapProps(this.props, this))
       .then(() => {
+        krData.utls.deleteProps(this.props.concat(['financeDateYear', 'financeDateMonth']), this);
+        this.investorList = [];
+        this.financeAmountUnit = krData.META.CURRENCY_UNIT.CNY;
         krData.Alert.success('数据保存成功');
         this.isEdit = false;
       });
@@ -117,8 +120,7 @@ export default class FinanceVM extends krData.FormVM {
 
     const defered = this.$q.defer();
     this.projectService.suggest(kw).then((list) => {
-      this.suggestInvestorList = list;
-      defered.resolve(this.makeSuggestResult(kw, list));
+      defered.resolve(this.makeSuggestResult(kw, list.slice(0, 5)));
     });
     return defered.promise;
   }
@@ -128,27 +130,28 @@ export default class FinanceVM extends krData.FormVM {
     return list.map(function mapList(val) {
       return {
         label: that.$sce.trustAsHtml(
-          `<div class="suggest-label"><p>${val.name}</p></div>`
+          `<div class="suggest-label"><p>${val.entityName}</p></div>`
           ),
-        value: val.name,
+        value: val.entityName,
         obj: val,
       };
     });
   }
 
   onSelect(selectedItem) {
+    console.log(selectedItem);
     if (!this.investorList.length) {
-      this.investorList.push(selectedItem);
+      this.investorList.push(selectedItem.obj);
     } else {
       this.investorList.map((value) => {
-        if (value.id === selectedItem.id) {
-          this.name = '';
+        if (value.entityId === selectedItem.obj.entityId) {
+          this.entityName = '';
           krData.Alert.alert('此投资方已存在');
           return;
         }
       });
-      if (this.name) {
-        this.investorList.push(selectedItem);
+      if (this.entityName) {
+        this.investorList.push(selectedItem.obj);
       }
     }
 

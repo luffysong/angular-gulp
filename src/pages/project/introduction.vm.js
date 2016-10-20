@@ -12,7 +12,7 @@ export default class IntroductionVM extends krData.FormVM {
     'startDate']
   initData(data) {
     this.mapProps(this.props, data, this);
-    this.startDate = parseInt(data.startDateDesc);
+    this.startDate = parseInt(data.startDateDesc, 10);
     this.operationStatus = krData.META.OPERATION_STATUS.OPEN;
     this.scale = data.scale;
     this.loadArea0();
@@ -36,14 +36,11 @@ export default class IntroductionVM extends krData.FormVM {
     this.projectService.getArea(id)
       .then(data => {
         this.cities1 = data;
-        if (data.length) {
-          this.address2 = '';
-        }
       });
   }
 
   save() {
-    if (this.validate()) {
+    this.validate2().then(() => {
       this.projectService.editBase({
         id: this.id,
       }, this.mapProps(this.props, this))
@@ -51,7 +48,7 @@ export default class IntroductionVM extends krData.FormVM {
         krData.Alert.success('数据保存成功');
         this.isEdit = !this.isEdit;
       });
-    }
+    });
   }
 
 }

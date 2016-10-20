@@ -19,7 +19,7 @@ const jsplugins = [
   '/bower/jQuery.dotdotdot/src/jquery.dotdotdot.js',
   '/bower/highcharts/highcharts.js',
   '/bower/highcharts-ng/dist/highcharts-ng.min.js',
-  '/local_lib/angular-mass-autocomplete/massautocomplete.min.js',
+  '/local_lib/angular-mass-autocomplete/massautocomplete.js',
   '/bower/ng-file-upload/ng-file-upload-all.min.js',
   '/bower/angular-tooltips/dist/angular-tooltips.js',
   '/bower/angular-tooltips/dist/angular-tooltips.css',

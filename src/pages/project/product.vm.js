@@ -1,15 +1,44 @@
 import krData from 'krData';
 export default class ProductVM extends krData.FormVM {
-  constructor(data, $scope, $compile) {
+  constructor(data, id) {
     super(data);
+    this.id = id;
     this.data = data;
-    this.$scope = $scope;
-    this.$compile = $compile;
+    // this.$scope = $scope;
+    // this.$compile = $compile;
     this.init();
     console.log(this.data);
+    this.productLink = [{
+      urlType: 'url',
+      urlAddr: '',
+    }];
+    this.projectService = krData.utls.getService('projectService');
+
+    this.hasValidated = true;
   }
 
+  props = ['url', 'desc', 'name', 'ios', 'android', 'weixin'];
+
   init() {
+    this.productLinkOptions = [
+      {
+        desc: '网站',
+        value: 'url',
+      },
+      {
+        desc: 'iOS App',
+        value: 'ios',
+      },
+      {
+        desc: 'Android App',
+        value: 'android',
+      },
+      {
+        desc: '微信公众号',
+        value: 'weixin',
+      },
+    ];
+
     this.hasHovered = false;
     function setType(type) {
       this.curType = type;
@@ -78,25 +107,99 @@ export default class ProductVM extends krData.FormVM {
     this.hasHovered = !this.hasHovered;
   }
 
+  // 产品描述与产品链接至少填写一个
+  isOk() {
+    // const hasNullLink = this.productLink.map((val) => {
+    //   if (val.urlType !== null && val.urlAddr !== '') {
+    //     return false;
+    //   }
+    //   return true;
+    // });
+    // const that = this;
+    let hasNullLink = true;
+    for (let i = 0; i < this.productLink.length; i++) {
+      if (this.productLink[i].urlType !== '' && this.productLink[i].urlAddr !== '') {
+        hasNullLink = false;
+        // krData.Alert.alert('请填写完整的产品链接');
+        break;
+      }
+    }
+    if ((angular.isUndefined(this.desc) || this.desc === '') && hasNullLink) {
+      krData.Alert.alert('产品描述与产品链接请至少填写一个！');
+      return false;
+    }
+    return true;
+  }
+
   save() {
-    if (this.validate()) {
-      console.log();
+    // console.log(typeof this.desc === 'undefined');
+    this.url = '';
+    this.ios = '';
+    this.android = '';
+    this.weixin = '';
+
+    this.productLink.map((val) => {
+      if (val.urlType === 'url') {
+        if (this.url) {
+          krData.Alert.alert('重复的产品链接，请修改！');
+          this.url = '';
+          this.hasValidated = false;
+          return;
+        }
+        this.hasValidated = true;
+        this.url = val.urlAddr;
+      } else if (val.urlType === 'ios') {
+        if (this.ios) {
+          krData.Alert.alert('重复的产品链接，请修改！');
+          this.ios = '';
+          this.hasValidated = false;
+          return;
+        }
+        this.hasValidated = true;
+        this.ios = val.urlAddr;
+      } else if (val.urlType === 'android') {
+        if (this.android) {
+          krData.Alert.alert('重复的产品链接，请修改！');
+          this.android = '';
+          this.hasValidated = false;
+          return;
+        }
+        this.hasValidated = true;
+        this.android = val.urlAddr;
+      } else if (val.urlType === 'weixin') {
+        if (this.weixin) {
+          krData.Alert.alert('重复的产品链接，请修改！');
+          this.weixin = '';
+          this.hasValidated = false;
+          return;
+        }
+        this.hasValidated = true;
+        this.weixin = val.urlAddr;
+      }
+    });
+    if (this.validate() && this.hasValidated && this.isOk()) {
+      this.projectService.addproduct({
+        id: this.id,
+      }, this.mapProps(this.props, this))
+      .then(() => {
+        krData.Alert.success('数据保存成功');
+        this.productLink = [{
+          urlType: 'url',
+          urlAddr: '',
+        }];
+        this.isEdit = false;
+      });
     }
   }
 
   addLink() {
-    angular.element('#productsUrl').append(this.$compile(`<div class="ios-address">
-        <span class="error-tip" id="editProductIos"></span>
-        <select class="form-control">
-          <option>111</option>
-          <option>222</option>
-        </select>
-        <input type="text" name="ios" placeholder="请填写产品链接"
-               ng-model="vm.productVM.ios"
-               message-id="editProductIos"
-               required-error-message="请填写产品的链接"
-               validator="required" class="form-control product-ios"/>
-      </div>)`));
+    this.productLink.push({ urlType: '', urlAddr: '' });
   }
+
+  deletePro(item) {
+    const index = this.productLink.indexOf(item);
+    this.productLink.splice(index, 1);
+  }
+
 
 }

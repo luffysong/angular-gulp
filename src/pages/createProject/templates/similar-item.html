@@ -9,22 +9,26 @@
       <td>过往投资方</td>
     </thead>
     <tbody>
-      <tr ng-repeat="item in vm.similarItem">
+      <tr ng-repeat="item in vm.similarProjects">
       <td>
-        <img ng-src="../../../images/test.png" class="item-logo">
+        <img ng-src="{{item.logo}}" class="item-logo">
         <span class="item-info">
           <div class="item-name">{{item.name}}</div>
-          <div class="item-breif">{{item.info}}</div>
+          <div class="item-breif">{{item.brief}}</div>
         </span>
       </td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{{item.industry}}</td>
+      <td>{{item.financePhase}}</td>
+      <td>{{item.city}}</td>
+      <td>
+        <div ng-repeat="inv in item.pastInvestor">
+          {{inv}}
+        </div>
+      </td>
       </tr>
     </tbody>
   </table>
   <div class="more-btn">
-    <a href="javascript:;" class="more-item">查看更多项目</a>
+    <a href="javascript:alert('页面还在开发');" class="more-item">查看更多项目</a>
   </div>
 </div>

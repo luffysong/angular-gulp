@@ -28,7 +28,7 @@ export default class ProjectIndexController {
       this.memberVM = new MemberVM(this.projectData.member, this.id);
       this.similarVM = new SimilarVM(this.projectData.similar);
       // this.newsVM = new NewsVM(this.projectData.news, this.$scope, this.id);
-      this.productVM = new ProductVM(this.projectData.product);
+      this.productVM = new ProductVM(this.projectData.product, this.id);
       // this.editFinanceVM = new EditFinanceVM(this.projectData.finance, this.$scope, this.id);
     }
     this.getRelateUser();
@@ -36,8 +36,20 @@ export default class ProjectIndexController {
     this.getBPUrl(this.id);
     this.setNavigation();
     this.getUser();
+    this.getfundsState(this.id);
   }
   userId;
+  getfundsState(cid) {
+    const id = {
+      id: cid,
+    };
+    this.projectService.fundState(id)
+    .then(data => {
+      if (data.code === 1) {
+        this.fundsState = true;
+      }
+    });
+  }
   talk() {
     const vm = this;
     function talkController() {
@@ -101,7 +113,7 @@ export default class ProjectIndexController {
   }
 
   setNavigation() {
-    const first = 277;
+    const first = 287;
     const other = 130;
     // 导航栏定位
     this.baseInfo = other;

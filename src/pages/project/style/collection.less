@@ -66,6 +66,10 @@
       line-height: 21px;
       margin-right: 5px;
       vertical-align: middle;
+      width: 112px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .collections{
       font-size: 14px;
@@ -77,9 +81,10 @@
       &:before{
         content:'|';
         display: inline-block;
-        font-size: 20px;
+        font-size: 16px;
         position: absolute;
         left:0;
+        top: -1px;
       }
     }
   }

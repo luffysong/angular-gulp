@@ -1,5 +1,5 @@
 <div class="product-data">
-  <h4>产品及数据<a href="javascript:void(0)" ng-click="vm.productVM.enterEditMode()" ng-if="!vm.productVM.isEdit">添加+</a></h4>
+  <h4>产品及数据<a href="javascript:void(0)" ng-click="vm.productVM.enterEditMode()" ng-if="!vm.productVM.isEdit && vm.isEditMode">添加+</a></h4>
   <section id="productEdit" ng-include="'/pages/project/templates/productEdit.html'" ng-if="vm.productVM.isEdit">
     产品数据添加
   </section>

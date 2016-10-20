@@ -12,6 +12,7 @@ export default class ProjectService extends API {
       'editmember',
       'addprivilege',
       'addnews',
+      'addproduct',
       // 'addfinance',
     ], {
       news: {
@@ -26,6 +27,7 @@ export default class ProjectService extends API {
       addfinance: {
         dataType: 'json',
       },
+      fundState: 'funds-state',
     });
   }
 
@@ -132,7 +134,7 @@ export default class ProjectService extends API {
 
   // 投资人联想
   suggest(kw) {
-    const api = new API('/suggest/org');
+    const api = new API('/suggest/investment');
     return api.query({
       kw,
     });

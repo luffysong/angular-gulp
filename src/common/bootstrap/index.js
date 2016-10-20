@@ -60,6 +60,16 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
         return value ? /^([a-zA-Z0-9]+[_|_|\.|\+]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/.test(value) : true;
         /* eslint-enable */
       },
+      integer: value => (value ? /\d+$/.test(value) : true),
+      number: value => (value ? /^\d*(\.\d+)?$/.test(value) : true),
+      maxlength: (value, scope, element, attrs, param) => {
+        param = parseInt(param, 10) || 0;
+        return value ? value.length <= param : true;
+      },
+      minlength: (value, scope, element, attrs, param) => {
+        param = parseInt(param, 10) || 0;
+        return value ? value.length >= param : true;
+      },
     }).setDefaultMsg({
       notEqual: {},
       required: {},
@@ -67,6 +77,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       maxlength: {},
       email: {},
       number: {},
+      integer: {},
       http: {
         error: '请以http(s)://开头',
       },
@@ -77,7 +88,8 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       duration: 2000,
     });
   })
-  .run(function run($rootScope, OPERATION_STATUS_META, COMPANY_NEWS_META, FINANCE_PHASE_META,
+  .run(function run($rootScope, $location, OPERATION_STATUS_META, COMPANY_NEWS_META,
+    FINANCE_PHASE_META,
     CURRENCY_UNIT_META, ROLE_META, FINANCE_NEED_META, PROJECT_TYPE_META, FUNDS_PHASE_ENUM_META) {
     const root = {};
     root.fromYear2000 = fromYear(2000);

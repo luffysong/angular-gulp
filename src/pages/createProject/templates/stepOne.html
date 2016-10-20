@@ -19,8 +19,8 @@
 
       <input validator="required"
       type="hidden" name="logo" ng-model="vm.baseInfo.logo">
-      <div mass-autocomplete="{debounce_blur:700,top:65,left:0.01,maxWidth:518,
-            position:'parent'}" class="form-group">
+      <div mass-autocomplete="{debounce_blur:700,top:65,left:0.01,maxWidth:518, position:'parent'}"
+        class="form-group prlt">
         <label for=""><span class="required">*</span> 项目名称</label>
         <input  ng-model="vm.baseInfo.name"
           placeholder="输入项目名称"
@@ -43,6 +43,7 @@
         <input  ng-model="vm.baseInfo.fullName"
           maxlength="50"
           placeholder="输入公司全称"
+          ng-blur="vm.searchClaimList()"
           message-id="messageFullName"
           type="text" name="fullName" class="form-control" />
       </div>
@@ -75,12 +76,25 @@
           <option value="">选择项目类型</option>
         </select>
       </div>
-      <div ng-if="vm.isWebApp() || vm.isWeb() || vm.isApp()" class="form-group">
-        <label for=""><span ng-if="vm.isWeb() || vm.isWebApp()" class="required">*</span> 公司官网</label>
+
+      <div ng-if="vm.isWeb() || vm.isWebApp()" class="form-group">
+        <label for=""><span class="required">*</span> 公司官网</label>
         <span id="messageWebsite" class="error-tip" ></span>
         <input  ng-model="vm.baseInfo.website"
           placeholder="请填写公司的官网，请以http(s)://开头"
-          validator="http,projectType=website" message-id="messageWebsite"
+          ng-blur="vm.searchClaimList()"
+          validator="required,http" message-id="messageWebsite"
+          type="text" name="website" class="form-control" />
+        </div>
+
+      <div ng-if="vm.isApp()" class="form-group">
+        <label for="">公司官网</label>
+        <span id="messageWebsite" class="error-tip" ></span>
+        <input  ng-model="vm.baseInfo.website"
+          placeholder="请填写公司的官网，请以http(s)://开头"
+          ng-blur="vm.searchClaimList()"
+          kr-valid
+          validator="http" message-id="messageWebsite"
           type="text" name="website" class="form-control" />
       </div>
 
@@ -91,6 +105,7 @@
         <span id="messageIoslink" class="error-tip" ></span>
         <input  ng-model="vm.baseInfo.iosLink"
           validator="applink,http" message-id="messageIoslink"
+          ng-blur="vm.searchClaimList()"
           applink-error-message="iOS与Android下载链接至少填写一个"
           placeholder="请填写产品iOS下载地址"
           type="text" name="ioslink" class="form-control" />
@@ -102,15 +117,20 @@
         <span id="messageAndroidlink" class="error-tip" ></span>
         <input  ng-model="vm.baseInfo.androidLink"
           placeholder="请填写产品的Android下载地址"
+          ng-blur="vm.searchClaimList()"
           validator="applink,http" message-id="messageAndroidlink"
           applink-error-message="iOS与Android下载链接至少填写一个"
           type="text" name="androidlink" class="form-control" />
       </div>
       <div ng-if="vm.isWeixin()" class="form-group">
         <label for=""><span class="required">*</span>微信公众号</label>
+        <span ng-if="vm.baseInfo.form.weixin.$invalid === true" class="error-tip" >
+          微信号最小长度为6位</span>
         <input  ng-model="vm.baseInfo.weixin"
           placeholder="请填写微信公众号"
-          validator="required"
+          ng-blur="vm.searchClaimList()"
+          validator="required,minlength=6,maxlength=16"
+          maxlength="16"
           type="text" name="weixin" class="form-control" />
       </div>
       <div ng-if="vm.isIdea()" class="form-group">
@@ -160,17 +180,20 @@
 
 </div>
 
-<div ng-if="vm.suggestList.length" class="step-one-wrapper suggest-result-wrapper">
+<div ng-if="vm.claimList.length" class="step-one-wrapper suggest-result-wrapper">
   <h4>建议结果</h4>
     <div>
       <ul>
-        <li ng-repeat="item in vm.suggestList">
-          <img ng-src='{{item.logo}}' /><div class="suggest-project-text">
-            <p><span>{{item.name}}</span><span>{{item.industry | industry}}</span></p>
-            <p class="brief">item.breif</p>
+        <li ng-repeat="item in vm.claimList">
+          <a ui-sref="project({id: item.id})" target="_blank">
+            <img ng-src='{{item.logo}}' /></a
+          ><div class="suggest-project-text">
+            <p><a target="_blank" ui-sref="project({id: item.id})">{{item.name}}</a
+              ><a>{{item.industry | industry}}</a></p>
+            <p class="brief">{{item.brief}}</p>
           </div>
           <div ng-if="item.website" class="website">
-            <a ng-href="{{item.website}}">{{item.website}}</a>
+            <a target="_blank" ng-href="{{item.website}}">{{item.website}}</a>
           </div>
           <a class="claim" ng-click="vm.claim(item)" href="javascript:;">认领</a>
         </li>

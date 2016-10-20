@@ -171,6 +171,14 @@ export function mapProps(arr, from, to = {}, isReverse) {
   return to;
 }
 
+export function deleteProps(arr, obj) {
+  arr.forEach(key => delete obj[key]);
+}
+
+export function removeProps(arr, obj) {
+  deleteProps(arr, obj);
+}
+
 
 export function fromYear(year) {
   let nowYear = new Date().getFullYear();

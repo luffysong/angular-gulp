@@ -6,7 +6,7 @@ function textOverflowDirective() {
       text: '=',
     },
     link(scope, element) {
-      const more = $('<a class="toggle" href="#"><span class="open">查看更多</a>');
+      const more = $('<a class="toggle underline" href="#"><span class="open">查看更多</a>');
       element.text(scope.text);
       element.append(more);
       function createDots() {

@@ -17,14 +17,19 @@
           <a ng-if="vm.baseInfoVM.weibo"
           class="kr-icon icon-Weibo link-none" href="" ng-class="{'icon-Weibo-active':vm.baseInfoVM.weibo}"
           ng-href="{{::vm.baseInfoVM.weibo}}" target="_blank"></a>
-          <span class="kr-icon icon-Weibo link-none" ng-if="!vm.baseInfoVM.weibo" tooltips tooltip-template="未填写" tooltip-smart="true" tooltip-class="tooltip"></span>
-          <a class="kr-icon icon-Wechat link-none" ng-class="{'icon-Wechat-active':vm.baseInfoVM.weixin}" tooltips tooltip-template="{{vm.baseInfoVM.weixin?vm.baseInfoVM.weixin:'未填写'}}" tooltip-class="tooltip"></a>
+        <span class="kr-icon icon-Weibo link-none" ng-if="!vm.baseInfoVM.weibo" tooltips tooltip-template="未填写"
+          tooltip-smart="true" tooltip-class="tooltip"></span>
+          <a class="kr-icon icon-Wechat link-none" ng-class="{'icon-Wechat-active':vm.baseInfoVM.weixin}"
+            tooltips tooltip-template="{{vm.baseInfoVM.weixin?vm.baseInfoVM.weixin:'未填写'}}" tooltip-class="tooltip">
+          </a>
           <span class="kr-icon icon-websitelink" ng-show=""></span>
-          <a ng-href="{{::vm.baseInfoVM.website}}">
+          <a class="website ellipsis" target="_blank" ng-href="{{::vm.baseInfoVM.website}}">
             {{::vm.baseInfoVM.website}}
           </a>
-          <span class="kr-icon icon-Hot" ng-show="vm.baseInfoVM.advantage"></span>
-          <span class="hot-text" ng-show="vm.baseInfoVM.advantage">{{vm.baseInfoVM.advantage}}</span>
+          <span class="hot-container">
+            <span class="kr-icon icon-Hot" ng-show="vm.baseInfoVM.advantage"></span>
+            <span class="hot-text" ng-show="vm.baseInfoVM.advantage">{{vm.baseInfoVM.advantage}}</span>
+          </span>
         </p>
       </div>
       <div class="finance-brief" ng-if='vm.fundsVM.funds'>
@@ -35,7 +40,9 @@
         </p>
         <p>
          <span>金额</span>
-         <span><small ng-show="vm.fundsVM.financeAmountUnit =='USD'">$</small><small ng-show="vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}万</span>
+         <span>
+           <small ng-show="vm.fundsVM.financeAmountUnit =='USD'">$</small
+           ><small ng-show="vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}万</span>
         </p>
       </div>
       <div class="finance-brief" ng-if='!vm.fundsVM.funds'>
@@ -96,22 +103,30 @@
           </div>
           <div class="form-group">
             <label for="">公司官网</label>
-            <span id="messageWebsite" class="error-tip" id="messageBrief"></span>
+            <span id="messageWebsite" class="error-tip" ></span>
             <input  ng-model="vm.baseInfoVM.website"
-              placeholder="请填写公司的官网，请以http://开头"
+              placeholder="请填写公司的官网，请以http(s)://开头"
               validator="http" message-id="messageWebsite"
               type="text" name="website" class="form-control" />
           </div>
           <div class="form-group">
             <label for="">新浪微博</label>
+            <span id="messageweibo" class="error-tip" ></span>
             <input  ng-model="vm.baseInfoVM.weibo"
               placeholder="请填写新浪微博主页链接"
+              validator="http"
               type="text" name="weibo" class="form-control" />
           </div>
           <div class="form-group">
             <label for="">微信公众号</label>
+            <span ng-if="vm.baseInfoVM.form.weixin.$invalid === true" class="error-tip" >
+              微信公众号为6-20个字符
+            </span>
             <input  ng-model="vm.baseInfoVM.weixin"
               placeholder="请填写微信公众号"
+              validator="minlength=6,maxlength=20"
+              maxlength="20"
+              no-validation-message="true"
               type="text" name="weixin" class="form-control" />
           </div>
 
@@ -130,36 +145,37 @@
 
     </div>
   </section>
-  <section sticky offset="50" class="nav-wrapper">
+  <section sticky offset="49" class="nav-wrapper">
     <nav>
       <ul class='navigate'>
         <li ng-show="vm.baseInfoVM.investAdvantage && (vm.user != 'commen' || vm.investorType)">
-          <a href="#light" du-smooth-scroll="" du-scrollspy=""  offset="{{vm.light}}"  class="active">
+          <a kr-scroll-click
+            href="#light" du-smooth-scroll="" du-scrollspy=""  offset="{{vm.light}}" >
             投资亮点
           </a>
         </li>
         <li ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
-          <a href="#baseInfo" du-smooth-scroll="" du-scrollspy="" offset="{{vm.baseInfo}}" ng-class="{'active':!vm.baseInfoVM.advantage}">
+          <a kr-scroll-click href="#baseInfo" du-smooth-scroll="" du-scrollspy="" offset="{{vm.baseInfo}}" >
             基本介绍
           </a>
         </li>
-        <li ng-hide="!vm.fundsVM.funds || vm.user == 'commen' || !vm.investorType">
-          <a href="#financeDetail" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeDetail}}" ng-class="{'active':!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)}">
+        <li ng-show="(vm.fundsVM.fundsVo.scale || vm.fundsVM.fundsVo.dataLights || vm.fundsVM.fundsVo.competitor || vm.fundsVM.fundsVo.projectPlan) && (vm.user != 'commen' || vm.investorType)">
+          <a kr-scroll-click href="#financeDetail" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeDetail}}" ng-class="{'active':!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)}">
             融资详情
           </a>
         </li>
         <li>
-          <a href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeHistory}}" ng-class="{'active':!vm.baseInfoVM.advantage && !(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro) && !vm.fundsVM.funds}">
+          <a kr-scroll-click href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeHistory}}" ng-class="{'active':!vm.baseInfoVM.advantage && !(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro) && !vm.fundsVM.funds}">
             融资经历
           </a>
         </li>
         <li>
-          <a href="#founder" du-smooth-scroll="" du-scrollspy="" offset="130" >
+          <a kr-scroll-click href="#founder" du-smooth-scroll="" du-scrollspy="" offset="130" >
             创始团队
           </a>
         </li>
         <li>
-          <a href="#product" du-smooth-scroll="" du-scrollspy="" offset="130" >
+          <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="130" >
             产品及数据
           </a>
         </li>
@@ -168,15 +184,21 @@
            相关新闻
           </a>
         </li> -->
+        <li ng-if="vm.isEditMode" >
+          <a kr-scroll-click href="#relativeUser" du-smooth-scroll="" du-scrollspy="" offset="130" >
+            相关用户
+          </a>
+        </li>
         <li>
-          <a href="#similarItem" du-smooth-scroll="" du-scrollspy="" offset="130" >
-            相似公司
+          <a  kr-scroll-click
+            href="#similarItem" du-smooth-scroll="" du-scrollspy="" offset="130" >
+            相似项目
           </a>
         </li>
         <li>
         <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user == 'commen'" login-btn>认领</a>
-          <a ui-sref="createProject({id: vm.id, type: 'finance', name: vm.name})"
-            ng-show="vm.user == 'admin'" >融资设置</a>
+          <a ui-sref="financeRoute({id: vm.id, name: vm.name})"
+            ng-show="vm.fundsState" >融资设置</a>
 
 
           <a href="#" ui-sref="project.edit({id: vm.id})"
@@ -194,7 +216,7 @@
     ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
   </section>
   <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module finance"
-    ng-show="vm.fundsVM.funds && (vm.user != 'commen' || vm.investorType)">
+    ng-show="(vm.fundsVM.fundsVo.scale || vm.fundsVM.fundsVo.dataLights || vm.fundsVM.fundsVo.competitor || vm.fundsVM.fundsVo.projectPlan) && (vm.user != 'commen' || vm.investorType)">
     融资详情
   </section>
   <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module">
@@ -209,13 +231,12 @@
   <!-- <section id="news" class="project-module" ng-include="'/pages/project/templates/new.html'">
     相关新闻
   </section> -->
+
+  <!-- 相关用户只有在编辑模式下才有 -->
+  <section id="relativeUser" ng-if="vm.isEditMode" class="project-module"
+    ng-include="'/pages/project/templates/relatedUser.html'"></section>
+
   <section id="similarItem" class="project-module" ng-include="'/pages/project/templates/similarItem.html'">
-
-  </section>
-  <!-- 相关人员只有在编辑模式下才有 -->
-  <section id="similarItem" ng-if="vm.isEditMode" class="project-module"
-    ng-include="'/pages/project/templates/relatedUser.html'">
-
   </section>
   <section ng-include="'/pages/project/templates/footer.html'" >
 

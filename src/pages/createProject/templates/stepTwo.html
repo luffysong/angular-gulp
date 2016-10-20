@@ -25,7 +25,7 @@
           <label for=""><span class="required">*</span>职位</label>
           <div>
             <select ng-options="item.value as item.desc for item in vm.CLAIM_ROLE"
-              ng-if="!vm.baseInfo.companyRole"
+              ng-if="!vm.baseInfo.companyRole || vm.isClaiming"
               ng-model="vm.user.companyRole"
               placeholder="输入"
               message-id="messageFullName"
@@ -91,7 +91,7 @@
         </div>
       </div>
 
-      <div ng-if="!vm.isFunder()">
+      <div ng-if="!vm.isFunder() || vm.isClaimingMember()">
         <div class="form-group creator-title">
           <label>创始人联系方式</label>
           <span  class="form-tip" >便于更好完善该项目信息</span>
@@ -99,17 +99,17 @@
 
         <div class="form-group">
           <label for="">真实姓名</label>
-          <input  ng-model="vm.user.starterName"
+          <input kr-valid ng-model="vm.user.starterName"
             placeholder="输入中文真实姓名"
-            maxlength="30"
+            maxlength="16" validator="maxlength=16"
             type="text" name="starterName" class="form-control" />
         </div>
 
         <div class="form-group">
           <label for="">职位</label>
           <div>
-            <input ng-model="vm.user.starterPosition"
-              placeholder="输入职位"
+            <input kr-valid ng-model="vm.user.starterPosition"
+              placeholder="输入职位" validator="maxlength=20" maxlength="20"
             type="text" name="starterPosition" class="form-control position-name"  />
           </div>
 
@@ -117,9 +117,10 @@
 
         <div class="form-group">
           <label for="">手机号码</label>
-          <span class="error-tip" id=""></span>
-          <input  ng-model="vm.user.starterPhone"
-          maxlength="30"
+          <span class="error-tip" ng-if="vm.user.form.starterPhone.$invalid === true">
+          请输入真实的手机号码</span>
+          <input kr-valid  ng-model="vm.user.starterPhone" validator="integer,maxlength=13"
+          maxlength="13" no-validation-message
           placeholder="输入真实手机号"
           type="text" name="starterPhone" class="form-control" />
         </div>

@@ -2,48 +2,36 @@
   <form name="vm.productVM.form">
     <div class="form-group">
       <label><span class="required">*</span>产品名称</label>
-      <span class="error-tip" id="editProductName"></span>
       <input type="text" name="product-name" placeholder="请输入产品的名称"
              ng-model="vm.productVM.name"
              message-id="editProductName"
              required-error-message="请输入产品名称"
-             validator="required" class="form-control product-name" size="140" />
+             validator="required" class="form-control product-name" size="140"
+             style="display: block" />
+      <span class="error-tip" id="editProductName"></span>
     </div>
     <div class="form-group">
-      <label><span class="required">*</span>产品描述</label>
-      <span class="error-tip" id="editProductInfo"></span>
+      <label><span class="required"></span>产品描述</label>
+      <!-- <span class="error-tip" id="editProductInfo"></span> -->
       <input type="text" name="product-info" placeholder="请添加产品的描述功能"
              ng-model="vm.productVM.desc"
-             message-id="editProductInfo"
-             required-error-message="请添加产品的描述功能"
-             validator="required" class="form-control product-info" size="140" />
-      <span class="descNum">{{vm.productVM.desc.length || 0}}/30</span>
+             maxlength="200"
+             class="form-control product-info" size="140" />
+      <span class="descNum">{{vm.productVM.desc.length || 0}}/200</span>
     </div>
     <div class="form-group" id="productsUrl">
-      <label><span class="required">*</span>产品链接</label>
-      <div class="web-address">
-        <span class="error-tip" id="editProductUrl"></span>
-        <select class="form-control">
-          <option>111</option>
-          <option>222</option>
-                </select>
-        <input type="text" name="website" placeholder="请填写产品链接"
-               ng-model="vm.productVM.url"
-               message-id="editProductUrl"
-               required-error-message="请填写产品的链接"
-               validator="required" class="form-control product-url" />
-      </div>
-      <div class="ios-address">
-        <span class="error-tip" id="editProductIos"></span>
-        <select class="form-control">
-          <option>111</option>
-          <option>222</option>
+      <label>产品链接</label>
+      <div class="web-address" ng-repeat="item in vm.productVM.productLink">
+        <!-- <span class="error-tip" id="editProductUrl"></span> -->
+        <select class="form-control"
+                ng-options="item.value as item.desc for item in vm.productVM.productLinkOptions"
+                ng-model="vm.productVM.productLink[$index].urlType">
+          <option></option>
         </select>
-        <input type="text" name="ios" placeholder="请填写产品链接"
-               ng-model="vm.productVM.ios"
-               message-id="editProductIos"
-               required-error-message="请填写产品的链接"
-               validator="required" class="form-control product-ios"/>
+        <input type="url" name={{$index}} placeholder="请填写产品链接"
+               class="form-control product-url"
+               ng-model="vm.productVM.productLink[$index].urlAddr"/>
+        <span class="delete-product" ng-click="vm.productVM.deletePro(item)">×</span>
       </div>
 
         <a href="javascript:void(0)" class="add-link"
