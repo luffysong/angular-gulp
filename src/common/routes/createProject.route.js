@@ -24,7 +24,9 @@ const financeRoute = {
     loadProjectBundle: getLoadBundle(assets.page.createProject),
     type: () => FINANCE,
     step: () => 3,
-    financeState: function financeState(loadProjectBundle, createProjectService, $stateParams) {
+    financeState:
+    /* @ngInject */
+    function financeState(loadProjectBundle, createProjectService, $stateParams) {
       return createProjectService.financeState($stateParams.id);
     },
   },

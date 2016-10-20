@@ -3,7 +3,7 @@ import home from './home.route';
 import project, { editProject } from './project.route';
 import createProject, { financeRoute } from './createProject.route';
 import { searchView, search } from './search.route';
-import { listView,list } from './list.route';
+import { listView, list } from './list.route';
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode(true);
