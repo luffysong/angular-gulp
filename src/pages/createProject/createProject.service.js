@@ -9,6 +9,10 @@ const projectApi = new krData.API('/company/:id', [
   'addFunds',
 ], {
   fundState: 'funds-state',
+  similarProject: {
+    action: 'same-industry',
+    isArray: true,
+  },
 });
 const suggestApi = new krData.API('/suggest', [
   'company',
@@ -58,6 +62,12 @@ export default class CreateProject {
     return projectApi.privilege({
       id,
       type: 'manager',
+    });
+  }
+
+  similarProjects(industry) {
+    return projectApi.similarProject({
+      industry,
     });
   }
 

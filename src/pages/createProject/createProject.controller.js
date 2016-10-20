@@ -35,12 +35,6 @@ export default class CreateProjectController {
   project = this.createProjectService;
   baseInfo = {};
   user = {};
-  similarItem = [
-    {
-      name: '36氪',
-      info: '为创业者提供最好的产品和服务',
-    },
-  ];
 
   financeVM = new FinanceVM(this.$scope, this.$stateParams.name);
 
@@ -274,9 +268,10 @@ export default class CreateProjectController {
     this.project.claim(this.claimProject.id, userCopy)
       .then(() => {
         this.step = 4;
+        this.loadSimilarProjects(this.claimProject.industry);
       })
       .catch((err) => {
-        krData.Alert.alert(`创建公司失败:${err.msg}`);
+        krData.Alert.alert(`认领公司失败:${err.msg}`);
       });
   }
   call110() {
@@ -303,6 +298,7 @@ export default class CreateProjectController {
     this.project.create(projectInfo)
       .then(() => {
         this.step = 4;
+        this.loadSimilarProjects(this.baseInfo.industry);
       })
       .catch((err) => {
         krData.Alert.alert(`创建公司失败:${err.msg}`);
@@ -390,6 +386,11 @@ export default class CreateProjectController {
         obj: com,
       };
     });
+  }
+
+  loadSimilarProjects(industry) {
+    this.project.similarProjects(industry)
+      .then(data => (this.similarProjects = data));
   }
 
   searchClaimList() {

@@ -16,6 +16,15 @@
       }
     }
     tbody{
+      color: @anchor-color;
+      td {
+        .text-center();
+        .font(14,21);
+      }
+      tr td:first-child {
+        width: 320px;
+        text-align: left;
+      }
       .item-logo{
         .square(42);
         border-radius: 4px;
@@ -28,10 +37,6 @@
         display: block;
         margin-top: 14px;
         margin-bottom: 14px;
-        .item-name{
-          .font(14,21);
-          color: #6BA2FC;
-        }
         .item-breif{
           .font(12,26);
           color: #5A626D;
