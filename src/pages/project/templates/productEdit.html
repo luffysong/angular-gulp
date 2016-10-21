@@ -6,17 +6,20 @@
              ng-model="vm.productVM.name"
              message-id="editProductName"
              required-error-message="请输入产品名称"
+             maxlength="30"
              validator="required" class="form-control product-name" size="140"
-             style="display: block" />
+             />
+      <span class="descNum">{{vm.productVM.name.length || 0}}/30</span>
       <span class="error-tip" id="editProductName"></span>
     </div>
     <div class="form-group">
       <label><span class="required"></span>产品描述</label>
       <!-- <span class="error-tip" id="editProductInfo"></span> -->
-      <input type="text" name="product-info" placeholder="请添加产品的描述功能"
-             ng-model="vm.productVM.desc"
-             maxlength="200"
-             class="form-control product-info" size="140" />
+      <textarea name="product-info" placeholder="请添加产品的描述功能"
+                ng-model="vm.productVM.desc"
+                maxlength="200"
+                class="form-control product-info" size="140">
+      </textarea>
       <span class="descNum">{{vm.productVM.desc.length || 0}}/200</span>
     </div>
     <div class="form-group" id="productsUrl">
@@ -26,9 +29,14 @@
         <select class="form-control"
                 ng-options="item.value as item.desc for item in vm.productVM.productLinkOptions"
                 ng-model="vm.productVM.productLink[$index].urlType">
-          <option></option>
+          <option value="">请选择</option>
         </select>
         <input type="url" name={{$index}} placeholder="请填写产品链接"
+               ng-if="vm.productVM.productLink[$index].urlType!=='weixin'"
+               class="form-control product-url vam"
+               ng-model="vm.productVM.productLink[$index].urlAddr"/>
+        <input type="url" name={{$index}} placeholder="请填写微信公众号"
+               ng-if="vm.productVM.productLink[$index].urlType=='weixin'"
                class="form-control product-url vam"
                ng-model="vm.productVM.productLink[$index].urlAddr"/>
         <span class="delete-product icon-dialogClose" ng-click="vm.productVM.deletePro(item)"></span>
