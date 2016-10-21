@@ -1,8 +1,10 @@
 import krData from 'krData';
-import { getService } from '../../common/base/utls';
 
+const getService = krData.utls.getService;
+const ROLE = getService('ROLE');
 export default class ClaimVM {
   $validation = getService('$validation');
+
   constructor(fn, id, usr) {
     this.ngDialog = fn;
     this.Cid = id;
@@ -32,7 +34,7 @@ export default class ClaimVM {
         userEmail: vm.userInfo.email || '',
         userWeiXin: '',
         userBusinessCard: '',
-        privilegeEnum: 'MEMBER',
+        privilegeEnum: ROLE.MEMBER,
         id: vm.Cid,
       };
       claimCancle() {
