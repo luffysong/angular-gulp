@@ -1,11 +1,10 @@
-import { getService } from '../../common/base/utls';
 import krData from 'krData';
-const $validation = krData.utls.getService('$validation');
-function validate(ctl) {
-  $validation.validate(ctl);
-}
+
+const getService = krData.utls.getService;
+const ROLE = getService('ROLE');
 export default class ClaimVM {
   $validation = getService('$validation');
+
   constructor(fn, id, usr) {
     this.ngDialog = fn;
     this.Cid = id;
@@ -18,40 +17,40 @@ export default class ClaimVM {
   claimForm() {
     let claimDialog;
     const vm = this;
-    function claimController() {
-      this.manager = vm.manager;
-      this.background = '/images/cardBackground.png';
-      if (vm.user === 'commen') {
-        this.position = true;
-      } else {
-        this.position = false;
+    class claimController {
+      manager = vm.manager;
+      background = '/images/cardBackground.png';
+      constructor() {
+        if (vm.user === 'commen') {
+          this.position = true;
+        } else {
+          this.position = false;
+        }
       }
-      this.claimform = {
+      claimform = {
         userName: vm.userInfo.name || '',
         userPosition: '',
         userPhone: vm.userInfo.phone || '',
         userEmail: vm.userInfo.email || '',
         userWeiXin: '',
         userBusinessCard: '',
-        privilegeEnum: 'MEMBER',
+        privilegeEnum: ROLE.MEMBER,
         id: vm.Cid,
       };
-      this.claimCancle = function () {
+      claimCancle() {
         claimDialog.close();
-      };
-      this.changePic = function () {
+      }
+      changePic() {
         this.claimform.userBusinessCard = '';
         this.suc = false;
-      };
-      this.save = function (form) {
-        // console.log(this.claimform);
-        if (!vm.$validation.checkValid(form)) {
-          vm.$validation.validate(form);
-          return false;
-        }
-        this.update(this.claimform, vm.Cid);
-      };
-      this.uploadImage = function ($files) {
+      }
+
+      save(form) {
+        vm.$validation.validate(form)
+          .then(() => this.update(this.claimform, vm.Cid));
+      }
+
+      uploadImage($files) {
         if ($files.length) {
           krData.utls.uploadImage($files[0])
             .then(data => {
@@ -60,24 +59,25 @@ export default class ClaimVM {
               this.suc = true;
             }).catch(err => krData.Alert.alert(err.msg));
         }
-      };
-      this.update = function (form, id) {
+      }
+      update(form, id) {
         vm.projectService.addprivilege({
           id,
         }, form)
           .then(() => {
             claimDialog.close();
+            vm.claim = vm.applied;
             krData.Alert.success('数据保存成功');
           }, (data) => {
             krData.Alert.alert(data.msg);
           });
-      };
-      this.isFunder = function () {
+      }
+      isFunder() {
         if (this.claimform.privilegeEnum === 'MEMBER') {
           return true;
         }
         return false;
-      };
+      }
     }
     claimDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/project/templates/claim.html\'"center>/div>',
@@ -90,7 +90,7 @@ export default class ClaimVM {
   getClaimPending() {
     // 判断当前用户是否在审核认领
     this.projectService.claimPeding(this.Cid)
-    .then((data) => {
+    .then(() => {
       this.claim = this.claimForm;
     }, () => {
       this.claim = this.applied;
@@ -107,7 +107,7 @@ export default class ClaimVM {
   }
   getManager(id) {
     const cid = {
-      'id': id,
+      id,
     };
     this.projectService.getManager(cid).then((data) => {
       this.manager = data;

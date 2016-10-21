@@ -8,13 +8,14 @@ const FINANCE = 'finance';
 function validate(ctl) {
   $validation.validate(ctl);
 }
-@Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', 'step', 'financeState', 'type',
+@Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', 'step', 'financeState', 'type', '$window',
   '$scope', '$q', '$filter', '$stateParams', '$state', 'createProjectService')
 export default class CreateProjectController {
 
   autocompleteOptions = {
     suggest: this.suggest.bind(this),
-    full_match: angular.noop,
+    auto_select_first: true,
+    full_match: (item, word) => item.value.toLowerCase() === word.toLowerCase(),
     on_detach: () => this.searchClaimList(),
     on_select: item => {
       const obj = item.obj;
@@ -247,6 +248,11 @@ export default class CreateProjectController {
     });
   }
 
+  resetClaim() {
+    this.claimProject = undefined;
+    this.claimer = undefined;
+    this.isClaiming = false;
+  }
   claim(project) {
     this.claiming = true;
     this.project.getPrivilege(project.id)
@@ -256,6 +262,7 @@ export default class CreateProjectController {
         this.isClaiming = true;
         this.step = 2;
         this.loadUserInfo();
+        this.$window.scrollTo(0, this.$window.scrollX);
       });
   }
 
@@ -326,13 +333,13 @@ export default class CreateProjectController {
 
   prev() {
     this.step--;
+    this.$window.scrollTo(0, this.$window.scrollX);
   }
   next(form) {
-    if (!this.validate(form)) {
-      return;
-    }
+    this.$window.scrollTo(0, this.$window.scrollX);
     switch (this.step) {
       case 1:
+        this.resetClaim();
         this.go(2, form);
         break;
       case 2:

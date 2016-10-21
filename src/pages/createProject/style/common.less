@@ -38,17 +38,22 @@
     pointer-events: none;
     color: #fff;
     background: #ccc;
-    .border1(#ccc);
     margin: 40px auto 30px;
   }
   .prev {
     .border1(@anchor-color);
     margin-right: 30px;
+    &:hover {
+      background: @anchor-color;
+      color: #fff;
+    }
   }
   .next.active {
     background: @anchor-color;
-    .border1(@anchor-color);
     pointer-events: auto;
+    &:hover {
+      background:rgba(107,162,252, 0.8);
+    }
   }
   .tip-text {
     margin-top: 6px;

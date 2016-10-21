@@ -8,7 +8,7 @@ import SimilarVM from './similar.vm';
 import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
-
+const FINANCE_ALLOW = '1';
 // import Alert from '../../common/base/Alert';
 // import EditFinanceVM from './editFinance.vm';
 @Inject('$stateParams', 'projectService', 'projectData', 'ngDialog',
@@ -24,7 +24,8 @@ export default class ProjectIndexController {
       this.baseInfoVM = new BaseInfoVM(this.projectData.baseInfo, this.$scope);
       this.introductionVM = new IntroductionVM(this.projectData.baseInfo, this.$scope);
       this.fundsVM = new FundsVM(this.projectData.funds);
-      this.financeVM = new FinanceVM(this.projectData.finance, this.$scope, this.id, this.$sce, this.$q);
+      this.financeVM = new FinanceVM(this.projectData.finance, this.$scope, this.id,
+        this.$sce, this.$q);
       this.memberVM = new MemberVM(this.projectData.member, this.id);
       this.similarVM = new SimilarVM(this.projectData.similar);
       // this.newsVM = new NewsVM(this.projectData.news, this.$scope, this.id);
@@ -45,7 +46,7 @@ export default class ProjectIndexController {
     };
     this.projectService.fundState(id)
     .then(data => {
-      if (data.code === 1) {
+      if (data.state === FINANCE_ALLOW) {
         this.fundsState = true;
       }
     });

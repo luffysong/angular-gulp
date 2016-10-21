@@ -7,9 +7,17 @@
   background: #F2F4F5;
   border: 1px transparent solid;
   min-height: 100%;
+  padding-bottom: 40px;
   .create-project-module {
     width: @content-width;
-    margin: 30px auto 40px;
+    margin: 30px auto 0px;
+    box-shadow: 0px 0px 8px 0px #E7E7E7;
+  }
+  .smilar-project-module {
+    margin-top: 16px;
+  }
+  .suggest-result-module {
+    margin-top: 0px;
   }
   h1 {
     background: #F9F9F9;
@@ -120,10 +128,17 @@
     margin-left: 12px;
     margin-right: 10px;
   }
+  .icon-dialogClose {
+    margin-left: 4px;
+  }
   .btn-bp {
     .button(139, 37, 14, @anchor-color, #fff);
     display: block;
     margin-top: 4px;
+    height: 37px;
+    &:hover {
+      background:rgba(107,162,252, 0.8);
+    }
     .icon-BP{
       font-size: 16px;
       vertical-align: sub;
@@ -214,9 +229,12 @@
       .vam();
     }
   }
+  .ac-menu-item > a > div{
+    overflow: hidden;
+  }
   .suggest-project-text {
-    .dlk();
-    .vam();
+    float: right;
+    width: 420px;
     span {
       .font(14, 21);
     }
@@ -235,7 +253,6 @@
   }
 }
 .suggest-result-wrapper {
-  .ac-container();
   background: #fff;
   h4 {
     margin-bottom: 4px;
@@ -246,21 +263,43 @@
     margin-top: 4px;
   }
   li {
-    padding-bottom: 21px;
+    img {
+      .square(42);
+      .rd(4px);
+      margin-right: 16px;
+      .border1(@border-color);
+      .vam();
+    }
+    padding: 14px 20px;
     width: 805px;
     border-bottom: 1px solid #F2F4F5;
     position: relative;
   }
+  li:last-child {
+    border-bottom: none;
+  }
+  .brief {
+    .font(12,18);
+    margin-top: 4px;
+    color: @tip-color;
+  }
+  .suggest-project-text {
+    .vam();
+    .dlk();
+  }
   .suggest-project-text p:first-child {
     color: @anchor-color;
+    a {
+      .font(14, 21);
+    }
     a:first-child {
       border-right: 1px solid #ccc;
       padding-right: 12px;
+      font-weight: 600;
     }
     a:last-child{
       padding-left: 12px;
     }
-
   }
   .claim {
     .border1(@anchor-color);
@@ -273,7 +312,12 @@
     line-height: 31px;
     position: absolute;
     right: 40px;
-    bottom: 42px;
+    top: 50%;
+    transform: translateY(-50%);
+    &:hover {
+      background:@anchor-color;
+      color: #fff;
+    }
   }
   border: 1px solid transparent;
 }

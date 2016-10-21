@@ -187,6 +187,8 @@ export default class ProductVM extends krData.FormVM {
           urlType: 'url',
           urlAddr: '',
         }];
+        this.desc = '';
+        this.name = '';
         this.isEdit = false;
       });
     }

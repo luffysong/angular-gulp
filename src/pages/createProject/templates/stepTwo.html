@@ -4,7 +4,7 @@
 
   <div>
     <div ng-if="vm.claimer.hasManager" class="claim-message">
-      <p >已有认领人<a href="javascript:;">刘成城</a>，若非真实可<a ng-click="vm.call110()" href="javascript:;">
+      <p >已有认领人<a href="javascript:;">{{vm.claimer.name}}</a>，若非真实可<a ng-click="vm.call110()" href="javascript:;">
       举报更改</a></p>
       <p ng-if="vm['110']" class="small-ft">请将举报材料（个人名片、公司营业执照等可证明对公司有实际控制权的证明材料）
 提交至“融资小秘书：*******”，
@@ -93,8 +93,7 @@
 
       <div ng-if="!vm.isFunder() || vm.isClaimingMember()">
         <div class="form-group creator-title">
-          <label>创始人联系方式</label>
-          <span  class="form-tip" >便于更好完善该项目信息</span>
+          <label class="mr10">创始人联系方式</label><span  class="form-tip" >便于更好完善该项目信息</span>
         </div>
 
         <div class="form-group">
