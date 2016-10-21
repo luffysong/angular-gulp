@@ -8,7 +8,7 @@ const FINANCE = 'finance';
 function validate(ctl) {
   $validation.validate(ctl);
 }
-@Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', 'step', 'financeState', 'type',
+@Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', 'step', 'financeState', 'type', '$window',
   '$scope', '$q', '$filter', '$stateParams', '$state', 'createProjectService')
 export default class CreateProjectController {
 
@@ -262,6 +262,7 @@ export default class CreateProjectController {
         this.isClaiming = true;
         this.step = 2;
         this.loadUserInfo();
+        this.$window.scrollTo(0, this.$window.scrollX);
       });
   }
 
@@ -332,11 +333,10 @@ export default class CreateProjectController {
 
   prev() {
     this.step--;
+    this.$window.scrollTo(0, this.$window.scrollX);
   }
   next(form) {
-    if (!this.validate(form)) {
-      return;
-    }
+    this.$window.scrollTo(0, this.$window.scrollX);
     switch (this.step) {
       case 1:
         this.resetClaim();
