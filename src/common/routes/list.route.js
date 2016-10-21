@@ -12,7 +12,7 @@ const listView = {
 };
 
 const list = {
-  url: '/detail?{address}&{fundPhase}&{industry}&{tag}&{requirement}&{open}',
+  url: '/detail?{address}&{phase}&{industry}&{tag}&{requirement}&{open}',
   templateUrl: '/pages/list/templates/result.html',
   controllerAs: 'vm',
   controller: 'listIndexController',
