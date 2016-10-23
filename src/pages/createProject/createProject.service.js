@@ -48,6 +48,14 @@ export default class CreateProject {
     }).then(filterIndustry);
   }
 
+  getProject(id) {
+    return projectApi.get({
+      id,
+    }).then(data => ({
+      industry: data.industryEnum,
+    }));
+  }
+
   suggestClaim(searchObj) {
     for (const prop in searchObj) {
       if (searchObj[prop]) {

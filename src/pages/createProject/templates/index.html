@@ -28,7 +28,7 @@
         </div>
     </div>
   </div>
-  <div ng-if="vm.step === 4" class="create-project-module smilar-project-module">
+  <div ng-if="vm.step === 4 && vm.similarProjects.length" class="create-project-module smilar-project-module">
     <div ng-include="'/pages/createProject/templates/similar-item.html'"></div>
   </div>
 </section>
