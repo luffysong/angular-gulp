@@ -39,10 +39,13 @@
                ng-if="vm.productVM.productLink[$index].urlType!=='weixin'"
                class="form-control product-url"
                ng-model="vm.productVM.productLink[$index].urlAddr"/>
-        <input type="url" name={{$index}} placeholder="请填写微信公众号"
+        <!-- <span class="error-tip" id="editProductUrl"></span> -->
+        <input type="text" name={{$index}} placeholder="请填写微信公众号"
                ng-if="vm.productVM.productLink[$index].urlType=='weixin'"
-               class="form-control product-url vam"
-               ng-model="vm.productVM.productLink[$index].urlAddr"/>
+               class="form-control product-url"
+               ng-model="vm.productVM.productLink[$index].urlAddr"
+               ng-maxlength="20"
+               ng-minlength="6"/>
         <span class="delete-product icon-dialogClose" ng-click="vm.productVM.deletePro(item)"></span>
       </div>
 
