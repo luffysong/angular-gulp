@@ -6,50 +6,42 @@
   <div class="content">
     <div class="detail">
       <div class="product-name">
-        {{vm.productVM.data.companyProductList[0].name}}
+        {{vm.productVM.data.companyProduct.name}}
       </div>
       <div class="base-info">
         <div class="inner">
-          <div class="info" ng-if="vm.productVM.data.companyProductList[0].desc!=='' && typeOf (vm.productVM.data.companyProductList[0].desc)!=undefined">{{vm.productVM.data.companyProductList[0].desc}}</div>
-          <div>
-            <!-- <a ng-href="{{vm.productVM.data.companyProductList[0].}}"><span class="kr-icon icon-Weibo"></span></a> -->
-            <a ng-if="vm.productVM.data.companyProductList[0].weixin==''" ng-href="{{vm.productVM.data.companyProductList[0].weixin}}"><span class="kr-icon icon-Wechat"></span></a>
-            <a ng-if="vm.productVM.data.companyProductList[0].ios==''" ng-href="{{vm.productVM.data.companyProductList[0].ios}}" target="_blank"><span class="kr-icon icon-Apple"></span></a>
-            <a ng-if="vm.productVM.data.companyProductList[0].android==''" ng-href="{{vm.productVM.data.companyProductList[0].android}}" target="_blank"><span class="kr-icon icon-Andriod"></span></a>
-            <span class="kr-icon icon-websitelink" ng-if="vm.productVM.data.companyProductList[0].url"></span>
-            <a target="_blank" ng-href="{{vm.productVM.data.companyProductList[0].url}}" ng-if="vm.productVM.data.companyProductList[0].url">{{vm.productVM.data.companyProductList[0].url}}</a>
+          <div class="info" ng-if="vm.productVM.data.companyProduct.desc!==''">{{vm.productVM.data.companyProduct.desc}}</div>
+          <div class="all-links">
+            <!-- <a ng-href="{{vm.productVM.data.companyProduct.}}"><span class="kr-icon icon-Weibo"></span></a> -->
+            <a ng-if="vm.productVM.data.companyProduct.weixin!==''" ng-href="{{vm.productVM.data.companyProduct.weixin}}"><span class="kr-icon icon-Wechat"></span></a>
+            <a ng-if="vm.productVM.data.companyProduct.ios!==''" ng-href="{{vm.productVM.data.companyProduct.ios}}" target="_blank"><span class="kr-icon icon-Apple"></span></a>
+            <a ng-if="vm.productVM.data.companyProduct.android!==''" ng-href="{{vm.productVM.data.companyProduct.android}}" target="_blank"><span class="kr-icon icon-Andriod"></span></a>
+            <span class="kr-icon icon-websitelink" ng-if="vm.productVM.data.companyProduct.website!==''"></span>
+            <a target="_blank" ng-href="{{vm.productVM.data.companyProduct.website}}" ng-if="vm.productVM.data.companyProduct.website!==''" class="website-link">{{vm.productVM.data.companyProduct.website}}</a>
           </div>
         </div>
       </div>
     </div>
-    <div class="investor" ng-show="{{vm.productVM.data.hasDataPrivilege}}">
-    <!-- <div class="investor"> -->
-      <!-- <div class="companyData" ng-show="{{vm.productVM.data.companyDataList}}"> -->
-      <div class="companyData">
+    <div class="investor" ng-show="vm.productVM.data.hasDataPrivilege">
+      <div class="companyData" ng-show="vm.productVM.showChart">
         <div class="data-info">
           <div class="tab">
-            <span>
-              <span class="text active" ng-click="vm.productVM.setType('MONTH')" ng-class="{'active':vm.productVM.curType === 'MONTH'}">月活跃数据</span></span>
-            <span>
-              <span class="text" ng-click="vm.productVM.setType('DAY')" ng-class="{'active':vm.productVM.curType === 'DAY'}">日活跃数据</span>
+            <span ng-repeat="item in vm.productVM.dataTypes">
+              <span class="text" ng-click="vm.productVM.setType(item.fid)"
+                    ng-class="{'active':vm.productVM.curType === item.fid}">{{item.fdesc}}</span>
             </span>
-            <span ><span class="text" ng-click="vm.productVM.setType('AVERAGE')" ng-class="{'active':vm.productVM.curType === 'AVERAGE'}">人均使用数据</span></span>
-            <span><span class="text" ng-click="vm.productVM.setType('DOWNLOAD')" ng-class="{'active':vm.productVM.curType === 'DOWNLOAD'}">下载数据</span></span>
             <span>
-              <span class="text" ng-mouseenter="vm.productVM.setHovered()"
-                    ng-class="{'active':vm.productVM.curType === 'KEEP'}">留存数据
+              <span class="text" ng-mouseenter="vm.productVM.setHovered()">
+              留存数据
               </span>
             </span>
             <div class="keepData" ng-if="vm.productVM.hasHovered"
-            ng-mouseleave="vm.productVM.setHovered()">
+                 ng-mouseleave="vm.productVM.setHovered()">
               <span class="angle"><span class="little-angle"></span></span>
-              <span ng-click="vm.productVM.setType('DAYKEEP')" ng-class="{'active':vm.productVM.curType === 'DAYKEEP'}">日留存</span>
-              <span ng-click="vm.productVM.setType('3DAYKEEP')"
-              ng-class="{'active':vm.productVM.curType === '3DAYKEEP'}">3日留存</span>
-              <span ng-click="vm.productVM.setType('WEEKKEEP')"
-              ng-class="{'active':vm.productVM.curType === 'WEEKKEEP'}">周留存</span>
-              <span ng-click="vm.productVM.setType('MONTHKEEP')"
-              ng-class="{'active':vm.productVM.curType === 'MONTHKEEP'}">月留存</span>
+              <span ng-repeat="item in vm.productVM.dataKeepTypes">
+                <span ng-click="vm.productVM.setType(item.fid)"
+                      ng-class="{'active':vm.productVM.curType === item.fid}">{{item.fdesc}}</span>
+              </span>
             </div>
           </div>
           <div class="chart">
@@ -60,26 +52,18 @@
           <div class="getMore" ng-click="vm.productVM.getData()" ng-show="vm.productVM.hideData">查看完整数据
           </div>
           <div class="complete-data" ng-show="!vm.productVM.hideData">
-            <!-- <div class="plate">
-              <span><span class="text" ng-click="vm.productVM.setPlate('IOS')" ng-class="{'active':vm.productVM.curPlate === 'IOS'}">iOS数据</span></span>
-              <span><span class="text" ng-click="vm.productVM.setPlate('ANDROID')" ng-class="{'active':vm.productVM.curPlate === 'ANDROID'}">Android数据</span></span>
-            </div> -->
             <table class="table">
               <thead>
                 <tr>
-                  <td>月份</td>
-                  <td>月度活跃用户数/万人</td>
-                  <td>月度总使用次数/万次</td>
-                  <td>月度总使用时长/万分钟</td>
+                  <td ng-repeat="item in vm.productVM.curHead">
+                    {{item.value}}
+                  </td>
                 </tr>
               </thead>
               <tbody>
-                <!-- <tr ng-repeat="item in vm.productVM.completeData"> -->
-                <tr>
-                  <td class="month">20160101</td>
-                  <td class="active">18534.05</td>
-                  <td class="times">567283.1</td>
-                  <td class="minutes">172735427</td>
+                <tr ng-repeat="item in vm.productVM.completeData">
+                  <td class="month">{{item.month}}</td>
+                  <td>{{item.data}}</td>
                 </tr>
               </tbody>
             </table>
@@ -87,9 +71,9 @@
           </div>
         </div>
       </div>
-      <!-- <div ng-show="{{!vm.productVM.data.companyDataList}}" class="no-data">
+      <div ng-show="!vm.productVM.showChart" class="no-data">
         <p>暂无数据</p>
-      </div> -->
+      </div>
     </div>
     <div class="uninvestor" ng-show="{{!vm.productVM.data.hasDataPrivilege}}">
       <div class="index">
