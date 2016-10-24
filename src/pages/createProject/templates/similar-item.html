@@ -11,9 +11,9 @@
     <tbody>
       <tr ng-repeat="item in vm.similarProjects">
       <td>
-        <img ng-src="{{item.logo}}" class="item-logo">
+        <a target="_blank" ng-href="/project/{{item.id}}"><img ng-src="{{item.logo}}" class="item-logo"></a>
         <span class="item-info">
-          <div class="item-name">{{item.name}}</div>
+          <a target="_blank" ng-href="/project/{{item.id}}"><div class="item-name">{{item.name}}</div></a>
           <div class="item-breif">{{item.brief}}</div>
         </span>
       </td>

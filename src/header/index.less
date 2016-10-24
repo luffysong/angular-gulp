@@ -1,5 +1,7 @@
 @top-height: 50px;
 @padding-left: 20px;
+@anchor-color: #6BA2FC;
+@text-color: #5A626D;
 .rz-header-wrapper {
   height: @top-height;
   position: fixed;
@@ -27,8 +29,40 @@
   }
   .right-content{
     float: right;
+    position: relative;
     padding-right: 50px;
     vertical-align: middle;
+    .history {
+      display: none;
+      background: #fff;
+      position: absolute;
+      width: 400px;
+      left: 0px;
+      margin-top: 3px;
+      box-shadow: 0px 4px 8px 0px #CCCCCC;
+      li:first-child {
+        padding-left: 16px;
+        font-weight: 600;
+        color: #969FA9;
+      }
+      li {
+        &:hover {
+          background: #f9f9f9;
+        }
+        border-bottom: 1px solid #F2F4F5;
+        color: #5A626D;
+        padding-left: 30px;
+        font-size: 14px;
+        line-height: 37px;
+        height: 37px;
+      }
+    }
+    .search:focus + .history {
+      display: block;
+    }
+    .history:hover {
+      display: block;
+    }
     .search{
       font-size: 14px;
       width: 400px;
@@ -46,6 +80,10 @@
       color: #97a0a9;
       font-size: 20px;
       line-height: 30px;
+      cursor: pointer;
+      &:focus {
+        outline: none;
+      }
     }
     .usr-content{
       display: inline-block;
@@ -136,6 +174,85 @@
 
   }
 }
+
+.search-result-wrapper {
+  .ac-container {
+    overflow: auto;
+    max-height: 600px;
+    li {
+      padding: 0px;
+    }
+    .search-no-result {
+      line-height: 37px;
+      height: 38px;
+      border-bottom: 1px solid #f2f4f5;
+      background: #fff;
+      text-align: center;
+      color: @anchor-color;
+      font-size: 14px;
+      span:hover {
+        text-decoration: underline;
+      }
+    }
+    .investor-avatar {
+      border-radius: 50%;
+      border: 1px solid #E7E7E7;
+    }
+    .ac-menu .ac-state-focus .search-row {
+      background: #e7e7e7;
+    }
+    h4 {
+      line-height: 37px;
+      height: 37px;
+      font-size: 14px;
+      color: @text-color;
+      padding-left: 16px;
+      background: #fff;
+    }
+    h4.search-more {
+      padding-left: 0px;
+      border-bottom: 1px solid #f2f4f5;
+      text-align: center;
+      font-size: 12px;
+      font-weight: normal;
+      color: #e7e7e7;
+    }
+    .search-row {
+      padding: 12px 20px 12px 16px;
+      border-bottom: 1px solid #F2F4F5;
+      background: #fff;
+      img {
+        float: left;
+      }
+      span {
+        color: @text-color;
+        font-size: 12px;
+        line-height: 18px;
+      }
+      p:first-child {
+        span:first-child {
+          font-size: 14px;
+          line-height: 21px;
+          margin-right: 12px;
+          color: @anchor-color;
+        }
+        span:nth-child(2) {
+          margin-top: 3px;
+        }
+      }
+      p:nth-child(2) {
+        font-size: 12px;
+        line-height: 18px;
+        color: @text-color;
+      }
+    }
+    .search-entity-text {
+      float: left;
+      width: 286px;
+    }
+  }
+}
+
 
 
 

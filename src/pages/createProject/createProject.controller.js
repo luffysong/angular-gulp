@@ -114,9 +114,13 @@ export default class CreateProjectController {
   }
 
   loadUserInfo() {
+    if (this.userLoaded) {
+      return ;
+    }
     if (this.isFunder() || this.isMaintainer() || this.isClaiming) {
       krData.User.getUserInfo()
         .then((user) => {
+          this.userLoaded = true;
           this.user.userPhone = user.phone;
           this.user.userName = user.name;
           this.user.userEmail = user.email;

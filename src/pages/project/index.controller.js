@@ -114,15 +114,15 @@ export default class ProjectIndexController {
   }
 
   setNavigation() {
-    const first = 287;
-    const other = 130;
+    const first = 300;
+    const other = 114;
     // 导航栏定位
     this.baseInfo = other;
     this.financeDetail = other;
     this.financeHistory = other;
     this.light = first;
     const baseInfo = (this.baseInfoVM.industryTag || this.baseInfoVM.intro);
-    if (this.baseInfoVM.investAdvantage && this.investorType) {
+    if (this.baseInfoVM.investAdvantage) {
       this.light = first;
     } else if (baseInfo) {
       this.baseInfo = first;

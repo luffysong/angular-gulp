@@ -3,7 +3,7 @@
   <div class="upload-logo form-group">
     <label for=""><span class="required">*</span> 项目LOGO</label>
     <img ng-src="{{vm.baseInfo.logo || '/images/default-logo.png'}}" class="logo" alt="">
-    <a
+    <a       ng-disabled="vm.selectProject"
       class="btn-upload-logo" href="javascript:;">
       <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/*'"
       type="file" />
@@ -45,6 +45,7 @@
           placeholder="输入公司全称"
           ng-blur="vm.searchClaimList()"
           message-id="messageFullName"
+          ng-disabled="vm.selectProject"
           type="text" name="fullName" class="form-control" />
       </div>
 
@@ -55,6 +56,7 @@
         validator="required,minlength=5" message-id="messageBrief"
         minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
         maxlength="30"
+        ng-disabled="vm.selectProject"
         placeholder="一句话概括产品与服务，30字内"
         type="text" name="brief" class="form-control" />
       </div>
@@ -63,6 +65,7 @@
         <select  ng-model="vm.baseInfo.industry"
           ng-options="item.value as item.desc for item in root.INDUSTRY_META"
           validator="required"
+          ng-disabled="vm.selectProject"
           type="text" name="industry" class="form-control" >
           <option value="">选择领域</option>
         </select>
@@ -72,6 +75,7 @@
         <select  ng-model="vm.baseInfo.companyType"
           ng-options="item.value as item.desc for item in root.PROJECT_TYPE_META"
           validator="required"
+          ng-disabled="vm.selectProject"
           type="text" name="companyType" class="form-control" >
           <option value="">选择项目类型</option>
         </select>
@@ -151,6 +155,7 @@
         <select  ng-model="vm.baseInfo.companyRole"
           ng-options="item.value as item.desc for item in root.ROLE_META"
           validator="required"
+          ng-disabled="vm.selectProject"
           type="text" name="companyRole" class="form-control" >
           <option value="">选择角色</option>
         </select>
@@ -160,15 +165,24 @@
         <select  ng-model="vm.baseInfo.financingNeed"
           ng-options="item.value as item.desc for item in root.FINANCE_NEED_META"
           validator="required"
+          ng-disabled="vm.selectProject"
           type="text" name="financingNeed" class="form-control" > </select>
       </div>
 
       <div class="form-group text-center">
         <a
+          ng-if="!vm.selectProject"
           ng-class="{active: vm.baseInfo.form.$valid === true}"
           class="next" href="javascript:;" ng-click="vm.next(vm.baseInfo.form)">
           下一步
         </a>
+
+        <a
+          ng-if="vm.selectProject"
+          class="next active" href="javascript:;" ng-click="vm.claim(vm.selectProject)">
+         认领
+        </a>
+
       </div>
 
     </form>

@@ -5,9 +5,10 @@ import '../components/index.js';
 import { INDUSTRY_META } from '../filters/industry.filter';
 import commonInterceptor from '../base/commonInterceptor.service';
 import { getService, fromYear, getMonth } from '../base/utls';
+import SearchService from '../services/Search.service.js';
 /* eslint-disable no-param-reassign,no-use-before-define */
 angular.module('@@app', ['@@app.routes', '@@app.components',
-  'cgNotify',
+  'cgNotify', 'MassAutoComplete',
   '@@app.constants', 'ngResource', '@@app.filters',
   'validation', 'validation.rule',
 ]);
@@ -88,9 +89,10 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       duration: 2000,
     });
   })
-  .run(function run($rootScope, $location, OPERATION_STATUS_META, COMPANY_NEWS_META,
-    FINANCE_PHASE_META,
+  .run(function run($rootScope, $location, $injector,
+    OPERATION_STATUS_META, COMPANY_NEWS_META, FINANCE_PHASE_META,
     CURRENCY_UNIT_META, ROLE_META, FINANCE_NEED_META, PROJECT_TYPE_META, FUNDS_PHASE_ENUM_META) {
+    getService.injector = $injector;
     const root = {};
     root.fromYear2000 = fromYear(2000);
     root.getAllMonths = getMonth(12);
@@ -110,6 +112,11 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     root.COMPANY_NEWS_META = COMPANY_NEWS_META;
     root.FINANCE_PHASE_META = FINANCE_PHASE_META;
     root.CURRENCY_UNIT_META = CURRENCY_UNIT_META;
+    const searchInstance = new SearchService();
+    root.autocompleteOptions = searchInstance.getSearchAutoCompleteOptions();
+    root.searchRecord = searchInstance.searchRecord.bind(searchInstance);
+    root.onClick = searchInstance.onClickRow;
+    root.searchOut = {};
     $rootScope.root = root;
   });
 angular.bootstrap(document, ['@@app'], { strictDi: true });
