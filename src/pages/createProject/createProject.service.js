@@ -7,6 +7,7 @@ const projectApi = new krData.API('/company/:id', [
   'addPrivilege',
   'privilege',
   'addFunds',
+  'funds'
 ], {
   fundState: 'funds-state',
   similarProject: {
@@ -96,5 +97,11 @@ export default class CreateProject {
     return projectApi.addFunds({
       id,
     }, data);
+  }
+
+  loadFinance(id){
+    return projectApi.funds({
+      id,
+    });
   }
 }
