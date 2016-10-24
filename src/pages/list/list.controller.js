@@ -17,25 +17,45 @@ export default class listIndexController {
 
   init() {
 
-    this.handleActive();
-
-    this.listData = [1112,2,3,4,5,6,7];
+    this.listData = {
+      data: []
+    };
 
     this.dataLoading = false;
+
+    this.paramsData = {};
+
+    this.currentPage = 1;
+
+    this.$scope.$on('get-list',(e,d) => {
+      this.listData = d;
+    });
+
+    this.handleActive();
 
   }
 
   /*根据路由参数激活*/
   handleActive() {
-    var obj = {};
+    /*var obj = {};*/
     angular.forEach(this.$stateParams,(val,key) => {
       if(val) {
-        obj[key] = val;
+        this.paramsData[key] = val;
       }
     });
-    this.$scope.$emit('get-change',obj);
+    this.$scope.$emit('get-change',this.paramsData);
   }
 
+  /*过滤不限条件*/
+  paramsFilter(target) {
+    var o = Object.assign({},target);
+    Object.keys(o).forEach((item) => {
+      if(o[item] === 'unlimited'){
+        delete o[item];
+      }
+    });
+    return o;
+  }
 
 
   triggerCollect (id) {
@@ -49,13 +69,25 @@ export default class listIndexController {
   loadMore ()  {
     if(this.dataLoading)return;
     this.dataLoading = true;
-    this.$timeout(() => {
+
+    this.currentPage++;
+
+    var params = Object.assign({columnId:0,p:this.currentPage},this.paramsFilter(this.paramsData));
+    this.projectService.getColumn(params).then(data => {
+      if(!data.pageData || !data.pageData)return;
+      angular.forEach(data.pageData.data,(item) => {
+        this.listData.data.push(item);
+      });
+      this.dataLoading = false;
+    });
+
+    /*this.$timeout(() => {
       var last = this.listData[this.listData.length - 1];
       for(var i = 1; i <= 8; i++) {
-        this.listData.push(last + i);
+        this.listData.data.push(last + i);
       }
       this.dataLoading = false;
-    },500);
+    },500);*/
   }
 
   change (item,index) {

@@ -149,6 +149,14 @@ export default class ProjectService extends API {
     return this.claimpeding;
   }
 
+  /*获取列表页筛选条件*/
+  getColumn(obj) {
+    const id = {
+      id: obj.columnId
+    };
+    delete obj.columnId;
+    return new API('/column/:id/company?' + $.param(obj)).get(id);
+  }
 
   allData(id) {
     return this.$q.all({

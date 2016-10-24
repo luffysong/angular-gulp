@@ -11,7 +11,7 @@
       <li class="history-info" ng-repeat="data in vm.financeVM.list">
         <span class="info-year">{{data.financeDate | date: 'yyyy.MM' }}</span>
         <span class="info-lun">
-          <a href="" class="darkColor">{{data.phase | financePahse}}</a>
+          <a href="" class="darkColor">{{data.phase | financePhase}}</a>
         </span>
         <span class="info-company" >
           <a href="" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>

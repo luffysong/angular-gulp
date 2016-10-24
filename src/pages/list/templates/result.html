@@ -1,6 +1,6 @@
 <div class="result-container">
   <div class="result-tip">
-    找到关于 <b>“36”</b> 的结果 <b>1867</b> 条
+    找到关于 <b>“36”</b> 的结果 <b>{{vm.listData.totalCount}}</b> 条
   </div>
   <div class="result-content">
     <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading' infinite-scroll-distance='0'>
@@ -13,29 +13,29 @@
         <td>时间</td>
         <td>操作</td>
       </tr>
-      <tr ng-repeat="obj in vm.listData track by $index">
+      <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
-          <a href="" class="project-logo"></a>
+          <a href="" class="project-logo" style="background-image: url({{obj.logo}})"></a>
           <div class="project-info">
             <div class="project-name">
-              <span class="company-name">36氪</span><span class="hot-tag">热门</span><span class="fund-state">融资中</span>
+              <span class="company-name">{{obj.name}}</span><span class="hot-tag" ng-if="obj.hot">热门</span><span class="fund-state" ng-if="obj.funding">融资中</span>
             </div>
             <div class="project-intro">
-              为创业者提供最好的产品和服务
+              {{obj.brief}}
             </div>
-            <div class="project-tag">
-              联系创业者 政府IP专家顾问
+            <div class="project-tag" ng-if="obj.labelSource.length">
+              <span ng-repeat="item in obj.labelSource">{{item}} </span>
             </div>
           </div>
         </td>
-        <td>电子商务</td>
-        <td>Pre-A轮</td>
+        <td>{{obj.industryStr}}</td>
+        <td>{{obj.phase}}</td>
         <td>达承创投</td>
         <td>北京市</td>
         <td>今天</td>
         <td>
-          <span class="collect-btn" ng-mouseenter="vm.triggerCollect(obj)">
-            收藏
+          <span class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}">
+            <span ng-show="obj.followed">已</span>收藏
             <div class="collect-modal">
               <section class="modal-title">选择收藏夹</section>
               <ul>
