@@ -74,7 +74,7 @@ export default class ProjectService extends API {
     const id = {
       id: form.cid,
     };
-    this.deconste = new API('/user/follow/company/:id?' + $.param(form))
+    this.deconste = new API(`/user/follow/company/:id?${$.param(form)}`)
     .remove(id, form);
     return this.deconste;
   }
@@ -128,7 +128,7 @@ export default class ProjectService extends API {
     const urlTitle = {
       url: newsUrl,
     };
-    this.getTitle = new API('/company/fetch-link-title?' + $.param(urlTitle)).get();
+    this.getTitle = new API(`/company/fetch-link-title?${$.param(urlTitle)}`).get();
     return this.getTitle;
   }
 
@@ -158,15 +158,18 @@ export default class ProjectService extends API {
     return new API('/column/:id/company?' + $.param(obj)).get(id);
   }
 
+  // FIXME: 此处因为服务端数据出错
+  // 临时处理错误数据为空数据
+  // 2016-10-23 11:27
   allData(id) {
     return this.$q.all({
       baseInfo: this.get(id),
-      product: this.product(id),
+      product: this.product(id).catch(() => {}),
       finance: this.finance(id),
-      similar: this.similar(id),
+      similar: this.similar(id).catch(() => []),
       member: this.member(id),
       funds: this.funds(id),
-      news: this.news(id),
+      news: this.news(id).catch(() => {}),
     });
   }
 }

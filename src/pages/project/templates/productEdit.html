@@ -1,7 +1,7 @@
 <div class="product-edit">
   <form name="vm.productVM.form">
     <div class="form-group">
-      <label><span class="required">*</span>产品名称</label>
+      <label><span class="required">*</span> 产品名称</label>
       <input type="text" name="product-name" placeholder="请输入产品的名称"
              ng-model="vm.productVM.name"
              message-id="editProductName"
@@ -15,15 +15,19 @@
     <div class="form-group">
       <label><span class="required"></span>产品描述</label>
       <!-- <span class="error-tip" id="editProductInfo"></span> -->
-      <textarea name="product-info" placeholder="请添加产品的描述功能"
-                ng-model="vm.productVM.desc"
-                maxlength="200"
-                class="form-control product-info" size="140">
-      </textarea>
-      <span class="descNum">{{vm.productVM.desc.length || 0}}/200</span>
+      <div class="textarea-control">
+        <textarea  name="product-info"
+          placeholder="请添加产品的描述功能"
+          class="form-control" ng-model='vm.productVM.desc'
+          maxlength="200"
+          class="form-control" ></textarea>
+        <div class="textarea-border">
+        </div>
+        <span class="text-length">{{vm.productVM.desc.length || 0}}/500</span>
+      </div>
     </div>
     <div class="form-group" id="productsUrl">
-      <label>产品链接</label>
+      <label class="product-url-label">产品链接</label>
       <div class="web-address" ng-repeat="item in vm.productVM.productLink">
         <!-- <span class="error-tip" id="editProductUrl"></span> -->
         <select class="form-control"
@@ -33,7 +37,7 @@
         </select>
         <input type="url" name={{$index}} placeholder="请填写产品链接"
                ng-if="vm.productVM.productLink[$index].urlType!=='weixin'"
-               class="form-control product-url vam"
+               class="form-control product-url"
                ng-model="vm.productVM.productLink[$index].urlAddr"/>
         <input type="url" name={{$index}} placeholder="请填写微信公众号"
                ng-if="vm.productVM.productLink[$index].urlType=='weixin'"

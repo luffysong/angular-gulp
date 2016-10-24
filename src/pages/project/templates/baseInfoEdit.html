@@ -2,7 +2,7 @@
   <form name="vm.introductionVM.form">
 
    <div class="form-group">
-      <label for=""><span class="required">*</span> 发展规划</label>
+      <label for=""><span class="required">*</span> 文字介绍</label>
       <span class="error-tip" id="messageIntro"></span>
       <div class="textarea-control">
         <textarea  ng-model="vm.introductionVM.intro"
@@ -33,7 +33,7 @@
       </select>
     </div>
     <div class="form-group select-inline select-margin">
-      <label><span class="required">*</span>运营状态</label>
+      <label><span class="required">*</span> 运营状态</label>
       <span class="error-tip" id="messageState"></span>
       <select class="form-control"
         ng-options="item.value as item.desc for item in root.OPERATION_STATUS_META"
@@ -52,19 +52,15 @@
         </select>
       </div>
       <div class="select-inline select-margin">
-        <div><label class="address"><span class="required">*</span>所在地</label>
+        <div><label class="address"><span class="required">*</span> 所在地</label>
         <span class="error-tip" id="messageAddress"></span></div>
         <select
           ng-options="item.id as item.name for item in vm.introductionVM.cities0"
           required-error-message="请选择地区"
-          class="form-control address-select" ng-model="vm.introductionVM.address1" validator="required"
+          class="form-control address-select mr10" ng-model="vm.introductionVM.address1" validator="required"
           message-id="messageAddress" >
         <option value="">请选择</option>
-        </select>
-      <!-- </div> -->
-      <!-- <div class="select-inline select-margin"> -->
-
-        <select
+        </select><select
           ng-options="item.id as item.name for item in vm.introductionVM.cities1" ng-show='vm.introductionVM.cities1.length'
           class="form-control address-select" ng-model="vm.introductionVM.address2" >
         <option value="">请选择</option>
