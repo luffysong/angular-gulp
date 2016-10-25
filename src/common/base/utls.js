@@ -68,7 +68,7 @@ export function getUpToken(options, type) {
 export function uploadBp(name, file) {
   return getUpToken({
     bucket: upyun.fileBucket.name,
-    parttern: `/{year}{mon}/{filemd5}/[${encodeURIComponent(name)}]商业计划书{.suffix}`,
+    pattern: `/{year}{mon}/{filemd5}/[${encodeURIComponent(name)}]商业计划书{.suffix}`,
   }, UPLOAD_TYPE.FILE)
   .then(function uploadStart(data) {
     return getService('Upload').upload({
