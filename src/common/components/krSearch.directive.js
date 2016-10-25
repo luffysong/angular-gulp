@@ -14,7 +14,10 @@ class SearchController {
   }
 
   setSearchWord(kw) {
-    this.$rootScope.root.kw = kw;
+    getService('$timeout')(()=> {
+      this.$rootScope.root.kw = kw;
+      $('input.search').focus();
+    }, 300);
   }
 }
 export default {
