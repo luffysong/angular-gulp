@@ -1,0 +1,68 @@
+<div class="finance-audit-wrapper">
+  <h4>正在审核中 <span class="finance-phase">{{vm.financeInfo.financePhase | fundsPhaseEnum}}</span>
+  <span class="funds-amount" ng-if="vm.financeInfo.investAmountMax">{{vm.financeInfo.investAmountMin}} 至 {{vm.financeInfo.investAmountMax}} 万 {{vm.financeInfo.financeAmountUnit | amountUnit}}</span></h4>
+  <span class="funds-amount" ng-if="!vm.financeInfo.investAmountMax">{{vm.financeInfo.investAmountMin}} 万 {{vm.financeInfo.financeAmountUnit | amountUnit}}</span></h4>
+  <div class="data-info">
+    <div class="title">目标市场规模及分析</div>
+    <div class="content">
+      <span>{{vm.financeInfo.scale}}</span>
+    </div>
+
+    <div class="title">业务数据亮点</div>
+    <div class="content">
+      <span>{{vm.financeInfo.dataLights}}</span>
+    </div>
+
+    <div class="title">项目主要优势</div>
+    <div class="content">
+      <span>{{vm.financeInfo.projectAdvantage}}</span>
+    </div>
+
+    <div class="title">主要竞争对手情况</div>
+    <div class="content">
+      <span>{{vm.financeInfo.competitor}}</span>
+    </div>
+
+    <div class="title">发展规划</div>
+    <div class="content">
+      <span>{{vm.financeInfo.projectPlan}}</span>
+    </div>
+
+   <!--  <div class="title">商业计划书</div>
+    <div class="content bp">
+      <span class="icon-BP"></span>
+      <a ng-href="{{vm.financeVM.finance.bp}}">查看BP</a>
+    </div> -->
+
+<!--     <div class="title">设置</div>
+    <div class="content">
+      <span>BP查看设置</span>
+      <div class="bp-check">
+        <input type="checkbox" ng-model='vm.financeVM.privileges' disabled="true" />
+        <span tooltips tooltip-template="请下载创投助手App处理投资人的申请" tooltip-side="right"
+          tooltip-class="tooltip"  >需要投资人申请查看BP</span>
+      </div>
+      <div class="settings-right">
+        <span>联系方式回复设置</span>
+        <div class="bp-check">
+          <input type="checkbox" ng-model='vm.financeVM.privileges' disabled="true" />
+          <span tooltips tooltip-template="请下载创投助手App处理投资人的申请" tooltip-side="right"
+            tooltip-class="tooltip"  >自动回复微信号及手机号</span><br/>
+          <input type="checkbox" ng-model='vm.financeVM.privileges' disabled="true" />
+          <span tooltips tooltip-template="请下载创投助手App处理投资人的申请" tooltip-side="right"
+            tooltip-class="tooltip"  >仅自动回复微信号</span><br/>
+          <input type="checkbox" ng-model='vm.financeVM.privileges' disabled="true" />
+          <span tooltips tooltip-template="请下载创投助手App处理投资人的申请" tooltip-side="right"
+            tooltip-class="tooltip"  >仅自动回复手机号</span><br/>
+          <input type="checkbox" ng-model='vm.financeVM.privileges' disabled="true" />
+          <span tooltips tooltip-template="请下载创投助手App处理投资人的申请" tooltip-side="right"
+            tooltip-class="tooltip"  >不自动回复</span><br/>
+        </div>
+      </div>
+    </div> -->
+  </div>
+  <div class="line"></div>
+  <span class="note">注意：提交融资申请内容均需审核，审核期间不可重复提交，5个工作日内反馈结果</span>
+</div>
+
+

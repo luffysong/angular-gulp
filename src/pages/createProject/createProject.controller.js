@@ -61,6 +61,7 @@ export default class CreateProjectController {
   }
 
   initView() {
+    this.project.loadFinance(this.$stateParams.id,'auditing').then((financeData) => { this.financeInfo = financeData; });
     if (this.type === FINANCE) {
       this.title = '融资申请';
       this.id = this.$stateParams.id;
@@ -331,7 +332,11 @@ export default class CreateProjectController {
   funds() {
     const fundsInfo = angular.extend({}, this.financeVM.finance);
     this.project.funds(this.id, fundsInfo)
-      .then(() => { this.step = 4; })
+      .then(() => { this.step = 4;
+        this.project.loadFinance(this.$stateParams.id,'auditing').then((financeData) => {
+            this.financeInfo = financeData;
+          });
+      })
       .catch((err) => { krData.Alert.alert(`申请融资失败：${err.msg}`); });
   }
 
