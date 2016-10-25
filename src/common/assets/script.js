@@ -20,6 +20,8 @@ export default {
       '/bower/highcharts-ng/dist/highcharts-ng.min.js',
       '/bower/angular-tooltips/dist/angular-tooltips.js',
       '/bower/angular-tooltips/dist/angular-tooltips.css',
+      '/bower/qrcode-generator/js/qrcode.js',
+      '/bower/angular-qrcode/angular-qrcode.js',
     ],
     createProject: [
       '/pages/createProject/index.js',

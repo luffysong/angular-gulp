@@ -6,10 +6,13 @@
   </span>
   <span class="warn-apply bgcDark" ng-show="!(vm.applyBpStatus || vm.suc)" ng-click="vm.apply()">申请查看BP</span>
   <span class="warn-applied" ng-show="vm.applyBpStatus == 'REFUSE'">你的申请被残忍拒绝</span>
-  <span class="warn-applied" ng-show="vm.applyBpStatus =='APPLY' || vm.suc"><img src="/images/icon_complete.png" alt="">申请已发出，等待创业者回复</span>
+  <span class="warn-applied" ng-show="vm.applyBpStatus =='APPLY' || vm.suc"><img src="/images/icon_complete.png" alt="">
+    申请已发出，等待创业者回复</span>
   <div class="t-content">
     <div class="content-left">
-      <img src="/images/test.png" alt="">
+      <qrcode size="132"
+        data="https://36kr.com/app/tou?company={{vm.id}}"
+        href="https://36kr.com/app/tou?company={{vm.id}}"></qrcode>
     </div>
     <div class="content-right">
       <div class="list">

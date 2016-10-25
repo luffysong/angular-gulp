@@ -115,7 +115,7 @@ export default class CreateProjectController {
 
   loadUserInfo() {
     if (this.userLoaded) {
-      return ;
+      return;
     }
     if (this.isFunder() || this.isMaintainer() || this.isClaiming) {
       krData.User.getUserInfo()
