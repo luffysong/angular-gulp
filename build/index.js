@@ -23,6 +23,8 @@ const jsplugins = [
   '/bower/ng-file-upload/ng-file-upload-all.min.js',
   '/bower/angular-tooltips/dist/angular-tooltips.js',
   '/bower/angular-tooltips/dist/angular-tooltips.css',
+  '/bower/qrcode-generator/js/qrcode.js',
+  '/bower/angular-qrcode/angular-qrcode.js',
 ];
 
 const proxyConfig = {
