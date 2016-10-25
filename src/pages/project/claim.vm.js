@@ -34,7 +34,7 @@ export default class ClaimVM {
         userEmail: vm.userInfo.email || '',
         userWeiXin: '',
         userBusinessCard: '',
-        privilegeEnum: ROLE.MEMBER,
+        privilegeEnum: '',
         id: vm.Cid,
       };
       claimCancle() {

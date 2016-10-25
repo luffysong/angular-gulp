@@ -32,7 +32,7 @@ export function getInjector() {
 
 // 获取angular中的服务
 export function getService(name) {
-  return getInjector().get(name);
+  return (getService.injector || getInjector()).get(name);
 }
 
 // 提取标准的服务端字典

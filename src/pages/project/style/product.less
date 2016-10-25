@@ -13,7 +13,6 @@
   }
   .content{
     .detail{
-
       height: 91px;
       background: #F9F9F9;
       border: 1px solid #F2F4F5;
@@ -30,44 +29,53 @@
       }
       .base-info{
         height: 46px;
+        width: 654px;
         margin-left: 20px;
-        position: relative;
         .inner{
-          position: absolute;
-          top: 50%;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          width: 654px;
+          position: relative;
+          // top: 50%;
+          // bottom: 0;
+          // left: 0;
+          // right: 0;
           height: 46px;
-          margin-top: -12px;
-          .kr-icon{
-            font-size: 20px;
-            display: inline-block;
-            vertical-align: middle;
-          }
-          .icon-Weibo{
-            color: #EF0000;
-            margin-right: 12px;
-          }
-          .icon-Wechat{
-            color: #34C600;
-            margin-right: 12px;
-          }
-          .icon-Apple{
-            color: #484F5B;
-            margin-right: 12px;
-          }
-          .icon-Andriod{
-            color: #34C600;
-          }
-          .icon-websitelink{
-            color: #6BA2FC;
-            margin-left: 32px;
-            margin-right: 2px;
-          }
-          a{
-            cursor: pointer;
+          // margin-top: -12px;
+          .all-links{
+            // width: 654px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            .kr-icon{
+              font-size: 20px;
+              display: inline-block;
+              vertical-align: middle;
+            }
+            .icon-Weibo{
+              color: #EF0000;
+              margin-right: 12px;
+            }
+            .icon-Wechat{
+              color: #34C600;
+              margin-right: 12px;
+            }
+            .icon-Apple{
+              color: #484F5B;
+              margin-right: 12px;
+            }
+            .icon-Andriod{
+              color: #34C600;
+            }
+            .icon-websitelink{
+              color: #6BA2FC;
+              margin-left: 32px;
+              margin-right: 2px;
+            }
+            .website-link{
+              cursor: pointer;
+              white-space: nowrap;
+
+              overflow: hidden;
+              text-overflow:ellipsis;
+            }
           }
         }
 
@@ -78,7 +86,7 @@
         .tab{
           position: relative;
           margin-top: 30px;
-          margin-left: 174px;
+          margin-left: 15%;
           &>span{
             padding-left: 12px;
             padding-right: 12px;
@@ -101,7 +109,7 @@
             animation: popup 1s;
             position: absolute;
             top: 25px;
-            right: 157px;
+            right: 18%;
             z-index: 999;
             .font(14,21);
             .text-center();
@@ -117,7 +125,8 @@
               &:first-child{
                 padding-bottom: 0;
               }
-              &.active{
+              &>span.active{
+                padding-bottom: 4px;
                 border-bottom: 2px solid #969FA9;
               }
             }
@@ -191,11 +200,11 @@
               .font(14,38);
             }
             tbody{
-              &:nth-child(even){
-                background-color: #F9F9F9;
-              }
               tr{
                 border-bottom: 1px solid #E7E7E7;
+                &:nth-child(odd){
+                background-color: #F9F9F9;
+              }
                 td{
                   padding: 12px 0px;
                 }

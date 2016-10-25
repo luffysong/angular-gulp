@@ -100,3 +100,26 @@ a:focus, input:focus, button:focus{
   color: #3c763d;
   z-index: 9999;
 }
+
+// massAutocomplate全局样式
+.ac-container{
+  background:#f9f9f9;
+  border: 1px solid #DDDDDD;
+  .rd(4px);
+  li{
+    padding: 12px 20px;
+    img {
+      .square(42);
+      .rd(4px);
+      margin-right: 16px;
+      .border1(@border-color);
+      .vam();
+    }
+  }
+  .ac-menu-item > a > div{
+    overflow: hidden;
+  }
+  .ac-menu .ac-state-focus {
+    background: #e7e7e7;
+  }
+}

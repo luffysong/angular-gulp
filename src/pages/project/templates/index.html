@@ -148,7 +148,7 @@
   <section sticky offset="49" class="nav-wrapper">
     <nav>
       <ul class='navigate'>
-        <li ng-show="vm.baseInfoVM.investAdvantage && (vm.user != 'commen' || vm.investorType)">
+        <li ng-show="vm.baseInfoVM.investAdvantage">
           <a kr-scroll-click
             href="#light" du-smooth-scroll="" du-scrollspy=""  offset="{{vm.light}}" >
             投资亮点
@@ -170,28 +170,28 @@
           </a>
         </li>
         <li>
-          <a kr-scroll-click href="#founder" du-smooth-scroll="" du-scrollspy="" offset="130" >
+          <a kr-scroll-click href="#founder" du-smooth-scroll="" du-scrollspy="" offset="114" >
             创始团队
           </a>
         </li>
         <li>
-          <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="130" >
+          <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" >
             产品及数据
           </a>
         </li>
         <!-- <li>
-          <a href="#news" du-smooth-scroll="" du-scrollspy="" offset="130" >
+          <a href="#news" du-smooth-scroll="" du-scrollspy="" offset="110" >
            相关新闻
           </a>
         </li> -->
         <li ng-if="vm.isEditMode" >
-          <a kr-scroll-click href="#relativeUser" du-smooth-scroll="" du-scrollspy="" offset="130" >
+          <a kr-scroll-click href="#relativeUser" du-smooth-scroll="" du-scrollspy="" offset="114" >
             相关用户
           </a>
         </li>
         <li>
           <a  kr-scroll-click
-            href="#similarItem" du-smooth-scroll="" du-scrollspy="" offset="130" >
+            href="#similarItem" du-smooth-scroll="" du-scrollspy="" offset="114" >
             相似项目
           </a>
         </li>
@@ -209,11 +209,11 @@
   </section>
   <section id="light" class="project-module light"
   ng-include="'/pages/project/templates/light.html'"
-  ng-show="vm.baseInfoVM.investAdvantage && (vm.user != 'commen' || vm.investorType)">
+  ng-if="vm.baseInfoVM.investAdvantage">
   </section>
 
   <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'"
-    ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
+    ng-if="vm.baseInfoVM.industryTag || vm.baseInfoVM.intro">
   </section>
   <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module finance"
     ng-show="(vm.fundsVM.fundsVo.scale || vm.fundsVM.fundsVo.dataLights || vm.fundsVM.fundsVo.competitor || vm.fundsVM.fundsVo.projectPlan) && (vm.user != 'commen' || vm.investorType)">

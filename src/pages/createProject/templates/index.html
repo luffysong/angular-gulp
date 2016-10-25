@@ -6,7 +6,7 @@
     <div ng-show="vm.step === 3" ng-include="'/pages/createProject/templates/finance-apply.html'"> </div>
     <div ng-if="vm.step === 4" ng-include="'/pages/createProject/templates/stepFour.html'"> </div>
   </div>
-  <div ng-if="vm.step === 1 && vm.claimList.length" class="create-project-module suggest-result-module">
+  <div ng-if="vm.step === 1 && vm.claimList.length && !vm.selectProject" class="create-project-module suggest-result-module">
     <div class="step-one-wrapper suggest-result-wrapper">
       <h4>建议结果</h4>
         <div>

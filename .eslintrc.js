@@ -19,6 +19,7 @@ module.exports = {
     "prefer-rest-params": 1,
     "no-restricted-syntax": 0,
     "prefer-arrow-callback": 0,
+    "react/require-extension": 0,
     "import/prefer-default-export": 0,
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "arrow-body-style": ["error", "as-needed"],

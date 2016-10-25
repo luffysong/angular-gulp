@@ -104,7 +104,6 @@ export default class ProjectIndexController {
         } else {
           this.talking = this.investor;
         }
-        console.log(this.user, this.investorType);
         this.claimVM = new ClaimVM(this.ngDialog, this.id, this.user);
         this.collectionVM = new CollectionVM(this.ngDialog, this.id, data.investorType);
       }
@@ -114,15 +113,15 @@ export default class ProjectIndexController {
   }
 
   setNavigation() {
-    const first = 287;
-    const other = 130;
+    const first = 300;
+    const other = 114;
     // 导航栏定位
     this.baseInfo = other;
     this.financeDetail = other;
     this.financeHistory = other;
     this.light = first;
     const baseInfo = (this.baseInfoVM.industryTag || this.baseInfoVM.intro);
-    if (this.baseInfoVM.investAdvantage && this.investorType) {
+    if (this.baseInfoVM.investAdvantage) {
       this.light = first;
     } else if (baseInfo) {
       this.baseInfo = first;
@@ -138,6 +137,7 @@ export default class ProjectIndexController {
     const vm = this;
     function BPController() {
       this.applyBpStatus = vm.applyBpStatus;
+      this.id = vm.id;
       this.BPCancle = function BPCancle() {
         vm.bpDialog.close();
       };

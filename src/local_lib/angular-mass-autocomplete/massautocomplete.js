@@ -4,19 +4,20 @@ angular.module('MassAutoComplete', [])
 		function($timeout, $window, $document, $q) {
 			'use strict';
 
-            var DEFAULT_MAX_WIDTH = 400;
+      var DEFAULT_MAX_WIDTH = 400;
 			return {
 				restrict: "A",
 				scope: {
-					options: '&massAutocomplete'
+          options: '&massAutocomplete',
+          searchOut: '=?',
 				},
 				transclude: true,
 				template: '<span ng-transclude></span>' +
 					'<div class="ac-container" ng-show="show_autocomplete && results.length > 0" style="position:absolute;">' +
 					'<ul class="ac-menu">' +
-					'<li ng-mousemove="onMousemove($index)" ng-repeat="result in results" ng-if="$index > 0" ' +
+					'<li ng-click="onClick($event, result)" ng-mousemove="onMousemove($index)" ng-repeat="result in results" ng-if="$index > 0" ' +
 					'class="ac-menu-item" ng-class="$index == selected_index ? \'ac-state-focus\': \'\'">' +
-					'<a href ng-click="apply_selection($index)" ng-bind-html="result.label"></a>' +
+					'<a href ng-click="apply_selection($index, $event)" ng-bind-html="result.label"></a>' +
 					'</li>' +
 					'</ul>' +
 					'</div>',
@@ -26,23 +27,23 @@ angular.module('MassAutoComplete', [])
 
 					//使用相对于mass定位提示框
 
-                    var inputWidth = element.find('input')[0].offsetWidth;
-                    var _user_options = scope.options();
+          var inputWidth = element.find('input')[0].offsetWidth;
+          var _user_options = scope.options();
 					if (_user_options.position === "parent") {
 						element[0].style.position = "relative";
 					}
 
-                    scope.maxWidth = DEFAULT_MAX_WIDTH;
-                    if( inputWidth > DEFAULT_MAX_WIDTH ){
-                        scope.maxWidth = inputWidth;
-                    }
+          scope.maxWidth = DEFAULT_MAX_WIDTH;
+          if( inputWidth > DEFAULT_MAX_WIDTH ){
+              scope.maxWidth = inputWidth;
+          }
 
-                    //明确给出了最大宽度,否则使用的是
-                    //inputWidth 和 DEFAULT_MAX_WIDTH 中的
-                    //较大值
-                    if(_user_options.maxWidth){
-                        scope.maxWidth = _user_options.maxWidth;
-                    }
+          //明确给出了最大宽度,否则使用的是
+          //inputWidth 和 DEFAULT_MAX_WIDTH 中的
+          //较大值
+          if(_user_options.maxWidth){
+              scope.maxWidth = _user_options.maxWidth;
+          }
 
 					scope.directiveElement = element;
 				},
@@ -83,16 +84,17 @@ angular.module('MassAutoComplete', [])
 						previous_value,
 						value_watch,
 						last_selected_value,
-                        trimValue;
+            trimValue;
 
 					$scope.show_autocomplete = false;
-                    $scope.onMousemove = onMousemove;
+          $scope.onMousemove = onMousemove;
+          $scope.onClick = _user_options.onClick || angular.noop;
 
-                    function  onMousemove(index){
-                        if($scope.show_autocomplete){
-                            set_selection(index);
-                        }
-                    }
+          function  onMousemove(index){
+              if($scope.show_autocomplete){
+                  set_selection(index);
+              }
+          }
 
 					// Debounce - taken from underscore
 					function debounce(func, wait, immediate) {
@@ -226,25 +228,25 @@ angular.module('MassAutoComplete', [])
 							$scope.$apply();
 						}
 
-                        function testContainerWidth() {
-                            var lastResult = $scope.results[$scope.results.length-1];
-                            var $last = $('a', $scope.container).last();
-                            $timeout(function (){
-                                if($last.html() !== $(lastResult.label)[0].outerHTML){
-                                    if($scope.results && $scope.results.length > 1){
-                                        testContainerWidth();
-                                    }
-                                    return;
-                                }
-                                var container = $scope.container[0];
-                                container.style.width = 'auto';
-                                container.style.position = 'relative';
-                                var width = container.offsetWidth > $scope.maxWidth ?
-                                   $scope.maxWidth : container.offsetWidth;
-                                container.style.width = width + 2 + 'px';
-                                container.style.position = 'absolute';
-                            });
+            function testContainerWidth() {
+                var lastResult = $scope.results[$scope.results.length-1];
+                var $last = $('a', $scope.container).last();
+                $timeout(function (){
+                    if($last.html() !== $(lastResult.label)[0].outerHTML){
+                        if($scope.results && $scope.results.length > 1){
+                            testContainerWidth();
                         }
+                        return;
+                    }
+                    var container = $scope.container[0];
+                    container.style.width = 'auto';
+                    container.style.position = 'relative';
+                    var width = container.offsetWidth > $scope.maxWidth ?
+                       $scope.maxWidth : container.offsetWidth;
+                    container.style.width = width + 2 + 'px';
+                    container.style.position = 'absolute';
+                });
+            }
 					}
 					var suggest = debounce(_suggest, user_options.debounce_suggest);
 
@@ -255,20 +257,17 @@ angular.module('MassAutoComplete', [])
 							var value = current_element.val().trim();
 							update_model_value(value);
 							current_options.on_detach && current_options.on_detach(value);
-                            var selected_index = $scope.selected_index;
-
-                            //精确匹配的情况下 视为选中
-                            if (selected_index &&
-                                current_options.full_match($scope.results[selected_index], value)&&
-                                last_selected_value !== $scope.results[selected_index].obj.name) {
-                                $scope.apply_selection($scope.selected_index);
-                            } else if (value && !last_selected_value && current_options.on_leaveSelect) {
-                                current_element.val(value);
-                                current_options.on_leaveSelect(value);
-                                trimValue = value;
-                            }
-
-
+              var selected_index = $scope.selected_index;
+              //精确匹配的情况下 视为选中
+              if (selected_index &&
+                  current_options.full_match($scope.results[selected_index], value)&&
+                  last_selected_value !== $scope.results[selected_index].obj.name) {
+                  $scope.apply_selection($scope.selected_index);
+              } else if (value && !last_selected_value && current_options.on_leaveSelect) {
+                  current_element.val(value);
+                  current_options.on_leaveSelect(value);
+                  trimValue = value;
+              }
 							current_element.unbind(EVENTS.KEYDOWN);
 							current_element.unbind(EVENTS.BLUR);
 						}
@@ -307,17 +306,29 @@ angular.module('MassAutoComplete', [])
 					// Apply and accept the current selection made from the menu.
 					// When selecting from the menu directly (using click or touch) the
 					// selection is directly applied.
-					$scope.apply_selection = function(i) {
+					$scope.apply_selection = function(i, $event) {
 						current_element[0].focus();
+            var searchValue = current_element[0].value;
 						if (!$scope.show_autocomplete || i > $scope.results.length || i < 0)
 							return;
 
+            if($event && $event.target.dataset.type === 'button') {
+              $scope.show_autocomplete = false;
+              return ;
+            }
+            if ($scope.searchOut && $scope.searchOut.click ) {
+              $scope.searchOut.click = false;
+              $scope.show_autocomplete = false;
+              return;
+            }
 						var selected = set_selection(i);
 						last_selected_value = selected.value;
 						update_model_value(selected.value);
 						$scope.show_autocomplete = false;
 
-						current_options.on_select && current_options.on_select(selected);
+            current_options.on_select && current_options.on_select(selected,
+              searchValue
+              );
 					};
 
 					function bind_element() {
