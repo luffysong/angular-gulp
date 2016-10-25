@@ -5,7 +5,7 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('listIndexService', '$timeout', '$window','$stateParams','$state','$scope')
+@Inject('labelIndexService', '$timeout', '$window','$stateParams','$state','$scope')
 export default class listParentController {
 
   constructor() {
@@ -17,9 +17,9 @@ export default class listParentController {
 
   init() {
 
-    this.params = {
+    this.params = {};
 
-    };
+    this.labelDetail = {};
     /*筛选器展开*/
     this.open = {
       filter: false
@@ -29,9 +29,6 @@ export default class listParentController {
 
     this.itemList = [
       {
-        name: 'industry',
-        key: 'value'
-      },{
         name: 'phase',
         key: 'value'
       },{
@@ -58,12 +55,16 @@ export default class listParentController {
 
     this.$scope.$on('get-change',(e,d) => {
       angular.extend(this.params,d);
-      var params = Object.assign({columnId:0},this.paramsFilter(this.params));
-      this.projectService.getColumn(params).then(data => {
+      var params = Object.assign({id: this.params.labelId},this.paramsFilter(this.params));
+      this.projectService.getLabel(params).then(data => {
+        this.labelDetail = data;
+      });
+
+      this.projectService.getLabelCompany(params).then(data => {
+        console.log(data);
+        this.labelDetail.totalCount = data.pageData.totalCount;
         this.$scope.$broadcast('get-list',data.pageData);
-        this.data.label = data.label;
         this.handleActive();
-        /*this.data.isFundingLimit = data.funding;*/
         this.updateData(data);
       });
 
@@ -72,17 +73,30 @@ export default class listParentController {
 
     this.getCity();
 
-    this.getIndustry();
-
-    this.getLabel();
-
     this.getPhase();
 
     //this.getisFundingLimit();
 
   }
 
-
+  /*关注、取消关注标签*/
+  followLabel() {
+    if(this.labelDetail.isFollowed) {
+      this.projectService.unFollowLabel({
+        id: this.params.labelId
+      }).then(data => {
+        this.labelDetail.isFollowed = false;
+        console.log(data);
+      });
+    }else {
+      this.projectService.followLabel({
+        id: this.params.labelId
+      }).then(data => {
+        this.labelDetail.isFollowed = true;
+        console.log(data);
+      });
+    }
+  }
   /*过滤不限条件*/
   paramsFilter(target) {
     var o = Object.assign({},target);
@@ -177,7 +191,7 @@ export default class listParentController {
 
   /*state跳转*/
   go () {
-    this.$state.go('list.result', this.params);
+    this.$state.go('label.result', this.params);
   }
 
   /*增加默认数据*/
@@ -215,27 +229,10 @@ export default class listParentController {
 
   }
 
-  /*获取静态行业数据*/
-  getIndustry() {
-    this.data.industry = this.addItem(this.$scope.root.INDUSTRY_META);
-  }
-
-  /*获取静态标签数据*/
-  getLabel() {
-
-  }
-
   /*获取轮次静态数据*/
   getPhase() {
     this.data.phase = this.addItem(this.$scope.root.FINANCE_PHASE_META);
   }
-
-  /*获取融资需求数据*/
-  /*getisFundingLimit() {
-    this.data.isFundingLimit = this.addItem(this.$scope.root.FINANCE_NEED_META);
-  }*/
-
-
 
 }
 

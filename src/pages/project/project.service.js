@@ -158,6 +158,37 @@ export default class ProjectService extends API {
     return new API('/column/:id/company?' + $.param(obj)).get(id);
   }
 
+  /*标签信息*/
+  getLabel(obj) {
+    return new API('/label/:id').get({
+      id: obj.id
+    });
+  }
+
+  /*标签下公司数据*/
+  getLabelCompany(obj) {
+    const id = {
+      id: obj.labelId
+    };
+    delete obj.labelId;
+    return new API('/label/:id/company?' + $.param(obj)).get(id);
+  }
+
+  /*关注标签*/
+  followLabel(obj) {
+    return new API('/label/:id/followed').save({
+      id: obj.id
+    });
+  }
+
+  /*取消关注标签*/
+  unFollowLabel(obj) {
+    return new API('/label/:id/followed').remove({
+      id: obj.id
+    });
+  }
+
+
   // FIXME: 此处因为服务端数据出错
   // 临时处理错误数据为空数据
   // 2016-10-23 11:27

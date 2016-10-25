@@ -6,6 +6,9 @@ export default {
     list: [
       '/pages/list/index.js',
     ],
+    label: [
+      '/pages/label/index.js',
+    ],
     project: [
       '/pages/project/index.js',
       '/bower/ngSticky/dist/sticky.min.js',

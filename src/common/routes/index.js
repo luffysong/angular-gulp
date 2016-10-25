@@ -4,6 +4,7 @@ import project, { editProject } from './project.route';
 import createProject, { financeRoute } from './createProject.route';
 import { searchView, search } from './search.route';
 import { listView, list } from './list.route';
+import { labelView, label } from './label.route';
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode(true);
@@ -16,6 +17,8 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider.state('createProject', createProject);
   $stateProvider.state('list', listView);
   $stateProvider.state('list.result', list);
+  $stateProvider.state('label', labelView);
+  $stateProvider.state('label.result', label);
   $urlRouterProvider.when('^/list', '^/list/result');
   $stateProvider.state('financeRoute', financeRoute);
 }

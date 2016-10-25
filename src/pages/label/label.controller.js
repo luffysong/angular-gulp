@@ -5,8 +5,8 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('listIndexService', '$timeout', '$window','$stateParams','$state','$scope', '$q')
-export default class listIndexController {
+@Inject('$timeout', '$window','$stateParams','$state','$scope', '$q')
+export default class labelIndexController {
 
   constructor() {
     this.api = new TestAPI();
@@ -72,8 +72,8 @@ export default class listIndexController {
 
     this.currentPage++;
 
-    var params = Object.assign({columnId:0,p:this.currentPage},this.paramsFilter(this.paramsData));
-    this.projectService.getColumn(params).then(data => {
+    var params = Object.assign({p:this.currentPage},this.paramsFilter(this.paramsData));
+    this.projectService.getLabelCompany(params).then(data => {
       if(!data.pageData || !data.pageData){
         this.noMore = true;
         return;
@@ -84,13 +84,6 @@ export default class listIndexController {
       this.dataLoading = false;
     });
 
-    /*this.$timeout(() => {
-      var last = this.listData[this.listData.length - 1];
-      for(var i = 1; i <= 8; i++) {
-        this.listData.data.push(last + i);
-      }
-      this.dataLoading = false;
-    },500);*/
   }
 
   change (item,index) {
