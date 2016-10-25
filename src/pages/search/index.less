@@ -1,15 +1,98 @@
+@import "../../common/styles/var.less";
+@import "../../common/styles/function.less";
 .search-wrapper {
-  //总padding-left 350px, 外部容器使用了140px
+//总padding-left 350px, 外部容器使用了140px
   padding-left: 210px;
   .search-list-wrapper {
     position: fixed;
+    overflow: auto;
     left: 50px;
     top: 50px;
     width: 300px;
-    background: #fff;
-    z-index: 1;
+    z-index: 11;
     bottom: 0;
+    background: #fff;
+    .condition-wrapper {
+      box-shadow: 0 8px 8px -8px #ccc;
+      ul {
+        padding: 14px 23px 20px;
+        overflow: hidden;
+        li {
+          float: left;
+          margin-right: 18px;
+          padding: 4px 6px;
+          font-size: 12px;
+          line-height: 18px;
+          margin-top: 6px;
+          background: rgba(107,162,252,0.2);
+          color: #2868D1;
+        }
+      }
+    }
   }
+
+  // search-project-list start
+  .search-project-list {
+    width: 100%;
+    margin-top: 4px;
+    color: @text-color;
+    ul {
+      li {
+        padding: 14px 0 14px 20px;
+        overflow: hidden;
+        border-bottom: 1px solid #F2F4F5;
+      }
+    }
+    img {
+      float: left;
+    }
+    .text-info-wrapper {
+      float:left;
+      width: 218px;
+      padding-left: 16px;
+      p {
+        margin-top: 4px;
+        height: 18px;
+      }
+      p:first-child {
+        margin-top: 0px;
+        height: 21px;
+        &+p {
+          margin-top: 8px;
+        }
+      }
+      .font(12, 18);
+      .name {
+        .font(14,21);
+        .dlk();
+        color: @title-color;
+      }
+      .hot,.funding {
+        border-radius: 2px;
+        line-height: 20px;
+        font-size: 12px;
+        color: #fff;
+        padding: 0 4px;
+        .dlk();
+      }
+      .icon-industry {
+        vertical-align: middle;
+        .dlk();
+      }
+      .hot {
+        margin-right: 6px;
+        background: #F8627E;
+      }
+      .funding {
+        background: #6BA2FC;
+      }
+      .time {
+        float: right;
+        margin-top: 3px;
+      }
+    }
+  }
+  // search-project-list end
 }
 .search-wrapper.menu-expanded {
   padding-left: 440px;

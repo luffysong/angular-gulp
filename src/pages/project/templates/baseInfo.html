@@ -18,7 +18,7 @@
     <ul class="company-info">
       <li ng-if="vm.projectData.baseInfo.fullName">公司全称：{{::vm.projectData.baseInfo.fullName}}</li>
       <li ng-if="vm.projectData.baseInfo.address1Desc">地点：{{::vm.projectData.baseInfo.address1Desc}}</li>
-      <li ng-if="vm.projectData.baseInfo.startDate">成立时间：{{::(vm.projectData.baseInfo.startDate | date: 'yyyy-MM-dd')}}</li>
+      <li ng-if="vm.projectData.baseInfo.startDate">成立时间：{{::vm.projectData.baseInfo.startDateDesc}}年</li>
     </ul>
     <ul class="company-info">
       <li ng-if="vm.projectData.baseInfo.scale">公司规模：{{::vm.projectData.baseInfo.scale}}</li>
