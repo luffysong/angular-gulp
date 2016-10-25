@@ -1,7 +1,6 @@
 <div class="finance-audit-wrapper">
-  <h4>正在审核中 <span class="finance-phase">{{vm.financeInfo.financePhase | fundsPhaseEnum}}</span>
+  <h4>正在审核中 <span class="finance-phase" ng-if="vm.financeInfo.financePhaseEnum">{{vm.financeInfo.financePhaseEnum | fundsPhaseEnum}}</span>
   <span class="funds-amount" ng-if="vm.financeInfo.investAmountMax">{{vm.financeInfo.investAmountMin}} 至 {{vm.financeInfo.investAmountMax}} 万 {{vm.financeInfo.financeAmountUnit | amountUnit}}</span></h4>
-  <span class="funds-amount" ng-if="!vm.financeInfo.investAmountMax">{{vm.financeInfo.investAmountMin}} 万 {{vm.financeInfo.financeAmountUnit | amountUnit}}</span></h4>
   <div class="data-info">
     <div class="title">目标市场规模及分析</div>
     <div class="content">
