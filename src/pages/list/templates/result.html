@@ -1,24 +1,24 @@
 <div class="result-container">
   <div class="result-tip">
-    找到关于 <b>“36”</b> 的结果 <b>{{vm.listData.totalCount}}</b> 条
+    共<b>{{vm.listData.totalCount}}</b>个结果
   </div>
   <div class="result-content">
     <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading' infinite-scroll-distance='0'>
       <tr>
-        <td width="355">项目</td>
+        <td width="320">项目</td>
         <td>行业</td>
         <td>轮次</td>
         <td>投资方</td>
         <td>所在地</td>
         <td>时间</td>
-        <td>操作</td>
+        <td width="120">操作</td>
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
           <a href="" class="project-logo" style="background-image: url({{obj.logo}})"></a>
           <div class="project-info">
             <div class="project-name">
-              <span class="company-name">{{obj.name}}</span><span class="hot-tag" ng-if="obj.hot">热门</span><span class="fund-state" ng-if="obj.funding">融资中</span>
+              <span class="company-name">{{obj.name}}</span><span class="hot-tag" ng-if="obj.hot">热门</span><span class="classic-tag" ng-if="!obj.classic">精品</span><span class="fund-state" ng-if="obj.funding">融资中</span>
             </div>
             <div class="project-intro">
               {{obj.brief}}
@@ -30,9 +30,11 @@
         </td>
         <td>{{obj.industryStr}}</td>
         <td>{{obj.phase}}</td>
-        <td>达承创投</td>
-        <td>北京市</td>
-        <td>今天</td>
+        <td class="org-col">
+          <section ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
+        </td>
+        <td>{{obj.cityStr}}</td>
+        <td>{{obj.publishDate | dateFilter}}</td>
         <td>
           <span class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}">
             <span ng-show="obj.followed">已</span>收藏

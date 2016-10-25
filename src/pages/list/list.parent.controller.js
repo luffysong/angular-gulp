@@ -170,7 +170,6 @@ export default class listParentController {
     var arr = this.params[type].split(',');
     arr.splice(arr.indexOf(id),1);
     this.params[type] = arr.join(',');
-    console.log(this.params);
     /*this.params[type] = null;*/
     this.go();
   }
