@@ -99,9 +99,9 @@ export default class CreateProject {
     }, data);
   }
 
-  loadFinance(id){
+  loadFinance(id,status){
     return projectApi.funds({
-      id,
+      id,status
     });
   }
 }

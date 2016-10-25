@@ -1,5 +1,6 @@
 import * as META from '../constants/index';
 import industry from './industry.filter';
+import amountUnit from './amountUnit.filter';
 import { getConstantFilterFactory } from '../base/utls';
 
 angular.module('@@app.filters', [])
@@ -9,4 +10,5 @@ angular.module('@@app.filters', [])
   .filter('currencyUnit', getConstantFilterFactory(META.CURRENCY_UNIT_META))
   .filter('companyFinancePhase', getConstantFilterFactory(META.COMPANY_FINANCE_PHASE_META))
   .filter('role', getConstantFilterFactory(META.ROLE_META))
-  .filter('industry', industry);
+  .filter('industry', industry)
+  .filter('amountUnit', amountUnit);
