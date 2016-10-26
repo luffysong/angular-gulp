@@ -3,6 +3,7 @@ import '../constants/index';
 import '../filters/index';
 import '../components/index.js';
 import '../services/index.js';
+import assets from '../assets/script.js';
 import { INDUSTRY_META } from '../filters/industry.filter';
 import commonInterceptor from '../base/commonInterceptor.service';
 import { getService, fromYear, getMonth } from '../base/utls';
@@ -118,6 +119,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     root.searchRecord = searchInstance.searchRecord.bind(searchInstance);
     root.onClick = searchInstance.onClickRow;
     root.searchOut = {};
+    root.assets = assets;
     $rootScope.root = root;
   });
 angular.bootstrap(document, ['@@app'], { strictDi: true });

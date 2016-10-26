@@ -19,7 +19,7 @@ export default class ProjectIndexController {
   projectData = this.resolveData.projectData;
   init() {
     if (this.projectData) {
-      this.id = this.$stateParams.id;
+      this.id = this.projectData.baseInfo.id;
       this.name = this.projectData.baseInfo.name;
       this.baseInfoVM = new BaseInfoVM(this.projectData.baseInfo, this.$scope);
       this.introductionVM = new IntroductionVM(this.projectData.baseInfo, this.$scope);

@@ -13,4 +13,7 @@ window.krData = {
   META,
   User,
 };
+window.krData.paddingContent = () => {
+  $('.content-wrapper').css('padding-left', `${$('#sidebar').width()}px`);
+};
 require('./bootstrap');
