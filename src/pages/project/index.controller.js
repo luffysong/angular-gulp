@@ -11,8 +11,9 @@ import CollectionVM from './collection.vm';
 const FINANCE_ALLOW = '1';
 // import Alert from '../../common/base/Alert';
 // import EditFinanceVM from './editFinance.vm';
-@Inject('$stateParams', 'projectService', 'ngDialog', 'resolveData',
-  '$validation', '$scope', '$sce', '$state', '$q')
+@Inject('$stateParams', 'projectService', 'projectData', 'ngDialog',
+  '$validation', '$scope', '$sce', '$state', '$q', '$filter')
+
 export default class ProjectIndexController {
   constructor() {
     this.init();
@@ -29,7 +30,7 @@ export default class ProjectIndexController {
         this.$sce, this.$q);
       this.memberVM = new MemberVM(this.projectData.member, this.id);
       this.similarVM = new SimilarVM(this.projectData.similar);
-      this.productVM = new ProductVM(this.projectData.product, this.id);
+      this.productVM = new ProductVM(this.projectData.product, this.id, this.$filter);
     }
     this.getRelateUser();
     this.getBPPermission(this.id);
@@ -161,9 +162,9 @@ export default class ProjectIndexController {
   }
   send() {
     this.projectService.sendBP(this.id)
-      .then(() => {
+      .then((data) => {
         if (this.hasPermission) {
-          krData.Alert.alert('邮件已发送，请查收');
+          krData.Alert.alert(`邮件已发送至${data.email}，请查收`);
         } else {
           this.projectService.applyBP(this.id)
             .then(() => {
@@ -188,29 +189,31 @@ export default class ProjectIndexController {
             };
 
             vm.confirm = () => {
-              const email = vm.email;
-              if (email) {
-                outterVM.projectService.addBPEmail(email).then(() => {
-                  if (outterVM.hasPermission) {
-                    outterVM.projectService.sendBP(outterVM.id)
+              if (this.validate()) {
+                const email = vm.email;
+                if (email) {
+                  outterVM.projectService.addBPEmail(email).then(() => {
+                    if (outterVM.hasPermission) {
+                      outterVM.projectService.sendBP(outterVM.id)
+                        .then((data) => {
+                          krData.Alert.alert(`邮件已发送至${data.email}，请查收`);
+                        });
+                    } else {
+                      outterVM.projectService.applyBP(outterVM.id)
                       .then(() => {
-                        krData.Alert.alert('邮件已发送，请查收');
+                        outterVM.suc = true;
+                        outterVM.applyBpStatus = 'APPLY';
+                        outterVM.bpDialogs();
+                        outterVM.bpApplyDialog.close();
+                      }, (error) => {
+                        krData.Alert.alert(error.msg);
+                        outterVM.bpApplyDialog.close();
                       });
-                  } else {
-                    outterVM.projectService.applyBP(outterVM.id)
-                    .then(() => {
-                      outterVM.suc = true;
-                      outterVM.applyBpStatus = 'APPLY';
-                      outterVM.bpDialogs();
-                      outterVM.bpApplyDialog.close();
-                    }, (error) => {
-                      krData.Alert.alert(error.msg);
-                      outterVM.bpApplyDialog.close();
-                    });
-                  }
-                }, (err1) => {
-                  krData.Alert.alert(err1.msg);
-                });
+                    }
+                  }, (err1) => {
+                    krData.Alert.alert(err1.msg);
+                  });
+                }
               }
             };
           }
@@ -222,9 +225,22 @@ export default class ProjectIndexController {
             controller: BPController,
             controllerAs: 'vm',
           });
-        } else if (err.code === 200) {
-          // 用户超过查看次数或无权查看BP
+        } else if (err.code === 201) {
+          // 用户超过查看次数
           krData.Alert.alert('已达到今日浏览上限');
+        } else if (err.code === 200) {
+          const outterVM = this;
+          outterVM.bpDialogs();
+          // outterVM.projectService.applyBP(outterVM.id)
+          //   .then(() => {
+          //     outterVM.suc = true;
+          //     outterVM.applyBpStatus = 'APPLY';
+          //     outterVM.bpDialogs();
+          //     // outterVM.bpApplyDialog.close();
+          //   }, (error) => {
+          //     krData.Alert.alert(error.msg);
+          //     outterVM.bpApplyDialog.close();
+          //   });
         }
       });
   }

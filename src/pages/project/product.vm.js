@@ -1,9 +1,10 @@
 import krData from 'krData';
 export default class ProductVM extends krData.FormVM {
-  constructor(data, id) {
+  constructor(data, id, $filter) {
     super(data);
     this.id = id;
     this.data = data;
+    this.$filter = $filter;
     // this.$scope = $scope;
     // this.$compile = $compile;
     this.init();
@@ -186,6 +187,9 @@ export default class ProductVM extends krData.FormVM {
 
   // 绘制产品数据图
   renderChart(curId) {
+
+    console.log('filter test', this.$filter('number')(1.234455666,2));
+
     this.chartConfig = this.setBasicConfig();
     const yAxis = this.getYAxisData(curId);
     const xAxis = this.data.companyData.x;
@@ -199,7 +203,8 @@ export default class ProductVM extends krData.FormVM {
 
     this.chartConfig.series.push({
       data: xAxis.map((val, i) => {
-        return [val, yAxis[i]];
+        const y = this.$filter('number')(yAxis[i], 2);
+        return [val, y];
       }),
       type: 'line',
       name: name,
