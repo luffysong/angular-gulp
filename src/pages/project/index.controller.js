@@ -53,6 +53,7 @@ export default class ProjectIndexController {
   talk() {
     const vm = this;
     function talkController() {
+      this.id = vm.id;
       this.talkCancle = function talkCancle() {
         vm.talkDialog.close();
       };
