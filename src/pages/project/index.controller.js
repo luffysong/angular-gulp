@@ -178,7 +178,7 @@ export default class ProjectIndexController {
           // const vm = this;
           const outterVM = this;
           /* eslint-disable */
-          function BPController() {
+          function BPController($validation) {
             // this.applyBpStatus = vm.applyBpStatus;
             // this.id = vm.id;
             const vm = this;
@@ -188,7 +188,7 @@ export default class ProjectIndexController {
             };
 
             vm.confirm = () => {
-              if (this.validate()) {
+              if ($validation.validate(vm.form)) {
                 const email = vm.email;
                 if (email) {
                   outterVM.projectService.addBPEmail(email).then(() => {
@@ -223,7 +223,7 @@ export default class ProjectIndexController {
               '<div ng-include="\'/pages/project/templates/addBPEmail.html\'" center></div>',
             plain: true,
             appendTo: '.project-wrapper',
-            controller: BPController,
+            controller: ['$validation', BPController],
             controllerAs: 'vm',
           });
         } else if (err.code === 201) {
@@ -255,8 +255,9 @@ export default class ProjectIndexController {
         this.bpLink = data.bpUrl;
         this.target = '_blank';
       }
-    }, () => {
+    }, (err) => {
       this.bpLink = '#';
+      this.checkBPTip = err.msg;
     });
   }
   getBPPermission(id) {
@@ -276,7 +277,14 @@ export default class ProjectIndexController {
       if (data.hasPermission || data.applyBpStatus === 'AGREE') {
         this.sendbp = this.send;
       } else {
-        this.bp = this.bpDialogs;
+        if (this.checkBPTip.indexOf('次数')) {
+          // krData.Alert.alert('已经超过每天可查看次数');
+          this.bp = function checkBPError() {
+            krData.Alert.alert('已经超过每天可查看次数');
+          };
+        } else {
+          this.bp = this.send;
+        }
         this.sendbp = this.send;
       }
     });
