@@ -82,6 +82,8 @@ export default class financeVM {
       $validation.validate(this.form.bp);
     });
   }
+
+
   privilege() {
     if (this.privileges) {
       this.finance.privilege = 'MUST_APPLY';

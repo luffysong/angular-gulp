@@ -9,14 +9,14 @@ import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
 const FINANCE_ALLOW = '1';
-// import Alert from '../../common/base/Alert';
-// import EditFinanceVM from './editFinance.vm';
-@Inject('$stateParams', 'projectService', 'projectData', 'ngDialog',
-  '$validation', '$scope', '$sce', '$state', '$q')
+
+@Inject('$stateParams', 'projectService', 'ngDialog', 'resolveData',
+  '$validation', '$scope', '$sce', '$state', '$q', '$filter')
 export default class ProjectIndexController {
   constructor() {
     this.init();
   }
+  projectData = this.resolveData.projectData;
   init() {
     if (this.projectData) {
       this.id = this.$stateParams.id;
@@ -28,9 +28,7 @@ export default class ProjectIndexController {
         this.$sce, this.$q);
       this.memberVM = new MemberVM(this.projectData.member, this.id);
       this.similarVM = new SimilarVM(this.projectData.similar);
-      // this.newsVM = new NewsVM(this.projectData.news, this.$scope, this.id);
-      this.productVM = new ProductVM(this.projectData.product, this.id);
-      // this.editFinanceVM = new EditFinanceVM(this.projectData.finance, this.$scope, this.id);
+      this.productVM = new ProductVM(this.projectData.product, this.id, this.$filter);
     }
     this.getRelateUser();
     this.getBPPermission(this.id);
@@ -54,6 +52,7 @@ export default class ProjectIndexController {
   talk() {
     const vm = this;
     function talkController() {
+      this.id = vm.id;
       this.talkCancle = function talkCancle() {
         vm.talkDialog.close();
       };
@@ -161,8 +160,89 @@ export default class ProjectIndexController {
   }
   send() {
     this.projectService.sendBP(this.id)
-      .then(() => {
-        krData.Alert.alert('发送成功');
+      .then((data) => {
+        if (this.hasPermission) {
+          krData.Alert.alert(`邮件已发送至${data.email}，请查收`);
+        } else {
+          this.projectService.applyBP(this.id)
+            .then(() => {
+              this.suc = true;
+              this.applyBpStatus = 'APPLY';
+            }, (err) => {
+              krData.Alert.alert(err.msg);
+            });
+        }
+      }, (err) => {
+        if (err.code === 100) {
+          // 申请人未设置邮箱
+          // const vm = this;
+          const outterVM = this;
+          /* eslint-disable */
+          function BPController() {
+            // this.applyBpStatus = vm.applyBpStatus;
+            // this.id = vm.id;
+            const vm = this;
+            vm.cancel = () => {
+              console.log('click cancel');
+              outterVM.bpApplyDialog.close();
+            };
+
+            vm.confirm = () => {
+              if (this.validate()) {
+                const email = vm.email;
+                if (email) {
+                  outterVM.projectService.addBPEmail(email).then(() => {
+                    if (outterVM.hasPermission) {
+                      outterVM.projectService.sendBP(outterVM.id)
+                        .then((data) => {
+                          krData.Alert.alert(`邮件已发送至${data.email}，请查收`);
+                        });
+                    } else {
+                      outterVM.projectService.applyBP(outterVM.id)
+                      .then(() => {
+                        outterVM.suc = true;
+                        outterVM.applyBpStatus = 'APPLY';
+                        outterVM.bpDialogs();
+                        outterVM.bpApplyDialog.close();
+                      }, (error) => {
+                        krData.Alert.alert(error.msg);
+                        outterVM.bpApplyDialog.close();
+                      });
+                    }
+                  }, (err1) => {
+                    krData.Alert.alert(err1.msg);
+                  });
+                }
+              }
+            };
+          }
+          /* eslint-enable */
+
+          this.bpApplyDialog = this.ngDialog.open({
+            template:
+              '<div ng-include="\'/pages/project/templates/addBPEmail.html\'" center></div>',
+            plain: true,
+            appendTo: '.project-wrapper',
+            controller: BPController,
+            controllerAs: 'vm',
+          });
+        } else if (err.code === 201) {
+          // 用户超过查看次数
+          krData.Alert.alert('已达到今日浏览上限');
+        } else if (err.code === 200) {
+          const outterVM = this;
+          outterVM.bpDialogs();
+          // outterVM.projectService.applyBP(outterVM.id)
+          //   .then(() => {
+          //     outterVM.suc = true;
+          //     outterVM.applyBpStatus = 'APPLY';
+          //     outterVM.bpDialogs();
+          //     // outterVM.bpApplyDialog.close();
+          //   }, (error) => {
+          //     krData.Alert.alert(error.msg);
+          //     outterVM.bpApplyDialog.close();
+          //   });
+        }
       });
   }
 
@@ -182,12 +262,22 @@ export default class ProjectIndexController {
   getBPPermission(id) {
     this.projectService.getBPPermission(id)
     .then((data) => {
+      // if (data.hasPermission || data.applyBpStatus === 'AGREE') {
+      //   this.sendbp = this.send;
+      // } else {
+      //   this.applyBpStatus = data.applyBpStatus;
+      //   this.bp = this.bpDialogs;
+      //   this.sendbp = this.bpDialogs;
+      // }
+      // this.sendBP = this.send;
+      // 项目未设置申请
+      this.applyBpStatus = data.applyBpStatus;
+      this.hasPermission = data.hasPermission;
       if (data.hasPermission || data.applyBpStatus === 'AGREE') {
         this.sendbp = this.send;
       } else {
-        this.applyBpStatus = data.applyBpStatus;
         this.bp = this.bpDialogs;
-        this.sendbp = this.bpDialogs;
+        this.sendbp = this.send;
       }
     });
   }

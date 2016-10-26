@@ -32,6 +32,7 @@ export default class CreateProject {
   FINANCE_NONE = '0';
   FINANCE_ALLOW = '1';
   FINANCE_AUDITING = '2';
+  FINANCE_PASS = '3';
 
   create(data) {
     const api = new krData.API('/company/action/create');

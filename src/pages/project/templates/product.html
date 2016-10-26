@@ -63,7 +63,7 @@
               <tbody>
                 <tr ng-repeat="item in vm.productVM.completeData">
                   <td class="month">{{item.month}}</td>
-                  <td>{{item.data}}</td>
+                  <td>{{item.data | number:2}}</td>
                 </tr>
               </tbody>
             </table>

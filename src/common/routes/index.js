@@ -2,7 +2,7 @@
 import home from './home.route';
 import project, { editProject } from './project.route';
 import createProject, { financeRoute } from './createProject.route';
-import { searchView, search } from './search.route';
+import { search } from './search.route';
 import { listView, list } from './list.route';
 import { labelView, label } from './label.route';
 import {landingView, landing } from './landing.route';
@@ -13,8 +13,7 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider.state('home', home);
   $stateProvider.state('project', project);
   $stateProvider.state('project.edit', editProject);
-  $stateProvider.state('search', searchView);
-  $stateProvider.state('search.result', search);
+  $stateProvider.state('search', search);
   $stateProvider.state('createProject', createProject);
   /*项目列表页*/
   $stateProvider.state('list', listView);

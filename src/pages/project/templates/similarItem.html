@@ -30,7 +30,7 @@
           <td class='round' ng-bind="item.financePhase"></td>
 					<td class='invest'>
             <ul>
-              <li ng-repeat="invest in item.pastInvestor" ng-bind="invest">
+              <li ng-repeat="invest in item.pastInvestor | limitTo:3" ng-bind="invest">
 
               </li>
             </ul>

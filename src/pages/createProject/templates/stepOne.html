@@ -37,11 +37,14 @@
 
       <div class="form-group">
         <label for="">工商注册公司全称</label>
-
         <span id="messageFullName"
           class="error-tip"></span>
         <input  ng-model="vm.baseInfo.fullName"
           maxlength="50"
+          kr-valid
+          validator="notEqual=vm.baseInfo.name"
+          message-id="messageFullName"
+          not-equal-error-message="请不要再次填写项目名称"
           placeholder="输入公司全称"
           ng-blur="vm.searchClaimList()"
           message-id="messageFullName"

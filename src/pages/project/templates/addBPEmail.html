@@ -1,0 +1,21 @@
+<div class="add-bpemail-wrapper">
+  <span class="icon-dialogClose" ng-click="vm.cancel()"></span>
+  <span class="t-header">
+    <p class="line-1">请设置接收BP邮箱
+    </p>
+  </span>
+  <span class="line-2">
+    *建议使用个人邮箱，以免BP被过滤删除
+  </span>
+  <span class="email">
+    <form name="vm.form">
+      <input type="email" name="bp-email" class="emailInput"
+             ng-model="vm.email"
+             message-id="editEmail"
+             required-error-message="请输入正确的邮箱地址"
+             validator="required" />
+      <span class="error-tip" id="editEmail"></span>
+      <span class="confirmBtn" ng-click="vm.confirm()">确认</span>
+    </form>
+  </span>
+</div>

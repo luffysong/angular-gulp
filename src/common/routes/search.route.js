@@ -1,41 +1,23 @@
 import assets from '../assets/script';
 import { getLoadBundle } from '../base/utls';
-const searchView = {
-  url: '/search',
-  abstract: true,
-  template:
-  '<div class="search-wrapper"><div ui-view="left"></div><div ui-view="right"></div></div>',
-  resolve: {
-    loadProjectBundle: getLoadBundle(assets.page.project),
-  },
-};
 
 const search = {
-  url: '/{id:int}?{city}&{phase}&{industry}&{label}&{isFundingLimit}&{open}',
-  parent: searchView,
+  url: '/search/{id:int}?{city}&{phase}&{industry}&{label}&{isFundingLimit}&{columnId}',
+  templateUrl: '/pages/search/templates/index.html',
+  controller: 'SearchIndexController',
+  controllerAs: 'searchVm',
   resolve: {
+    loadProjectBundle: getLoadBundle(assets.page.project),
     loadBundle: getLoadBundle(assets.page.search),
     projectData: /* @ngInject */
-    function loadProjectData(loadProjectBundle, projectService, $stateParams) {
+    function loadProjectData(loadProjectBundle, projectService, $stateParams, resolveData) {
       return projectService.allData({
         id: $stateParams.id,
-      }).catch(() => ({}));
-    },
-  },
-  views: {
-    left: {
-      templateUrl: '/pages/search/templates/index.html',
-      controller: 'SearchIndexController',
-    },
-    right: {
-      templateUrl: '/pages/project/templates/index.html',
-      controller: 'ProjectIndexController',
-      controllerAs: 'vm',
+      }).catch(() => ({})).then(data => (resolveData.projectData = data));
     },
   },
 };
 
 export {
-  searchView,
   search,
 };
