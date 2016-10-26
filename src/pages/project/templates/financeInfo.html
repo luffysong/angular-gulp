@@ -6,19 +6,16 @@
       </div>
       <div class="details" ng-if="funds.dataLights">
         <span class="title">用户需求</span>
-        <span class="content">
-          {{funds.dataLights | enterFormat}}
+        <span ng-bind-html="funds.dataLights | enterFormat" class="content">
         </span>
       </div>
       <div class="details" ng-if="funds.competitor">
         <span class="title">竞争对手情况</span>
-        <span class="content">
-          {{funds.competitor | enterFormat}}
+        <span ng-bind-html="funds.competitor | enterFormat" class="content">
         </span>
       </div>
       <div class="details" ng-if='funds.projectPlan'>
         <span class="title">  发展规划</span>
-        <span class="content">
-          {{funds.projectPlan | enterFormat}}
+        <span ng-bind-html="funds.projectPlan | enterFormat" class="content">
         </span>
       </div>

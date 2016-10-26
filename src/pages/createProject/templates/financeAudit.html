@@ -4,27 +4,27 @@
   <div class="data-info">
     <div class="title">目标市场规模及分析</div>
     <div class="content">
-      <span>{{vm.financeInfo.scale}}</span>
+      <span ng-bind-html="vm.financeInfo.scale | enterFormat" class="content"></span>
     </div>
 
     <div class="title">业务数据亮点</div>
     <div class="content">
-      <span>{{vm.financeInfo.dataLights}}</span>
+      <span ng-bind-html="vm.financeInfo.dataLights | enterFormat" class="content"></span>
     </div>
 
     <div class="title">项目主要优势</div>
     <div class="content">
-      <span>{{vm.financeInfo.projectAdvantage}}</span>
+      <span ng-bind-html="vm.financeInfo.projectAdvantage | enterFormat" class="content"></span>
     </div>
 
     <div class="title">主要竞争对手情况</div>
     <div class="content">
-      <span>{{vm.financeInfo.competitor}}</span>
+      <span ng-bind-html="vm.financeInfo.competitor | enterFormat" class="content"></span>
     </div>
 
     <div class="title">发展规划</div>
     <div class="content">
-      <span>{{vm.financeInfo.projectPlan}}</span>
+      <span ng-bind-html="vm.financeInfo.projectPlan | enterFormat" class="content"></span>
     </div>
 
    <!--  <div class="title">商业计划书</div>
