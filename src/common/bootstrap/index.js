@@ -10,7 +10,7 @@ import { getService, fromYear, getMonth } from '../base/utls';
 import SearchService from '../services/Search.service.js';
 /* eslint-disable no-param-reassign,no-use-before-define */
 angular.module('@@app', ['@@app.routes', '@@app.components',
-  'cgNotify', 'MassAutoComplete',
+  'cgNotify', 'MassAutoComplete', 'ngSanitize',
   '@@app.constants', 'ngResource', '@@app.filters', '@app.services',
   'validation', 'validation.rule',
 ]);
