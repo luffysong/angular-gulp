@@ -50,6 +50,7 @@ export default class CreateProjectController {
     this.initBaseInfo();
     this.watchCompanyType();
     this.watchApplink();
+    this.watchName();
     this.initView();
   }
 
@@ -61,7 +62,8 @@ export default class CreateProjectController {
   }
 
   initView() {
-    this.project.loadFinance(this.$stateParams.id,'auditing').then((financeData) => { this.financeInfo = financeData; });
+    this.project.loadFinance(this.$stateParams.id, 'auditing')
+      .then((financeData) => { this.financeInfo = financeData; });
     if (this.type === FINANCE) {
       this.title = '融资申请';
       this.id = this.$stateParams.id;
@@ -69,7 +71,8 @@ export default class CreateProjectController {
         this.step = 4;
       } else if (this.financeState === this.project.FINANCE_NONE) {
         this.ensureFinanceAllow();
-      } else if (this.financeState !== this.project.FINANCE_ALLOW && this.financeState !== this.project.FINANCE_PASS) {
+      } else if (this.financeState !== this.project.FINANCE_ALLOW &&
+        this.financeState !== this.project.FINANCE_PASS) {
         krData.Alert.alert(`出错啦：${this.financeState.msg || '未知错误'}`);
       }
     }
@@ -135,9 +138,6 @@ export default class CreateProjectController {
       this.user.companyRole === ROLE.MEMBER;
   }
 
-  // notSelectRole() {
-  //   return angular.isUndefined(this.baseInfo.companyRole);
-  // }
 
   getIndustry(industry) {
     return this.$filter('industry')(industry);
@@ -190,6 +190,14 @@ export default class CreateProjectController {
             validate(this.baseInfo.form.androidlink);
           });
         }
+      }
+    });
+  }
+
+  watchName() {
+    this.$scope.$watch('vm.baseInfo.name', (nv) => {
+      if (nv) {
+        validate(this.baseInfo.form.fullName);
       }
     });
   }
@@ -332,8 +340,10 @@ export default class CreateProjectController {
   funds() {
     const fundsInfo = angular.extend({}, this.financeVM.finance);
     this.project.funds(this.id, fundsInfo)
-      .then(() => { this.step = 4;
-        this.project.loadFinance(this.$stateParams.id,'auditing').then((financeData) => {
+      .then(() => {
+        this.step = 4;
+        this.project.loadFinance(this.$stateParams.id, 'auditing')
+          .then((financeData) => {
             this.financeInfo = financeData;
           });
       })
