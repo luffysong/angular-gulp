@@ -203,7 +203,7 @@ export default class ProductVM extends krData.FormVM {
 
     this.chartConfig.series.push({
       data: xAxis.map((val, i) => {
-        const y = this.$filter('number')(yAxis[i], 2);
+        const y = this.$filter('number')(yAxis[i], 2) - 0.00;
         return [val, y];
       }),
       type: 'line',
