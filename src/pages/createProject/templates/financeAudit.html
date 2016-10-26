@@ -1,30 +1,31 @@
 <div class="finance-audit-wrapper">
   <h4>正在审核中 <span class="finance-phase" ng-if="vm.financeInfo.financePhaseEnum">{{vm.financeInfo.financePhaseEnum | fundsPhaseEnum}}</span>
-  <span class="funds-amount" ng-if="vm.financeInfo.investAmountMax">{{vm.financeInfo.investAmountMin}} 至 {{vm.financeInfo.investAmountMax}} 万 {{vm.financeInfo.financeAmountUnit | amountUnit}}</span></h4>
+  <span class="funds-amount" ng-if="vm.financeInfo.investAmountMax">{{vm.financeInfo.investAmountMin}} 至 {{vm.financeInfo.investAmountMax}} 万 {{vm.financeInfo.financeAmountUnit | amountUnit}}</span>
+  <span class="funds-amount" ng-if="!vm.financeInfo.investAmountMax && vm.financeInfo.investAmountMin">{{vm.financeInfo.investAmountMin}} 万 {{vm.financeInfo.financeAmountUnit | amountUnit}}</span></h4>
   <div class="data-info">
     <div class="title">目标市场规模及分析</div>
     <div class="content">
-      <span ng-bind-html="vm.financeInfo.scale | enterFormat" class="content"></span>
+      <span ng-if="vm.financeInfo.scale" ng-bind-html="vm.financeInfo.scale | enterFormat"></span>
     </div>
 
     <div class="title">业务数据亮点</div>
     <div class="content">
-      <span ng-bind-html="vm.financeInfo.dataLights | enterFormat" class="content"></span>
+      <span ng-if="vm.financeInfo.dataLights" ng-bind-html="vm.financeInfo.dataLights | enterFormat"></span>
     </div>
 
     <div class="title">项目主要优势</div>
     <div class="content">
-      <span ng-bind-html="vm.financeInfo.projectAdvantage | enterFormat" class="content"></span>
+      <span ng-if="vm.financeInfo.projectAdvantage" ng-bind-html="vm.financeInfo.projectAdvantage | enterFormat"></span>
     </div>
 
     <div class="title">主要竞争对手情况</div>
     <div class="content">
-      <span ng-bind-html="vm.financeInfo.competitor | enterFormat" class="content"></span>
+      <span ng-if="vm.financeInfo.competitor" ng-bind-html="vm.financeInfo.competitor | enterFormat" ></span>
     </div>
 
     <div class="title">发展规划</div>
     <div class="content">
-      <span ng-bind-html="vm.financeInfo.projectPlan | enterFormat" class="content"></span>
+      <span ng-if="vm.financeInfo.projectPlan" ng-bind-html="vm.financeInfo.projectPlan | enterFormat" ></span>
     </div>
 
    <!--  <div class="title">商业计划书</div>
