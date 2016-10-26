@@ -73,7 +73,15 @@
       </div>
     </div>
   </form>
-
+  <div class="form-bottom">
+    <p class="splitter"> </p>
+    <p class="tip-text">注意：标签不开放编辑；所有更改内容均会提交审核，审核期间不可对此模块做任何的更改，通过后对所有用户公开</p>
+    <div>
+      <a class="save" ng-click="vm.introductionVM.save()" href="#">保存</a>
+      <a class="cancel" ng-click="vm.introductionVM.cancel()" href="javascript:void(0)">取消</a>
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
   $('.scale-select').on('change',function(){
     var val = $(this).val();
