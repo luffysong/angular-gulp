@@ -52,6 +52,7 @@ export default class CreateProjectController {
     this.watchApplink();
     this.watchName();
     this.initView();
+    this['110'] = false;
   }
 
   initBaseInfo() {
@@ -294,8 +295,8 @@ export default class CreateProjectController {
         krData.Alert.alert(`认领公司失败:${err.msg}`);
       });
   }
-  call110() {
-    this['110'] = true;
+  call110(param) {
+    this['110'] = param;
   }
 
   // 走创建公司流程，角色已选
