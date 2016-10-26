@@ -11,12 +11,13 @@ import CollectionVM from './collection.vm';
 const FINANCE_ALLOW = '1';
 // import Alert from '../../common/base/Alert';
 // import EditFinanceVM from './editFinance.vm';
-@Inject('$stateParams', 'projectService', 'projectData', 'ngDialog',
+@Inject('$stateParams', 'projectService', 'ngDialog', 'resolveData',
   '$validation', '$scope', '$sce', '$state', '$q')
 export default class ProjectIndexController {
   constructor() {
     this.init();
   }
+  projectData = this.resolveData.projectData;
   init() {
     if (this.projectData) {
       this.id = this.$stateParams.id;
