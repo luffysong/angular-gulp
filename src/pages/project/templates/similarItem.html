@@ -39,7 +39,7 @@
 						<ul class='list' ng-class='{"all":show[item.similarInfo.index]}'>
 							<li ng-repeat="tag in item.similarInfo">{{tag}}</li>
 						</ul>
-						<span class='icon-close curson' ng-click='show[item.similarInfo.index]=!show[item.similarInfo.index]' ng-class='{"pointed":show[item.similarInfo.index]}' ng-show="item.similarInfo.length>3"></span>
+						<span class='icon-close curson' ng-click='show[item.similarInfo.index]=!show[item.similarInfo.index]' ng-class='{"pointed":show[item.similarInfo.index]}' ng-show="item.similarInfo.length>4"></span>
 					</td>
           <td class="related-info" ng-show="!item.similarInfo.length">
             <span class="none-data">暂无数据</span>
