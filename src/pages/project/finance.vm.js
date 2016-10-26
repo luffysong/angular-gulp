@@ -19,30 +19,6 @@ export default class FinanceVM extends krData.FormVM {
     angular.extend(this, data);
     this.financeAmountUnit = krData.META.CURRENCY_UNIT.CNY;
     this.investorList = [];
-    // this.watch();
-
-    // this.suggestInvestorList = [
-    //   {
-    //     entityId: 101,
-    //     entityName: '红杉资本',
-    //     entityType: 'COMPANY',
-    //   },
-    //   {
-    //     entityId: 102,
-    //     entityName: '经纬中国',
-    //     entityType: 'COMPANY',
-    //   },
-    //   {
-    //     entityId: 103,
-    //     entityName: '蚂蚁金服',
-    //     entityType: 'AGENCY',
-    //   },
-    //   {
-    //     entityId: 104,
-    //     entityName: '大石头',
-    //     entityType: 'PERSON',
-    //   },
-    // ];
 
     this.autocomplete_options = {
       suggest: this.suggest.bind(this),
@@ -52,17 +28,9 @@ export default class FinanceVM extends krData.FormVM {
     };
   }
 
-  // setData(data) {
-  //   this.originalData = {};
-  //   angular.copy(data, this.originalData);
-  // }
-
-  // recovery() {
-  //   angular.extend(this, this.originalData);
-  // }
   num = 1;
   financeList ;
-  getlist(limitlist, list, n) {
+  getlist(limitlist = [], list = [], n) {
     this.financeList = list;
     if (list.length > (5 * n)) {
       limitlist = list.slice(0, (5 * n));
@@ -128,7 +96,7 @@ export default class FinanceVM extends krData.FormVM {
 
   makeSuggestResult(kw, list) {
     const that = this;
-    return list.map(function (val) {
+    return list.map(function makeLabel(val) {
       if (val.entityType === 1) {
         return {
           label: that.$sce.trustAsHtml(
@@ -136,19 +104,18 @@ export default class FinanceVM extends krData.FormVM {
             ),
           value: val.entityName,
           obj: val,
-        }
-      } else if (val.entityType === 2) {
-        return {
-          label: that.$sce.trustAsHtml(
-            `<div class="suggest-label suggest-label-investment">
-              <img src="${val.logo}" alt="logo" />
-              <span>${val.entityName}</span>
-            </div>`
-            ),
-          value: val.entityName,
-          obj: val,
         };
       }
+      return {
+        label: that.$sce.trustAsHtml(
+          `<div class="suggest-label suggest-label-investment">
+            <img src="${val.logo}" alt="logo" />
+            <span>${val.entityName}</span>
+          </div>`
+          ),
+        value: val.entityName,
+        obj: val,
+      };
     });
   }
 

@@ -2,6 +2,7 @@ import krData from 'krData';
 export default class MemberVM extends krData.FormVM {
   constructor(data, id) {
     super(data);
+    this.members = this.members || [];
     this.data = data;
     this.id = id;
     this.init();
@@ -11,7 +12,7 @@ export default class MemberVM extends krData.FormVM {
   }
 
   num = 1;
-  getList(limitlist, list, n) {
+  getList(limitlist = [], list = [], n) {
     if (list.length > (5 * n)) {
       limitlist = list.slice(0, (5 * n));
     } else {
@@ -43,7 +44,7 @@ export default class MemberVM extends krData.FormVM {
   setData() {
     function keyup(e) {
       if (e.keyCode === 13) {
-        this.teamTags.map((value) => {
+        this.teamTags.forEach((value) => {
           if (value === this.key) {
             krData.Alert.alert('此优势已填写');
             this.key = '';

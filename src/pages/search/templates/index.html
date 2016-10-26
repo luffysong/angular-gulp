@@ -1,12 +1,11 @@
 <div class="search-list-wrapper">
   <div class="condition-wrapper">
      <ul>
-       <li>测试标签</li>
-       <li>1测试标签</li>
-       <li>12测试标签</li>
-       <li>123测试标签</li>
-       <li>1234测试标签</li>
-       <li>12345测试标签</li>
+       <li ng-if="searchVm.isFunding">融资中</li>
+       <li ng-repeat="item in searchVm.phases">{{item | financePhase}}</li>
+       <li ng-repeat="item in searchVm.cities">{{item | city}}</li>
+       <li ng-repeat="item in searchVm.industries">{{item | industry}}</li>
+       <li ng-repeat="item in searchVm.labels">{{item}}</li>
     </ul>
   </div>
   <div class="search-project-list">

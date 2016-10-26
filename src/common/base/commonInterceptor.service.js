@@ -1,11 +1,9 @@
 /* eslint-disable no-extra-bind */
-
-import Alert from './Alert.js';
 const API_CODE = {
   SUCCESS: 0,
   NOT_LOGIN: 403,
 };
-@Inject('$q')
+@Inject('$q', '$log')
 export default class CommonInterceptor {
   response = ((response) => {
     if (angular.isUndefined(response.data.code) ||
@@ -17,10 +15,7 @@ export default class CommonInterceptor {
     const code = response.data.code;
     if (code !== API_CODE.SUCCESS) {
       if (code === API_CODE.NOT_LOGIN) {
-        Alert.alert({ message: `此处目前是调试信息：${response.config.url}
-          不允许未登录用户访问\n 错误信息：${response.data.msg}`,
-          duration: 5000,
-        });
+        this.$log.info(`${response.config.url}错误信息：${response.data.msg}`);
       }
       return this.$q.reject(response.data);
     }

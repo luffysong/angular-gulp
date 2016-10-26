@@ -11,7 +11,7 @@ const searchView = {
 };
 
 const search = {
-  url: '/{id:int}?{city}&{phase}&{industry}&{label}&{isFundingLimit}&{open}',
+  url: '/{id:int}?{city}&{phase}&{industry}&{label}&{isFundingLimit}&{columnId}',
   parent: searchView,
   resolve: {
     loadBundle: getLoadBundle(assets.page.search),
@@ -26,6 +26,7 @@ const search = {
     left: {
       templateUrl: '/pages/search/templates/index.html',
       controller: 'SearchIndexController',
+      controllerAs: 'searchVm',
     },
     right: {
       templateUrl: '/pages/project/templates/index.html',

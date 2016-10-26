@@ -2,6 +2,7 @@ import { API } from 'krData';
 
 @Inject('$q')
 export default class ProjectService extends API {
+
   constructor() {
     super('/company/:id', [
       'product',
@@ -149,13 +150,33 @@ export default class ProjectService extends API {
     return this.claimpeding;
   }
 
-  /*获取列表页筛选条件*/
+  /* 获取列表页筛选条件 */
   getColumn(obj) {
     const id = {
       id: obj.columnId,
     };
     delete obj.columnId;
-    return new API('/column/:id/company?' + $.param(obj)).get(id);
+    return new API(`/column/:id/company?${$.param(obj)}`).get(id);
+  }
+
+  getFinance(id) {
+    return this.finance(id)
+      .catch((err) => {
+        if (err.code === API.ERROR_CODE.NOT_LOGIN) {
+          return {};
+        }
+        return this.$q.reject(err);
+      });
+  }
+
+  getMember(id) {
+    return this.member(id)
+      .catch((err) => {
+        if (err.code === API.ERROR_CODE.NOT_LOGIN) {
+          return {};
+        }
+        return this.$q.reject(err);
+      });
   }
 
   /*标签信息*/
@@ -203,9 +224,9 @@ export default class ProjectService extends API {
     return this.$q.all({
       baseInfo: this.get(id),
       product: this.product(id).catch(() => {}),
-      finance: this.finance(id),
+      finance: this.getFinance(id),
       similar: this.similar(id).catch(() => []),
-      member: this.member(id),
+      member: this.getMember(id),
       funds: this.funds(id),
       news: this.news(id).catch(() => {}),
     });

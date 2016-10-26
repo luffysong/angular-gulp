@@ -63,9 +63,13 @@ function resolveActions(actions) {
   });
 }
 
-
+const ERROR_CODE = {
+  NOT_LOGIN: 403,
+  FORBIDDEN: 4032,
+};
 export default class API {
 
+  static ERROR_CODE = ERROR_CODE;
   API_PATH = `//${location.host}/api`;
   constructor(url, getMethods, actions) {
     // 参数调换
