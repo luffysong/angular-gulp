@@ -9,11 +9,9 @@ import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
 const FINANCE_ALLOW = '1';
-// import Alert from '../../common/base/Alert';
-// import EditFinanceVM from './editFinance.vm';
-@Inject('$stateParams', 'projectService', 'projectData', 'ngDialog',
-  '$validation', '$scope', '$sce', '$state', '$q', '$filter')
 
+@Inject('$stateParams', 'projectService', 'ngDialog', 'resolveData',
+  '$validation', '$scope', '$sce', '$state', '$q', '$filter')
 export default class ProjectIndexController {
   constructor() {
     this.init();
@@ -179,6 +177,7 @@ export default class ProjectIndexController {
           // 申请人未设置邮箱
           // const vm = this;
           const outterVM = this;
+          /* eslint-disable */
           function BPController() {
             // this.applyBpStatus = vm.applyBpStatus;
             // this.id = vm.id;
@@ -217,9 +216,11 @@ export default class ProjectIndexController {
               }
             };
           }
+          /* eslint-enable */
 
           this.bpApplyDialog = this.ngDialog.open({
-            template: '<div ng-include="\'/pages/project/templates/addBPEmail.html\'" center></div>',
+            template:
+              '<div ng-include="\'/pages/project/templates/addBPEmail.html\'" center></div>',
             plain: true,
             appendTo: '.project-wrapper',
             controller: BPController,
