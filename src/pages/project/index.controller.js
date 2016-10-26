@@ -162,7 +162,70 @@ export default class ProjectIndexController {
   send() {
     this.projectService.sendBP(this.id)
       .then(() => {
-        krData.Alert.alert('发送成功');
+        if (this.hasPermission) {
+          krData.Alert.alert('邮件已发送，请查收');
+        } else {
+          this.projectService.applyBP(this.id)
+            .then(() => {
+              this.suc = true;
+              this.applyBpStatus = 'APPLY';
+            }, (err) => {
+              krData.Alert.alert(err.msg);
+            });
+        }
+      }, (err) => {
+        if (err.code === 100) {
+          // 申请人未设置邮箱
+          // const vm = this;
+          const outterVM = this;
+          function BPController() {
+            // this.applyBpStatus = vm.applyBpStatus;
+            // this.id = vm.id;
+            const vm = this;
+            vm.cancel = () => {
+              console.log('click cancel');
+              outterVM.bpApplyDialog.close();
+            };
+
+            vm.confirm = () => {
+              const email = vm.email;
+              if (email) {
+                outterVM.projectService.addBPEmail(email).then(() => {
+                  if (outterVM.hasPermission) {
+                    outterVM.projectService.sendBP(outterVM.id)
+                      .then(() => {
+                        krData.Alert.alert('邮件已发送，请查收');
+                      });
+                  } else {
+                    outterVM.projectService.applyBP(outterVM.id)
+                    .then(() => {
+                      outterVM.suc = true;
+                      outterVM.applyBpStatus = 'APPLY';
+                      outterVM.bpDialogs();
+                      outterVM.bpApplyDialog.close();
+                    }, (error) => {
+                      krData.Alert.alert(error.msg);
+                      outterVM.bpApplyDialog.close();
+                    });
+                  }
+                }, (err1) => {
+                  krData.Alert.alert(err1.msg);
+                });
+              }
+            };
+          }
+
+          this.bpApplyDialog = this.ngDialog.open({
+            template: '<div ng-include="\'/pages/project/templates/addBPEmail.html\'" center></div>',
+            plain: true,
+            appendTo: '.project-wrapper',
+            controller: BPController,
+            controllerAs: 'vm',
+          });
+        } else if (err.code === 200) {
+          // 用户超过查看次数或无权查看BP
+          krData.Alert.alert('已达到今日浏览上限');
+        }
       });
   }
 
@@ -182,12 +245,22 @@ export default class ProjectIndexController {
   getBPPermission(id) {
     this.projectService.getBPPermission(id)
     .then((data) => {
+      // if (data.hasPermission || data.applyBpStatus === 'AGREE') {
+      //   this.sendbp = this.send;
+      // } else {
+      //   this.applyBpStatus = data.applyBpStatus;
+      //   this.bp = this.bpDialogs;
+      //   this.sendbp = this.bpDialogs;
+      // }
+      // this.sendBP = this.send;
+      // 项目未设置申请
+      this.applyBpStatus = data.applyBpStatus;
+      this.hasPermission = data.hasPermission;
       if (data.hasPermission || data.applyBpStatus === 'AGREE') {
         this.sendbp = this.send;
       } else {
-        this.applyBpStatus = data.applyBpStatus;
         this.bp = this.bpDialogs;
-        this.sendbp = this.bpDialogs;
+        this.sendbp = this.send;
       }
     });
   }

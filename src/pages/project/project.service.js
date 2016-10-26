@@ -152,7 +152,7 @@ export default class ProjectService extends API {
   /*获取列表页筛选条件*/
   getColumn(obj) {
     const id = {
-      id: obj.columnId
+      id: obj.columnId,
     };
     delete obj.columnId;
     return new API('/column/:id/company?' + $.param(obj)).get(id);
@@ -161,14 +161,14 @@ export default class ProjectService extends API {
   /*标签信息*/
   getLabel(obj) {
     return new API('/label/:id').get({
-      id: obj.id
+      id: obj.id,
     });
   }
 
   /*标签下公司数据*/
   getLabelCompany(obj) {
     const id = {
-      id: obj.labelId
+      id: obj.labelId,
     };
     delete obj.labelId;
     return new API('/label/:id/company?' + $.param(obj)).get(id);
@@ -177,17 +177,24 @@ export default class ProjectService extends API {
   /*关注标签*/
   followLabel(obj) {
     return new API('/label/:id/followed').save({
-      id: obj.id
+      id: obj.id,
     });
   }
 
   /*取消关注标签*/
   unFollowLabel(obj) {
     return new API('/label/:id/followed').remove({
-      id: obj.id
+      id: obj.id,
     });
   }
 
+  // 设置接收BP的邮箱
+  addBPEmail(emai) {
+    const email = {
+      email: emai,
+    };
+    return new API('/investor/common-email').update(null, email);
+  }
 
   // FIXME: 此处因为服务端数据出错
   // 临时处理错误数据为空数据

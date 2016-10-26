@@ -190,9 +190,10 @@ export default class ProductVM extends krData.FormVM {
     const yAxis = this.getYAxisData(curId);
     const xAxis = this.data.companyData.x;
 
-    const name = this.data.companyData.y_list.map((val) => {
+    let name = '';
+    this.data.companyData.y_list.map((val) => {
       if (val.fid === curId) {
-        return val.fdesc;
+        name = val.fdesc;
       }
     });
 
@@ -201,7 +202,7 @@ export default class ProductVM extends krData.FormVM {
         return [val, yAxis[i]];
       }),
       type: 'line',
-      name: name[0],
+      name: name,
     })
   }
   // 获取产品数据

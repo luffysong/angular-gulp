@@ -1,4 +1,6 @@
-.talking,.bp{
+@import "./var";
+@import "../../../common/styles/function";
+.talking,.bp,{
   .icon-dialogClose{
     position: absolute;
     top: 20px;
@@ -93,6 +95,49 @@
       font-size: 16px !important;
       color: #5A626D !important;
       line-height: 24px !important;
+    }
+  }
+}
+.add-bpemail-wrapper{
+  .icon-dialogClose{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #969FA9;
+  }
+  .t-header{
+    display: block;
+    margin-top: 10px;
+    .font(18,27);
+    color: #222C38;
+    letter-spacing: 0px;
+  }
+  .line-2{
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    .font(14,21);
+    color: #969FA9;
+    letter-spacing: 0px;
+  }
+  .email{
+    width: 100%;
+    height: 100%;
+    input{
+      .size(267,37);
+    }
+    .confirmBtn{
+      cursor: pointer;
+      padding-top: 8px;
+      margin-left: 10px;
+      display: inline-block;
+      .size(80,37);
+      text-align: center;
+      vertical-align: middle;
+      background: #6BA2FC;
+      color: #FFFFFF;
+      border-radius: 4px;
+      .font(14,21);
     }
   }
 }

@@ -83,6 +83,7 @@ export default class financeVM {
     });
   }
   privilege() {
+    console.log(this.privileges);
     if (this.privileges) {
       this.finance.privilege = 'MUST_APPLY';
     } else {
