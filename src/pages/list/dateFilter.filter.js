@@ -1,6 +1,7 @@
 
 function dateFilter() {
   return function (input) {
+    if(!input)return '';
     var date = new Date(input);
     if(date.getFullYear() !== new Date().getFullYear()) {
       return date.getFullYear()+'年'+(date.getMonth()+1)+'月'+date.getDate()+'日';

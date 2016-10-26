@@ -1,9 +1,9 @@
 import labelIndexController from './label.controller';
 import labelParentController from './label.parent.controller';
 import labelIndexService from './label.service';
-import filterCalDirective from './filterCal.directive';
-import infiniteScrollDirective from './infiniteScroll.directive';
-import dateFilter from './dateFilter.filter';
+import filterCalDirective from '../list/filterCal.directive';
+import infiniteScrollDirective from '../list/infiniteScroll.directive';
+import dateFilter from '../list/dateFilter.filter';
 
 angular.module('@@pages.label', [])
   .controller('labelIndexController', labelIndexController)

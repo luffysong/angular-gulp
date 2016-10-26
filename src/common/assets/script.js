@@ -9,6 +9,9 @@ export default {
     label: [
       '/pages/label/index.js',
     ],
+    landing: [
+      'pages/landing/index.js'
+    ],
     project: [
       '/pages/project/index.js',
       '/bower/ngSticky/dist/sticky.min.js',
