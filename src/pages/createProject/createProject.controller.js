@@ -69,7 +69,7 @@ export default class CreateProjectController {
         this.step = 4;
       } else if (this.financeState === this.project.FINANCE_NONE) {
         this.ensureFinanceAllow();
-      } else if (this.financeState !== this.project.FINANCE_ALLOW) {
+      } else if (this.financeState !== this.project.FINANCE_ALLOW && this.financeState !== this.project.FINANCE_PASS) {
         krData.Alert.alert(`出错啦：${this.financeState.msg || '未知错误'}`);
       }
     }
