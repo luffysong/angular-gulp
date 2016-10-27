@@ -264,8 +264,11 @@ export default class ProjectIndexController {
   }
 
   checkBp(e) {
-    if (!this.bpPermisstionChecked || this.hasPermission) {
+    if (!this.bpPermisstionChecked) {
       e.preventDefault();
+      return;
+    }
+    if (this.hasPermission) {
       return;
     }
     if (this.isViewMore()) {
