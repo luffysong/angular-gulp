@@ -146,6 +146,12 @@
     &.project {
       height: auto;
     }
+    &.project >a + .column {
+      display: none;
+    }
+    &.project.active >a + .column {
+      display: block;
+    }
     .kr-icon{
       vertical-align: sub;
       font-size: 18px;
