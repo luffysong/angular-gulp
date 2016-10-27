@@ -141,7 +141,6 @@
   }
   &>ul>li{
     position: relative;
-    height: 48px;
     font-size: 14px;
     line-height: 48px;
     &.project {
@@ -170,6 +169,8 @@
           display: inline-block;
           margin-right: 8px;
           vertical-align: middle;
+          background: #969FA9;
+          border-radius: 50%;
         }
       }
 
@@ -179,17 +180,17 @@
       color:#969fa9;
       padding-left: @padding-left;
       display: block;
+      height: 48px;
     }
   }
   .active{
     &:before {
       width: 3px;
-      height: 48px;
+      height: 47px;
       content: "";
       position: absolute;
       left: 0;
       top: 0;
-      height: 48px;
       background: #6ea4f9;
 
     }
@@ -198,6 +199,7 @@
       color: #FFF;
     }
     a{
+      border-bottom: 1px solid #333742;
       color: #FFF;
     }
   }

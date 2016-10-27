@@ -21,7 +21,7 @@ export default {
   controller: ProjectNavController,
   controllerAs: 'projectNavVm',
   template: `
-  <a href="">
+  <a href="javascript:;">
     <span class="icon-Company kr-icon"></span>
     <span class="kr-tags">创业公司</span>
   </a>
