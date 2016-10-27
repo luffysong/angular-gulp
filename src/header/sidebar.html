@@ -6,8 +6,9 @@
 			<span class="kr-tags">首页</span>
     	</a>
     </li>
-    <li class='project search'>
-    	<a href="">
+    <li ng-class="{active: root.toState.name === 'list.result'}"
+      kr-project-nav class='project search'>
+    	<a href="javvascript:;">
     		<span class="icon-Company kr-icon"></span>
     		<span class="kr-tags">创业公司</span>
     	</a>
@@ -63,11 +64,6 @@
     }
   }
 
-	for (var i = objLi.length - 1; i >= 0; i--) {
-		if(hasClass(objLi[i], arr[1])){
-			addClass(objLi[i],'active');
-		}
-	}
 
 	var objUl = document.querySelector('#sidebar');
   function narrow(){

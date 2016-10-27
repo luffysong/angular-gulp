@@ -9,6 +9,11 @@ import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
 const FINANCE_ALLOW = '1';
+const BP_PERMISSION = {
+  APPLY: 'APPLY',
+  AGREE: 'AGREE',
+  REFUSE: 'REFUSE',
+};
 
 @Inject('$stateParams', 'projectService', 'ngDialog', 'resolveData',
   '$validation', '$scope', '$sce', '$state', '$q', '$filter')
@@ -32,7 +37,6 @@ export default class ProjectIndexController {
     }
     this.getRelateUser();
     this.getBPPermission(this.id);
-    this.getBPUrl(this.id);
     this.setNavigation();
     this.getUser();
     this.getfundsState(this.id);
@@ -232,62 +236,30 @@ export default class ProjectIndexController {
         } else if (err.code === 200) {
           const outterVM = this;
           outterVM.bpDialogs();
-          // outterVM.projectService.applyBP(outterVM.id)
-          //   .then(() => {
-          //     outterVM.suc = true;
-          //     outterVM.applyBpStatus = 'APPLY';
-          //     outterVM.bpDialogs();
-          //     // outterVM.bpApplyDialog.close();
-          //   }, (error) => {
-          //     krData.Alert.alert(error.msg);
-          //     outterVM.bpApplyDialog.close();
-          //   });
         }
       });
   }
 
 
-  getBPUrl(id) {
-    // 获取BP-URL
-    this.projectService.getBPUrl(id)
-    .then(data => {
-      if (data.bpUrl) {
-        this.bpLink = data.bpUrl;
-        this.target = '_blank';
-      }
-    }, (err) => {
-      this.bpLink = '#';
-      this.checkBPTip = err.msg;
-    });
-  }
   getBPPermission(id) {
     this.projectService.getBPPermission(id)
     .then((data) => {
-      // if (data.hasPermission || data.applyBpStatus === 'AGREE') {
-      //   this.sendbp = this.send;
-      // } else {
-      //   this.applyBpStatus = data.applyBpStatus;
-      //   this.bp = this.bpDialogs;
-      //   this.sendbp = this.bpDialogs;
-      // }
-      // this.sendBP = this.send;
-      // 项目未设置申请
       this.applyBpStatus = data.applyBpStatus;
       this.hasPermission = data.hasPermission;
-      if (data.hasPermission || data.applyBpStatus === 'AGREE') {
-        this.sendbp = this.send;
-      } else {
-        if (this.checkBPTip.indexOf('次数')) {
-          // krData.Alert.alert('已经超过每天可查看次数');
-          this.bp = function checkBPError() {
-            krData.Alert.alert('已经超过每天可查看次数');
-          };
-        } else {
-          this.bp = this.send;
-        }
-        this.sendbp = this.send;
-      }
+      this.sendbp = this.send;
     });
+  }
+
+  checkBp(e) {
+    if (this.hasPermission) {
+      if (this.applyBpStatus === BP_PERMISSION.MORE) {
+        this.bpDialogs();
+      } else {
+        krData.Alert.alert('其他情况还未处理');
+      }
+    } else {
+      e.preventDefault();
+    }
   }
   getMore() {
     this.relateUser = this.usrlist;

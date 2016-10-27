@@ -8,7 +8,8 @@ import { INDUSTRY_META } from '../filters/industry.filter';
 import commonInterceptor from '../base/commonInterceptor.service';
 import { getService, fromYear, getMonth } from '../base/utls';
 import SearchService from '../services/Search.service.js';
-/* eslint-disable no-param-reassign,no-use-before-define */
+const root = {};
+/* eslint-disable no-param-reassign,no-use-before-define,angular/on-watch */
 angular.module('@@app', ['@@app.routes', '@@app.components',
   'cgNotify', 'MassAutoComplete', 'ngSanitize',
   '@@app.constants', 'ngResource', '@@app.filters', '@app.services',
@@ -91,11 +92,19 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       duration: 2000,
     });
   })
+  .run(function run($rootScope) {
+    $rootScope.$on('$stateChangeSuccess',
+      function $stateChangeSuccess(event, toState, toParams, fromState, fromParams) {
+        root.fromParams = fromParams;
+        root.toParams = toParams;
+        root.toState = toState;
+        root.fromState = fromState;
+      });
+  })
   .run(function run($rootScope, $location, $injector,
     OPERATION_STATUS_META, COMPANY_NEWS_META, FINANCE_PHASE_META,
     CURRENCY_UNIT_META, ROLE_META, FINANCE_NEED_META, PROJECT_TYPE_META, FUNDS_PHASE_ENUM_META) {
     getService.injector = $injector;
-    const root = {};
     root.fromYear2000 = fromYear(2000);
     root.getAllMonths = getMonth(12);
     root.OPERATION_STATUS_META = OPERATION_STATUS_META;
@@ -117,7 +126,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     const searchInstance = new SearchService();
     root.autocompleteOptions = searchInstance.getSearchAutoCompleteOptions();
     root.searchRecord = searchInstance.searchRecord.bind(searchInstance);
-    root.onClick = searchInstance.onClickRow;
+    root.onClick = searchInstance.onClickRow.bind(searchInstance);
     root.searchOut = {};
     root.assets = assets;
     $rootScope.root = root;
