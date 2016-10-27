@@ -9,6 +9,7 @@ import ProductVM from './product.vm';
 import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
 const FINANCE_ALLOW = '1';
+const FINANCE_AUDITING = '2';
 const BP_PERMISSION = {
   APPLY: 'APPLY',
   AGREE: 'AGREE',
@@ -50,7 +51,7 @@ export default class ProjectIndexController {
     };
     this.projectService.fundState(id)
     .then(data => {
-      if (data.state === FINANCE_ALLOW) {
+      if (data.state === FINANCE_ALLOW || data.state === FINANCE_AUDITING) {
         this.fundsState = true;
       }
     });
