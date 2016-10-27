@@ -45,13 +45,19 @@
     <div class="form-group">
       <div class="select-inline">
         <label>公司规模</label>
+        <input ng-trim="false" ng-model="vm.projectData.baseInfo.scale" type="text" class="search" style="width: 140px">
         <select
           ng-options="item for item in root.SCALES_META"
-          class="form-control"  ng-model="vm.introductionVM.scale" >
+          class="form-control scale-select"  ng-model="vm.introductionVM.scale" >
           <option value="">请选择</option>
         </select>
       </div>
       <div class="select-inline select-margin">
+        <input type="text" ng-model="vm.projectData.baseInfo.scale" style="width: 140px" class="form-control scale-text" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="select-inline">
         <div><label class="address"><span class="required">*</span> 所在地</label>
         <span class="error-tip" id="messageAddress"></span></div>
         <select
@@ -77,4 +83,9 @@
     </div>
   </div>
 </div>
-
+<script type="text/javascript">
+  $('.scale-select').on('change',function(){
+    var val = $(this).val();
+    $('.scale-text').val(val.split(':')[1]);
+  })
+</script>

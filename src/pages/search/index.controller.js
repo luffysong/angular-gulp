@@ -4,10 +4,12 @@ function split(condition) {
   }
   return condition.split(',');
 }
-@Inject('$stateParams')
+@Inject('$stateParams', '$window', '$scope')
 export default class SearchIndexController {
   constructor() {
     this.init();
+    this.small = true;
+    this.onDestroy();
   }
 
   init() {
@@ -18,6 +20,12 @@ export default class SearchIndexController {
     this.phases = split($stateParams.phase);
     this.isFunding = $stateParams.isFundingLimit;
     this.cloumnId = $stateParams.id;
+  }
+
+  onDestroy() {
+    this.$scope.$on('$destroy', () => {
+      this.$window.widen();
+    });
   }
 
 

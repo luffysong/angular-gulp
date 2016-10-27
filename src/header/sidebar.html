@@ -50,18 +50,18 @@
 	var arr = local.split('/');
 	var objLi = document.getElementById('sidebar').getElementsByTagName('li');
 	function hasClass(obj, cls) {
-        return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
-    }
+    return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+  }
 	function addClass(obj, cls) {
-        if (!this.hasClass(obj, cls)) obj.className += " " + cls;
-    }
+    if (!hasClass(obj, cls)) obj.className += " " + cls;
+  }
 
-    function removeClass(obj, cls) {
-        if (hasClass(obj, cls)) {
-            var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
-            obj.className = obj.className.replace(reg, ' ');
-        }
+  function removeClass(obj, cls) {
+    if (hasClass(obj, cls)) {
+      var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+      obj.className = obj.className.replace(reg, ' ');
     }
+  }
 
 	for (var i = objLi.length - 1; i >= 0; i--) {
 		if(hasClass(objLi[i], arr[1])){
@@ -69,22 +69,13 @@
 		}
 	}
 
-	var objUl = document.getElementsByTagName("ul");
-  if(arr[1] === 'search'){
-    addClass(objUl[0],'narrow');
+	var objUl = document.querySelector('#sidebar');
+  function narrow(){
+     addClass(objUl,'narrow');
   }
-
-
-    function narrow(obj){
-      obj.addEventListener("click", function() {
-         addClass(objUl[0],'narrow');
-      });
-    }
-    function widen(obj){
-      obj.addEventListener("click", function() {
-         removeClass(objUl[0],'narrow');
-      });
-    }
+  function widen(){
+     removeClass(objUl,'narrow');
+  }
 </script>
 
 

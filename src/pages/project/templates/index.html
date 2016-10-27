@@ -1,4 +1,4 @@
-<div class="project-wrapper">
+<div ng-class="{small: searchVm.small || searchVm.tinly}" class="project-wrapper">
   <section class="base-info-wrapper">
     <div ng-if="!vm.baseInfoVM.isEdit" class="base-info-content">
       <div>
@@ -82,7 +82,7 @@
 
             <span id="messageFullName"
               class="error-tip"></span>
-            <input  ng-model="vm.baseInfoVM.fullName"
+            <input  ng-model="vm.baseInfoVM.remarkName"
               placeholder="请填写项目别名或曾用名，非必填"
               validator="notEqual=vm.baseInfoVM.name"
               message-id="messageFullName"
@@ -145,7 +145,7 @@
 
     </div>
   </section>
-  <section sticky offset="49" class="nav-wrapper">
+  <section ng-class="{small: searchVm.small, tinly: searchVm.tiny}" sticky offset="49" class="nav-wrapper">
     <nav>
       <ul class='navigate'>
         <li ng-show="vm.baseInfoVM.investAdvantage">

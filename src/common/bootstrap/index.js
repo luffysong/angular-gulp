@@ -3,13 +3,14 @@ import '../constants/index';
 import '../filters/index';
 import '../components/index.js';
 import '../services/index.js';
+import assets from '../assets/script.js';
 import { INDUSTRY_META } from '../filters/industry.filter';
 import commonInterceptor from '../base/commonInterceptor.service';
 import { getService, fromYear, getMonth } from '../base/utls';
 import SearchService from '../services/Search.service.js';
 /* eslint-disable no-param-reassign,no-use-before-define */
 angular.module('@@app', ['@@app.routes', '@@app.components',
-  'cgNotify', 'MassAutoComplete',
+  'cgNotify', 'MassAutoComplete', 'ngSanitize',
   '@@app.constants', 'ngResource', '@@app.filters', '@app.services',
   'validation', 'validation.rule',
 ]);
@@ -118,6 +119,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     root.searchRecord = searchInstance.searchRecord.bind(searchInstance);
     root.onClick = searchInstance.onClickRow;
     root.searchOut = {};
+    root.assets = assets;
     $rootScope.root = root;
   });
 angular.bootstrap(document, ['@@app'], { strictDi: true });

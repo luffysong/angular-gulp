@@ -35,8 +35,4 @@ function textMoreDirective() {
     },
   };
 }
-angular
-  .module('@@pages.project', [])
-  .directive('textMore', textMoreDirective);
-
 export default textMoreDirective;

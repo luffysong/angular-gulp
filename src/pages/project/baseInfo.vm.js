@@ -8,7 +8,7 @@ export default class BaseInfoVM extends krData.FormVM {
   }
 
   props = ['name',
-      'fullName:remarkName',
+      'remarkName',
       'website',
       'weibo',
       'weixin',
@@ -44,7 +44,7 @@ export default class BaseInfoVM extends krData.FormVM {
     const that = this;
     this.$scope.$watch('vm.baseInfoVM.name', function watchName(nv, ov) {
       if (nv !== ov) {
-        that.$validation.validate(that.form.fullName);
+        that.$validation.validate(that.form.remarkName);
       }
     });
   }
