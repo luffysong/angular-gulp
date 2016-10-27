@@ -97,6 +97,8 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       function $stateChangeSuccess(event, toState, toParams, fromState, fromParams) {
         root.fromParams = fromParams;
         root.toParams = toParams;
+        root.toState = toState;
+        root.fromState = fromState;
       });
   })
   .run(function run($rootScope, $location, $injector,

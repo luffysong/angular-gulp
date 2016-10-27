@@ -21,12 +21,13 @@ export default {
   controller: ProjectNavController,
   controllerAs: 'projectNavVm',
   template: `
-  <a href="javascript:;">
+  <a ui-sref="list.result({columnId: projectNavVm.list[0].id})">
     <span class="icon-Company kr-icon"></span>
     <span class="kr-tags">创业公司</span>
   </a>
   <ul class="column">
-    <li ui-sref="list.result({columnId:item.id})" ng-repeat="item in projectNavVm.list">
+    <li ng-class="{active: item.id === root.toParams.columnId}"
+     ui-sref="list.result({columnId:item.id})" ng-repeat="item in projectNavVm.list">
     {{item.name}}</li>
   </ul>`,
 };
