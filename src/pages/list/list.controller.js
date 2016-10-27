@@ -72,7 +72,7 @@ export default class listIndexController {
 
     this.currentPage++;
 
-    var params = Object.assign({columnId:0,p:this.currentPage},this.paramsFilter(this.paramsData));
+    var params = Object.assign({columnId:this.$stateParams.columnId || 0,p:this.currentPage},this.paramsFilter(this.paramsData));
     this.projectService.getColumn(params).then(data => {
       if(!data.pageData || !data.pageData){
         this.noMore = true;

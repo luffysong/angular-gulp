@@ -58,7 +58,7 @@ export default class listParentController {
 
     this.$scope.$on('get-change',(e,d) => {
       angular.extend(this.params,d);
-      var params = Object.assign({columnId:0},this.paramsFilter(this.params));
+      var params = Object.assign({columnId:this.params.columnId || 0},this.paramsFilter(this.params));
       this.projectService.getColumn(params).then(data => {
         this.$scope.$broadcast('get-list',data.pageData);
         this.data.label = data.label;
