@@ -25,7 +25,7 @@ export default class landingParentController {
       filter: false
     };
 
-    this.activeTab = 'company';
+    this.activeTab = this.$scope.type = 'company';
     this.searchList = [
       {
         name:'创业项目',
@@ -78,22 +78,7 @@ export default class landingParentController {
     this.$scope.$on('get-change',(e,d) => {
       angular.extend(this.params,d);
       var params = Object.assign({type: this.activeTab},this.paramsFilter(this.params));
-      this.projectService.searchCompany(params).then(data => {
-        console.log(data);
-        this.$scope.$broadcast('get-list',data.pageData);
-        this.data.label = data.label;
-        this.handleActive();
-        this.updateData(data);
-      });
-
-      /*this.projectService.getColumn(params).then(data => {
-        this.$scope.$broadcast('get-list',data.pageData);
-        this.data.label = data.label;
-        this.handleActive();
-        this.updateData(data);
-      });*/
-
-      /*this.handleActive();*/
+      this.searchCompany(params);
     });
 
     this.getCity();
@@ -104,8 +89,27 @@ export default class landingParentController {
 
     this.getPhase();
 
-    //this.getisFundingLimit();
+    this.getAll();
 
+  }
+
+  searchCompany(params) {
+    this.projectService.searchCompany(params).then(data => {
+      this.$scope.$broadcast('get-list',data.pageData);
+      this.data.label = data.label;
+      this.handleActive();
+      this.updateData(data);
+    });
+  }
+
+  getAll() {
+    this.projectService.searchCompany({
+      type: 'all-count'
+    }).then(data => {
+      angular.forEach(this.searchList,item => {
+        item.cnt = data[item.value+'Cnt'];
+      })
+    });
   }
 
   /*创业项目、投资人、投资机构切换*/
@@ -114,8 +118,13 @@ export default class landingParentController {
     angular.forEach(this.searchList,(item,i) => {
       if(index == i){
         item.active = true;
-        this.activeTab = item.value;
-        this.$scope.$broadcast('change-type',this.activeTab);
+        this.activeTab = this.$scope.tab = item.value;
+        var params = Object.assign({type: this.activeTab},this.paramsFilter(this.params));
+        this.searchCompany(params);
+        angular.forEach(this.params,(val,key) => {
+          this.params[key] = null;
+        });
+        this.go();
       }else {
         item.active = false;
       }

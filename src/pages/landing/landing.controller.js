@@ -31,15 +31,23 @@ export default class landingIndexController {
       this.listData = d;
     });
 
-    this.$scope.$on('change-type',(e,t) => {
+    /*this.$scope.$on('change-type',(e,t) => {
       this.activeTab = t;
+    });*/
+
+    this.$scope.$watch('tab', val => {
+      if(!val){
+        this.tab = 'company';
+      }else {
+        this.tab = val;
+      }
     });
 
     this.handleActive();
 
-
-
   }
+
+
 
   /*根据路由参数激活*/
   handleActive() {
@@ -72,15 +80,17 @@ export default class landingIndexController {
     });
   };
 
+
+
   loadMore ()  {
     if(this.dataLoading)return;
     this.dataLoading = true;
 
     this.currentPage++;
 
-    var params = Object.assign({type: this.activeTab,p:this.currentPage},this.paramsFilter(this.paramsData));
+    var params = Object.assign({type: this.$scope.tab || 'company',p:this.currentPage},this.paramsFilter(this.paramsData));
     this.projectService.searchCompany(params).then(data => {
-      if(!data.pageData || !data.pageData){
+      if(!data.pageData || !data.pageData.data){
         this.noMore = true;
         return;
       }
