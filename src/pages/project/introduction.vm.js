@@ -13,7 +13,7 @@ export default class IntroductionVM extends krData.FormVM {
   initData(data) {
     this.mapProps(this.props, data, this);
     this.startDate = parseInt(data.startDateDesc, 10);
-    this.operationStatus = krData.META.OPERATION_STATUS.OPEN;
+    this.operationStatus = data.operationStatusEnum || krData.META.OPERATION_STATUS.OPEN;
     this.scale = data.scale;
     this.loadArea0();
     this.watch();
