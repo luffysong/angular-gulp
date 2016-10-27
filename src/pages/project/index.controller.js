@@ -15,12 +15,15 @@ const BP_PERMISSION = {
   REFUSE: 'REFUSE',
 };
 
+const BP_PERMISSION_MORE_CODE = 100;
 @Inject('$stateParams', 'projectService', 'ngDialog', 'resolveData',
   '$validation', '$scope', '$sce', '$state', '$q', '$filter')
 export default class ProjectIndexController {
   constructor() {
     this.init();
   }
+  bpError = {};
+  userId;
   projectData = this.resolveData.projectData;
   init() {
     if (this.projectData) {
@@ -41,7 +44,6 @@ export default class ProjectIndexController {
     this.getUser();
     this.getfundsState(this.id);
   }
-  userId;
   getfundsState(cid) {
     const id = {
       id: cid,
@@ -136,11 +138,12 @@ export default class ProjectIndexController {
   }
 
 
-  bpDialogs() {
+  bpDialogs(className = '') {
     const vm = this;
     function BPController() {
       this.applyBpStatus = vm.applyBpStatus;
       this.id = vm.id;
+      this.projectVm = vm;
       this.BPCancle = function BPCancle() {
         vm.bpDialog.close();
       };
@@ -157,6 +160,7 @@ export default class ProjectIndexController {
     vm.bpDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/project/templates/checkBP.html\'" center></div>',
       plain: true,
+      appendClassName: className,
       appendTo: '.project-wrapper',
       controller: BPController,
       controllerAs: 'vm',
@@ -247,19 +251,31 @@ export default class ProjectIndexController {
       this.applyBpStatus = data.applyBpStatus;
       this.hasPermission = data.hasPermission;
       this.sendbp = this.send;
+    })
+    .catch((err) => {
+      this.bpError = err;
+    }).finally(() => {
+      this.bpPermisstionChecked = true;
     });
   }
 
+  isViewMore() {
+    return this.bpError.code === BP_PERMISSION_MORE_CODE;
+  }
+
   checkBp(e) {
-    if (this.hasPermission) {
-      if (this.applyBpStatus === BP_PERMISSION.MORE) {
-        this.bpDialogs();
-      } else {
-        krData.Alert.alert('其他情况还未处理');
-      }
-    } else {
+    if (!this.bpPermisstionChecked || this.hasPermission) {
       e.preventDefault();
+      return;
     }
+    if (this.isViewMore()) {
+      this.bpDialogs('bp-view-more-wrapper');
+    } else if (this.applyBpStatus === BP_PERMISSION.REFUSE) {
+      krData.Alert.alert('创业者拒绝查看BP');
+    } else if (this.applyBpStatus === BP_PERMISSION.APPLY) {
+      this.bpDialog();
+    }
+    e.preventDefault();
   }
   getMore() {
     this.relateUser = this.usrlist;

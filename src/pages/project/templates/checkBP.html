@@ -1,4 +1,4 @@
-<div class="bp">
+<div ng-if="!vm.projectVm.isViewMore()" class="bp">
   <span class="icon-dialogClose" ng-click="vm.BPCancle()"></span>
   <span class="t-header">
     <p class="line-1">项目的BP需要获得创业者同意才可查看
@@ -21,4 +21,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="bp" ng-if="vm.projectVm.isViewMore()" >
+  <span class="icon-dialogClose" ng-click="vm.BPCancle()"></span>
+  <p class="line-1">查看BP次数已达今日浏览上限</p>
+  <p>* 为确保创业者权益，每日可最多查看20个项目BP</p>
 </div>
