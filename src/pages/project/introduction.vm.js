@@ -19,6 +19,15 @@ export default class IntroductionVM extends krData.FormVM {
     this.watch();
   }
 
+  setData(data) {
+    this.originalData = {};
+    angular.copy(data, this.originalData);
+  }
+
+  recovery() {
+    angular.extend(this, this.originalData);
+  }
+
   watch() {
     this.$scope.$watch(() => this.address1, (nv) => {
       if (angular.isDefined(nv)) {
@@ -45,6 +54,7 @@ export default class IntroductionVM extends krData.FormVM {
         id: this.id,
       }, this.mapProps(this.props, this))
       .then(() => {
+        this.recovery();
         krData.Alert.success('数据保存成功');
         this.isEdit = !this.isEdit;
       });
