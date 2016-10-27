@@ -1,8 +1,8 @@
 @import "../../../common/styles/function";
 @import "./var";
 .similar-item{
-	.project-var();
-	background-color: @bg-color;
+  .project-var();
+  background-color: @bg-color;
   .h-name{
     .font(16,24);
     color: #222C38;
@@ -17,42 +17,43 @@
       top: 0;
     }
   }
-	.h-title{
-		background: #FFFFFF;
-		border: 1px solid #E7E7E7;
-		border-radius: 4px;
-		display: inline-block;
-		float: right;
-		li{
-			display: inline-block;
+  .h-title{
+    background: #FFFFFF;
+    border: 1px solid #E7E7E7;
+    border-radius: 4px;
+    display: inline-block;
+    float: right;
+    max-width: 600px;
+    li{
+      display: inline-block;
       .font(12,18);
-			color: #222C38;
-			letter-spacing: 0px;
-			padding:4px 12px;
-			border-right: 1px solid #E7E7E7;
+      color: #222C38;
+      letter-spacing: 0px;
+      padding:4px 12px;
+      border-right: 1px solid #E7E7E7;
       float: left;
       cursor: pointer;
-		}
-		li:last-child{
-			border-right: none;
-		}
-		.active{
-			background: #E5EBF0;
-		}
-	}
-	.content{
-		.item-list{
-			width: 100%;
-			text-align: center;
-			font-size: 14px;
-			border-collapse:collapse;
-			margin-top: 20px;
-			.content-head{
-				background: #F9F9F9;
-				color:@text-color;
-				td{
-					padding:12px 0;
-				}
+    }
+    li:last-child{
+      border-right: none;
+    }
+    .active{
+      background: #E5EBF0;
+    }
+  }
+  .content{
+    .item-list{
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      border-collapse:collapse;
+      margin-top: 20px;
+      .content-head{
+        background: #F9F9F9;
+        color:@text-color;
+        td{
+          padding:12px 0;
+        }
         .item{
           width: 35%;
           min-width: 300px;
@@ -67,15 +68,15 @@
           width: 30%;
           max-width: 340px;
         }
-			}
-			.content-body{
+      }
+      .content-body{
         tr{
           border-bottom: 1px solid #F2F4F5;
         }
-				td{
-					padding: 12px 20px;
+        td{
+          padding: 12px 20px;
           padding-right: 0;
-				}
+        }
         td.invest{
           padding: 0;
           .font(14,21);
@@ -89,7 +90,7 @@
           color: #5A626D;
           padding-left: 0;
         }
-				.item-info{
+        .item-info{
           text-align: left;
           min-width: 300px;
           img{
@@ -138,7 +139,7 @@
               color: #6BA2FC;
             }
           }
-				}
+        }
         .related-info{
           max-width: 340px;
           min-width: 295px;
@@ -152,7 +153,7 @@
             line-height: 21px;
           }
         }
-			}
+      }
         .similarity{
           .font(14,21);
           color: #5A626D;
@@ -193,7 +194,7 @@
             transform:scale(0.7,0.7) rotate(180deg);
           }
         }
-			}
+      }
       .t-foot{
         text-align: center;
         padding-top: 30px;
@@ -211,7 +212,7 @@
         .font(12,28);
 
       }
-		}
+    }
   .none-list{
     padding: 30px 0;
     padding-top: 40px;
