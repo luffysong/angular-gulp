@@ -31,7 +31,13 @@ export default class landingIndexController {
       this.listData = d;
     });
 
+    this.$scope.$on('change-type',(e,t) => {
+      this.activeTab = t;
+    });
+
     this.handleActive();
+
+
 
   }
 
@@ -72,8 +78,8 @@ export default class landingIndexController {
 
     this.currentPage++;
 
-    var params = Object.assign({columnId:0,p:this.currentPage},this.paramsFilter(this.paramsData));
-    this.projectService.getColumn(params).then(data => {
+    var params = Object.assign({type: this.activeTab,p:this.currentPage},this.paramsFilter(this.paramsData));
+    this.projectService.searchCompany(params).then(data => {
       if(!data.pageData || !data.pageData){
         this.noMore = true;
         return;
@@ -83,14 +89,16 @@ export default class landingIndexController {
       });
       this.dataLoading = false;
     });
-
-    /*this.$timeout(() => {
-      var last = this.listData[this.listData.length - 1];
-      for(var i = 1; i <= 8; i++) {
-        this.listData.data.push(last + i);
+    /*this.projectService.getColumn(params).then(data => {
+      if(!data.pageData || !data.pageData){
+        this.noMore = true;
+        return;
       }
+      angular.forEach(data.pageData.data,(item) => {
+        this.listData.data.push(item);
+      });
       this.dataLoading = false;
-    },500);*/
+    });*/
   }
 
   change (item,index) {

@@ -121,8 +121,8 @@ export default class listParentController {
   handleActive () {
     this.dataInit();
     angular.forEach(this.params,(val,key) => {
-      if(val && val.split(',').length > 1){
-        angular.forEach(val.split(','),(a) => {
+      if(val && String(val).split(',').length > 1){
+        angular.forEach(String(val).split(','),(a) => {
           angular.forEach(this.data[key],(item,index) => {
             if(item.value+'' === a+'' || item.id+'' === a+'') {
               item.active = true;

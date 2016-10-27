@@ -209,6 +209,13 @@ export default class ProjectService extends API {
     });
   }
 
+  searchCompany(obj) {
+    const type = obj.type;
+    delete obj.type;
+    console.log(obj);
+    return new API('/search/'+type+'?' + $.param(obj)).get();
+  }
+
   // 设置接收BP的邮箱
   addBPEmail(emai) {
     const email = {

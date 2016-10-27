@@ -3,49 +3,75 @@
     项目列表 ＞ 搜索 “36”
   </div>
   <ul class="search-list">
-    <li class="active">
-      创业项目<span class="list-number">(280)</span>
-    </li>
-    <li>
-      投资人<span class="list-number">(280)</span>
-    </li>
-    <li>
-      投资机构<span class="list-number">(45)</span>
+    <li ng-repeat="item in parentVm.searchList" ng-class="{'active':item.active}" ng-click="parentVm.switchType($index)">
+      {{item.name}}<span class="list-number">({{item.cnt}})</span>
     </li>
   </ul>
   <div class="filter-list default-show" ng-if="!parentVm.open.filter">
-    <div class="filter-col">
+    <div class="filter-col" ng-show="parentVm.activeTab === 'company'">
       <div class="col-default">
-        <div class="col-default">
-          行业
-        </div>
-        <div class="col-val">
-          不限
-        </div>
-        <div class="col-default">
-          标签
-        </div>
-        <div class="col-val">
-          不限
-        </div>
-        <div class="col-default">
-          轮次
-        </div>
-        <div class="col-val">
-          不限
-        </div>
-        <div class="col-default">
-          所在地
-        </div>
-        <div class="col-val">
-          不限
-        </div>
-        <div class="col-default">
-          融资需求
-        </div>
-        <div class="col-val">
-          不限
-        </div>
+        行业
+      </div>
+      <div class="col-val">
+        不限
+      </div>
+      <div class="col-default">
+        标签
+      </div>
+      <div class="col-val">
+        不限
+      </div>
+      <div class="col-default">
+        轮次
+      </div>
+      <div class="col-val">
+        不限
+      </div>
+      <div class="col-default">
+        所在地
+      </div>
+      <div class="col-val">
+        不限
+      </div>
+      <div class="col-default">
+        融资需求
+      </div>
+      <div class="col-val">
+        不限
+      </div>
+    </div>
+    <div class="filter-col" ng-show="parentVm.activeTab === 'user'">
+      <div class="col-default">
+        行业
+      </div>
+      <div class="col-val">
+        不限
+      </div>
+      <div class="col-default">
+        偏好轮次
+      </div>
+      <div class="col-val">
+        不限
+      </div>
+      <div class="col-default">
+        所在地
+      </div>
+      <div class="col-val">
+        不限
+      </div>
+    </div>
+    <div class="filter-col" ng-show="parentVm.activeTab === 'org'">
+      <div class="col-default">
+        行业
+      </div>
+      <div class="col-val">
+        不限
+      </div>
+      <div class="col-default">
+        轮次
+      </div>
+      <div class="col-val">
+        不限
       </div>
     </div>
   </div>
@@ -73,7 +99,7 @@
       </div>
     </div>
   </div>
-  <div class="filter-list" ng-if="parentVm.open.filter">
+  <div class="filter-list" ng-if="parentVm.open.filter && parentVm.activeTab === 'company'">
     <div class="filter-col">
       <div class="col-type">
         标签
@@ -113,7 +139,7 @@
       </div>
     </div>
   </div>
-  <div class="filter-list" ng-if="parentVm.open.filter">
+  <div class="filter-list" ng-if="parentVm.open.filter && parentVm.activeTab !== 'org'">
     <div class="filter-col">
       <div class="col-type">
         所在地
@@ -133,7 +159,7 @@
       </div>
     </div>
   </div>
-  <div class="filter-list" ng-if="parentVm.open.filter">
+  <div class="filter-list" ng-if="parentVm.open.filter && parentVm.activeTab === 'company'">
     <div class="filter-col">
       <div class="col-type">
         融资需求

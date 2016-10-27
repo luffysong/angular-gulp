@@ -12,7 +12,7 @@ const landingView = {
 };
 
 const landing = {
-  url: '/detail?{city}&{phase}&{industry}&{label}&{isFundingLimit}&{open}',
+  url: '/detail?{city}&{phase}&{industry}&{label}&{isFundingLimit}&{open}&{searchType}',
   templateUrl: '/pages/landing/templates/result.html',
   controllerAs: 'vm',
   controller: 'landingIndexController',

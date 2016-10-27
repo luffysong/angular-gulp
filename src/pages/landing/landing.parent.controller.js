@@ -25,7 +25,26 @@ export default class landingParentController {
       filter: false
     };
 
-    /*this.itemList = ['industry','phase','city'];*/
+    this.activeTab = 'company';
+    this.searchList = [
+      {
+        name:'创业项目',
+        value: 'company',
+        cnt: 280,
+        active:true
+      },{
+        name:'投资人',
+        value: 'user',
+        cnt: 280,
+        active:false
+      },{
+        name:'投资机构',
+        value: 'org',
+        cnt: 280,
+        active:false
+      }
+    ];
+
 
     this.itemList = [
       {
@@ -58,16 +77,23 @@ export default class landingParentController {
 
     this.$scope.$on('get-change',(e,d) => {
       angular.extend(this.params,d);
-      var params = Object.assign({columnId:0},this.paramsFilter(this.params));
-      this.projectService.getColumn(params).then(data => {
+      var params = Object.assign({type: this.activeTab},this.paramsFilter(this.params));
+      this.projectService.searchCompany(params).then(data => {
+        console.log(data);
         this.$scope.$broadcast('get-list',data.pageData);
         this.data.label = data.label;
         this.handleActive();
-        /*this.data.isFundingLimit = data.funding;*/
         this.updateData(data);
       });
 
-      this.handleActive();
+      /*this.projectService.getColumn(params).then(data => {
+        this.$scope.$broadcast('get-list',data.pageData);
+        this.data.label = data.label;
+        this.handleActive();
+        this.updateData(data);
+      });*/
+
+      /*this.handleActive();*/
     });
 
     this.getCity();
@@ -80,6 +106,20 @@ export default class landingParentController {
 
     //this.getisFundingLimit();
 
+  }
+
+  /*创业项目、投资人、投资机构切换*/
+  switchType(index) {
+    if(this.searchList[index].active)return;
+    angular.forEach(this.searchList,(item,i) => {
+      if(index == i){
+        item.active = true;
+        this.activeTab = item.value;
+        this.$scope.$broadcast('change-type',this.activeTab);
+      }else {
+        item.active = false;
+      }
+    });
   }
 
 
@@ -177,7 +217,7 @@ export default class landingParentController {
 
   /*state跳转*/
   go () {
-    this.$state.go('list.result', this.params);
+    this.$state.go('landing.result', this.params);
   }
 
   /*增加默认数据*/
