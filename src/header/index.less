@@ -2,6 +2,16 @@
 @padding-left: 20px;
 @anchor-color: #6BA2FC;
 @text-color: #5A626D;
+
+.rz-header-wrapper, .rz-sidebar-wrapper {
+  * {
+    box-sizing: border-box;
+  }
+  li {
+    list-style: none;
+  }
+
+}
 .rz-header-wrapper {
   height: @top-height;
   position: fixed;
@@ -116,7 +126,7 @@
 
 // sidebar start
 .rz-sidebar-wrapper{
-  ul{
+  &>ul{
     position: fixed;
     left: 0;
     top: 0;
@@ -129,19 +139,40 @@
     color: #969fa9;
     z-index: 8001;
   }
-  li{
-    list-style: none;
+  &>ul>li{
+    position: relative;
     height: 48px;
     font-size: 14px;
     line-height: 48px;
-    border-left: 3px solid transparent;
-
+    &.project {
+      height: auto;
+    }
     .kr-icon{
       vertical-align: sub;
       font-size: 18px;
       &:before{
         padding-top: 2px;
       }
+    }
+    ul.column {
+      padding-left: 37px;
+      padding-bottom: 14px;
+      li {
+        cursor: pointer;
+        line-height: 18px;
+        height: 18px;
+        font-size: 12px;
+        margin-top: 14px;
+        &:before {
+          width: 3px;
+          height: 3px;
+          content: "";
+          display: inline-block;
+          margin-right: 8px;
+          vertical-align: middle;
+        }
+      }
+
     }
     a{
       text-decoration:none;
@@ -151,7 +182,17 @@
     }
   }
   .active{
-    border-left: 3px solid #6ea4f9;
+    &:before {
+      width: 3px;
+      height: 48px;
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 48px;
+      background: #6ea4f9;
+
+    }
     background-color: #24272E;
     .kr-icon{
       color: #FFF;
@@ -190,6 +231,7 @@
       text-align: center;
       color: @anchor-color;
       font-size: 14px;
+      width: 400px;
       span:hover {
         text-decoration: underline;
       }

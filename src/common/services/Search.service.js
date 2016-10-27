@@ -20,10 +20,10 @@ function makeCreateProjectHtml(name) {
       </p>
     `);
 }
-function makeProjectHtml(project, isFirst, isLast, kw) {
-  return getService('$sce').trustAsHtml(`
+function makeProjectHtml(project, isFirst, isLast) {
+  return `
   ${isFirst ? '<h4>项目</h4>' : ''}
-  <div class="search-row">
+  <div  class="search-row">
     <img src="${project.logo}" >
     <div class="search-entity-text">
       <p>
@@ -34,13 +34,13 @@ function makeProjectHtml(project, isFirst, isLast, kw) {
     </div>
   </div>
   ${isLast ?
-    '<h4 data-action="searchProject" data-type="button" class="search-more">搜索更多项目</h4>' :
+    '<h4  class="search-more kr-button searchProject">搜索更多项目</h4>' :
    ''}
-    `);
+    `;
 }
 
-function makeUserHtml(user, isFirst, isLast, kw) {
-  return getService('$sce').trustAsHtml(`
+function makeUserHtml(user, isFirst, isLast) {
+  return `
   ${isFirst ? '<h4>投资人</h4>' : ''}
   <div class="search-row">
     <img class="investor-avatar" src="${user.logo}" >
@@ -54,12 +54,12 @@ function makeUserHtml(user, isFirst, isLast, kw) {
     </div>
   </div>
   ${isLast ?
-    '<h4 data-action="searchInvestor" data-type="button" class="search-more">搜索更多投资人</h4>' :
+    '<h4  class="search-more kr-button searchInvestor">搜索更多投资人</h4>' :
    ''}
-    `);
+    `;
 }
-function makeOrgHtml(org, isFirst, isLast, kw) {
-  return getService('$sce').trustAsHtml(`
+function makeOrgHtml(org, isFirst, isLast) {
+  return `
   ${isFirst ? '<h4>机构</h4>' : ''}
   <div class="search-row">
     <img src="${org.logo}" >
@@ -71,9 +71,9 @@ function makeOrgHtml(org, isFirst, isLast, kw) {
     </div>
   </div>
   ${isLast ?
-    '<h4 data-action="searchOrg" data-type="button" class="search-more">搜索更多投资机构</h4>' :
+    '<h4  class="search-more searchOrg kr-button">搜索更多投资机构</h4>' :
    ''}
-    `);
+    `;
 }
 export default class SearchService {
   RESULT_TYPE = RESULT_TYPE;
@@ -153,12 +153,16 @@ export default class SearchService {
   }
 
   onClickRow($event, item) {
+    item = item || {};
     $event.preventDefault();
     const target = $event.target;
-    if(target.dataset.action === 'searchProject') {
-      getService('$state').go('list')
-    } else if (target.dataset.action === 'searchInvestor') {
-    } else if (target.dataset.action === 'searchOrg'){
+    if (target.classList.contains('searchProject')) {
+      getService('$state').go('list');
+      this.historyApi.save(null, {
+        kw: getService('$rootScope').root.kw,
+      });
+    } else if (target.classList.contains('searchInvestor')) {
+    } else if (target.classList.contains('searchOrg')) {
     }
   }
 
@@ -167,7 +171,7 @@ export default class SearchService {
     this.historyApi.save(null, {
       kw,
     });
-    getService('$state').go('list')
+    getService('$state').go('list');
   }
 
   onSelect(item, value) {

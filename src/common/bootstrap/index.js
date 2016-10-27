@@ -117,7 +117,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     const searchInstance = new SearchService();
     root.autocompleteOptions = searchInstance.getSearchAutoCompleteOptions();
     root.searchRecord = searchInstance.searchRecord.bind(searchInstance);
-    root.onClick = searchInstance.onClickRow;
+    root.onClick = searchInstance.onClickRow.bind(searchInstance);
     root.searchOut = {};
     root.assets = assets;
     $rootScope.root = root;

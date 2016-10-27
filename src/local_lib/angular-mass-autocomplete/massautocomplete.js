@@ -312,7 +312,7 @@ angular.module('MassAutoComplete', [])
 						if (!$scope.show_autocomplete || i > $scope.results.length || i < 0)
 							return;
 
-            if($event && $event.target.dataset.type === 'button') {
+            if($event && $event.target.classList.contains('kr-button')) {
               $scope.show_autocomplete = false;
               return ;
             }
