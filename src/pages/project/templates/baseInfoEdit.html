@@ -45,6 +45,7 @@
     <div class="form-group">
       <div class="select-inline">
         <label>公司规模</label>
+        <input ng-trim="false" ng-model="vm.projectData.baseInfo.scale" type="text" class="search" style="width: 140px">
         <select
           ng-options="item for item in root.SCALES_META"
           class="form-control scale-select"  ng-model="vm.introductionVM.scale" >
