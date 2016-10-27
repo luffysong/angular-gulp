@@ -13,11 +13,22 @@
           <div class="info" ng-if="vm.productVM.data.companyProduct.desc!==''">{{vm.productVM.data.companyProduct.desc}}</div>
           <div class="all-links">
             <!-- <a ng-href="{{vm.productVM.data.companyProduct.}}"><span class="kr-icon icon-Weibo"></span></a> -->
-            <a ng-if="vm.productVM.data.companyProduct.weixin!==''" ng-href="{{vm.productVM.data.companyProduct.weixin}}"><span class="kr-icon icon-Wechat"></span></a>
-            <a ng-if="vm.productVM.data.companyProduct.ios!==''" ng-href="{{vm.productVM.data.companyProduct.ios}}" target="_blank"><span class="kr-icon icon-Apple"></span></a>
-            <a ng-if="vm.productVM.data.companyProduct.android!==''" ng-href="{{vm.productVM.data.companyProduct.android}}" target="_blank"><span class="kr-icon icon-Andriod"></span></a>
+            <a ng-if="vm.productVM.data.companyProduct.weixin"
+              tooltips
+              tooltip-smart="true"
+              tooltip-template="{{vm.productVM.data.companyProduct.weixin}}"
+              tooltip-class="tooltip"
+              ><span class="kr-icon icon-Wechat"></span></a>
+            <a ng-if="vm.productVM.data.companyProduct.ios!==''"
+              ng-href="{{vm.productVM.data.companyProduct.ios}}" target="_blank"><span class="kr-icon icon-Apple"></span>
+            </a>
+            <a ng-if="vm.productVM.data.companyProduct.android!==''"
+              ng-href="{{vm.productVM.data.companyProduct.android}}" target="_blank">
+              <span class="kr-icon icon-Andriod"></span></a>
             <span class="kr-icon icon-websitelink" ng-if="vm.productVM.data.companyProduct.website!==''"></span>
-            <a target="_blank" ng-href="{{vm.productVM.data.companyProduct.website}}" ng-if="vm.productVM.data.companyProduct.website!==''" class="website-link">{{vm.productVM.data.companyProduct.website}}</a>
+            <a target="_blank" ng-href="{{vm.productVM.data.companyProduct.website}}"
+              ng-if="vm.productVM.data.companyProduct.website!==''" class="website-link">
+              {{vm.productVM.data.companyProduct.website}}</a>
           </div>
         </div>
       </div>

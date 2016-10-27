@@ -53,14 +53,13 @@
             text-overflow: ellipsis;
           }
           .all-links{
-            // width: 654px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow:ellipsis;
             .kr-icon{
               font-size: 20px;
               display: inline-block;
               vertical-align: middle;
+            }
+            .tooltip {
+              margin-left: -4px;
             }
             .icon-Weibo{
               color: #EF0000;
@@ -85,9 +84,11 @@
             }
             .website-link{
               cursor: pointer;
+              max-width: 340px;
               white-space: nowrap;
-
               overflow: hidden;
+              .dlk();
+              vertical-align: middle;
               text-overflow:ellipsis;
             }
           }
