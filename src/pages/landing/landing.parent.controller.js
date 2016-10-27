@@ -5,7 +5,7 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('listIndexService', '$timeout', '$window','$stateParams','$state','$scope')
+@Inject('landingIndexService', '$timeout', '$window','$stateParams','$state','$scope')
 export default class landingParentController {
 
   constructor() {

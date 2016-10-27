@@ -1,6 +1,58 @@
 <div class="filter-container">
+  <div class="search-keyword">
+    项目列表 ＞ 搜索 “36”
+  </div>
+  <ul class="search-list">
+    <li class="active">
+      创业项目<span class="list-number">(280)</span>
+    </li>
+    <li>
+      投资人<span class="list-number">(280)</span>
+    </li>
+    <li>
+      投资机构<span class="list-number">(45)</span>
+    </li>
+  </ul>
+  <div class="filter-list default-show" ng-if="!parentVm.open.filter">
+    <div class="filter-col">
+      <div class="col-default">
+        <div class="col-default">
+          行业
+        </div>
+        <div class="col-val">
+          不限
+        </div>
+        <div class="col-default">
+          标签
+        </div>
+        <div class="col-val">
+          不限
+        </div>
+        <div class="col-default">
+          轮次
+        </div>
+        <div class="col-val">
+          不限
+        </div>
+        <div class="col-default">
+          所在地
+        </div>
+        <div class="col-val">
+          不限
+        </div>
+        <div class="col-default">
+          融资需求
+        </div>
+        <div class="col-val">
+          不限
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div class="spread-btn" ng-click="parentVm.open.filter = !parentVm.open.filter"></div>
-  <div class="filter-list">
+  <div class="filter-list" ng-if="parentVm.open.filter">
     <div class="filter-col">
       <div class="col-type">
         行业
@@ -21,7 +73,7 @@
       </div>
     </div>
   </div>
-  <div class="filter-list">
+  <div class="filter-list" ng-if="parentVm.open.filter">
     <div class="filter-col">
       <div class="col-type">
         标签
@@ -41,7 +93,7 @@
       </div>
     </div>
   </div>
-  <div class="filter-list">
+  <div class="filter-list" ng-if="parentVm.open.filter">
     <div class="filter-col">
       <div class="col-type">
         轮次
