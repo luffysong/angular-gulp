@@ -41,7 +41,10 @@ export default class MemberVM extends krData.FormVM {
     this.members = this.getList(this.members, this.data.members, 1);
   }
 
-  setData() {
+
+  setData(data) {
+    this.originalData = {};
+    angular.copy(data, this.originalData);
     function keyup(e) {
       if (e.keyCode === 13) {
         this.teamTags.forEach((value) => {
@@ -64,6 +67,12 @@ export default class MemberVM extends krData.FormVM {
     this.keyup = keyup;
     this.deletetag = deletetag;
   }
+
+  recovery() {
+    angular.extend(this, this.originalData);
+    angular.extend(this.data, this.originalData);
+  }
+
   save() {
     const form = {
       story: this.story,

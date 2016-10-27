@@ -13,10 +13,19 @@ export default class IntroductionVM extends krData.FormVM {
   initData(data) {
     this.mapProps(this.props, data, this);
     this.startDate = parseInt(data.startDateDesc, 10);
-    this.operationStatus = krData.META.OPERATION_STATUS.OPEN;
+    this.operationStatus = data.operationStatusEnum || krData.META.OPERATION_STATUS.OPEN;
     this.scale = data.scale;
     this.loadArea0();
     this.watch();
+  }
+
+  setData(data) {
+    this.originalData = {};
+    angular.copy(data, this.originalData);
+  }
+
+  recovery() {
+    angular.extend(this, this.originalData);
   }
 
   watch() {
@@ -45,6 +54,7 @@ export default class IntroductionVM extends krData.FormVM {
         id: this.id,
       }, this.mapProps(this.props, this))
       .then(() => {
+        this.recovery();
         krData.Alert.success('数据保存成功');
         this.isEdit = !this.isEdit;
       });
