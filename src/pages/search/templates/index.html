@@ -1,44 +1,37 @@
 <div class="search-wrapper">
   <div class="search-list-wrapper">
-    <div class="condition-wrapper">
-       <ul>
-         <li ng-if="searchVm.isFunding">融资中</li>
-         <li ng-repeat="item in searchVm.phases">{{item | financePhase}}</li>
-         <li ng-repeat="item in searchVm.cities">{{item | city}}</li>
-         <li ng-repeat="item in searchVm.industries">{{item | industry}}</li>
-         <li ng-repeat="item in searchVm.labels">{{item}}</li>
-      </ul>
-    </div>
-    <div class="search-project-list">
-      <ul>
-        <li>
-          <img width="42" ng-src="/images/default-logo.png" alt=""/>
-          <div class="text-info-wrapper">
-            <p class="clear"><span class="name mr10">36氪</span
-                ><span class="hot">热</span
-                ><span class="funding">融资中</span
-                ><span class="time">今天</span>
-            </p>
-            <p>为创业者提供最好的产品和服务</p>
-            <p><span class="icon-Tags"></span><span>电子商务 · 社交媒体</span></p>
-            <p><span class="icon-hot"></span>联系创业者 政府IP专家顾问</p>
-          </div>
-        </li>
-
-        <li>
-          <img width="42" ng-src="/images/default-logo.png" alt=""/>
-          <div class="text-info-wrapper">
-            <p class="clear"><span class="name mr10">36氪</span
-                ><span class="hot">热</span
-                ><span class="funding">融资中</span
-                ><span class="time">今天</span>
-            </p>
-            <p>为创业者提供最好的产品和服务</p>
-            <p><span class="icon-industry"></span><span>电子商务 · 社交媒体</span></p>
-            <p><span class="icon-hot"></span>联系创业者 政府IP专家顾问</p>
-          </div>
-        </li>
-      </ul>
+    <div
+        infinite-scroll="searchVm.columnOptions.loadMore()"
+        infinite-scroll-container="'.search-list-wrapper'"
+        infinite-scrollUse-document-bottom="false"
+        infinite-scroll-distance="3"
+      >
+      <div class="condition-wrapper">
+         <ul>
+           <li ng-if="searchVm.columnOptions.isFunding">融资中</li>
+           <li ng-repeat="item in searchVm.columnOptions.tags">{{item}}</li>
+        </ul>
+      </div>
+      <div
+        class="search-project-list">
+        <ul>
+          <li ng-repeat="item in searchVm.columnOptions.companies">
+            <a ui-sref="home({id: item.id})" >
+              <img width="42" height="42" ng-src="{{item.logo || '/images/default-logo.png'}}" alt=""/>
+            </a>
+            <div class="text-info-wrapper">
+              <p class="clear"><span class="name mr10">{{item.name}}</span
+                  ><span ng-if="item.hot" class="hot">热</span
+                  ><span ng-if="item.funding" class="funding">融资中</span
+                  ><span class="time">今天</span>
+              </p>
+              <p>{{item.brief}}</p>
+              <p><span class="icon-Tags"></span><span>item.industryStr</span></p>
+              <p><span class="icon-hot"></span>联系创业者 政府IP专家顾问</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 

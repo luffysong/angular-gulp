@@ -3,9 +3,10 @@ import krData from 'krData';
 export default function krColumn3Directive($window) {
   return {
     scope: {
-
+      columnOptions: '=',
     },
     controllerAs: 'searchVm',
+    bindToController: true,
     controller: 'SearchIndexController',
     templateUrl: '/pages/search/templates/index.html',
     link: postLink,
