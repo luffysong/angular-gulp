@@ -436,6 +436,7 @@
       select {
         width: 140px;
       }
+
       // .address{
       //   display: block;
       // }
@@ -446,6 +447,46 @@
     }
     .select-margin {
       margin-left: 50px;
+    }
+
+    .scale {
+      position: relative;
+      .scale-text {
+        width: 140px;
+      }
+      .scale-div {
+        display: none;
+        position: absolute;
+        top: 63px;
+        background: #fff;
+        box-shadow: 0px 4px 8px 0px #CCCCCC;
+        left: 0;
+        width: 140px;
+        z-index: 10;
+      }
+      ul {
+        list-style: none;
+        li {
+          border-bottom: 1px solid #F2F4F5;
+          color: #5A626D;
+          padding-left: 35px;
+          font-size: 14px;
+          line-height: 37px;
+          height: 37px;
+        }
+        li:hover {
+          background: #f9f9f9;
+        }
+      }
+      .scale-text:focus + .scale-div {
+          display: block;
+      }
+      .scale-div:hover {
+        display: block;
+      }
+      .scale-text:blur + .scale-div {
+          display: none;
+      }
     }
   }
 }

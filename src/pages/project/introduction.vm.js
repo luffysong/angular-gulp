@@ -48,6 +48,14 @@ export default class IntroductionVM extends krData.FormVM {
       });
   }
 
+  scaleClick(item) {
+    this.scale = item;
+    this.scaleHidden = true;
+    krData.utls.getService('$timeout')(() => {
+        this.scaleHidden = false;
+    }, 500);
+  }
+
   save() {
     this.validate2().then(() => {
       this.projectService.editBase({
