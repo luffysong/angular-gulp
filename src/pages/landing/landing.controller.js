@@ -40,6 +40,7 @@ export default class landingIndexController {
         this.tab = 'company';
       }else {
         this.tab = val;
+        this.currentPage = 1;
       }
     });
 
@@ -99,6 +100,7 @@ export default class landingIndexController {
       });
       this.dataLoading = false;
     });
+
     /*this.projectService.getColumn(params).then(data => {
       if(!data.pageData || !data.pageData){
         this.noMore = true;
