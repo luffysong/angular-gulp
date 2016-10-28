@@ -67,6 +67,7 @@ export default class listIndexController {
   };
 
   loadMore ()  {
+
     if(this.dataLoading)return;
     this.dataLoading = true;
 
@@ -136,6 +137,22 @@ export default class listIndexController {
         );
       },(err)=>{
       });
+  }
+
+  seeDetail(id) {
+    var columnOptions = {
+      companyId: id,
+      loadMore: this.loadMore.bind(this),
+      companies: this.listData.data,
+      tags: this.$stateParams.label ? this.$stateParams.label.split(',') : '',
+      closeMe: this.closeMe.bind(this)
+    };
+
+    this.$scope.$emit('open-sideBar',columnOptions);
+  }
+
+  closeMe () {
+    this.$scope.parentVm.open.sideBar = false;
   }
 
   getDict() {

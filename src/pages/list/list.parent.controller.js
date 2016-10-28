@@ -22,8 +22,13 @@ export default class listParentController {
     };
     /*筛选器展开*/
     this.open = {
-      filter: false
+      filter: false,
+      sideBar: false
     };
+
+    this.$scope.company = {};
+
+
 
     /*this.itemList = ['industry','phase','city'];*/
 
@@ -63,12 +68,17 @@ export default class listParentController {
         this.$scope.$broadcast('get-list',data.pageData);
         this.data.label = data.label;
         this.handleActive();
-        /*this.data.isFundingLimit = data.funding;*/
         this.updateData(data);
       });
 
-      this.handleActive();
+      /*this.handleActive();*/
     });
+
+    this.$scope.$on('open-sideBar',(e,d) => {
+      this.columnOptions = d;
+      this.open.sideBar = true;
+    });
+
 
     this.getCity();
 

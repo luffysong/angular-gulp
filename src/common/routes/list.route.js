@@ -8,6 +8,8 @@ const listView = {
   controller: 'listParentController',
   resolve: {
     loadBundle: getLoadBundle(assets.page.list),
+    loadProjectBundle: getLoadBundle(assets.page.project),
+    loadSearchBundle: getLoadBundle(assets.page.search),
   }
 };
 
