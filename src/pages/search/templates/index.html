@@ -2,13 +2,13 @@
   <div class="search-list-wrapper">
     <div
         infinite-scroll="searchVm.columnOptions.loadMore()"
+        infiniteScrollDisabled="searchVm.columnOptions.loadEnd"
         infinite-scroll-container="'.search-list-wrapper'"
         infinite-scrollUse-document-bottom="false"
         infinite-scroll-distance="3"
       >
       <div class="condition-wrapper">
          <ul>
-           <li ng-if="searchVm.columnOptions.isFunding">融资中</li>
            <li ng-repeat="item in searchVm.columnOptions.tags">{{item}}</li>
         </ul>
       </div>
@@ -26,8 +26,8 @@
                   ><span class="time">今天</span>
               </p>
               <p>{{item.brief}}</p>
-              <p><span class="icon-Tags"></span><span>item.industryStr</span></p>
-              <p><span class="icon-hot"></span>联系创业者 政府IP专家顾问</p>
+              <p><span class="icon-Tags"></span><span>{{item.industryStr}}</span></p>
+              <p><span class="icon-hot"></span>this is hot desc</p>
             </div>
           </li>
         </ul>
