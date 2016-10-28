@@ -205,6 +205,7 @@ export default class ProjectIndexController {
                       outterVM.projectService.sendBP(outterVM.id)
                         .then((data) => {
                           krData.Alert.alert(`邮件已发送至${data.email}，请查收`);
+                          outterVM.bpApplyDialog.close();
                         });
                     } else {
                       outterVM.projectService.applyBP(outterVM.id)

@@ -25,6 +25,7 @@ export default class IntroductionVM extends krData.FormVM {
   }
 
   recovery() {
+    this.originalData.startDate = parseInt(this.originalData.startDateDesc, 10);
     angular.extend(this, this.originalData);
   }
 
