@@ -15,7 +15,7 @@
       <div
         class="search-project-list">
         <ul>
-          <li ng-repeat="item in searchVm.columnOptions.companies">
+          <li ng-click="searchVm.open({item.id})" ng-repeat="item in searchVm.columnOptions.companies">
             <a ui-sref="home({id: item.id})" >
               <img width="42" height="42" ng-src="{{item.logo || '/images/default-logo.png'}}" alt=""/>
             </a>
@@ -35,5 +35,7 @@
     </div>
   </div>
 
-  <div ng-controller="ProjectIndexController as vm" ng-include="'/pages/project/templates/index.html'"></div>
+  <div kr-reload>
+
+  </div>
 </div>

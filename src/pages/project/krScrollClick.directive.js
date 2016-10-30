@@ -20,9 +20,9 @@ export default function krScrollClick($rootScope, $timeout) {
           if (!ele.hasClass('active')) {
             ele.addClass('active');
           }
-          $scope.root.hash = attr.href.replace('#', '');
-          $scope.root.clickHash = $scope.root.hash;
-          $scope.root.activeClickEle = ele;
+          $rootScope.root.hash = attr.href.replace('#', '');
+          $rootScope.root.clickHash = $scope.root.hash;
+          $rootScope.root.activeClickEle = ele;
         }, 400);
       });
     },

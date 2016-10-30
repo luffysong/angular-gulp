@@ -8,5 +8,6 @@ function makeDirective(directive) {
 angular.module('@@app.components', [])
   .directive('krValid', makeDirective(krValid))
   .directive('krSearch', makeDirective(krSearch))
+  .value('THROTTLE_MILLISECONDS', 300)
   .directive('krProjectNav', makeDirective(krProjectNav))
   .directive('infiniteScroll', makeDirective(infiniteScrollDirective));
