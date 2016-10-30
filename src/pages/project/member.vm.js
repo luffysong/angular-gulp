@@ -69,8 +69,10 @@ export default class MemberVM extends krData.FormVM {
   }
 
   recovery() {
-    angular.extend(this, this.originalData);
-    angular.extend(this.data, this.originalData);
+    const tempData = {};
+    angular.copy(this.originalData, tempData);
+    angular.extend(this, tempData);
+    angular.extend(this.data, tempData);
   }
 
   save() {
