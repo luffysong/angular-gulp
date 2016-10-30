@@ -2,7 +2,7 @@
   <div class="search-list-wrapper">
     <div
         infinite-scroll="searchVm.columnOptions.loadMore()"
-        infiniteScrollDisabled="searchVm.columnOptions.loadEnd"
+        infinite-scroll-disabled="outVm.dataLoading"
         infinite-scroll-container="'.search-list-wrapper'"
         infinite-scrollUse-document-bottom="false"
         infinite-scroll-distance="3"
@@ -23,14 +23,32 @@
                   <span ng-click="searchVm.open(item.id)" class="name mr10">{{item.name}}</span
                   ><span ng-if="item.hot" class="hot">热</span
                   ><span ng-if="item.funding" class="funding">融资中</span
-                  ><span class="time">今天</span>
+                    ><span class="time">{{item.publishDate | dateFilter}}</span>
               </p>
               <p>{{item.brief}}</p>
               <p><span class="icon-Tags"></span><span>{{item.industryStr}}</span></p>
-              <p><span class="icon-hot"></span>this is hot desc</p>
+              <p ng-if="item.advantage" class="hot-wrapper"><span class="icon-Hot"></span>{{item.advantage}}</p>
             </div>
           </li>
         </ul>
+      </div>
+      <div class="load-more-wrapper">
+        <div class="load-more" ng-if="outVm.dataLoading && !outVm.noMore">
+          正在加载更多...
+        </div>
+        <div  ng-if="outVm.needLogin" class="load-more">
+          <a  href="javascript:;" ng-click="outVm.login()">
+            登录查看更多
+          </a>
+        </div>
+        <div  ng-if="outVm.needAuthorizeInvestor()" class="load-more">
+          <a  href="javascript:;" ng-click="outVm.login()">
+            认证投资人查看更多
+          </a>
+        </div>
+        <div class="load-more"   ng-if="outVm.loadEnd && !outVm.needAuthorizeInvestor() && !outVm.needLogin">
+          已无更多数据
+        </div>
       </div>
     </div>
   </div>

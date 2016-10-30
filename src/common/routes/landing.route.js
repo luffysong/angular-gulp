@@ -8,6 +8,8 @@ const landingView = {
   controller: 'landingParentController',
   resolve: {
     loadBundle: getLoadBundle(assets.page.landing),
+    loadProjectBundle: getLoadBundle(assets.page.project),
+    loadSearchBundle: getLoadBundle(assets.page.search),
   }
 };
 

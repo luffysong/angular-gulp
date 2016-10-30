@@ -1,4 +1,4 @@
-<div class="filter-container">
+<div ng-show="!parentVm.open.sideBar" class="filter-container">
   <div class="search-keyword">
     项目列表 ＞ 搜索 “{{parentVm.keyword}}”
   </div>
@@ -288,7 +288,10 @@
     </div>
   </div>
 </div>
-<ui-view></ui-view>
+<ui-view ng-show="!parentVm.open.sideBar"></ui-view>
+<div kr-column3 column-options="parentVm.columnOptions" ng-if="parentVm.open.sideBar">
+
+</div>
 <!--<ui-view></ui-view>-->
 
 

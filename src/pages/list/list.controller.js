@@ -158,6 +158,7 @@ export default class listIndexController {
 
   seeDetail(id) {
     var columnOptions = {
+      context: this,
       companyId: id,
       loadMore: this.loadMore.bind(this),
       companies: this.listData.data,

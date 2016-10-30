@@ -81,7 +81,9 @@ export default class landingIndexController {
     });
   };
 
-
+  login() {
+    krData.utls.login();
+  }
 
   loadMore ()  {
     if(this.dataLoading)return;
@@ -95,10 +97,16 @@ export default class landingIndexController {
         this.noMore = true;
         return;
       }
+
       angular.forEach(data.pageData.data,(item) => {
         this.listData.data.push(item);
       });
       this.dataLoading = false;
+      if (data.pageData.page === 10 && !krData.utls.getService('user').isLogin) {
+        this.needLogin = true;
+        this.noMore = true;
+        this.dataLoading = true;
+      }
     });
 
     /*this.projectService.getColumn(params).then(data => {
@@ -112,7 +120,18 @@ export default class landingIndexController {
       this.dataLoading = false;
     });*/
   }
+  seeDetail(id) {
+    var columnOptions = {
+      context: this,
+      companyId: id,
+      loadMore: this.loadMore.bind(this),
+      companies: this.listData.data,
+      tags: this.$stateParams.label ? this.$stateParams.label.split(',') : '',
+      closeMe: this.closeMe.bind(this)
+    };
 
+    this.$scope.$emit('open-sideBar',columnOptions);
+  }
   change (item,index) {
     this.activeIndex = index;
     const form = {
@@ -157,7 +176,9 @@ export default class landingIndexController {
       },(err)=>{
       });
   }
-
+  closeMe () {
+    this.$scope.parentVm.open.sideBar = false;
+  }
   getDict() {
 
   }
