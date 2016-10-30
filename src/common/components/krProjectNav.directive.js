@@ -27,7 +27,7 @@ export default {
   </a>
   <ul class="column">
     <li ng-class="{active: item.id === root.toParams.columnId}"
-    ui-sref-opts="{reload: true, inherit: false}"
+    ui-sref-opts="{inherit: false}"
      ui-sref="list.result({columnId:item.id})"
       ng-repeat="item in projectNavVm.list">
     {{item.name}}</li>
