@@ -47,6 +47,7 @@ export function extractMeta(from, to) {
 export function getConstantFilterFactory(meta) {
   return function constantFilterFacotry() {
     return function constantFilter(input) {
+      if(!input)return;
       return meta.filter(item => item.value === input)[0].desc;
     };
   };

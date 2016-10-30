@@ -209,6 +209,7 @@ export default class ProjectService extends API {
     });
   }
 
+  /*落地页获取公司列表*/
   searchCompany(obj) {
     const type = obj.type || 'company';
     delete obj.type;
@@ -218,6 +219,20 @@ export default class ProjectService extends API {
       }
     }
     return new API('/search/'+type+'?' + $.param(obj)).get();
+  }
+
+  /*获取关注标签列表*/
+  getFollowList() {
+    return new API('/label', {
+      followed: {
+        isArray: true,
+      }
+    }).followed();
+  }
+
+  /*我的关注列表(公司数据)*/
+  getFollowCompany() {
+    return new API('/label/followed/company').get();
   }
 
   // 设置接收BP的邮箱

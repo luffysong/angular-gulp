@@ -196,6 +196,7 @@ export default class listParentController {
 
   /*增加默认数据*/
   addItem(obj,type) {
+    var temp = obj.concat();
     var c = {
       active: false,
       id: 0,
@@ -206,8 +207,8 @@ export default class listParentController {
     } else {
       c.desc = '不限';
     }
-    obj.unshift(c);
-    return obj;
+    temp.unshift(c);
+    return temp;
   }
 
   /*数据active全部初始化*/

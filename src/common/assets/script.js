@@ -9,6 +9,9 @@ export default {
     label: [
       '/pages/label/index.js',
     ],
+    follow: [
+      '/pages/follow/index.js',
+    ],
     landing: [
       'pages/landing/index.js'
     ],

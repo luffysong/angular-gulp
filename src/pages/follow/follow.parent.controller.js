@@ -5,8 +5,8 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('landingIndexService', '$timeout', '$window','$stateParams','$state','$scope')
-export default class landingParentController {
+@Inject('followIndexService', '$timeout', '$window','$stateParams','$state','$scope')
+export default class followParentController {
 
   constructor() {
     this.api = new TestAPI();
@@ -25,25 +25,26 @@ export default class landingParentController {
       filter: false
     };
 
-    this.activeTab = this.$scope.type = 'company';
-    this.searchList = [
-      {
-        name:'创业项目',
-        value: 'company',
-        cnt: 280,
-        active:true
-      },{
-        name:'投资人',
-        value: 'user',
-        cnt: 280,
-        active:false
-      },{
-        name:'投资机构',
-        value: 'org',
-        cnt: 280,
-        active:false
-      }
-    ];
+    /*this.activeTab = this.$scope.type = 'company';*/
+
+    // this.searchList = [
+    //   {
+    //     name:'创业项目',
+    //     value: 'company',
+    //     cnt: 280,
+    //     active:true
+    //   },{
+    //     name:'投资人',
+    //     value: 'user',
+    //     cnt: 280,
+    //     active:false
+    //   },{
+    //     name:'投资机构',
+    //     value: 'org',
+    //     cnt: 280,
+    //     active:false
+    //   }
+    // ];
 
 
     this.itemList = [
@@ -88,12 +89,21 @@ export default class landingParentController {
 
     this.getIndustry();
 
-    this.getLabel();
-
     this.getPhase();
 
     this.getAll();
 
+    this.getLabel();
+
+  }
+
+
+  getLabel() {
+    this.projectService.getFollowList().then(data => {
+      console.log(data);
+      this.data.type = data;
+      this.handleActive();
+    });
   }
 
   handleSeachList(tab) {
@@ -107,7 +117,8 @@ export default class landingParentController {
   }
 
   searchCompany(params) {
-    this.projectService.searchCompany(params).then(data => {
+    this.projectService.getFollowCompany({}).then(data => {
+      console.log(data);
       this.$scope.$broadcast('get-list',data.pageData);
       this.data.label = data.label;
       this.handleActive();
@@ -131,14 +142,11 @@ export default class landingParentController {
     angular.forEach(this.searchList,(item,i) => {
       if(index == i){
         item.active = true;
-        this.activeTab = this.$scope.tab = item.value;
-        var params = Object.assign({type: this.activeTab},this.paramsFilter(this.params));
+        this.activeTab = this.$scope.tab = item.id;
         angular.forEach(this.params,(val,key) => {
-          if(key !== 'kw'){
             this.params[key] = null;
-          }
         });
-        this.params.type = item.value;
+        this.params.type = item.id;
         this.go();
       }else {
         item.active = false;
@@ -185,6 +193,7 @@ export default class landingParentController {
   handleActive () {
     this.dataInit();
     angular.forEach(this.params,(val,key) => {
+      console.log(val);
       if(val && val.split(',').length > 1){
         angular.forEach(val.split(','),(a) => {
           angular.forEach(this.data[key],(item,index) => {
@@ -241,12 +250,11 @@ export default class landingParentController {
 
   /*state跳转*/
   go () {
-    this.$state.go('landing.result', this.params);
+    this.$state.go('follow.result', this.params);
   }
 
   /*增加默认数据*/
   addItem(obj,type) {
-    var temp = obj.concat();
     var c = {
       active: false,
       id: 0,
@@ -257,8 +265,8 @@ export default class landingParentController {
     } else {
       c.desc = '不限';
     }
-    temp.unshift(c);
-    return temp;
+    obj.unshift(c);
+    return obj;
   }
 
   /*数据active全部初始化*/
@@ -285,10 +293,6 @@ export default class landingParentController {
     this.data.industry = this.addItem(this.$scope.root.INDUSTRY_META);
   }
 
-  /*获取静态标签数据*/
-  getLabel() {
-
-  }
 
   /*获取轮次静态数据*/
   getPhase() {
