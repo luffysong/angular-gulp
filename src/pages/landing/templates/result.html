@@ -79,8 +79,12 @@
             </div>
           </div>
         </td>
-        <td>{{obj.industry}}</td>
-        <td>{{obj.phase}}</td>
+        <td class="org-col">
+          <section ng-repeat="c in obj.industry | limitTo:3 track by $index" ng-bind="c"></section>
+        </td>
+        <td class="org-col">
+          <section ng-repeat="c in obj.phase | limitTo:3 track by $index" ng-bind="c"></section>
+        </td>
         <td>{{obj.investCnt}}</td>
         <td class="org-col">
           <section ng-repeat="org in obj.investCaseList | limitTo:3 track by $index" ng-bind="org.name"></section>

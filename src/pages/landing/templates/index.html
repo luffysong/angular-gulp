@@ -1,6 +1,6 @@
 <div class="filter-container">
   <div class="search-keyword">
-    项目列表 ＞ 搜索 “36”
+    项目列表 ＞ 搜索 “{{parentVm.keyword}}”
   </div>
   <ul class="search-list">
     <li ng-repeat="item in parentVm.searchList" ng-class="{'active':item.active}" ng-click="parentVm.switchType($index)">

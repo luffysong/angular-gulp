@@ -76,6 +76,7 @@ export default class landingParentController {
     };
 
     this.$scope.$on('get-change',(e,d) => {
+      this.keyword = d.kw ? d.kw : '';
       this.activeTab = d.type ? d.type : 'company';
       this.handleSeachList(this.activeTab);
       angular.extend(this.params,d);
@@ -134,7 +135,9 @@ export default class landingParentController {
         var params = Object.assign({type: this.activeTab},this.paramsFilter(this.params));
         this.searchCompany(params);
         angular.forEach(this.params,(val,key) => {
-          this.params[key] = null;
+          if(key !== 'kw'){
+            this.params[key] = null;
+          }
         });
         this.params.type = item.value;
         this.go();
