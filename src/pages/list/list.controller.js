@@ -100,9 +100,13 @@ export default class listIndexController {
       if (!this.isLogin && data.pageData.page === 10) {
         this.needLogin = true;
       }
-      angular.forEach(data.pageData.data,(item) => {
-        this.listData.data.push(item);
-      });
+      if(data.pageData.page === this.currentPage) {
+        angular.forEach(data.pageData.data,(item) => {
+          this.listData.data.push(item);
+        });
+      } else {
+        this.currentPage = data.pageData.page;
+      }
     });
 
   }
