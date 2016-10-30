@@ -38,7 +38,7 @@
         <td>{{obj.cityStr}}</td>
         <td>{{obj.publishDate | dateFilter}}</td>
         <td>
-          <span class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}">
+          <span class="collect-btn" ng-click="root.user.ensureLogin()"  ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}">
             <span ng-show="obj.followed">已</span>收藏
             <div class="collect-modal">
               <section class="modal-title">选择收藏夹</section>

@@ -1,14 +1,37 @@
-import API from './API';
-let userAPI = null;
-
-function createUserAPI() {
-  return new API('/user/:id');
-}
-function getUserAPI() {
-  return (userAPI || (userAPI = createUserAPI()));
-}
+import { login } from '../base/utls.js';
+@Inject('$http')
 export default class User {
-  static getUserInfo() {
-    return getUserAPI().get();
+
+  data = {};
+  constructor() {
+    this.init();
   }
+
+  init() {
+    this.$http.get('/api/user')
+      .then(data => {
+        this.loaded = true;
+        this.isLogin = true;
+        angular.extend(this.data, data);
+      }).catch(() => {
+        this.isLogin = false;
+      }).finally(() => {
+        this.loaded = true;
+      });
+  }
+
+  ensureLogin() {
+    if (this.loaded && !this.isLogin) {
+      login();
+    }
+  }
+
+  isLoaded() {
+    return this.loaded;
+  }
+
+  isInvestor() {
+    return this.investorType < 100;
+  }
+
 }
