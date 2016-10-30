@@ -66,6 +66,13 @@ export default class listIndexController {
     });
   };
 
+
+  isLoadAllData() {
+    return !this.notLoginUser && (!this.isInvestorLimit || this.userIsInvestor) && this.noMore;
+  }
+  login() {
+    krData.utls.login();
+  }
   loadMore ()  {
 
     if(this.dataLoading)return;
@@ -75,8 +82,16 @@ export default class listIndexController {
 
     var params = Object.assign({columnId:this.$stateParams.columnId || 0,p:this.currentPage},this.paramsFilter(this.paramsData));
     this.projectService.getColumn(params).then(data => {
+      this.isInvestorLimit = data.isInvestorLimit;
+      this.userIsInvestor = data.userIsInvestor;
       if(!data.pageData || !data.pageData.data || !data.pageData.data.length){
         this.noMore = true;
+        return;
+      }
+      if (data.pageData.page !== this.currentPage) {
+        this.notLoginUser = true;
+        this.noMore = true;
+        this.currentPage--;
         return;
       }
       angular.forEach(data.pageData.data,(item) => {

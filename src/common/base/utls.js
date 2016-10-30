@@ -86,6 +86,16 @@ export function uploadBp(name, file) {
   });
 }
 
+export function login(url) {
+  url = url || location.href;
+  url = encodeURIComponent(url);
+  /* eslint-disable */
+  setTimeout(() => {
+    location.href = `https://passport.36kr.com/pages/?ok_url=${url}`;
+  }, 100);
+  /* eslint-enable */
+}
+
 export function validateBP(file) {
   const MAX_SIZE = 7.5 * 1024 * 1024;
   const suffixReg = /.pdf$/;
