@@ -14,7 +14,7 @@ class SearchController {
   }
 
   setSearchWord(kw) {
-    getService('$timeout')(()=> {
+    getService('$timeout')(() => {
       this.$rootScope.root.kw = kw;
       $('input.search').focus();
     }, 300);

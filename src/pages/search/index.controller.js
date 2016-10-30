@@ -1,3 +1,4 @@
+import krData from 'krData';
 @Inject('$stateParams', '$window', '$scope')
 export default class SearchIndexController {
   constructor() {
@@ -33,6 +34,7 @@ export default class SearchIndexController {
   onDestroy() {
     this.$scope.$on('$destroy', () => {
       this.$window.widen();
+      krData.paddingContent();
     });
   }
 

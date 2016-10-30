@@ -9,7 +9,8 @@
       >
       <div class="condition-wrapper">
          <ul>
-           <li ng-repeat="item in searchVm.columnOptions.tags">{{item}}</li>
+           <li ng-click="searchVm.columnOptions.closeMe()" ng-repeat="item in searchVm.columnOptions.tags">{{item}}</li>
+           <li ng-click="searchVm.columnOptions.closeMe()" ng-if="!searchVm.columnOptions.tags.length">closeMe</li>
         </ul>
       </div>
       <div
