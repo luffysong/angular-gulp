@@ -16,7 +16,7 @@ function getContentHtml(entity, content) {
 
 function makeCreateProjectHtml(name) {
   return getService('$sce').trustAsHtml(`
-      <p class="search-no-result"><span data-action="create">无结果，创建 ”${name}“ 创业项目</span>
+      <p class="search-no-result"><span class="createProject">无结果，创建 ”${name}“ 创业项目</span>
       </p>
     `);
 }
@@ -152,7 +152,7 @@ export default class SearchService {
     });
   }
 
-  onClickRow($event) {
+  onClickRow($event, item) {
     $event.preventDefault();
     const target = $event.target;
     const kw = getService('$rootScope').root.kw;
@@ -165,6 +165,10 @@ export default class SearchService {
       getService('$state').go('landing.result', { kw, type: 'user' });
     } else if (target.classList.contains('searchOrg')) {
       getService('$state').go('landing.result', { kw, type: 'org' });
+    } else if (target.classList.contains('createProject')) {
+      getService('$state').go('createProject');
+    } else {
+      getService('$state').go('project', { id: item.obj.id });
     }
   }
 
