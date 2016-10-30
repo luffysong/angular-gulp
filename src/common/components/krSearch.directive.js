@@ -24,7 +24,7 @@ export default {
   restrict: 'AE',
   controllerAs: 'vm',
   template: `
-    <ul>
+    <ul ng-if="vm.history.length">
       <li>搜索历史</li>
       <li ng-click="vm.setSearchWord(item)" ng-repeat="item in vm.history track by $index">
         {{item}}
