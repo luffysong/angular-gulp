@@ -29,7 +29,7 @@
           </div>
         </td>
         <td>{{obj.industryStr}}</td>
-        <td>{{obj.phase}}</td>
+        <td>{{obj.phase | companyFinancePhase}}</td>
         <td class="org-col">
           <section ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
         </td>

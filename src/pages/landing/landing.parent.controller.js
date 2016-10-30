@@ -133,7 +133,6 @@ export default class landingParentController {
         item.active = true;
         this.activeTab = this.$scope.tab = item.value;
         var params = Object.assign({type: this.activeTab},this.paramsFilter(this.params));
-        this.searchCompany(params);
         angular.forEach(this.params,(val,key) => {
           if(key !== 'kw'){
             this.params[key] = null;

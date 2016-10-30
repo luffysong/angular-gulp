@@ -91,7 +91,7 @@ export default class landingIndexController {
 
     var params = Object.assign({type: this.$scope.tab || 'company',p:this.currentPage},this.paramsFilter(this.paramsData));
     this.projectService.searchCompany(params).then(data => {
-      if(!data.pageData || !data.pageData.data){
+      if(!data.pageData || !data.pageData.data || !data.pageData.data.length){
         this.noMore = true;
         return;
       }
