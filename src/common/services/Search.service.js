@@ -152,17 +152,19 @@ export default class SearchService {
     });
   }
 
-  onClickRow($event, item) {
-    item = item || {};
+  onClickRow($event) {
     $event.preventDefault();
     const target = $event.target;
+    const kw = getService('$rootScope').root.kw;
+    this.historyApi.save(null, {
+      kw,
+    });
     if (target.classList.contains('searchProject')) {
-      getService('$state').go('list');
-      this.historyApi.save(null, {
-        kw: getService('$rootScope').root.kw,
-      });
+      getService('$state').go('landing.result', { kw, type: 'company' });
     } else if (target.classList.contains('searchInvestor')) {
+      getService('$state').go('landing.result', { kw, type: 'user' });
     } else if (target.classList.contains('searchOrg')) {
+      getService('$state').go('landing.result', { kw, type: 'org' });
     }
   }
 
@@ -171,7 +173,7 @@ export default class SearchService {
     this.historyApi.save(null, {
       kw,
     });
-    getService('$state').go('list');
+    getService('$state').go('landing.result', { kw, type: 'company' });
   }
 
   onSelect(item, value) {
