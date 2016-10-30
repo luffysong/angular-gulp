@@ -101,7 +101,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
         root.fromState = fromState;
       });
   })
-  .run(function run($rootScope, $location, $injector,
+  .run(function run($rootScope, $location, $injector, user,
     OPERATION_STATUS_META, COMPANY_NEWS_META, FINANCE_PHASE_META,
     CURRENCY_UNIT_META, ROLE_META, FINANCE_NEED_META, PROJECT_TYPE_META, FUNDS_PHASE_ENUM_META) {
     getService.injector = $injector;
@@ -129,6 +129,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     root.onClick = searchInstance.onClickRow.bind(searchInstance);
     root.searchOut = {};
     root.assets = assets;
+    root.user = user;
     $rootScope.root = root;
   });
 angular.bootstrap(document, ['@@app'], { strictDi: true });
