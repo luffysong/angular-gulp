@@ -62,17 +62,17 @@
     <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">
       正在加载更多...
     </div>
-    <div  ng-if="vm.notLoginUser" class="load-more">
+    <div  ng-if="vm.needLogin" class="load-more">
       <a  href="javascript:;" ng-click="vm.login()">
         登录查看更多
       </a>
     </div>
-    <div  ng-if="vm.isInvestorLimit && !vm.userIsInvestor && vm.noMore" class="load-more">
+    <div  ng-if="vm.needAuthorizeInvestor()" class="load-more">
       <a  href="javascript:;" ng-click="vm.login()">
         认证投资人查看更多
       </a>
     </div>
-    <div class="load-more"   ng-if="vm.isLoadAllData()">
+    <div class="load-more"   ng-if="vm.loadEnd && !vm.needAuthorizeInvestor()">
       已无更多数据
     </div>
   </div>

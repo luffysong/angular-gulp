@@ -21,8 +21,6 @@ export default class listIndexController {
       data: []
     };
 
-    this.dataLoading = false;
-
     this.paramsData = {};
 
     this.currentPage = 1;
@@ -66,47 +64,47 @@ export default class listIndexController {
     });
   };
 
-
-  isLoadAllData() {
-    return !this.notLoginUser && (!this.isInvestorLimit || this.userIsInvestor) && this.noMore;
+  needAuthorizeInvestor() {
+    return this.isInvestorLimit && !this.userIsInvestor;
   }
+
   login() {
     krData.utls.login();
   }
   loadMore ()  {
 
-    if(this.dataLoading)return;
+    if(this.dataLoading) return;
+    if (this.needAuthorizeInvestor()) {
+      this.dataLoading = false;
+      return;
+    }
     this.dataLoading = true;
-
     this.currentPage++;
 
     var params = Object.assign({columnId:this.$stateParams.columnId || 0,p:this.currentPage},this.paramsFilter(this.paramsData));
     this.projectService.getColumn(params).then(data => {
       this.isInvestorLimit = data.isInvestorLimit;
       this.userIsInvestor = data.userIsInvestor;
-      if(!data.pageData || !data.pageData.data || !data.pageData.data.length){
+      this.isLogin = data.isLogin;
+      if(!data.pageData || !data.pageData.data){
         this.noMore = true;
         return;
       }
-      if (data.pageData.page !== this.currentPage) {
-        this.notLoginUser = true;
+      if (data.pageData.page >= data.pageData.totalPages) {
         this.noMore = true;
-        this.currentPage--;
-        return;
+        this.loadEnd = true;
+      } else {
+        this.dataLoading = false;
+      }
+
+      if (!this.isLogin && data.pageData.page === 10) {
+        this.needLogin = true;
       }
       angular.forEach(data.pageData.data,(item) => {
         this.listData.data.push(item);
       });
-      this.dataLoading = false;
     });
 
-    /*this.$timeout(() => {
-      var last = this.listData[this.listData.length - 1];
-      for(var i = 1; i <= 8; i++) {
-        this.listData.data.push(last + i);
-      }
-      this.dataLoading = false;
-    },500);*/
   }
 
   change (item,index) {

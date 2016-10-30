@@ -1,14 +1,14 @@
 /* eslint-disable */
 import { getConstantFilterFactory } from '../base/utls';
 
-const INDUSTRY_META = [
+const INDUSTRY_META =[
 {
-"desc": "电子商务",
+"desc": "电商",
 "id": 1,
 "value": "E_COMMERCE"
 },
 {
-"desc": "社交网络",
+"desc": "社交",
 "id": 2,
 "value": "SOCIAL_NETWORK"
 },
@@ -23,7 +23,7 @@ const INDUSTRY_META = [
 "value": "MEDIA"
 },
 {
-"desc": "工具软件",
+"desc": "工具",
 "id": 7,
 "value": "SOFTWARE"
 },
@@ -58,12 +58,12 @@ const INDUSTRY_META = [
 "value": "PROPERTY_AND_HOME_FURNISHINGS"
 },
 {
-"desc": "数字娱乐",
+"desc": "文娱",
 "id": 14,
 "value": "CULTURE_SPORTS_ART"
 },
 {
-"desc": "在线教育",
+"desc": "教育",
 "id": 15,
 "value": "EDUCATION_TRAINING"
 },
