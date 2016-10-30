@@ -62,6 +62,7 @@ export default class listParentController {
     };
 
     this.$scope.$on('get-change',(e,d) => {
+      this.params = {};
       angular.extend(this.params,d);
       var params = Object.assign({columnId:this.params.columnId || 0},this.paramsFilter(this.params));
       this.projectService.getColumn(params).then(data => {
@@ -71,7 +72,6 @@ export default class listParentController {
         this.updateData(data);
       });
 
-      /*this.handleActive();*/
     });
 
     this.$scope.$on('open-sideBar',(e,d) => {
@@ -130,6 +130,7 @@ export default class listParentController {
   /*根据路由参数处理激活*/
   handleActive () {
     this.dataInit();
+
     angular.forEach(this.params,(val,key) => {
       if(val && String(val).split(',').length > 1){
         angular.forEach(String(val).split(','),(a) => {
