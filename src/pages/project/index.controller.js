@@ -187,7 +187,7 @@ export default class ProjectIndexController {
           // const vm = this;
           const outterVM = this;
           /* eslint-disable */
-          function BPController($validation) {
+          function BPController($validation,$scope) {
             // this.applyBpStatus = vm.applyBpStatus;
             // this.id = vm.id;
             const vm = this;
@@ -197,7 +197,9 @@ export default class ProjectIndexController {
             };
 
             vm.confirm = () => {
-              if ($validation.validate(vm.form)) {
+              console.log(vm.email);
+              if ($validation.validate(vm.form) &&
+                  vm.email.match(/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/)) {
                 const email = vm.email;
                 if (email) {
                   outterVM.projectService.addBPEmail(email).then(() => {
@@ -223,6 +225,8 @@ export default class ProjectIndexController {
                     krData.Alert.alert(err1.msg);
                   });
                 }
+              } else {
+                krData.Alert.alert('输入的邮箱地址不正确，请更正');
               }
             };
           }
@@ -233,7 +237,7 @@ export default class ProjectIndexController {
               '<div ng-include="\'/pages/project/templates/addBPEmail.html\'" center></div>',
             plain: true,
             appendTo: '.project-wrapper',
-            controller: ['$validation', BPController],
+            controller: ['$validation', '$scope', BPController],
             controllerAs: 'vm',
           });
         } else if (err.code === 201) {
@@ -277,8 +281,10 @@ export default class ProjectIndexController {
       this.bpDialogs('bp-view-more-wrapper');
     } else if (this.applyBpStatus === BP_PERMISSION.REFUSE) {
       krData.Alert.alert('创业者拒绝查看BP');
-    } else if (this.applyBpStatus === BP_PERMISSION.APPLY) {
-      this.bpDialog();
+    // } else if (this.applyBpStatus === BP_PERMISSION.APPLY) {
+    //   this.bpDialogs();
+    } else {
+      this.bpDialogs();
     }
     e.preventDefault();
   }
