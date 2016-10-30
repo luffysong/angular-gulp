@@ -1,16 +1,18 @@
-import krData from 'krData';
 @Inject('$stateParams', '$window', '$scope')
 export default class SearchIndexController {
   constructor() {
     this.init();
     this.small = true;
-    this.companyApi = new krData.API('/column/0/company');
     this.onDestroy();
   }
 
   company = [];
   p = 1;
   init() {
+  }
+
+  open(id) {
+    this.columnOptions.companyId = id;
   }
 
   loadMore() {

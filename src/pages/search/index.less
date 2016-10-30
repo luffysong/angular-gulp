@@ -43,6 +43,7 @@
     }
     img {
       float: left;
+      cursor: pointer;
     }
     .text-info-wrapper {
       float:left;
@@ -60,9 +61,14 @@
       }
       .font(12, 18);
       .name {
+        cursor: pointer;
         .font(14,21);
         .dlk();
         color: @title-color;
+        max-width: 165px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       .hot,.funding {
         border-radius: 2px;
