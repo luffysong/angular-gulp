@@ -11,6 +11,5 @@ angular.module('@@pages.list', [])
   .service('listIndexService', listIndexService)
   .directive('filterCal',filterCalDirective)
   .value('THROTTLE_MILLISECONDS', 300)
-  .directive('infiniteScroll',infiniteScrollDirective)
   .filter('dateFilter',dateFilter);
 

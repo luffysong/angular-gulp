@@ -258,8 +258,5 @@ function infiniteScrollDirective($rootScope, $window, $interval, THROTTLE_MILLIS
     }
   };
 }
-angular
-  .module('@@pages.list', [])
-  .directive('infiniteScroll', infiniteScrollDirective);
 
 export default infiniteScrollDirective;
