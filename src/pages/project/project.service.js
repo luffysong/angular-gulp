@@ -210,7 +210,7 @@ export default class ProjectService extends API {
   }
 
   searchCompany(obj) {
-    const type = obj.type;
+    const type = obj.type || 'company';
     delete obj.type;
     console.log(obj);
     return new API('/search/'+type+'?' + $.param(obj)).get();

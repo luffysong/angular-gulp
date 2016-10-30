@@ -76,8 +76,10 @@ export default class landingParentController {
     };
 
     this.$scope.$on('get-change',(e,d) => {
+      this.activeTab = d.type ? d.type : 'company';
+      this.handleSeachList(this.activeTab);
       angular.extend(this.params,d);
-      var params = Object.assign({type: this.activeTab},this.paramsFilter(this.params));
+      var params = Object.assign({},this.paramsFilter(this.params));
       this.searchCompany(params);
     });
 
@@ -91,6 +93,16 @@ export default class landingParentController {
 
     this.getAll();
 
+  }
+
+  handleSeachList(tab) {
+    angular.forEach(this.searchList,item => {
+      if(item.value === tab) {
+        item.active = true;
+      }else {
+        item.active = false;
+      }
+    });
   }
 
   searchCompany(params) {
@@ -124,6 +136,7 @@ export default class landingParentController {
         angular.forEach(this.params,(val,key) => {
           this.params[key] = null;
         });
+        this.params.type = item.value;
         this.go();
       }else {
         item.active = false;
@@ -155,7 +168,7 @@ export default class landingParentController {
         })
         return;
       }
-      if(!d[item.name].length)return;
+      if(!d[item.name] || !d[item.name].length)return;
       angular.forEach(d[item.name],(obj) => {
         angular.forEach(this.data[item.name],(c) => {
           if((c[item.key] && c[item.key] === obj[item.key]) || (obj.name === '不限' && (c.name === '不限' || c.desc === '不限'))){
