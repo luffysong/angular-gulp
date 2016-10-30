@@ -1,4 +1,5 @@
 
+/* @ngInject */
 function infiniteScrollDirective($rootScope, $window, $interval, THROTTLE_MILLISECONDS) {
   return {
     restrict: 'AE',

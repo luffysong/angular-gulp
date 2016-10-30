@@ -10,4 +10,4 @@ angular.module('@@app.components', [])
   .directive('krSearch', makeDirective(krSearch))
   .value('THROTTLE_MILLISECONDS', 300)
   .directive('krProjectNav', makeDirective(krProjectNav))
-  .directive('infiniteScroll', makeDirective(infiniteScrollDirective));
+  .directive('infiniteScroll', infiniteScrollDirective);
