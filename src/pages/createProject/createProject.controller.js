@@ -20,6 +20,9 @@ export default class CreateProjectController {
     on_select: item => {
       const obj = item.obj;
       this.selectProject = obj;
+      this.baseInfo.companyType = "";
+      this.baseInfo.companyRole = null;
+      this.baseInfo.financingNeed = "UNKNOWN";
       angular.extend(this.baseInfo, obj);
     },
     on_leaveSelect: word => {
