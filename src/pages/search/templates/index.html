@@ -15,12 +15,11 @@
       <div
         class="search-project-list">
         <ul>
-          <li ng-click="searchVm.open({item.id})" ng-repeat="item in searchVm.columnOptions.companies">
-            <a ui-sref="home({id: item.id})" >
-              <img width="42" height="42" ng-src="{{item.logo || '/images/default-logo.png'}}" alt=""/>
-            </a>
+          <li ng-click="searchVm.open(item.id)" ng-repeat="item in searchVm.columnOptions.companies">
+            <img ng-click="searchVm.open(item.id)" width="42" height="42" ng-src="{{item.logo || '/images/default-logo.png'}}" alt=""/>
             <div class="text-info-wrapper">
-              <p class="clear"><span class="name mr10">{{item.name}}</span
+              <p class="clear">
+                  <span ng-click="searchVm.open(item.id)" class="name mr10">{{item.name}}</span
                   ><span ng-if="item.hot" class="hot">热</span
                   ><span ng-if="item.funding" class="funding">融资中</span
                   ><span class="time">今天</span>
@@ -35,7 +34,7 @@
     </div>
   </div>
 
-  <div kr-reload>
+  <div kr-reload-project>
 
   </div>
 </div>
