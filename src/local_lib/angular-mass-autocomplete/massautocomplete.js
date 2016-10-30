@@ -67,6 +67,7 @@ angular.module('MassAutoComplete', [])
 					var _user_options = $scope.options() || {};
                     var returnTrue = function () {return true;};
 					var user_options = {
+            notFocus: _user_options.notFocus || false,
 						debounce_position: _user_options.debounce_position || 150,
 						debounce_attach: _user_options.debounce_attach || 300,
 						debounce_suggest: _user_options.debounce_suggest || 200,
@@ -307,7 +308,9 @@ angular.module('MassAutoComplete', [])
 					// When selecting from the menu directly (using click or touch) the
 					// selection is directly applied.
 					$scope.apply_selection = function(i, $event) {
-						current_element[0].focus();
+            if(!user_options.notFocus) {
+              current_element[0].focus();
+            }
             var searchValue = current_element[0].value;
 						if (!$scope.show_autocomplete || i > $scope.results.length || i < 0)
 							return;

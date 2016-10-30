@@ -4,7 +4,7 @@
   	<span class="kr-name">创投助手</span>
   </div>
   <div mass-autocomplete="{debounce_blur:700,top:34,left:0.01,maxWidth:400,
-    onClick: root.onClick,
+    onClick: root.onClick, notFocus: true,
     position:'parent'}" search-out="root.searchOut"
     class="section right-content search-result-wrapper">
     <input ng-trim="false" mass-autocomplete-item="root.autocompleteOptions"

@@ -34,7 +34,7 @@ function makeProjectHtml(project, isFirst, isLast) {
     </div>
   </div>
   ${isLast ?
-    '<h4  class="search-more kr-button searchProject">搜索更多项目</h4>' :
+    '<h4 tabindex="3"  class="search-more kr-button searchProject">搜索更多项目</h4>' :
    ''}
     `;
 }
@@ -54,7 +54,7 @@ function makeUserHtml(user, isFirst, isLast) {
     </div>
   </div>
   ${isLast ?
-    '<h4  class="search-more kr-button searchInvestor">搜索更多投资人</h4>' :
+    '<h4  tabindex="3" class="search-more kr-button searchInvestor">搜索更多投资人</h4>' :
    ''}
     `;
 }
@@ -71,7 +71,7 @@ function makeOrgHtml(org, isFirst, isLast) {
     </div>
   </div>
   ${isLast ?
-    '<h4  class="search-more searchOrg kr-button">搜索更多投资机构</h4>' :
+    '<h4 tabindex="3" class="search-more searchOrg kr-button">搜索更多投资机构</h4>' :
    ''}
     `;
 }
