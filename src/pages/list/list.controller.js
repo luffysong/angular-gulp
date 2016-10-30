@@ -39,7 +39,7 @@ export default class listIndexController {
   handleActive() {
     /*var obj = {};*/
     angular.forEach(this.$stateParams,(val,key) => {
-      if(val) {
+      if(val || parseInt(val) === 0) {
         this.paramsData[key] = val;
       }
     });
