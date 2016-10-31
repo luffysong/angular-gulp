@@ -9,10 +9,10 @@ export default {
   resolve: {
     loadProjectBundle: getLoadBundle(assets.page.org),
     projectData: /* @ngInject */
-    function loadProjectData(loadProjectBundle, OrgService, $stateParams, resolveData) {
-      return OrgService.allData({
+    function loadProjectData(loadProjectBundle, orgService, $stateParams, resolveData) {
+      return orgService.allData({
         id: $stateParams.id,
-      }).then(data => (resolveData.projectData = data));
+      }).then(data => (resolveData.orgData = data));
     },
   },
 }
