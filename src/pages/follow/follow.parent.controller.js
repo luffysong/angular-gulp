@@ -10,7 +10,6 @@ export default class followParentController {
 
   constructor() {
     this.api = new TestAPI();
-    console.log(this.ngDialog);
     this.init();
   }
 
@@ -56,13 +55,11 @@ export default class followParentController {
     };
 
     this.$scope.$on('get-change',(e,d) => {
-      console.log(d);
       angular.extend(this.params,d);
 
       if(this.params.labelId) {
         var params = Object.assign({},this.paramsFilter(this.params));
         this.projectService.getFollowCompany(params).then(data => {
-          console.warn(data);
           this.dataHandle(data);
         });
 
@@ -112,7 +109,6 @@ export default class followParentController {
           id: id
         }).then(data => {
           this.getLabel();
-          console.log(data);
         });
       }
 
@@ -121,7 +117,6 @@ export default class followParentController {
           id: id
         }).then(data => {
           this.labelDetail.isFollowed = false;
-          console.log(data);
         });
       }
     }

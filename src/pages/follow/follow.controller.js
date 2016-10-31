@@ -31,19 +31,6 @@ export default class followIndexController {
       this.listData = d;
     });
 
-    /*this.$scope.$on('change-type',(e,t) => {
-      this.activeTab = t;
-    });*/
-
-    this.$scope.$watch('tab', val => {
-      if(!val){
-        this.tab = '';
-      }else {
-        this.tab = val;
-        this.currentPage = 1;
-      }
-    });
-
     this.handleActive();
 
   }
@@ -104,28 +91,6 @@ export default class followIndexController {
       });
     }
 
-    /*var params = Object.assign({labelId: this.$scope.tab || 'company',p:this.currentPage},this.paramsFilter(this.paramsData));
-    this.projectService.getFollowCompany(params).then(data => {
-      if(!data.pageData || !data.pageData.data || !data.pageData.data.length){
-        this.noMore = true;
-        return;
-      }
-      angular.forEach(data.pageData.data,(item) => {
-        this.listData.data.push(item);
-      });
-      this.dataLoading = false;
-    });*/
-
-    /*this.projectService.getColumn(params).then(data => {
-      if(!data.pageData || !data.pageData){
-        this.noMore = true;
-        return;
-      }
-      angular.forEach(data.pageData.data,(item) => {
-        this.listData.data.push(item);
-      });
-      this.dataLoading = false;
-    });*/
   }
 
   dataHandle(data) {
@@ -188,11 +153,6 @@ export default class followIndexController {
       },(err)=>{
       });
   }
-
-  getDict() {
-
-  }
-
 
 }
 
