@@ -35,10 +35,10 @@
         <div class="col-val">
           不限
         </div>
-        <div class="col-default" ng-if="parentVm.isInvestor">
+        <div class="col-default" ng-if="root.user.isInvestor()">
           融资需求
         </div>
-        <div class="col-val" ng-if="parentVm.isInvestor">
+        <div class="col-val" ng-if="root.user.isInvestor()">
           不限
         </div>
       </div>
@@ -128,7 +128,7 @@
           </div>
         </div>
       </div>
-      <div class="filter-list" ng-if="parentVm.open.filter && parentVm.isInvestor">
+      <div class="filter-list" ng-if="parentVm.open.filter && root.user.isInvestor()">
         <div class="filter-col">
           <div class="col-type">
             融资需求
