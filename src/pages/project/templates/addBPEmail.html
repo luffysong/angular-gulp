@@ -16,9 +16,9 @@
         <input name="bp-email" class="emailInput"
                ng-model="vm.email"
                message-id="editEmail"
-               required-error-message="请输入正确的邮箱地址"
+               required-error-message="请输入合法的邮箱地址"
                maxlength="30"
-               validator="required, email" />
+               validator="required,email" />
         <span class="confirmBtn" ng-click="vm.confirm()">确认</span>
       </div>
     </form>

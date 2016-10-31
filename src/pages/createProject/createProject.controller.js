@@ -30,6 +30,9 @@ export default class CreateProjectController {
         this.selectProject = null;
         this.initBaseInfo();
         this.baseInfo.name = word;
+        this.baseInfo.brief = null;
+        this.baseInfo.logo = null;
+        this.baseInfo.industry = null;
       }
     },
   };
@@ -63,6 +66,11 @@ export default class CreateProjectController {
       financingNeed: this.FINANCE_NEED.UNKNOWN,
       form: this.baseInfo.form,
     };
+    if (this.baseInfo.form) {
+
+      this.baseInfo.form.$setPristine();
+    }
+    // $validation.reset(this.baseInfo.form);
   }
 
   initView() {
@@ -424,6 +432,7 @@ export default class CreateProjectController {
   }
 
   searchClaimList() {
+    console.log(this.baseInfo.form);
     const baseInfo = this.baseInfo;
     const searchObj = {
       name: baseInfo.name,

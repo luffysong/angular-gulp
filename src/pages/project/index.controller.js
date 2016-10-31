@@ -198,8 +198,7 @@ export default class ProjectIndexController {
 
             vm.confirm = () => {
               console.log(vm.email);
-              if ($validation.validate(vm.form) &&
-                  vm.email.match(/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/)) {
+              if (vm.form.$valid) {
                 const email = vm.email;
                 if (email) {
                   outterVM.projectService.addBPEmail(email).then(() => {
@@ -225,9 +224,10 @@ export default class ProjectIndexController {
                     krData.Alert.alert(err1.msg);
                   });
                 }
-              } else {
-                krData.Alert.alert('输入的邮箱地址不正确，请更正');
               }
+              // } else {
+              //   krData.Alert.alert('输入的邮箱地址不正确，请更正');
+              // }
             };
           }
           /* eslint-enable */

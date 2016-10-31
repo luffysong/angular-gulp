@@ -262,6 +262,7 @@
             ng-options="item.value as item.desc for item in root.ROLE_META"
             validator="required"
             ng-disabled="vm.selectProject"
+            ng-blur="vm.searchClaimList()"
             type="text" name="companyRole" class="form-control" >
             <option value="">选择角色</option>
           </select>
