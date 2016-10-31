@@ -280,7 +280,7 @@
       <div class="form-group text-center">
         <a
           ng-if="!vm.selectProject"
-          ng-class="{active: vm.baseInfo.form.$valid === true}"
+          ng-class="{active: vm.baseInfo.form.$valid === true && vm.isValidAfterSelect()}"
           class="next" href="javascript:;" ng-click="vm.next(vm.baseInfo.form)">
           下一步
         </a>

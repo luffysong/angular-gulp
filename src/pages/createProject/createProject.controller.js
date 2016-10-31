@@ -20,9 +20,9 @@ export default class CreateProjectController {
     on_select: item => {
       const obj = item.obj;
       this.selectProject = obj;
-      this.baseInfo.companyType = "";
+      this.baseInfo.companyType = '';
       this.baseInfo.companyRole = null;
-      this.baseInfo.financingNeed = "UNKNOWN";
+      this.baseInfo.financingNeed = this.FINANCE_NEED.UNKNOWN;
       angular.extend(this.baseInfo, obj);
     },
     on_leaveSelect: word => {
@@ -30,9 +30,9 @@ export default class CreateProjectController {
         this.selectProject = null;
         this.initBaseInfo();
         this.baseInfo.name = word;
-        this.baseInfo.brief = null;
-        this.baseInfo.logo = null;
-        this.baseInfo.industry = null;
+        this.baseInfo.brief = '';
+        this.baseInfo.industry = '';
+        this.baseInfo.logo = '';
       }
     },
   };
@@ -52,6 +52,12 @@ export default class CreateProjectController {
     this.init();
   }
 
+  isValidAfterSelect() {
+    return this.baseInfo.brief &&
+        this.baseInfo.industry &&
+        this.baseInfo.logo;
+  }
+
   init() {
     this.initBaseInfo();
     this.watchCompanyType();
@@ -66,11 +72,6 @@ export default class CreateProjectController {
       financingNeed: this.FINANCE_NEED.UNKNOWN,
       form: this.baseInfo.form,
     };
-    if (this.baseInfo.form) {
-
-      this.baseInfo.form.$setPristine();
-    }
-    // $validation.reset(this.baseInfo.form);
   }
 
   initView() {
@@ -432,7 +433,6 @@ export default class CreateProjectController {
   }
 
   searchClaimList() {
-    console.log(this.baseInfo.form);
     const baseInfo = this.baseInfo;
     const searchObj = {
       name: baseInfo.name,
