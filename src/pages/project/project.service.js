@@ -230,10 +230,6 @@ export default class ProjectService extends API {
     }).followed();
   }
 
-  /*我的关注列表(公司数据)*/
-  getFollowCompany() {
-    return new API('/label/followed/company').get();
-  }
 
   // 设置接收BP的邮箱
   addBPEmail(emai) {

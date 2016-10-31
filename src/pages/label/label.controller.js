@@ -74,7 +74,7 @@ export default class labelIndexController {
 
     var params = Object.assign({p:this.currentPage},this.paramsFilter(this.paramsData));
     this.projectService.getLabelCompany(params).then(data => {
-      if(!data.pageData || !data.pageData){
+      if(!data.pageData || !data.pageData.data || !data.pageData.data.length){
         this.noMore = true;
         return;
       }
