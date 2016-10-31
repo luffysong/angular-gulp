@@ -181,9 +181,10 @@ export default class ProjectService extends API {
 
   /*标签信息*/
   getLabel(obj) {
-    return new API('/label/:id').get({
-      id: obj.id,
-    });
+    const id = {
+      id: obj.labelId,
+    };
+    return new API('/label/:id').get(id);
   }
 
   /*标签下公司数据*/

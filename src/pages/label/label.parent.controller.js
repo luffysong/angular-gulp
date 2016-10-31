@@ -55,7 +55,7 @@ export default class listParentController {
 
     this.$scope.$on('get-change',(e,d) => {
       angular.extend(this.params,d);
-      var params = Object.assign({id: this.params.labelId},this.paramsFilter(this.params));
+      var params = Object.assign({labelId: this.params.labelId},this.paramsFilter(this.params));
       this.projectService.getLabel(params).then(data => {
         this.labelDetail = data;
       });
