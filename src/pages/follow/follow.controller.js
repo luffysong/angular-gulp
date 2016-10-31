@@ -56,6 +56,9 @@ export default class followIndexController {
     angular.forEach(this.$stateParams,(val,key) => {
       if(val) {
         this.paramsData[key] = val;
+        if(key === 'labelId' && val) {
+          this.hasSelect = true;
+        }
       }
     });
     this.$scope.$emit('get-change',this.paramsData);
@@ -89,14 +92,14 @@ export default class followIndexController {
 
     this.currentPage++;
 
-    if(this.$stateParams.labelId){
+    if(!this.$stateParams.labelId){
       var params = Object.assign({columnId:this.$stateParams.columnId || 0,p:this.currentPage},this.paramsFilter(this.paramsData));
       this.projectService.getColumn(params).then(data => {
         this.dataHandle(data);
       });
     }else {
       var params = Object.assign({p:this.currentPage},this.paramsFilter(this.paramsData));
-      this.projectService.getLabelCompany(params).then(data => {
+      this.projectService.getFollowCompany(params).then(data => {
         this.dataHandle(data);
       });
     }
@@ -130,6 +133,7 @@ export default class followIndexController {
       this.noMore = true;
       return;
     }
+    this.newCompanyCnt = data.newCompanyCnt;
     if(data.pageData.page === this.currentPage) {
       angular.forEach(data.pageData.data,(item) => {
         this.listData.data.push(item);

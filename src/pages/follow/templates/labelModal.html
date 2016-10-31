@@ -1,0 +1,19 @@
+<div class="label-pop">
+  <i class="icon-dialogClose" ng-click="vm.cancel()"></i>
+  <h3 class="pop-title">标签管理</h3>
+  <div class="pop-col">
+    <span class="col-tag"></span>
+    已关注标签
+  </div>
+  <div class="pop-content">
+    <div class="followed-label" ng-repeat="item in vm.followLabelList" ng-bind="item.name"></div>
+  </div>
+  <div class="pop-col recommend-label">
+    <span class="col-tag"></span>
+    推荐标签
+  </div>
+  <div class="pop-content recommend-content" ng-class="{'heightAuto':vm.showMore}">
+    <div class="followed-label" ng-repeat="item in vm.allLabel" ng-bind="item.name" ng-click="vm.followLabel(item.id)"></div>
+  </div>
+  <a href="javascript:void(0)" class="see-more" ng-click="vm.showMore = true" ng-if="!vm.showMore">查看更多</a>
+</div>

@@ -47,6 +47,31 @@
   padding: 8px 60px;
   background: #FFFFFF;
   box-shadow: 0px 0px 8px 0px #CCCCCC;
+  .col-handle {
+    position: absolute;
+    right:160px;
+    top:30px;
+    z-index:9;
+    &.overflow {
+      .open-btn {
+        display: block;
+      }
+    }
+    .open-btn {
+      display: none;
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      border-radius: 3px;
+      line-height: 18px;
+      font-size: 20px;
+      color: #ccc;
+      transition: transform .4s;
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+  }
   .search-keyword {
     margin:13px auto 14px;
     font-size: 14px;
@@ -56,6 +81,40 @@
   }
   .search-list {
     .clear-both();
+    &.my-follow {
+      position: relative;
+      min-height:33px;
+      overflow: hidden;
+      margin-top:16px;
+      .label-manage {
+        position: absolute;
+        right: 0;
+        font-size: 12px;
+        color: #6BA2FC;
+        top: 50%;
+        margin-top: -7px;
+      }
+      &.height-auto {
+        height:auto !important;
+      }
+      padding-right:100px;
+      li {
+        width:auto;
+        padding:0 30px;
+        &.active {
+          border-radius: 0;
+        }
+        .clear-btn {
+          position: relative;
+          top:1px;
+          vertical-align: middle;
+          visibility: visible;
+          &.hide {
+            visibility: hidden;
+          }
+        }
+      }
+    }
     li {
       display: inline-block;
       position: relative;
@@ -576,5 +635,111 @@
         font-size: 14px;
         letter-spacing: 0px;
       }
+  }
+}
+
+
+.label-dialog {
+  padding-bottom: 160px;
+  padding-top: 160px;
+  .ngdialog-content {
+    background: #fff;
+    color: #444;
+    margin: 0 auto;
+    max-width: 100%;
+    position: relative;
+    width: 660px;
+    padding: 30px 50px 35px;
+  }
+  .icon-dialogClose {
+    position: absolute;
+    right: 20px;
+    text-align: center;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    color: #5a626d;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .ngdialog-close{
+    display: none;
+  }
+}
+/*标签管理弹窗*/
+.label-pop {
+  .pop-title {
+    font-size: 18px;
+    color: #222C38;
+    letter-spacing: 0px;
+    line-height: 27px;
+    text-align: center;
+    margin:0 auto 30px;
+    font-weight:normal;
+  }
+  .pop-col {
+    font-size: 14px;
+    color: #222C38;
+    letter-spacing: 0px;
+    line-height: 21px;
+    margin-bottom:16px;
+    &.recommend-label {
+      margin-top:28px;
+    }
+    .col-tag {
+      position: relative;
+      top:2px;
+      display: inline-block;
+      width:4px;
+      height:14px;
+      background-color: #222C38;
+      margin-right:8px;
+    }
+  }
+  .pop-content {
+    .recommend-content {
+      max-height:114px;
+      overflow: hidden;
+      &.heightAuto {
+        max-height:999px;
+      }
+    }
+    &:before,&:after {
+      display: table;
+      content: '';
+      clear: both;
+    }
+    .followed-label {
+      float: left;
+      width:auto;
+      height:26px;
+      font-size: 12px;
+      color: #5A626D;
+      letter-spacing: 0px;
+      line-height: 24px;
+      border: 1px solid #969FA9;
+      padding:0 8px;
+      text-align: center;
+      margin:0 16px 12px 0;
+      cursor: pointer;
+      &:hover {
+        background: #6BA2FC;
+        color: #fff;
+        border-color: #6BA2FC;
+      }
+    }
+  }
+  .see-more {
+    display: block;
+    width:118px;
+    height:28px;
+    line-height: 26px;
+    border: 1px solid #BBBBBB;
+    border-radius: 4px;
+    margin:12px auto 0;
+    font-size: 12px;
+    color: #5A626D;
+    letter-spacing: 0px;
+    text-align: center;
   }
 }

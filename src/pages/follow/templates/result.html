@@ -1,6 +1,7 @@
 <div class="result-container">
   <div class="result-tip">
-    共<b>{{vm.listData.totalCount}}</b>个结果
+    已为您精选了<b>{{vm.listData.totalCount}}</b>个项目
+    <span ng-if="!vm.hasSelect">,更新了<b>{{vm.newCompanyCnt ? vm.newCompanyCnt : 0}}</b>个新项目</span>
   </div>
   <div class="result-content">
     <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading' infinite-scroll-distance='0'>
@@ -42,7 +43,7 @@
         </td>
         <td>{{obj.publishDate | dateFilter}}</td>
         <td>
-          <span class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}">
+          <span ng-click="root.user.ensureLogin()" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}">
             <span ng-show="obj.followed">已</span>收藏
             <div class="collect-modal">
               <section class="modal-title">选择收藏夹</section>

@@ -11,6 +11,9 @@ export default {
     ],
     follow: [
       '/pages/follow/index.js',
+      '/bower/ng-dialog/js/ngDialog.min.js',
+      '/bower/ng-dialog/css/ngDialog.min.css',
+      '/bower/ng-dialog/css/ngDialog-theme-default.min.css'
     ],
     landing: [
       'pages/landing/index.js'

@@ -231,6 +231,28 @@ export default class ProjectService extends API {
     }).followed();
   }
 
+  getFollowCompany(obj) {
+    const id = {
+      id: obj.labelId,
+    };
+    delete obj.labelId;
+    for(var k in obj) {
+      if(!obj[k]) {
+        delete obj[k];
+      }
+    }
+    return new API('/label/:id/followed/company?' + $.param(obj)).get(id);
+  }
+
+  /*获取全部标签*/
+  getAllLabel() {
+    return new API('/label', {
+      expose: {
+        isArray: true,
+      }
+    }).expose();
+  }
+
 
   // 设置接收BP的邮箱
   addBPEmail(emai) {

@@ -5,11 +5,12 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('followIndexService', '$timeout', '$window','$stateParams','$state','$scope', 'user')
+@Inject('followIndexService', '$timeout', '$window','$stateParams','$state','$scope', 'user','ngDialog')
 export default class followParentController {
 
   constructor() {
     this.api = new TestAPI();
+    console.log(this.ngDialog);
     this.init();
   }
 
@@ -24,28 +25,6 @@ export default class followParentController {
     this.open = {
       filter: false
     };
-
-    /*this.activeTab = this.$scope.type = 'company';*/
-
-    // this.searchList = [
-    //   {
-    //     name:'创业项目',
-    //     value: 'company',
-    //     cnt: 280,
-    //     active:true
-    //   },{
-    //     name:'投资人',
-    //     value: 'user',
-    //     cnt: 280,
-    //     active:false
-    //   },{
-    //     name:'投资机构',
-    //     value: 'org',
-    //     cnt: 280,
-    //     active:false
-    //   }
-    // ];
-
 
     this.itemList = [
       {
@@ -77,18 +56,26 @@ export default class followParentController {
     };
 
     this.$scope.$on('get-change',(e,d) => {
-      this.keyword = d.kw ? d.kw : '';
-      this.activeTab = d.labelId;
-      this.handleSeachList(this.activeTab);
+      console.log(d);
       angular.extend(this.params,d);
 
       if(this.params.labelId) {
         var params = Object.assign({},this.paramsFilter(this.params));
-        this.searchCompany(params);
+        this.projectService.getFollowCompany(params).then(data => {
+          console.warn(data);
+          this.dataHandle(data);
+        });
+
       }else {
         var params = Object.assign({columnId:this.params.columnId || 0},this.paramsFilter(this.params));
-        this.searchColumn(params);
-
+        this.projectService.getColumn(params).then(data => {
+          this.dataHandle(data);
+        }).catch(data => {
+          /*没有关注的标签*/
+          if(data.code+'' === '200') {
+            this.labelEmpty = true;
+          }
+        });
       }
       /*this.searchCompany(params);*/
     });
@@ -103,68 +90,86 @@ export default class followParentController {
 
     this.getLabel();
 
+    this.getAllLabel();
   }
 
+
+  addLabel() {
+    const vm = this;
+    function labelController() {
+      this.followLabelList = vm.followLabel;
+      this.allLabel = vm.allLabel;
+      this.getLabel = function () {
+        vm.projectService.getFollowList().then(data => {
+          this.followLabelList = data;
+        });
+      };
+      this.cancel = function () {
+        vm.labelDialog.close();
+      };
+      this.followLabel = function (id) {
+        vm.projectService.followLabel({
+          id: id
+        }).then(data => {
+          this.getLabel();
+          console.log(data);
+        });
+      }
+
+      this.unFollowLabel = function (id) {
+        vm.projectService.unFollowLabel({
+          id: id
+        }).then(data => {
+          this.labelDetail.isFollowed = false;
+          console.log(data);
+        });
+      }
+    }
+   vm.labelDialog = this.ngDialog.open({
+      template: '<div ng-include="\'/pages/follow/templates/labelModal.html\'" center></div>',
+      className: 'label-dialog',
+      plain: true,
+      controller: labelController,
+      controllerAs: 'vm',
+
+    });
+  }
+
+  spreadMore() {
+    this.isOpen = !this.isOpen;
+  }
+
+  getAllLabel() {
+    this.projectService.getAllLabel().then(data => {
+      this.allLabel = data;
+    });
+  }
 
   getLabel() {
     this.projectService.getFollowList().then(data => {
-      console.log(data);
-      this.data.label = data;
+      this.followLabel = data;
       this.handleActive();
     });
   }
 
-  handleSeachList(tab) {
-    angular.forEach(this.data.label,item => {
-      if(item.value === tab) {
-        item.active = true;
-      }else {
-        item.active = false;
-      }
-    });
-  }
+  dataHandle(data) {
+    this.$scope.$broadcast('get-list',data.pageData);
+    this.data.label = data.label;
+    this.handleActive();
+    this.updateData(data);
 
-  searchCompany(params) {
-    this.projectService.getLabelCompany(params).then(data => {
-      console.log(data);
-      this.$scope.$broadcast('get-list',data.pageData);
-      this.data.label = data.label;
-      this.handleActive();
-      this.updateData(data);
-    });
   }
-
-  searchColumn(params) {
-    this.projectService.getColumn(params).then(data => {
-      console.log(data);
-      this.$scope.$broadcast('get-list',data.pageData);
-      this.data.label = data.label;
-      this.handleActive();
-      this.updateData(data);
-    });
-  }
-
- /* getAll() {
-    this.projectService.Company({
-      type: 'all-count'
-    }).then(data => {
-      angular.forEach(this.searchList,item => {
-        item.cnt = data[item.value+'Cnt'];
-      })
-    });
-  }*/
 
   /*创业项目、投资人、投资机构切换*/
   switchType(index) {
-    if(this.data.label[index].active)return;
-    angular.forEach(this.data.label,(item,i) => {
+    if(this.followLabel[index].active)return;
+    angular.forEach(this.followLabel,(item,i) => {
       if(index == i){
         item.active = true;
-        this.activeTab = this.$scope.tab = item.id;
         angular.forEach(this.params,(val,key) => {
             this.params[key] = null;
         });
-        this.params.label = item.id;
+        this.params.labelId = item.id;
         this.go();
       }else {
         item.active = false;
@@ -211,7 +216,15 @@ export default class followParentController {
   handleActive () {
     this.dataInit();
     angular.forEach(this.params,(val,key) => {
-      console.log(val);
+      if(key === 'labelId' && val) {
+        angular.forEach(this.followLabel,item => {
+          if(item.id+'' === val) {
+            item.active = true;
+          }else {
+            item.active = false;
+          }
+        });
+      }
       if(val && val.split(',').length > 1){
         angular.forEach(val.split(','),(a) => {
           angular.forEach(this.data[key],(item,index) => {
@@ -251,11 +264,6 @@ export default class followParentController {
     }
     this.go();
   }
-
-  /*筛选器展开*/
-  spreadMore (type) {
-    this.open[type] = !this.open[type];
-  };
 
   /*取消选择行业*/
   clearIndustry (id,type) {
