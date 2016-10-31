@@ -82,6 +82,8 @@ export default class landingParentController {
       angular.extend(this.params,d);
       var params = Object.assign({},this.paramsFilter(this.params));
       this.searchCompany(params);
+
+      this.getAll();
     });
 
     this.$scope.$on('open-sideBar',(e,d) => {
@@ -97,7 +99,7 @@ export default class landingParentController {
 
     this.getPhase();
 
-    this.getAll();
+
 
   }
 
@@ -122,7 +124,8 @@ export default class landingParentController {
 
   getAll() {
     this.projectService.searchCompany({
-      type: 'all-count'
+      type: 'all-count',
+      kw: this.keyword
     }).then(data => {
       angular.forEach(this.searchList,item => {
         item.cnt = data[item.value+'Cnt'];
