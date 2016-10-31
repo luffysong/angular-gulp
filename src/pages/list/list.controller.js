@@ -157,12 +157,30 @@ export default class listIndexController {
   }
 
   seeDetail(id) {
+    var labelArr = [];
+    if(this.$stateParams.label) {
+      if(this.$stateParams.label.split(',').length > 1) {
+        angular.forEach(this.$stateParams.label.split(','),item => {
+          angular.forEach(this.$scope.parentVm.data.label, obj => {
+            if(obj.id+'' === item+'') {
+              labelArr.push(obj.name);
+            }
+          });
+        });
+      }else {
+        angular.forEach(this.$scope.parentVm.data.label, obj => {
+          if(obj.id+'' === this.$stateParams.label) {
+            labelArr.push(obj.name);
+          }
+        });
+      }
+    }
     var columnOptions = {
       context: this,
       companyId: id,
       loadMore: this.loadMore.bind(this),
       companies: this.listData.data,
-      tags: this.$stateParams.label ? this.$stateParams.label.split(',') : '',
+      tags: labelArr,
       closeMe: this.closeMe.bind(this)
     };
 
