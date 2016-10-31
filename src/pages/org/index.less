@@ -1,0 +1,61 @@
+@import "../../common/styles/function";
+@import "../../common/styles/var";
+
+.org-wrapper {
+  width: 100%;
+  height: 100%;
+  background:@bg-global-color;
+  header {
+    width: 100%;
+    background: #fff;
+    h1 {
+      color: @title-color;
+      .font(20,24);
+      height: 24px;
+    }
+    section {
+      width: 829px;
+      margin: 0 auto;
+      overflow: hidden;
+      padding: 30px 0;
+      border-bottom: 1px solid @bg-global-color;
+      img {
+        .square(90);
+        .rd(6px);
+        float: left;
+      }
+      .right-content {
+        float: left;
+        margin-left: 18px;
+        max-width: unit(829-90-18, px);
+      }
+    }
+    nav{
+      width: 100%;
+      height: 47px;
+      line-height: 47px;
+    }
+  }
+  .org-module {
+    background-color: #fff;
+    width: @content-width;
+    margin: 0 auto;
+    padding: 20px 42px 30px;
+    box-shadow: 0px 0px 8px 0px #CCC;
+    margin-top: 16px;
+    h4 {
+      color: @title-color;
+      .font(16, 24);
+      font-weight: normal;
+      position: relative;
+      display: flex;
+      align-items: center;
+      &:before {
+        .before(4px, 18px, absolute);
+        background: @title-color;
+        left: -12px;
+      }
+      margin: 0 0 24px;
+    }
+  }
+}
