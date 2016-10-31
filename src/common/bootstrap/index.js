@@ -79,7 +79,9 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       required: {},
       minlength: {},
       maxlength: {},
-      email: {},
+      email: {
+        error: '请输入合法的邮箱地址',
+      },
       number: {},
       integer: {},
       http: {

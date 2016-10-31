@@ -262,6 +262,7 @@
             ng-options="item.value as item.desc for item in root.ROLE_META"
             validator="required"
             ng-disabled="vm.selectProject"
+            ng-blur="vm.searchClaimList()"
             type="text" name="companyRole" class="form-control" >
             <option value="">选择角色</option>
           </select>
@@ -279,7 +280,7 @@
       <div class="form-group text-center">
         <a
           ng-if="!vm.selectProject"
-          ng-class="{active: vm.baseInfo.form.$valid === true}"
+          ng-class="{active: vm.baseInfo.form.$valid === true && vm.isValidAfterSelect()}"
           class="next" href="javascript:;" ng-click="vm.next(vm.baseInfo.form)">
           下一步
         </a>

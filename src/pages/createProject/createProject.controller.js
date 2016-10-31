@@ -20,9 +20,9 @@ export default class CreateProjectController {
     on_select: item => {
       const obj = item.obj;
       this.selectProject = obj;
-      this.baseInfo.companyType = "";
+      this.baseInfo.companyType = '';
       this.baseInfo.companyRole = null;
-      this.baseInfo.financingNeed = "UNKNOWN";
+      this.baseInfo.financingNeed = this.FINANCE_NEED.UNKNOWN;
       angular.extend(this.baseInfo, obj);
     },
     on_leaveSelect: word => {
@@ -30,6 +30,9 @@ export default class CreateProjectController {
         this.selectProject = null;
         this.initBaseInfo();
         this.baseInfo.name = word;
+        this.baseInfo.brief = '';
+        this.baseInfo.industry = '';
+        this.baseInfo.logo = '';
       }
     },
   };
@@ -47,6 +50,12 @@ export default class CreateProjectController {
     this.setProjectTypeValidator();
     this.setApplinkValidator();
     this.init();
+  }
+
+  isValidAfterSelect() {
+    return this.baseInfo.brief &&
+        this.baseInfo.industry &&
+        this.baseInfo.logo;
   }
 
   init() {
