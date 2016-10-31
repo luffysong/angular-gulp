@@ -1,10 +1,15 @@
-import { login } from '../base/utls.js';
+import { login, getService } from '../base/utls.js';
 @Inject('$http')
 export default class User {
 
   data = {};
   constructor() {
     this.init();
+  }
+
+  static getUserInfo() {
+    return getService('$http').get('/api/user')
+    .then(data => data.data);
   }
 
   init() {
