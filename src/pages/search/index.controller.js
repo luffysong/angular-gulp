@@ -10,26 +10,17 @@ export default class SearchIndexController {
   company = [];
   p = 1;
   init() {
+    this.outVm = this.$scope.searchVm.columnOptions.context;
+    this.$scope.outVm = this.outVm;
+  }
+
+  login() {
+    krData.utls.login();
   }
 
   open(id) {
     this.columnOptions.companyId = id;
   }
-
-  loadMore() {
-    if (this.loading) {
-      return;
-    }
-    this.loading = true;
-    this.companyApi.get({
-      p: this.p,
-    }).then(data => {
-      this.company = this.company.concat(data.pageData.data);
-      this.p++;
-      this.loading = false;
-    });
-  }
-
 
   onDestroy() {
     this.$scope.$on('$destroy', () => {

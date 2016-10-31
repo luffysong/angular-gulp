@@ -65,10 +65,19 @@
         .font(14,21);
         .dlk();
         color: @title-color;
-        max-width: 165px;
+        max-width: 100px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+      }
+      .icon-Tags {
+        margin-right: 4px;
+      }
+      .hot-wrapper {
+        color: #F8627E;
+        .icon-Hot {
+          margin-right: 4px;
+        }
       }
       .hot,.funding {
         border-radius: 2px;
@@ -96,6 +105,19 @@
     }
   }
   // search-project-list end
+  //load-more-wrapper start
+  .load-more-wrapper {
+    .load-more {
+      height: 37px;
+      line-height: 37px;
+      color: #5a626d;
+      font-size: 12px;
+      text-align: center;
+
+    }
+
+  }
+  //load-more-wrapper end
 }
 .search-wrapper.menu-expanded {
   padding-left: 440px;

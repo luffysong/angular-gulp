@@ -1,9 +1,9 @@
-<div class="result-container">
+<div ng-if="!parentVm.open.sideBar" class="result-container">
   <div class="result-tip">
     共<b>{{vm.listData.totalCount}}</b>个结果
   </div>
   <div class="result-content">
-    <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading' infinite-scroll-distance='0' ng-if="vm.tab === 'company'">
+    <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading || vm.noMore || vm.needLogin' infinite-scroll-distance='0' ng-if="vm.tab === 'company'">
       <tr>
         <td width="320">项目</td>
         <td>行业</td>
@@ -15,7 +15,7 @@
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
-          <a href="" class="project-logo" style="background-image: url({{obj.logo}})"></a>
+          <a href="javascript:;" ng-click="vm.seeDetail(obj.id)"  class="project-logo" style="background-image: url({{obj.logo}})"></a>
           <div class="project-info">
             <div class="project-name">
               <span class="company-name">{{obj.name}}</span><span class="hot-tag" ng-if="obj.hot">热门</span><span class="classic-tag" ng-if="!obj.classic">精品</span><span class="fund-state" ng-if="obj.funding">融资中</span>
@@ -71,7 +71,7 @@
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
-          <a href="" class="project-logo" style="background-image: url({{obj.logo}})"></a>
+          <a href="javascript:;" class="project-logo" style="background-image: url({{obj.logo}})"></a>
           <div class="project-info">
             <div class="project-name">
               <span class="company-name">{{obj.name}}</span>
@@ -121,11 +121,17 @@
 
       </tr>
     </table>
+    <div  ng-if="vm.needLogin" class="load-more">
+      <a  href="javascript:;" ng-click="vm.login()">
+        登录查看更多
+      </a>
+    </div>
     <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">
       正在加载更多...
     </div>
-    <div class="load-more" ng-if="vm.noMore">
+    <div class="load-more" ng-if="vm.noMore && !vm.needLogin">
       已无更多数据
     </div>
   </div>
 </div>
+

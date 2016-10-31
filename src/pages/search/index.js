@@ -3,7 +3,7 @@ import krColumn3Directive from './krColumn.directive.js';
 
 angular.module('@pages.search', [])
   .controller('SearchIndexController', SearchIndexController)
-  .directive('krReloadProject', function krReload(projectService, resolveData, $compile, $timeout) {
+  .directive('krReloadProject', function krReload(projectService, resolveData, $compile) {
     return {
       link: function postLink($scope, ele) {
         $scope.$watch('searchVm.columnOptions.companyId', (nv) => {

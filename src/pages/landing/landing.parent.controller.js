@@ -84,6 +84,11 @@ export default class landingParentController {
       this.searchCompany(params);
     });
 
+    this.$scope.$on('open-sideBar',(e,d) => {
+      this.columnOptions = d;
+      this.open.sideBar = true;
+    });
+
     this.getCity();
 
     this.getIndustry();
