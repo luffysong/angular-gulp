@@ -1,7 +1,7 @@
 <div>
   <div class="filter-container">
     <ul class="search-list">
-      <li ng-repeat="item in parentVm.data.type" ng-class="{'active':item.active}" ng-click="parentVm.switchType($index)">
+      <li ng-repeat="item in parentVm.data.label" ng-class="{'active':item.active}" ng-click="parentVm.switchType($index)">
         {{item.name}}
       </li>
     </ul>

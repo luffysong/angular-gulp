@@ -37,7 +37,7 @@ export default class followIndexController {
 
     this.$scope.$watch('tab', val => {
       if(!val){
-        this.tab = 'company';
+        this.tab = '';
       }else {
         this.tab = val;
         this.currentPage = 1;
@@ -89,7 +89,19 @@ export default class followIndexController {
 
     this.currentPage++;
 
-    var params = Object.assign({type: this.$scope.tab || 'company',p:this.currentPage},this.paramsFilter(this.paramsData));
+    if(this.$stateParams.labelId){
+      var params = Object.assign({columnId:this.$stateParams.columnId || 0,p:this.currentPage},this.paramsFilter(this.paramsData));
+      this.projectService.getColumn(params).then(data => {
+        this.dataHandle(data);
+      });
+    }else {
+      var params = Object.assign({p:this.currentPage},this.paramsFilter(this.paramsData));
+      this.projectService.getLabelCompany(params).then(data => {
+        this.dataHandle(data);
+      });
+    }
+
+    /*var params = Object.assign({labelId: this.$scope.tab || 'company',p:this.currentPage},this.paramsFilter(this.paramsData));
     this.projectService.getFollowCompany(params).then(data => {
       if(!data.pageData || !data.pageData.data || !data.pageData.data.length){
         this.noMore = true;
@@ -99,7 +111,7 @@ export default class followIndexController {
         this.listData.data.push(item);
       });
       this.dataLoading = false;
-    });
+    });*/
 
     /*this.projectService.getColumn(params).then(data => {
       if(!data.pageData || !data.pageData){
@@ -111,6 +123,21 @@ export default class followIndexController {
       });
       this.dataLoading = false;
     });*/
+  }
+
+  dataHandle(data) {
+    if(!data.pageData || !data.pageData.data || !data.pageData.data.length){
+      this.noMore = true;
+      return;
+    }
+    if(data.pageData.page === this.currentPage) {
+      angular.forEach(data.pageData.data,(item) => {
+        this.listData.data.push(item);
+      });
+    } else {
+      this.currentPage = data.pageData.page;
+    }
+    this.dataLoading = false;
   }
 
   change (item,index) {

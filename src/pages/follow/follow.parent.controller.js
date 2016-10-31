@@ -78,11 +78,19 @@ export default class followParentController {
 
     this.$scope.$on('get-change',(e,d) => {
       this.keyword = d.kw ? d.kw : '';
-      this.activeTab = d.type ? d.type : 'company';
+      this.activeTab = d.labelId;
       this.handleSeachList(this.activeTab);
       angular.extend(this.params,d);
-      var params = Object.assign({},this.paramsFilter(this.params));
-      this.searchCompany(params);
+
+      if(this.params.labelId) {
+        var params = Object.assign({},this.paramsFilter(this.params));
+        this.searchCompany(params);
+      }else {
+        var params = Object.assign({columnId:this.params.columnId || 0},this.paramsFilter(this.params));
+        this.searchColumn(params);
+
+      }
+      /*this.searchCompany(params);*/
     });
 
     this.getCity();
@@ -91,7 +99,7 @@ export default class followParentController {
 
     this.getPhase();
 
-    this.getAll();
+    /*this.getAll();*/
 
     this.getLabel();
 
@@ -101,13 +109,13 @@ export default class followParentController {
   getLabel() {
     this.projectService.getFollowList().then(data => {
       console.log(data);
-      this.data.type = data;
+      this.data.label = data;
       this.handleActive();
     });
   }
 
   handleSeachList(tab) {
-    angular.forEach(this.searchList,item => {
+    angular.forEach(this.data.label,item => {
       if(item.value === tab) {
         item.active = true;
       }else {
@@ -117,7 +125,7 @@ export default class followParentController {
   }
 
   searchCompany(params) {
-    this.projectService.getFollowCompany({}).then(data => {
+    this.projectService.getLabelCompany(params).then(data => {
       console.log(data);
       this.$scope.$broadcast('get-list',data.pageData);
       this.data.label = data.label;
@@ -126,27 +134,37 @@ export default class followParentController {
     });
   }
 
-  getAll() {
-    this.projectService.searchCompany({
+  searchColumn(params) {
+    this.projectService.getColumn(params).then(data => {
+      console.log(data);
+      this.$scope.$broadcast('get-list',data.pageData);
+      this.data.label = data.label;
+      this.handleActive();
+      this.updateData(data);
+    });
+  }
+
+ /* getAll() {
+    this.projectService.Company({
       type: 'all-count'
     }).then(data => {
       angular.forEach(this.searchList,item => {
         item.cnt = data[item.value+'Cnt'];
       })
     });
-  }
+  }*/
 
   /*创业项目、投资人、投资机构切换*/
   switchType(index) {
-    if(this.searchList[index].active)return;
-    angular.forEach(this.searchList,(item,i) => {
+    if(this.data.label[index].active)return;
+    angular.forEach(this.data.label,(item,i) => {
       if(index == i){
         item.active = true;
         this.activeTab = this.$scope.tab = item.id;
         angular.forEach(this.params,(val,key) => {
             this.params[key] = null;
         });
-        this.params.type = item.id;
+        this.params.label = item.id;
         this.go();
       }else {
         item.active = false;
@@ -298,12 +316,6 @@ export default class followParentController {
   getPhase() {
     this.data.phase = this.addItem(this.$scope.root.FUNDS_PHASE_ENUM_META);
   }
-
-  /*获取融资需求数据*/
-  /*getisFundingLimit() {
-    this.data.isFundingLimit = this.addItem(this.$scope.root.FINANCE_NEED_META);
-  }*/
-
 
 
 }
