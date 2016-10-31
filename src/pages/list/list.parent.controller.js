@@ -200,6 +200,7 @@ export default class listParentController {
 
   /*增加默认数据*/
   addItem(obj,type) {
+    if(!obj || !obj.concat)return;
     var temp = obj.concat();
     var c = {
       active: false,
@@ -246,7 +247,7 @@ export default class listParentController {
 
   /*获取轮次静态数据*/
   getPhase() {
-    this.data.phase = this.addItem(this.$scope.root.FUNDS_PHASE_ENUM_META);
+    this.data.phase = this.addItem(this.$scope.root.COMPANY_SEARCH_PHASE_META);
   }
 
   /*获取融资需求数据*/
