@@ -5,7 +5,7 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('followIndexService', '$timeout', '$window','$stateParams','$state','$scope')
+@Inject('followIndexService', '$timeout', '$window','$stateParams','$state','$scope', 'user')
 export default class followParentController {
 
   constructor() {
@@ -16,7 +16,7 @@ export default class followParentController {
   projectService = new ProjectService();
 
   init() {
-
+    this.isInvestor = this.user.isInvestor();
     this.params = {
 
     };

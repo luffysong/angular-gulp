@@ -5,7 +5,7 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('labelIndexService', '$timeout', '$window','$stateParams','$state','$scope')
+@Inject('labelIndexService', '$timeout', '$window','$stateParams','$state','$scope', 'user')
 export default class listParentController {
 
   constructor() {
@@ -16,7 +16,7 @@ export default class listParentController {
   projectService = new ProjectService();
 
   init() {
-
+    this.isInvestor = this.user.isInvestor();
     this.params = {};
 
     this.labelDetail = {};

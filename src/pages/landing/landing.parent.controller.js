@@ -5,7 +5,7 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('landingIndexService', '$timeout', '$window','$stateParams','$state','$scope')
+@Inject('landingIndexService', '$timeout', '$window','$stateParams','$state','$scope', 'user')
 export default class landingParentController {
 
   constructor() {
@@ -16,7 +16,7 @@ export default class landingParentController {
   projectService = new ProjectService();
 
   init() {
-
+    this.isInvestor = this.user.isInvestor();
     this.params = {
 
     };
