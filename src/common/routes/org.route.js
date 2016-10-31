@@ -8,5 +8,11 @@ export default {
   controller: 'OrgController',
   resolve: {
     loadProjectBundle: getLoadBundle(assets.page.org),
+    projectData: /* @ngInject */
+    function loadProjectData(loadProjectBundle, OrgService, $stateParams, resolveData) {
+      return OrgService.allData({
+        id: $stateParams.id,
+      }).then(data => (resolveData.projectData = data));
+    },
   },
-};
+}
