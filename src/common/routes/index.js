@@ -5,8 +5,8 @@ import createProject, { financeRoute } from './createProject.route';
 import { search } from './search.route';
 import { listView, list } from './list.route';
 import { labelView, label } from './label.route';
-import {landingView, landing } from './landing.route';
-import {followView, follow } from './follow.route';
+import { landingView, landing } from './landing.route';
+import { followView, follow } from './follow.route';
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode(true);
@@ -16,16 +16,16 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider.state('project.edit', editProject);
   $stateProvider.state('search', search);
   $stateProvider.state('createProject', createProject);
-  /*项目列表页*/
+  /* 项目列表页*/
   $stateProvider.state('list', listView);
   $stateProvider.state('list.result', list);
-  /*标签聚合页*/
+  /* 标签聚合页*/
   $stateProvider.state('label', labelView);
   $stateProvider.state('label.result', label);
-  /*搜索落地页*/
+  /* 搜索落地页*/
   $stateProvider.state('landing', landingView);
   $stateProvider.state('landing.result', landing);
-  /*我的关注*/
+  /* 我的关注*/
   $stateProvider.state('follow', followView);
   $stateProvider.state('follow.result', follow);
 

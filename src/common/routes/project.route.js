@@ -19,9 +19,13 @@ export default {
 
 const editProject = {
   url: '/edit',
-  template: '',
-  controllerAs: 'editProjectVM',
-  controller: 'EditProjectController',
+  views: {
+    NULL: {
+      template: '',
+      controllerAs: 'editProjectVM',
+      controller: 'EditProjectController',
+    },
+  },
 };
 
 export {
