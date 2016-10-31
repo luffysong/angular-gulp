@@ -7,6 +7,7 @@ import { listView, list } from './list.route';
 import { labelView, label } from './label.route';
 import { landingView, landing } from './landing.route';
 import { followView, follow } from './follow.route';
+import org from './org.route.js';
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode(true);
@@ -28,6 +29,9 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   /* 我的关注*/
   $stateProvider.state('follow', followView);
   $stateProvider.state('follow.result', follow);
+
+  /* 机构页 */
+  $stateProvider.state('org', org);
 
   $urlRouterProvider.when('^/list', '^/list/result');
   $stateProvider.state('financeRoute', financeRoute);
