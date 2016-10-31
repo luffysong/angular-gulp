@@ -82,7 +82,7 @@
         </div>
       </div>
     </div>
-    <div class="filter-list" ng-if="parentVm.open.filter && parentVm.isInvestor">
+    <div class="filter-list" ng-if="parentVm.open.filter && root.user.isInvestor()">
       <div class="filter-col">
         <div class="col-type">
           融资需求

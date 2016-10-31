@@ -15,6 +15,7 @@ export default class User {
   init() {
     this.$http.get('/api/user')
       .then(data => {
+        data = data.data;
         this.loaded = true;
         this.isLogin = true;
         angular.extend(this.data, data);
@@ -36,7 +37,7 @@ export default class User {
   }
 
   isInvestor() {
-    return this.investorType < 100;
+    return this.data.investorType < 100;
   }
 
 }
