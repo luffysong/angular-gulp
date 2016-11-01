@@ -63,7 +63,7 @@ export default class followParentController {
         });
 
       }else {
-        var params = Object.assign({columnId:this.params.columnId || 0},this.paramsFilter(this.params));
+        var params = Object.assign({columnId:this.params.columnId || 2},this.paramsFilter(this.params));
         this.projectService.getColumn(params).then(data => {
           this.dataHandle(data);
         }).catch(data => {
@@ -74,6 +74,11 @@ export default class followParentController {
         });
       }
       /*this.searchCompany(params);*/
+    });
+
+    this.$scope.$on('open-sideBar',(e,d) => {
+      this.columnOptions = d;
+      this.open.sideBar = true;
     });
 
     this.getCity();
@@ -149,6 +154,7 @@ export default class followParentController {
   dataHandle(data) {
     this.$scope.$broadcast('get-list',data.pageData);
     this.data.label = data.label;
+    this.data.label[0].value = 'unlimited';
     this.handleActive();
     this.updateData(data);
 
@@ -161,7 +167,9 @@ export default class followParentController {
       if(index == i){
         item.active = true;
         angular.forEach(this.params,(val,key) => {
+          if(key !== 'columnId') {
             this.params[key] = null;
+          }
         });
         this.params.labelId = item.id;
         this.go();
@@ -275,6 +283,8 @@ export default class followParentController {
 
   /*增加默认数据*/
   addItem(obj,type) {
+    if(!obj || !obj.concat)return;
+    var temp = obj.concat();
     var c = {
       active: false,
       id: 0,
@@ -285,8 +295,8 @@ export default class followParentController {
     } else {
       c.desc = '不限';
     }
-    obj.unshift(c);
-    return obj;
+    temp.unshift(c);
+    return temp;
   }
 
   /*数据active全部初始化*/

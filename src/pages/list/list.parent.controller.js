@@ -16,7 +16,6 @@ export default class listParentController {
   projectService = new ProjectService();
 
   init() {
-    this.isInvestor = this.user.isInvestor();
     this.params = {
 
     };
@@ -68,6 +67,7 @@ export default class listParentController {
       this.projectService.getColumn(params).then(data => {
         this.$scope.$broadcast('get-list',data.pageData);
         this.data.label = data.label;
+        this.data.label[0].value = 'unlimited';
         this.handleActive();
         this.updateData(data);
       });

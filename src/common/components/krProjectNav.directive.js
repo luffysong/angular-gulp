@@ -10,6 +10,7 @@ class ProjectNavController {
 
   init() {
     this.loadColumns();
+
   }
 
   go(id,e) {
@@ -24,7 +25,9 @@ class ProjectNavController {
 
   loadColumns() {
     this.columnApi.query()
-      .then(list => (this.list = list));
+      .then(list => {
+        this.list = list;
+     })
   }
 }
 export default {
@@ -37,7 +40,7 @@ export default {
     <span class="kr-tags">创业公司</span>
   </a>
   <ul class="column">
-    <li ng-class="{active: item.id === root.toParams.columnId}"
+    <li ng-class="{active: item.id+'' === root.toParams.columnId+''}"
     ui-sref-opts="{inherit: false}"
      ui-sref="list.result({columnId:item.id})"
       ng-repeat="item in projectNavVm.list" ng-click="projectNavVm.go(item.id,$event)">

@@ -80,7 +80,7 @@ export default class followIndexController {
     this.currentPage++;
 
     if(!this.$stateParams.labelId){
-      var params = Object.assign({columnId:this.$stateParams.columnId || 0,p:this.currentPage},this.paramsFilter(this.paramsData));
+      var params = Object.assign({columnId:this.$stateParams.columnId || 2,p:this.currentPage},this.paramsFilter(this.paramsData));
       this.projectService.getColumn(params).then(data => {
         this.dataHandle(data);
       });
@@ -152,6 +152,42 @@ export default class followIndexController {
         );
       },(err)=>{
       });
+  }
+
+  seeDetail(id) {
+    var labelArr = [];
+    if(this.$stateParams.label) {
+      if(this.$stateParams.label.split(',').length > 1) {
+        angular.forEach(this.$stateParams.label.split(','),item => {
+          angular.forEach(this.$scope.parentVm.data.label, obj => {
+            if(obj.id+'' === item+'') {
+              labelArr.push(obj.name);
+            }
+          });
+        });
+      }else {
+        angular.forEach(this.$scope.parentVm.data.label, obj => {
+          if(obj.id+'' === this.$stateParams.label) {
+            labelArr.push(obj.name);
+          }
+        });
+      }
+    }
+    var columnOptions = {
+      context: this,
+      companyId: id,
+      loadMore: this.loadMore.bind(this),
+      companies: this.listData.data,
+      tags: labelArr,
+      closeMe: this.closeMe.bind(this)
+    };
+
+    console.warn(columnOptions);
+    this.$scope.$emit('open-sideBar',columnOptions);
+  }
+
+  closeMe () {
+    this.$scope.parentVm.open.sideBar = false;
   }
 
 }
