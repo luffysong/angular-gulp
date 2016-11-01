@@ -9,7 +9,6 @@
         <div class="col-content">
           <div class="col-list-container">
             <ul filter-cal ng-class="{'height-auto':parentVm.open.industry}">
-              <!--ng-if="$index < parentVm.open.maxNumber || ($index >= parentVm.open.maxNumber && parentVm.open.address)"-->
               <li class="col-item" ng-repeat="item in parentVm.data.industry" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'industry')">
                 {{item.desc}}({{item.cnt ? item.cnt : 0}})
                 <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
@@ -109,8 +108,3 @@
 <div kr-column3 column-options="parentVm.columnOptions" ng-if="parentVm.open.sideBar">
 
 </div>
-
-<!--<ui-view></ui-view>-->
-
-
-
