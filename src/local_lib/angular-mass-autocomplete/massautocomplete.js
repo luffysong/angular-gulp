@@ -330,7 +330,7 @@ angular.module('MassAutoComplete', [])
 						$scope.show_autocomplete = false;
 
             current_options.on_select && current_options.on_select(selected,
-              searchValue
+              searchValue, $event
               );
 					};
 
