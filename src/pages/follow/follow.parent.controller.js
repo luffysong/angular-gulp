@@ -16,7 +16,6 @@ export default class followParentController {
   projectService = new ProjectService();
 
   init() {
-    this.isInvestor = this.user.isInvestor();
     this.params = {
 
     };
@@ -116,7 +115,7 @@ export default class followParentController {
         vm.projectService.unFollowLabel({
           id: id
         }).then(data => {
-          this.labelDetail.isFollowed = false;
+          this.getLabel();
         });
       }
     }

@@ -6,7 +6,10 @@
     已关注标签
   </div>
   <div class="pop-content">
-    <div class="followed-label" ng-repeat="item in vm.followLabelList" ng-bind="item.name"></div>
+    <div class="followed-label" ng-repeat="item in vm.followLabelList">
+      {{item.name}}
+      <span class="unFollow-icon icon-dialogClose" ng-click="vm.unFollowLabel(item.id)"></span>
+    </div>
   </div>
   <div class="pop-col recommend-label">
     <span class="col-tag"></span>

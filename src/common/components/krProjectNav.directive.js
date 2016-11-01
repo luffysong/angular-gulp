@@ -1,5 +1,6 @@
 import API from '../base/API.js';
 
+@Inject('$state')
 class ProjectNavController {
   columnApi = new API('/column/:id');
 
@@ -9,6 +10,16 @@ class ProjectNavController {
 
   init() {
     this.loadColumns();
+  }
+
+  go(id,e) {
+    /*我的关注*/
+    if(id+'' === '2') {
+      e.preventDefault();
+      this.$state.go('follow.result',{
+        columnId: id
+      });
+    }
   }
 
   loadColumns() {
@@ -29,7 +40,7 @@ export default {
     <li ng-class="{active: item.id === root.toParams.columnId}"
     ui-sref-opts="{inherit: false}"
      ui-sref="list.result({columnId:item.id})"
-      ng-repeat="item in projectNavVm.list">
+      ng-repeat="item in projectNavVm.list" ng-click="projectNavVm.go(item.id,$event)">
     {{item.name}}</li>
   </ul>`,
 };

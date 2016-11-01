@@ -658,7 +658,7 @@
     top: 20px;
     width: 20px;
     height: 20px;
-    color: #5a626d;
+    color: #969fa9;
     font-size: 20px;
     cursor: pointer;
   }
@@ -697,7 +697,7 @@
     }
   }
   .pop-content {
-    .recommend-content {
+    &.recommend-content {
       max-height:114px;
       overflow: hidden;
       &.heightAuto {
@@ -710,6 +710,7 @@
       clear: both;
     }
     .followed-label {
+      position: relative;
       float: left;
       width:auto;
       height:26px;
@@ -722,10 +723,20 @@
       text-align: center;
       margin:0 16px 12px 0;
       cursor: pointer;
+      .unFollow-icon {
+        position: static;
+        width: 14px;
+        height: 14px;
+        font-size: 12px;
+        vertical-align: middle;
+      }
       &:hover {
         background: #6BA2FC;
         color: #fff;
         border-color: #6BA2FC;
+        .unFollow-icon {
+          color: #fff;
+        }
       }
     }
   }
