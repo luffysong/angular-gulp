@@ -47,6 +47,7 @@ export default {
     org: [
       '/pages/org/index.js',
       ...PROJECT_ORG,
+    ],
     organization: [
       '/pages/organization/index.js',
     ],

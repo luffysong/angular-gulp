@@ -56,23 +56,12 @@ export default class organizationIndexController {
     return o;
   }
 
-
-  // triggerCollect (id) {
-  //   if(this.cid === id)return;
-  //   this.cid = id;
-  //   this.OrganizationService.collect(this.cid).then((data) => {
-  //     this.collections = data;
-  //   });
-  // };
-
   loadMore() {
-    console.log(this.dataLoading);
     if(this.dataLoading)return;
     this.dataLoading = true;
 
     this.currentPage++;
-    var params = Object.assign({columnId:this.$stateParams.columnId || 0,page:this.currentPage},this.paramsFilter(this.paramsData));
-    console.log(params);
+    var params = Object.assign({page:this.currentPage},this.paramsFilter(this.paramsData));
     this.organizationService.getList(params).then(data => {
       if(!data.org.data){
           this.noMore = true;
@@ -85,57 +74,31 @@ export default class organizationIndexController {
     });
   }
 
-  // change (item,index) {
-  //   this.activeIndex = index;
-  //   const form = {
-  //     cid: this.cid,
-  //     groupId: item.id,
-  //   };
-  //   if (item.followed) {
-  //     this.OrganizationService.collectCompany(form)
-  //       .then(() => {
-  //         this.suc = true;
-  //         setTimeout(() => {
-  //           this.suc = false;
-  //         }, 3000);
-  //         ++item.count;
-  //       });
-  //   } else {
-  //     this.OrganizationService.deconsteCompany(form)
-  //       .then(() => {
-  //         this.cancle = true;
-  //         setTimeout(() => {
-  //           this.cancle = false;
-  //         }, 3000);
-  //         --item.count;
-  //       });
-  //   }
-  // }
-
-  // create () {
-  //   if(!this.collectionName)return;
-  //   this.OrganizationService.createCollect({
-  //     name:this.collectionName
-  //   }).then(
-  //     () => {
-  //       this.suc = true;
-  //       this.collectionName = '';
-  //       setTimeout(() => {
-  //         this.suc = false;
-  //       }, 3000);
-  //       this.projectService.collect(this.cid).then(
-  //         (data) => this.collections = data
-  //       );
-  //     },(err)=>{
-  //     });
-  // }
-
   seeDetail(id) {
+    var labelArr = [];
+    if(this.$stateParams.label) {
+      if(this.$stateParams.label.split(',').length > 1) {
+        angular.forEach(this.$stateParams.label.split(','),item => {
+          angular.forEach(this.$scope.parentVm.data.label, obj => {
+            if(obj.id+'' === item+'') {
+              labelArr.push(obj.name);
+            }
+          });
+        });
+      }else {
+        angular.forEach(this.$scope.parentVm.data.label, obj => {
+          if(obj.id+'' === this.$stateParams.label) {
+            labelArr.push(obj.name);
+          }
+        });
+      }
+    }
     var columnOptions = {
+      context: this,
       companyId: id,
       loadMore: this.loadMore.bind(this),
       companies: this.listData.data,
-      tags: this.$stateParams.label ? this.$stateParams.label.split(',') : '',
+      tags: labelArr,
       closeMe: this.closeMe.bind(this)
     };
 
@@ -145,11 +108,6 @@ export default class organizationIndexController {
   closeMe () {
     this.$scope.parentVm.open.sideBar = false;
   }
-
-  getDict() {
-
-  }
-
 
 }
 

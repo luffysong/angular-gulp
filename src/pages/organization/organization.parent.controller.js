@@ -28,10 +28,6 @@ export default class organizationParentController {
 
     this.$scope.company = {};
 
-
-
-    /*this.itemList = ['industry','phase','city'];*/
-
     this.itemList = [
       {
         name: 'industry',
@@ -52,21 +48,15 @@ export default class organizationParentController {
         this.handleActive();
         this.updateData(data.filter);
       });
-
-      /*this.handleActive();*/
     });
 
     this.$scope.$on('open-sideBar',(e,d) => {
       this.columnOptions = d;
       this.open.sideBar = true;
     });
-
     this.getIndustry();
-
     this.getPhase();
-
   }
-
 
   /*过滤不限条件*/
   paramsFilter(target) {
@@ -176,16 +166,6 @@ export default class organizationParentController {
     });
   };
 
-  // /*获取静态城市数据*/
-  // getCity() {
-  //   this.projectService.getArea(0)
-  //     .then(data => {
-  //       this.data.city = this.addItem(data,'city');
-  //       this.handleActive();
-  //     });
-
-  // }
-
   /*获取静态行业数据*/
   getIndustry() {
     // this.data.industry = this.addItem(this.$scope.root.INDUSTRY_META);
@@ -194,18 +174,10 @@ export default class organizationParentController {
       });
   }
 
-
   /*获取轮次静态数据*/
   getPhase() {
     this.data.phase = this.addItem(this.$scope.root.FINANCE_PHASE_META);
   }
-
-  /*获取融资需求数据*/
-  /*getisFundingLimit() {
-    this.data.isFundingLimit = this.addItem(this.$scope.root.FINANCE_NEED_META);
-  }*/
-
-
 
 }
 
