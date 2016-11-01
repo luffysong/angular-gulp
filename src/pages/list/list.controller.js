@@ -113,6 +113,7 @@ export default class listIndexController {
 
   change (item,index) {
     this.activeIndex = index;
+    this.status = '';
     const form = {
       cid: this.cid,
       groupId: item.id,
@@ -120,19 +121,19 @@ export default class listIndexController {
     if (item.followed) {
       this.projectService.collectCompany(form)
         .then(() => {
-          this.suc = true;
+          this.status = 'suc';
           setTimeout(() => {
-            this.suc = false;
-          }, 3000);
+            this.status = '';
+          }, 2000);
           ++item.count;
         });
     } else {
       this.projectService.deconsteCompany(form)
         .then(() => {
-          this.cancle = true;
+          this.status = 'cancel';
           setTimeout(() => {
-            this.cancle = false;
-          }, 3000);
+            this.status = '';
+          }, 2000);
           --item.count;
         });
     }

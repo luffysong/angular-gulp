@@ -47,8 +47,8 @@
                   <input type="checkbox" class="checkbox" name='collection' ng-model="item.followed" ng-change="vm.change(item,$index)" ng-checked="item.followed">
                   <span class="favorite-name">{{item.name}}</span>
                   <span class="favorite-number">({{item.count}})</span>
-                  <span class="favorite-status" ng-class="{'hidden':vm.suc && $index == vm.activeIndex}">已添加</span>
-                  <span class="favorite-status" ng-class="{'hidden':vm.cancle && $index == vm.activeIndex}">取消成功</span>
+                  <span class="favorite-status" ng-class="{'hidden':vm.status === 'suc' && $index == vm.activeIndex}" ng-hide="vm.status === 'cancel'">已添加</span>
+                  <span class="favorite-status" ng-class="{'hidden':vm.status === 'cancel' && $index == vm.activeIndex}" ng-hide="vm.status === 'suc'">取消成功</span>
                  </li>
               </ul>
               <div class="new-create">

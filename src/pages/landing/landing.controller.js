@@ -141,19 +141,19 @@ export default class landingIndexController {
     if (item.followed) {
       this.projectService.collectCompany(form)
         .then(() => {
-          this.suc = true;
+          this.status = 'suc';
           setTimeout(() => {
-            this.suc = false;
-          }, 3000);
+            this.status = '';
+          }, 2000);
           ++item.count;
         });
     } else {
       this.projectService.deconsteCompany(form)
         .then(() => {
-          this.cancle = true;
+          this.status = 'cancel';
           setTimeout(() => {
-            this.cancle = false;
-          }, 3000);
+            this.status = '';
+          }, 2000);
           --item.count;
         });
     }
