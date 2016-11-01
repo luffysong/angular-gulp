@@ -124,7 +124,7 @@
         validator="required" required-error-message="请上传BP" message-id="bp"
         type="hidden" ng-model="vm.financeVM.finance.bp" name="bp">
         <label for=""><span class="required">*</span> 商业计划书</label>
-        <span id="bp" class="error-tip bp-error" ></span>
+        <span id="bp" class="error-tip bp-error" style="display: block;"></span>
         <span ng-if="vm.financeVM.bpUploading" width="100%"
           class="progress-bar">
           <span>BP上传中</span
@@ -134,16 +134,19 @@
           <span class="icon-dialogClose" ng-click='vm.financeVM.deletebp()'></span></span>
         <a
           class="btn-bp" href="javascript:;" ngf-select="vm.financeVM.uploadBp($files)"
-          ngf-accept="'application/pdf'">
+          ngf-accept="'application/pdf'" style="display: inline-block;">
           <span class="icon-BP"></span><span>{{vm.financeVM.bpName?'更新BP ':'上传BP'}}</span></a>
+          <span class="bp-message">请上传小于7.5M的PDF文件</span>
       </div>
 
       <div class="bp-check-group form-group" >
         <label for="">BP查看设置</label>
         <div class="bp-check">
           <input type="checkbox" ng-model='vm.financeVM.privileges' ng-change="vm.financeVM.privilege()"/>
-          <span tooltips tooltip-template="请下载创投助手App处理投资人的申请" tooltip-side="right"
-            tooltip-class="tooltip"  >需要投资人申请查看BP</span>
+          <span>需要投资人申请查看BP</span>
+            <div class="name-tool-tip tool-tip ng-scope">
+              请下载创投助手App处理投资人的申请
+            </div>
         </div>
       </div>
 
