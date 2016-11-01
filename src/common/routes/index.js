@@ -4,6 +4,7 @@ import project, { editProject } from './project.route';
 import createProject, { financeRoute } from './createProject.route';
 import { search } from './search.route';
 import { listView, list } from './list.route';
+import { organizationView, organization } from './organization.route';
 import { labelView, label } from './label.route';
 import { landingView, landing } from './landing.route';
 import { followView, follow } from './follow.route';
@@ -35,6 +36,9 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
 
   $urlRouterProvider.when('^/list', '^/list/result');
   $stateProvider.state('financeRoute', financeRoute);
+  /*投资机构列表页*/
+  $stateProvider.state('organization', organizationView);
+  $stateProvider.state('organization.result', organization);
 }
 
 function stateChangeError($rootScope, $log) {
