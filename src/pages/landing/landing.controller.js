@@ -21,7 +21,7 @@ export default class landingIndexController {
       data: []
     };
 
-    this.dataLoading = false;
+    this.dataLoading = true;
 
     this.paramsData = {};
 
@@ -29,6 +29,7 @@ export default class landingIndexController {
 
     this.$scope.$on('get-list',(e,d) => {
       this.listData = d;
+      this.dataLoading = false;
     });
 
     /*this.$scope.$on('change-type',(e,t) => {

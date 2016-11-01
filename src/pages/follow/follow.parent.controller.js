@@ -13,6 +13,7 @@ export default class followParentController {
     this.init();
   }
 
+  columnOptions = {};
   projectService = new ProjectService();
 
   init() {
@@ -23,6 +24,8 @@ export default class followParentController {
     this.open = {
       filter: false
     };
+
+    this.result = [];
 
     this.itemList = [
       {
@@ -77,6 +80,8 @@ export default class followParentController {
     });
 
     this.$scope.$on('open-sideBar',(e,d) => {
+      d.labels = this.followLabel;
+      d.switchType = this.switchType.bind(this);
       this.columnOptions = d;
       this.open.sideBar = true;
     });
@@ -152,6 +157,11 @@ export default class followParentController {
   }
 
   dataHandle(data) {
+    this.result.length = 0;
+    data.pageData.data.forEach(item => {
+      this.result.push(item);
+    });
+    data.pageData.data = this.result;
     this.$scope.$broadcast('get-list',data.pageData);
     this.data.label = data.label;
     this.data.label[0].value = 'unlimited';

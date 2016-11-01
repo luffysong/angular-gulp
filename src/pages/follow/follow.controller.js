@@ -17,18 +17,23 @@ export default class followIndexController {
 
   init() {
 
-    this.listData = {
-      data: []
-    };
+    this.$scope.parentVm.columnOptions.context = this;
+    this.$scope.parentVm.columnOptions.loadMore = this.loadMore.bind(this);
+    this.$scope.parentVm.columnOptions.closeMe = this.closeMe.bind(this);
+    this.$scope.parentVm.result.length = 0;
 
-    this.dataLoading = false;
+
+
+    this.dataLoading = true;
 
     this.paramsData = {};
 
     this.currentPage = 1;
 
+
     this.$scope.$on('get-list',(e,d) => {
       this.listData = d;
+      this.dataLoading = false;
     });
 
     this.handleActive();
@@ -174,18 +179,15 @@ export default class followIndexController {
       }
     }
     var columnOptions = {
-      context: this,
       companyId: id,
-      loadMore: this.loadMore.bind(this),
       companies: this.listData.data,
       tags: labelArr,
-      closeMe: this.closeMe.bind(this)
     };
-
-    console.warn(columnOptions);
-    this.$scope.$emit('open-sideBar',columnOptions);
+    angular.extend(this.$scope.parentVm.columnOptions, columnOptions);
+    this.$scope.$emit('open-sideBar',this.$scope.parentVm.columnOptions);
   }
 
+  conten
   closeMe () {
     this.$scope.parentVm.open.sideBar = false;
   }

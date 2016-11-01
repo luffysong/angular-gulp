@@ -1,4 +1,4 @@
-<div class="result-container">
+<div class="result-container" ng-if="!parentVm.open.sideBar">
   <div class="result-tip">
     已为您精选了<b>{{vm.listData.totalCount}}</b>个项目
     <span ng-if="!vm.hasSelect">,更新了<b>{{vm.newCompanyCnt ? vm.newCompanyCnt : 0}}</b>个新项目</span>

@@ -21,7 +21,7 @@ export default class labelIndexController {
       data: []
     };
 
-    this.dataLoading = false;
+    this.dataLoading = true;
 
     this.paramsData = {};
 
@@ -29,6 +29,7 @@ export default class labelIndexController {
 
     this.$scope.$on('get-list',(e,d) => {
       this.listData = d;
+      this.dataLoading = false;
     });
 
     this.handleActive();

@@ -24,9 +24,11 @@ export default class listIndexController {
     this.paramsData = {};
 
     this.currentPage = 1;
+    this.dataLoading = true;
 
     this.$scope.$on('get-list',(e,d) => {
       this.listData = d;
+      this.dataLoading = false;
     });
 
     this.handleActive();

@@ -8,6 +8,15 @@
         infinite-scroll-distance="3"
       >
       <div class="condition-wrapper">
+        <div class="main-nav" ng-click="searchVm.openTab()">
+          {{'综合'}}
+          <i class="icon-open-icon"></i>
+          <div class="tag-container" ng-class="{'show':searchVm.showTab}">
+            <div class="tag-item" ng-repeat="item in searchVm.columnOptions.labels" ng-class="{'active':item.active}" ng-click="searchVm.columnOptions.switchType($index);searchVm.closeTab($event)">
+              {{item.name}}
+            </div>
+          </div>
+        </div>
          <ul>
            <li ng-click="searchVm.columnOptions.closeMe()" ng-repeat="item in searchVm.columnOptions.tags">{{item}}</li>
            <li ng-click="searchVm.columnOptions.closeMe()" ng-if="!searchVm.columnOptions.tags.length">closeMe</li>

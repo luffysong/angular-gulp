@@ -8,6 +8,8 @@ const followView = {
   controller: 'followParentController',
   resolve: {
     loadBundle: getLoadBundle(assets.page.follow),
+    loadSearchBundle: getLoadBundle(assets.page.search),
+    loadProjectBundle: getLoadBundle(assets.page.project),
   }
 };
 

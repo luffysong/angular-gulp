@@ -12,6 +12,22 @@ export default class SearchIndexController {
   init() {
     this.outVm = this.$scope.searchVm.columnOptions.context;
     this.$scope.outVm = this.outVm;
+    this.watchOutVm();
+  }
+  watchOutVm() {
+    this.$scope.$watch('searchVm.columnOptions.context', nv => {
+      if (nv) {
+        this.outVm = nv;
+      }
+    })
+  }
+  openTab() {
+    this.showTab = !this.showTab;
+  }
+
+  closeTab(e) {
+    this.showTab = false;
+    e.stopPropagation();
   }
 
   login() {
