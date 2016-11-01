@@ -198,7 +198,9 @@
         <li>
         <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user == 'commen'" login-btn>认领</a>
           <a ui-sref="financeRoute({id: vm.id, name: vm.name})"
-            ng-show="vm.fundsState && vm.isEditMode" >融资设置</a>
+            ng-show="vm.isEditMode && vm.financeState === '1'" >申请融资</a>
+          <a ui-sref="financeRoute({id: vm.id, name: vm.name})"
+            ng-show="vm.isEditMode && vm.financeState === '2'" >融资设置</a>
 
 
           <a href="#" ui-sref="project.edit({id: vm.id})"
