@@ -200,6 +200,7 @@
         font-size: 12px;
         color: #5A626D;
         letter-spacing: 0px;
+        font-weight:600;
       }
       .col-content {
         height: auto;
@@ -377,6 +378,7 @@
               letter-spacing: 0px;
               line-height: 21px;
               margin-bottom:8px;
+              white-space: nowrap;
               .company-name {
                 margin-right:10px;
                 cursor: pointer;
@@ -415,6 +417,10 @@
               }
             }
             .project-intro {
+              max-width: 230px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
               font-size: 12px;
               color: #5A626D;
               letter-spacing: 0px;
@@ -426,6 +432,11 @@
               letter-spacing: 0px;
               line-height: 18px;
               margin-top:4px;
+              >i {
+                font-size: 15px;
+                vertical-align: middle;
+                margin-right: 4px;
+              }
             }
           }
 
