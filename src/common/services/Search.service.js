@@ -21,6 +21,7 @@ function makeCreateProjectHtml(name) {
     `);
 }
 function makeProjectHtml(project, isFirst, isLast) {
+  project.type = RESULT_TYPE.COMPANY;
   return `
   ${isFirst ? '<h4>项目</h4>' : ''}
   <div  class="search-row">
@@ -40,6 +41,7 @@ function makeProjectHtml(project, isFirst, isLast) {
 }
 
 function makeUserHtml(user, isFirst, isLast) {
+  user.type = RESULT_TYPE.USER;
   return `
   ${isFirst ? '<h4>投资人</h4>' : ''}
   <div class="search-row">
@@ -59,6 +61,7 @@ function makeUserHtml(user, isFirst, isLast) {
     `;
 }
 function makeOrgHtml(org, isFirst, isLast) {
+  org.type = RESULT_TYPE.ORG;
   return `
   ${isFirst ? '<h4>机构</h4>' : ''}
   <div class="search-row">
@@ -167,8 +170,12 @@ export default class SearchService {
       getService('$state').go('landing.result', { kw, type: 'org' });
     } else if (target.classList.contains('createProject')) {
       getService('$state').go('createProject');
-    } else {
+    } else if (item.obj.type === RESULT_TYPE.COMPANY) {
       getService('$state').go('project', { id: item.obj.id });
+    } else if (item.obj.type === RESULT_TYPE.ORG) {
+      getService('$state').go('org', { id: item.obj.id });
+    } else if (item.obj.type === RESULT_TYPE.USER) {
+      getService('$state').go('usr', { id: item.obj.id });
     }
   }
 
@@ -180,14 +187,20 @@ export default class SearchService {
     getService('$state').go('landing.result', { kw, type: 'company' });
   }
 
-  onSelect(item, value) {
-    this.historyApi.save(null, {
-      kw: value,
-    }).then(() =>
-      getService('$state').go('project', {
-        id: item.obj.id,
-      })
-    );
+  onSelect(item, value, $event) {
+    if (!$event) {
+      this.historyApi.save(null, {
+        kw: value,
+      }).then(() => {
+        if (item.obj.type === RESULT_TYPE.COMPANY) {
+          getService('$state').go('project', { id: item.obj.id });
+        } else if (item.obj.type === RESULT_TYPE.ORG) {
+          getService('$state').go('org', { id: item.obj.id });
+        } else if (item.obj.type === RESULT_TYPE.USER) {
+          getService('$state').go('usr', { id: item.obj.id });
+        }
+      });
+    }
   }
 
   getSearchAutoCompleteOptions() {
