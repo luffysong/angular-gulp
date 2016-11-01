@@ -3,19 +3,21 @@ function dateFilter() {
   return function (input) {
     if(!input)return '';
     var date = new Date(input);
-    if(date.getFullYear() !== new Date().getFullYear()) {
-      return date.getFullYear()+'年'+(date.getMonth()+1)+'月'+date.getDate()+'日';
-    }else if(date.getMonth() !== new Date().getMonth()) {
-      return (date.getMonth()+1)+'月'+date.getDate()+'日';
+    var yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    if(date.getFullYear() !== new Date().getFullYear() && date.getFullYear() !== yesterday.getFullYear()) {
+      return String(date.getFullYear()).slice(2,String(date.getFullYear()).length)+'/'+(date.getMonth()+1)+'/'+date.getDate();
     }else {
-      if(date.getDate() === new Date().getDate()) {
+      if(date.getFullYear() === new Date().getFullYear() && date.getMonth() === new Date().getMonth() && date.getDate() === new Date().getDate()) {
         return '今天';
-      }else if(date.getDate() === (new Date().getDate()-1)) {
+      }else if(date.getFullYear() === yesterday.getFullYear() && date.getMonth() === yesterday.getMonth() && date.getDate() === yesterday.getDate()) {
         return '昨天';
       }else {
-        return (date.getMonth()+1)+'月'+date.getDate()+'日';
+        return (date.getMonth()+1)+'/'+date.getDate();
       }
     }
+
   }
 }
 angular
