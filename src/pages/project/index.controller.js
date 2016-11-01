@@ -53,6 +53,7 @@ export default class ProjectIndexController {
     .then(data => {
       if (data.state === FINANCE_ALLOW || data.state === FINANCE_AUDITING) {
         this.fundsState = true;
+        this.financeState = data.state;
       }
     });
   }

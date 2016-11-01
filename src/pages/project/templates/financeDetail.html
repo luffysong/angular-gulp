@@ -1,5 +1,7 @@
 <div class="finance-detail">
-  <h4>融资详情 <span ng-show="vm.user !== 'assert' && vm.isEditMode && vm.fundsState">请进入<a ui-sref="financeRoute({id: vm.id, name: vm.name})">融资设置</a>页面编辑</span></h4>
+  <h4>融资详情 <span ng-show="vm.user !== 'assert' && vm.isEditMode && vm.fundsState">请进入<a ui-sref="financeRoute({id: vm.id, name: vm.name})">融资设置</a>页面编辑</span>
+    <span class="contact-message" ng-show="vm.user !== 'assert' && vm.isEditMode">暂不支持编辑，需编辑请联系177-7801-6803</span>
+  </h4>
   <div class="detail-content">
     <div class="container" more-show text="vm.fundsVM.fundsVo">
       <!-- <div class="details" ng-if="vm.fundsVM.fundsVo.scale">
