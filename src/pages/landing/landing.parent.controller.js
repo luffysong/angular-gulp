@@ -116,8 +116,10 @@ export default class landingParentController {
   searchCompany(params) {
     this.projectService.searchCompany(params).then(data => {
       this.$scope.$broadcast('get-list',data.pageData);
-      this.data.label = data.label;
-      this.data.label[0].value = 'unlimited';
+      if(data.label) {
+        this.data.label = data.label;
+        this.data.label[0].value = 'unlimited';
+      }
       this.handleActive();
       this.updateData(data);
     });
