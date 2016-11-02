@@ -137,7 +137,6 @@ export default class listParentController {
   /*根据路由参数处理激活*/
   handleActive () {
     this.dataInit();
-
     angular.forEach(this.params,(val,key) => {
       if(val && String(val).split(',').length > 1){
         angular.forEach(String(val).split(','),(a) => {
@@ -222,6 +221,9 @@ export default class listParentController {
       angular.forEach(this.data[item],(obj) => {
         obj.active = false;
       });
+      if(!this.params[item]) {
+        this.data[item][0].active = true;
+      }
     });
   };
 
