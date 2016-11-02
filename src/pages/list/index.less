@@ -329,6 +329,7 @@
 .result-container {
   background: #F2F4F5;
   padding:0 30px 40px;
+  overflow: hidden;
   .result-tip {
     height:35px;
     line-height: 35px;
@@ -481,6 +482,13 @@
             &.collected {
               border:none;
             }
+            &.show-top {
+              .collect-modal {
+                top:inherit;
+                bottom:36px;
+                transform-origin: 100% 100%;
+              }
+            }
             .collect-modal {
               position: absolute;
               width: 314px;
@@ -496,7 +504,7 @@
               transform: scale(0);
               transform-origin:90% 0;
               visibility: hidden;
-              max-height:500px;
+              max-height:272px;
               overflow: scroll;
               .modal-title {
                 font-size: 14px;
