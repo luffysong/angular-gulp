@@ -1,0 +1,113 @@
+@import "../../common/styles/function";
+@import "../../common/styles/var";
+
+.org-wrapper {
+  .highcharts-container, .invest-status, .pie-chart {
+    h5 {
+      margin-bottom: 20px ;
+      font-size: 14px;
+      color: @text-color;
+      &:before {
+        content: ' ';
+        .square(8);
+        .dlk();
+        margin-right: 6px;
+        background: #88C4FF;
+        .vam();
+      }
+    }
+  }
+  .invest-status, .pie-chart {
+    h5 {
+      margin-bottom: 24px;
+    }
+  }
+
+  .invest-status {
+    float: right;
+    position: relative;
+    width: 265px;
+    height: 138px;
+    font-size: 12px;
+    &:before {
+      width: 2px;
+      content: " ";
+      background: #F2F4F5;
+      height: 170px;
+      position: absolute;
+      left: -30px;
+    }
+    table {
+      width: 265px;
+      height: 138px;
+      color: @title-color;
+      border-collapse: collapse;
+      .text-center();
+      td {
+        background: #F1FAFF;
+      }
+      td:first-child {
+        width: 75px;
+        padding: 0 16px;
+      }
+      td:nth-child(2) {
+        width: 84px;
+        padding: 10px 6px;
+      }
+      td:nth-child(3) {
+        padding: 10px 13px;
+      }
+      thead tr {
+        td {
+          height: 56px;
+          border-bottom: 2px solid #fff;
+        }
+        td:first-child {
+          padding: 10px 0;
+        }
+      }
+      tbody {
+        td:nth-child(2), td:last-child{
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .pie-chart-wrapper {
+    overflow: hidden;
+    margin-top: 40px;
+  }
+  .pie-chart {
+    width: 220px;
+    height: 170px;
+    .highcharts-container {
+      width: 210px;
+      height: 130px;
+    }
+    float: left;
+    &:nth-child(2) {
+      margin-left: 53px;
+    }
+  }
+
+  .industry-title {
+    margin-bottom: 24px;
+  }
+
+  .conditions {
+    float: right;
+    overflow: hidden;
+  }
+  .select-inline {
+    select {
+      .dlk();
+      width: 114px;
+      margin-right: 12px;
+    }
+    select:last-child {
+      margin-right: 0px;
+    }
+  }
+
+}
+

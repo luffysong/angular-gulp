@@ -12,9 +12,35 @@
         </p>
       </div>
     </section>
-    <nav kr-scroll-click>
-    </nav>
+    <div class="nav-wrapper">
+      <nav kr-scroll-click>
+        <ul>
+          <li >
+            <a kr-scroll-click
+              href="#baseInfo" du-smooth-scroll="" du-scrollspy=""  offset="300" >
+              基本介绍
+            </a>
+          </li>
+          <li>
+            <a kr-scroll-click href="#analysis" du-smooth-scroll="" du-scrollspy="" offset="114" >
+              投资分析
+            </a>
+          </li>
+          <li >
+            <a kr-scroll-click href="#investments" du-smooth-scroll="" du-scrollspy="" offset="114" >
+              融资详情({{vm.investment.totalInvestments}})
+            </a>
+          </li>
+          <li >
+            <a kr-scroll-click href="#member" du-smooth-scroll="" du-scrollspy="" offset="114" >
+              机构成员({{vm.member.total}})
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </header>
+<<<<<<< HEAD
   <section class="org-module" ng-include="'/pages/org/templates/baseInfo.html'">
   基本介绍
   </section>
@@ -23,6 +49,62 @@
   </section>
   <section class="org-module" ng-include="'/pages/org/templates/member.html'">
   机构成员
+=======
+  <section id="#analysis" class="org-module analysis-module">
+    <h4>投资分析</h4>
+    <div class="conditions">
+      <div class="select-inline select-margin">
+        <select ng-options="item.value as item.desc for item in root.INDUSTRY_META"
+          class="form-control address-select" ng-model="vm.industry" ng-change="vm.changeCondition()"
+          message-id="messageAddress" >
+        <option value="">投资行业</option>
+        </select><select ng-options="item.value as item.desc for item in root.FINANCE_PHASE_META"
+          ng-model="vm.phase" ng-change="vm.changeCondition()"
+          class="form-control address-select"  >
+        <option value="">投资轮次</option>
+        </select><select ng-model="vm.year" ng-change="vm.changeCondition()"
+         ng-options="item for item in vm.years"
+          class="form-control address-select">
+        </select>
+      </div>
+    </div>
+    <highchart disableDataWatch="true" config="vm.trendHg"></highchart>
+    <div class="pie-chart-wrapper">
+      <div class="pie-chart">
+        <h5>投资行业分布</h5>
+        <highchart config="vm.industryHg"></highchart>
+      </div>
+      <div class="pie-chart">
+        <h5>投资轮次分布</h5>
+        <highchart config="vm.phaseHg"></highchart>
+      </div>
+      <div class="invest-status">
+        <h5>投资现状</h5>
+        <table>
+          <thead>
+            <tr>
+              <td>{{vm.analyze.year + '年'}}</td>
+              <td>单笔投资金额平均数</td>
+              <td>单笔投资金额中位数</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>本机构</td>
+              <td>{{vm.analyze.investmentStatus.self.averageAmount}}</td>
+              <td>{{vm.analyze.investmentStatus.self.medianAmount}}</td>
+            </tr>
+            <tr>
+              <td>本行业</td>
+              <td>{{vm.analyze.investmentStatus.industry.averageAmount}}</td>
+              <td>{{vm.analyze.investmentStatus.industry.medianAmount}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+>>>>>>> add chart
   </section>
 </div>
 

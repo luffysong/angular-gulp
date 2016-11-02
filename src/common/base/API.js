@@ -82,14 +82,18 @@ export default class API {
     this.$q = getService('$q');
     resolveActions(this.actions);
     mergeActions(this.getMethods, this.actions);
-    this.request = getService('$resource')(`${this.API_PATH}${url}/:action`, null, this.actions);
+    this.request = getService('$resource')(
+      `${this.API_PATH}${url}/:action/:action2Id/:action2/:action3Id/:action3`,
+      null, this.actions);
     this.copyMethod();
   }
 
   copyMethod() {
     Object.keys(this.actions).forEach((methodName) => {
       this[methodName] = function request() {
+        /* eslint-disable prefer-rest-params */
         const parameters = slice.call(arguments, 0);
+        /* eslint-enable prefer-rest-params */
         parameters[0] = parameters[0] || {};
         parameters[0] = angular.extend({ action: methodName },
           this.actions[methodName].params || {},
