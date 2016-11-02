@@ -21,9 +21,15 @@ export default {
     ],
     list: [
       '/pages/list/index.js',
+      '/bower/ng-dialog/js/ngDialog.min.js',
+      '/bower/ng-dialog/css/ngDialog.min.css',
+      '/bower/ng-dialog/css/ngDialog-theme-default.min.css'
     ],
     label: [
       '/pages/label/index.js',
+      '/bower/ng-dialog/js/ngDialog.min.js',
+      '/bower/ng-dialog/css/ngDialog.min.css',
+      '/bower/ng-dialog/css/ngDialog-theme-default.min.css'
     ],
     follow: [
       '/pages/follow/index.js',
@@ -33,6 +39,9 @@ export default {
     ],
     landing: [
       'pages/landing/index.js',
+      '/bower/ng-dialog/js/ngDialog.min.js',
+      '/bower/ng-dialog/css/ngDialog.min.css',
+      '/bower/ng-dialog/css/ngDialog-theme-default.min.css'
     ],
     project: [
       '/pages/project/index.js',

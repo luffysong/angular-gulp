@@ -5,7 +5,7 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('$timeout', '$window','$stateParams','$state','$scope', '$q')
+@Inject('$timeout', '$window','$stateParams', '$scope', '$state', '$q', 'user', 'ngDialog')
 export default class labelIndexController {
 
   constructor() {
@@ -36,6 +36,30 @@ export default class labelIndexController {
 
   }
 
+  collect() {
+    if(!this.user.isLogin) {
+      this.$scope.root.user.ensureLogin();
+    }else if (!this.user.isInvestor()) {
+      this.investor();
+    }
+  }
+
+  investor() {
+    const vm = this;
+    function investorController() {
+      this.investorCancle = function investorCancle() {
+        vm.investorDialog.close();
+      };
+    }
+    vm.investorDialog = this.ngDialog.open({
+      template: '<div ng-include="\'/pages/project/templates/investorLink.html\'" center></div>',
+      plain: true,
+      appendTo: '.project-wrapper',
+      controller: investorController,
+      controllerAs: 'vm',
+    });
+  }
+
   /*根据路由参数激活*/
   handleActive() {
     /*var obj = {};*/
@@ -60,7 +84,7 @@ export default class labelIndexController {
 
 
   triggerCollect (id) {
-    if(this.cid === id)return;
+    if(this.cid === id || !this.user.isLogin)return;
     this.cid = id;
     this.projectService.collect(this.cid).then((data) => {
       this.collections = data;

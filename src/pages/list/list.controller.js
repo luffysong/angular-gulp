@@ -5,7 +5,7 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('listIndexService', '$timeout', '$window','$stateParams','$state','$scope', '$q')
+@Inject('listIndexService', '$timeout', '$window','$stateParams','$state','$scope', '$q', 'user', 'ngDialog')
 export default class listIndexController {
 
   constructor() {
@@ -35,6 +35,30 @@ export default class listIndexController {
 
   }
 
+  collect() {
+    if(!this.user.isLogin) {
+      this.$scope.root.user.ensureLogin();
+    }else if (!this.user.isInvestor()) {
+      this.investor();
+    }
+  }
+
+  investor() {
+    const vm = this;
+    function investorController() {
+      this.investorCancle = function investorCancle() {
+        vm.investorDialog.close();
+      };
+    }
+    vm.investorDialog = this.ngDialog.open({
+      template: '<div ng-include="\'/pages/project/templates/investorLink.html\'" center></div>',
+      plain: true,
+      appendTo: '.project-wrapper',
+      controller: investorController,
+      controllerAs: 'vm',
+    });
+  }
+
   /*根据路由参数激活*/
   handleActive() {
     /*var obj = {};*/
@@ -59,7 +83,7 @@ export default class listIndexController {
 
 
   triggerCollect (id) {
-    if(this.cid === id)return;
+    if(this.cid === id || !this.user.isLogin)return;
     this.cid = id;
     this.projectService.collect(this.cid).then((data) => {
       this.collections = data;
@@ -198,11 +222,6 @@ export default class listIndexController {
   closeMe () {
     this.$scope.parentVm.open.sideBar = false;
   }
-
-  getDict() {
-
-  }
-
 
 }
 

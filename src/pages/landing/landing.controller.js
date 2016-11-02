@@ -5,7 +5,7 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('landingIndexService', '$timeout', '$window','$stateParams','$state','$scope', '$q')
+@Inject('landingIndexService', '$timeout', '$window','$stateParams','$state','$scope', '$q', 'user', 'ngDialog')
 export default class landingIndexController {
 
   constructor() {
@@ -49,6 +49,30 @@ export default class landingIndexController {
 
   }
 
+  collect() {
+    if(!this.user.isLogin) {
+      this.$scope.root.user.ensureLogin();
+    }else if (!this.user.isInvestor()) {
+      this.investor();
+    }
+  }
+
+  investor() {
+    const vm = this;
+    function investorController() {
+      this.investorCancle = function investorCancle() {
+        vm.investorDialog.close();
+      };
+    }
+    vm.investorDialog = this.ngDialog.open({
+      template: '<div ng-include="\'/pages/project/templates/investorLink.html\'" center></div>',
+      plain: true,
+      appendTo: '.project-wrapper',
+      controller: investorController,
+      controllerAs: 'vm',
+    });
+  }
+
 
 
   /*根据路由参数激活*/
@@ -75,7 +99,7 @@ export default class landingIndexController {
 
 
   triggerCollect (id) {
-    if(this.cid === id)return;
+    if(this.cid === id || !this.user.isLogin)return;
     this.cid = id;
     this.projectService.collect(this.cid).then((data) => {
       this.collections = data;
