@@ -8,7 +8,7 @@
         infinite-scroll-distance="3"
       >
       <div class="condition-wrapper">
-        <div class="main-nav" ng-click="searchVm.openTab()">
+        <div class="main-nav" ng-click="searchVm.openTab()" ng-if="searchVm.isFollow()">
           {{searchVm.activeLabel}}
           <i class="icon-label-open"></i>
           <div class="tag-container" ng-class="{'show':searchVm.showTab}">

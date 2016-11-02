@@ -1,5 +1,5 @@
 import krData from 'krData';
-@Inject('$stateParams', '$window', '$scope')
+@Inject('$stateParams', '$window', '$scope', '$rootScope')
 export default class SearchIndexController {
   constructor() {
     this.init();
@@ -14,6 +14,10 @@ export default class SearchIndexController {
     this.$scope.outVm = this.outVm;
     this.activeLabel = '综合';
     this.watchOutVm();
+  }
+
+  isFollow() {
+    return this.$rootScope.root.toState.name === 'follow.result';
   }
 
   watchOutVm() {
