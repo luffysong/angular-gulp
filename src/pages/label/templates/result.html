@@ -18,7 +18,7 @@
           <a href="" class="project-logo" style="background-image: url({{obj.logo}})"></a>
           <div class="project-info">
             <div class="project-name">
-              <span class="company-name">{{obj.name}}</span><span class="hot-tag" ng-if="obj.hot">热门</span><span class="classic-tag" ng-if="!obj.classic">精品</span><span class="fund-state" ng-if="obj.funding">融资中</span>
+              <span class="company-name">{{obj.name}}</span><span class="hot-tag" ng-if="obj.hot">热门</span><span class="classic-tag" ng-if="obj.classic">精品</span><span class="fund-state" ng-if="obj.funding">融资中</span>
             </div>
             <div class="project-intro">
               {{obj.brief}}
@@ -37,7 +37,7 @@
         <td>{{obj.cityStr}}</td>
         <td>{{obj.publishDate | dateFilter}}</td>
         <td>
-          <span ng-click="vm.collect()" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}">
+          <span ng-click="vm.collect()" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
             <span ng-show="obj.followed">已</span>收藏
             <div class="collect-modal" ng-if="vm.user.isLogin && vm.user.isInvestor()">
               <section class="modal-title">选择收藏夹</section>
