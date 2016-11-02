@@ -11,9 +11,6 @@ export default class Organization {
   //   }));
   // }
   getList(industry,phase) {
-    return organizationApi.list({
-      industry,
-      phase,
-    });
+    return organizationApi.list(industry,phase);
   }
 }
