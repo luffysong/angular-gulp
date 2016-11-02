@@ -32,19 +32,6 @@ export default class landingIndexController {
       this.dataLoading = false;
     });
 
-    /*this.$scope.$on('change-type',(e,t) => {
-      this.activeTab = t;
-    });*/
-
-    this.$scope.$watch('tab', val => {
-      if(!val){
-        this.tab = 'company';
-      }else {
-        this.tab = val;
-        this.currentPage = 1;
-      }
-    });
-
     this.handleActive();
 
   }
@@ -116,7 +103,7 @@ export default class landingIndexController {
 
     this.currentPage++;
 
-    var params = Object.assign({type: this.$scope.tab || 'company',p:this.currentPage},this.paramsFilter(this.paramsData));
+    var params = Object.assign({type: this.$scope.parentVm.activeTab || 'company',p:this.currentPage},this.paramsFilter(this.paramsData));
     this.projectService.searchCompany(params).then(data => {
       if(!data.pageData || !data.pageData.data || !data.pageData.data.length){
         this.noMore = true;
@@ -133,18 +120,8 @@ export default class landingIndexController {
         this.dataLoading = true;
       }
     });
-
-    /*this.projectService.getColumn(params).then(data => {
-      if(!data.pageData || !data.pageData){
-        this.noMore = true;
-        return;
-      }
-      angular.forEach(data.pageData.data,(item) => {
-        this.listData.data.push(item);
-      });
-      this.dataLoading = false;
-    });*/
   }
+
   seeDetail(id) {
     var columnOptions = {
       context: this,
@@ -157,6 +134,7 @@ export default class landingIndexController {
 
     this.$scope.$emit('open-sideBar',columnOptions);
   }
+
   change (item,index) {
     this.activeIndex = index;
     const form = {
@@ -210,10 +188,6 @@ export default class landingIndexController {
   closeMe () {
     this.$scope.parentVm.open.sideBar = false;
   }
-  getDict() {
-
-  }
-
 
 }
 

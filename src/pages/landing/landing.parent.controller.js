@@ -25,7 +25,7 @@ export default class landingParentController {
       filter: false
     };
 
-    this.activeTab = this.$scope.type = 'company';
+    this.activeTab = 'company';
     this.searchList = [
       {
         name:'创业项目',
@@ -78,11 +78,10 @@ export default class landingParentController {
     this.$scope.$on('get-change',(e,d) => {
       this.keyword = d.kw ? d.kw : '';
       this.activeTab = d.type ? d.type : 'company';
-      this.handleSeachList(this.activeTab);
+      this.handleSearchList(this.activeTab);
       angular.extend(this.params,d);
       var params = Object.assign({},this.paramsFilter(this.params));
       this.searchCompany(params);
-
       this.getAll();
     });
 
@@ -103,7 +102,7 @@ export default class landingParentController {
 
   }
 
-  handleSeachList(tab) {
+  handleSearchList(tab) {
     angular.forEach(this.searchList,item => {
       if(item.value === tab) {
         item.active = true;
@@ -142,7 +141,7 @@ export default class landingParentController {
     angular.forEach(this.searchList,(item,i) => {
       if(index == i){
         item.active = true;
-        this.activeTab = this.$scope.tab = item.value;
+        this.activeTab = item.value;
         var params = Object.assign({type: this.activeTab},this.paramsFilter(this.params));
         angular.forEach(this.params,(val,key) => {
           if(key !== 'kw'){
@@ -211,6 +210,30 @@ export default class landingParentController {
           }
         });
       }
+    });
+    this.handleLabel();
+  }
+
+  /*收起筛选器展示已选择的标签*/
+  handleLabel() {
+    var temp = {
+      industry: 'desc',
+      label: 'name',
+      phase: 'desc',
+      city: 'name',
+      isFundingLimit: 'name'
+    };
+    this.filterData = {};
+    Object.keys(this.data).forEach(key => {
+      angular.forEach(this.data[key], item => {
+        if(item.active && item.value !== 'unlimited' && item.id !== 'unlimited') {
+          if(this.filterData[key]) {
+            this.filterData[key] += ','+item[temp[key]];
+          }else {
+            this.filterData[key] = item[temp[key]];
+          }
+        }
+      });
     });
   }
 
