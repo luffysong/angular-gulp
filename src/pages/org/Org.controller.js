@@ -118,9 +118,9 @@ export default class OrgController {
 
   constructor() {
     const orgData = this.resolveData.orgData;
+    this.orgData = orgData;
     this.init();
     this.id = orgData.basic.id;
-    this.orgData = orgData;
     this.analyze = orgData.analyze;
     angular.extend(this, this.orgData);
     this.years = krData.utls.fromYear(this.orgData.analyze.initParam.earliestYear);
