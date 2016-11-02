@@ -165,18 +165,24 @@ export default class landingIndexController {
     this.projectService.createCollect({
       name:this.collectionName
     }).then(
-      () => {
+      (data) => {
         this.suc = true;
         this.collectionName = '';
         setTimeout(() => {
           this.suc = false;
         }, 3000);
-        this.projectService.collect(this.cid).then(
-          (data) => this.collections = data
-        );
+        this.projectService.collectCompany({
+          cid: this.cid,
+          groupId: data.id,
+        }).then(() => {
+          this.projectService.collect(this.cid).then(
+            (data) => this.collections = data
+          );
+        });
       },(err)=>{
       });
   }
+
   closeMe () {
     this.$scope.parentVm.open.sideBar = false;
   }
