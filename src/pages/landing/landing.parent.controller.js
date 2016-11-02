@@ -79,7 +79,7 @@ export default class landingParentController {
       this.keyword = d.kw ? d.kw : '';
       this.activeTab = d.type ? d.type : 'company';
       this.handleSearchList(this.activeTab);
-      angular.extend(this.params,d);
+      this.params = Object.assign({},d);
       var params = Object.assign({},this.paramsFilter(this.params));
       this.searchCompany(params);
       this.getAll();
