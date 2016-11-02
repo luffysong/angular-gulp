@@ -29,6 +29,7 @@ export default class organizationIndexController {
 
     this.$scope.$on('get-list',(e,d) => {
       this.listData = d;
+      this.dataLoading = false;
     });
 
     this.handleActive();
@@ -63,9 +64,16 @@ export default class organizationIndexController {
     this.currentPage++;
     var params = Object.assign({page:this.currentPage},this.paramsFilter(this.paramsData));
     this.organizationService.getList(params).then(data => {
-      if(!data.org.data){
+      if(!data.org || !data.org.data){
           this.noMore = true;
           return;
+      }
+
+      if (data.org.page >= data.org.totalPages) {
+        this.noMore = true;
+        this.loadEnd = true;
+      } else {
+        this.dataLoading = false;
       }
       angular.forEach(data.org.data,(item) => {
         this.listData.data.push(item);
@@ -74,7 +82,7 @@ export default class organizationIndexController {
     });
   }
 
-  seeDetail(id) {
+  seeDetail() {
     var labelArr = [];
     if(this.$stateParams.label) {
       if(this.$stateParams.label.split(',').length > 1) {
@@ -95,7 +103,6 @@ export default class organizationIndexController {
     }
     var columnOptions = {
       context: this,
-      companyId: id,
       loadMore: this.loadMore.bind(this),
       companies: this.listData.data,
       tags: labelArr,
