@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "babel-node node_modules/gulp/bin/gulp.js serve",
     "gulp": "babel-node node_modules/gulp/bin/gulp.js",
     "prod": "debug=false prod=true babel-node node_modules/gulp/bin/gulp.js prod"
   },

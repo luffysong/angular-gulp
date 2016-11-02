@@ -13,9 +13,13 @@
     <div class="history" ng-if="!root.kw" kr-search>
     </div>
     <span tabindex="2" ng-click="root.searchRecord(root.kw)" class="icon-Search input-search"></span>
-  	<div class="usr-content">
-  		<img src="/images/test.png" alt="">
-  		<span class='icon-open down' >	</span>
+  	<div class="usr-content" kr-slide-panel>
+      <pane-trigger >
+        <img src="/images/test.png" alt="">
+        <span class='icon-open down'></span>
+      </pane-trigger>
+      <pane-body>
+      </pane-body>
   	</div>
   </div>
 </header>
