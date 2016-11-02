@@ -1,6 +1,6 @@
 import krData from 'krData';
 
-const organizationApi = new krData.API('/org/', [
+const organizationApi = new krData.API('/org', [
   'list'
   ]);
 
