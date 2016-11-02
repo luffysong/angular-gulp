@@ -187,7 +187,6 @@ export default class followIndexController {
     this.$scope.$emit('open-sideBar',this.$scope.parentVm.columnOptions);
   }
 
-  conten
   closeMe () {
     this.$scope.parentVm.open.sideBar = false;
   }
