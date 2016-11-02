@@ -40,9 +40,10 @@ export default class organizationParentController {
 
     this.data = {};
     this.$scope.$on('get-change',(e,d) => {
+      this.params = {};
       angular.extend(this.params,d);
       var params = Object.assign(this.paramsFilter(this.params));
-      this.organizationService.getList(params.industry,params.phase).then(data => {
+      this.organizationService.getList(params).then(data => {
         this.$scope.$broadcast('get-list',data.org);
         this.data = data.filter;
         this.handleActive();

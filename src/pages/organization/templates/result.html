@@ -3,7 +3,7 @@
     共<b>{{vm.listData.totalCount}}</b>个结果
   </div>
   <div class="result-content">
-    <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading' infinite-scroll-distance='0'>
+    <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading || vm.noMore' infinite-scroll-distance='0'>
       <tr>
         <td width="470">机构</td>
         <td>最近投资</td>
@@ -12,7 +12,7 @@
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
-          <a href="" class="project-logo" style="background-image: url({{obj.org.logo}});width: 50px;height: 50px;" ng-click="vm.seeDetail(obj.id)"></a>
+          <a href="" class="project-logo" style="background-image: url({{obj.org.logo}});width: 50px;height: 50px;"></a>
           <div class="project-info">
             <div class="project-name">
               <span class="company-name"><a href="" ng-click="vm.seeDetail(obj.cid)">{{obj.org.nameAbbr}}</a></span>
