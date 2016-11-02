@@ -243,10 +243,13 @@ export default class ProjectIndexController {
           });
         } else if (err.code === 201) {
           // 用户超过查看次数
-          krData.Alert.alert('已达到今日浏览上限');
+          // krData.Alert.alert('已达到今日浏览上限');
+          this.bpDialogs('bp-view-more-wrapper');
         } else if (err.code === 200) {
           const outterVM = this;
           outterVM.bpDialogs();
+        } else if (err.code === 1) {
+          krData.Alert.alert(err.msg);
         }
       });
   }
@@ -257,12 +260,12 @@ export default class ProjectIndexController {
     .then((data) => {
       this.applyBpStatus = data.applyBpStatus;
       this.hasPermission = data.hasPermission;
-      this.sendbp = this.send;
     })
     .catch((err) => {
       this.bpError = err;
     }).finally(() => {
       this.bpPermisstionChecked = true;
+      this.sendbp = this.send;
     });
   }
 

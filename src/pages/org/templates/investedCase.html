@@ -1,0 +1,78 @@
+<div class="invested-case-wrapper">
+  <h4>投资案例<span class="number">({{vm.orgData.investment.totalInvestments}})</span></h4>
+  <div class="filter" ng-if="vm.orgData.investment.totalInvestments>5">
+    <div class="industry">
+      <p class="list">行业</p>
+      <ul ng-class="{'spread':vm.investedCaseVM.hasSpreaded.industry}">
+        <li ng-repeat="item in vm.orgData.investment.industry">
+          <span class="label">{{item.name}}<span>({{item.count}})</span></span>
+        </li>
+      </ul>
+      <div class="col-control">
+        <a href="javascript:void(0)" class="open-btn icon-open-select" ng-click="vm.investedCaseVM.spreadList('industry')" ng-class="{'open-list':vm.investedCaseVM.hasSpreaded.industry}"></a>
+      </div>
+    </div>
+    <div class="phase">
+      <p class="list">轮次</p>
+      <ul ng-class="{'spread':vm.investedCaseVM.hasSpreaded.phase}">
+        <li ng-repeat="item in vm.orgData.investment.phase">
+          <span class="label">{{item.name}}<span>({{item.count}})</span></span>
+        </li>
+      </ul>
+      <div class="col-control">
+        <a href="javascript:void(0)" class="open-btn icon-open-select" ng-click="vm.investedCaseVM.spreadList('phase')" ng-class="{'open-list':vm.investedCaseVM.hasSpreaded.phase}"></a>
+      </div>
+    </div>
+  </div>
+  <div class="case-list" ng-if="vm.orgData.investment.totalInvestments>5">
+    <table>
+      <thead>
+        <td>项目</td>
+        <td>投资时间</td>
+        <td>轮次</td>
+        <td>融资金额</td>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in vm.orgData.investment.investments.data.slice(1,6)">
+          <td>
+            <div>
+              <div class="logo">
+                <img ng-src="{{item.project.logo}}">
+              </div>
+              <div class="project">
+                <div class="company-name">
+                  <span>{{item.project.companyName}}</span>
+                  <span>{{item.project.industry}}</span>
+                </div>
+                <div class="brief">
+                  <span>{{item.project.brief}}</span>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div ng-repeat="val in item.investments">
+              <span>{{val.investAt | date:'yyyy.MM'}}</span>
+            </div>
+          </td>
+          <td>
+            <div ng-repeat="val in item.investments">
+              <span>{{val.phase}}</span>
+            </div>
+          </td>
+          <td>
+            <div ng-repeat="val in item.investments">
+              <span>{{val.fundsAmount}}</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="more"  ng-if="vm.orgData.investment.totalInvestments>5">
+      <p>查看更多</p>
+    </div>
+  </div>
+  <div class="no-data" ng-if="vm.orgData.investment.totalInvestments==0">
+  <p>暂无内容</p>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="member-wrapper">
+  <h4>机构成员<span class="number">({{vm.orgData.member.total}})</span></h4>
+  <div class="all-members" ng-if="vm.orgData.member.total>0">
+    <div class="member" ng-repeat="item in vm.memberVM.memberData">
+      <div class="logo">
+        <img ng-src="{{item.userInfo.avatar || '/images/investor-logo.png'}}">
+      </div>
+      <div class="info">
+        <span>{{item.userInfo.name}}</span>
+        <span>{{item.title}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="more" ng-if="!vm.memberVM.isMore && vm.orgData.member.total>3"
+       ng-click="vm.memberVM.more()">
+    <p>查看更多</p>
+  </div>
+  <div class="no-data" ng-if="vm.orgData.member.total==0">
+    <p>暂无内容</p>
+  </div>
+</div>

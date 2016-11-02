@@ -1,21 +1,28 @@
 <div class="org-wrapper">
   <header>
     <section>
-      <img src="/images/test.png" alt=""/>
+      <img ng-src="{{vm.orgData.basic.logo}}" alt=""/>
       <div class="right-content">
-        <h1>经纬中国</h1>
-        <p>thanks very much</p>
+        <h1>{{vm.orgData.basic.nameAbbr}}</h1>
+        <p class="en-name">{{vm.orgData.basic.enName}}</p>
         <p>
-          <span class="icon-Wechat"></span
-          ><span class="icon-websitelink"></span
-          ><a href="htttp://www.baidu.com" target="_blank">百度</a>
+          <span class="kr-icon icon-Wechat" ng-if="vm.orgData.basic.weixin"></span
+          ><span class="kr-icon icon-websitelink" ng-if="vm.orgData.basic.website"></span
+          ><a ng-href="{{vm.orgData.basic.website}}" target="_blank" ng-if="vm.orgData.basic.website">{{vm.orgData.basic.website}}</a>
         </p>
       </div>
     </section>
     <nav kr-scroll-click>
     </nav>
   </header>
-  <section>
-
+  <section class="org-module" ng-include="'/pages/org/templates/baseInfo.html'">
+  基本介绍
+  </section>
+  <section class="org-module" ng-include="'/pages/org/templates/investedCase.html'">
+  投资案例
+  </section>
+  <section class="org-module" ng-include="'/pages/org/templates/member.html'">
+  机构成员
   </section>
 </div>
+
