@@ -63,11 +63,14 @@ export default class OrgController {
     },
     xAxis: {
       tickWidth: 0,
+      lineColor: '#E7E7E7',
       gridLineWidth: 1,
+      gridLineColor: '#F2F4F5',
       gridLineDashStyle: 'longdash',
     },
     yAxis: [{
       lineColor: '#E7E7E7',
+      gridLineColor: '#F2F4F5',
       gridLineDashStyle: 'longdash',
       lineWidth: 1,
       tickPixelInterval: 34,
@@ -79,6 +82,7 @@ export default class OrgController {
       },
     }, {
       gridLineDashStyle: 'longdash',
+      gridLineColor: '#F2F4F5',
       lineColor: '#E7E7E7',
       lineWidth: 1,
       tickPixelInterval: 34,
