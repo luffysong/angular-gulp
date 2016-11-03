@@ -12,8 +12,8 @@
         </p>
       </div>
     </section>
-    <div class="nav-wrapper">
-      <nav kr-scroll-click>
+    <div sticky offset="49" class="nav-wrapper">
+      <nav>
         <ul>
           <li >
             <a kr-scroll-click
@@ -40,11 +40,11 @@
       </nav>
     </div>
   </header>
-  <section class="org-module" ng-include="'/pages/org/templates/baseInfo.html'">
+  <section class="org-module" id="baseInfo" ng-include="'/pages/org/templates/baseInfo.html'">
   基本介绍
   </section>
 
-  <section id="#analysis" class="org-module analysis-module">
+  <section id="analysis" class="org-module analysis-module">
     <h4>投资分析</h4>
     <div class="conditions">
       <div class="select-inline select-margin">
@@ -99,10 +99,10 @@
       </div>
     </div>
   </section>
-  <section class="org-module" ng-include="'/pages/org/templates/investedCase.html'">
+  <section id="investments" class="org-module" ng-include="'/pages/org/templates/investedCase.html'">
   投资案例
   </section>
-  <section class="org-module" ng-include="'/pages/org/templates/member.html'">
+  <section id="member" class="org-module" ng-include="'/pages/org/templates/member.html'">
   机构成员
   </section>
 </div>
