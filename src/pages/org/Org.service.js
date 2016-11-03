@@ -13,7 +13,7 @@ export default class OrgService extends API {
 
   allData(id) {
     return this.$q.all({
-      basic: this.basic(id),
+      basic: this.basic(id).catch(() => ({})),
       member: this.member(id),
       investment: this.investment(id),
       analyze: this.analyze(id),
