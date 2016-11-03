@@ -135,6 +135,7 @@ export default class listIndexController {
 
       if (!this.isLogin && data.pageData.page === 10) {
         this.needLogin = true;
+        this.noMore = true;
       }
       if(data.pageData.page === this.currentPage) {
         angular.forEach(data.pageData.data,(item) => {
