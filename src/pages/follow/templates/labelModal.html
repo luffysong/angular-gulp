@@ -8,7 +8,7 @@
   <div class="pop-content">
     <div class="followed-label" ng-repeat="item in vm.followLabelList" ng-click="vm.goDetail(item.id)">
       {{item.name}}
-      <span class="unFollow-icon icon-dialogClose" ng-click="vm.unFollowLabel(item.id)"></span>
+      <span class="unFollow-icon icon-dialogClose" ng-click="vm.unFollowLabel(item.id,$event);"></span>
     </div>
   </div>
   <div class="pop-col recommend-label">

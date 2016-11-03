@@ -126,7 +126,8 @@ export default class followParentController {
           labelId:id
         });
       };
-      this.unFollowLabel = function (id) {
+      this.unFollowLabel = function (id,e) {
+        e.stopPropagation();
         vm.projectService.unFollowLabel({
           id: id
         }).then(data => {
