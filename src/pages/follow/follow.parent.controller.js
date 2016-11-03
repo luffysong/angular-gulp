@@ -164,6 +164,10 @@ export default class followParentController {
     this.open[type] = !this.open[type];
   }
 
+  spreadLabel() {
+    this.isOpen = !this.isOpen;
+  }
+
   getAllLabel() {
     this.projectService.getAllLabel().then(data => {
       this.allLabel = data;

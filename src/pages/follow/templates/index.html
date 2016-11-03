@@ -2,7 +2,7 @@
   <div ng-show="!parentVm.open.sideBar">
     <div class="filter-container">
       <div class="col-handle">
-        <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="parentVm.spreadMore()" ng-class="{'open': parentVm.isOpen}"></a>
+        <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="parentVm.spreadLabel()" ng-class="{'open': parentVm.isOpen}"></a>
       </div>
       <ul class="search-list my-follow" filter-col ng-class="{'height-auto':parentVm.isOpen}" ng-if="parentVm.followLabel">
         <a class="label-manage" href="javascript:void(0)" ng-click="parentVm.addLabel()">标签管理</a>
