@@ -1,19 +1,19 @@
 import krData from 'krData';
-import OrganizationService from '../organization/organization.service';
+import InvestmentService from '../investment/investment.service';
 
 class TestAPI extends krData.API {
 
 }
 
 @Inject('$timeout', '$window','$stateParams','$state','$scope')
-export default class organizationParentController {
+export default class investmentParentController {
 
   constructor() {
     this.api = new TestAPI();
     this.init();
   }
 
-  organizationService = new OrganizationService();
+  investmentService = new InvestmentService();
 
   init() {
 
@@ -37,17 +37,16 @@ export default class organizationParentController {
         key: 'value'
       }
     ];
-
     this.data = {};
     this.$scope.$on('get-change',(e,d) => {
       this.params = {};
       angular.extend(this.params,d);
       var params = Object.assign(this.paramsFilter(this.params));
-      this.organizationService.getList(params).then(data => {
-        this.$scope.$broadcast('get-list',data.org);
-        this.data = data.filter;
+      this.investmentService.getList(this.$stateParams.id,params).then(data => {
+        this.$scope.$broadcast('get-list',data.investments);
         this.handleActive();
-        this.updateData(data.filter);
+        this.totalCount = data.investments.totalCount;
+        this.updateData(data);
       });
     });
 
@@ -55,8 +54,7 @@ export default class organizationParentController {
       this.columnOptions = d;
       this.open.sideBar = true;
     });
-    this.getIndustry();
-    this.getPhase();
+    this.getIndustryAndPhase(this.$stateParams.id);
   }
 
   /*过滤不限条件*/
@@ -144,7 +142,7 @@ export default class organizationParentController {
 
   /*state跳转*/
   go () {
-    this.$state.go('organization.result', this.params);
+    this.$state.go('investment.result', this.params);
   }
 
   /*增加默认数据*/
@@ -167,18 +165,16 @@ export default class organizationParentController {
     });
   };
 
-  /*获取静态行业数据*/
-  getIndustry() {
+  // /*获取静态行业数据*/
+  getIndustryAndPhase(id) {
     // this.data.industry = this.addItem(this.$scope.root.INDUSTRY_META);
-    this.organizationService.getList().then(data => {
-        this.data = data.filter;
+    this.investmentService.getList(id).then(data => {
+        this.data['industry'] = data.industry;
+        this.data['phase'] = data.phase;
+        this.totalCount = data.totalInvestments;
       });
   }
 
-  /*获取轮次静态数据*/
-  getPhase() {
-    this.data.phase = this.addItem(this.$scope.root.FINANCE_PHASE_META);
-  }
 
 }
 

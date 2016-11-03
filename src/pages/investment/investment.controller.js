@@ -1,19 +1,19 @@
 import krData from 'krData';
-import OrganizationService from '../organization/organization.service';
+import InvestmentService from '../investment/investment.service';
 
 class TestAPI extends krData.API {
 
 }
 
 @Inject('$timeout', '$window','$stateParams','$state','$scope', '$q')
-export default class organizationIndexController {
+export default class investmentIndexController {
 
   constructor() {
     this.api = new TestAPI();
     this.init();
   }
 
-  organizationService = new OrganizationService();
+  investmentService = new InvestmentService();
 
   init() {
 
@@ -63,19 +63,20 @@ export default class organizationIndexController {
 
     this.currentPage++;
     var params = Object.assign({page:this.currentPage},this.paramsFilter(this.paramsData));
-    this.organizationService.getList(params).then(data => {
-      if(!data.org || !data.org.data){
+    this.investmentService.getList(this.$stateParams.id,params).then(data => {
+    console.log(data);
+      if(!data.investments || !data.investments.data){
           this.noMore = true;
           return;
       }
 
-      if (data.org.page >= data.org.totalPages) {
+      if (data.investments.page >= data.investments.totalPages) {
         this.noMore = true;
         this.loadEnd = true;
       } else {
         this.dataLoading = false;
       }
-      angular.forEach(data.org.data,(item) => {
+      angular.forEach(data.investments.data,(item) => {
         this.listData.data.push(item);
       });
       this.dataLoading = false;

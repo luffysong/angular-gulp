@@ -12,7 +12,7 @@ const organizationView = {
 };
 
 const organization = {
-  url: '/list?{phase}&{industry}&{open}&{columnId:int}',
+  url: '/list?{phase}&{industry}&{open}',
   templateUrl: '/pages/organization/templates/result.html',
   controllerAs: 'vm',
   controller: 'organizationIndexController',

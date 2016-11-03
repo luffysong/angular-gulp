@@ -1,0 +1,37 @@
+<div class="result-container" ng-if="!parentVm.open.sideBar">
+  <div class="result-tip">
+  </div>
+  <div class="result-content">
+    <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading || vm.noMore' infinite-scroll-distance='0'>
+    <!-- <table > -->
+      <tr>
+        <td width="420">项目</td>
+        <td>投资时间</td>
+        <td>轮次</td>
+        <td>投资金额</td>
+      </tr>
+      <tr ng-repeat="obj in vm.listData.data track by $index">
+        <td>
+          <a href="" class="project-logo" style="background-image: url({{obj.project.logo}})" ng-click="vm.seeDetail(obj.project.cid)"></a>
+          <div class="project-info">
+            <div class="project-name">
+              <span class="company-name" ng-click="vm.seeDetail(obj.project.cid)">{{obj.project.companyName}}</span> | <span class="project-industry">{{obj.project.industry}}</span>
+            </div>
+            <div class="project-intro">
+              {{obj.project.brief}}
+            </div>
+          </div>
+        </td>
+        <td><section ng-repeat="invest in obj.investments | limitTo:3 track by $index" ng-bind="invest.investAt | dateFilter"></section></td>
+        <td><section ng-repeat="invest in obj.investments | limitTo:3 track by $index" ng-bind="invest.phase"></section></td>
+        <td><section ng-repeat="invest in obj.investments | limitTo:3 track by $index" ng-bind="invest.fundsAmount"></section></td>
+      </tr>
+    </table>
+    <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">
+      正在加载更多...
+    </div>
+    <div class="load-more"  ng-if="vm.loadEnd && !vm.needAuthorizeInvestor() && !vm.needLogin">
+      已无更多数据
+    </div>
+  </div>
+</div>

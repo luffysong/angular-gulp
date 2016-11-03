@@ -1,0 +1,57 @@
+<div ng-if="!investmentVm.open.sideBar">
+  <div class="filter-container">
+    <div class="navigation"><a href="#">经纬中国</a><span class="arrow"> > </span>投资案例</div>
+    <h4>投资案例<span class="investCount">（{{investmentVm.totalCount}}）</span></h4>
+    <div class="filter-list">
+      <div class="filter-col">
+        <div class="col-type">
+          行业
+        </div>
+        <div class="col-content">
+          <div class="col-list-container">
+            <ul filter-cal ng-class="{'height-auto':investmentVm.open.industry}">
+              <!--ng-if="$index < investmentVm.open.maxNumber || ($index >= investmentVm.open.maxNumber && investmentVm.open.address)"-->
+              <li class="col-item" ng-repeat="item in investmentVm.data.industry" ng-class="{'active': item.active}"  ng-click="investmentVm.selectIndustry($index,'industry')">
+                {{item.name}}({{item.count ? item.count : 0}})
+                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="investmentVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-handle">
+          <a href="javascript:void(0)" class="open-btn icon-open-select" ng-click="investmentVm.spreadMore('industry')" ng-class="{'open': investmentVm.open.industry}"></a>
+        </div>
+      </div>
+    </div>
+    <div class="filter-list">
+      <div class="filter-col">
+        <div class="col-type">
+          轮次
+        </div>
+        <div class="col-content">
+          <div class="col-list-container">
+            <ul filter-cal ng-class="{'height-auto':investmentVm.open.phase}">
+              <li class="col-item" ng-repeat="item in investmentVm.data.phase" ng-class="{'active': item.active}" ng-click="investmentVm.selectIndustry($index,'phase')">
+                {{item.name}}({{item.count ? item.count : 0}})
+                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="investmentVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-handle">
+          <a href="javascript:void(0)" class="open-btn icon-open-select" ng-click="investmentVm.spreadMore('phase')" ng-class="{'open': investmentVm.open.phase}"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ui-view></ui-view>
+</div>
+
+<div kr-column3 column-options="investmentVm.columnOptions" ng-if="investmentVm.open.sideBar">
+
+</div>
+
+<!--<ui-view></ui-view>-->
+
+
+

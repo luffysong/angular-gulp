@@ -63,5 +63,8 @@ export default {
     organization: [
       '/pages/organization/index.js',
     ],
+    investment: [
+      '/pages/investment/index.js',
+    ],
   },
 };
