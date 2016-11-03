@@ -175,6 +175,8 @@ export default class organizationParentController {
     // this.data.industry = this.addItem(this.$scope.root.INDUSTRY_META);
     this.organizationService.getList().then(data => {
         this.data = data.filter;
+        this.data['industry'][0].active = true;
+        this.data['phase'][0].active = true;
       });
   }
 
