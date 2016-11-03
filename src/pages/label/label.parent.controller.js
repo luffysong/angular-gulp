@@ -255,7 +255,7 @@ export default class listParentController {
 
   /*获取轮次静态数据*/
   getPhase() {
-    this.data.phase = this.addItem(this.$scope.root.FUNDS_PHASE_ENUM_META);
+    this.data.phase = this.addItem(this.$scope.root.COMPANY_SEARCH_PHASE_META);
   }
 
 }
