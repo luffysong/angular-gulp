@@ -103,11 +103,11 @@ export default class followParentController {
   addLabel() {
     const vm = this;
     function labelController() {
-      this.followLabelList = vm.followLabel;
-      this.allLabel = vm.allLabel;
+
       this.getLabel = function () {
         vm.projectService.getFollowList().then(data => {
           this.followLabelList = data;
+          this.updateLabel();
         });
       };
       this.cancel = function () {
@@ -119,15 +119,35 @@ export default class followParentController {
         }).then(data => {
           this.getLabel();
         });
-      }
-
+      };
+      this.goDetail = function (id) {
+        this.cancel();
+        vm.$state.go('label.result',{
+          labelId:id
+        });
+      };
       this.unFollowLabel = function (id) {
         vm.projectService.unFollowLabel({
           id: id
         }).then(data => {
           this.getLabel();
         });
-      }
+      };
+      /*过滤已关注标签*/
+      this.updateLabel = function() {
+        angular.forEach(this.followLabelList,item => {
+          angular.forEach(this.allLabel,(obj,index) => {
+            if(obj.id+'' === item.id+'') {
+              this.allLabel.splice(index,1);
+            }
+          });
+        });
+      };
+
+      this.followLabelList = vm.followLabel.concat();
+      this.allLabel = vm.allLabel.concat();
+      this.updateLabel();
+
     }
    vm.labelDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/follow/templates/labelModal.html\'"></div>',
@@ -203,6 +223,13 @@ export default class followParentController {
 
   /*通过接口返回数据更新筛选器数字*/
   updateData(d) {
+    Object.keys(this.data).forEach(item => {
+      if(item !== 'label') {
+        angular.forEach(this.data[item],obj => {
+          obj.cnt = 0;
+        });
+      }
+    });
     angular.forEach(this.itemList,(item) => {
       /*筛选条件特殊处理*/
       if(item.name === 'isFundingLimit'){

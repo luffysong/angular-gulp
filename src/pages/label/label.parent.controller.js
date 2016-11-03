@@ -151,6 +151,28 @@ export default class listParentController {
         });
       }
     });
+    this.handleLabel();
+  }
+
+  /*收起筛选器展示已选择的标签*/
+  handleLabel() {
+    var temp = {
+      phase: 'desc',
+      city: 'name',
+      isFundingLimit: 'name'
+    };
+    this.filterData = {};
+    Object.keys(this.data).forEach(key => {
+      angular.forEach(this.data[key], item => {
+        if(item.active && item.value !== 'unlimited' && item.id !== 'unlimited') {
+          if(this.filterData[key]) {
+            this.filterData[key] += ','+item[temp[key]];
+          }else {
+            this.filterData[key] = item[temp[key]];
+          }
+        }
+      });
+    });
   }
 
   /*筛选器选择行业*/
