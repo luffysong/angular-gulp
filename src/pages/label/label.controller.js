@@ -41,6 +41,16 @@ export default class labelIndexController {
       this.$scope.root.user.ensureLogin();
     }else if (!this.user.isInvestor()) {
       this.investor();
+    }else {
+      this.projectService.collectCompany({
+        cid: this.cid,
+        groupId: 0
+      })
+        .then(() => {
+          this.projectService.collect(this.cid).then(
+            (data) => this.collections = data
+          );
+        });
     }
   }
 
