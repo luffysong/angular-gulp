@@ -130,7 +130,7 @@ export default class followParentController {
       }
     }
    vm.labelDialog = this.ngDialog.open({
-      template: '<div ng-include="\'/pages/follow/templates/labelModal.html\'" center></div>',
+      template: '<div ng-include="\'/pages/follow/templates/labelModal.html\'"></div>',
       className: 'label-dialog',
       plain: true,
       controller: labelController,
