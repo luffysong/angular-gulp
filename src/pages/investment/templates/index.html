@@ -1,6 +1,8 @@
 <div ng-if="!investmentVm.open.sideBar">
   <div class="filter-container">
-    <div class="navigation"><a href="#">经纬中国</a><span class="arrow"> > </span>投资案例</div>
+    <div class="navigation"><a ui-sref="org({id: investmentVm.org.id})" href="#">
+        {{investmentVm.org.nameAbbr}}
+    </a><span class="arrow">&gt;</span>投资案例</div>
     <h4>投资案例<span class="investCount">（{{investmentVm.totalCount}}）</span></h4>
     <div class="filter-list">
       <div class="filter-col">

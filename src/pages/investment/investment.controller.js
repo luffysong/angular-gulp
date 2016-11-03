@@ -28,7 +28,7 @@ export default class investmentIndexController {
     this.currentPage = 1;
 
     this.$scope.$on('get-list',(e,d) => {
-      this.listData = d;
+      this.listData = d.investments;
       this.dataLoading = false;
     });
 

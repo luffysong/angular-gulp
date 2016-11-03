@@ -201,9 +201,11 @@ export default class OrgController {
   }
 
   renderChart() {
+    if (this.analyze.hasData) {
+      this.setInvestIndustry(this.analyze.investedIndustry);
+      this.setInvestPhase(this.analyze.investedPhase);
+    }
     this.setTrend(this.analyze.investmentTrend);
-    this.setInvestIndustry(this.analyze.investedIndustry);
-    this.setInvestPhase(this.analyze.investedPhase);
   }
 
   loadAnalyze() {
@@ -278,6 +280,16 @@ export default class OrgController {
     };
   }
   setTrend(investmentTrend) {
+    if (!investmentTrend) {
+      investmentTrend = [];
+      for (let i = 0, len = 12; i < len; i++) {
+        investmentTrend.push({
+          investAmount: 0,
+          investCase: 0,
+          x: `${i + 1}月`,
+        });
+      }
+    }
     this.trendHg.xAxis.categories = investmentTrend.map(item => item.x);
     this.trendHg.series = [{
       color: '#F1FAFF',

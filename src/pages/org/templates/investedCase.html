@@ -4,23 +4,28 @@
     <div class="industry">
       <p class="list">行业</p>
       <ul ng-class="{'spread':vm.investedCaseVM.hasSpreaded.industry}">
-        <li ng-repeat="item in vm.orgData.investment.industry">
+        <li ui-sref="investment.result({id: vm.orgData.basic.id})"
+          ng-repeat="item in vm.orgData.investment.industry">
           <span class="label">{{item.name}}<span>({{item.count}})</span></span>
         </li>
       </ul>
       <div class="col-control">
-        <a href="javascript:void(0)" class="open-btn icon-open-select" ng-click="vm.investedCaseVM.spreadList('industry')" ng-class="{'open-list':vm.investedCaseVM.hasSpreaded.industry}"></a>
+        <a href="javascript:void(0)" class="open-btn icon-open-select"
+          ng-click="vm.investedCaseVM.spreadList('industry')"
+          ng-class="{'open-list':vm.investedCaseVM.hasSpreaded.industry}"></a>
       </div>
     </div>
     <div class="phase">
       <p class="list">轮次</p>
       <ul ng-class="{'spread':vm.investedCaseVM.hasSpreaded.phase}">
-        <li ng-repeat="item in vm.orgData.investment.phase">
+        <li ui-sref="investment.result({id: vm.orgData.basic.id})" ng-repeat="item in vm.orgData.investment.phase">
           <span class="label">{{item.name}}<span>({{item.count}})</span></span>
         </li>
       </ul>
       <div class="col-control">
-        <a href="javascript:void(0)" class="open-btn icon-open-select" ng-click="vm.investedCaseVM.spreadList('phase')" ng-class="{'open-list':vm.investedCaseVM.hasSpreaded.phase}"></a>
+        <a href="javascript:void(0)" class="open-btn icon-open-select"
+          ng-click="vm.investedCaseVM.spreadList('phase')"
+          ng-class="{'open-list':vm.investedCaseVM.hasSpreaded.phase}"></a>
       </div>
     </div>
   </div>
@@ -69,7 +74,7 @@
       </tbody>
     </table>
     <div class="more"  ng-if="vm.orgData.investment.totalInvestments>5">
-      <p>查看更多</p>
+      <p ui-sref="investment.result({id: vm.orgData.basic.id})">查看更多</p>
     </div>
   </div>
   <div class="no-data" ng-if="vm.orgData.investment.totalInvestments==0">
