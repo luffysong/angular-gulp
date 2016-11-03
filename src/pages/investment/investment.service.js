@@ -5,9 +5,8 @@ const investmentApi = new krData.API('/org/:id', [
   ]);
 
 export default class Investment {
-  getList(id) {
-    return investmentApi.investment({
-      id,
-    });
+  getList(id,params) {
+    return investmentApi.investment({id, ...params},
+    );
   }
 }

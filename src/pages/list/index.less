@@ -42,11 +42,51 @@
     margin:18px auto 0;
   }
 }
+
 .filter-container {
+  h4 {
+    font-size: 18px;
+    color: #222C38;
+    letter-spacing: 0px;
+    line-height: 27px;
+    font-weight: 400;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 15px 0 15px 25px;
+  }
+  h4:before {
+    content: " ";
+    display: block;
+    width: 4px;
+    height: 18px;
+    position: absolute;
+    background: #222c38;
+    left: -12px;
+  }
   position: relative;
   padding: 8px 60px;
   background: #FFFFFF;
   box-shadow: 0px 0px 8px 0px #CCCCCC;
+  .navigation {
+    font-size: 14px;
+    color: #5A626D;
+    letter-spacing: 0px;
+    line-height: 21px;
+    margin: 15px 0 0 15px;
+    a {
+      color: #5A626D;
+    }
+    .arrow {
+
+    }
+  }
+  .investCount {
+    font-size: 16px;
+    color: #969FA9;
+  }
   .col-handle {
     position: absolute;
     right:160px;
@@ -389,6 +429,11 @@
               .company-name {
                 margin-right:10px;
                 cursor: pointer;
+              }
+              .project-industry {
+                margin-left: 10px;
+                font-size: 12px;
+                color: #5A626D;
               }
               .hot-tag {
                 display: inline-block;
