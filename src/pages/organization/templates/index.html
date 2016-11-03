@@ -11,7 +11,8 @@
               <!--ng-if="$index < organizationVm.open.maxNumber || ($index >= organizationVm.open.maxNumber && organizationVm.open.address)"-->
               <li class="col-item" ng-repeat="item in organizationVm.data.industry" ng-class="{'active': item.active}"  ng-click="organizationVm.selectIndustry($index,'industry')">
                 {{item.name}}({{item.count ? item.count : 0}})
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="organizationVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
+                <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.name === '不限'"></span>
+                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.name !== '不限'" ng-click="organizationVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
               </li>
             </ul>
           </div>
@@ -32,7 +33,8 @@
             <ul filter-cal ng-class="{'height-auto':organizationVm.open.phase}">
               <li class="col-item" ng-repeat="item in organizationVm.data.phase" ng-class="{'active': item.active}" ng-click="organizationVm.selectIndustry($index,'phase')">
                 {{item.name}}({{item.count ? item.count : 0}})
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="organizationVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
+                <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.name === '不限'"></span>
+                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.name !== '不限'"  ng-click="organizationVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
               </li>
             </ul>
           </div>

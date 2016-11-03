@@ -2,7 +2,7 @@
 function introFilter() {
   return function (input) {
     if(!input)return '';
-    var format_input = input.substr(0, 60);
+    var format_input = input.substr(0, 55);
     return format_input + '...'
   }
 }
