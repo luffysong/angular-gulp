@@ -205,7 +205,7 @@ export default class listParentController {
   /*取消选择行业*/
   clearIndustry (id,type) {
     var arr = this.params[type].split(',');
-    arr.splice(arr.indexOf(id),1);
+    arr.splice(arr.indexOf(id+''),1);
     this.params[type] = arr.join(',');
     /*this.params[type] = null;*/
     this.go();

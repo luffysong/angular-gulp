@@ -8,7 +8,7 @@ function filterCalDirective($timeout) {
           element.height(32);
           element.parents('.filter-col').addClass('overflow');
         }
-      },100);
+      },500);
     },
   };
 }
