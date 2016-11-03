@@ -3,6 +3,7 @@
 
 .org-wrapper {
   .highcharts-container, .invest-status, .pie-chart {
+    overflow: visible !important;
     h5 {
       margin-bottom: 20px ;
       font-size: 14px;
@@ -15,6 +16,22 @@
         background: #88C4FF;
         .vam();
       }
+    }
+  }
+  .chart-tooltip {
+    background: rgba(90,98,109,0.69);
+    color: #fff;
+    padding: 8px 13px;
+    line-height: 20px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px 0px #969FA9;
+    ul {
+      border-top: 1px solid #ccc;
+      margin-top: 6px;
+      padding-top: 6px;
+    }
+    p span {
+      font-weight: 600;
     }
   }
   .invest-status, .pie-chart {
@@ -74,7 +91,7 @@
     }
   }
   .pie-chart-wrapper {
-    overflow: hidden;
+    .clear();
     margin-top: 40px;
   }
   .pie-chart {
