@@ -15,32 +15,32 @@
           <div class="col-default">
             行业
           </div>
-          <div class="col-val">
-            不限
+          <div class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
+            {{parentVm.filterData.industry ? parentVm.filterData.industry : '不限'}}
           </div>
           <div class="col-default">
             标签
           </div>
-          <div class="col-val">
-            不限
+          <div class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
+            {{parentVm.filterData.label ? parentVm.filterData.label : '不限'}}
           </div>
           <div class="col-default">
             轮次
           </div>
-          <div class="col-val">
-            不限
+          <div class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
+            {{parentVm.filterData.phase ? parentVm.filterData.phase : '不限'}}
           </div>
           <div class="col-default">
             所在地
           </div>
-          <div class="col-val">
-            不限
+          <div class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
+            {{parentVm.filterData.city ? parentVm.filterData.city : '不限'}}
           </div>
-          <div class="col-default" ng-if="root.user.isInvestor()">
+          <div class="col-default" ng-if="root.user.isInvestor()" ng-click="parentVm.open.filter = !parentVm.open.filter">
             融资需求
           </div>
-          <div class="col-val" ng-if="root.user.isInvestor()">
-            不限
+          <div class="col-val" ng-if="root.user.isInvestor()" ng-click="parentVm.open.filter = !parentVm.open.filter">
+            {{parentVm.filterData.isFundingLimit ? '融资中' : '不限'}}
           </div>
         </div>
       </div>
