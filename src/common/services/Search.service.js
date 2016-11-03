@@ -80,32 +80,17 @@ function makeOrgHtml(org, isFirst, isLast) {
 }
 export default class SearchService {
   RESULT_TYPE = RESULT_TYPE;
-  searchApi = new API('/suggest', {
-    company: {
-      isArray: true,
-    },
-    user: {
-      isArray: true,
-    },
-    org: {
-      isArray: true,
-    },
-  });
-
+  searchApi = new API('/search/suggestion');
   historyApi = new API('/search/history');
 
   search(kw) {
-    return getService('$q').all({
-      orgs: this.searchApi.org({
-        kw,
-      }),
-      users: this.searchApi.user({
-        kw,
-      }),
-      companies: this.searchApi.company({
-        kw,
-      }),
-    });
+    return this.searchApi.get({
+      kw,
+    }).then(data => ({
+      orgs: data.org,
+      users: data.user,
+      companies: data.com,
+    }));
   }
 
   makeResult(kw) {
@@ -163,11 +148,11 @@ export default class SearchService {
       kw,
     });
     if (target.classList.contains('searchProject')) {
-      getService('$state').go('landing.result', { kw, type: 'company' }, {inherit:false});
+      getService('$state').go('landing.result', { kw, type: 'company' }, { inherit: false });
     } else if (target.classList.contains('searchInvestor')) {
-      getService('$state').go('landing.result', { kw, type: 'user' }, {inherit:false});
+      getService('$state').go('landing.result', { kw, type: 'user' }, { inherit: false });
     } else if (target.classList.contains('searchOrg')) {
-      getService('$state').go('landing.result', { kw, type: 'org' }, {inherit:false});
+      getService('$state').go('landing.result', { kw, type: 'org' }, { inherit: false });
     } else if (target.classList.contains('createProject')) {
       getService('$state').go('createProject');
     } else if (item.obj.type === RESULT_TYPE.COMPANY) {
@@ -184,7 +169,7 @@ export default class SearchService {
     this.historyApi.save(null, {
       kw,
     });
-    getService('$state').go('landing.result', { kw, type: 'company' }, {inherit:false});
+    getService('$state').go('landing.result', { kw, type: 'company' }, { inherit: false });
   }
 
   onSelect(item, value, $event) {

@@ -4,20 +4,20 @@
     <span id="node" text-overflow text="vm.orgData.basic.intro"></span>
   </div>
   <div class="detail">
-    <div class="area" ng-if="vm.orgData.basic.investedIndustry.length>0">
-      <span class="label">投资领域</span>
+    <div class="area" ng-if="vm.orgData.basic.investedIndustry.length">
+      <span class="label">已投行业</span>
       <span ng-repeat="item in vm.orgData.basic.investedIndustry">
         <span class="sub-label">{{item}}</span>
       </span>
     </div>
-    <div class="prefer-industry" ng-if="vm.orgData.basic.preferIndustry.length>0">
+    <div class="prefer-industry" ng-if="vm.orgData.basic.preferIndustry.length">
       <span class="label">偏好行业</span>
       <span ng-repeat="item in vm.orgData.basic.preferIndustry">
         <span class="sub-label">{{item}}</span>
       </span>
     </div>
-    <div class="prefer-phase" ng-if="vm.orgData.basic.investedPhase.length>0">
-      <span class="label">偏好轮次</span>
+    <div class="prefer-phase" ng-if="vm.orgData.basic.investedPhase.length">
+      <span class="label">已投轮次</span>
       <span ng-repeat="item in vm.orgData.basic.investedPhase">
         <span>{{item}}</span>
       </span>
@@ -26,7 +26,7 @@
       <span class="label">成立时间</span>
       <span>{{vm.orgData.basic.startDate | date:'yyyy'}}年</span>
     </div>
-    <div class="addresses" ng-show="vm.baseInfoVM.showMore && vm.orgData.basic.addresses.length>0">
+    <div class="addresses" ng-show="vm.baseInfoVM.showMore && vm.orgData.basic.addresses.length">
       <span class="label contact">联系方式</span>
       <div class="all-addr">
         <span ng-repeat="item in vm.orgData.basic.addresses">
