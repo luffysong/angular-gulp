@@ -21,17 +21,10 @@ export default class SearchIndexController {
   }
 
   watchOutVm() {
-    this.$scope.$watch('searchVm.columnOptions', nv => {
-      if(nv.context) {
-        this.outVm = nv.context;
-      }
-      if (nv.labels && nv.labels.length) {
-        nv.labels.forEach(item => {
-          if(item.active) {
-            console.warn(item);
-            this.activeLabel = item.name;
-          }
-        });
+    this.$scope.$watch('searchVm.columnOptions.context', nv => {
+      if(nv) {
+        this.outVm = nv;
+        this.getActiveLabel();
       }
     })
 
@@ -45,7 +38,17 @@ export default class SearchIndexController {
     this.showTab = !this.showTab;
   }
 
+  getActiveLabel() {
+    if(!this.columnOptions || !this.columnOptions.labels || !this.columnOptions.labels.length)return;
+    this.columnOptions.labels.forEach(item => {
+      if(item.active) {
+        this.activeLabel = item.name;
+      }
+    });
+  }
+
   closeTab(e) {
+    this.getActiveLabel();
     this.showTab = false;
     e.stopPropagation();
   }
