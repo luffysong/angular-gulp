@@ -42,10 +42,10 @@
     </div>
     <div class="filter-col" ng-show="parentVm.activeTab === 'user'">
       <div class="col-default">
-        行业
+        标签
       </div>
       <div class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
-        {{parentVm.filterData.industry ? parentVm.filterData.industry : '不限'}}
+        {{parentVm.filterData.label ? parentVm.filterData.label : '不限'}}
       </div>
       <div class="col-default">
         偏好轮次
@@ -185,15 +185,15 @@
     <div class="filter-list" ng-if="parentVm.open.filter">
       <div class="filter-col">
         <div class="col-type">
-          行业
+          标签
         </div>
         <div class="col-content">
           <div class="col-list-container">
-            <ul filter-cal ng-class="{'height-auto':parentVm.open.industry}">
+            <ul filter-cal ng-class="{'height-auto':parentVm.open.label}">
               <!--ng-if="$index < parentVm.open.maxNumber || ($index >= parentVm.open.maxNumber && parentVm.open.address)"-->
-              <li class="col-item" ng-repeat="item in parentVm.data.industry" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'industry')">
-                {{item.desc}}({{item.cnt ? item.cnt : 0}})
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
+              <li class="col-item" ng-repeat="item in parentVm.data.label" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'label')">
+                {{item.name}}({{item.cnt ? item.cnt : 0}})
+                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'label');$event.stopPropagation();"></span>
               </li>
             </ul>
           </div>
