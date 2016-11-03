@@ -66,11 +66,17 @@
     <div class="pie-chart-wrapper">
       <div class="pie-chart">
         <h5>投资行业分布</h5>
-        <highchart config="vm.industryHg"></highchart>
+        <highchart ng-if="vm.analyze.hasData" config="vm.industryHg"></highchart>
+        <div class="no-data">
+          暂无数据
+        </div>
       </div>
       <div class="pie-chart">
         <h5>投资轮次分布</h5>
-        <highchart config="vm.phaseHg"></highchart>
+        <highchart ng-if="vm.analyze.hasData" config="vm.phaseHg"></highchart>
+        <div class="no-data">
+          暂无数据
+        </div>
       </div>
       <div class="invest-status">
         <h5>投资现状</h5>

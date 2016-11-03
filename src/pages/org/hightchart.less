@@ -40,11 +40,30 @@
     }
   }
 
+  .no-data {
+    &:nth-child(2) {
+      display: block;
+    }
+    display: none;
+    width: 120px;
+    height: 120px;
+    border: 18px solid #e7e7e7;
+    border-radius: 50%;
+    top: 45px;
+    position: absolute;
+    left: 10px;
+    line-height: 84px;
+    font-size: 14px;
+    color: #ccc;
+    text-align: center;
+  }
   .invest-status {
+    h5 {
+      margin-bottom: 10px;
+    }
     float: right;
     position: relative;
     width: 265px;
-    height: 138px;
     font-size: 12px;
     &:before {
       width: 2px;
@@ -53,6 +72,7 @@
       height: 170px;
       position: absolute;
       left: -30px;
+      top: -6px;
     }
     table {
       width: 265px;
@@ -93,8 +113,13 @@
   .pie-chart-wrapper {
     .clear();
     margin-top: 40px;
+
   }
   .pie-chart {
+    position: relative;
+    h5 {
+      margin-bottom: 20px;
+    }
     width: 220px;
     height: 170px;
     .highcharts-container {

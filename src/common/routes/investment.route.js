@@ -20,5 +20,5 @@ const investment = {
 
 export {
   investmentView,
-  investment
+  investment,
 };

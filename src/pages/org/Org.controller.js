@@ -63,11 +63,14 @@ export default class OrgController {
     },
     xAxis: {
       tickWidth: 0,
+      lineColor: '#E7E7E7',
       gridLineWidth: 1,
+      gridLineColor: '#F2F4F5',
       gridLineDashStyle: 'longdash',
     },
     yAxis: [{
       lineColor: '#E7E7E7',
+      gridLineColor: '#F2F4F5',
       gridLineDashStyle: 'longdash',
       lineWidth: 1,
       tickPixelInterval: 34,
@@ -79,6 +82,7 @@ export default class OrgController {
       },
     }, {
       gridLineDashStyle: 'longdash',
+      gridLineColor: '#F2F4F5',
       lineColor: '#E7E7E7',
       lineWidth: 1,
       tickPixelInterval: 34,
@@ -197,9 +201,11 @@ export default class OrgController {
   }
 
   renderChart() {
+    if (this.analyze.hasData) {
+      this.setInvestIndustry(this.analyze.investedIndustry);
+      this.setInvestPhase(this.analyze.investedPhase);
+    }
     this.setTrend(this.analyze.investmentTrend);
-    this.setInvestIndustry(this.analyze.investedIndustry);
-    this.setInvestPhase(this.analyze.investedPhase);
   }
 
   loadAnalyze() {
@@ -274,6 +280,16 @@ export default class OrgController {
     };
   }
   setTrend(investmentTrend) {
+    if (!investmentTrend) {
+      investmentTrend = [];
+      for (let i = 0, len = 12; i < len; i++) {
+        investmentTrend.push({
+          investAmount: 0,
+          investCase: 0,
+          x: `${i + 1}月`,
+        });
+      }
+    }
     this.trendHg.xAxis.categories = investmentTrend.map(item => item.x);
     this.trendHg.series = [{
       color: '#F1FAFF',
