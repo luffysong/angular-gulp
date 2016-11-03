@@ -145,7 +145,7 @@ export default class landingIndexController {
       this.projectService.collectCompany(form)
         .then(() => {
           this.status = 'suc';
-          setTimeout(() => {
+          this.$timeout(() => {
             this.status = '';
           }, 2000);
           ++item.count;
@@ -154,7 +154,7 @@ export default class landingIndexController {
       this.projectService.deconsteCompany(form)
         .then(() => {
           this.status = 'cancel';
-          setTimeout(() => {
+          this.$timeout(() => {
             this.status = '';
           }, 2000);
           --item.count;
@@ -168,11 +168,11 @@ export default class landingIndexController {
       name:this.collectionName
     }).then(
       (data) => {
-        this.suc = true;
+        this.createSuc = true;
         this.collectionName = '';
-        setTimeout(() => {
-          this.suc = false;
-        }, 3000);
+        this.$timeout(() => {
+          this.createSuc = false;
+        }, 2000);
         this.projectService.collectCompany({
           cid: this.cid,
           groupId: data.id,
@@ -181,7 +181,11 @@ export default class landingIndexController {
             (data) => this.collections = data
           );
         });
-      },(err)=>{
+      },(err) => {
+        this.errMsg = err.msg;
+        this.$timeout(() => {
+          this.errMsg = '';
+        }, 2000);
       });
   }
 

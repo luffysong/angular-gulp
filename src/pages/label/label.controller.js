@@ -144,11 +144,11 @@ export default class labelIndexController {
       name:this.collectionName
     }).then(
       (data) => {
-        this.suc = true;
+        this.createSuc = true;
         this.collectionName = '';
-        setTimeout(() => {
-          this.suc = false;
-        }, 3000);
+        this.$timeout(() => {
+          this.createSuc = false;
+        }, 2000);
         this.projectService.collectCompany({
           cid: this.cid,
           groupId: data.id,
@@ -157,7 +157,11 @@ export default class labelIndexController {
             (data) => this.collections = data
           );
         });
-      },(err)=>{
+      },(err) => {
+        this.errMsg = err.msg;
+        this.$timeout(() => {
+          this.errMsg = '';
+        }, 2000);
       });
   }
 
