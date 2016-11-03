@@ -139,8 +139,8 @@ export default class followParentController {
     });
   }
 
-  spreadMore() {
-    this.isOpen = !this.isOpen;
+  spreadMore(type) {
+    this.open[type] = !this.open[type];
   }
 
   getAllLabel() {
