@@ -17,10 +17,10 @@
             </div>
           </div>
         </div>
-         <ul>
-           <li ng-click="searchVm.columnOptions.closeMe()" ng-repeat="item in searchVm.columnOptions.tags">{{item}}</li>
-           <li ng-click="searchVm.columnOptions.closeMe()" ng-if="!searchVm.columnOptions.tags.length">closeMe</li>
-        </ul>
+         <div class="label-container">
+           <div class="label-item" ng-click="searchVm.columnOptions.closeMe()" ng-repeat="item in searchVm.columnOptions.tags">{{item}}</div>
+           <span class="icon-open-nav" ng-click="searchVm.columnOptions.closeMe()"></span>
+        </div>
       </div>
       <div
         class="search-project-list">

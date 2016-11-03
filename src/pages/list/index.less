@@ -520,10 +520,11 @@
               background: #6BA2FC;
               color: #fff;
               .collect-modal {
-                opacity: 1;
+                display: block;
+                /*opacity: 1;
                 transform: scale(1);
-                visibility: visible;
-                transition: all .3s cubic-bezier(.31,.57,.68,1.36);
+                visibility: visible;*/
+                /*transition: all .3s cubic-bezier(.31,.57,.68,1.36);*/
               }
             }
             &.collected {
@@ -537,6 +538,7 @@
               }
             }
             .collect-modal {
+              display: none;
               position: absolute;
               width: 314px;
               background: #FFFFFF;
@@ -547,10 +549,10 @@
               right: 0;
               top: 36px;
               z-index:9;
-              opacity:0;
+              /*opacity:0;
               transform: scale(0);
               transform-origin:90% 0;
-              visibility: hidden;
+              visibility: hidden;*/
               max-height:272px;
               overflow: scroll;
               .modal-title {

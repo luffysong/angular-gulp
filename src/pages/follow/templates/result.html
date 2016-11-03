@@ -46,7 +46,7 @@
         <td>
           <span ng-click="vm.collect()" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
             <span ng-show="obj.followed">已</span>收藏
-            <div class="collect-modal" ng-if="vm.user.isLogin && vm.user.isInvestor()">
+            <div class="collect-modal" ng-hide="!vm.user.isLogin || !vm.user.isInvestor()" ng-if="obj.id === vm.cid">
               <section class="modal-title">选择收藏夹</section>
               <ul>
                  <li ng-repeat="item in vm.collections">
