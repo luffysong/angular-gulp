@@ -188,11 +188,20 @@ export default class ProductVM extends krData.FormVM {
   // 绘制产品数据图
   renderChart(curId) {
 
-    console.log('filter test', this.$filter('number')(1.234455666,2));
-
     this.chartConfig = this.setBasicConfig();
     const yAxis = this.getYAxisData(curId);
     const xAxis = this.data.companyData.x;
+
+    //Y轴单位设置
+    if (this.curType === 'md_0006' || this.curType === 'md_0001' || this.curType === 'md_0009'){
+      this.chartConfig.yAxis.labels = {
+        format: '{value} 万',
+      };
+    } else {
+      this.chartConfig.yAxis.labels = {
+        format: '{value} %',
+      };
+    }
 
     let name = '';
     this.data.companyData.y_list.map((val) => {
@@ -264,12 +273,39 @@ export default class ProductVM extends krData.FormVM {
             type: 'line',
           },
           tooltip: {
-            shared: true,
+            // shared: true,
+            useHTML: true,
             crosshairs: {
               width: 1,
               color: '#E7E7E7',
               dashStyle: 'shortdot',
             },
+            shadow: false,
+            borderWidth: 0,
+            padding: 0,
+            borderRadius: 0,
+            backgroundColor: 'transparent',
+            formatter: function formatter() {
+              return `<div class='my-tooltip'><div>${this.key.slice(0, 4)}年${this.key.slice(4, 6)}月${this.key.slice(-2)}日
+                      </div><div>${this.series.name.split('/')[0]}:${this.y}
+                      ${this.series.name.split('/')[1]}</div></div>`;
+            },
+          },
+          colors: ['#88c4FF'],
+          plotOptions: {
+            line: {
+              marker: {
+                fillColor: '#FFFFFF',
+                lineWidth: 2,
+                lineColor: null,
+                raduis: 3,
+                symbol: 'circle',
+              },
+            },
+          },
+          legend: {
+            verticalAlign: 'top',
+            align: 'right',
           },
         },
         credit: {
