@@ -133,12 +133,38 @@ export default class landingIndexController {
   }
 
   seeDetail(id) {
+    var labelArr = [];
+    Object.keys(this.$stateParams).forEach(key => {
+      if(this.$stateParams[key]) {
+        if(this.$stateParams[key].split(',').length > 1) {
+          angular.forEach(this.$stateParams[key].split(','),item => {
+            angular.forEach(this.$scope.parentVm.data[key], obj => {
+              if(obj.id+'' === item+'' && labelArr.indexOf(obj.name) < 0) {
+                labelArr.push(obj.name);
+              }else if(obj.value+'' === item+'' && labelArr.indexOf(obj.desc) < 0) {
+                labelArr.push(obj.desc);
+              }
+            });
+          });
+        }else {
+          angular.forEach(this.$scope.parentVm.data[key], obj => {
+            if(obj.id !== 'unlimited' && obj.value !== 'unlimited') {
+              if(obj.id+'' === this.$stateParams[key] && labelArr.indexOf(obj.name) < 0) {
+                labelArr.push(obj.name);
+              }else if(obj.value+'' === this.$stateParams[key] && labelArr.indexOf(obj.desc) < 0){
+                labelArr.push(obj.desc);
+              }
+            }
+          });
+        }
+      }
+    });
     var columnOptions = {
       context: this,
       companyId: id,
       loadMore: this.loadMore.bind(this),
       companies: this.listData.data,
-      tags: this.$stateParams.label ? this.$stateParams.label.split(',') : '',
+      tags: labelArr,
       closeMe: this.closeMe.bind(this)
     };
 
