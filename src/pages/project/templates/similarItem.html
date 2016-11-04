@@ -30,7 +30,7 @@
           <td class='round' ng-bind="item.financePhase"></td>
           <td class='invest'>
             <ul>
-              <li ng-repeat="invest in item.pastInvestor | limitTo:3" ng-bind="invest">
+              <li ng-repeat="invest in item.pastInvestor | limitTo:3" ng-bind="invest | introFormat">
 
               </li>
             </ul>
@@ -41,7 +41,7 @@
             </ul>
             <span class='icon-close curson' ng-click='show[item.similarInfo.index]=!show[item.similarInfo.index]' ng-class='{"pointed":show[item.similarInfo.index]}' ng-show="item.similarInfo.length>3"></span>
           </td>
-          <td class="related-info" ng-show="!item.similarInfo.length">
+          <td class="related-info-none" ng-show="!item.similarInfo.length">
             <span class="none-data">暂无数据</span>
           </td>
         </tr>
