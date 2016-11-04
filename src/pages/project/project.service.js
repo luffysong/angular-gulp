@@ -156,6 +156,11 @@ export default class ProjectService extends API {
       id: obj.columnId,
     };
     delete obj.columnId;
+    for(var k in obj) {
+      if(!obj[k]) {
+        delete obj[k];
+      }
+    }
     return new API(`/column/:id/company?${$.param(obj)}`).get(id);
   }
 

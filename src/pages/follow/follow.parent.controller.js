@@ -178,6 +178,10 @@ export default class followParentController {
 
   getLabel() {
     this.projectService.getFollowList().then(data => {
+      data.unshift({
+        active:true,
+        name: '综合'
+      });
       this.followLabel = data;
       this.handleActive();
     });
