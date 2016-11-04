@@ -138,6 +138,7 @@ export default class followParentController {
       };
       /*过滤已关注标签*/
       this.updateLabel = function() {
+        this.allLabel = vm.allLabel.concat();
         angular.forEach(this.followLabelList,item => {
           angular.forEach(this.allLabel,(obj,index) => {
             if(obj.id+'' === item.id+'') {
@@ -147,8 +148,7 @@ export default class followParentController {
         });
       };
 
-      this.followLabelList = vm.manageLabel.concat();
-      this.allLabel = vm.allLabel.concat();
+      this.getLabel();
       this.updateLabel();
 
     }
