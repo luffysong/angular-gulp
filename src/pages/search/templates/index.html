@@ -29,7 +29,7 @@
             <img ng-click="searchVm.open(item.id)" width="42" height="42" ng-src="{{item.logo || '/images/default-logo.png'}}" alt=""/>
             <div class="text-info-wrapper">
               <p class="clear">
-                  <span ng-click="searchVm.open(item.id)" class="name mr10">{{item.name}}</span>
+                  <span ng-click="searchVm.open(item.id)" class="name mr10" title="{{item.name}}">{{item.name}}</span>
                   <span ng-if="item.hot" class="hot">热</span>
                   <span ng-if="item.classic" class="classic">精</span>
                   <span ng-if="item.funding" class="funding">融资中</span>
