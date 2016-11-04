@@ -5,10 +5,10 @@ function filterColDirective($timeout) {
     link(scope, element) {
       $timeout(() => {
         if(element.height() > 33) {
-          element.height(33);
-          element.siblings('.col-handle').addClass('overflow');
+          /*element.height(33);*/
+          element.parent('.search-outside-container').siblings('.col-handle').addClass('overflow');
         }
-      },0);
+      },500);
     },
   };
 }

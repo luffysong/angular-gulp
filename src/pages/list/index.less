@@ -121,6 +121,13 @@
     letter-spacing: 0px;
     text-align: left;
   }
+  .search-outside-container {
+    height:49px;
+    overflow: hidden;
+    &.height-auto {
+      height:auto !important;
+    }
+  }
   .search-list {
     .clear-both();
     &.my-follow {
@@ -135,9 +142,6 @@
         font-size: 12px;
         color: #6BA2FC;
         top: 10px;
-      }
-      &.height-auto {
-        height:auto !important;
       }
       li {
         width:auto;
@@ -256,14 +260,18 @@
           padding:12px 0 6px;
           overflow: hidden;
         }
+        .filter-outside-container {
+          height:32px;
+          overflow: hidden;
+          &.height-auto {
+            height:auto !important;
+          }
+        }
         ul {
           float: left;
           overflow: hidden;
           position: relative;
           min-height:32px;
-          &.height-auto {
-            height:auto !important;
-          }
           li {
             float: left;
             margin-right: 28px;

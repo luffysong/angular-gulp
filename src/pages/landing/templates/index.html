@@ -86,13 +86,15 @@
         </div>
         <div class="col-content">
           <div class="col-list-container">
-            <ul filter-cal ng-class="{'height-auto':parentVm.open.industry}">
-              <!--ng-if="$index < parentVm.open.maxNumber || ($index >= parentVm.open.maxNumber && parentVm.open.address)"-->
-              <li class="col-item" ng-repeat="item in parentVm.data.industry" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'industry')">
-                {{item.desc}}({{item.cnt ? item.cnt : 0}})
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
-              </li>
-            </ul>
+            <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.industry}">
+              <ul filter-cal>
+                <!--ng-if="$index < parentVm.open.maxNumber || ($index >= parentVm.open.maxNumber && parentVm.open.address)"-->
+                <li class="col-item" ng-repeat="item in parentVm.data.industry" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'industry')">
+                  {{item.desc}}({{item.cnt ? item.cnt : 0}})
+                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-handle">
@@ -107,12 +109,14 @@
         </div>
         <div class="col-content">
           <div class="col-list-container">
-            <ul filter-cal ng-class="{'height-auto':parentVm.open.label}">
-              <li class="col-item" ng-repeat="item in parentVm.data.label" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'label')">
-                {{item.name}}({{item.cnt ? item.cnt : 0}})
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.id,'label');$event.stopPropagation();"></span>
-              </li>
-            </ul>
+            <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.label}">
+              <ul filter-cal>
+                <li class="col-item" ng-repeat="item in parentVm.data.label" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'label')">
+                  {{item.name}}({{item.cnt ? item.cnt : 0}})
+                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.id,'label');$event.stopPropagation();"></span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-handle">
@@ -127,12 +131,14 @@
         </div>
         <div class="col-content">
           <div class="col-list-container">
-            <ul filter-cal ng-class="{'height-auto':parentVm.open.phase}">
-              <li class="col-item" ng-repeat="item in parentVm.data.phase" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'phase')">
-                {{item.desc}}({{item.cnt ? item.cnt : 0}})
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
-              </li>
-            </ul>
+            <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.phase}">
+              <ul filter-cal>
+                <li class="col-item" ng-repeat="item in parentVm.data.phase" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'phase')">
+                  {{item.desc}}({{item.cnt ? item.cnt : 0}})
+                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-handle">
@@ -147,12 +153,14 @@
         </div>
         <div class="col-content">
           <div class="col-list-container">
-            <ul filter-cal ng-class="{'height-auto':parentVm.open.city}">
-              <li class="col-item" ng-repeat="item in parentVm.data.city" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'city')">
-                {{item.name}}({{item.cnt ? item.cnt : 0}})
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.id,'city');$event.stopPropagation();"></span>
-              </li>
-            </ul>
+            <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.city}">
+              <ul filter-cal>
+                <li class="col-item" ng-repeat="item in parentVm.data.city" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'city')">
+                  {{item.name}}({{item.cnt ? item.cnt : 0}})
+                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.id,'city');$event.stopPropagation();"></span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-handle">
@@ -167,12 +175,14 @@
         </div>
         <div class="col-content">
           <div class="col-list-container">
-            <ul filter-cal ng-class="{'height-auto':parentVm.open.isFundingLimit}">
-              <li class="col-item" ng-repeat="item in parentVm.data.isFundingLimit" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'isFundingLimit')">
-                {{item.name}}({{item.cnt ? item.cnt : 0}})
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'isFundingLimit');$event.stopPropagation();"></span>
-              </li>
-            </ul>
+            <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.isFundingLimit}">
+              <ul filter-cal>
+                <li class="col-item" ng-repeat="item in parentVm.data.isFundingLimit" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'isFundingLimit')">
+                  {{item.name}}({{item.cnt ? item.cnt : 0}})
+                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'isFundingLimit');$event.stopPropagation();"></span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-handle">
@@ -189,13 +199,15 @@
         </div>
         <div class="col-content">
           <div class="col-list-container">
-            <ul filter-cal ng-class="{'height-auto':parentVm.open.label}">
-              <!--ng-if="$index < parentVm.open.maxNumber || ($index >= parentVm.open.maxNumber && parentVm.open.address)"-->
-              <li class="col-item" ng-repeat="item in parentVm.data.label" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'label')">
-                {{item.name}}({{item.cnt ? item.cnt : 0}})
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.id,'label');$event.stopPropagation();"></span>
-              </li>
-            </ul>
+            <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.label}">
+              <ul filter-cal>
+                <!--ng-if="$index < parentVm.open.maxNumber || ($index >= parentVm.open.maxNumber && parentVm.open.address)"-->
+                <li class="col-item" ng-repeat="item in parentVm.data.label" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'label')">
+                  {{item.name}}({{item.cnt ? item.cnt : 0}})
+                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.id,'label');$event.stopPropagation();"></span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-handle">
@@ -210,12 +222,14 @@
         </div>
         <div class="col-content">
           <div class="col-list-container">
-            <ul filter-cal ng-class="{'height-auto':parentVm.open.phase}">
-              <li class="col-item" ng-repeat="item in parentVm.data.phase" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'phase')">
-                {{item.desc}}({{item.cnt ? item.cnt : 0}})
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
-              </li>
-            </ul>
+            <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.phase}">
+              <ul filter-cal>
+                <li class="col-item" ng-repeat="item in parentVm.data.phase" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'phase')">
+                  {{item.desc}}({{item.cnt ? item.cnt : 0}})
+                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-handle">
@@ -230,12 +244,14 @@
         </div>
         <div class="col-content">
           <div class="col-list-container">
-            <ul filter-cal ng-class="{'height-auto':parentVm.open.city}">
-              <li class="col-item" ng-repeat="item in parentVm.data.city" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'city')">
-                {{item.name}}({{item.cnt ? item.cnt : 0}})
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.id,'city');$event.stopPropagation();"></span>
-              </li>
-            </ul>
+            <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.city}">
+              <ul filter-cal>
+                <li class="col-item" ng-repeat="item in parentVm.data.city" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'city')">
+                  {{item.name}}({{item.cnt ? item.cnt : 0}})
+                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.id,'city');$event.stopPropagation();"></span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-handle">
@@ -252,13 +268,15 @@
         </div>
         <div class="col-content">
           <div class="col-list-container">
-            <ul filter-cal ng-class="{'height-auto':parentVm.open.industry}">
-              <!--ng-if="$index < parentVm.open.maxNumber || ($index >= parentVm.open.maxNumber && parentVm.open.address)"-->
-              <li class="col-item" ng-repeat="item in parentVm.data.industry" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'industry')">
-                {{item.desc}}({{item.cnt ? item.cnt : 0}})
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
-              </li>
-            </ul>
+            <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.industry}">
+              <ul filter-cal>
+                <!--ng-if="$index < parentVm.open.maxNumber || ($index >= parentVm.open.maxNumber && parentVm.open.address)"-->
+                <li class="col-item" ng-repeat="item in parentVm.data.industry" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'industry')">
+                  {{item.desc}}({{item.cnt ? item.cnt : 0}})
+                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-handle">
@@ -273,12 +291,14 @@
         </div>
         <div class="col-content">
           <div class="col-list-container">
-            <ul filter-cal ng-class="{'height-auto':parentVm.open.phase}">
-              <li class="col-item" ng-repeat="item in parentVm.data.phase" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'phase')">
-                {{item.desc}}({{item.cnt ? item.cnt : 0}})
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
-              </li>
-            </ul>
+            <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.phase}">
+              <ul filter-cal>
+                <li class="col-item" ng-repeat="item in parentVm.data.phase" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'phase')">
+                  {{item.desc}}({{item.cnt ? item.cnt : 0}})
+                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="parentVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-handle">
