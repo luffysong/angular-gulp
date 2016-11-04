@@ -718,18 +718,26 @@
 
 
 .login-container {
-  height:100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  margin:25px 0 0 70px;
   background: #F2F4F5;
   .login-layer {
-      position: relative;
-      top:50%;
-      transform: translateY(-50%);
       .login-tip {
         width:140px;
         height:140px;
         background: url('../../../images/login-tip.png') no-repeat center;
         background-size: contain;
         margin:auto;
+      }
+      .login-tag {
+        width:180px;
+        height:160px;
+        background: url('../../../images/login-tag.png') no-repeat center;
+        background-size: contain;
+        margin:0 auto 4px;
       }
       .tip-text {
         font-size: 18px;
@@ -751,6 +759,7 @@
         margin:auto;
         font-size: 14px;
         letter-spacing: 0px;
+        cursor: pointer;
       }
   }
 }

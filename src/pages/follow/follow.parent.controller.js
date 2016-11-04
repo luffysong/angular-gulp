@@ -355,6 +355,10 @@ export default class followParentController {
     this.$state.go('follow.result', this.params);
   }
 
+  login() {
+    krData.utls.login();
+  }
+
   /*增加默认数据*/
   addItem(obj,type) {
     if(!obj || !obj.concat)return;

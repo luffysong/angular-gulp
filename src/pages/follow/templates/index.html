@@ -1,4 +1,4 @@
-<div class="project-wrapper" ng-if="!parentVm.labelEmpty">
+<div class="project-wrapper" ng-if="!parentVm.labelEmpty && parentVm.user.isLogin">
   <div ng-show="!parentVm.open.sideBar">
     <div class="filter-container">
       <div class="col-handle">
@@ -172,15 +172,21 @@
   </div>
 </div>
 
-<div class="login-container" ng-if="parentVm.labelEmpty">
-  <div class="login-layer">
+<div class="login-container" ng-if="parentVm.labelEmpty || !parentVm.user.isLogin">
+  <div class="login-layer" ng-if="parentVm.labelEmpty && parentVm.user.isLogin">
     <div class="login-tip"></div>
     <section class="tip-text">
       还未关注任何标签,暂时无法提供项目
     </section>
     <a href="javascript:void(0)" class="add-btn" ng-click="parentVm.addLabel()">添加关注标签</a>
   </div>
+  <div class="login-layer" ng-if="!parentVm.user.isLogin">
+    <div class="login-tag"></div>
+    <a href="javascript:void(0)" class="add-btn" ng-click="parentVm.login()">登录查看关注项目</a>
+  </div>
 </div>
+
+
 <!--<ui-view></ui-view>-->
 
 
