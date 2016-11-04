@@ -85,15 +85,19 @@ export default class listParentController {
       this.projectService.unFollowLabel({
         id: this.params.labelId
       }).then(data => {
+        krData.Alert.success('取消关注成功');
         this.labelDetail.isFollowed = false;
-        console.log(data);
+      }).catch(err => {
+        krData.Alert.alert(`出错啦：${err.msg || '未知错误'}`);
       });
     }else {
       this.projectService.followLabel({
         id: this.params.labelId
       }).then(data => {
+        krData.Alert.success('关注成功');
         this.labelDetail.isFollowed = true;
-        console.log(data);
+      }).catch(err => {
+        krData.Alert.alert(`出错啦：${err.msg || '未知错误'}`);
       });
     }
   }
