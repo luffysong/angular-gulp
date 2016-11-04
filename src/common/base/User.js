@@ -7,7 +7,7 @@ export default class User {
     this.init();
   }
 
-  static getUserInfo () {
+  static getUserInfo() {
     return getService('$http').get('/api/user')
     .then(data => data.data);
   }

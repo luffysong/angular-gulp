@@ -66,5 +66,9 @@ export default {
     investment: [
       '/pages/investment/index.js',
     ],
+    uc: [
+      '/pages/uc/index.js',
+      '/pages/uc/index.css',
+    ],
   },
 };

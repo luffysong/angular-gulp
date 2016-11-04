@@ -1,0 +1,125 @@
+<div class="uc-page-wrapper">
+  <div class="inset-wrapper">
+    <div class="base-info">
+      <a href="" class="edit">编辑</a>
+      <div class="avatar" ng-style="{backgroundImage:vm.getBgImage(vm.user.avatar)}">
+
+      </div>
+      <div class="name">
+        <span class="text">
+          {{vm.user.name}}
+          <span class="character" ng-if="vm.user.investor">
+            投资人
+          </span>
+        </span>
+
+      </div>
+      <div class="buttons">
+        <!--TODO:跳转的写法和目标URL-->
+        <a href="" class="btn" ng-if="vm.user.investor">我的主页</a>
+        <a href="" class="btn">我的工作台</a>
+      </div>
+    </div>
+    <!--投资人-->
+    <div class="section" ng-if="vm.user.investor">
+      <h3>投资人设置</h3>
+      <div class="bd">
+        <div class="form-group" ng-if="vm.editEmail">
+          <!--TODO：这个字段在哪个接口？-->
+          <label>接收BP邮箱 </label>
+          <div class="col-input">
+            <span class="error-tip" id="messageBrief"></span>
+            <input ng-model="vm.user.commonEmail"
+                   validator="email" message-id="messageBrief"
+                   email-error-message="请输入正确邮箱地址"
+                   placeholder="请输入邮箱..."
+                   type="text" name="email" class="form-control"/>
+          </div>
+          <div class="col-action">
+            <a href="" ng-click="vm.setBpEmail()">确认</a>
+          </div>
+        </div>
+        <div class="form-group" ng-if="!vm.editEmail">
+          <label>接收BP邮箱 </label>
+          <span class="col-text">
+            {{vm.user.commonEmail}}
+          </span>
+          <div class="col-action">
+            <a href="" ng-click="vm.editBpEmail()">修改</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--创业者-->
+    <div class="section">
+      <a href="" class="edit">创建项目</a>
+      <h3>项目</h3>
+      <div class="bd">
+        <div class="section-inside">
+          <h5>项目设置</h5>
+          <div class="form-group">
+            <label>联系方式自动回复
+              <i class="icon-dialogTags">
+                <span class="tip">
+                  <span>选择自动回复类型后，投资人发送申请时，系统将自动发送对应联系方式给投资人</span>
+                </span>
+              </i>
+            </label>
+            <div class="col-checkbox">
+              <label>
+                <input type="checkbox" ng-model="vm.user.autoReplyByWeiXin" ng-click="vm.setContact('weixin')"> 微信
+              </label>
+              <label>
+                <input type="checkbox" ng-model="vm.user.autoReplyByPhone" ng-click="vm.setContact('phone')"> 电话
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="section-inside">
+          <h5>认领项目 <span>({{vm.companies.START_UP_MEMBER.length || 0}})</span></h5>
+          <div class="project-list">
+            <div class="item"
+                 ng-repeat="item in vm.companies.START_UP_MEMBER | limitTo: vm.companies.START_UP_MEMBER_limit">
+              <a href="" class="logo" ng-style="{backgroundImage:vm.getBgImage(item.logo)}"></a>
+              <div class="desc">
+                <a href="" class="name">{{item.companyName}}</a>
+                <div class="brief">
+                  {{item.brief}}
+                </div>
+              </div>
+            </div>
+            <div class="empty" ng-if="!vm.companies.START_UP_MEMBER.length">
+              暂无项目数据，待完善
+            </div>
+            <div class="more" ng-if="vm.companies.START_UP_MEMBER.length > vm.companies.START_UP_MEMBER_limit">
+              <a href="" class="btn" ng-click="vm.companies.START_UP_MEMBER_limit=1000">查看更多</a>
+            </div>
+          </div>
+        </div>
+        <div class="section-inside">
+          <h5>维护项目 <span>({{vm.companies.MEMBER.length || 0}})</span></h5>
+          <div class="project-list">
+            <div class="item"
+                 ng-repeat="item in vm.companies.MEMBER | limitTo: vm.companies.MEMBER_limit">
+              <a href="" class="logo" ng-style="{backgroundImage:vm.getBgImage(item.logo)}"></a>
+              <div class="desc">
+                <a href="" class="name">{{item.companyName}}</a>
+                <div class="brief">
+                  {{item.brief}}
+                </div>
+              </div>
+            </div>
+            <div class="empty" ng-if="!vm.companies.MEMBER.length">
+              暂无项目数据，待完善
+            </div>
+            <div class="more" ng-if="vm.companies.MEMBER.length > vm.companies.MEMBER_limit">
+              <a href="" class="btn" ng-click="vm.companies.MEMBER_limit=1000">查看更多</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

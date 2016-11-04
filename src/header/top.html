@@ -13,12 +13,13 @@
     <div class="history" ng-if="!root.kw" kr-search>
     </div>
     <span tabindex="2" ng-click="root.searchRecord(root.kw)" class="icon-Search input-search"></span>
-  	<div class="usr-content" kr-slide-panel>
+  	<div class="usr-content" kr-slide-panel disabled="!root.user.data.id">
       <pane-trigger >
-        <img src="/images/test.png" alt="">
-        <span class='icon-open down'></span>
+        <img ng-src="{{root.user.data.avatar}}" src="/images/investor-logo.png" alt="">
+        <span class='icon-open down ng-hide' ng-show="root.user.data.id"></span>
       </pane-trigger>
-      <pane-body>
+      <pane-body oc-lazy-load="root.assets.page.uc" ng-if="root.user.data.id">
+        <uc-page></uc-page>
       </pane-body>
   	</div>
   </div>
