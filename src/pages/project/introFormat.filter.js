@@ -1,7 +1,6 @@
 
 function introFilter() {
   return function (input) {
-    console.log(input);
     if(input.length < 7){
         return input;
     }
