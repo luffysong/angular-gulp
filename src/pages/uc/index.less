@@ -112,6 +112,13 @@
   .section {
     padding: @padding;
     border-bottom: solid 1px @gray-light;
+    position: relative;
+    z-index: 80;
+    .edit {
+      position: absolute;
+      top:30px;
+      right: 40px;
+    }
     &:nth-of-type(2) {
       border-top: @gray-light solid 1px;
     }
