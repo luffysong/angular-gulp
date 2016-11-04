@@ -236,7 +236,7 @@
 
 .search-result-wrapper {
   .ac-container {
-    overflow: auto;
+    overflow: hidden;
     max-height: 600px;
     li {
       padding: 0px;
@@ -289,6 +289,12 @@
         font-size: 12px;
         line-height: 18px;
       }
+      .intro {
+        width: 300px;
+        max-height: 50px;
+        position: relative;
+        overflow: hidden;
+      }
       p:first-child {
         span:first-child {
           font-size: 14px;
@@ -308,7 +314,7 @@
     }
     .search-entity-text {
       float: left;
-      width: 286px;
+      width: 300px;
     }
   }
 }

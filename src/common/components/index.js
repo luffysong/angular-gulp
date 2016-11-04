@@ -1,3 +1,4 @@
+import krBindHtml from './krBindHtml.directive.js';
 import krValid from './krValid.directive.js';
 import krSearch from './krSearch.directive.js';
 import krProjectNav from './krProjectNav.directive.js';
@@ -14,4 +15,5 @@ angular.module('@@app.components', [])
   .directive('krProjectNav', makeDirective(krProjectNav))
   .directive('krSlidePanel', makeDirective(krSlidePanel))
   .directive('infiniteScroll', infiniteScrollDirective)
+  .directive('krBindHtml', makeDirective(krBindHtml))
   .directive('calPosition', calPositionDirective);
