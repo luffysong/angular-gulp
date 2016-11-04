@@ -2,17 +2,63 @@
   @width: 440px;
   @barHeight: 50px;
   @bg: #ffffff;
-  width: @width;
+  @bg-mask: #000;
   position: fixed;
-  top:@barHeight;
+  top: @barHeight;
+  left:0;
   right:0;
   bottom:0;
-  z-index: 7999;
-  background: @bg;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  transform: translate(100%, 0);
-  transition: all 0.5s;
-  &.show {
-    transform: translate(0%, 0);
+  z-index: 8004;
+  visibility: hidden;
+  .bg {
+    position: absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    opacity: 0;
+    background: fadeout(@bg-mask, 50);
+    display: block;
+    content: '';
+    transition: all 0.2s;
   }
+  .panel-body {
+    width: @width;
+    position: absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    background: @bg;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    transform: translate(100%, 0);
+    transition: all 0.3s;
+    .close {
+      position: absolute;
+      top:30px;
+      left:30px;
+      font-size: 20px;
+      color:#ccc;
+      cursor: pointer;
+      z-index:100;
+    }
+    .panel-content {
+      position: relative;
+      z-index: 80;
+      height: 100%;
+    }
+  }
+  &.show {
+    visibility: visible;
+    .bg {
+      opacity: 1;
+    }
+    .panel-body {
+      transform: translate(0%, 0);
+      transition: all 0.5s ease 0.2s;
+    }
+  }
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
