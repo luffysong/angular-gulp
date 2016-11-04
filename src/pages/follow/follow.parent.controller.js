@@ -147,7 +147,7 @@ export default class followParentController {
         });
       };
 
-      this.followLabelList = vm.followLabel.concat();
+      this.followLabelList = vm.manageLabel.concat();
       this.allLabel = vm.allLabel.concat();
       this.updateLabel();
 
@@ -178,6 +178,8 @@ export default class followParentController {
 
   getLabel() {
     this.projectService.getFollowList().then(data => {
+      if(!data || !data.length)return;
+      this.manageLabel = data.concat();
       data.unshift({
         active:true,
         name: '综合'
