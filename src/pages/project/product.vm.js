@@ -212,8 +212,9 @@ export default class ProductVM extends krData.FormVM {
 
     this.chartConfig.series.push({
       data: xAxis.map((val, i) => {
+        const xVal = `${val.slice(0, 4)}-${val.slice(4, 6)}`;
         const y = this.$filter('number')(yAxis[i], 2) - 0.00;
-        return [val, y];
+        return [xVal, y];
       }),
       type: 'line',
       name: name,
@@ -237,7 +238,7 @@ export default class ProductVM extends krData.FormVM {
     this.curHead = [{ value: '月份' }, { value: that.curName }];
     months.map((val, i) => {
       this.completeData.push({
-        month: val,
+        month: `${val.slice(0,4)}-${val.slice(4,6)}`,
         data: that.yList[i],
       });
     });
@@ -271,34 +272,36 @@ export default class ProductVM extends krData.FormVM {
         options: {
           chart: {
             type: 'line',
+            // height: 300,
           },
           tooltip: {
             // shared: true,
             useHTML: true,
-            crosshairs: {
-              width: 1,
-              color: '#E7E7E7',
-              dashStyle: 'shortdot',
-            },
             shadow: false,
             borderWidth: 0,
             padding: 0,
             borderRadius: 0,
             backgroundColor: 'transparent',
             formatter: function formatter() {
-              return `<div class='my-tooltip'><div>${this.key.slice(0, 4)}年${this.key.slice(4, 6)}月${this.key.slice(-2)}日
-                      </div><div>${this.series.name.split('/')[0]}:${this.y}
-                      ${this.series.name.split('/')[1]}</div></div>`;
+              return `<div class='tooltip-wrapper'>
+                        <div class='my-tooltip'>
+                          <div>
+                            ${this.key.slice(0, 4)}年${this.key.slice(4, 6)}月
+                          </div>
+                          <div>
+                            ${this.series.name.split('/')[0]}:${this.y}${this.series.name.split('/')[1]}
+                          </div>
+                        </div>
+                      </div>`;
             },
           },
           colors: ['#88c4FF'],
           plotOptions: {
             line: {
               marker: {
-                fillColor: '#FFFFFF',
-                lineWidth: 2,
-                lineColor: null,
-                raduis: 3,
+                fillColor: '#fff',
+                lineColor: '#88C4FF',
+                lineWidth: 1,
                 symbol: 'circle',
               },
             },
@@ -324,6 +327,7 @@ export default class ProductVM extends krData.FormVM {
           title: {
             text: null,
           },
+          lineWidth: 1,
           gridLineWidth: 1,
           gridLineColor: 'rgba(242,244,245,1)',
         },
