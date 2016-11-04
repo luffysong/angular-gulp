@@ -371,6 +371,9 @@ export default class followParentController {
       angular.forEach(this.data[item],(obj) => {
         obj.active = false;
       });
+      if(!this.params[item] && this.data[item].length) {
+        this.data[item][0].active = true;
+      }
     });
   };
 
