@@ -162,6 +162,9 @@ export default class investmentParentController {
       angular.forEach(this.data[item], (obj) => {
         obj.active = false;
       });
+      if(!this.params[item] || this.params[item] === 'unlimited') {
+        this.data[item][0].active = true;
+      }
     });
   }
 

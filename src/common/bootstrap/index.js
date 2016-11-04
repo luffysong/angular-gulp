@@ -11,8 +11,8 @@ import SearchService from '../services/Search.service.js';
 const root = {};
 /* eslint-disable no-param-reassign,no-use-before-define,angular/on-watch */
 angular.module('@@app', ['@@app.routes', '@@app.components',
-  'cgNotify', 'MassAutoComplete', 'ngSanitize',
-  '@@app.constants', 'ngResource', '@@app.filters', '@app.services',
+  'cgNotify', 'MassAutoComplete', 'ngSanitize', 'perfect_scrollbar',
+  '@@app.constants', 'ngResource', '@@app.filters', '@app.services', 'dibari.angular-ellipsis',
   'validation', 'validation.rule',
 ]);
 angular.module('@@app').service('commonInterceptor', commonInterceptor)

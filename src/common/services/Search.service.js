@@ -52,7 +52,8 @@ function makeUserHtml(user, isFirst, isLast) {
         <span>${user.orgName}</span>
         <span>${user.position}</span>
       </p>
-      <p>${user.vitae}</p>
+      <p data-ellipsis ellipsis-separator="" data-ellipsis-symbol="..."
+      ng-bind="result.obj.vitae" class="intro"></p>
     </div>
   </div>
   ${isLast ?
@@ -70,7 +71,8 @@ function makeOrgHtml(org, isFirst, isLast) {
       <p>
         <span>${org.name}</span>
       </p>
-      <p>${org.brief}</p>
+      <p data-ellipsis ellipsis-separator="" data-ellipsis-symbol="..."
+      ng-bind="result.obj.intro" class="intro"></p>
     </div>
   </div>
   ${isLast ?
