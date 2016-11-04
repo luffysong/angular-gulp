@@ -1,4 +1,4 @@
-<div class="result-container" ng-if="!parentVm.open.sideBar">
+<div class="investment-result-container" ng-if="!parentVm.open.sideBar">
   <div class="result-tip">
   </div>
   <div class="result-content">
@@ -22,9 +22,9 @@
             </div>
           </div>
         </td>
-        <td><section ng-repeat="invest in obj.investments | limitTo:3 track by $index" ng-bind="invest.investAt | dateFilter"></section></td>
-        <td><section ng-repeat="invest in obj.investments | limitTo:3 track by $index" ng-bind="invest.phase"></section></td>
-        <td><section ng-repeat="invest in obj.investments | limitTo:3 track by $index" ng-bind="invest.fundsAmount"></section></td>
+        <td class="org-col"><section ng-repeat="invest in obj.investments | limitTo:3 track by $index" ng-bind="invest.investAt | dateFilter"></section></td>
+        <td class="org-col"><section ng-repeat="invest in obj.investments | limitTo:3 track by $index" ng-bind="invest.phase"></section></td>
+        <td class="org-col"><section ng-repeat="invest in obj.investments | limitTo:3 track by $index" ng-bind="invest.fundsAmount"></section></td>
       </tr>
     </table>
     <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">

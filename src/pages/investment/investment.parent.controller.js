@@ -171,7 +171,10 @@ export default class investmentParentController {
     this.investmentService.getList(id).then(data => {
       this.data['industry'] = data.industry;
       this.data['phase'] = data.phase;
+      this.data['industry'][0].active = true;
+      this.data['phase'][0].active = true;
       this.totalCount = data.totalInvestments;
+      this.org = data.org;
     });
   }
 

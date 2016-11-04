@@ -1,5 +1,5 @@
 <div ng-if="!investmentVm.open.sideBar">
-  <div class="filter-container">
+  <div class="investment-filter-container">
     <div class="navigation"><a ui-sref="org({id: investmentVm.org.id})" href="#">
         {{investmentVm.org.nameAbbr}}
     </a><span class="arrow">&gt;</span>投资案例</div>
@@ -15,6 +15,8 @@
               <!--ng-if="$index < investmentVm.open.maxNumber || ($index >= investmentVm.open.maxNumber && investmentVm.open.address)"-->
               <li class="col-item" ng-repeat="item in investmentVm.data.industry" ng-class="{'active': item.active}"  ng-click="investmentVm.selectIndustry($index,'industry')">
                 {{item.name}}({{item.count ? item.count : 0}})
+                <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.name === '不限'"></span>
+                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.name !== '不限'" ng-click="organizationVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
                 <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-click="investmentVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
               </li>
             </ul>
