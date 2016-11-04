@@ -110,6 +110,13 @@ export default class listParentController {
 
   /*通过接口返回数据更新筛选器数字*/
   updateData(d) {
+    Object.keys(this.data).forEach(item => {
+      if(item !== 'label') {
+        angular.forEach(this.data[item],obj => {
+          obj.cnt = 0;
+        });
+      }
+    });
     angular.forEach(this.itemList,(item) => {
       /*筛选条件特殊处理*/
       if(item.name === 'isFundingLimit'){
