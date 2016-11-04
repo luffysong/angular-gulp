@@ -119,7 +119,6 @@ export default class followParentController {
         }).then(data => {
           this.getLabel();
         }).catch(err => {
-          console.log(err);
           krData.Alert.alert(`出错啦：${err.msg || '未知错误'}`);
         });
       };
