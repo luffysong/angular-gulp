@@ -6,6 +6,10 @@ const RESULT_TYPE = {
   USER: 'USER',
 };
 
+const KEYS = {
+  ENTER: 13,
+};
+
 function getContentHtml(entity, content) {
   return {
     label: content,
@@ -194,9 +198,14 @@ export default class SearchService {
     return {
       suggest: this.makeResult.bind(this),
       auto_select_first: true,
-      full_match: () => true,
+      full_match: item => angular.isObject(item.obj),
       on_select: this.onSelect.bind(this),
-      on_leaveSelect: angular.noop,
+      on_leaveSelect: (value, e = {}) => {
+        if (e.keyCode === KEYS.ENTER) {
+          getService('$state').go('landing.result',
+            { kw: value, type: 'company' }, { inherit: false });
+        }
+      },
     };
   }
 }
