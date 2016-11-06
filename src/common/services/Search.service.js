@@ -6,6 +6,10 @@ const RESULT_TYPE = {
   USER: 'USER',
 };
 
+const KEYS = {
+  ENTER: 13,
+};
+
 function getContentHtml(entity, content) {
   return {
     label: content,
@@ -15,10 +19,10 @@ function getContentHtml(entity, content) {
 }
 
 function makeCreateProjectHtml(name) {
-  return getService('$sce').trustAsHtml(`
+  return `
       <p class="search-no-result"><span class="createProject">无结果，创建 ”${name}“ 创业项目</span>
       </p>
-    `);
+    `;
 }
 function makeProjectHtml(project, isFirst, isLast) {
   project.type = RESULT_TYPE.COMPANY;
@@ -194,9 +198,14 @@ export default class SearchService {
     return {
       suggest: this.makeResult.bind(this),
       auto_select_first: true,
-      full_match: () => true,
+      full_match: item => angular.isObject(item.obj),
       on_select: this.onSelect.bind(this),
-      on_leaveSelect: angular.noop,
+      on_leaveSelect: (value, e = {}) => {
+        if (e.keyCode === KEYS.ENTER) {
+          getService('$state').go('landing.result',
+            { kw: value, type: 'company' }, { inherit: false });
+        }
+      },
     };
   }
 }

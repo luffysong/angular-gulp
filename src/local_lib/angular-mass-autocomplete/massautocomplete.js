@@ -214,6 +214,7 @@ angular.module('MassAutoComplete', [])
                                             full_match($scope.results[1], term))
 											set_selection(1);
 									} else {
+                    set_selection(-1);
 										$scope.results = [];
 									}
 								},
@@ -386,13 +387,13 @@ angular.module('MassAutoComplete', [])
 										// the input itself.
 										e.stopPropagation();
 										e.preventDefault();
-                                    }else if( value&& ($scope.show_autocomplete ||
-                                            last_selected_value !== value)){
-                                        trimValue = value;
-                                        current_element.val(value);
-                                        current_options.on_leaveSelect &&
-                                        current_options.on_leaveSelect(value);
-                                    }
+                  }else if( value&& ($scope.show_autocomplete ||
+                          last_selected_value !== value)){
+                      trimValue = value;
+                      current_element.val(value);
+                      current_options.on_leaveSelect &&
+                      current_options.on_leaveSelect(value, e);
+                  }
 									$scope.show_autocomplete = false;
 									$scope.$apply();
 									break;

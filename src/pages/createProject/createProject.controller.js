@@ -59,12 +59,18 @@ export default class CreateProjectController {
   }
 
   init() {
+    this.ensureLogin();
     this.initBaseInfo();
     this.watchCompanyType();
     this.watchApplink();
     this.watchName();
     this.initView();
     this['110'] = false;
+  }
+
+  ensureLogin() {
+    const userService = krData.utls.getService('user');
+    userService.then(() => (userService.ensureLogin()));
   }
 
   initBaseInfo() {
