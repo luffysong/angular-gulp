@@ -15,10 +15,10 @@ function getContentHtml(entity, content) {
 }
 
 function makeCreateProjectHtml(name) {
-  return getService('$sce').trustAsHtml(`
+  return `
       <p class="search-no-result"><span class="createProject">无结果，创建 ”${name}“ 创业项目</span>
       </p>
-    `);
+    `;
 }
 function makeProjectHtml(project, isFirst, isLast) {
   project.type = RESULT_TYPE.COMPANY;

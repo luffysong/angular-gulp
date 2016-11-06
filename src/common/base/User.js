@@ -1,8 +1,9 @@
 import { login, getService } from '../base/utls.js';
-@Inject('$http')
+@Inject('$http', '$q')
 export default class User {
 
   data = {};
+  promise;
   constructor() {
     this.init();
   }
@@ -13,7 +14,7 @@ export default class User {
   }
 
   init() {
-    this.$http.get('/api/user')
+    this.promise = this.$http.get('/api/user')
       .then(data => {
         data = data.data;
         this.loaded = true;
@@ -24,6 +25,14 @@ export default class User {
       }).finally(() => {
         this.loaded = true;
       });
+  }
+
+  then(then, fail) {
+    return this.promise.then(then, fail);
+  }
+
+  catch(fn) {
+    return this.then(null, fn);
   }
 
   ensureLogin() {

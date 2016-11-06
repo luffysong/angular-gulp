@@ -1,6 +1,6 @@
 import UcService from './uc.service';
 
-let ucService = new UcService();
+const ucService = new UcService();
 
 @Inject('$rootScope')
 class UcPageController {
@@ -12,15 +12,13 @@ class UcPageController {
     this.initData();
   }
 
-  initData(){
+  initData() {
     ucService.getUser().then((data) => {
       this.user = data;
     });
     ucService.getCompany().then((data) => {
-      console.log(data);
       this.companies = data;
     });
-
   }
 
   getBgImage(img) {
@@ -28,17 +26,17 @@ class UcPageController {
   }
 
   setContact(type) {
-    let {autoReplyByWeiXin, autoReplyByPhone} = this.user;
-    if(type==='weixin') {
+    const { autoReplyByWeiXin, autoReplyByPhone } = this.user;
+    if (type === 'weixin') {
       ucService.setAutoreply(type, autoReplyByWeiXin);
     }
-    if(type==='phone') {
+    if (type === 'phone') {
       ucService.setAutoreply(type, autoReplyByPhone);
     }
   }
 
   setBpEmail() {
-    if(!this.user.commonEmail){
+    if (!this.user.commonEmail) {
       return;
     }
     ucService.addBPEmail(this.user.commonEmail);
@@ -54,7 +52,7 @@ export default {
   restrict: 'AE',
   controllerAs: 'vm',
   templateUrl: '/pages/uc/templates/index.html',
-  link:(scope, ele, attrs) => {
+  link: (scope, ele, attrs) => {
   },
   controller: UcPageController,
 };
