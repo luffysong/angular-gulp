@@ -1,7 +1,6 @@
 import krData from 'krData';
 
 const getService = krData.utls.getService;
-const ROLE = getService('ROLE');
 export default class ClaimVM {
   $validation = getService('$validation');
 
@@ -82,7 +81,7 @@ export default class ClaimVM {
     claimDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/project/templates/claim.html\'"center>/div>',
       plain: true,
-      appendTo: '.project-wrapper',
+      appendTo: '#projectDetailWrapper',
       controller: claimController,
       controllerAs: 'vm',
     });

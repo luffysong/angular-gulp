@@ -68,7 +68,7 @@ export default class ProjectIndexController {
     vm.talkDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/project/templates/talk.html\'" center></div>',
       plain: true,
-      appendTo: '.project-wrapper',
+      appendTo: '#projectDetailWrapper',
       controller: talkController,
       controllerAs: 'vm',
     });
@@ -83,7 +83,7 @@ export default class ProjectIndexController {
     vm.investorDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/project/templates/investorLink.html\'" center></div>',
       plain: true,
-      appendTo: '.project-wrapper',
+      appendTo: '#projectDetailWrapper',
       controller: investorController,
       controllerAs: 'vm',
     });
@@ -163,7 +163,7 @@ export default class ProjectIndexController {
       template: '<div ng-include="\'/pages/project/templates/checkBP.html\'" center></div>',
       plain: true,
       appendClassName: className,
-      appendTo: '.project-wrapper',
+      appendTo: '#projectDetailWrapper',
       controller: BPController,
       controllerAs: 'vm',
     });
@@ -237,7 +237,7 @@ export default class ProjectIndexController {
             template:
               '<div ng-include="\'/pages/project/templates/addBPEmail.html\'" center></div>',
             plain: true,
-            appendTo: '.project-wrapper',
+            appendTo: '#projectDetailWrapper',
             controller: ['$validation', '$scope', BPController],
             controllerAs: 'vm',
           });
