@@ -8,6 +8,8 @@ const labelView = {
   controller: 'labelParentController',
   resolve: {
     loadBundle: getLoadBundle(assets.page.label),
+    loadProjectBundle: getLoadBundle(assets.page.project),
+    loadSearchBundle: getLoadBundle(assets.page.search),
   }
 };
 

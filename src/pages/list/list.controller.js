@@ -207,7 +207,7 @@ export default class listIndexController {
     var labelArr = [];
     Object.keys(this.$stateParams).forEach(key => {
       if(this.$stateParams[key]) {
-        if(this.$stateParams[key].split(',').length > 1) {
+        if(String(this.$stateParams[key]).split(',').length > 1) {
           angular.forEach(this.$stateParams[key].split(','),item => {
             angular.forEach(this.$scope.parentVm.data[key], obj => {
               if(obj.id+'' === item+'' && labelArr.indexOf(obj.name) < 0) {

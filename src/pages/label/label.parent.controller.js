@@ -61,7 +61,6 @@ export default class listParentController {
       });
 
       this.projectService.getLabelCompany(params).then(data => {
-        console.log(data);
         this.labelDetail.totalCount = data.pageData.totalCount;
         this.$scope.$broadcast('get-list',data.pageData);
         this.handleActive();
@@ -69,6 +68,11 @@ export default class listParentController {
       });
 
       this.handleActive();
+    });
+
+    this.$scope.$on('open-sideBar',(e,d) => {
+      this.columnOptions = d;
+      this.open.sideBar = true;
     });
 
     this.getCity();

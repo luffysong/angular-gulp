@@ -1,4 +1,4 @@
-<div class="project-wrapper">
+<div class="project-wrapper" ng-show="!parentVm.open.sideBar">
   <div class="label-converge">
     <section class="title-info">
       <span class="project-list" ui-sref="list.result">项目列表</span> ＞ {{parentVm.labelDetail.name}}
@@ -101,6 +101,9 @@
     </div>
   </div>
   <ui-view></ui-view>
+</div>
+<div kr-column3 column-options="parentVm.columnOptions" ng-if="parentVm.open.sideBar">
+
 </div>
 <!--<ui-view></ui-view>-->
 
