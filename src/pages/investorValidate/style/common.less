@@ -1,0 +1,70 @@
+@import "../../../common/styles/function";
+@import "../../../common/styles/var";
+.step-one-wrapper,  .step-two-wrapper, .finance-apply-wrapper, .similar-item-wrapper {
+  .border1(transparent);
+  padding:0 41px 20px;
+  background: #fff;
+  h4{
+    color: @title-color;
+    margin: 20px 0 30px;
+    font-weight: normal;
+    position: relative;
+    display: flex;
+    align-items: center;
+    .font(16, 24);
+    &:before {
+      .before(4px, 18px, absolute);
+      background: @title-color;
+      left: -12px;
+    }
+  }
+  form {
+    width: @input-base-width;
+  }
+  .form-bottom {
+    clear: both;
+  }
+  .splitter{
+    .splitter();
+  }
+  .prev,.next {
+    .dlk();
+    .size(180, 37);
+    .font(14, 37);
+    .rd(4px);
+    .text-center();
+  }
+  .next {
+    pointer-events: none;
+    color: #fff;
+    background: #ccc;
+    margin: 40px auto 30px;
+  }
+  .prev {
+    .border1(@anchor-color);
+    margin-right: 30px;
+    &:hover {
+      background: @anchor-color;
+      color: #fff;
+    }
+  }
+  .next.active {
+    background: @anchor-color;
+    pointer-events: auto;
+    &:hover {
+      background:rgba(107,162,252, 0.8);
+    }
+  }
+  .tip-text {
+    margin-top: 6px;
+  }
+  select {
+    width: @select-width;
+  }
+  .bp-message {
+    font-size: 14px;
+    line-height: 18px;
+    color: #969FA9;
+    margin-left: 10px;
+  }
+}

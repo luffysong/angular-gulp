@@ -10,6 +10,7 @@ import { labelView, label } from './label.route';
 import { landingView, landing } from './landing.route';
 import { followView, follow } from './follow.route';
 import org from './org.route.js';
+import investorValidate from './investorValidate.route';
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode(true);
@@ -44,6 +45,8 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider.state('investment', investmentView);
   $stateProvider.state('investment.result', investment);
 
+  /*投资人认证*/
+  $stateProvider.state('investorValidate', investorValidate);
 }
 
 function stateChangeError($rootScope, $log) {

@@ -43,6 +43,12 @@ export default {
       '/bower/ng-dialog/css/ngDialog.min.css',
       '/bower/ng-dialog/css/ngDialog-theme-default.min.css'
     ],
+    investorValidate: [
+      '/pages/investorValidate/index.js',
+      '/bower/ng-file-upload/ng-file-upload-all.min.js',
+      '/bower/angular-tooltips/dist/angular-tooltips.js',
+      '/bower/angular-tooltips/dist/angular-tooltips.css',
+    ],
     project: [
       '/pages/project/index.js',
       ...PROJECT_ORG,

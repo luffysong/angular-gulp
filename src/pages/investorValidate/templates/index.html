@@ -1,0 +1,35 @@
+<section class="create-project-wrapper">
+  <div class="create-project-module">
+    <h1>{{ vm.title || '添加创业项目' }}</h1>
+    <div ng-show="vm.step === 1" ng-include="'/pages/createProject/templates/stepOne.html'"> </div>
+    <div ng-show="vm.step === 2" ng-include="'/pages/createProject/templates/stepTwo.html'"> </div>
+    <div ng-show="vm.step === 3" ng-include="'/pages/createProject/templates/finance-apply.html'"> </div>
+    <div ng-if="vm.step === 4 && vm.type === 'finance'" ng-include="'/pages/createProject/templates/financeAudit.html'"> </div>
+    <div ng-if="vm.step === 4 && vm.type !== 'finance'" ng-include="'/pages/createProject/templates/stepFour.html'"></div>
+  </div>
+  <div ng-if="vm.step === 1 && vm.claimList.length && !vm.selectProject" class="create-project-module suggest-result-module">
+    <div class="step-one-wrapper suggest-result-wrapper">
+      <h4>建议结果</h4>
+        <div>
+          <ul>
+            <li ng-repeat="item in vm.claimList">
+              <a ui-sref="project({id: item.id})" target="_blank">
+                <img ng-src='{{item.logo}}' /></a
+              ><div class="suggest-project-text">
+                <p><a target="_blank" ui-sref="project({id: item.id})">{{item.name}}</a
+                  ><a>{{item.industry | industry}}</a></p>
+                <p class="brief">{{item.brief}}</p>
+              </div>
+              <div ng-if="item.website" class="website">
+                <a target="_blank" ng-href="{{item.website}}">{{item.website}}</a>
+              </div>
+              <a class="claim" ng-click="vm.claim(item)" href="javascript:;">认领</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+  </div>
+  <div ng-if="vm.step === 4 && vm.similarProjects.length" class="create-project-module smilar-project-module">
+    <div ng-include="'/pages/createProject/templates/similar-item.html'"></div>
+  </div>
+</section>
