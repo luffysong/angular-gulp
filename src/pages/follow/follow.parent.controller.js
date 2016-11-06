@@ -112,6 +112,7 @@ export default class followParentController {
       };
       this.cancel = function () {
         vm.labelDialog.close();
+        vm.getLabel();
       };
       this.followLabel = function (id) {
         vm.projectService.followLabel({
@@ -157,8 +158,8 @@ export default class followParentController {
       className: 'label-dialog',
       plain: true,
       controller: labelController,
+      closeByDocument:false,
       controllerAs: 'vm',
-
     });
   }
 
