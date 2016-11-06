@@ -11,6 +11,7 @@ function textOverflowDirective() {
       element.append(more);
       function createDots() {
         element.dotdotdot({
+          wrap: 'letter',
           after: 'a.toggle',
         });
       }

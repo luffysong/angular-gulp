@@ -11,6 +11,7 @@ function textMoreDirective() {
       element.parent().append(more);
       function createDots() {
         element.dotdotdot({
+          wrap: 'letter',
           after: 'div.more',
         });
         if (!element.hasClass('is-truncated')) {
