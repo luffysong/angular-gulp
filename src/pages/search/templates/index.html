@@ -1,5 +1,7 @@
 <div class="search-wrapper">
-  <div class="search-list-wrapper">
+  <div
+    id="column3Container"
+    class="search-list-wrapper">
     <div
         infinite-scroll="searchVm.columnOptions.loadMore()"
         infinite-scroll-disabled="outVm.dataLoading"
@@ -12,21 +14,26 @@
           {{searchVm.activeLabel}}
           <i class="icon-label-open"></i>
           <div class="tag-container" ng-class="{'show':searchVm.showTab}">
-            <div class="tag-item" ng-repeat="item in searchVm.columnOptions.labels" ng-class="{'active':item.active}" ng-click="searchVm.columnOptions.switchType($index);searchVm.closeTab($event)">
+            <div class="tag-item" ng-repeat="item in searchVm.columnOptions.labels" ng-class="{'active':item.active}"
+              ng-click="searchVm.columnOptions.switchType($index);searchVm.closeTab($event)">
               {{item.name}}
             </div>
           </div>
         </div>
          <div class="label-container">
-           <div class="label-item" ng-click="searchVm.columnOptions.closeMe()" ng-repeat="item in searchVm.columnOptions.tags">{{item}}</div>
+           <div class="label-item" ng-click="searchVm.columnOptions.closeMe()"
+             ng-repeat="item in searchVm.columnOptions.tags">{{item}}</div>
            <span class="icon-open-nav" ng-click="searchVm.columnOptions.closeMe()"></span>
         </div>
       </div>
       <div
         class="search-project-list">
         <ul>
-          <li ng-click="searchVm.open(item.id)" ng-repeat="item in searchVm.columnOptions.companies">
-            <img ng-click="searchVm.open(item.id)" width="42" height="42" ng-src="{{item.logo || '/images/default-logo.png'}}" alt=""/>
+          <li
+            kr-scroll-me="{isMe: item.id === searchVm.columnOptions.companyId, container: '#column3Container'}"
+            ng-click="searchVm.open(item.id)"  ng-repeat="item in searchVm.columnOptions.companies">
+            <img ng-click="searchVm.open(item.id)" width="42" height="42"
+            ng-src="{{item.logo || '/images/default-logo.png'}}" alt=""/>
             <div class="text-info-wrapper">
               <p class="clear">
                   <span ng-click="searchVm.open(item.id)" class="name mr10" title="{{item.name}}">{{item.name}}</span>

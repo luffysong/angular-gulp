@@ -22,26 +22,22 @@ export default class SearchIndexController {
 
   watchOutVm() {
     this.$scope.$watch('searchVm.columnOptions.context', nv => {
-      if(nv) {
+      if (nv) {
         this.outVm = nv;
         this.getActiveLabel();
       }
-    })
-
-    /*this.$scope.$watch('searchVm.columnOptions.context', nv => {
-      if (nv) {
-        this.outVm = nv;
-      }
-    })*/
+    });
   }
   openTab() {
     this.showTab = !this.showTab;
   }
 
   getActiveLabel() {
-    if(!this.columnOptions || !this.columnOptions.labels || !this.columnOptions.labels.length)return;
+    if (!this.columnOptions || !this.columnOptions.labels || !this.columnOptions.labels.length) {
+      return;
+    }
     this.columnOptions.labels.forEach(item => {
-      if(item.active) {
+      if (item.active) {
         this.activeLabel = item.name;
       }
     });
