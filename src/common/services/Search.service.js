@@ -198,10 +198,13 @@ export default class SearchService {
     return {
       suggest: this.makeResult.bind(this),
       auto_select_first: true,
-      full_match: item => angular.isObject(item.obj),
+      full_match: item => angular.isObject(item && item.obj),
       on_select: this.onSelect.bind(this),
       on_leaveSelect: (value, e = {}) => {
         if (e.keyCode === KEYS.ENTER) {
+          this.historyApi.save(null, {
+            kw: value,
+          });
           getService('$state').go('landing.result',
             { kw: value, type: 'company' }, { inherit: false });
         }

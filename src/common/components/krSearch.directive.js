@@ -14,10 +14,9 @@ class SearchController {
   }
 
   setSearchWord(kw) {
-    getService('$timeout')(() => {
-      this.$rootScope.root.kw = kw;
-      $('input.search').focus();
-    }, 300);
+    this.history = [];
+    $('input.search').val(kw);
+    getService('$state').go('landing.result', { kw, type: 'company' }, { inherit: false });
   }
 }
 export default {
