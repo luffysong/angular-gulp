@@ -64,7 +64,7 @@ export default class investmentIndexController {
     this.currentPage++;
     var params = Object.assign({page:this.currentPage},this.paramsFilter(this.paramsData));
     this.investmentService.getList(this.$stateParams.id,params).then(data => {
-    console.log(data);
+      this.totalInvestments = data.totalInvestments;
       if(!data.investments || !data.investments.data){
           this.noMore = true;
           return;

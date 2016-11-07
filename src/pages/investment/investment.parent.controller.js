@@ -45,6 +45,7 @@ export default class investmentParentController {
         this.org = data.org;
         this.$scope.$broadcast('get-list', data);
         this.handleActive();
+        this.totalInvestments = data.totalInvestments;
         this.totalCount = data.investments.totalCount;
         this.updateData(data);
       });

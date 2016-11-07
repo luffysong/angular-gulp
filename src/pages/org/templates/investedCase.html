@@ -1,5 +1,6 @@
 <div class="invested-case-wrapper">
-  <h4>投资案例<span class="number">({{vm.orgData.investment.totalInvestments}})</span></h4>
+  <h4>投资案例<span ui-sref="investment.result({id: vm.orgData.basic.id})"
+      class="number pointer">({{vm.orgData.investment.totalInvestments}})</span></h4>
   <div class="filter" ng-if="vm.orgData.investment.totalInvestments>5">
     <div class="industry">
       <p class="list">行业</p>
