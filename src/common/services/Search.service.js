@@ -29,7 +29,7 @@ function makeProjectHtml(project, isFirst, isLast) {
   return `
   ${isFirst ? '<h4>项目</h4>' : ''}
   <div  class="search-row">
-    <img src="${project.logo}" >
+    <img src="${project.logo || '/images/default-logo.png'}" >
     <div class="search-entity-text">
       <p>
         <span>${project.name}</span>
@@ -49,7 +49,7 @@ function makeUserHtml(user, isFirst, isLast) {
   return `
   ${isFirst ? '<h4>投资人</h4>' : ''}
   <div class="search-row">
-    <img class="investor-avatar" src="${user.logo}" >
+    <img class="investor-avatar" src="${user.logo || '/images/investor-logo.png'}" >
     <div class="search-entity-text">
       <p>
         <span>${user.name}</span>
@@ -70,7 +70,7 @@ function makeOrgHtml(org, isFirst, isLast) {
   return `
   ${isFirst ? '<h4>机构</h4>' : ''}
   <div class="search-row">
-    <img src="${org.logo}" >
+    <img src="${org.logo || '/images/org-logo.png'}" >
     <div class="search-entity-text">
       <p>
         <span>${org.name}</span>
