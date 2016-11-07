@@ -61,20 +61,39 @@
       }
     }
     .addresses{
+      overflow: hidden;
       .contact{
         float: left;
       }
-      .all-addr{
+      .address, .phone-email {
         display: inline-block;
+        & > span:last-child {
+          margin-right: 13px;
+        }
+      }
+      .all-addr{
+        width: 720px;
+        float: left;
+        & > span {
+          display: block;
+          & > div > span:nth-child(2) {
+            margin-left: 13px;
+          }
+        }
         .city{
           padding-right: 10px;
           border-right: 1px solid #969FA9;
-          margin-right: 13px;
+        }
+        .city,.phone{
+          &:last-child{
+            padding-right: 0px;
+            border-right: none;
+            margin-right: 13px;
+          }
         }
         .phone{
           padding-right: 10px;
           border-right: 1px solid #969FA9;
-          margin-right: 10px;
         }
       }
     }
