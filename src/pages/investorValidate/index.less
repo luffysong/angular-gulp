@@ -27,104 +27,249 @@
       }
     }
 
-    .step-one-wrapper {
-      padding:44px 80px 30px;
-      .form-top-content {
-        width:auto;
-        margin:auto;
-        font-size: 16px;
-        color: #6BA2FC;
-        line-height: 24px;
-        &:before,&:after {
-          display: table;
-          content: '';
-          clear: both;
-        }
-        .first-step {
-          float: left;
-        }
-        .arrow-step {
-          margin:0 70px;
-        }
-        .next-step {
-          float: right;
+    .form-step-container {
+      text-align: center;
+      background-color: #fff;
+      padding:0 80px;
+      .out-side-container {
+        padding:44px 0 30px;
+        border-bottom: 1px solid #e7e7e7;
+        .form-top-content {
+          display: inline-block;
+          width:auto;
+          margin: auto;
+          font-size: 16px;
           color: #CCCCCC;
+          &:before,&:after {
+            display: table;
+            content: '';
+            clear: both;
+          }
+          .first-step {
+            float: left;
+            &.active {
+              color: #6BA2FC;
+            }
+          }
+          .arrow-step {
+            float: left;
+            margin:0 70px;
+            color: #6BA2FC;
+          }
+          .next-step {
+            float: right;
+            &.active {
+              color: #6BA2FC;
+            }
+          }
+        }
+      }
+
+    }
+
+
+    .step-one-wrapper {
+      padding:16px 80px 30px;
+
+      .form-center-container {
+        .form-group {
+          &.phone-col {
+            >label {
+              display: block;
+            }
+            input.form-control {
+              display: inline-block;
+              width:320px;
+            }
+            .get-code {
+              display: inline-block;
+              width:138px;
+              height:37px;
+              line-height: 37px;
+              background: #6BA2FC;
+              border-radius: 4px;
+              font-size: 14px;
+              color: #FFFFFF;
+              margin-left:10px;
+              text-align: center;
+              cursor: pointer;
+            }
+          }
+        }
+        .submit-btn {
+          width:240px;
+          height:37px;
+          line-height: 37px;
+          background: #CCCCCC;
+          border-radius: 4px;
+          font-size: 14px;
+          color: #FFFFFF;
+          text-align: center;
+          margin:40px auto 0;
+          &.active {
+            background-color: #6BA2FC;
+            cursor: pointer;
+          }
         }
       }
     }
-  }
 
-}
+    .next-step-wrapper {
+      padding:16px 80px 30px;
+      .next-tip {
+        font-size: 14px;
+        color: #5A626D;
+        letter-spacing: 0px;
+        line-height: 21px;
+        margin-bottom:30px;
+        .famous-investor {
+        }
+      }
+      .famous-investor-container {
+        margin-bottom:40px;
+        ul {
+          list-style: none;
+          overflow: hidden;
+          max-height:172px;
+          &:before,&:after {
+            content: '';
+            display: table;
+            clear: both;
+          }
+          li {
+            position: relative;
+            float: left;
+            width:320px;
+            height:172px;
+            background: #FFFFFF;
+            border: 1px solid #E7E7E7;
+            margin-right:24px;
+            padding:20px 30px 0 30px;
+            &:last-of-type {
+              margin-right:0;
+            }
 
-.step-two-wrapper {
-  .btn-id-card {
-    .btn-file();
-  }
+            .select-tag {
+              position: absolute;
+              width:22px;
+              height:22px;
+              border-radius: 50%;
+              border: 1px solid #DDDDDD;
+              top:15px;
+              right:15px;
+            }
+            .user-top {
+              padding-bottom:6px;
+              border-bottom: 1px dashed #DDDDDD;
+              .user-logo {
+                float: left;
+                width:42px;
+                height:42px;
+                border: 1px solid #E7E7E7;
+                border-radius: 100px;
+                background: no-repeat center;
+                background-size: contain;
+              }
+              .user-content {
+                margin-left:58px;
+                .user-name {
+                  font-size: 14px;
+                  color: #222C38;
+                  line-height: 21px;
+                  margin-bottom:5px;
+                  font-weight:600;
+                }
+                .user-work {
+                  font-size: 12px;
+                  color: #5A626D;
+                  line-height: 18px;
+                  margin-bottom:4px;
+                  font-weight:600;
+                }
+                .follow-industry {
+                  font-size: 12px;
+                  color: #5A626D;
+                  line-height: 18px;
+                  margin-bottom:4px;
+                }
+              }
+            }
 
-  select {
-    .dlk();
-  }
-  .creator-title {
-    margin-top: 40px;
-    margin-bottom: 16px;
-    .form-tip{
-      float: none;
+            .user-bottom {
+              font-size: 12px;
+              color: #5A626D;
+              letter-spacing: 0px;
+              line-height: 18px;
+              margin-top:10px;
+            }
+          }
+        }
+      }
+
+      .investor-validate-form {
+        .form-group {
+          margin-bottom:40px;
+          .invest-area {
+            margin-top:5px;
+            &:before,&:after {
+              display: table;
+              content: '';
+              clear: both;
+            }
+            .area-item {
+              float: left;
+              display: block;
+              margin:10px 40px 0 0;
+              .item-name {
+                display: inline-block;
+                width: 88px;
+                margin-left: 11px;
+                text-align: left;
+                font-size: 14px;
+                color: #5A626D;
+                line-height: 21px;
+              }
+            }
+          }
+        }
+      }
+
+    }
+
+    .investor-validate-result {
+        background-color: #fff;
+        padding:60px 0 70px;
+        text-align: center;
+        .audit-info {
+          font-size: 20px;
+          color: #6BA2FC;
+          letter-spacing: 0px;
+          line-height: 30px;
+          margin-bottom:8px;
+        }
+        .audit-tip {
+          font-size: 14px;
+          color: #5A626D;
+          letter-spacing: 0px;
+          line-height: 21px;
+          margin-bottom: 60px;
+        }
+        .see-project {
+          display: block;
+          width:180px;
+          height:37px;
+          line-height: 37px;
+          background: #6BA2FC;
+          border-radius: 4px;
+          text-align: center;
+          font-size: 14px;
+          color: #FFFFFF;
+          letter-spacing: 0px;
+          margin:0 auto;
+        }
     }
   }
-  .claim-message {
-    border: 1px solid #F2F4F5;
-    margin-bottom: 16px;
-    p:first-child {
-      border-bottom: 1px solid #F2F4F5;
-      width: 100%;
-      .text-center();
-      background: #F9F9F9;
-      .font(14,35);
-    }
-    p:nth-child(2){
-      padding: 10px 40px;
-      color: @text-color;
-    }
-  }
-  .position-name:nth-child(2) {
-    .dlk();
-    width: 370px;
-    margin-left: 10px;
-  }
-  .upload-img{
-    display: block;
-    width: 120px;
-    height: 67px;
-    border: 1px solid #CCCCCC;
-    border-radius: 6px;
-    margin-top: 4px;
-  }
-  .warn-img{
-    font-size: 12px;
-    color: #969FA9;
-    letter-spacing: 0px;
-    line-height: 18px;
-    width: 84px;
-    margin-left: 146px;
-    margin-top: -50px;
-    float: left;
-    display: inline-block;
-  }
-  .uploading{
-    background: rgba(0,0,0,0.40);
-    color: #FFF;
-    font-size: 14px;
-    display: inline-block;
-    width: 120px;
-    height: 30px;
-    line-height: 30px;
-    cursor: pointer;
-    text-align:center;
-    position: absolute;
-    margin-top: -30px;
-    border-radius: 0 0 6px 6px;
-    overflow: hidden;
-  }
+
 }
 
 .finance-apply-wrapper {
@@ -197,133 +342,8 @@
     }
   }
 
-  .tooltip{
-    background: rgba(90,98,109,0.69);
-    border-radius: 4px;
-    width: 280px;
-    tip-arrow{
-      border-right-color: rgba(90,98,109,0.69) !important;
-    }
-  }
-  .create-project-wrapper .active{
-      background: #fff !important;
-    }
-  .protocal-read {
-    margin-top: 45px;
-    .font(14, 21);
-    input {
-      margin-right: 11px;
-    }
-    color: @title-color;
-    .text-center();
-  }
-  .save {
-    margin-top: 16px;
-  }
-  .disable{
-    background: #CCC;
-    cursor: not-allowed;
-  }
-  .suc-name{
-    display: block;
-    color: #6BA2FC;
-    font-size: 14px;
-    margin: 10px 0;
-  }
+
 }
 
 
-.step-one-wrapper {
-  .suggest-project-text {
-    float: right;
-    width: 420px;
-    span {
-      .font(14, 21);
-    }
-    span:first-child {
-      border-right: 1px solid #ccc;
-      padding-right: 12px;
-    }
-    span:last-child{
-      padding-left: 12px;
-    }
-    .brief {
-      .font(12,18);
-      margin-top: 4px;
-      color: @tip-color;
-    }
-  }
-}
-
-.suggest-result-wrapper {
-  background: #fff;
-  h4 {
-    margin-bottom: 4px;
-  }
-  .website {
-    .font(12, 18);
-    margin-left: 58px;
-    margin-top: 4px;
-  }
-  li {
-    img {
-      .square(42);
-      .rd(4px);
-      margin-right: 16px;
-      .border1(@border-color);
-      .vam();
-    }
-    padding: 14px 20px;
-    width: 805px;
-    border-bottom: 1px solid #F2F4F5;
-    position: relative;
-  }
-  li:last-child {
-    border-bottom: none;
-  }
-  .brief {
-    .font(12,18);
-    margin-top: 4px;
-    color: @tip-color;
-  }
-  .suggest-project-text {
-    .vam();
-    .dlk();
-    float: none;
-    width: 600px;
-  }
-  .suggest-project-text p:first-child {
-    color: @anchor-color;
-    a {
-      .font(14, 21);
-    }
-    a:first-child {
-      border-right: 1px solid #ccc;
-      padding-right: 12px;
-      font-weight: 600;
-    }
-    a:last-child{
-      padding-left: 12px;
-    }
-  }
-  .claim {
-    .border1(@anchor-color);
-    .rd(4px);
-    .text-center();
-    font-size: 14px;
-    display: block;
-    width: 80px;
-    height: 33px;
-    line-height: 31px;
-    position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    &:hover {
-      background:@anchor-color;
-      color: #fff;
-    }
-  }
-  border: 1px solid transparent;
-}
 

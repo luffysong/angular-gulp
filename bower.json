@@ -39,7 +39,8 @@
     "angular-qrcode": "monospaced/angular-qrcode#^6.2.1",
     "angular-sanitize": "^1.5.8",
     "angular-perfect-scrollbar": "^0.0.4",
-    "angular-ellipsis": "^0.1.7"
+    "angular-ellipsis": "^0.1.7",
+    "checklist-model": "^0.10.0"
   },
   "resolutions": {
     "angular": "1.5.8"

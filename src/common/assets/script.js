@@ -48,6 +48,7 @@ export default {
       '/bower/ng-file-upload/ng-file-upload-all.min.js',
       '/bower/angular-tooltips/dist/angular-tooltips.js',
       '/bower/angular-tooltips/dist/angular-tooltips.css',
+      '/bower/checklist-model/checklist-model.js',
     ],
     project: [
       '/pages/project/index.js',

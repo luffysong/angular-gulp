@@ -1,0 +1,37 @@
+<div class="investor-validate-result">
+  <div ng-if="vm.auditStatus === 'auditing'">
+    <img src="/images/auditing.png" width="180" alt="">
+    <div class="audit-info">
+      投资人身份正在审核
+    </div>
+    <div class="audit-tip">
+      认证通过后将会通过短信通知您
+    </div>
+    <a href="javascript:void(0)" class="see-project" ui-sref="list.result({columnId:0})">浏览项目</a>
+  </div>
+
+  <div ng-if="vm.auditStatus === 'audited'">
+    <img src="/images/audited.png" width="180" alt="">
+    <div class="audit-info">
+      您的投资人身份已审核通过
+    </div>
+    <div class="audit-tip">
+      建议您前往个人主页，完善投资案例和个人履历
+    </div>
+    <a href="javascript:void(0)" class="see-project" ui-sref="list.result({columnId:0})">前往个人主页</a>
+  </div>
+
+
+  <div ng-if="vm.auditStatus === 'auditFail'">
+    <img src="/images/auditFail.png" width="180" alt="">
+    <div class="audit-info">
+      您的投资人身份申请被驳回
+    </div>
+    <div class="audit-tip">
+      驳回理由：信息过少，无法判定该公司是否是投资机构。<br />
+      名片无效，请上传过纸质名片。
+    </div>
+    <a href="javascript:void(0)" class="see-project" ui-sref="list.result({columnId:0})">前往个人主页</a>
+  </div>
+
+</div>
