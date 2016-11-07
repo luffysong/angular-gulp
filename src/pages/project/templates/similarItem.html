@@ -36,10 +36,13 @@
             </ul>
           </td>
           <td class="related-info" ng-show="item.similarInfo.length">
-            <ul class='list' ng-class='{"all":show[item.similarInfo.index]}'>
+            <ul id="list{{$index}}" class='list' ng-init="show={}" ng-class='{"all":show[$index]}'>
               <li ng-repeat="tag in item.similarInfo">{{tag}}</li>
             </ul>
-            <span class='icon-close curson' ng-click='show[item.similarInfo.index]=!show[item.similarInfo.index]' ng-class='{"pointed":show[item.similarInfo.index]}' ng-show="item.similarInfo.length>3"></span>
+            <span kr-ele-clamp-checker="{container: '#list{{$index}}'}" class='icon-close curson'
+              ng-if="item.similarInfo.length"
+              ng-click='show[$index]=!show[$index]'
+              ng-class='{"pointed":show[$index]}' ></span>
           </td>
           <td class="related-info-none" ng-show="!item.similarInfo.length">
             <span class="none-data">暂无数据</span>

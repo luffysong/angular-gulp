@@ -79,7 +79,7 @@
       <p ui-sref="investment.result({id: vm.orgData.basic.id})">查看更多</p>
     </div>
   </div>
-  <div class="no-data" ng-if="vm.orgData.investment.totalInvestments==0">
-  <p>暂无内容</p>
+  <div class="no-data" ng-if="!vm.investment.investments.totalCount">
+  <p>暂无数据</p>
   </div>
 </div>

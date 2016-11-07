@@ -5,7 +5,7 @@ export default {
     const config = $scope.$eval(attr.krEleClampChecker) || {};
     getService('$timeout')(() => {
       const $container = angular.element(config.container);
-      const height = parseInt($container.css('height'), 10);
+      const height = parseInt($container.css('height'), 10) + 4;
       $container.css('height', 'auto');
       if ($container.height() > (config.height || height || 32)) {
         if (config.showClass) {
@@ -13,6 +13,8 @@ export default {
         } else {
           ele.show();
         }
+      } else {
+        ele.hide();
       }
       $container.css('height', '');
     });

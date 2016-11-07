@@ -15,7 +15,7 @@
        ng-click="vm.memberVM.more()">
     <p>查看更多</p>
   </div>
-  <div class="no-data" ng-if="vm.orgData.member.total==0">
-    <p>暂无内容</p>
+  <div class="no-data" ng-if="!vm.orgData.member.total">
+    <p>暂无数据</p>
   </div>
 </div>
