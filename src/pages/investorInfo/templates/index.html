@@ -2,55 +2,19 @@
   <section class="base-info-wrapper">
     <div ng-if="!vm.baseInfoVM.isEdit" class="base-info-content">
       <div>
-        <img ng-src="{{vm.baseInfoVM.logo}}" class="logo" alt="">
+        <img ng-src="https://krplus-pic.b0.upaiyun.com/com_logo_v3/logo_off_1115.jpg" class="logo" alt="">
       </div>
       <div>
-        <h1>{{::vm.baseInfoVM.name}}
+        <h1>大大的
           <span>{{vm.baseInfoVM.industryEnum | industry}}</span>
-          <a class="btn-edit"
-            ng-if="vm.isEditMode"
-            ng-click="vm.baseInfoVM.enterEditMode()"
-            href="javascript:void(0)">编辑</a>
+          <span>北京 上海</span>
         </h1>
-        <h3>{{::vm.baseInfoVM.brief}}</h3>
-        <p>
-          <a ng-if="vm.baseInfoVM.weibo"
-          class="kr-icon icon-Weibo link-none" href="" ng-class="{'icon-Weibo-active':vm.baseInfoVM.weibo}"
-          ng-href="{{::vm.baseInfoVM.weibo}}" target="_blank"></a>
-        <span class="kr-icon icon-Weibo link-none" ng-if="!vm.baseInfoVM.weibo" tooltips tooltip-template="未填写"
-          tooltip-smart="true" tooltip-class="tooltip"></span>
-          <a class="kr-icon icon-Wechat link-none" ng-class="{'icon-Wechat-active':vm.baseInfoVM.weixin}"
-            tooltips tooltip-template="{{vm.baseInfoVM.weixin?vm.baseInfoVM.weixin:'未填写'}}" tooltip-class="tooltip">
-          </a>
-          <span class="kr-icon icon-websitelink" ng-show=""></span>
-          <a class="website ellipsis" target="_blank" ng-href="{{::vm.baseInfoVM.website}}">
-            {{::vm.baseInfoVM.website}}
-          </a>
-          <span class="hot-container">
-            <span class="kr-icon icon-Hot" ng-show="vm.baseInfoVM.advantage"></span>
-            <span class="hot-text" ng-show="vm.baseInfoVM.advantage">{{vm.baseInfoVM.advantage}}</span>
-          </span>
-        </p>
-      </div>
-      <div class="finance-brief" ng-if='vm.fundsVM.funds'>
-        <p>融资中</p>
-        <p>
-          <span>轮次</span>
-          <span>{{vm.fundsVM.fundsPhase | financePhase}}</span>
+        <p class="organization-name">
+          <a href="javascript:void(0)">贝塔斯曼亚洲投资基金 >></a>
         </p>
         <p>
-         <span>金额</span>
-         <span>
-           <small ng-show="vm.fundsVM.financeAmountUnit =='USD'">$</small
-           ><small ng-show="vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}万</span>
+          <span>副总裁</span>
         </p>
-      </div>
-      <div class="finance-brief" ng-if='!vm.fundsVM.funds'>
-        <p>当前轮次</p>
-        <p class="finance-now">
-          {{vm.fundsVM.fundsPhase | companyFinancePhase}}
-        </p>
-
       </div>
     </div>
     <div ng-if="vm.baseInfoVM.isEdit" class="base-info-content-edit">
@@ -151,6 +115,9 @@
   </section>
   <section id="resume" ng-include="'/pages/investorInfo/templates/resume.html'" class="investorInfo-module">
     个人履历
+  </section>
+  <section id="resume" ng-include="'/pages/investorInfo/templates/case.html'" class="investorInfo-module">
+    投资案例
   </section>
 
 

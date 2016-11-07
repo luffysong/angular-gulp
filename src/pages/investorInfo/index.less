@@ -1,6 +1,9 @@
 @import "../../common/styles/function";
 @import "../../common/styles/var";
 @import "./style/var";
+@import "./style/preference";
+@import "./style/resume";
+@import "./style/case";
 .investorInfo-wrapper {
   .investorInfo-var();
   background: @bg-global-color;
@@ -112,14 +115,16 @@
         .dlk();
         .vam();
       }
+      .organization-name {
+        margin: 8px 0 4px 0;
+          a {
+            font-size: 14px;
+            line-height: 21px;
+          }
+        }
       p {
         .icon-websitelink {
           font-size: 20px;
-        }
-        a {
-          font-size: 12px;
-          line-height: 16px;
-          display: inline-block;
         }
       }
       .finance-brief {
@@ -197,8 +202,8 @@
       }
     }
     .logo {
-      .square(90);
-      border-radius: 6px;
+      .square(70);
+      border-radius: 100px;
       .border1(#E7E7E7);
     }
   }
@@ -259,21 +264,6 @@
     }
   }
 
-  .preference-info {
-    ul {
-      line-height: 21px;
-      margin-top: 16px;
-      li {
-        display: inline-block;
-        margin-right: 14px;
-        label {
-          margin-right: 30px;
-          font-weight: bold;
-        }
-      }
-    }
-  }
-  //nav end
 }
 
 
