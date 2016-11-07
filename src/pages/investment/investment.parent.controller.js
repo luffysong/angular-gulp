@@ -44,7 +44,6 @@ export default class investmentParentController {
       this.investmentService.getList(this.$stateParams.id, params).then(data => {
         this.org = data.org;
         this.$scope.$broadcast('get-list', data);
-        this.totalInvestments = data.totalInvestments;
         this.totalCount = data.investments.totalCount;
         this.data.industry = data.industry;
         this.data.phase = data.phase;
