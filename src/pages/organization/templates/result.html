@@ -23,8 +23,8 @@
           </div>
         </td>
         <td class="org-col"><section ng-repeat="invest in obj.latestInvest | limitTo:3 track by $index" ng-bind="invest.companyName"></section></td>
-        <td>{{obj.totalInvest}}</td>
-        <td>{{obj.totalMember}}</td>
+        <td ><a  ui-sref="org({id: obj.org.id})">{{obj.totalInvest}}</a></td>
+        <td><a  ui-sref="org({id: obj.org.id})">{{obj.totalInvest}}</a></td>
       </tr>
     </table>
     <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">

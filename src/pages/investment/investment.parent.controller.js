@@ -44,8 +44,11 @@ export default class investmentParentController {
       this.investmentService.getList(this.$stateParams.id, params).then(data => {
         this.org = data.org;
         this.$scope.$broadcast('get-list', data);
-        this.handleActive();
+        this.totalInvestments = data.totalInvestments;
         this.totalCount = data.investments.totalCount;
+        this.data.industry = data.industry;
+        this.data.phase = data.phase;
+        this.handleActive();
         this.updateData(data);
       });
     });
@@ -112,6 +115,7 @@ export default class investmentParentController {
       this.go();
       return;
     }
+    console.log(this.data[type][index]);
     const attr = 'value';
     if (this.params[type]) {
       if (this.params[type].split(',').indexOf(String(this.data[type][index][attr])) < 0) {
@@ -172,8 +176,8 @@ export default class investmentParentController {
   getIndustryAndPhase(id) {
     // this.data.industry = this.addItem(this.$scope.root.INDUSTRY_META);
     this.investmentService.getList(id).then(data => {
-      this.data['industry'] = data.industry;
-      this.data['phase'] = data.phase;
+      this.data.industry = data.industry;
+      this.data.phase = data.phase;
       this.data['industry'][0].active = true;
       this.data['phase'][0].active = true;
       this.totalCount = data.totalInvestments;

@@ -1,4 +1,4 @@
-<div class="investment-result-container" ng-if="!parentVm.open.sideBar">
+<div class="investment-result-container" >
   <div class="result-tip">
   </div>
   <div class="result-content">
@@ -12,19 +12,32 @@
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
-          <a href="" class="project-logo" style="background-image: url({{obj.project.logo}})" ng-click="vm.seeDetail(obj.project.cid)"></a>
+          <a target="_blank" ui-sref="project({id: obj.project.cid})" class="project-logo"
+            style="background-image: url({{obj.project.logo}})" ></a>
           <div class="project-info">
             <div class="project-name">
-              <span class="company-name" ng-click="vm.seeDetail(obj.project.cid)">{{obj.project.companyName}}</span> | <span class="project-industry">{{obj.project.industry}}</span>
+              <a target="_blank" ui-sref="project({id: obj.project.cid})" class="company-name" >
+                {{obj.project.companyName}}</a> | <span class="project-industry">{{obj.project.industry}}</span>
             </div>
             <div class="project-intro">
               {{obj.project.brief}}
             </div>
           </div>
         </td>
-        <td class="org-col"><section ng-repeat="invest in obj.investments | limitTo:3 track by $index" ng-bind="invest.investAt | dateFilter"></section></td>
-        <td class="org-col"><section ng-repeat="invest in obj.investments | limitTo:3 track by $index" ng-bind="invest.phase"></section></td>
-        <td class="org-col"><section ng-repeat="invest in obj.investments | limitTo:3 track by $index" ng-bind="invest.fundsAmount"></section></td>
+        <td class="org-col">
+          <section ng-repeat="invest in obj.investments | limitTo:3 track by $index"
+            ng-bind="invest.investAt | dateFilter"></section>
+        </td>
+        <td class="org-col">
+          <a
+            ui-sref="investment.result({phase: invest.phaseId, id: investmentVm.params.id})" ui-sref-opts="{inherit: false}"  target="_blank"
+            ng-repeat="invest in obj.investments | limitTo:3 track by $index"
+            >{{invest.phase}}</a>
+        </td>
+        <td class="org-col">
+          <section ng-repeat="invest in obj.investments | limitTo:3 track by $index"
+            ng-bind="invest.fundsAmount"></section>
+        </td>
       </tr>
     </table>
     <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">

@@ -4,16 +4,12 @@ function filterCalDirective($timeout) {
     restrict: 'AE',
     link(scope, element) {
       $timeout(() => {
-        if(element.height() > 32) {
-          /*element.height(32);*/
+        if (element.height() > 32) {
           element.parents('.filter-col').addClass('overflow');
         }
-      },500);
+      });
     },
   };
 }
-angular
-  .module('@@pages.list', [])
-  .directive('filterCal', filterCalDirective);
-
+filterCalDirective.$inject = ['$timeout'];
 export default filterCalDirective;
