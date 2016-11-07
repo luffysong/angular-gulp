@@ -38,7 +38,7 @@ export default {
       '/bower/ng-dialog/css/ngDialog-theme-default.min.css'
     ],
     landing: [
-      'pages/landing/index.js',
+      '/pages/landing/index.js',
       '/bower/ng-dialog/js/ngDialog.min.js',
       '/bower/ng-dialog/css/ngDialog.min.css',
       '/bower/ng-dialog/css/ngDialog-theme-default.min.css'
@@ -49,10 +49,9 @@ export default {
       '/bower/angular-tooltips/dist/angular-tooltips.js',
       '/bower/angular-tooltips/dist/angular-tooltips.css',
       '/bower/checklist-model/checklist-model.js',
-      '/bower/checklist-model/checklist-model.js',
-      '/bower/slick-carousel/slick/slick.min.js',
-      '/bower/slick-carousel/slick/slick.css',
-      '/bower/angular-slick/dist/slick.js'
+      '/local_lib/slick-carousel/slick/slick.min.js',
+      '/local_lib/slick-carousel/slick/slick.css',
+      '/local_lib/angular-slick/dist/slick.js'
     ],
     project: [
       '/pages/project/index.js',
