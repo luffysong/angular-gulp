@@ -44,6 +44,17 @@
 }
 
 .filter-container {
+  &.filterDisabeld {
+    .col-item {
+      color: #ccc !important;
+      cursor: not-allowed;
+      pointer-events: none;
+      background-color: #fff !important;
+      &.active {
+        background-color: #ddd !important;
+      }
+    }
+  }
   h4 {
     font-size: 18px;
     color: #222C38;

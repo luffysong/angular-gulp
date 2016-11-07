@@ -252,6 +252,11 @@ export default class listParentController {
     this.data.phase = this.addItem(this.$scope.root.COMPANY_SEARCH_PHASE_META);
   }
 
+  /*融资中、优选、新品列表 未登录用户或已登录的非投资人用户禁用筛选器*/
+  getPermission () {
+    var columnId = this.params.columnId+'';
+    return (columnId === '5' || columnId === '1' || columnId === '3') && (!this.user.isLogin || !this.user.isInvestor());
+  }
   /*获取融资需求数据*/
   /*getisFundingLimit() {
     this.data.isFundingLimit = this.addItem(this.$scope.root.FINANCE_NEED_META);
