@@ -80,5 +80,9 @@ export default {
       '/pages/uc/index.js',
       '/pages/uc/index.css',
     ],
+    investorInfo: [
+      '/pages/investorInfo/index.js',
+      ...PROJECT_ORG,
+    ],
   },
 };
