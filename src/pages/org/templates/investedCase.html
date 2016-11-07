@@ -1,7 +1,7 @@
 <div class="invested-case-wrapper">
   <h4>投资案例<span ui-sref="investment.result({id: vm.orgData.basic.id})"
-      class="number pointer">({{vm.orgData.investment.totalInvestments}})</span></h4>
-  <div class="filter" ng-if="vm.orgData.investment.totalInvestments>5">
+      class="number pointer">({{vm.investment.investments.totalCount}})</span></h4>
+  <div class="filter" ng-if="vm.investment.investments.totalCount>5">
     <div class="industry">
       <p class="list">行业</p>
       <ul id="industry" ng-class="{'spread':vm.investedCaseVM.hasSpreaded.industry}">
@@ -31,7 +31,7 @@
       </div>
     </div>
   </div>
-  <div class="case-list" ng-if="vm.orgData.investment.totalInvestments>5">
+  <div class="case-list" ng-if="vm.investment.investments.totalCount > 5">
     <table>
       <thead>
         <td>项目</td>
@@ -75,7 +75,7 @@
         </tr>
       </tbody>
     </table>
-    <div class="more"  ng-if="vm.orgData.investment.totalInvestments>5">
+    <div class="more"  ng-if="vm.investment.investments.totalCount>5">
       <p ui-sref="investment.result({id: vm.orgData.basic.id})">查看更多</p>
     </div>
   </div>

@@ -6,9 +6,11 @@
         <h1>{{vm.orgData.basic.nameAbbr}}</h1>
         <p class="en-name">{{vm.orgData.basic.enName}}</p>
         <p>
-          <span class="kr-icon icon-Wechat" ng-if="vm.orgData.basic.weixin"></span
+          <span tooltips tooltip-template="{{vm.orgData.basic.weixin}}"  tooltip-class="tooltip"
+            class="kr-icon icon-Wechat" ng-if="vm.orgData.basic.weixin"></span
           ><span class="kr-icon icon-websitelink" ng-if="vm.orgData.basic.website"></span
-          ><a ng-href="{{vm.orgData.basic.website}}" target="_blank" ng-if="vm.orgData.basic.website">{{vm.orgData.basic.website}}</a>
+          ><a ng-href="{{vm.orgData.basic.website}}" target="_blank"
+            ng-if="vm.orgData.basic.website">{{vm.orgData.basic.website}}</a>
         </p>
       </div>
     </section>
@@ -28,7 +30,7 @@
           </li>
           <li >
             <a kr-scroll-click href="#investments" du-smooth-scroll="" du-scrollspy="" offset="114" >
-              融资详情({{vm.investment.totalInvestments}})
+              投资案例({{vm.investment.investments.totalCount}})
             </a>
           </li>
           <li >

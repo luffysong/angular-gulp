@@ -12,10 +12,10 @@
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
-          <a href="" class="project-logo" style="background-image: url({{obj.org.logo}});width: 50px;height: 50px;"></a>
+          <a ui-sref="org({id: obj.org.id})" class="project-logo" style="background-image: url({{obj.org.logo}});width: 50px;height: 50px;"></a>
           <div class="project-info">
             <div class="project-name">
-              <span class="company-name"><a href="" ng-click="vm.seeDetail(obj.cid)">{{obj.org.nameAbbr}}</a></span>
+              <span class="company-name"><a ui-sref="org({id: obj.org.id})" ng-click="vm.seeDetail(obj.cid)">{{obj.org.nameAbbr}}</a></span>
             </div>
             <div class="project-intro">
               {{obj.org.intro | introFormat}}
@@ -23,8 +23,8 @@
           </div>
         </td>
         <td class="org-col"><section ng-repeat="invest in obj.latestInvest | limitTo:3 track by $index" ng-bind="invest.companyName"></section></td>
-        <td ><a  ui-sref="org({id: obj.org.id})">{{obj.totalInvest}}</a></td>
-        <td><a  ui-sref="org({id: obj.org.id})">{{obj.totalInvest}}</a></td>
+        <td ><a  ui-sref="org({id: obj.org.id})">{{obj.totalCount}}</a></td>
+        <td><a  ui-sref="org({id: obj.org.id})">{{obj.totalMember}}</a></td>
       </tr>
     </table>
     <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">
