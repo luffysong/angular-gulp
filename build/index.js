@@ -25,6 +25,9 @@ const jsplugins = [
   '/bower/angular-tooltips/dist/angular-tooltips.css',
   '/bower/qrcode-generator/js/qrcode.js',
   '/bower/angular-qrcode/angular-qrcode.js',
+  '/local_lib/slick-carousel/slick/slick.min.js',
+  '/local_lib/slick-carousel/slick/slick.css',
+  '/local_lib/angular-slick/dist/slick.js',
 ];
 
 const proxyConfig = {
