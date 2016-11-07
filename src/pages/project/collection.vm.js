@@ -24,7 +24,7 @@ export default class CollectionVM {
     vm.investorDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/project/templates/investorLink.html\'" center></div>',
       plain: true,
-      appendTo: '.project-wrapper',
+      appendTo: '#projectDetailWrapper',
       controller: investorController,
       controllerAs: 'vm',
     });
@@ -97,7 +97,7 @@ export default class CollectionVM {
     this.collectDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/project/templates/collection.html\'" center>/div>',
       plain: true,
-      appendTo: '.project-wrapper',
+      appendTo: '#projectDetailWrapper',
       controller: collectController,
       controllerAs: 'vm',
     });

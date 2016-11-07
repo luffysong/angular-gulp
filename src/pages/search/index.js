@@ -1,6 +1,6 @@
 import SearchIndexController from './index.controller';
 import krColumn3Directive from './krColumn.directive.js';
-
+import krScrollMe from './krScrollMe.directive.js';
 angular.module('@pages.search', [])
   .controller('SearchIndexController', SearchIndexController)
   .directive('krReloadProject', function krReload(projectService, resolveData, $compile) {
@@ -22,5 +22,6 @@ angular.module('@pages.search', [])
       },
     };
   })
+  .directive('krScrollMe', () => krScrollMe)
   .directive('krColumn3', krColumn3Directive);
 
