@@ -5,6 +5,7 @@ import krProjectNav from './krProjectNav.directive.js';
 import krSlidePanel from './krSlidePanel.directive.js';
 import infiniteScrollDirective from './infiniteScroll.directive';
 import calPositionDirective from './calPosition.directive';
+import krEleClampChecker from './krEleClampChecker.directive.js';
 function makeDirective(directive) {
   return () => directive;
 }
@@ -16,4 +17,5 @@ angular.module('@@app.components', [])
   .directive('krSlidePanel', makeDirective(krSlidePanel))
   .directive('infiniteScroll', infiniteScrollDirective)
   .directive('krBindHtml', makeDirective(krBindHtml))
+  .directive('krEleClampChecker', makeDirective(krEleClampChecker))
   .directive('calPosition', calPositionDirective);

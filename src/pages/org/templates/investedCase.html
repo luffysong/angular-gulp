@@ -4,13 +4,14 @@
   <div class="filter" ng-if="vm.orgData.investment.totalInvestments>5">
     <div class="industry">
       <p class="list">行业</p>
-      <ul ng-class="{'spread':vm.investedCaseVM.hasSpreaded.industry}">
+      <ul id="industry" ng-class="{'spread':vm.investedCaseVM.hasSpreaded.industry}">
         <li ui-sref="investment.result({id: vm.orgData.basic.id})"
           ng-repeat="item in vm.orgData.investment.industry">
           <span class="label">{{item.name}}<span>({{item.count}})</span></span>
         </li>
       </ul>
-      <div class="col-control">
+      <div ng-if="vm.orgData.investment.industry.length"
+        kr-ele-clamp-checker="{container: '#industry'}" class="col-control">
         <a href="javascript:void(0)" class="open-btn icon-open-select"
           ng-click="vm.investedCaseVM.spreadList('industry')"
           ng-class="{'open-list':vm.investedCaseVM.hasSpreaded.industry}"></a>
@@ -18,12 +19,12 @@
     </div>
     <div class="phase">
       <p class="list">轮次</p>
-      <ul ng-class="{'spread':vm.investedCaseVM.hasSpreaded.phase}">
+      <ul id="phase" ng-class="{'spread':vm.investedCaseVM.hasSpreaded.phase}">
         <li ui-sref="investment.result({id: vm.orgData.basic.id})" ng-repeat="item in vm.orgData.investment.phase">
           <span class="label">{{item.name}}<span>({{item.count}})</span></span>
         </li>
       </ul>
-      <div class="col-control">
+      <div kr-ele-clamp-checker="{container: '#phase'}" class="col-control">
         <a href="javascript:void(0)" class="open-btn icon-open-select"
           ng-click="vm.investedCaseVM.spreadList('phase')"
           ng-class="{'open-list':vm.investedCaseVM.hasSpreaded.phase}"></a>
