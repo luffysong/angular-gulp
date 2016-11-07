@@ -1,12 +1,7 @@
-<section class="investor-validate-wrapper">
-  <div id="investor-validate-module">
-    <div class="top-content">
-        <h4>认证投资人</h4>
-        <section>
-          目前仅会对机构，公司投资部及个人天使投资人发放投资人身份
-        </section>
-    </div>
-    <div ng-show="vm.step === 1" ng-include="'/pages/investorValidate/templates/stepOne.html'"> </div>
+<section class="create-project-wrapper">
+  <div class="create-project-module">
+    <h1>{{ vm.title || '添加创业项目' }}</h1>
+    <div ng-show="vm.step === 1" ng-include="'/pages/createProject/templates/stepOne.html'"> </div>
     <div ng-show="vm.step === 2" ng-include="'/pages/createProject/templates/stepTwo.html'"> </div>
     <div ng-show="vm.step === 3" ng-include="'/pages/createProject/templates/finance-apply.html'"> </div>
     <div ng-if="vm.step === 4 && vm.type === 'finance'" ng-include="'/pages/createProject/templates/financeAudit.html'"> </div>

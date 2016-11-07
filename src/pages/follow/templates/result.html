@@ -11,7 +11,7 @@
         <td>轮次</td>
         <td>投资方</td>
         <td>所在地</td>
-        <td>来源</td>
+        <td ng-if="!vm.$stateParams.labelId">来源</td>
         <td>时间</td>
         <td width="120">操作</td>
       </tr>
@@ -39,8 +39,8 @@
           <section ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
         </td>
         <td>{{obj.cityStr}}</td>
-        <td class="org-col">
-          <section ng-repeat="item in obj.labelSource">{{item}}</section>
+        <td class="org-col" ng-if="!vm.$stateParams.labelId">
+          <section ng-repeat="item in obj.labelSource | limitTo:3 track by $index">{{item}}</section>
         </td>
         <td>{{obj.publishDate | dateFilter}}</td>
         <td>
