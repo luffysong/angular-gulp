@@ -1,5 +1,12 @@
 @import "../../common/styles/var";
 @import "./style/common";
+.clear-fix {
+  &:before,&:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
 .investor-validate-wrapper {
   background: #F2F4F5;
   border: 1px transparent solid;
@@ -126,17 +133,44 @@
         }
       }
       .famous-investor-container {
+        position: relative;
         margin-bottom:40px;
-        ul {
-          list-style: none;
-          overflow: hidden;
-          max-height:172px;
-          &:before,&:after {
-            content: '';
-            display: table;
-            clear: both;
+        .left-arrow {
+          position: absolute;
+          display: block;
+          width:26px;
+          height:30px;
+          line-height:30px;
+          text-align: center;
+          left:-30px;
+          top:71px;
+          border-radius: 4px;
+          z-index:9;
+          cursor: pointer;
+          transition: background-color .4s;
+          &:hover {
+            background: #F2F4F5;
           }
-          li {
+        }
+        .right-arrow {
+          position: absolute;
+          display: block;
+          width:26px;
+          height:30px;
+          line-height:30px;
+          text-align: center;
+          left:715px;
+          top:71px;
+          border-radius: 4px;
+          z-index:9;
+          cursor: pointer;
+          transition: background-color .4s;
+          &:hover {
+            background: #F2F4F5;
+          }
+        }
+        .investor-container {
+          .investor-item {
             position: relative;
             float: left;
             width:320px;
@@ -145,18 +179,34 @@
             border: 1px solid #E7E7E7;
             margin-right:24px;
             padding:20px 30px 0 30px;
+            cursor: pointer;
+
+            &:hover {
+              transition: all .4s;
+              border: 1px solid rgba(107,162,252,0.70);
+              box-shadow: 0px 0px 6px 0px #A9C5E0;
+            }
             &:last-of-type {
               margin-right:0;
             }
-
+            &.active {
+              .select-tag {
+                color:#6BA2FC;
+                border-color: #6BA2FC;
+              }
+            }
             .select-tag {
               position: absolute;
-              width:22px;
-              height:22px;
+              width: 22px;
+              height: 22px;
               border-radius: 50%;
               border: 1px solid #DDDDDD;
-              top:15px;
-              right:15px;
+              color: #DDD;
+              top: 15px;
+              right: 15px;
+              text-align: center;
+              line-height: 20px;
+              font-size: 18px;
             }
             .user-top {
               padding-bottom:6px;
@@ -194,7 +244,6 @@
                 }
               }
             }
-
             .user-bottom {
               font-size: 12px;
               color: #5A626D;
@@ -202,6 +251,17 @@
               line-height: 18px;
               margin-top:10px;
             }
+          }
+          .selected-tip {
+            position: absolute;
+            width:320px;
+            text-align: center;
+            font-size: 12px;
+            color: #6BA2FC;
+            letter-spacing: 0px;
+            line-height: 18px;
+            left:0;
+            bottom:0;
           }
         }
       }
@@ -344,6 +404,9 @@
 
 
 }
+
+
+
 
 
 

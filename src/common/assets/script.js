@@ -49,6 +49,10 @@ export default {
       '/bower/angular-tooltips/dist/angular-tooltips.js',
       '/bower/angular-tooltips/dist/angular-tooltips.css',
       '/bower/checklist-model/checklist-model.js',
+      '/bower/checklist-model/checklist-model.js',
+      '/bower/slick-carousel/slick/slick.min.js',
+      '/bower/slick-carousel/slick/slick.css',
+      '/bower/angular-slick/dist/slick.js'
     ],
     project: [
       '/pages/project/index.js',

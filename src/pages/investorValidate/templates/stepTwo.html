@@ -3,9 +3,11 @@
     根据您填写的信息，系统智能判断您为<span class="famous-investor">知名投资人</span>，已获取了您的公开信息，请选择并确认与您匹配的信息：
   </section>
   <div class="famous-investor-container">
-    <ul>
-      <li ng-repeat="item in [1,2,3]">
-        <span class="select-tag"></span>
+    <span class="left-arrow icon-left-arrow" ng-if="vm.recommendInvestor.length >= 3"></span>
+    <span class="right-arrow icon-right-arrow" ng-if="vm.recommendInvestor.length >= 3"></span>
+    <div class="clear-fix" ng-if="vm.recommendInvestor.length < 3">
+      <div class="investor-item" ng-repeat="item in vm.recommendInvestor" ng-click="vm.selectItem($index)" ng-class="{active: item.active}">
+        <span class="select-tag icon-checked-tag"></span>
         <div class="user-top">
           <div class="user-logo"></div>
           <div class="user-content">
@@ -19,7 +21,65 @@
               近期关注: 电子商务 · 社交媒体
             </section>
             <section class="follow-industry">
-              偏好伦次: A轮 · Pre-A轮
+              偏好轮次: A轮 · Pre-A轮
+            </section>
+          </div>
+        </div>
+        <div class="user-bottom">
+          最近投资：Keep、妙计旅行、车轮、小站教育…
+        </div>
+      </div>
+    </div>
+    <div ng-if="vm.recommendInvestor.length >= 3">
+      <slick infinite="false" slides-to-show="2" prev-arrow=".left-arrow" next-arrow=".right-arrow">
+        <div class="investor-container" style="position:relative;height:196px" ng-repeat="item in vm.recommendInvestor" >
+          <div class="investor-item" ng-click="vm.selectItem($index)" ng-class="{active: item.active}">
+            <span class="select-tag icon-checked-tag"></span>
+            <div class="user-top">
+              <div class="user-logo"></div>
+              <div class="user-content">
+                <section class="user-name">
+                  于小强
+                </section>
+                <section class="user-work">
+                  贝塔斯曼亚洲投资基金 | 副总裁
+                </section>
+                <section class="follow-industry">
+                  近期关注: 电子商务 · 社交媒体
+                </section>
+                <section class="follow-industry">
+                  偏好轮次: A轮 · Pre-A轮
+                </section>
+              </div>
+            </div>
+            <div class="user-bottom">
+              最近投资：Keep、妙计旅行、车轮、小站教育…
+            </div>
+          </div>
+          <div class="selected-tip" ng-show="item.active">您已选择该投资人身份!</div>
+        </div>
+
+      </slick>
+    </div>
+
+
+    <!--<ul>
+      <li ng-repeat="item in [1,2,3]">
+        <span class="select-tag icon-checked-tag" ng-class="{active: $index == 1}"></span>
+        <div class="user-top">
+          <div class="user-logo"></div>
+          <div class="user-content">
+            <section class="user-name">
+              于小强
+            </section>
+            <section class="user-work">
+              贝塔斯曼亚洲投资基金 | 副总裁
+            </section>
+            <section class="follow-industry">
+              近期关注: 电子商务 · 社交媒体
+            </section>
+            <section class="follow-industry">
+              偏好轮次: A轮 · Pre-A轮
             </section>
           </div>
         </div>
@@ -27,7 +87,7 @@
           最近投资：Keep、妙计旅行、车轮、小站教育…
         </div>
       </li>
-    </ul>
+    </ul>-->
   </div>
   <div class="investor-validate-form">
     <form name='vm.financeVM.form'>
@@ -58,31 +118,31 @@
         <label for="">单笔投资金额</label>
         <div class="inline-control">
           <input
-          type="text" name="investAmountMin"
+            type="text" name="investAmountMin"
             class="form-control money" ng-model="vm.financeVM.finance.investAmountMin"
             validator="required, number"
             placeholder="输入具体金额" /><span>万</span><span class="to">至</span
-            ><input kr-valid
-            type="text" name="investAmountMax"
-            class="form-control money"
-            ng-model="vm.financeVM.finance.investAmountMax"
-            validator="bigger"
-            placeholder="输入具体金额" /><span>万</span
-              ><select  ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
-                ng-model="vm.financeVM.finance.financeAmountUnit"
-            type="text" name="fundValueUnit" class="form-control unit" > </select
-            ><span class="form-tip money-tip">若非区间则仅填写前输入框即可</span>
+        ><input kr-valid
+                type="text" name="investAmountMax"
+                class="form-control money"
+                ng-model="vm.financeVM.finance.investAmountMax"
+                validator="bigger"
+                placeholder="输入具体金额" /><span>万</span
+        ><select  ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
+                  ng-model="vm.financeVM.finance.financeAmountUnit"
+                  type="text" name="fundValueUnit" class="form-control unit" > </select
+        ><span class="form-tip money-tip">若非区间则仅填写前输入框即可</span>
         </div>
       </div>
 
       <div class="form-group">
         <input
-        validator="required" required-error-message="请上传BP" message-id="bp"
-        type="hidden" ng-model="vm.financeVM.finance.bp" name="bp">
+          validator="required" required-error-message="请上传BP" message-id="bp"
+          type="hidden" ng-model="vm.financeVM.finance.bp" name="bp">
         <label for=""><span class="required">*</span> 商业计划书</label>
         <span id="bp" class="error-tip bp-error" style="display: block;"></span>
         <span ng-if="vm.financeVM.bpUploading" width="100%"
-          class="progress-bar">
+              class="progress-bar">
           <span>BP上传中</span
           ><span class="bar"><span ng-style="{width: vm.financeVM.bpProgress}" class="progress"></span></span>
         </span>
@@ -92,7 +152,7 @@
           class="btn-bp" href="javascript:;" ngf-select="vm.financeVM.uploadBp($files)"
           ngf-accept="'application/pdf'" style="display: inline-block;">
           <span class="icon-BP"></span><span>{{vm.financeVM.bpName?'更新BP ':'上传BP'}}</span></a>
-          <span class="bp-message">仅供认证使用，平台不会暴露您的个人信息</span>
+        <span class="bp-message">仅供认证使用，平台不会暴露您的个人信息</span>
       </div>
 
     </form>
@@ -103,7 +163,7 @@
 
     <a class="prev" ng-if="!vm.financeVM.name" ng-click="vm.prev()" href="javascript:;">上一步</a
     ><a class="save next" href="javascript:;" ng-click='vm.step = 3'
-      ng-class="{active:!vm.financeVM.isActive()}">提交认证</a>
+        ng-class="{active:!vm.financeVM.isActive()}">提交认证</a>
   </div>
   <div class="form-bottom">
     <p class="splitter"> </p>

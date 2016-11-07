@@ -16,6 +16,17 @@ export default class investorValidateController {
 
     this.user = {};
 
+    this.recommendInvestor = [
+      {
+        active:false
+      },{
+        active:false
+      },{
+        active:false
+      },{
+        active:false
+      }
+    ];
     this.auditStatus = 'auditing';
     console.log(this.$scope.root.COMPANY_INDUSTRY_META);
   }
@@ -24,6 +35,16 @@ export default class investorValidateController {
     this.step = 1;
   }
 
+  selectItem($index) {
+    this.recommendInvestor.forEach((item,i) => {
+      console.log(i);
+      if($index+'' === i+'') {
+        item.active = true;
+      }else {
+        item.active = false;
+      }
+    })
+  }
 
 
 }
