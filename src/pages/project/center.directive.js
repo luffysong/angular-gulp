@@ -2,9 +2,9 @@
 function centerDirective() {
   return {
     restrict: 'AE',
-    link(scope, element, attrs) {
+    link(scope, element) {
       const left = $('.project-wrapper').offset().left;
-      const margin = left + 'px';
+      const margin = `${left}px`;
       const style = { 'margin-left': margin };
       element.parent().css(style);
     },
