@@ -1,9 +1,11 @@
 import gulp from 'gulp';
+import Promise from 'promise';
 import loadPlugins from 'gulp-load-plugins';
 import runSequence from 'run-sequence';
 import proxy from 'http-proxy-middleware';
 import lazypipe from 'lazypipe';
 import scriptConfig from './build/config/templates.js';
+import mkfont from './build/mkfont';
 import { babelHelper,
   buildTemplates,
   concatTemplate,
@@ -149,33 +151,8 @@ gulp.task('dev:html', ['header:style'], function devhtml() {
     .pipe(gulp.dest(scriptConfig.out));
 });
 
-const fontName = 'krDataFont';
 gulp.task('iconfont', function iconFont() {
-  return gulp.src(['src/svgs/*.svg'])
-    .pipe(g.iconfontCss({
-      fontName,
-      path: 'build/iconTemplate.css',
-      targetPath: 'font.css',
-      fontPath: '/fonts/',
-    }))
-    .pipe(g.iconfont({
-      fontName,
-      normalize: true,
-      fontHeight: 1001,
-      prependUnicode: false,
-      formats: ['ttf', 'eot', 'woff'], // default, 'woff2' and 'svg' are available
-    }))
-    .pipe(g.rename({
-      dirname: 'fonts',
-    }))
-    .pipe(g.if(set.prod && '!**/*.css', g.rev()))
-    .pipe(g.revReplace({
-      prefix: prod.cdn,
-    }))
-    .pipe(g.if(!set.debug && '**/*.css', g.cssnano({
-      safe: true,
-    })))
-    .pipe(gulp.dest('dist'));
+  return new Promise(mkfont);
 });
 
 function middleware() {

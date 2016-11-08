@@ -2,7 +2,7 @@ import assets from '../assets/script';
 import { getLoadBundle } from '../base/utls';
 
 const organizationView = {
-  url: '/organization',
+  url: '/org',
   templateUrl: '/pages/organization/templates/index.html',
   controllerAs: 'organizationVm',
   controller: 'organizationParentController',

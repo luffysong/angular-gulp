@@ -17,7 +17,9 @@
           <div class="project-info">
             <div class="project-name">
               <a target="_blank" ui-sref="project({id: obj.project.cid})" class="company-name" >
-                {{obj.project.companyName}}</a> | <span class="project-industry">{{obj.project.industry}}</span>
+                {{obj.project.companyName}}</a> |
+              <a target="_blank" ui-sref="list.result({columnId:0, industry:industryEnum})" class="project-industry">
+                {{obj.project.industry}}</a>
             </div>
             <div class="project-intro">
               {{obj.project.brief}}
@@ -30,7 +32,8 @@
         </td>
         <td class="org-col">
           <a
-            ui-sref="investment.result({phase: invest.phaseId, id: investmentVm.params.id})" ui-sref-opts="{inherit: false}"  target="_blank"
+            ui-sref="list.result({columnId: 0, phase: invest.phaseEnum})"
+            ui-sref-opts="{inherit: false}"  target="_blank"
             ng-repeat="invest in obj.investments | limitTo:3 track by $index"
             >{{invest.phase}}</a>
         </td>

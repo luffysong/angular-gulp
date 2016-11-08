@@ -1,7 +1,7 @@
 <div class="org-wrapper">
   <header>
     <section>
-      <img ng-src="{{vm.orgData.basic.logo}}" alt=""/>
+      <img ng-src="{{vm.orgData.basic.logo || '/images/org-logo.png'}}" alt=""/>
       <div class="right-content">
         <h1>{{vm.orgData.basic.nameAbbr}}</h1>
         <p class="en-name">{{vm.orgData.basic.enName}}</p>
