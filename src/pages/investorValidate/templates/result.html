@@ -1,5 +1,5 @@
 <div class="investor-validate-result">
-  <div ng-if="vm.auditStatus === 'auditing'">
+  <div ng-if="vm.auditStatus === 'auditing' && vm.userData.investorType >= 100">
     <img src="/images/auditing.png" width="180" alt="">
     <div class="audit-info">
       投资人身份正在审核
@@ -10,7 +10,7 @@
     <a href="javascript:void(0)" class="see-project" ui-sref="list.result({columnId:0})">浏览项目</a>
   </div>
 
-  <div ng-if="vm.auditStatus === 'audited'">
+  <div ng-if="vm.auditStatus === 'audited' || vm.userData.investorType < 100">
     <img src="/images/audited.png" width="180" alt="">
     <div class="audit-info">
       您的投资人身份已审核通过
@@ -22,7 +22,7 @@
   </div>
 
 
-  <div ng-if="vm.auditStatus === 'auditFail'">
+  <div ng-if="vm.auditStatus === 'auditFail' && vm.userData.investorType >= 100">
     <img src="/images/auditFail.png" width="180" alt="">
     <div class="audit-info">
       您的投资人身份申请被驳回

@@ -6,7 +6,7 @@
           目前仅会对机构，公司投资部及个人天使投资人发放投资人身份
         </section>
     </div>
-    <div class="form-step-container" ng-if="vm.step !== 3">
+    <div class="form-step-container" ng-if="vm.step !== 3 && vm.userData.investorType >= 100">
       <div class="out-side-container">
         <div class="form-top-content">
           <div class="first-step" ng-class="{active: vm.step === 1}">
@@ -22,8 +22,8 @@
       </div>
 
     </div>
-    <div ng-show="vm.step === 1" ng-include="'/pages/investorValidate/templates/stepOne.html'"> </div>
-    <div ng-show="vm.step === 2" ng-include="'/pages/investorValidate/templates/stepTwo.html'"> </div>
-    <div ng-show="vm.step === 3" ng-include="'/pages/investorValidate/templates/result.html'"> </div>
+    <div ng-show="vm.step === 1 && vm.userData.investorType >= 100" ng-include="'/pages/investorValidate/templates/stepOne.html'"> </div>
+    <div ng-show="vm.step === 2 && vm.userData.investorType >= 100" ng-include="'/pages/investorValidate/templates/stepTwo.html'"> </div>
+    <div ng-show="vm.step === 3 || vm.userData.investorType < 100" ng-include="'/pages/investorValidate/templates/result.html'"> </div>
   </div>
 </section>

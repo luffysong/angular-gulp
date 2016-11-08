@@ -16,7 +16,7 @@
                 type="text" name="cname" class="form-control" />
       </div>
 
-      <div class="form-group phone-col">
+      <div class="form-group phone-col" ng-if="userData.phone">
         <label for="">手机号码</label>
         <span id="messageFullName"
               class="error-tip"></span>
@@ -34,7 +34,7 @@
         <span class="get-code">点击获取验证码</span>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" ng-if="userData.phone">
         <label for="">验证码</label>
         <span class="error-tip" id="messageBrief"></span>
         <input  ng-model="vm.baseInfo.brief"

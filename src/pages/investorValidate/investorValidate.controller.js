@@ -12,7 +12,7 @@ export default class investorValidateController {
 
     this.followPhase = this.$scope.root.COMPANY_SEARCH_PHASE_META;
 
-    this.step = 2;
+    this.step = 1;
 
     this.user = {};
 
@@ -28,7 +28,8 @@ export default class investorValidateController {
       }
     ];
     this.auditStatus = 'auditing';
-    console.log(this.$scope.root.COMPANY_INDUSTRY_META);
+
+    this.getUser();
   }
 
   prev() {
@@ -44,6 +45,22 @@ export default class investorValidateController {
         item.active = false;
       }
     })
+  }
+
+  getUser() {
+    krData.User.getUserInfo().then(data => {
+      console.log(data);
+      this.userData = data;
+    }).catch(err => {
+      console.log(err);
+      if(err.code === 403) {
+        this.$scope.root.user.ensureLogin();
+        console.log('未登录');
+      }
+    });
+    /*this.user.then(data => {
+      console.log(data);
+    });*/
   }
 
 

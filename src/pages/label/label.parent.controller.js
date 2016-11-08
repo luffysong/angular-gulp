@@ -129,10 +129,12 @@ export default class listParentController {
       /*筛选条件特殊处理*/
       if(item.name === 'isFundingLimit'){
         angular.forEach(d.funding,(c,index) => {
-          if(index <= 1){
-            this.data[item.name][index].cnt = c.cnt;
-          }
-        })
+          angular.forEach(this.data['isFundingLimit'],k => {
+            if(k.name === c.name || k.id+'' === c.id+'') {
+              k.cnt = c.cnt;
+            }
+          })
+        });
         return;
       }
       if(!d[item.name].length)return;
