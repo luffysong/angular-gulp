@@ -29,7 +29,6 @@
     "eslint-plugin-import": "^1.13.0",
     "eslint-plugin-jsx-a11y": "^2.1.0",
     "eslint-plugin-react": "^6.1.0",
-    "fs-extra": "^1.0.0",
     "graceful-fs": "^4.1.6",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^2.0.0",
