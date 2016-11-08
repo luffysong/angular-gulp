@@ -110,7 +110,7 @@
         <div class="col-content">
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.label}">
-              <ul filter-cal>
+              <ul filter-cal data="parentVm.data.label">
                 <li class="col-item" ng-repeat="item in parentVm.data.label" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'label')">
                   {{item.name}}({{item.cnt ? item.cnt : 0}})
                   <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.value !== 'unlimited'" ng-click="parentVm.clearIndustry(item.id,'label');$event.stopPropagation();"></span>

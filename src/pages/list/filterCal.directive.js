@@ -1,15 +1,29 @@
 
-function filterCalDirective($timeout) {
+function filterCalDirective($timeout, $compile) {
   return {
     restrict: 'AE',
+    scope: {
+      'data': "=data"
+    },
     link(scope, element) {
-      $timeout(() => {
-        if (element.height() > 32) {
-          element.parents('.filter-col').addClass('overflow');
-        }
-      });
+      function calHeight() {
+        $timeout(() => {
+          if (element.height() > 32) {
+            element.parents('.filter-col').addClass('overflow');
+          }else {
+            element.parents('.filter-col').removeClass('overflow');
+          }
+        });
+      }
+
+      if(scope.data) {
+        scope.$watch('data',from => {
+          calHeight();
+        });
+      }
+      calHeight();
     },
   };
 }
-filterCalDirective.$inject = ['$timeout'];
+filterCalDirective.$inject = ['$timeout', '$compile'];
 export default filterCalDirective;
