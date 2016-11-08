@@ -44,7 +44,6 @@
     "gulp-filter": "^4.0.0",
     "gulp-htmlmin": "^2.0.0",
     "gulp-if": "^2.0.1",
-    "gulp-imagemin": "^3.0.3",
     "gulp-less": "^3.1.0",
     "gulp-load-plugins": "^1.2.4",
     "gulp-ng-annotate": "^2.0.0",
