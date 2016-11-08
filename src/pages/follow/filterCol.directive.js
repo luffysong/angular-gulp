@@ -2,18 +2,29 @@
 function filterColDirective($timeout) {
   return {
     restrict: 'AE',
-    link(scope, element) {
-      $timeout(() => {
-        if(element.height() > 33) {
-          /*element.height(33);*/
-          element.parent('.search-outside-container').siblings('.col-handle').addClass('overflow');
-        }
-      },500);
+    scope: {
+      'data': "=data"
     },
+    link(scope, element) {
+      function calHeight() {
+        $timeout(() => {
+          if (element.height() > 33) {
+            element.parent('.search-outside-container').siblings('.col-handle').addClass('overflow');
+          }else {
+            element.parent('.search-outside-container').siblings('.col-handle').removeClass('overflow');
+          }
+        });
+      }
+
+      if(scope.data) {
+        scope.$watch('data',from => {
+          calHeight();
+        });
+      }
+      calHeight();
+    }
   };
 }
-angular
-  .module('@@pages.list', [])
-  .directive('filterCol', filterColDirective);
 
+filterColDirective.$inject = ['$timeout'];
 export default filterColDirective;

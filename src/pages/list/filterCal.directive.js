@@ -1,5 +1,5 @@
 
-function filterCalDirective($timeout, $compile) {
+function filterCalDirective($timeout) {
   return {
     restrict: 'AE',
     scope: {
@@ -22,8 +22,8 @@ function filterCalDirective($timeout, $compile) {
         });
       }
       calHeight();
-    },
+    }
   };
 }
-filterCalDirective.$inject = ['$timeout', '$compile'];
+filterCalDirective.$inject = ['$timeout'];
 export default filterCalDirective;
