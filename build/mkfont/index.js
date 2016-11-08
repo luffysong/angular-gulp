@@ -4,7 +4,7 @@ let fs = require('fs');
 fs = require('fs-extra');
 /* eslint-disable */
 const childProcess = require('child_process');
-const phantomjs = require('phantomjs');
+const phantomjs = require('phantomjs-prebuilt');
 const binpath = phantomjs.path;
 let files = fs.readdirSync(svgpath).filter(function isFile(file) {
   return /.svg$/.test(file);
