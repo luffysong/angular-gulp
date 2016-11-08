@@ -74,6 +74,9 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
         param = parseInt(param, 10) || 0;
         return value ? value.length >= param : true;
       },
+      phoneExp: value => {
+        return /\d{11}/.test(value);
+      }
     }).setDefaultMsg({
       notEqual: {},
       required: {},
@@ -81,6 +84,9 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       maxlength: {},
       email: {
         error: '请输入合法的邮箱地址',
+      },
+      phoneExp: {
+        error: '手机号码格式错误'
       },
       number: {},
       integer: {},

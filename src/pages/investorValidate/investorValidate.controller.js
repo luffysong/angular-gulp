@@ -2,7 +2,7 @@ import krData from 'krData';
 import ProjectService from '../project/project.service';
 
 @Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', 'step', 'financeState', 'type', '$window',
-  '$scope', '$q', '$filter', '$stateParams', '$state', 'createProjectService')
+  '$scope', '$q', '$filter', '$stateParams', '$state', 'checkForm', '$validation')
 export default class investorValidateController {
 
 
@@ -39,6 +39,11 @@ export default class investorValidateController {
 
     this.getUser();
 
+    /*this.projectService.submitValidate().then(data => {
+      console.log(data);
+    }).catch(err => {
+      console.log(err);
+    });*/
 
   }
 
@@ -76,9 +81,9 @@ export default class investorValidateController {
 
   getCode() {
     // 获取验证码
-      this.wait = 60;
-      var interval = setInterval(function () {
-        this.$scope.$apply(function () {
+      this.wait = 2;
+      var interval = setInterval(() => {
+        this.$scope.$apply(() => {
           this.wait--;
           if (this.wait === 0) {
             clearInterval(interval);
@@ -95,8 +100,23 @@ export default class investorValidateController {
       });
   }
 
+
   /*验证手机号是否合法*/
-  codeValidate() {
+  submitInfo() {
+    this.$validation.validate(this.baseInfo.form).catch(() => {
+      return this.$q.reject();
+    }).then(() => {
+      console.log(1);
+      this.projectService.suggestInvestor({
+        name: this.baseInfo.realName,
+        orgName: this.baseInfo.org || ''
+      }).then(data => {
+        console.log(data);
+      }).catch(err => {
+        console.log(err);
+      });
+    });
+    /*if(!this.checkForm('baseInfoForm'))return;*/
   }
 
 

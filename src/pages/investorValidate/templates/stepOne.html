@@ -16,15 +16,16 @@
                 type="text" name="name" class="form-control" />
       </div>
 
-      <div class="form-group phone-col" ng-if="!userData.phone">
+      <div class="form-group phone-col" ng-if="!vm.userData.phone">
         <label for="">手机号码</label>
-        <span class="error-tip" ng-show="vm.baseInfo.form.phone.$error.pattern">请输入合法号码</span>
+        <span class="error-msg" id="messagePhone"></span>
         <input  ng-model="vm.baseInfo.phone"
                 maxlength="11"
                 message-id="messagePhone"
                 placeholder="输入真实手机号"
-                type="text" name="phone" class="form-control" ng-pattern="/\d{11}/"  />
-        <span class="get-code" ng-click="vm.getCode()"  ng-disabled="vm.baseInfo.form.phone.$error.pattern || !vm.baseInfo.phone" ng-if="!vm.wait">点击获取验证码</span>
+                validator="required,phoneExp"
+                type="text" name="phone" class="form-control"  />
+        <span class="get-code" ng-click="vm.getCode()"  ng-class="{'disabled':vm.baseInfo.form.phone.$invalid || !vm.baseInfo.phone}" ng-if="!vm.wait">点击获取验证码</span>
         <span class="left-time" href="javascript:void(0)" ng-disabled="vm.wait" ng-if="vm.wait">{{vm.wait+'秒'}}</span>
       </div>
 
@@ -32,8 +33,8 @@
         <label for="">验证码</label>
         <span class="error-tip" id="messageCode"></span>
         <input  ng-model="vm.baseInfo.code"
-                validator="required,minlength=5" message-id="messageCode"
-                maxlength="30"
+                validator="required,minlength=4" message-id="messageCode"
+                maxlength="8"
 
                 placeholder="输入验证码"
                 type="text" name="brief" class="form-control" />
@@ -51,14 +52,13 @@
       </div>
       <div class="form-group" ng-if="vm.baseInfo.companyRole === 'ORG_INVESTOR'">
         <label for="">目前任职机构</label>
-        <span class="error-tip" id="messageBrief"></span>
-        <input  ng-model="vm.baseInfo.brief"
-                validator="required,minlength=5" message-id="messageBrief"
+        <span class="error-tip" id="messageOrg"></span>
+        <input  ng-model="vm.baseInfo.org"
+                validator="required,minlength=5" message-id="messageOrg"
                 minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
                 maxlength="30"
-                ng-disabled="vm.selectProject"
                 placeholder="输入任职机构"
-                type="text" name="brief" class="form-control" />
+                type="text" name="org" class="form-control" />
       </div>
       <div class="form-group" ng-if="vm.baseInfo.companyRole === 'ORG_INVESTOR'">
         <label for="">职位</label>
@@ -71,7 +71,7 @@
                 type="text" name="position" class="form-control" />
       </div>
     </form>
-    <div class="submit-btn" ng-click="vm.step = 2">下一步，提交投资偏好信息</div>
+    <div class="submit-btn" ng-click="vm.submitInfo()">下一步，提交投资偏好信息</div>
   </div>
 
 </div>

@@ -81,12 +81,22 @@
       .form-center-container {
         .form-group {
           &.phone-col {
+            position: relative;
             >label {
               display: block;
             }
             input.form-control {
               display: inline-block;
               width:320px;
+            }
+            .error-msg {
+              position: absolute;
+              font-size: 12px;
+              line-height: 18px;
+              color: #FF4343;
+              top: 0px;
+              left: 320px;
+              transform: translateX(-100%);
             }
             .get-code {
               display: inline-block;
@@ -100,6 +110,11 @@
               margin-left:10px;
               text-align: center;
               cursor: pointer;
+              &.disabled {
+                background: #ccc;
+                pointer-events: none;
+                cursor: auto;
+              }
             }
             .left-time {
               display: inline-block;

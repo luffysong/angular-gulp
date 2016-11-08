@@ -262,7 +262,18 @@ export default class ProjectService extends API {
   getMsgCode(obj) {
     return new API('/investor/auth/get-verify-code?' + $.param(obj)).get();
   }
-
+  /*验证短信码*/
+  validateMsgCode() {
+    return new API('/investor/auth/validate-code?' + $.param(obj)).get();
+  }
+  /*提交认证*/
+  submitValidate(obj) {
+    return new API('/investor/auth').save(null,obj);
+  }
+  /*获取推荐投资人*/
+  suggestInvestor(obj) {
+    return new API('/investor/auth/suggest-investor?' + $.param(obj)).get();
+  }
 
   // 设置接收BP的邮箱
   addBPEmail(emai) {
