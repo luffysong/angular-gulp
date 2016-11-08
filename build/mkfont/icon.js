@@ -7,8 +7,8 @@ angular.module('kr.font', [])
                    upload = !upload;
                    $timeout(function(){
                    window.callPhantom('upload');
-                   }, 10)
-               } 
+                   }, 500)
+               }
             }
         }
     }]) ;

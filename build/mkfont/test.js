@@ -38,12 +38,24 @@ function selectAll() {
         return ev;
     }
     var len = document.querySelectorAll('.set').length;
-    if(len === 1) return;
-    do {
-        var target = document.querySelector('#setH'+len + ' button.prs')
-        var ev = makeEv(target);
-        target.dispatchEvent(ev);
-    }while(--len > 1);
+    if(len === 1){
+      window.callPhantom({isError: true, e: {
+        msg: 'no icon'
+      }});
+      throw 'err';
+    }
+
+    try {
+      do {
+          var target = document.querySelector('#setH'+len + ' button.prs')
+          var ev = makeEv(target);
+          target.dispatchEvent(ev);
+
+      } while(--len > 1);
+    } catch(e) {
+      window.callPhantom({isError: true, e: e});
+      throw e;
+    }
     location.hash = '#/select/font';
 }
 function uploadFile(i) {
@@ -105,6 +117,9 @@ page.onCallback = function(data) {
     if (data === 'upload') {
       console.log('upload start');
       uploadFile(0);
+    } else if(data.isError) {
+      console.log(JSON.stringify(data.e));
+      phantom.exit();
     } else {
         console.log('@@kr-font@@' + JSON.stringify(data.files))
         phantom.exit();

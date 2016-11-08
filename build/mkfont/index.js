@@ -18,6 +18,14 @@ const childArgs = [
 console.log(JSON.stringify(files));
 function mkfont(resolve, reject) {
   childProcess.execFile(binpath, childArgs, function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log('\n');
+    console.log('\n');
+    console.log('\n');
+    console.log('\n');
+    console.log('\n');
+    console.log('\n');
+    console.log('\n');
     const data = stdout.split('@@kr-font@@')[1];
     fs.ensureDirSync('dist/fonts');
     if (data) {
