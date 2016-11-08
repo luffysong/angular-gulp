@@ -15,17 +15,10 @@ const childArgs = [
   path.join(__dirname, 'test.js'),
   JSON.stringify(files),
 ];
-console.log(JSON.stringify(files));
 function mkfont(resolve, reject) {
-  childProcess.execFile(binpath, childArgs, function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log('\n');
-    console.log('\n');
-    console.log('\n');
-    console.log('\n');
-    console.log('\n');
-    console.log('\n');
-    console.log('\n');
+  childProcess.execFile(binpath, childArgs, {maxBuffer: 1024 * 2500}
+  , function (err, stdout, stderr) {
+    console.log(JSON.stringify(stdout));
     const data = stdout.split('@@kr-font@@')[1];
     fs.ensureDirSync('dist/fonts');
     if (data) {

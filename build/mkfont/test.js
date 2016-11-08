@@ -17,7 +17,8 @@ var expectedLocation = 'https://icomoon.io/app/#/select/';
 page.setContent(expectedContent, expectedLocation);
 page.onLoadFinished = function(status) {
   page.injectJs('./angular.min.js');
-  su = page.injectJs('./angular-ui-router.min.js');
+  page.injectJs('./jquery.min.js');
+  page.injectJs('./angular-ui-router.min.js');
   page.injectJs('./idbstore.min.js');
   page.injectJs('./FileSaver.min.js');
   page.injectJs('./icon.js');
@@ -25,38 +26,30 @@ page.onLoadFinished = function(status) {
 
 
 function selectAll() {
-    function makeEv(target) {
-       var ev = document.createEvent("MouseEvent");
-        ev.initMouseEvent(
-            "click",
-            true /* bubble */, true /* cancelable */,
-            window, null,
-            0, 0, 0, 0, /* coordinates */
-            false, false, false, false, /* modifier keys */
-            0 /*left*/, target
-        );
-        return ev;
-    }
-    var len = document.querySelectorAll('.set').length;
-    if(len === 1){
-      window.callPhantom({isError: true, e: {
-        msg: 'no icon'
-      }});
-      throw 'err';
-    }
 
     try {
-      do {
-          var target = document.querySelector('#setH'+len + ' button.prs')
-          var ev = makeEv(target);
-          target.dispatchEvent(ev);
+     $('[ng-click="selectAllNone($index, false)"]')
+      .each(function() {
+          var ev = makeEv(this);
+          this && this.dispatchEvent(ev);
+      });
+      $('h1').each(function() {
+        if(this.innerText.indexOf('IcoMoon') === -1) {
+          $('[ng-click="selectAllNone($index, true)"]', this)
+            .each(function() {
+              var ev = makeEv(this);
+              this.dispatchEvent(ev);
+          });
+        }
+      })
 
-      } while(--len > 1);
     } catch(e) {
       window.callPhantom({isError: true, e: e});
       throw e;
     }
-    location.hash = '#/select/font';
+    setTimeout(function() {
+      location.hash = '#/select/font';
+    }, 100);
 }
 function uploadFile(i) {
     if(i >= files.length) {
@@ -120,7 +113,7 @@ page.onCallback = function(data) {
     } else if(data.isError) {
       console.log(JSON.stringify(data.e));
       phantom.exit();
-    } else {
+    } else if(data.files) {
         console.log('@@kr-font@@' + JSON.stringify(data.files))
         phantom.exit();
     }

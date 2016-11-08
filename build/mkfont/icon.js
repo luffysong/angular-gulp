@@ -1,3 +1,16 @@
+/* eslint-disable */
+    function makeEv(target) {
+       var ev = document.createEvent("MouseEvent");
+        ev.initMouseEvent(
+            "click",
+            true /* bubble */, true /* cancelable */,
+            window, null,
+            0, 0, 0, 0, /* coordinates */
+            false, false, false, false, /* modifier keys */
+            0 /*left*/, target
+        );
+        return ev;
+    }
 angular.module('kr.font', [])
     .directive('krCallPhantom', ['$timeout', function($timeout) {
         var upload = false;
@@ -7,7 +20,7 @@ angular.module('kr.font', [])
                    upload = !upload;
                    $timeout(function(){
                    window.callPhantom('upload');
-                   }, 500)
+                   }, 10)
                }
             }
         }
