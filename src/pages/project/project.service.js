@@ -258,6 +258,11 @@ export default class ProjectService extends API {
     }).expose();
   }
 
+  /*获取短信验证码*/
+  getMsgCode(obj) {
+    return new API('/investor/auth/get-verify-code?' + $.param(obj)).get();
+  }
+
 
   // 设置接收BP的邮箱
   addBPEmail(emai) {

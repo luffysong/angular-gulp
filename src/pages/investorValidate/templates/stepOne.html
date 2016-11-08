@@ -16,26 +16,25 @@
                 type="text" name="name" class="form-control" />
       </div>
 
-      <div class="form-group phone-col" ng-if="userData.phone">
+      <div class="form-group phone-col" ng-if="!userData.phone">
         <label for="">手机号码</label>
-        <span id="messageFullName"
-              class="error-tip"></span>
+        <span class="error-tip" ng-show="vm.baseInfo.form.phone.$error.pattern">请输入合法号码</span>
         <input  ng-model="vm.baseInfo.phone"
-                maxlength="50"
+                maxlength="11"
                 message-id="messagePhone"
                 placeholder="输入真实手机号"
-                message-id="messagePhone"
-                type="text" name="phone" class="form-control" />
-        <span class="get-code">点击获取验证码</span>
+                type="text" name="phone" class="form-control" ng-pattern="/\d{11}/"  />
+        <span class="get-code" ng-click="vm.getCode()"  ng-disabled="vm.baseInfo.form.phone.$error.pattern || !vm.baseInfo.phone" ng-if="!vm.wait">点击获取验证码</span>
+        <span class="left-time" href="javascript:void(0)" ng-disabled="vm.wait" ng-if="vm.wait">{{vm.wait+'秒'}}</span>
       </div>
 
-      <div class="form-group" ng-if="userData.phone">
+      <div class="form-group" ng-if="!userData.phone">
         <label for="">验证码</label>
         <span class="error-tip" id="messageCode"></span>
         <input  ng-model="vm.baseInfo.code"
                 validator="required,minlength=5" message-id="messageCode"
                 maxlength="30"
-                ng-disabled="vm.selectProject"
+
                 placeholder="输入验证码"
                 type="text" name="brief" class="form-control" />
       </div>
@@ -50,7 +49,7 @@
           <option value="">请选择</option>
         </select>
       </div>
-      <div class="form-group">
+      <div class="form-group" ng-if="vm.baseInfo.companyRole === 'ORG_INVESTOR'">
         <label for="">目前任职机构</label>
         <span class="error-tip" id="messageBrief"></span>
         <input  ng-model="vm.baseInfo.brief"
@@ -61,7 +60,7 @@
                 placeholder="输入任职机构"
                 type="text" name="brief" class="form-control" />
       </div>
-      <div class="form-group">
+      <div class="form-group" ng-if="vm.baseInfo.companyRole === 'ORG_INVESTOR'">
         <label for="">职位</label>
         <span class="error-tip" id="messagePosition"></span>
         <input  ng-model="vm.baseInfo.position"
