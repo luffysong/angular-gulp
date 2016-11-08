@@ -106,7 +106,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
   .run(function run($rootScope, $location, $injector, user,
     OPERATION_STATUS_META, COMPANY_NEWS_META, FINANCE_PHASE_META,
     CURRENCY_UNIT_META, ROLE_META, FINANCE_NEED_META, PROJECT_TYPE_META, FUNDS_PHASE_ENUM_META,
-    COMPANY_SEARCH_PHASE_META, COMPANY_INDUSTRY_META) {
+    COMPANY_SEARCH_PHASE_META, COMPANY_INDUSTRY_META, INVESTOR_ROLE_META) {
     getService.injector = $injector;
     root.fromYear2000 = fromYear(2000);
     root.getAllMonths = getMonth(12);
@@ -128,6 +128,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     root.CURRENCY_UNIT_META = CURRENCY_UNIT_META;
     root.COMPANY_SEARCH_PHASE_META = COMPANY_SEARCH_PHASE_META;
     root.COMPANY_INDUSTRY_META = COMPANY_INDUSTRY_META;
+    root.INVESTOR_ROLE_META = INVESTOR_ROLE_META;
     const searchInstance = new SearchService();
     root.autocompleteOptions = searchInstance.getSearchAutoCompleteOptions();
     root.searchRecord = searchInstance.searchRecord.bind(searchInstance);

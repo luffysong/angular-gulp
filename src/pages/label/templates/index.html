@@ -4,7 +4,7 @@
       <span class="project-list" ui-sref="list.result({columnId:0})">项目列表</span> ＞ {{parentVm.labelDetail.name}}
     </section>
     <h4 class="title-name">{{parentVm.labelDetail.name}}</h4>
-    <section class="content-intro">为您精选了<b>{{parentVm.labelDetail.totalCount}}</b>个项目,7日内更新了<b>{{parentVm.labelDetail.updateCnt}}</b>个新项目</section>
+    <section class="content-intro">为您精选了<b>{{parentVm.labelDetail.totalCount}}</b>个项目，7日内更新了<b>{{parentVm.labelDetail.updateCnt}}</b>个新项目</section>
     <a href="javascript:void(0)" class="follow-btn" ng-click="parentVm.followLabel()">
       <span ng-if="parentVm.labelDetail.isFollowed">已</span>关注
     </a>
@@ -43,7 +43,8 @@
             <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.phase}">
               <ul filter-cal>
                 <li class="col-item" ng-repeat="item in parentVm.data.phase" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'phase')">
-                  {{item.desc}}({{item.cnt ? item.cnt : 0}})
+                  {{item.desc}}
+                  <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
                   <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.value !== 'unlimited'" ng-click="parentVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
                 </li>
               </ul>
@@ -65,7 +66,8 @@
             <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.city}">
               <ul filter-cal ng-class="{'height-auto':parentVm.open.city}">
                 <li class="col-item" ng-repeat="item in parentVm.data.city" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'city')">
-                  {{item.name}}({{item.cnt ? item.cnt : 0}})
+                  {{item.name}}
+                  <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
                   <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.value !== 'unlimited'" ng-click="parentVm.clearIndustry(item.id,'city');$event.stopPropagation();"></span>
                 </li>
               </ul>
@@ -87,7 +89,8 @@
             <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.isFundingLimit}">
               <ul filter-cal>
                 <li class="col-item" ng-repeat="item in parentVm.data.isFundingLimit" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'isFundingLimit')">
-                  {{item.name}}({{item.cnt ? item.cnt : 0}})
+                  {{item.name}}
+                  <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
                   <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.id !== 'unlimited'" ng-click="parentVm.clearIndustry(item.value,'isFundingLimit');$event.stopPropagation();"></span>
                 </li>
               </ul>

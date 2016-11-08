@@ -9,7 +9,7 @@
         <td width="320">项目</td>
         <td>行业</td>
         <td>轮次</td>
-        <td>投资方</td>
+        <td width="150">投资方</td>
         <td>所在地</td>
         <td>时间</td>
         <td width="120">操作</td>
@@ -21,7 +21,7 @@
             <div class="project-name">
               <span class="company-name" ng-click="vm.seeDetail(obj.id)">{{obj.name}}</span><span class="hot-tag" ng-if="obj.hot">热</span><span class="classic-tag" ng-if="obj.classic">精</span><span class="fund-state" ng-if="obj.funding">融资中</span>
             </div>
-            <div class="project-intro">
+            <div class="project-intro" title="{{obj.brief}}">
               {{::obj.brief}}
             </div>
             <div class="project-tag" ng-if="obj.advantage">
@@ -36,7 +36,7 @@
           <section ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
         </td>
         <td>{{::obj.cityStr}}</td>
-        <td>{{::obj.publishDate | dateFilter}}</td>
+        <td class="date-time">{{::obj.publishDate | dateFilter}}</td>
         <td>
           <span ng-click="vm.collect()" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
             <span ng-show="obj.followed">已</span>收藏

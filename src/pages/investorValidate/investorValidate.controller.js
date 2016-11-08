@@ -12,9 +12,11 @@ export default class investorValidateController {
 
     this.followPhase = this.$scope.root.COMPANY_SEARCH_PHASE_META;
 
+    this.investorRole = this.$scope.root.INVESTOR_ROLE_META;
+
     this.step = 1;
 
-    this.user = {};
+    this.baseInfo = {};
 
     this.recommendInvestor = [
       {

@@ -20,9 +20,15 @@
             </div>
           </div>
         </div>
+        <div class="label-nav" ng-if="searchVm.columnOptions.labelName">
+          {{searchVm.columnOptions.labelName}}
+        </div>
          <div class="label-container">
            <div class="label-item" ng-click="searchVm.columnOptions.closeMe()"
-             ng-repeat="item in searchVm.columnOptions.tags">{{item}}</div>
+             ng-repeat="item in searchVm.columnOptions.tags" ng-if="searchVm.columnOptions.tags.length">{{item}}</div>
+
+           <div class="label-item" ng-click="searchVm.columnOptions.closeMe()" ng-if="!searchVm.columnOptions.tags.length">不限</div>
+
            <span class="icon-open-nav" ng-click="searchVm.columnOptions.closeMe()"></span>
         </div>
       </div>
@@ -42,7 +48,7 @@
                   <span ng-if="item.funding" class="funding">融资中</span>
                   <span class="time">{{item.publishDate | dateFilter}}</span>
               </p>
-              <p class="brief">{{item.brief}}</p>
+              <p class="brief" title="{{item.brief}}">{{item.brief}}</p>
               <p><span class="icon-Tags"></span><span>{{item.industryStr}}</span></p>
               <p ng-if="item.advantage" class="hot-wrapper"><span class="icon-Hot"></span>{{item.advantage}}</p>
             </div>

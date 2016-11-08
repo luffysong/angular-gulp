@@ -10,8 +10,17 @@
     z-index: 11;
     bottom: 0;
     background: #fff;
+    border-right:1px solid #DDDDDD;
     .condition-wrapper {
       box-shadow: 0 8px 8px -8px #ccc;
+      .label-nav {
+        height:41px;
+        background-color: #F9f9f9;
+        text-align: center;
+        font-size: 14px;
+        color: #5A626D;
+        line-height: 41px;
+      }
       .main-nav {
         position: relative;
         height:41px;
@@ -20,6 +29,8 @@
         font-size: 14px;
         color: #5A626D;
         line-height: 41px;
+        cursor: pointer;
+        z-index:100;
         .tag-container {
           background: #FFFFFF;
           box-shadow: 0px 4px 8px 0px #CCCCCC;
@@ -61,6 +72,7 @@
           margin-top: 6px;
           background: rgba(107,162,252,0.2);
           color: #2868D1;
+          cursor: pointer;
         }
         .icon-open-nav {
           position: absolute;
@@ -71,6 +83,7 @@
           color: #ccc;
           font-size: 20px;
           cursor: pointer;
+          z-index:99;
         }
       }
     }
@@ -91,6 +104,8 @@
     img {
       float: left;
       cursor: pointer;
+      border: 1px solid #ebebeb;
+      border-radius: 4px;
     }
     .text-info-wrapper {
       float:left;
@@ -117,7 +132,7 @@
         .font(14,21);
         .dlk();
         color: @title-color;
-        max-width: 68px;
+        max-width: 58px;
         vertical-align: middle;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -156,6 +171,7 @@
       .time {
         float: right;
         margin-top: 3px;
+        color: #969fa9;
       }
     }
   }

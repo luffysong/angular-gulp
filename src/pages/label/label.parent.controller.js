@@ -71,6 +71,7 @@ export default class listParentController {
     });
 
     this.$scope.$on('open-sideBar',(e,d) => {
+      d.labelName = this.labelDetail.name;
       this.columnOptions = d;
       this.open.sideBar = true;
     });

@@ -1,4 +1,3 @@
-
 function dateFilter() {
   return function (input) {
     if(!input)return '';
@@ -24,8 +23,4 @@ function dateFilter() {
 
   }
 }
-angular
-  .module('@@pages.list', [])
-  .filter('dateFilter', dateFilter);
-
 export default dateFilter;

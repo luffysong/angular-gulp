@@ -51,7 +51,7 @@
       pointer-events: none;
       background-color: #fff !important;
       &.active {
-        background-color: #ddd !important;
+        background-color: #f5f5f5 !important;
       }
     }
   }
@@ -135,6 +135,7 @@
   .search-outside-container {
     height:49px;
     overflow: hidden;
+    margin-bottom:10px;
     &.height-auto {
       height:auto !important;
     }
@@ -286,14 +287,18 @@
           min-height:32px;
           li {
             float: left;
-            margin-right: 28px;
-            padding: 4px 6px;
+            padding: 0 6px;
             font-size: 12px;
             letter-spacing: 0px;
-            line-height: 20px;
             color: #222C38;
             cursor: pointer;
+            height:28px;
+            line-height:26px;
             margin-bottom:6px;
+            margin-right: 10px;
+            .item-cnt {
+              opacity: .5;
+            }
             .clear-btn {
               position: relative;
               top:1px;
@@ -309,7 +314,7 @@
             }
           }
         }
-        .col-item {
+        /*.col-item {
           display: inline-block;
           padding: 3px 6px;
           font-size: 12px;
@@ -332,7 +337,7 @@
             color: #2868D1;
             background: rgba(107,162,252,.2);
           }
-        }
+        }*/
       }
       .col-handle {
         position: absolute;
@@ -366,7 +371,7 @@
       margin-left: -45px;
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
-      box-shadow: 0px 1px 0px 1px #CCCCCC;
+      box-shadow: 0px 2px 5px -1px #CCCCCC;
       background: #fff;
       padding-top:3px;
       cursor: pointer;
@@ -413,6 +418,9 @@
         td {
           border-bottom:1px solid #F2F4F5;
           padding:14px 0;
+          &.date-time {
+            color: #969FA9;
+          }
           &.org-col {
             >section {
               line-height:21px;
@@ -434,7 +442,18 @@
             background-size: contain;
             border-radius: 4px;
             cursor: pointer;
-            background-image: url('https://krplus-pic.b0.upaiyun.com/201604/05042043/4mxy3xi5g9id4zl6.jpg!100');
+          }
+          .investor-logo {
+            float: left;
+            display: inline-block;
+            width: 42px;
+            height: 42px;
+            margin-right: 16px;
+            border: 1px solid #ebebeb;
+            background: #fff no-repeat 50%;
+            background-size: contain;
+            border-radius: 50%;
+            cursor: pointer;
           }
 
           .project-info {
@@ -447,8 +466,13 @@
               margin-bottom:8px;
               white-space: nowrap;
               .company-name {
-                margin-right:10px;
+                margin-right: 10px;
                 cursor: pointer;
+                max-width: 165px;
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
               }
               .project-industry {
                 margin-left: 10px;
@@ -630,6 +654,9 @@
                     opacity: 0;
                     font-size: 12px;
                     color: #6BA2FC;
+                    margin-left: 4px;
+                    position: relative;
+                    top: 1px;
                   }
                   .hidden{
                     animation:success 2s linear;
@@ -700,29 +727,29 @@
             font-size: 12px;
             color: #5A626D;
             letter-spacing: 0px;
+            font-weight:600;
           }
         }
       }
     }
 
     .load-more {
-      height: 73px;
-      background: #fff;
+      height: 50px;
+      line-height:50px;
       text-align: center;
       font-size: 12px;
       color: #5A626D;
       margin-top: -2px;
-      padding-top: 20px;
+      background: #F9F9F9;
       >a {
-        display: block;
+        display: inline-block;
         background: #6BA2FC;
         border-radius: 4px;
-        width: 130px;
-        height: 33px;
-        line-height: 33px;
+        width: 160px;
+        height: 31px;
+        line-height: 31px;
         font-size: 14px;
         color: #FFFFFF;
-        margin: auto;
       }
     }
   }
@@ -813,7 +840,7 @@
     line-height: 27px;
     text-align: center;
     margin:0 auto 30px;
-    font-weight:normal;
+    font-weight:600;
   }
   .pop-col {
     font-size: 14px;
@@ -831,7 +858,7 @@
       width:4px;
       height:14px;
       background-color: #222C38;
-      margin-right:8px;
+      margin-right:4px;
     }
   }
   .pop-content {
