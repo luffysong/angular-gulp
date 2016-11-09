@@ -4,38 +4,19 @@
     <div class="industry">
       <div class="title">关注行业</div>
       <div class="list">
-        <span>医疗健康</span>
-        <span>医疗健康</span>
-        <span>医疗健康</span>
-        <span>医疗健康</span>
-        <span>医疗健康</span>
-        <span>旅游户外</span>
-        <span>旅游户外</span>
-        <span>旅游户外</span>
-        <span>旅游户外</span>
-        <span>旅游户外</span>
+        <span ng-repeat="industry in investorInfoVm.investPreference.focusIndustry">{{industry}}</span>
       </div>
     </div>
     <div class="phase m-top">
       <div class="title">偏好轮次</div>
       <div class="list">
-        <span>A轮</span>
-        <span>A轮</span>
-        <span>A轮</span>
-        <span>A轮</span>
-        <span>A轮</span>
-        <span>A轮</span>
+        <span ng-repeat="phase in investorInfoVm.investPreference.preferPhase">{{phase}}</span>
       </div>
     </div>
     <div class="quota m-top">
       <div class="title">单笔额度</div>
       <div class="list">
-        <span>$500万-$5000万(基金)</span>
-        <span>$500万-$5000万(基金)</span>
-        <span>$500万-$5000万(基金)</span>
-        <span>$500万-$5000万(基金)</span>
-        <span>$500万-$5000万(基金)</span>
-        <span>$500万-$5000万(基金)</span>
+        <span ng-repeat="amount in investorInfoVm.investPreference.singleInvestAmount">{{amount}}</span>
       </div>
     </div>
   </div>

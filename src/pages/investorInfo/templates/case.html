@@ -1,126 +1,28 @@
 <div class="invest-case">
-  <h4>投资案例<a href="javascript:void(0)">(123)</a></h4>
+  <h4>投资案例<a href="javascript:void(0)">({{investorInfoVm.investment.voList.length}})</a></h4>
   <div class="case-content">
     <div class="case-tags">
       <ul class="tags">
-        <li class="tag">医疗健康</li>
-        <li class="tag">医疗健康</li>
-        <li class="tag">医疗健康</li>
-        <li class="tag">医疗健康</li>
-        <li class="tag">医疗健康</li>
-        <li class="tag">医疗健康</li>
+        <li class="tag" ng-repeat="industry in investorInfoVm.investment.industry">{{industry | industry}}</li>
       </ul>
     </div>
     <div class="case-list">
-      <div class="case-info">
-        <img class="case-logo" src="https://krplus-pic.b0.upaiyun.com/201511/18/ca76943cecef4f6d830e4a3fec7e83cf.jpg">
-        <div class="case-brief">
-          <p class="company-name"><span>极光推送</span></p>
-          <p class="company-brief"><span>Android平台的消息推送服务平台</span></p>
+      <div class="case-info" ng-repeat="case in investorInfoVm.investment.voList | limitTo:4 track by $index" ng-class="{'f-right':$index % 2 == 1}">
+        <div>
+          <img class="case-logo" src="{{case.logo}}">
+          <div class="company-name">
+            <span>{{case.companyName}}</span>
+            <a href="#" class="show">显示</a>
+          </div>
+          <div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
         </div>
-        <div class="show"><a href="#">显示</a></div>
-        <div class="case-phase">
-          <span>2016.07</span>
+        <div class="case-phase" ng-repeat="phase in case.entityVo" >
+          <span>{{phase.investDate | dateFilter}}</span>
           <div class="circular">
             <div class="circular2"></div>
             <div class="line"></div>
           </div>
-          <span>Pre-A轮</span>
-          <span> | </span>
-          <span>总投资金额</span>
-          <span>$ 4560万</span>
-        </div>
-        <div class="case-phase">
-          <span>2016.07</span>
-          <div class="circular">
-            <div class="circular2"></div>
-            <div class="line"></div>
-          </div>
-          <span>Pre-A轮</span>
-          <span> | </span>
-          <span>总投资金额</span>
-          <span>$ 4560万</span>
-        </div>
-        <div class="case-phase">
-          <span>2016.07</span>
-          <div class="circular">
-            <div class="circular2"></div>
-            <div class="line"></div>
-          </div>
-          <span>Pre-A轮</span>
-          <span> | </span>
-          <span>总投资金额</span>
-          <span>$ 4560万</span>
-        </div>
-        <div class="more m-bottom"><a href="#">收起</a></div>
-      </div>
-      <div class="case-info f-right">
-        <img class="case-logo" src="https://krplus-pic.b0.upaiyun.com/201511/18/ca76943cecef4f6d830e4a3fec7e83cf.jpg">
-        <div class="case-brief">
-          <p class="company-name"><span>极光推送</span></p>
-          <p class="company-brief"><span>Android平台的消息推送服务平台</span></p>
-        </div>
-        <div class="show"><a href="#">显示</a></div>
-        <div class="case-phase">
-          <span>2016.07</span>
-          <div class="circular">
-            <div class="circular2"></div>
-            <div class="line"></div>
-          </div>
-          <span>Pre-A轮</span>
-          <span> | </span>
-          <span>总投资金额</span>
-          <span>$ 4560万</span>
-        </div>
-      </div>
-      <div class="case-info">
-        <img class="case-logo" src="https://krplus-pic.b0.upaiyun.com/201511/18/ca76943cecef4f6d830e4a3fec7e83cf.jpg">
-        <div class="case-brief">
-          <p class="company-name"><span>极光推送</span></p>
-          <p class="company-brief"><span>Android平台的消息推送服务平台</span></p>
-        </div>
-        <div class="show"><a href="#">显示</a></div>
-        <div class="case-phase">
-          <span>2016.07</span>
-          <div class="circular">
-            <div class="circular2"></div>
-            <div class="line"></div>
-          </div>
-          <span>Pre-A轮</span>
-          <span> | </span>
-          <span>总投资金额</span>
-          <span>$ 4560万</span>
-        </div>
-        <div class="case-phase">
-          <span>2016.07</span>
-          <div class="circular">
-            <div class="circular2"></div>
-            <div class="line"></div>
-          </div>
-          <span>Pre-A轮</span>
-          <span> | </span>
-          <span>总投资金额</span>
-          <span>$ 4560万</span>
-        </div>
-        <div class="more"><a href="#">展开</a></div>
-      </div>
-      <div class="case-info f-right">
-        <img class="case-logo" src="https://krplus-pic.b0.upaiyun.com/201511/18/ca76943cecef4f6d830e4a3fec7e83cf.jpg">
-        <div class="case-brief">
-          <p class="company-name"><span>极光推送</span></p>
-          <p class="company-brief"><span>Android平台的消息推送服务平台</span></p>
-        </div>
-        <div class="show"><a href="#">显示</a></div>
-        <div class="case-phase">
-          <span>2016.07</span>
-          <div class="circular">
-            <div class="circular2"></div>
-            <div class="line"></div>
-          </div>
-          <span>Pre-A轮</span>
-          <span> | </span>
-          <span>总投资金额</span>
-          <span>$ 4560万</span>
+          <span>{{phase.phase | companySearchPhase}}</span>
         </div>
       </div>
     </div>

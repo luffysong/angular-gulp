@@ -2,18 +2,17 @@
   <section class="base-info-wrapper">
     <div ng-if="!vm.baseInfoVM.isEdit" class="base-info-content">
       <div>
-        <img ng-src="https://krplus-pic.b0.upaiyun.com/com_logo_v3/logo_off_1115.jpg" class="logo" alt="">
+        <img ng-src="{{investorInfoVm.basic.avatar}}" class="logo" alt="">
       </div>
       <div>
-        <h1>大大的
-          <span>北京</span>
-          <span>上海</span>
+        <h1>{{investorInfoVm.basic.name}}
+          <span ng-repeat="address in investorInfoVm.basic.city">{{address}}</span>
         </h1>
         <p class="organization-name">
-          <a href="javascript:void(0)">贝塔斯曼亚洲投资基金 >></a>
+          <a href="javascript:void(0)">{{investorInfoVm.basic.orgName}}</a>
         </p>
         <p>
-          <span>副总裁</span>
+          <span>{{investorInfoVm.basic.position}}</span>
         </p>
       </div>
     </div>

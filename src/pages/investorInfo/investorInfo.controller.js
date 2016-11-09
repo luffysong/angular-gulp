@@ -1,84 +1,37 @@
 import krData from 'krData';
-const FINANCE_ALLOW = '1';
-const FINANCE_AUDITING = '2';
-const BP_PERMISSION = {
-  APPLY: 'APPLY',
-  AGREE: 'AGREE',
-  REFUSE: 'REFUSE',
-};
+import InvestorInfoService from '../investorInfo/investorInfo.service';
 
-const BP_PERMISSION_MORE_CODE = 100;
-@Inject('$stateParams', 'investorInfoService', 'ngDialog', 'resolveData',
+@Inject('$stateParams', 'ngDialog', 'resolveData',
   '$validation', '$scope', '$sce', '$state', '$q', '$filter')
 export default class investorInfoController {
   constructor() {
     this.init();
   }
-  bpError = {};
-  userId;
-  projectData = this.resolveData.projectData;
+  investorInfoService = new InvestorInfoService();
+
   init() {
-    // if (this.projectData) {
-    //   this.id = this.projectData.baseInfo.id;
-    //   this.name = this.projectData.baseInfo.name;
-    //   this.baseInfoVM = new BaseInfoVM(this.projectData.baseInfo, this.$scope);
-    //   this.introductionVM = new IntroductionVM(this.projectData.baseInfo, this.$scope);
-    //   this.fundsVM = new FundsVM(this.projectData.funds);
-    //   this.financeVM = new FinanceVM(this.projectData.finance, this.$scope, this.id,
-    //     this.$sce, this.$q);
-    //   this.memberVM = new MemberVM(this.projectData.member, this.id);
-    //   this.similarVM = new SimilarVM(this.projectData.similar);
-    //   this.productVM = new ProductVM(this.projectData.product, this.id, this.$filter);
-    // }
-    // this.getRelateUser();
-    // this.getBPPermission(this.id);
-    // this.setNavigation();
-    // this.getUser();
-    // this.getfundsState(this.id);
+    this.getInvestorInfo(this.$stateParams.id);
+    this.getInvestmentInfo(this.$stateParams.id);
   }
-  getfundsState(cid) {
-    const id = {
-      id: cid,
-    };
-    this.projectService.fundState(id)
+
+  getInvestorInfo(id) {
+    this.investorInfoService.getInfo(id)
     .then(data => {
-      if (data.state === FINANCE_ALLOW || data.state === FINANCE_AUDITING) {
-        this.fundsState = true;
-        this.financeState = data.state;
-      }
+        this.basic = data.basic;
+        this.investPreference = data.investPreference;
+        this.org = data.org;
     });
   }
-  talk() {
-    const vm = this;
-    function talkController() {
-      this.id = vm.id;
-      this.talkCancle = function talkCancle() {
-        vm.talkDialog.close();
-      };
-    }
-    vm.talkDialog = this.ngDialog.open({
-      template: '<div ng-include="\'/pages/project/templates/talk.html\'" center></div>',
-      plain: true,
-      appendTo: '#projectDetailWrapper',
-      controller: talkController,
-      controllerAs: 'vm',
+
+  getInvestmentInfo(id) {
+    this.investorInfoService.getInvestment(id)
+    .then(data => {
+        this.investment = data;
     });
   }
-  investor() {
-    const vm = this;
-    function investorController() {
-      this.investorCancle = function investorCancle() {
-        vm.investorDialog.close();
-      };
-    }
-    vm.investorDialog = this.ngDialog.open({
-      template: '<div ng-include="\'/pages/project/templates/investorLink.html\'" center></div>',
-      plain: true,
-      appendTo: '#projectDetailWrapper',
-      controller: investorController,
-      controllerAs: 'vm',
-    });
-  }
+
+
+
   getUser() {
     // 获取当前用户身份
     this.projectService.getUser()
@@ -245,48 +198,6 @@ export default class investorInfoController {
       });
   }
 
-
-  getBPPermission(id) {
-    this.projectService.getBPPermission(id)
-    .then((data) => {
-      this.applyBpStatus = data.applyBpStatus;
-      this.hasPermission = data.hasPermission;
-    })
-    .catch((err) => {
-      this.bpError = err;
-    }).finally(() => {
-      this.bpPermisstionChecked = true;
-      this.sendbp = this.send;
-    });
-  }
-
-  isViewMore() {
-    return this.bpError.code === BP_PERMISSION_MORE_CODE;
-  }
-
-  checkBp(e) {
-    if (!this.bpPermisstionChecked) {
-      e.preventDefault();
-      return;
-    }
-    if (this.hasPermission) {
-      return;
-    }
-    if (this.isViewMore()) {
-      this.bpDialogs('bp-view-more-wrapper');
-    } else if (this.applyBpStatus === BP_PERMISSION.REFUSE) {
-      krData.Alert.alert('创业者拒绝查看BP');
-    // } else if (this.applyBpStatus === BP_PERMISSION.APPLY) {
-    //   this.bpDialogs();
-    } else {
-      this.bpDialogs();
-    }
-    e.preventDefault();
-  }
-  getMore() {
-    this.relateUser = this.usrlist;
-    this.usrShow = false;
-  }
   getRelateUser() {
     this.projectService.relateUser({ id: this.id })
     .then((data) => {
