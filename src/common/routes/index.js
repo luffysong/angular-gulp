@@ -33,8 +33,6 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider.state('follow', followView);
   $stateProvider.state('follow.result', follow);
 
-  /* 机构页 */
-  $stateProvider.state('org', org);
 
   $urlRouterProvider.when('^/list', '^/list/result');
   $stateProvider.state('financeRoute', financeRoute);
@@ -45,6 +43,8 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider.state('investment', investmentView);
   $stateProvider.state('investment.result', investment);
 
+  /* 机构页 */
+  $stateProvider.state('org', org);
   /*投资人认证*/
   $stateProvider.state('investorValidate', investorValidate);
 }

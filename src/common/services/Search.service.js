@@ -197,8 +197,8 @@ export default class SearchService {
   getSearchAutoCompleteOptions() {
     return {
       suggest: this.makeResult.bind(this),
-      auto_select_first: true,
-      full_match: item => angular.isObject(item && item.obj),
+      auto_select_first: false,
+      full_match: angular.noop,
       on_select: this.onSelect.bind(this),
       on_leaveSelect: (value, e = {}) => {
         if (e.keyCode === KEYS.ENTER) {

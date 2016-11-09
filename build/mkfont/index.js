@@ -18,7 +18,6 @@ const childArgs = [
 function mkfont(resolve, reject) {
   childProcess.execFile(binpath, childArgs, {maxBuffer: 1024 * 2500}
   , function (err, stdout, stderr) {
-    console.log(JSON.stringify(stdout));
     const data = stdout.split('@@kr-font@@')[1];
     fs.ensureDirSync('dist/fonts');
     if (data) {
@@ -36,6 +35,7 @@ function mkfont(resolve, reject) {
       }
       resolve();
     } else {
+      console.log(stdout);
       reject();
     }
   });

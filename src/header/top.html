@@ -12,7 +12,9 @@
       type="text" class="search" placeholder="输入创业项目、投资人、投资机构名称搜索">
     <div class="history" ng-if="!root.kw" kr-search>
     </div>
-    <span tabindex="2" ng-click="root.searchRecord(root.kw)" class="icon-Search input-search"></span>
+    <span tabindex="2" ng-click="root.searchRecord(root.kw)" class="icon-Search input-search">
+      <span class="path1"></span><span class="path2"></span>
+    </span>
   	<div class="usr-content" kr-slide-panel disabled="!root.user.data.id">
       <pane-trigger >
         <img ng-src="{{root.user.data.avatar}}" src="/images/investor-logo.png" alt="">

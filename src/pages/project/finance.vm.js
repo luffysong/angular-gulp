@@ -73,20 +73,6 @@ export default class FinanceVM extends krData.FormVM {
 
 
   suggest(kw) {
-    // const result = [];
-
-    // this.suggestInvestorList.map((val) => {
-    //   const change = {};
-    //   change.label = this.$sce.trustAsHtml(
-    //     `<div class="suggest-label"><p>${val.entityName}</p></div>`);
-    //   change.value = val.entityName;
-    //   change.entityId = val.entityId;
-    //   change.entityName = val.entityName;
-    //   change.entityType = val.entityType;
-    //   result.push(change);
-    // });
-    // return result;
-
     const defered = this.$q.defer();
     this.projectService.suggest(kw).then((list) => {
       defered.resolve(this.makeSuggestResult(kw, list.slice(0, 5)));

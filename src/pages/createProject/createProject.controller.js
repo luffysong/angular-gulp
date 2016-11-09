@@ -420,13 +420,13 @@ export default class CreateProjectController {
     const that = this;
     return list.map(function mapList(com) {
       return {
-        label: that.$sce.trustAsHtml(`<div>
+        label: `<div>
           <img src='${com.logo}' />
           <div class="suggest-project-text">
             <p><span>${com.name}</span><span>${that.getIndustry(com.industry)}</span></p>
             <p class="brief">${com.brief}</p>
           </div>
-          </div> `),
+          </div> `,
         value: com.name,
         obj: com,
       };

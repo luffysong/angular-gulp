@@ -31,7 +31,7 @@
       </div>
     </div>
   </div>
-  <div class="case-list" ng-if="vm.investment.investments.totalCount > 5">
+  <div class="case-list" ng-if="vm.investment.investments.totalCount">
     <table>
       <thead>
         <td>项目</td>
@@ -40,16 +40,22 @@
         <td>融资金额</td>
       </thead>
       <tbody>
-        <tr ng-repeat="item in vm.orgData.investment.investments.data.slice(1,6)">
+        <tr ng-repeat="item in vm.orgData.investment.investments.data | limitTo:5">
           <td>
             <div>
               <div class="logo">
-                <img ng-src="{{item.project.logo}}">
+                <a ui-sref="project({id: item.project.id})" target="_blank">
+                  <img ng-src="{{item.project.logo}}">
+                </a>
               </div>
               <div class="project">
                 <div class="company-name">
-                  <span>{{item.project.companyName}}</span>
-                  <span>{{item.project.industry}}</span>
+                  <a ui-sref="project({id: item.project.id})" target="_blank">
+                    {{item.project.companyName}}
+                  </a>
+                  <a ui-sref="list.result({industry: item.project.industryEnum})" target="_blank">
+                    {{item.project.industry}}
+                  </a>
                 </div>
                 <div class="brief">
                   <span>{{item.project.brief}}</span>
@@ -64,7 +70,9 @@
           </td>
           <td>
             <div ng-repeat="val in item.investments">
-              <span>{{val.phase}}</span>
+              <!-- 战略投资不做跳转 -->
+              <a ng-class="::{'plan-invest': val.phaseEnum === 'INFORMAL'}"
+                ui-sref="list.result({pahse: val.phaseEnum})" target="_blank"><span>{{val.phase}}</span></a>
             </div>
           </td>
           <td>

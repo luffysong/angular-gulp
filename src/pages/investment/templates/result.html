@@ -2,7 +2,8 @@
   <div class="result-tip">
   </div>
   <div class="result-content">
-    <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading || vm.noMore' infinite-scroll-distance='0'>
+    <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading || vm.noMore'
+      infinite-scroll-distance='0'>
     <!-- <table > -->
       <tr>
         <td width="420">项目</td>
@@ -18,7 +19,8 @@
             <div class="project-name">
               <a target="_blank" ui-sref="project({id: obj.project.cid})" class="company-name" >
                 {{obj.project.companyName}}</a> |
-              <a target="_blank" ui-sref="list.result({columnId:0, industry:industryEnum})" class="project-industry">
+              <a target="_blank" ui-sref="list.result({columnId:0, industry: obj.project.industryEnum})"
+                class="project-industry">
                 {{obj.project.industry}}</a>
             </div>
             <div class="project-intro">
@@ -31,7 +33,9 @@
             ng-bind="invest.investAt | dateFilter"></section>
         </td>
         <td class="org-col">
+          <!-- 战略投资不做跳转 -->
           <a
+            ng-class="::{'plan-invest': invest.phaseEnum === 'INFORMAL'}"
             ui-sref="list.result({columnId: 0, phase: invest.phaseEnum})"
             ui-sref-opts="{inherit: false}"  target="_blank"
             ng-repeat="invest in obj.investments | limitTo:3 track by $index"

@@ -1,3 +1,4 @@
+@import "../../common/styles/function.less";
 .label-converge {
   width:100%;
   background: url('../../../images/label-bg.png') no-repeat center;
@@ -395,13 +396,17 @@
           padding:14px 0;
           &.org-col {
             >section, >a {
-              display: block;
               line-height:21px;
               margin-bottom:6px;
               &:last-of-type {
                 margin-bottom:0;
               }
             }
+          }
+
+          .plan-invest {
+            pointer-events: none;
+            color: #5A626d;
           }
 
           .project-logo {
