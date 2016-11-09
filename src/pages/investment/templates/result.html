@@ -34,6 +34,7 @@
         </td>
         <td class="org-col">
           <a
+            ng-class="::{'plan-invest': invest.phaseEnum === 'INFORMAL'}"
             ui-sref="list.result({columnId: 0, phase: invest.phaseEnum})"
             ui-sref-opts="{inherit: false}"  target="_blank"
             ng-repeat="invest in obj.investments | limitTo:3 track by $index"
