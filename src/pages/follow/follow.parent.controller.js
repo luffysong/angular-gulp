@@ -106,6 +106,11 @@ export default class followParentController {
 
       this.getLabel = function () {
         vm.projectService.getFollowList().then(data => {
+          if(!data.length) {
+            vm.labelEmpty = true;
+          }else {
+            vm.labelEmpty = false;
+          }
           this.followLabelList = data;
           this.updateLabel();
         });

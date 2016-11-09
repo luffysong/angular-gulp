@@ -3,57 +3,81 @@
     根据您填写的信息，系统智能判断您为<span class="famous-investor">知名投资人</span>，已获取了您的公开信息，请选择并确认与您匹配的信息：
   </section>
   <div class="famous-investor-container">
-    <span class="left-arrow icon-left-arrow" ng-if="vm.recommendInvestor.length >= 3"></span>
-    <span class="right-arrow icon-right-arrow" ng-if="vm.recommendInvestor.length >= 3"></span>
-    <div class="clear-fix" ng-if="vm.recommendInvestor.length < 3">
-      <div class="investor-item" ng-repeat="item in vm.recommendInvestor" ng-click="vm.selectItem($index)" ng-class="{active: item.active}">
+    <span class="left-arrow icon-left-arrow" ng-if="vm.suggestInvestor.length >= 3"></span>
+    <span class="right-arrow icon-right-arrow" ng-if="vm.suggestInvestor.length >= 3"></span>
+    <div class="clear-fix" ng-if="vm.suggestInvestor.length < 3">
+      <div class="investor-item" ng-repeat="item in vm.suggestInvestor" ng-click="vm.selectItem($index)" ng-class="{active: item.active}">
         <span class="select-tag icon-checked-tag"></span>
         <div class="user-top">
           <div class="user-logo"></div>
           <div class="user-content">
             <section class="user-name">
-              于小强
+              {{item.name}}
             </section>
             <section class="user-work">
-              贝塔斯曼亚洲投资基金 | 副总裁
+              {{item.orgName}} | {{item.position}}
             </section>
             <section class="follow-industry">
-              近期关注: 电子商务 · 社交媒体
+              近期关注:
+              <span ng-repeat="obj in item.industryEnumList">
+                <span>{{obj}}</span>
+                <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
+              </span>
             </section>
             <section class="follow-industry">
-              偏好轮次: A轮 · Pre-A轮
+              偏好轮次:
+              <span ng-repeat="obj in item.phaseEnumList">
+                <span>{{obj}}</span>
+                <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
+              </span>
             </section>
           </div>
         </div>
         <div class="user-bottom">
-          最近投资：Keep、妙计旅行、车轮、小站教育…
+          最近投资：
+          <span ng-repeat="obj in item.investCaseList">
+            <span>{{obj}}</span>
+            <span ng-if="$index !== item.industryEnumList.length - 1">、</span>
+          </span>
         </div>
       </div>
     </div>
-    <div ng-if="vm.recommendInvestor.length >= 3">
+    <div ng-if="vm.suggestInvestor.length >= 3">
       <slick infinite="false" slides-to-show="2" prev-arrow=".left-arrow" next-arrow=".right-arrow">
-        <div class="investor-container" style="position:relative;height:196px" ng-repeat="item in vm.recommendInvestor" >
+        <div class="investor-container" style="position:relative;height:196px" ng-repeat="item in vm.suggestInvestor" >
           <div class="investor-item" ng-click="vm.selectItem($index)" ng-class="{active: item.active}">
             <span class="select-tag icon-checked-tag"></span>
             <div class="user-top">
               <div class="user-logo"></div>
               <div class="user-content">
                 <section class="user-name">
-                  于小强
+                  {{item.name}}
                 </section>
                 <section class="user-work">
-                  贝塔斯曼亚洲投资基金 | 副总裁
+                  {{item.orgName}} | {{item.position}}
                 </section>
                 <section class="follow-industry">
-                  近期关注: 电子商务 · 社交媒体
+                  近期关注:
+                  <span ng-repeat="obj in item.industryEnumList">
+                <span>{{obj | industry}}</span>
+                <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
+              </span>
                 </section>
                 <section class="follow-industry">
-                  偏好轮次: A轮 · Pre-A轮
+                  偏好轮次:
+                  <span ng-repeat="obj in item.phaseEnumList">
+                <span>{{obj | companySearchPhase}}</span>
+                <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
+              </span>
                 </section>
               </div>
             </div>
             <div class="user-bottom">
-              最近投资：Keep、妙计旅行、车轮、小站教育…
+              最近投资：
+              <span ng-repeat="obj in item.investCaseList">
+            <span>{{obj}}</span>
+            <span ng-if="$index !== item.industryEnumList.length - 1">、</span>
+          </span>
             </div>
           </div>
           <div class="selected-tip" ng-show="item.active">您已选择该投资人身份!</div>
@@ -61,54 +85,33 @@
 
       </slick>
     </div>
-
-
-    <!--<ul>
-      <li ng-repeat="item in [1,2,3]">
-        <span class="select-tag icon-checked-tag" ng-class="{active: $index == 1}"></span>
-        <div class="user-top">
-          <div class="user-logo"></div>
-          <div class="user-content">
-            <section class="user-name">
-              于小强
-            </section>
-            <section class="user-work">
-              贝塔斯曼亚洲投资基金 | 副总裁
-            </section>
-            <section class="follow-industry">
-              近期关注: 电子商务 · 社交媒体
-            </section>
-            <section class="follow-industry">
-              偏好轮次: A轮 · Pre-A轮
-            </section>
-          </div>
-        </div>
-        <div class="user-bottom">
-          最近投资：Keep、妙计旅行、车轮、小站教育…
-        </div>
-      </li>
-    </ul>-->
   </div>
   <div class="investor-validate-form">
-    <form name='vm.financeVM.form'>
+    <form name='vm.financeInfo.form'>
 
       <div class="form-group">
+        <input
+          validator="required" required-error-message="请选择投资领域" message-id="companyIndustry"
+          type="hidden" ng-model="vm.baseInfo.selectedIndustry" name="companyIndustry">
         <label for="">投资领域</label>
-        <span id="financeRound" class="error-tip"></span>
+        <span id="companyIndustry" class="error-tip bp-error"></span>
         <div class="invest-area">
           <span class="area-item" ng-repeat="item in vm.companyIndustry">
-            <input type="checkbox" checklist-model="vm.user.companyIndustry" checklist-value="item.value">
+            <input type="checkbox" checklist-model="vm.baseInfo.selectedIndustry" checklist-value="item.value">
             <span class="item-name">{{item.desc}}</span>
           </span>
         </div>
       </div>
 
       <div class="form-group">
+        <input
+          validator="required" required-error-message="请选择偏好轮次" message-id="financeRound"
+          type="hidden" ng-model="vm.baseInfo.selectedPhase" name="financeRound">
         <label for="">偏好轮次</label>
-        <span id="financeRound" class="error-tip"></span>
+        <span id="financeRound" class="error-tip bp-error"></span>
         <div class="invest-area">
           <span class="area-item" ng-repeat="item in vm.followPhase">
-            <input type="checkbox" checklist-model="vm.user.followPhase" checklist-value="item.value">
+            <input type="checkbox" checklist-model="vm.baseInfo.selectedPhase" checklist-value="item.value">
             <span class="item-name">{{item.desc}}</span>
           </span>
         </div>
@@ -116,44 +119,77 @@
 
       <div class="form-group">
         <label for="">单笔投资金额</label>
+        <span id="singleInvestMin" class="error-tip bp-error"></span>
+        <span id="singleInvestMax" class="error-tip bp-error"></span>
         <div class="inline-control">
           <input
             type="text" name="investAmountMin"
-            class="form-control money" ng-model="vm.financeVM.finance.investAmountMin"
+            class="form-control money" ng-model="vm.baseInfo.singleInvestMin"
+            message-id="singleInvestMin"
+            number-error-message="最小投资金额只能为纯数字"
             validator="required, number"
-            placeholder="输入具体金额" /><span>万</span><span class="to">至</span
-        ><input kr-valid
+            placeholder="输入具体金额" /><span>万</span>
+          <span class="to">至</span>
+          <input kr-valid
                 type="text" name="investAmountMax"
                 class="form-control money"
-                ng-model="vm.financeVM.finance.investAmountMax"
-                validator="bigger"
-                placeholder="输入具体金额" /><span>万</span
-        ><select  ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
-                  ng-model="vm.financeVM.finance.financeAmountUnit"
-                  type="text" name="fundValueUnit" class="form-control unit" > </select
-        ><span class="form-tip money-tip">若非区间则仅填写前输入框即可</span>
+                ng-model="vm.baseInfo.singleInvestMax"
+                 number-error-message="最大投资金额只能为纯数字"
+                 bigger-error-message="最大投资金额必须大于最小投资金额"
+                 message-id="singleInvestMin"
+                validator="required, number, bigger"
+                placeholder="输入具体金额" />
+          <span>万</span>
+          <select  ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
+                  ng-model="vm.baseInfo.singleInvestUnit"
+                  type="text" name="fundValueUnit" class="form-control unit" > </select>
+          <span class="form-tip money-tip">若非区间则仅填写前输入框即可</span>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group upload-card">
         <input
-          validator="required" required-error-message="请上传BP" message-id="bp"
-          type="hidden" ng-model="vm.financeVM.finance.bp" name="bp">
-        <label for=""><span class="required">*</span> 商业计划书</label>
-        <span id="bp" class="error-tip bp-error" style="display: block;"></span>
-        <span ng-if="vm.financeVM.bpUploading" width="100%"
+          validator="required" required-error-message="请上传名片" message-id="businessCard"
+          type="hidden" ng-model="vm.baseInfo.businessCard" name="businessCard">
+        <label for="">个人名片</label>
+        <span id="businessCard" class="error-tip bp-error" style="display: block;"></span>
+        <span ng-show="vm.bpUploading" width="100%"
               class="progress-bar">
-          <span>BP上传中</span
-          ><span class="bar"><span ng-style="{width: vm.financeVM.bpProgress}" class="progress"></span></span>
+          <span>名片上传中</span
+          ><span class="bar"><span ng-style="{width: vm.bpProgress}" class="progress"></span></span>
         </span>
-        <span class="suc-name" ng-show='vm.financeVM.bpName'><span>{{vm.financeVM.bpName}}</span>
-          <span class="icon-dialogClose" ng-click='vm.financeVM.deletebp()'></span></span>
-        <a
-          class="btn-bp" href="javascript:;" ngf-select="vm.financeVM.uploadBp($files)"
-          ngf-accept="'application/pdf'" style="display: inline-block;">
-          <span class="icon-BP"></span><span>{{vm.financeVM.bpName?'更新BP ':'上传BP'}}</span></a>
-        <span class="bp-message">仅供认证使用，平台不会暴露您的个人信息</span>
+        <div>
+           <span class="upload-img" ngf-select="vm.uploadBp($files)">
+            <img ng-src="{{vm.baseInfo.businessCard || '/images/cardBackground.png'}}" alt="" >
+            <span class="upload-tip" ng-show="!vm.baseInfo.businessCard">点击上传名片</span>
+            <span class="upload-tip" ng-show="vm.baseInfo.businessCard">点击重新上传</span>
+          </span>
+          <span class="bp-message">仅供认证使用，平台不会暴露您的个人信息</span>
+        </div>
+        <div class="upload-text">
+          <section>
+            建议上传尺寸：90mm*50mm
+          </section>
+          <section>
+            格式为JPG、JPEG、PNG，小于5MB
+          </section>
+        </div>
+
+
       </div>
+
+     <!-- <div class="form-group">
+        <input ng-model="vm.user.userBusinessCard" validator="required"
+               required-error-message="请上传名片" message-id="messageCard"
+               type="hidden" name="userBusinessCard" >
+        <label for=""><span class="required">*</span> 个人名片</label>
+        <span class="inline-error-tip" id="messageCard"></span>
+        <img ng-src="{{vm.user.userBusinessCard || '/images/cardBackground.png'}}" alt="" class="upload-img">
+        <span class="btn-id-card uploading" >{{vm.suc?'点击更新图片':'点击上传名片'}}
+            <input ngf-select="vm.uploadIdCard($files)" ngf-accept="'image/*'" type="file">
+          </span>
+        <span class="warn-img">建议上传尺寸：90mm*50mm</span>
+      </div>-->
 
     </form>
   </div>
@@ -161,9 +197,8 @@
 
   <div class="text-center">
 
-    <a class="prev" ng-if="!vm.financeVM.name" ng-click="vm.prev()" href="javascript:;">上一步</a
-    ><a class="save next" href="javascript:;" ng-click='vm.step = 3'
-        ng-class="{active:!vm.financeVM.isActive()}">提交认证</a>
+    <a class="prev" ng-click="vm.prev()" href="javascript:;">上一步</a>
+    <a class="save next active" href="javascript:;" ng-click='vm.submitValidate()'>提交认证</a>
   </div>
   <div class="form-bottom">
     <p class="splitter"> </p>

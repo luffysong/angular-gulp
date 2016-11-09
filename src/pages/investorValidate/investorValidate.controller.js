@@ -20,30 +20,18 @@ export default class investorValidateController {
 
     this.investorRole = this.$scope.root.INVESTOR_ROLE_META;
 
-    this.step = 1;
+    this.step = 2;
 
-    this.baseInfo = {};
+    this.baseInfo = {
+      singleInvestUnit: 'CNY'
+    };
 
-    this.recommendInvestor = [
-      {
-        active:false
-      },{
-        active:false
-      },{
-        active:false
-      },{
-        active:false
-      }
-    ];
     this.auditStatus = 'auditing';
 
     this.getUser();
-
-    /*this.projectService.submitValidate().then(data => {
-      console.log(data);
-    }).catch(err => {
-      console.log(err);
-    });*/
+    this.getSuggestInvestor();
+    this.setBiggerValidator();
+    this.watchInvestAmountMin();
 
   }
 
@@ -51,24 +39,52 @@ export default class investorValidateController {
     this.step = 1;
   }
 
-  selectItem($index) {
-    this.recommendInvestor.forEach((item,i) => {
-      console.log(i);
-      if($index+'' === i+'') {
+  setBiggerValidator() {
+    this.$validation.setExpression({
+      bigger: (number) => {
+        if (angular.isUndefined(number) || number === '') {
+          return true;
+        }
+        number = parseFloat(number);
+        if (number >= parseFloat(this.baseInfo.singleInvestMin)) {
+          return true;
+        }
+        return false;
+      },
+    }).setDefaultMsg({
+      bigger: {},
+    });
+  }
+
+  watchInvestAmountMin() {
+    this.$scope.$watch('vm.baseInfo.singleInvestMin', () => {
+      if (this.financeInfo && this.financeInfo.form) {
+        this.$validation.validate(this.financeInfo.form.investAmountMax);
+      }
+    });
+  }
+
+  selectItem(index) {
+    this.suggestInvestor.forEach((item,i) => {
+      if(index+'' === i+'') {
         item.active = true;
       }else {
         item.active = false;
       }
     })
+    this.baseInfo.selectedIndustry = this.suggestInvestor[index].industryEnumList;
+    this.baseInfo.selectedPhase = this.suggestInvestor[index].phaseEnumList;
+    this.baseInfo.relatedId = this.suggestInvestor[index].id;
+    this.baseInfo.relatedEntityName = this.suggestInvestor[index].orgName;
+    this.baseInfo.relatedName = this.suggestInvestor[index].name;
+    this.baseInfo.relatedPosition = this.suggestInvestor[index].position;
   }
 
   getUser() {
     krData.User.getUserInfo().then(data => {
-      console.log(data);
       delete data.phone;
       this.userData = data;
     }).catch(err => {
-      console.log(err);
       if(err.code === 403) {
         this.$scope.root.user.ensureLogin();
         console.log('未登录');
@@ -100,23 +116,104 @@ export default class investorValidateController {
       });
   }
 
+  validatePhone() {
+    /*验证手机号*/
+    this.projectService.validateMsgCode({
+      code: this.baseInfo.code,
+      phone: this.baseInfo.phone
+    }).then(data => {
+      console.log(data);
+      this.codeError = false;
+      this.getSuggestInvestor();
+    }).catch(err => {
+      console.log(err);
+      krData.Alert.alert(err.msg);
+      this.codeError = true;
+    });
+  }
+
+  getSuggestInvestor() {
+    this.projectService.suggestInvestor({
+      name: '郑毅' || this.baseInfo.realName,
+      orgName: this.baseInfo.org || ''
+    }).then(data => {
+      console.log(data);
+      this.suggestInvestor = data;
+      this.step = 2;
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
 
   /*验证手机号是否合法*/
   submitInfo() {
-    this.$validation.validate(this.baseInfo.form).catch(() => {
+    this.$validation.validate(this.baseInfoForm).catch(() => {
       return this.$q.reject();
     }).then(() => {
-      console.log(1);
-      this.projectService.suggestInvestor({
-        name: this.baseInfo.realName,
-        orgName: this.baseInfo.org || ''
-      }).then(data => {
-        console.log(data);
-      }).catch(err => {
-        console.log(err);
-      });
+      this.validatePhone();
     });
     /*if(!this.checkForm('baseInfoForm'))return;*/
+  }
+
+  /*提交认证*/
+  submitValidate() {
+    this.$validation.validate(this.financeInfo.form).catch(() => {
+      console.log('Submit fail');
+      return this.$q.reject();
+    }).then(() => {
+      console.log('Submit suc');
+      this.submitRequest();
+    });
+  }
+
+  submitRequest() {
+    var params = Object.assign({
+      phaseEnumList: this.baseInfo.selectedPhase.join(','),
+      industryEnumList: this.baseInfo.selectedIndustry.join(',')
+    },this.baseInfo);
+    delete params.selectedPhase;
+    delete params.selectedIndustry;
+    console.warn(params);
+    this.projectService.submitValidate(params).then(data => {
+      console.log(data);
+      this.step = 3;
+    }).catch(err => {
+      if(err && err.msg) {
+        krData.Alert.alert(err.msg);
+      }
+      console.log(err);
+    });
+  }
+
+  uploadBp($files) {
+    const name = this.$scope.vm.baseInfo.name || this.name;
+    let validObj = null;
+    if ($files.length) {
+     /* validObj = krData.utls.validateBP($files[0]);
+      if (!validObj.valid) {
+        krData.Alert.alert(validObj.msg);
+        return;
+      }*/
+      krData.utls.uploadImage($files[0])
+        .then(data => {
+          console.warn(data);
+          this.baseInfo.businessCard = data.src;
+          /*this.finance.bp = data.src;
+          this.bpName = `[${name}]商业计划书.pdf`;*/
+        }, err => {
+          this.bpUploading = false;
+          krData.Alert.alert(`上传名片失败:${err.msg}`);
+        }).then(null, null, (progress) => {
+        if (progress.type === 'load') {
+          this.bpProgress = '100%';
+          this.bpUploading = false;
+        } else if (progress.type === 'progress') {
+          this.bpProgress = `${(progress.loaded * 100) / progress.total}%`;
+          this.bpUploading = true;
+        }
+      });
+    }
   }
 
 

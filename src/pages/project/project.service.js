@@ -1,5 +1,20 @@
 import { API } from 'krData';
 
+
+
+const investorApi = new krData.API('/investor/auth',[], {
+  getMsgCode: {
+    action: 'get-verify-code'
+  },
+  validateMsgCode: {
+    action: 'validate-code'
+  },
+  suggestInvestor: {
+    action: 'suggest-investor',
+    isArray: true
+  }
+});
+
 @Inject('$q')
 export default class ProjectService extends API {
 
@@ -260,19 +275,19 @@ export default class ProjectService extends API {
 
   /*获取短信验证码*/
   getMsgCode(obj) {
-    return new API('/investor/auth/get-verify-code?' + $.param(obj)).get();
+    return investorApi.getMsgCode(obj);
   }
   /*验证短信码*/
-  validateMsgCode() {
-    return new API('/investor/auth/validate-code?' + $.param(obj)).get();
+  validateMsgCode(obj) {
+    return investorApi.validateMsgCode(obj);
   }
   /*提交认证*/
   submitValidate(obj) {
-    return new API('/investor/auth').save(null,obj);
+    return investorApi.save(null,obj);
   }
   /*获取推荐投资人*/
   suggestInvestor(obj) {
-    return new API('/investor/auth/suggest-investor?' + $.param(obj)).get();
+    return investorApi.suggestInvestor(obj);
   }
 
   // 设置接收BP的邮箱
