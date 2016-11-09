@@ -8,21 +8,28 @@
     </div>
     <div class="case-list">
       <div class="case-info" ng-repeat="case in investorInfoVm.investment.voList | limitTo:4 track by $index" ng-class="{'f-right':$index % 2 == 1}">
-        <div>
+        <div class="case-brief">
           <img class="case-logo" src="{{case.logo}}">
           <div class="company-name">
             <span>{{case.companyName}}</span>
-            <a href="#" class="show">显示</a>
+            <span href="#" class="show" ng-show="case.visible">显示</span>
+            <span href="#" class="show" ng-show="!case.visible">不显示</span>
           </div>
           <div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
         </div>
-        <div class="case-phase" ng-repeat="phase in case.entityVo" >
+        <div class="case-phase" ng-repeat="phase in case.entityVo"
+        ng-class="{'more-show': investorInfoVm.more || $index == 0, 'more-hide': !investorInfoVm.more || $index > 1}">
           <span>{{phase.investDate | dateFilter}}</span>
           <div class="circular">
             <div class="circular2"></div>
             <div class="line"></div>
           </div>
           <span>{{phase.phase | companySearchPhase}}</span>
+          {{investorInfoVm.more}}
+        </div>
+        <div ng-show="case.entityVo.length > 1" >
+          <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'close'" ng-click="investorInfoVm.moreShow('close')" ng-class="expression">展开</a>
+          <a href="#" class="more-btn" ng-show="!investorInfoVm.moreBtn == 'open'" ng-click="investorInfoVm.moreShow('open')">收起</a>
         </div>
       </div>
     </div>

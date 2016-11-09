@@ -1,5 +1,38 @@
+@import "../../../common/styles/function";
+@import "../../../common/styles/var";
 .invest-resume {
   span {
     line-height: 21px;
+  }
+  .re-info{
+    display: inline-block;
+    max-height: 100px;
+    max-width: 705px;
+    vertical-align: top;
+    color: #5A626D;
+    letter-spacing: 0px;
+    .font(14,21);
+    a.toggle{
+      visibility: hidden;
+    }
+  }
+  .re-info.opened{
+    height: auto;
+    max-height: inherit;
+    a.toggle{
+      visibility: hidden;
+    }
+  }
+  .re-info.is-truncated{
+    a.toggle{
+      visibility: inherit;
+    }
+  }
+  .re-info.opened{
+    height: auto;
+    max-height: inherit;
+    a.toggle{
+      display: none;
+    }
   }
 }

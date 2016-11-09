@@ -12,6 +12,10 @@ export default class investorInfoController {
   init() {
     this.getInvestorInfo(this.$stateParams.id);
     this.getInvestmentInfo(this.$stateParams.id);
+    this.moreBtn = 'close';
+    this.more = false;
+    console.log(this.moreBtn);
+    console.log(this.more);
   }
 
   getInvestorInfo(id) {
@@ -30,6 +34,14 @@ export default class investorInfoController {
     });
   }
 
+  moreShow(state) {
+    this.moreBtn = state;
+    if(state == 'close'){
+        this.more = true;
+    }
+    console.log(this.moreBtn);
+    console.log(this.more);
+  }
 
 
   getUser() {
