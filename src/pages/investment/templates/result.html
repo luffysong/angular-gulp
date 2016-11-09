@@ -33,6 +33,7 @@
             ng-bind="invest.investAt | dateFilter"></section>
         </td>
         <td class="org-col">
+          <!-- 战略投资不做跳转 -->
           <a
             ng-class="::{'plan-invest': invest.phaseEnum === 'INFORMAL'}"
             ui-sref="list.result({columnId: 0, phase: invest.phaseEnum})"
