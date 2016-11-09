@@ -146,6 +146,7 @@
     position: relative;
     font-size: 14px;
     line-height: 48px;
+    white-space: nowrap;
     &.project {
       height: auto;
     }
@@ -220,8 +221,9 @@
     }
   }
 
-  .narrow{
+  &:not(:hover) .narrow{
     width:50px;
+    transition: .3s;
     .kr-tags{
       display: none;
     }
@@ -236,6 +238,11 @@
     }
 
   }
+
+  &:hover .narrow {
+    transition: .3s;
+  }
+
 }
 
 .search-result-wrapper {
