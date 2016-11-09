@@ -18,18 +18,17 @@
           <div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
         </div>
         <div class="case-phase" ng-repeat="phase in case.entityVo"
-        ng-class="{'more-show': investorInfoVm.more || $index == 0, 'more-hide': !investorInfoVm.more || $index > 1}">
+        ng-class="{'more-show': investorInfoVm.more || $index < 2, 'more-hide': !investorInfoVm.more && $index > 1}">
           <span>{{phase.investDate | dateFilter}}</span>
           <div class="circular">
             <div class="circular2"></div>
             <div class="line"></div>
           </div>
           <span>{{phase.phase | companySearchPhase}}</span>
-          {{investorInfoVm.more}}
         </div>
         <div ng-show="case.entityVo.length > 1" >
-          <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'close'" ng-click="investorInfoVm.moreShow('close')" ng-class="expression">展开</a>
-          <a href="#" class="more-btn" ng-show="!investorInfoVm.moreBtn == 'open'" ng-click="investorInfoVm.moreShow('open')">收起</a>
+          <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'open'" ng-click="investorInfoVm.moreShow('close')">展开</a>
+          <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'close'" ng-click="investorInfoVm.moreShow('open')">收起</a>
         </div>
       </div>
     </div>
