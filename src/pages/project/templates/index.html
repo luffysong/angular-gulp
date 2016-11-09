@@ -1,4 +1,5 @@
 <div id="projectDetailWrapper" ng-class="{small: searchVm.small || searchVm.tinly}" class="project-wrapper">
+  <header>
   <section class="base-info-wrapper">
     <div ng-if="!vm.baseInfoVM.isEdit" class="base-info-content">
       <div>
@@ -22,7 +23,9 @@
           <a class="kr-icon icon-Wechat link-none" ng-class="{'icon-Wechat-active':vm.baseInfoVM.weixin}"
             tooltips tooltip-template="{{vm.baseInfoVM.weixin?vm.baseInfoVM.weixin:'未填写'}}" tooltip-class="tooltip">
           </a>
-          <span class="kr-icon icon-websitelink" ng-show=""></span>
+          <span class="kr-icon icon-websitelink" ng-show="::vm.baseInfoVM.website">
+            <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+          </span>
           <a class="website ellipsis" target="_blank" ng-href="{{::vm.baseInfoVM.website}}">
             {{::vm.baseInfoVM.website}}
           </a>
@@ -209,6 +212,7 @@
       </ul>
     </nav>
   </section>
+</header>
   <section id="light" class="project-module light"
   ng-include="'/pages/project/templates/light.html'"
   ng-if="vm.baseInfoVM.investAdvantage">

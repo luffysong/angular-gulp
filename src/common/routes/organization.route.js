@@ -6,6 +6,7 @@ const organizationView = {
   templateUrl: '/pages/organization/templates/index.html',
   controllerAs: 'organizationVm',
   controller: 'organizationParentController',
+  abstract: true,
   resolve: {
     loadBundle: getLoadBundle(assets.page.organization),
   },

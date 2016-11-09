@@ -1,6 +1,6 @@
 <div class="member-wrapper">
   <h4>机构成员<span class="number">({{vm.orgData.member.total}})</span></h4>
-  <div class="all-members" ng-if="vm.orgData.member.total>0">
+  <div class="all-members" ng-if="vm.orgData.member.total">
     <div class="member" ng-repeat="item in vm.memberVM.memberData">
       <div class="logo">
         <img ng-src="{{item.userInfo.avatar || '/images/investor-logo.png'}}">
