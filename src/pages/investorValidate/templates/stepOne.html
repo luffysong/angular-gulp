@@ -52,8 +52,7 @@
         <span class="error-tip" id="messageOrg"></span>
         <div class="org-suggest" mass-autocomplete="{debounce_blur:700,top:65,left:0.01,maxWidth:518, position:'parent'}">
           <input  ng-model="vm.baseInfo.orgName"
-                  validator="required,minlength=5" message-id="messageOrg"
-                  minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
+                  validator="required" message-id="messageOrg"
                   maxlength="30"
                   placeholder="输入任职机构"
                   mass-autocomplete-item="vm.autocompleteOptions"

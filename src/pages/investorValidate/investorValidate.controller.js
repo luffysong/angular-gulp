@@ -68,21 +68,9 @@ export default class investorValidateController {
   }
 
   onSelect(selectedItem) {
-    if (!this.investorList.length) {
-      this.investorList.push(selectedItem.obj);
-    } else {
-      this.investorList.forEach(value => {
-        if (value.entityId === selectedItem.obj.entityId) {
-          this.entityName = '';
-          krData.Alert.alert('此投资方已存在');
-        }
-      });
-      if (this.entityName) {
-        this.investorList.push(selectedItem.obj);
-      }
-    }
-
-    angular.element('.entity-name')[0].value = null;
+    console.log(selectedItem);
+    this.baseInfo.orgId = selectedItem.obj.id;
+    this.baseInfo.orgName = selectedItem.obj.name;
   }
 
   prev() {
