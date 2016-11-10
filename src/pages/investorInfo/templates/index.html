@@ -9,7 +9,7 @@
           <span ng-repeat="address in investorInfoVm.basic.city">{{address}}</span>
         </h1>
         <p class="organization-name">
-          <a href="javascript:void(0)">{{investorInfoVm.basic.orgName}} >></a>
+          <a ui-sref="org({id: investorInfoVm.org.id})" >{{investorInfoVm.basic.orgName}} >></a>
         </p>
         <p>
           <span>{{investorInfoVm.basic.position}}</span>
