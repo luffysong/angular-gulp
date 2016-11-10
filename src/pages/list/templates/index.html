@@ -1,6 +1,6 @@
 <div class="project-wrapper" ng-show="!parentVm.open.sideBar">
   <div class="filter-container" ng-class="{'filterDisabeld': parentVm.getPermission()}">
-    <div class="spread-btn" ng-click="parentVm.open.filter = !parentVm.open.filter"></div>
+    <div class="spread-btn icon-filter-open" ng-click="parentVm.open.filter = !parentVm.open.filter" ng-class="{'icon-filter-close': parentVm.open.filter}"></div>
     <div class="filter-list">
       <div class="filter-col">
         <div class="col-type">

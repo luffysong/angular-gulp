@@ -60,11 +60,16 @@
       }
       .label-container {
         position: relative;
-        padding: 14px 23px 20px;
+        padding: 14px 0 20px;
         overflow: hidden;
+        text-align: center;
+        .item-container {
+          display: inline-block;
+          width:246px;
+        }
         .label-item {
           float: left;
-          width:auto;
+          width:70px;
           margin-right: 18px;
           padding: 4px 6px;
           font-size: 12px;
@@ -73,6 +78,10 @@
           background: rgba(107,162,252,0.2);
           color: #2868D1;
           cursor: pointer;
+          text-align: center;
+          &:nth-of-type(3n) {
+            margin-right:0;
+          }
         }
         .icon-open-nav {
           position: absolute;
@@ -99,6 +108,9 @@
         padding: 14px 0 14px 20px;
         overflow: hidden;
         border-bottom: 1px solid #F2F4F5;
+        &.active {
+          background: #F2F4F5;
+        }
       }
     }
     img {
@@ -111,6 +123,13 @@
       float:left;
       width: 217px;
       padding-left: 16px;
+      .company-info-container {
+        position: relative;
+        display: flex;
+        >span {
+          margin-right:4px;
+        }
+      }
       .brief {
         white-space: nowrap;
         overflow: hidden;
@@ -132,13 +151,12 @@
         .font(14,21);
         .dlk();
         color: @title-color;
-        max-width: 58px;
         vertical-align: middle;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-      .icon-Tags {
+      .icon-industry {
         .vam();
         margin-right: 4px;
       }
@@ -170,8 +188,8 @@
         background: #6BA2FC;
       }
       .time {
-        float: right;
-        margin-top: 3px;
+        position: absolute;
+        right:0;
         color: #969fa9;
       }
     }

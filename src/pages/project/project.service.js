@@ -3,6 +3,9 @@ import { API } from 'krData';
 
 
 const investorApi = new krData.API('/investor/auth',[], {
+  getState: {
+    action: 'state'
+  },
   getMsgCode: {
     action: 'get-verify-code'
   },
@@ -155,6 +158,13 @@ export default class ProjectService extends API {
       kw,
     });
   }
+
+  suggestOrg(kw) {
+    const api = new API('/suggest/org');
+    return api.query({
+      kw,
+    });
+  }
   // 判断当前用户是否在审核认领
   claimPeding(cid) {
     const id = {
@@ -288,6 +298,10 @@ export default class ProjectService extends API {
   /*获取推荐投资人*/
   suggestInvestor(obj) {
     return investorApi.suggestInvestor(obj);
+  }
+  /*获取投资人认证状态*/
+  getState() {
+    return investorApi.getState();
   }
 
   // 设置接收BP的邮箱

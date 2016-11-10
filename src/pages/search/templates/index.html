@@ -25,10 +25,13 @@
           {{searchVm.columnOptions.labelName}}
         </div>
          <div class="label-container">
-           <div class="label-item" ng-click="searchVm.columnOptions.closeMe()"
-             ng-repeat="item in searchVm.columnOptions.tags" ng-if="searchVm.columnOptions.tags.length">{{item}}</div>
+           <div class="item-container">
+             <div class="label-item" ng-click="searchVm.columnOptions.closeMe()"
+                  ng-repeat="item in searchVm.columnOptions.tags" ng-if="searchVm.columnOptions.tags.length">{{item}}</div>
 
-           <div class="label-item" ng-click="searchVm.columnOptions.closeMe()" ng-if="!searchVm.columnOptions.tags.length">不限</div>
+             <div class="label-item" ng-click="searchVm.columnOptions.closeMe()" ng-if="!searchVm.columnOptions.tags.length">不限</div>
+           </div>
+
 
            <span class="icon-open-nav" ng-click="searchVm.columnOptions.closeMe()"></span>
         </div>
@@ -38,19 +41,21 @@
         <ul>
           <li
             kr-scroll-me="{isMe: item.id === searchVm.columnOptions.companyId, container: '#column3Container'}"
-            ng-click="searchVm.open(item.id)"  ng-repeat="item in searchVm.columnOptions.companies">
+            ng-click="searchVm.open(item.id)"  ng-repeat="item in searchVm.columnOptions.companies" ng-class="{'active' : item.id === searchVm.columnOptions.companyId}">
             <img ng-click="searchVm.open(item.id)" width="42" height="42"
             ng-src="{{item.logo || '/images/default-logo.png'}}" alt=""/>
             <div class="text-info-wrapper">
-              <p class="clear">
+              <p class="clear company-info-container">
                   <span ng-click="searchVm.open(item.id)" class="name mr10" title="{{item.name}}">{{item.name}}</span>
                   <span ng-if="item.hot" class="hot">热</span>
                   <span ng-if="item.classic" class="classic">精</span>
                   <span ng-if="item.funding" class="funding">融资中</span>
-                  <span class="time">{{item.publishDate | dateFilter}}</span>
+                  <span>
+                     <span class="time">{{item.publishDate | dateFilter}}</span>
+                  </span>
               </p>
               <p class="brief" title="{{item.brief}}">{{item.brief}}</p>
-              <p><span class="icon-Tags"></span><span>{{item.industryStr}}</span></p>
+              <p><span class="icon-industry"></span><span>{{item.industryStr}}</span></p>
               <p ng-if="item.advantage" class="hot-wrapper"><span class="icon-Hot"></span>{{item.advantage}}</p>
             </div>
           </li>

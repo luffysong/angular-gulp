@@ -234,7 +234,7 @@
         font-size: 12px;
         color: #5A626D;
         letter-spacing: 0px;
-        margin-right:24px;
+        margin-right:14px;
       }
       .col-val {
         float: left;
@@ -243,8 +243,12 @@
         font-size: 12px;
         color: #2868D1;
         letter-spacing: 0px;
-        margin-right:60px;
+        margin-right: 40px;
         cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 140px;
       }
       &.overflow {
         .col-handle {
@@ -373,22 +377,10 @@
       background: #fff;
       padding-top:3px;
       cursor: pointer;
-      &:before {
-        content: '';
-        display: block;
-        width: 20px;
-        height:2px;
-        background: #E7E7E7;
-        margin:auto;
-      }
-      &:after {
-        content: '';
-        display: block;
-        width: 20px;
-        height:2px;
-        background: #E7E7E7;
-        margin:2px auto 0;
-      }
+      color: #e7e7e7;
+      text-align: center;
+      line-height: 6px;
+      font-size: 20px;
   }
 }
 
@@ -486,8 +478,8 @@
                 font-size:12px;
                 color: #fff;
                 text-align: center;
-                padding:0 5px;
-                margin-right:10px;
+                padding:0 4px;
+                margin-right:6px;
                 vertical-align: top;
               }
               .classic-tag {
@@ -500,8 +492,8 @@
                 font-size:12px;
                 color: #fff;
                 text-align: center;
-                padding:0 5px;
-                margin-right:10px;
+                padding:0 4px;
+                margin-right:6px;
                 vertical-align: top;
               }
               .fund-state {
@@ -550,6 +542,18 @@
               }
               >span {
                 margin-left:4px;
+              }
+              .advantage-tag {
+                display: inline-block;
+                width:30px;
+                height:16px;
+                line-height:14px;
+                border: 1px solid #F8627E;
+                border-radius: 2px;
+                font-size:12px;
+                color: #F8627E;
+                vertical-align: middle;
+                text-align: center;
               }
             }
           }

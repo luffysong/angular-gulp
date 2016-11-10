@@ -20,19 +20,69 @@ export default class investorValidateController {
 
     this.investorRole = this.$scope.root.INVESTOR_ROLE_META;
 
-    this.step = 2;
+
+    this.step = 1;
 
     this.baseInfo = {
-      singleInvestUnit: 'CNY'
+      singleInvestUnit: 'CNY',
+      investorRoleEnum: 'ORG_INVESTOR'
     };
 
     this.auditStatus = 'auditing';
 
+    this.autocompleteOptions = {
+      suggest: this.suggest.bind(this),
+      on_select: this.onSelect.bind(this),
+      auto_select_first: true,
+      full_match: (item, word) => item.value.toLowerCase() === word.toLowerCase(),
+    };
+
     this.getUser();
-    this.getSuggestInvestor();
     this.setBiggerValidator();
     this.watchInvestAmountMin();
 
+  }
+
+  suggest(kw) {
+    const defered = this.$q.defer();
+    this.projectService.suggestOrg(kw).then((list) => {
+      defered.resolve(this.makeSuggestResult(kw, list.slice(0, 5)));
+    });
+    return defered.promise;
+  }
+
+  makeSuggestResult(kw, list) {
+    const that = this;
+    return list.map(function makeLabel(val) {
+      console.log(val);
+      return {
+        label: that.$sce.trustAsHtml(
+          `<div class="suggest-label suggest-label-investment">
+            <span>${val.name}</span>
+          </div>`
+        ),
+        value: val.name,
+        obj: val,
+      };
+    });
+  }
+
+  onSelect(selectedItem) {
+    if (!this.investorList.length) {
+      this.investorList.push(selectedItem.obj);
+    } else {
+      this.investorList.forEach(value => {
+        if (value.entityId === selectedItem.obj.entityId) {
+          this.entityName = '';
+          krData.Alert.alert('此投资方已存在');
+        }
+      });
+      if (this.entityName) {
+        this.investorList.push(selectedItem.obj);
+      }
+    }
+
+    angular.element('.entity-name')[0].value = null;
   }
 
   prev() {
@@ -84,6 +134,8 @@ export default class investorValidateController {
     krData.User.getUserInfo().then(data => {
       delete data.phone;
       this.userData = data;
+
+      //this.getState();
     }).catch(err => {
       if(err.code === 403) {
         this.$scope.root.user.ensureLogin();
@@ -93,6 +145,28 @@ export default class investorValidateController {
     /*this.user.then(data => {
       console.log(data);
     });*/
+  }
+
+  getState() {
+    this.projectService.getState().then(data => {
+      console.log(data);
+      switch (data.state) {
+        case 'PENDING':
+              this.step = 3;
+              this.auditStatus = 'auditing';
+              break;
+        case 'PASS':
+              this.step = 3;
+              this.auditStatus = 'audited';
+              break;
+        case 'REJECT':
+              this.step = 3;
+              this.auditStatus = 'auditFail';
+
+      }
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
   getCode() {
@@ -134,7 +208,7 @@ export default class investorValidateController {
 
   getSuggestInvestor() {
     this.projectService.suggestInvestor({
-      name: '郑毅' || this.baseInfo.realName,
+      name: this.baseInfo.realName,
       orgName: this.baseInfo.org || ''
     }).then(data => {
       console.log(data);
