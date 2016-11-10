@@ -2,7 +2,7 @@ import krData from 'krData';
 import ProjectService from '../project/project.service';
 
 @Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', 'step', 'financeState', 'type', '$window',
-  '$scope', '$q', '$filter', '$stateParams', '$state', 'checkForm', '$validation')
+  '$scope', '$q', '$filter', '$stateParams', '$state', '$validation')
 export default class investorValidateController {
 
 
