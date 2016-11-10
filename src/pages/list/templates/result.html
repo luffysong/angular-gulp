@@ -19,7 +19,7 @@
           <img ng-src="{{obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" class="project-logo" />
           <div class="project-info">
             <div class="project-name">
-              <span class="company-name" ng-click="vm.seeDetail(obj.id)">{{obj.name}}</span><span class="icon-hot-tag" ng-if="!obj.hot"></span><span class="icon-classicTag" ng-if="!obj.classic"></span><span class="icon-funding" ng-if="!obj.funding"></span>
+              <span class="company-name" ng-click="vm.seeDetail(obj.id)">{{obj.name}}</span><span class="icon-hot-tag" ng-if="obj.hot"></span><span class="icon-classicTag" ng-if="obj.classic"></span><span class="icon-funding" ng-if="obj.funding"></span>
             </div>
             <div class="project-intro" title="{{obj.brief}}">
               {{::obj.brief}}

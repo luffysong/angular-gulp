@@ -47,9 +47,9 @@
             <div class="text-info-wrapper">
               <p class="clear company-info-container">
                   <span ng-click="searchVm.open(item.id)" class="name mr10" title="{{item.name}}">{{item.name}}</span>
-                  <span ng-if="item.hot" class="hot">热</span>
-                  <span ng-if="item.classic" class="classic">精</span>
-                  <span ng-if="item.funding" class="funding">融资中</span>
+                  <span ng-if="item.hot" class="icon-hot-tag"></span>
+                  <span ng-if="item.classic" class="icon-classicTag"></span>
+                  <span ng-if="item.funding" class="icon-funding"></span>
                   <span>
                      <span class="time">{{item.publishDate | dateFilter}}</span>
                   </span>
