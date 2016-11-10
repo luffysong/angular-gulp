@@ -1,0 +1,417 @@
+@import "../../common/styles/function";
+@import "../../common/styles/var";
+@import "./style/var";
+@import "./style/preference";
+@import "./style/resume";
+@import "./style/case";
+@import "./style/organization";
+.investorInfo-wrapper {
+  .investorInfo-var();
+  background: @bg-global-color;
+  height: auto;
+  width: 100%;
+  font-size: 14px;
+  color: @text-color;
+  padding-bottom: 70px;
+
+  // base-info-wrapper start
+  .base-info-wrapper {
+    width: 100%;
+    background: @bg-color;
+    .base-info-content{
+      width: @content-width;
+      padding: 30px;
+      margin:0 auto;
+      overflow: hidden;
+      &>div{
+        float: left;
+      }
+      &>div:nth-child(2){
+        margin-left: 18px;
+        width: 422px;
+      }
+      h1 {
+      font-size: 20px;
+      color: #222C38;
+      line-height: 24px;
+      font-weight: normal;
+        span{
+          display: inline-block;
+          margin-right: 5px;
+          font-size: 12px;
+          color: #5A626D;
+          line-height: 18px;
+        }
+        span:first-child {
+          margin-left: 14px;
+        }
+        span:last-child {
+          margin-right: 0px;
+        }
+      }
+      h3{
+        color: @text-color;
+        font-size: 14px;
+        line-height: 19px;
+        margin: 10px 0 13px;
+        font-weight: normal;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 450px;
+      }
+      .kr-icon {
+        .dlk();
+        .vam();
+        font-size: 20px;
+      }
+      .link-none{
+        color: #ccc;
+      }
+      .icon-Weibo-active{
+        color: rgb(231,61,54);
+        vertical-align: middle;
+      }
+      .tooltip{
+        background: rgba(90,98,109,1);
+        box-shadow: 0px 0px 4px 0px #969FA9;
+        border-radius: 0px 0px 0px 4px 4px 4px 4px;
+        min-width: 80px;
+        tip-arrow{
+          border-top:6px solid rgba(90,98,109,1);
+        }
+      }
+      .icon-Wechat{
+        margin: 0 12px 0 11px;
+      }
+      .icon-Wechat-active{
+        color: rgb(61,190, 48);
+      }
+      .icon-websitelink{
+        color: #6BA2FC;
+      }
+      .website {
+        max-width: 330px;
+        margin-right: 10px;
+      }
+      .hot-container {
+        display: block;
+        white-space: nowrap;
+      }
+      .website + .hot-container {
+        margin-top: 8px;
+      }
+      .disable {
+        color: #ccc;
+      }
+      span.icon-Hot {
+        font-size: 16px;
+      }
+      .hot-text {
+        .font(14, 21);
+        .dlk();
+        .vam();
+      }
+      .organization-name {
+        margin: 8px 0 4px 0;
+          a {
+            font-size: 14px;
+            line-height: 21px;
+          }
+        }
+      p {
+        .icon-websitelink {
+          font-size: 20px;
+        }
+      }
+      .finance-brief {
+        width: 249px;
+        height: 90px;
+        float: right;
+        .rd(4px);
+        .border1(@border-color);
+        overflow: hidden;
+        p {
+          overflow: hidden;
+          span:first-child {
+            .font(12,18);
+            color: #969FA9;
+            width: 30%;
+            display: inline-block;
+            .text-center();
+          }
+          span:last-child{
+            color: #222C38;
+          }
+        }
+        p:nth-child(2){
+          margin-top: 8px;
+          margin-bottom: 2px;
+        }
+        p:first-child {
+          .font(14, 33);
+          background: #e7e7e7;
+          .text-center();
+        }
+        .finance-now{
+          .text-center();
+          line-height: 40px !important;
+          height: 45px !important;
+          font-size: 14px;
+          color: #222C38;
+        }
+      }
+    }
+
+    .base-info-content-edit {
+      width: @content-width;
+      padding: 30px;
+      margin:0 auto;
+      overflow: hidden;
+      .logo {
+        .logo();
+        display: block;
+      }
+      & > div:first-child {
+        float: left;
+        .text-center();
+      }
+
+      & > div:nth-child(2) {
+        float: left;
+        width: @input-base-width;
+        margin-left: 60px;
+        .clear();
+      }
+      .upload-logo{
+        .font(12, 18);
+        color: @tip-color;
+        &>p:last-child {
+          margin-top: 5px;
+        }
+      }
+      .btn-upload-logo {
+        margin:12px 0 8px;
+        .btn-upload-logo();
+      }
+      .cancel {
+        margin-bottom: 10px;
+      }
+    }
+    .logo {
+      .square(70);
+      border-radius: 100px;
+      .border1(#E7E7E7);
+    }
+  }
+  //base-info-wrapper end
+
+  //nav start
+  .nav-wrapper {
+    width: auto !important;
+    right: 0 !important;
+    left: 140px !important;
+    background: #fff;
+    box-shadow: 0px 8px 8px -8px #CCC;
+  }
+  nav{
+    width: 839px;
+    margin:0 auto;
+    ul {
+      border-top: 1px solid #F2F4F5;
+      overflow: hidden;
+    }
+    li {
+      margin-right: 30px;
+      height: 47px;
+      line-height: 47px;
+      float: left;
+      position: relative;
+      a {
+        color: @text-color;
+      }
+    }
+    li:last-child {
+      float: right;
+      a {
+        .border1(@anchor-color);
+        color: @anchor-color;
+        .dlk();
+        padding: 3px 16px;
+        .rd(4px);
+        .font(12, 18);
+      }
+      a:hover{
+        background-color: #6BA2FC;
+        color: #fff;
+      }
+    }
+    li>a.active {
+      display: relative;
+      color: #222C38;
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom:0;
+        height: 4px;
+        width: 100%;
+        background: @anchor-color;
+      }
+    }
+  }
+
+}
+
+
+// investorInfo common
+.investorInfo-wrapper {
+  .investorInfo-var();
+  .btn-edit {
+    .font(14, 21);
+    display: inline-block;
+    vertical-align: top;
+  }
+  .investorInfo-module {
+    background-color: #fff;
+    width: @content-width;
+    margin: 0 auto;
+    padding: 20px 42px 30px;
+    box-shadow: 0px 0px 8px 0px #CCC;
+    // min-height: 300px;
+    margin-top: @module-margin;
+    h4 {
+      color: @deep-text-color;
+      .font(16, 24);
+      font-weight: normal;
+      position: relative;
+      display: flex;
+      align-items: center;
+      &:before {
+        .before(4px, 18px, absolute);
+        background: @deep-text-color;
+        left: -12px;
+      }
+      margin: 0 0 24px;
+    }
+  }
+  .nav-wrapper + .investorInfo-module {
+    margin-top: 30px;
+  }
+  .ngdialog-theme-default{
+    text-align: center;
+    padding-top: 80px;
+    z-index: 8000 !important;
+  }
+  .ngdialog-content{
+    background: #fff !important;
+    padding: 30px 80px !important;
+    border-radius: 0 !important;
+    min-width: 500px !important;
+    display: inline-block;
+    width: auto !important;
+    max-height: 676px;
+    overflow-y: auto;
+    .ngdialog-close{
+      display: none!important;
+    }
+  }
+  .investorInfo-dialog{
+    padding: 30px 80px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.30);
+  }
+  .dialog-investor{
+    width: 328px;
+    // height: 224px;
+    h4{
+      font-size: 18px;
+      color: #222C38;
+      letter-spacing: 0px;
+      line-height: 27px;
+      margin-top: 60px;
+      margin-bottom: 40px;
+    }
+    .investor{
+      background: #6BA2FC;
+      border-radius: 4px;
+      border:none;
+      font-size: 14px;
+      color: #FFFFFF;
+      letter-spacing: 0px;
+      line-height: 21px;
+      padding:8px 32px;
+      margin-bottom: 40px;
+      display: inline-block;
+      width: 140px;
+    }
+    .icon-dialogClose{
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor:pointer;
+    }
+  }
+
+}
+
+.investorInfo-wrapper {
+  form{
+    padding-bottom: 5px;
+    overflow: hidden;
+  }
+
+  .form-bottom {
+    div {
+      .text-center();
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      width: 87px;
+      .font(14, 37);
+      border-radius: 4px;
+      color: #fff;
+      background: @anchor-color;
+    }
+    .cancel {
+      background: #fff;
+      color: @tip-color;
+      .border1(#ccc);
+      margin-left: 30px;
+    }
+  }
+  .splitter {
+    clear: both;
+    width: 100%;
+    border-top: 1px dashed #e7e7e7;
+  }
+  .tip-text {
+    margin-top: 6px;
+  }
+}
+
+.bp-view-more-wrapper {
+  .ngdialog-content{
+    width: 434px !important;
+    height: 218px !important;
+    padding: 0 !important;
+    text-align: center;
+  }
+  p {
+    font-size: 14px;
+    color: #969FA9;
+    line-height: 21px;
+    height: 21px;
+    margin-top: 10px;
+  }
+  p:nth-child(2) {
+    margin-top: 80px;
+    font-size: 18px;
+    color: #222C38;
+    height: 27px;
+    line-height: 27px;
+  }
+
+}
+

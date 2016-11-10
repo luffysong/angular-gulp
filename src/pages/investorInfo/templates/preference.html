@@ -1,0 +1,23 @@
+<div class="invest-preference">
+  <h4>投资偏好</h4>
+  <div class="preference-content">
+    <div class="industry">
+      <div class="title">关注行业</div>
+      <div class="list">
+        <span ng-repeat="industry in investorInfoVm.investPreference.focusIndustry">{{industry}}</span>
+      </div>
+    </div>
+    <div class="phase m-top">
+      <div class="title">偏好轮次</div>
+      <div class="list">
+        <span ng-repeat="phase in investorInfoVm.investPreference.preferPhase">{{phase}}</span>
+      </div>
+    </div>
+    <div class="quota m-top">
+      <div class="title">单笔额度</div>
+      <div class="list">
+        <span ng-repeat="amount in investorInfoVm.investPreference.singleInvestAmount">{{amount}}</span>
+      </div>
+    </div>
+  </div>
+</div>

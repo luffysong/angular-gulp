@@ -1,0 +1,16 @@
+import assets from '../assets/script';
+import { getLoadBundle } from '../base/utls';
+
+const investorInfoView = {
+  url: '/investorInfo/{id:int}',
+  templateUrl: '/pages/investorInfo/templates/index.html',
+  controllerAs: 'investorInfoVm',
+  controller: 'investorInfoController',
+  resolve: {
+    loadBundle: getLoadBundle(assets.page.investorInfo),
+  },
+};
+
+export {
+  investorInfoView
+};
