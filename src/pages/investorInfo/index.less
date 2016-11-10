@@ -43,7 +43,7 @@
           line-height: 18px;
         }
         span:first-child {
-          margin-left: 14px;
+          // margin-left: 14px;
         }
         span:last-child {
           margin-right: 0px;
@@ -89,6 +89,14 @@
       }
       .icon-websitelink{
         color: #6BA2FC;
+      }
+      .icon-Address {
+        position: relative;
+        top: 4px;
+        left: 5px;
+        .path1 {
+          font-size: 20px;
+        }
       }
       .website {
         max-width: 330px;
@@ -170,6 +178,9 @@
       overflow: hidden;
       .logo {
         .logo();
+        width: 90px;
+        height: 90px;
+        .rd(50%);
         display: block;
       }
       & > div:first-child {
@@ -193,6 +204,9 @@
       .btn-upload-logo {
         margin:12px 0 8px;
         .btn-upload-logo();
+        &:before {
+          content: "上传头像";
+        }
       }
       .cancel {
         margin-bottom: 10px;

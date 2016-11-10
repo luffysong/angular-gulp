@@ -166,7 +166,7 @@ export default class SearchService {
     } else if (item.obj.type === RESULT_TYPE.ORG) {
       getService('$state').go('org', { id: item.obj.id });
     } else if (item.obj.type === RESULT_TYPE.USER) {
-      getService('$state').go('usr', { id: item.obj.id });
+      getService('$state').go('investorInfo', { id: item.obj.id });
     }
   }
 
@@ -188,7 +188,7 @@ export default class SearchService {
         } else if (item.obj.type === RESULT_TYPE.ORG) {
           getService('$state').go('org', { id: item.obj.id });
         } else if (item.obj.type === RESULT_TYPE.USER) {
-          getService('$state').go('usr', { id: item.obj.id });
+          getService('$state').go('investorInfo', { id: item.obj.id });
         }
       });
     }
