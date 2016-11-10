@@ -26,7 +26,7 @@
         <span class="left-time" href="javascript:void(0)" ng-disabled="vm.wait" ng-if="vm.wait">{{vm.wait+'秒'}}</span>
       </div>
 
-      <div class="form-group" ng-if="!userData.phone">
+      <div class="form-group" ng-if="!vm.userData.phone">
         <label for="">验证码</label>
         <span class="error-tip" id="messageCode" ng-show="vm.codeError">验证码错误</span>
         <input  ng-model="vm.baseInfo.code"

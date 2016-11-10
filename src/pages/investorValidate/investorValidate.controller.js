@@ -20,12 +20,10 @@ export default class investorValidateController {
 
     this.investorRole = this.$scope.root.INVESTOR_ROLE_META;
 
-
     this.step = 1;
 
     this.baseInfo = {
-      singleInvestUnit: 'CNY',
-      investorRoleEnum: 'ORG_INVESTOR'
+      singleInvestUnit: 'CNY'
     };
 
     this.auditStatus = 'auditing';
@@ -34,7 +32,11 @@ export default class investorValidateController {
       suggest: this.suggest.bind(this),
       on_select: this.onSelect.bind(this),
       auto_select_first: true,
-      full_match: (item, word) => item.value.toLowerCase() === word.toLowerCase(),
+      full_match: (item, word) => {
+        console.log(item);
+        console.log(word);
+        item.value.toLowerCase() === word.toLowerCase()
+      }
     };
 
     this.getUser();
@@ -120,7 +122,7 @@ export default class investorValidateController {
 
   getUser() {
     krData.User.getUserInfo().then(data => {
-      delete data.phone;
+      //delete data.phone;
       this.userData = data;
 
       //this.getState();
@@ -159,7 +161,7 @@ export default class investorValidateController {
 
   getCode() {
     // 获取验证码
-      this.wait = 2;
+      this.wait = 60;
       var interval = setInterval(() => {
         this.$scope.$apply(() => {
           this.wait--;
@@ -179,6 +181,12 @@ export default class investorValidateController {
   }
 
   validatePhone() {
+    /*用户已绑定手机号*/
+    if(this.userData.phone){
+      this.getSuggestInvestor();
+      this.step = 2;
+      return;
+    }
     /*验证手机号*/
     this.projectService.validateMsgCode({
       code: this.baseInfo.code,
@@ -197,7 +205,7 @@ export default class investorValidateController {
   getSuggestInvestor() {
     this.projectService.suggestInvestor({
       name: this.baseInfo.realName,
-      orgName: this.baseInfo.org || ''
+      orgName: this.baseInfo.orgName
     }).then(data => {
       console.log(data);
       this.suggestInvestor = data;

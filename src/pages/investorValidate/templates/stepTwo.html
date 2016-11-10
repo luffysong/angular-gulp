@@ -36,7 +36,7 @@
         <div class="user-bottom">
           最近投资：
           <span ng-repeat="obj in item.investCaseList">
-            <span>{{obj}}</span>
+            <span>{{obj.name}}</span>
             <span ng-if="$index !== item.industryEnumList.length - 1">、</span>
           </span>
         </div>
@@ -44,7 +44,7 @@
     </div>
     <div ng-if="vm.suggestInvestor.length >= 3">
       <slick infinite="false" slides-to-show="2" prev-arrow=".left-arrow" next-arrow=".right-arrow">
-        <div class="investor-container" style="position:relative;height:196px" ng-repeat="item in vm.suggestInvestor" >
+        <div class="investor-container" ng-repeat="item in vm.suggestInvestor" >
           <div class="investor-item" ng-click="vm.selectItem($index)" ng-class="{active: item.active}">
             <span class="select-tag icon-checked-tag"></span>
             <div class="user-top">
@@ -75,9 +75,9 @@
             <div class="user-bottom">
               最近投资：
               <span ng-repeat="obj in item.investCaseList">
-            <span>{{obj}}</span>
-            <span ng-if="$index !== item.industryEnumList.length - 1">、</span>
-          </span>
+                <span>{{obj.name}}</span>
+                <span ng-if="$index !== item.industryEnumList.length - 1">、</span>
+              </span>
             </div>
           </div>
           <div class="selected-tip" ng-show="item.active">您已选择该投资人身份!</div>
