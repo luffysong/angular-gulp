@@ -8,23 +8,19 @@ export default class investorInfoController {
     this.init();
   }
   investorInfoService = new InvestorInfoService();
+  investorData = this.resolveData.investorData;
 
   init() {
     this.getInvestorInfo(this.$stateParams.id);
     this.getInvestmentInfo(this.$stateParams.id);
-    this.moreBtn = 'close';
+    this.moreBtn = 'open';
     this.more = false;
-    console.log(this.moreBtn);
-    console.log(this.more);
   }
 
-  getInvestorInfo(id) {
-    this.investorInfoService.getInfo(id)
-    .then(data => {
-        this.basic = data.basic;
-        this.investPreference = data.investPreference;
-        this.org = data.org;
-    });
+  getInvestorInfo() {
+    this.basic = this.investorData.basic;
+    this.investPreference = this.investorData.investPreference;
+    this.org = this.investorData.org;
   }
 
   getInvestmentInfo(id) {
@@ -38,6 +34,8 @@ export default class investorInfoController {
     this.moreBtn = state;
     if(state == 'close'){
         this.more = true;
+    }else if(state == 'open'){
+        this.more = false;
     }
     console.log(this.moreBtn);
     console.log(this.more);

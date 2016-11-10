@@ -8,6 +8,11 @@ const investorInfoView = {
   controller: 'investorInfoController',
   resolve: {
     loadBundle: getLoadBundle(assets.page.investorInfo),
+    investorData: /* @ngInject */
+    function loadInvestorData(loadBundle, investorInfoService, $stateParams, resolveData) {
+      return investorInfoService.getInfo($stateParams.id)
+      .then(data => (resolveData.investorData = data));
+    },
   },
 };
 
