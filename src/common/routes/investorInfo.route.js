@@ -17,5 +17,5 @@ const investorInfoView = {
 };
 
 export {
-  investorInfoView
+  investorInfoView,
 };

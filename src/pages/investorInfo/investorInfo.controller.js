@@ -1,6 +1,6 @@
 import krData from 'krData';
-import InvestorInfoService from '../investorInfo/investorInfo.service';
-
+import InvestorInfoService from './investorInfo.service';
+import InvestorEditVM from './investorEdit.vm';
 @Inject('$stateParams', 'ngDialog', 'resolveData',
   '$validation', '$scope', '$sce', '$state', '$q', '$filter')
 export default class investorInfoController {
@@ -9,10 +9,13 @@ export default class investorInfoController {
   }
   investorInfoService = new InvestorInfoService();
   investorData = this.resolveData.investorData;
+  investorEditVM = new InvestorEditVM(this.investorData);
 
   init() {
+    const investorEditVM = new InvestorEditVM(this.investorData);
     this.getInvestorInfo(this.$stateParams.id);
     this.getInvestmentInfo(this.$stateParams.id);
+    this.$scope.investorEditVM = investorEditVM;
     this.moreBtn = 'open';
     this.more = false;
   }

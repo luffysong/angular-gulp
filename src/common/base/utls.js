@@ -119,7 +119,7 @@ export function validateBP(file) {
 
 export function validateImage(file) {
   const MAX_SIZE = 2 * 1024 * 1024;
-  const suffixReg = /\.gif|\.png|\.jpg$/i;
+  const suffixReg = /\.gif|\.png|\.jpg|\.jpeg$/i;
   if (!suffixReg.test(file.name)) {
     return {
       code: FAILED,
