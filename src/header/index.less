@@ -10,6 +10,9 @@
   li {
     list-style: none;
   }
+  .transition300 {
+    transition: 300ms;
+  }
 
 }
 .rz-header-wrapper {
@@ -223,7 +226,7 @@
 
   &:not(:hover) .narrow{
     width:50px;
-    transition: .3s;
+    transition: width .3s;
     .kr-tags{
       display: none;
     }
@@ -240,7 +243,7 @@
   }
 
   &:hover .narrow {
-    transition: .3s;
+    transition: width .3s;
   }
 
 }
