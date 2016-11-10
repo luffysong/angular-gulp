@@ -1,3 +1,5 @@
+@import "../../../common/styles/var.less";
+@import "./common.less";
 .invest-preference {
   span {
     line-height: 21px;
@@ -14,5 +16,40 @@
   }
   .m-top {
     margin-top: 16px;
+  }
+}
+
+.preference-edit-wrapper {
+  span {
+    line-height: normal;
+    margin-right: 0px;
+  }
+  span.mr10 {
+    margin-right: 10px;
+  }
+  span.mr12 {
+    margin-right: 12px;
+  }
+  .form-group {
+    max-width: 520px;
+  }
+  .ac-container {
+    z-index: 1;
+  }
+  .tags {
+    .tags();
+  }
+  .inline-control {
+    white-space: nowrap;
+    input, select {
+      display: inline-block;
+      width: 140px;
+    }
+    .form-tip {
+      float: none;
+    }
+  }
+  select {
+    width: 140px;
   }
 }

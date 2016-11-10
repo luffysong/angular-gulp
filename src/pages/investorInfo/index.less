@@ -5,6 +5,7 @@
 @import "./style/resume";
 @import "./style/case";
 @import "./style/organization";
+@import "./style/common.less";
 .investorInfo-wrapper {
   .investorInfo-var();
   background: @bg-global-color;
@@ -176,6 +177,9 @@
       padding: 30px;
       margin:0 auto;
       overflow: hidden;
+      form {
+        overflow: visible;
+      }
       .logo {
         .logo();
         width: 90px;
@@ -194,6 +198,20 @@
         margin-left: 60px;
         .clear();
       }
+      .ac-container {
+        z-index: 1;
+        background: #fff;
+        a {
+          color: @title-color;
+        }
+        img {
+          .square(28);
+          margin-right: 12px;
+        }
+        .ac-menu .ac-state-focus {
+          background: #f9f9f9;
+        }
+      }
       .upload-logo{
         .font(12, 18);
         color: @tip-color;
@@ -207,6 +225,9 @@
         &:before {
           content: "上传头像";
         }
+      }
+      .citys {
+        .tags();
       }
       .cancel {
         margin-bottom: 10px;
@@ -243,21 +264,6 @@
       position: relative;
       a {
         color: @text-color;
-      }
-    }
-    li:last-child {
-      float: right;
-      a {
-        .border1(@anchor-color);
-        color: @anchor-color;
-        .dlk();
-        padding: 3px 16px;
-        .rd(4px);
-        .font(12, 18);
-      }
-      a:hover{
-        background-color: #6BA2FC;
-        color: #fff;
       }
     }
     li>a.active {

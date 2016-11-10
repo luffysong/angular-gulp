@@ -1,0 +1,78 @@
+<div class="preference-edit-wrapper">
+    <form name="investorEditVM.baseData.form">
+
+      <div class="form-group">
+        <label for=""><span class="required">*</span> 关注标签</label>
+        <span class="form-tip">同“我的关注”中标签管理，修改后将同步⾄“我的关注”中</span>
+        <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
+          <input  ng-model="investorEditVM.baseData.cityText"
+            placeholder="添加关注的标签"
+            mass-autocomplete-item="investorEditVM.suggestCityOptions"
+            validator="requiredCity" message-id="messageWebsite"
+            type="text" name="city" class="form-control" />
+        </div>
+        <div>
+          <ul ng-if="investorEditVM.baseData.city.length" class="tags">
+            <li  ng-repeat="item in investorEditVM.baseData.city">
+              {{item.name}}<span
+                ng-click="investorEditVM.baseData.city.splice($index, 1)"
+              >x</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="form-group preference-group">
+        <label for=""><span class="required">*</span> 偏好轮次</label>
+
+        <span id="messageFullName"
+          class="error-tip"></span>
+        <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
+          <select  ng-model="investorEditVM.baseData.orgName"
+            ng-options="item.value as item.desc for item in root.FINANCE_PHASE_META"
+            word="investorEditVM.baseData.orgName"
+            name="preferencePhase" class="form-control" >
+            <option value="">添加关注的轮次</option>
+          </select>
+          <div>
+            <ul ng-if="investorEditVM.baseData.city.length" class="tags">
+              <li  ng-repeat="item in investorEditVM.baseData.city">
+                {{item.name}}<span
+                  ng-click="investorEditVM.baseData.city.splice($index, 1)"
+                >x</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for=""><span class="required">*</span> 计划金额</label>
+        <div class="inline-control">
+          <input
+          type="text" name="investAmountMin"
+            class="form-control money mr10" ng-model="vm.financeVM.finance.investAmountMin"
+            validator="required, number"
+            placeholder="输入具体金额" /><span class="mr12">万</span><span class="to mr10">至</span
+            ><input kr-valid
+            type="text" name="investAmountMax"
+            class="form-control money mr10"
+            ng-model="vm.financeVM.finance.investAmountMax"
+            validator="bigger"
+            placeholder="输入具体金额" /><span class="mr10">万</span
+              ><select  ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
+                ng-model="investorEditVM.preferData.currencyUnit"
+            type="text" name="fundValueUnit" class="form-control unit mr10" > </select
+            ><span class="form-tip money-tip">若非区间则仅填写前输入框即可</span>
+        </div>
+      </div>
+
+    </form>
+    <div class="form-bottom">
+
+      <p class="splitter"> </p>
+      <p class="tip-text">注意：所有更改内容均会提交审核，通过后对所有用户公开</p>
+      <div>
+        <a class="save" ng-click="investorEditVM.saveBase()" href="javascript:;">保存</a>
+        <a class="cancel" ng-click="investorEditVM.cancelBase()" href="javascript:;">取消</a>
+      </div>
+    </div>
+</div>

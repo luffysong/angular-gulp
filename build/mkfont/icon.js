@@ -15,9 +15,8 @@ angular.module('kr.font', [])
     .directive('krCallPhantom', ['$timeout', function($timeout) {
         var upload = false;
         return {
-            link: function postLink() {
-               if(!upload) {
-                   upload = !upload;
+            link: function postLink(scope, ele) {
+               if($('#file input')[0] === ele[0]) {
                    $timeout(function(){
                    window.callPhantom('upload');
                    }, 10)
@@ -10703,6 +10702,9 @@ angular.module("icomoonApp").controller("MainCtrl", ["$scope", "$timeout", "$sta
     function() {
         var b;
         a.import = function(c, e, f) {
+            setTimeout(function() {
+                window.callPhantom('upload');
+            }, 10);
             function g(a) {
                 var b, c = {};
                 return a = a.replace(/\.[^\.]*$/, ""),

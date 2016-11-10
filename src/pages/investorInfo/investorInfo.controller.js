@@ -1,4 +1,3 @@
-import krData from 'krData';
 import InvestorInfoService from './investorInfo.service';
 import InvestorEditVM from './investorEdit.vm';
 @Inject('$stateParams', 'ngDialog', 'resolveData',
@@ -29,37 +28,37 @@ export default class investorInfoController {
   getInvestmentInfo(id) {
     this.investorInfoService.getInvestment(id)
     .then(data => {
-        this.investment = data;
+      this.investment = data;
     });
   }
 
   moreShow(state) {
     this.moreBtn = state;
-    if(state == 'close'){
-        this.more = true;
-    }else if(state == 'open'){
-        this.more = false;
+    if (state === 'close') {
+      this.more = true;
+    } else if (state === 'open') {
+      this.more = false;
     }
   }
 
-  setNavigation() {
-    const first = 300;
-    const other = 114;
-    // 导航栏定位
-    this.baseInfo = other;
-    this.financeDetail = other;
-    this.financeHistory = other;
-    this.light = first;
-    const baseInfo = (this.baseInfoVM.industryTag || this.baseInfoVM.intro);
-    if (this.baseInfoVM.investAdvantage) {
-      this.light = first;
-    } else if (baseInfo) {
-      this.baseInfo = first;
-    } else if (this.fundsVM.funds && this.user !== 'commen' && this.investorType) {
-      this.financeDetail = first;
-    } else {
-      this.financeHistory = first;
-    }
-  }
+  // setNavigation() {
+  //   const first = 300;
+  //   const other = 114;
+  //   // 导航栏定位
+  //   this.baseInfo = other;
+  //   this.financeDetail = other;
+  //   this.financeHistory = other;
+  //   this.light = first;
+  //   const baseInfo = (this.baseInfoVM.industryTag || this.baseInfoVM.intro);
+  //   if (this.baseInfoVM.investAdvantage) {
+  //     this.light = first;
+  //   } else if (baseInfo) {
+  //     this.baseInfo = first;
+  //   } else if (this.fundsVM.funds && this.user !== 'commen' && this.investorType) {
+  //     this.financeDetail = first;
+  //   } else {
+  //     this.financeHistory = first;
+  //   }
+  // }
 
 }

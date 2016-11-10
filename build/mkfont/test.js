@@ -4,6 +4,7 @@ var fs = require('fs');
 var system = require('system');
 var args = system.args;
 var files = null;
+var fileIndex = 0;
 fs.changeWorkingDirectory('./build/mkfont');
 console.log(fs.workingDirectory);
 if (args.length === 1) {
@@ -14,6 +15,7 @@ if (args.length === 1) {
 }
 var expectedContent = fs.read('./index.html');
 var expectedLocation = 'https://icomoon.io/app/#/select/';
+page.clearCookies();
 page.setContent(expectedContent, expectedLocation);
 page.onLoadFinished = function(status) {
   page.injectJs('./angular.min.js');
@@ -52,16 +54,14 @@ function selectAll() {
     }, 100);
 }
 function uploadFile(i) {
-    if(i >= files.length) {
+    if(i >= files.length - 1) {
     setTimeout(function() {
         page.evaluate(selectAll);
     }, 10)
         return;
     }
     page.uploadFile('#file input', files[i]);
-    setTimeout(function() {
-        uploadFile(++i);
-    }, 10)
+
 }
 
 
@@ -106,10 +106,11 @@ page.onResourceRequested = function onResourceRequested(requestData, networkRequ
         networkRequest.changeUrl(getFile('fake'));
     }
 }
+
 page.onCallback = function(data) {
     if (data === 'upload') {
       console.log('upload start');
-      uploadFile(0);
+      uploadFile(fileIndex++);
     } else if(data.isError) {
       console.log(JSON.stringify(data.e));
       phantom.exit();

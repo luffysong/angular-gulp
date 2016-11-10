@@ -1,106 +1,146 @@
 <div id="investorDetailWrapper" ng-class="{small: searchVm.small || searchVm.tinly}" class="investorInfo-wrapper">
-  <section class="base-info-wrapper">
-    <div ng-if="!investorEditVM.editBase" class="base-info-content">
-      <div>
-        <img ng-src="{{investorInfoVm.basic.avatar}}" class="logo" alt="">
-      </div>
-      <div>
-        <h1>{{investorInfoVm.basic.name}}
-          <span class="icon-Address">
-            <span class="path1"></span>
-          </span>
-          <span ng-repeat="address in investorInfoVm.basic.city">{{address}}</span>
-        </h1>
-        <p class="organization-name">
-          <a ui-sref="org({id: investorInfoVm.org.id})" >{{investorInfoVm.basic.orgName}} >></a>
-        </p>
-        <p>
-          <span>{{investorInfoVm.basic.position}}</span>
-        </p>
-      </div>
-    </div>
-    <div ng-if="investorEditVM.editBase" class="base-info-content-edit">
-      <div class="upload-logo">
-        <img ng-src="{{investorEditVM.baseData.avatar || '/images/investor-logo.png'}}" class="logo" alt="">
-        <a ngf-select="investorEditVM.uploadAvatar($files)"
-          ngf-accept="'image/*'"
-          class="btn-upload-logo" href="javascript:;"></a>
-        <p>请上传自⼰真实
-        <p>头像,⽅便创业者</p>
-      </div>
-      <div>
-        <form name="investorEditVM.baseData.form">
-
-          <div class="form-group">
-            <label for=""><span class="required">*</span> 项目名称</label>
-            <input  ng-model="vm.baseInfoVM.name"
-              placeholder="请填写真实姓名"
-              message-id="messageName"
-              no-validation-message="true"
-              maxlength="30"
-              validator="required"
-              type="text" name="name" class="form-control" />
-          </div>
-
-          <div class="form-group">
-            <label for=""><span class="required">*</span> 所属机构</label>
-
-            <span id="messageFullName"
-              class="error-tip"></span>
-            <input  ng-model="vm.baseInfoVM.remarkName"
-              placeholder="请填写现任职机构"
-              validator="notEqual=vm.baseInfoVM.name"
-              message-id="messageFullName"
-              not-equal-error-message="请不要再次填写项目名称"
-              maxlength="50"
-              type="text" name="fullName" class="form-control" />
-          </div>
-
-          <div class="form-group">
-            <label for=""><span class="required">*</span> 职位</label>
-            <span class="error-tip" id="messageBrief"></span>
-            <input  ng-model="vm.baseInfoVM.brief"
-            validator="required,minlength=5" message-id="messageBrief"
-            minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
-            maxlength="30"
-            placeholder="请填写个人投资人或现任职位"
-            type="text" name="brief" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label for=""><span class="required">*</span> 所在地</label>
-            <span id="messageWebsite" class="error-tip" ></span>
-            <input  ng-model="vm.baseInfoVM.website"
-              placeholder="请填写常在城市"
-              validator="http" message-id="messageWebsite"
-              type="text" name="website" class="form-control" />
-          </div>
-
-        </form>
-      </div>
-      <div class="form-bottom">
-
-        <p class="splitter"> </p>
-        <p class="tip-text">注意：所有更改内容均会提交审核，通过后对所有用户公开</p>
+  <header>
+    <section class="base-info-wrapper">
+      <div ng-if="!investorEditVM.editBase" class="base-info-content">
         <div>
-          <a class="save" ng-click="investorEditVM.update()" href="javascript:;">保存</a>
-          <a class="cancel" ng-click="investorEditVM.cancelBase()" href="javascript:;">取消</a>
+          <img ng-src="{{investorInfoVm.basic.avatar}}" class="logo" alt="">
+        </div>
+        <div>
+          <h1>{{investorInfoVm.basic.name}}
+            <span class="icon-Address">
+              <span class="path1"></span>
+            </span>
+            <span ng-repeat="address in investorInfoVm.basic.city">{{address}}</span>
+          </h1>
+          <p class="organization-name">
+            <a ui-sref="org({id: investorInfoVm.org.id})" >{{investorInfoVm.basic.orgName}} >></a>
+          </p>
+          <p>
+            <span>{{investorInfoVm.basic.position}}</span>
+          </p>
         </div>
       </div>
+      <div ng-if="investorEditVM.editBase" class="base-info-content-edit">
+        <div class="upload-logo">
+          <img ng-src="{{investorEditVM.baseData.avatar || '/images/investor-logo.png'}}" class="logo" alt="">
+          <a ngf-select="investorEditVM.uploadAvatar($files)"
+            ngf-accept="'image/*'"
+            class="btn-upload-logo" href="javascript:;"></a>
+          <p>请上传自⼰真实
+          <p>头像,⽅便创业者</p>
+        </div>
+        <div>
+          <form name="investorEditVM.baseData.form">
 
-    </div>
-  </section>
+            <div class="form-group">
+              <label for=""><span class="required">*</span> 项目名称</label>
+              <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
+                <input  ng-model="investorEditVM.baseData.name"
+                  word="investorEditVM.baseData.orgName"
+                  placeholder="请填写真实姓名"
+                  mass-autocomplete-item="investorEditVM.suggestComOptions"
+                  maxlength="50"
+                  type="text" name="cname" class="form-control" />
+              </div>
+            </div>
 
-  <section id="preference" ng-include="'/pages/investorInfo/templates/preference.html'" class="investorInfo-module">
-    投资偏好
+            <div class="form-group">
+              <label for=""><span class="required">*</span> 所属机构</label>
+
+              <span id="messageFullName"
+                class="error-tip"></span>
+              <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
+                <input  ng-model="investorEditVM.baseData.orgName"
+                  word="investorEditVM.baseData.orgName"
+                  placeholder="请填写现任职机构"
+                  mass-autocomplete-item="investorEditVM.suggestOrgOptions"
+                  maxlength="50"
+                  type="text" name="orgName" class="form-control" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for=""><span class="required">*</span> 职位</label>
+              <span class="error-tip" id="messageBrief"></span>
+              <input  ng-model="investorEditVM.baseData.position"
+              validator="required" message-id="messageBrief"
+              maxlength="30"
+              placeholder="请填写个人投资人或现任职位"
+              type="text" name="position" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for=""><span class="required">*</span> 所在地</label>
+              <span id="messageWebsite" class="error-tip" ></span>
+              <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
+                <input  ng-model="investorEditVM.baseData.cityText"
+                  placeholder="请填写常在城市"
+                  mass-autocomplete-item="investorEditVM.suggestCityOptions"
+                  validator="requiredCity" message-id="messageWebsite"
+                  type="text" name="city" class="form-control" />
+              </div>
+                <div>
+                  <ul class="citys">
+                    <li  ng-repeat="item in investorEditVM.baseData.city">
+                      {{item.name}}<span
+                        ng-click="investorEditVM.baseData.city.splice($index, 1)"
+                      >x</span></li>
+                  </ul>
+                </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="form-bottom">
+
+          <p class="splitter"> </p>
+          <p class="tip-text">注意：所有更改内容均会提交审核，通过后对所有用户公开</p>
+          <div>
+            <a class="save" ng-click="investorEditVM.saveBase()" href="javascript:;">保存</a>
+            <a class="cancel" ng-click="investorEditVM.cancelBase()" href="javascript:;">取消</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <section>
+      <div sticky offset="49" class="nav-wrapper">
+        <nav>
+          <ul>
+            <li >
+              <a kr-scroll-click
+                href="#preference" du-smooth-scroll="" du-scrollspy=""  offset="300" >
+                投资偏好
+              </a>
+            </li>
+            <li>
+              <a kr-scroll-click href="#resume" du-smooth-scroll="" du-scrollspy="" offset="114" >
+                个人履历
+              </a>
+            </li>
+            <li >
+              <a kr-scroll-click href="#investments" du-smooth-scroll="" du-scrollspy="" offset="114" >
+                投资案例
+              </a>
+            </li>
+            <li >
+              <a kr-scroll-click href="#organization" du-smooth-scroll="" du-scrollspy="" offset="114" >
+                所属机构
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  </header>
+
+  <section id="preference"  ng-include="'/pages/investorInfo/templates/preference.html'"
+    class="investorInfo-module">
   </section>
   <section id="resume" ng-include="'/pages/investorInfo/templates/resume.html'" class="investorInfo-module">
-    个人履历
   </section>
-  <section id="resume" ng-include="'/pages/investorInfo/templates/case.html'" class="investorInfo-module">
-    投资案例
-  </section>
+  <section  id="investments" ng-include="'/pages/investorInfo/templates/case.html'"
+    class="investorInfo-module">  </section>
   <section id="organization" ng-include="'/pages/investorInfo/templates/organization.html'" class="investorInfo-module">
-    投资案例
   </section>
 
 </div>
