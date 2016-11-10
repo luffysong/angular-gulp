@@ -2,7 +2,7 @@ import assets from '../assets/script';
 import { getLoadBundle } from '../base/utls';
 
 const investorInfoView = {
-  url: '/investorInfo/{id:int}',
+  url: '/investor/{id:int}',
   templateUrl: '/pages/investorInfo/templates/index.html',
   controllerAs: 'investorInfoVm',
   controller: 'investorInfoController',

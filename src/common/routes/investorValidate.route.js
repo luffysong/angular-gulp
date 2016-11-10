@@ -3,7 +3,7 @@ import { getLoadBundle } from '../base/utls';
 const FINANCE = 'finance';
 const CREATE = 'create';
 export default {
-  url: '/investorValidate',
+  url: '/investor/validate',
   templateUrl: '/pages/investorValidate/templates/index.html',
   controllerAs: 'vm',
   controller: 'investorValidateController',
