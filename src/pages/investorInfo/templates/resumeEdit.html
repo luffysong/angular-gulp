@@ -1,0 +1,28 @@
+<div class="resume-edit-wrapper">
+  <form>
+     <div class="form-group">
+      <label for=""><span class="required">*</span> 个人履历</label>
+      <div class="textarea-control">
+        <textarea  ng-model="vm.financeVM.finance.projectAdvantage"
+          placeholder="请填写真实个⼈履历,使创业者更深⼊的了解您，不超过1000字"
+          message-id="projectAdvantage"
+          no-validation-message="true"
+          maxlength="1000"
+          validator="required"
+          type="text" name="projectAdvantage" class="form-control" ></textarea>
+        <div class="textarea-border">
+        </div>
+        <span class="text-length">{{vm.financeVM.finance.projectAdvantage.length || 0}}/1000</span>
+      </div>
+    </div>
+  </form>
+  <div class="form-bottom">
+
+    <p class="splitter"> </p>
+    <p class="tip-text">注意：所有更改内容均会提交审核，通过后对所有用户公开</p>
+    <div>
+      <a class="save" ng-click="investorEditVM.saveBase()" href="javascript:;">保存</a>
+      <a class="cancel" ng-click="investorEditVM.cancelBase()" href="javascript:;">取消</a>
+    </div>
+  </div>
+</div>

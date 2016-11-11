@@ -1,0 +1,58 @@
+<div class="resume-edit-wrapper">
+  <form>
+    <div class="form-group">
+      <label for=""><span class="required">*</span> 项目名称</label>
+      <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
+        <input  ng-model="investorEditVM.baseData.name"
+          word="investorEditVM.baseData.orgName"
+          placeholder="请填写真实姓名"
+          mass-autocomplete-item="investorEditVM.suggestComOptions"
+          maxlength="50"
+          type="text" name="cname" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for=""><span class="required">*</span> 所属机构</label>
+
+      <span id="messageFullName"
+        class="error-tip"></span>
+      <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
+        <input  ng-model="investorEditVM.baseData.orgName"
+          word="investorEditVM.baseData.orgName"
+          placeholder="请填写现任职机构"
+          mass-autocomplete-item="investorEditVM.suggestOrgOptions"
+          maxlength="50"
+          type="text" name="orgName" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="select-inline error-inline">
+        <label class="date-title"><span class="required">*</span> 融资时间</label>
+        <select class="form-control finance-date mr10" ng-model="vm.financeVM.financeDateYear"
+        validator="required"
+        message-id="editFinanceDateYear"
+        required-error-message="请选择融资时间"
+        ng-options="item for item in root.fromYear2000"
+        name="financeDateYear">
+          <option value="">年份</option>
+        </select><select class="form-control finance-date" ng-model="vm.financeVM.financeDateMonth"
+        ng-options="item for item in root.getAllMonths" validator="required"
+        name="financeDateMonth">
+          <option value="">月份</option>
+        </select>
+        <div>
+        <span class="error-tip" id="editFinanceDateYear"></span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="form-bottom">
+    <p class="splitter"> </p>
+    <p class="tip-text">注意：提交融资事件会提交审核，审核期间不可对此事件做任何的更改，通过后对所有用户公开</p>
+    <div>
+      <a class="save" ng-click="vm.financeVM.update()" href="javascript:void(0)">保存</a>
+      <a class="cancel" ng-click="vm.financeVM.cancel()" href="javascript:void(0)">取消</a>
+    </div>
+  </div>
+</div>

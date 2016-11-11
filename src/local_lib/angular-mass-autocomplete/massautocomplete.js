@@ -38,6 +38,7 @@ angular.module('MassAutoComplete', [])
           if( inputWidth > DEFAULT_MAX_WIDTH ){
               scope.maxWidth = inputWidth;
           }
+          scope.container[0].style.minWidth = _user_options.minWidth;
 
           //明确给出了最大宽度,否则使用的是
           //inputWidth 和 DEFAULT_MAX_WIDTH 中的
