@@ -1,4 +1,4 @@
-<div class="resume-edit-wrapper">
+<div class="case-edit-wrapper">
   <form>
     <div class="form-group">
       <label for=""><span class="required">*</span> 项目名称</label>
@@ -13,22 +13,52 @@
     </div>
 
     <div class="form-group">
-      <label for=""><span class="required">*</span> 所属机构</label>
+      <label for=""><span class="required">*</span> 产品链接</label>
 
       <span id="messageFullName"
         class="error-tip"></span>
-      <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
-        <input  ng-model="investorEditVM.baseData.orgName"
+
+      <div class="inline-control">
+        <select class="form-control finance-date mr10" ng-model="vm.financeVM.financeDateYear"
+        validator="required"
+        message-id="editFinanceDateYear"
+        required-error-message="请选择融资时间"
+        ng-options="item for item in root.fromYear2000"
+        name="financeDateYear">
+          <option value="">年份</option>
+        </select
+        ><input  ng-model="investorEditVM.baseData.orgName"
           word="investorEditVM.baseData.orgName"
           placeholder="请填写现任职机构"
-          mass-autocomplete-item="investorEditVM.suggestOrgOptions"
           maxlength="50"
           type="text" name="orgName" class="form-control" />
       </div>
     </div>
+
+    <div class="form-group preference-group">
+      <label for=""><span class="required">*</span> 投资轮次</label>
+
+      <span id="messageFullName"
+        class="error-tip"></span>
+        <select  ng-model="investorEditVM.baseData.orgName"
+          ng-options="item.value as item.desc for item in root.COMPANY_SEARCH_PHASE_META"
+          word="investorEditVM.baseData.orgName"
+          name="preferencePhase" class="form-control" >
+          <option value="">添加关注的轮次</option>
+        </select>
+        <div>
+          <ul ng-if="investorEditVM.baseData.city.length" class="tags">
+            <li  ng-repeat="item in investorEditVM.baseData.city">
+              {{item.name}}<span
+                ng-click="investorEditVM.baseData.city.splice($index, 1)"
+              >x</span></li>
+          </ul>
+        </div>
+    </div>
+
     <div class="form-group">
-      <div class="select-inline error-inline">
-        <label class="date-title"><span class="required">*</span> 融资时间</label>
+      <label class="date-title"><span class="required">*</span> 投资时间</label>
+      <div class="inline-control error-inline">
         <select class="form-control finance-date mr10" ng-model="vm.financeVM.financeDateYear"
         validator="required"
         message-id="editFinanceDateYear"
@@ -45,6 +75,43 @@
         <span class="error-tip" id="editFinanceDateYear"></span>
         </div>
       </div>
+    </div>
+
+    <div class="form-group">
+      <label><span class="required">*</span> 表投资主体</label>
+      <div class="invest-entity">
+        <div >
+          <input type="radio" name="investEntity" />
+          <span>个人</span>
+        </div>
+        <div class="inline-control">
+          <input type="radio"  name="investEntity" />
+          <span>机构</span>
+          <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
+            <input  ng-model="investorEditVM.baseData.name"
+              word="investorEditVM.baseData.orgName"
+              placeholder="请填写真实姓名"
+              mass-autocomplete-item="investorEditVM.suggestComOptions"
+              maxlength="50"
+              type="text" name="cname" class="form-control" />
+          </div>
+        </div>
+
+        <div class="inline-control">
+          <input type="radio" name="investEntity" />
+          <span>公司</span>
+          <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
+            <input  ng-model="investorEditVM.baseData.name"
+              word="investorEditVM.baseData.orgName"
+              placeholder="请填写真实姓名"
+              mass-autocomplete-item="investorEditVM.suggestComOptions"
+              maxlength="50"
+              type="text" name="cname" class="form-control" />
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </form>
   <div class="form-bottom">

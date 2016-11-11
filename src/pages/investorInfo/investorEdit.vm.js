@@ -2,19 +2,21 @@ import krData, { API, utls, Alert } from 'krData';
 const getService = utls.getService;
 const $validation = getService('$validation');
 const CURRENCY_UNIT = getService('CURRENCY_UNIT');
+let investorInfoService = null;
 
 
 export default class InvestorEditVM {
   constructor(data) {
     this.copyData = angular.copy(data);
     this.init();
+    investorInfoService = getService('investorInfoService');
   }
 
   selectProject = null;
   selectOrg = null;
 
   init() {
-    this.setRequiredCity();
+    this.setRequiredList();
     this.suggestOrgOptions = {
       suggest: this.suggest.bind(this, '/suggest/org'),
       full_match: (item, value) => item.obj.name.toLowerCase() === value,
@@ -32,8 +34,8 @@ export default class InvestorEditVM {
       suggest: this.suggestCity.bind(this),
       full_match: (item, value) => item.obj && item.obj.name.toLowerCase() === value,
       on_select: item => {
-        if (this.baseData.city.every(city => city.name !== item.obj.name)) {
-          this.baseData.city.push(item.obj);
+        if (this.baseData.city.every(city => city !== item.obj.name)) {
+          this.baseData.city.push(item.obj.name);
           this.baseData.cityText = '';
         } else {
           Alert.alert(`${item.obj.name} 已选`);
@@ -55,10 +57,11 @@ export default class InvestorEditVM {
     }
   }
 
-  setRequiredCity() {
+  setRequiredList() {
     $validation.setExpression({
-      requiredCity: () => {
-        if (!this.baseData.city.length) {
+      requiredList: (value, scope, element, attrs, param) => {
+        const list = scope.$eval(param);
+        if (list && !list.length) {
           return false;
         }
         return true;
@@ -83,27 +86,58 @@ export default class InvestorEditVM {
   saveBase() {
     $validation.validate(this.baseData.form)
       .then(() => {
-        this.editBase = false;
+        const basicData = angular.copy(this.baseData);
+        basicData.city = basicData.city.join(',');
+        return investorInfoService.api.updateBasic({
+          id: this.copyData.investor.id,
+        }, {
+          basicData,
+        });
       })
-      .catch(() => this.fail());
+      .then(() => {
+        this.success();
+      })
+      .catch((err) => this.fail(err));
   }
 
-  enterPreference() {
-    this.editPreference = true;
-    this.preferData = {};
-    this.preferData.currencyUnit = CURRENCY_UNIT.CNY;
+  enterPrefer() {
+    this.editPrefer = true;
+    this.preferData = this.copyData.investPreference;
+    this.preferData.singleInvestUnit = CURRENCY_UNIT.CNY;
   }
 
-  cancelPreference() {
-    this.editPreference = false;
+  cancelPrefer() {
+    this.editPrefer = false;
   }
 
-  savePreference() {
-    this.editPreference = false;
+  savePrefer() {
+    $validation.validate(this.preferData.form)
+      .then(() => {
+        const basicData = angular.copy(this.baseData);
+        basicData.city = basicData.city.join(',');
+        return investorInfoService.api.updateBasic({
+          id: this.copyData.investor.id,
+        }, {
+          basicData,
+        });
+      })
+      .then(() => {
+        this.success();
+      })
+      .catch((err) => this.fail(err));
+    this.editPrefer = false;
   }
 
-  fail() {
-    Alert.alert('请填写必须的字段');
+  fail(err) {
+    if (API.fail(err.code)) {
+      Alert.alert(`数据保存失败：${err.msg}`);
+    } else {
+      Alert.alert('请填写必须的字段');
+    }
+  }
+
+  success() {
+    Alert.success('数据保存成功');
   }
 
   suggest(path, kw) {
@@ -121,7 +155,7 @@ export default class InvestorEditVM {
   }
 
   suggestCity(kw) {
-    return new API('/suggest/org').query({
+    return new API('/suggest/city').query({
       kw,
     }).then(list =>
       list.map(city => ({

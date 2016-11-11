@@ -1,4 +1,4 @@
-import { getService, slice } from './utls';
+import { getService } from './utls';
 
 const METHOD_META = [{
   nameReg: /^(?:update|edit)(.+)$/,
@@ -60,16 +60,23 @@ function resolveActions(actions) {
     }
     actions[key].params = actions[key].params || {};
     actions[key].params.action = actions[key].action || action.params.action;
+    actions[key].params.action2 = actions[key].action2 || action.params.action2;
+    actions[key].params.action3 = actions[key].action3 || action.params.action3;
   });
 }
 
 const ERROR_CODE = {
+  SUCCESS: 0,
   NOT_LOGIN: 403,
   FORBIDDEN: 4032,
 };
 export default class API {
 
   static ERROR_CODE = ERROR_CODE;
+
+  static fail(code) {
+    return code !== ERROR_CODE.SUCCESS;
+  }
   API_PATH = `//${location.host}/api`;
   constructor(url, getMethods, actions) {
     // 参数调换
@@ -90,10 +97,7 @@ export default class API {
 
   copyMethod() {
     Object.keys(this.actions).forEach((methodName) => {
-      this[methodName] = function request() {
-        /* eslint-disable prefer-rest-params */
-        const parameters = slice.call(arguments, 0);
-        /* eslint-enable prefer-rest-params */
+      this[methodName] = function request(...parameters) {
         parameters[0] = parameters[0] || {};
         parameters[0] = angular.extend({ action: methodName },
           this.actions[methodName].params || {},

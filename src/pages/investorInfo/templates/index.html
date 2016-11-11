@@ -1,6 +1,6 @@
 <div id="investorDetailWrapper" ng-class="{small: searchVm.small || searchVm.tinly}" class="investorInfo-wrapper">
   <header>
-    <section class="base-info-wrapper">
+    <section  class="base-info-wrapper">
       <div ng-if="!investorEditVM.editBase" class="base-info-content">
         <div>
           <img ng-src="{{investorInfoVm.basic.avatar}}" class="logo" alt="">
@@ -18,6 +18,9 @@
           <p>
             <span>{{investorInfoVm.basic.position}}</span>
           </p>
+        </div>
+        <div ng-click="investorEditVM.enterBase()" class="btn-edit">
+          <span>编辑个人信息</span><span class="icon-Edit"></span>
         </div>
       </div>
       <div ng-if="investorEditVM.editBase" class="base-info-content-edit">
@@ -81,7 +84,7 @@
                 <div>
                   <ul class="citys">
                     <li  ng-repeat="item in investorEditVM.baseData.city">
-                      {{item.name}}<span
+                      {{item}}<span
                         ng-click="investorEditVM.baseData.city.splice($index, 1)"
                       >x</span></li>
                   </ul>

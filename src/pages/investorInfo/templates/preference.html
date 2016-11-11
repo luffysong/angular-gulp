@@ -1,6 +1,10 @@
 <div class="invest-preference">
-  <h4>投资偏好</h4>
-  <div class="preference-content">
+  <h4>投资偏好 <div ng-if="!investorEditVM.editPrefer"
+      ng-click="investorEditVM.enterPrefer()"
+      class="btn-edit">
+      <span>编辑</span><span class="icon-Edit"></span></div>
+  </h4>
+  <div ng-if="!investorEditVM.editPrefer" class="preference-content">
     <div class="industry">
       <div class="title">关注行业</div>
       <div class="list">
@@ -20,5 +24,5 @@
       </div>
     </div>
   </div>
-  <div ng-if="false" ng-include="'/pages/investorInfo/templates/preferenceEdit.html'"></div>
+  <div ng-if="investorEditVM.editPrefer" ng-include="'/pages/investorInfo/templates/preferenceEdit.html'"></div>
 </div>

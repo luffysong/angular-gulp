@@ -289,8 +289,19 @@
   .investorInfo-var();
   .btn-edit {
     .font(14, 21);
+    text-align: right;
+    float: right !important;
+    flex: 1;
     display: inline-block;
-    vertical-align: top;
+    color: @anchor-color;
+    cursor: pointer;
+    span {
+      margin-right: 0px;
+      .vam();
+    }
+    .icon-Edit {
+      font-size: 20px;
+    }
   }
   .investorInfo-module {
     background-color: #fff;
@@ -378,8 +389,27 @@
 .investorInfo-wrapper {
   form{
     padding-bottom: 5px;
-    overflow: hidden;
+    .inline-control {
+      white-space: nowrap;
+      input,select {
+        display: inline-block;
+      }
+      input[type="text"] {
+        width: 370px;
+      }
+      select {
+        width: 140px;
+      }
+      div[mass-autocomplete] {
+        display: inline-block;
+        .ac-container {
+          z-index: 1;
+        }
+      }
+    }
   }
+
+
 
   .form-bottom {
     div {
