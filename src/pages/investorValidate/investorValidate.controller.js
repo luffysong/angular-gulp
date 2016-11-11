@@ -124,7 +124,7 @@ export default class investorValidateController {
       //delete data.phone;
       this.userData = data;
 
-      //this.getState();
+      this.getState();
     }).catch(err => {
       if(err.code === 403) {
         this.$scope.root.user.ensureLogin();

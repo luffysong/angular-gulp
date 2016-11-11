@@ -49,6 +49,10 @@ export default class SearchIndexController {
     e.stopPropagation();
   }
 
+  showMore() {
+    this.showMoreTag = true;
+  }
+
   login() {
     krData.utls.login();
   }

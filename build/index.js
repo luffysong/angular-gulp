@@ -28,6 +28,7 @@ const jsplugins = [
   '/local_lib/slick-carousel/slick/slick.min.js',
   '/local_lib/slick-carousel/slick/slick.css',
   '/local_lib/angular-slick/dist/slick.js',
+  '/bower/checklist-model/checklist-model.js'
 ];
 
 const proxyConfig = {

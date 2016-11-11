@@ -27,11 +27,11 @@
          <div class="label-container">
            <div class="item-container">
              <div class="label-item" ng-click="searchVm.columnOptions.closeMe()"
-                  ng-repeat="item in searchVm.columnOptions.tags" ng-if="searchVm.columnOptions.tags.length">{{item}}</div>
+                  ng-repeat="item in searchVm.columnOptions.tags" ng-if="searchVm.columnOptions.tags.length" ng-class="{'show-tag' : searchVm.columnOptions.tags.length > 9 && searchVm.showMoreTag}">{{item}}</div>
 
              <div class="label-item" ng-click="searchVm.columnOptions.closeMe()" ng-if="!searchVm.columnOptions.tags.length">不限</div>
            </div>
-
+           <div class="toggle-btn icon-filter-open" ng-if="searchVm.columnOptions.tags.length > 9 && !searchVm.showMoreTag" ng-click="searchVm.showMore()"></div>
 
            <span class="icon-open-nav" ng-click="searchVm.columnOptions.closeMe()"></span>
         </div>
