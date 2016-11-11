@@ -13,13 +13,6 @@ export default class investorValidateController {
   projectService = new ProjectService();
 
   init() {
-    this.companyIndustry = this.$scope.root.COMPANY_INDUSTRY_META;
-
-    this.followPhase = this.$scope.root.COMPANY_SEARCH_PHASE_META;
-
-    this.investorRole = this.$scope.root.INVESTOR_ROLE_META;
-
-    this.step = 1;
 
     this.baseInfo = {
       singleInvestUnit: 'CNY'
@@ -27,15 +20,28 @@ export default class investorValidateController {
 
     this.auditStatus = 'auditing';
 
+    this.companyIndustry = this.$scope.root.COMPANY_INDUSTRY_META;
+
+    this.followPhase = this.$scope.root.COMPANY_SEARCH_PHASE_META;
+
+    this.investorRole = this.$scope.root.INVESTOR_ROLE_META;
+
+    this.step = 1;
+    //this.getSuggestInvestor();
+
+
+
     this.autocompleteOptions = {
       suggest: this.suggest.bind(this),
       on_select: this.onSelect.bind(this),
       auto_select_first: true,
       full_match: (item, word) => {
-        console.log(item);
-        console.log(word);
-        item.value.toLowerCase() === word.toLowerCase()
+        if(item && item.value) {
+          return item.value.toLowerCase() === word.toLowerCase();
+        }
       }
+
+
     };
 
     this.getUser();
@@ -106,17 +112,35 @@ export default class investorValidateController {
   selectItem(index) {
     this.suggestInvestor.forEach((item,i) => {
       if(index+'' === i+'') {
-        item.active = true;
+        item.active = !item.active;
       }else {
         item.active = false;
       }
-    })
-    this.baseInfo.selectedIndustry = this.suggestInvestor[index].industryEnumList;
-    this.baseInfo.selectedPhase = this.suggestInvestor[index].phaseEnumList;
-    this.baseInfo.relatedId = this.suggestInvestor[index].id;
-    this.baseInfo.relatedEntityName = this.suggestInvestor[index].orgName;
-    this.baseInfo.relatedName = this.suggestInvestor[index].name;
-    this.baseInfo.relatedPosition = this.suggestInvestor[index].position;
+    });
+    this.getField();
+  }
+
+  getField() {
+    this.initField();
+    this.suggestInvestor.forEach((item,index) => {
+      if(item.active) {
+        this.baseInfo.selectedIndustry = this.suggestInvestor[index].industryEnumList;
+        this.baseInfo.selectedPhase = this.suggestInvestor[index].phaseEnumList;
+        this.baseInfo.relatedId = this.suggestInvestor[index].id;
+        this.baseInfo.relatedEntityName = this.suggestInvestor[index].orgName;
+        this.baseInfo.relatedName = this.suggestInvestor[index].name;
+        this.baseInfo.relatedPosition = this.suggestInvestor[index].position;
+      }
+    });
+  }
+
+  initField() {
+    this.baseInfo.selectedIndustry = [];
+    this.baseInfo.selectedPhase = [];
+    this.baseInfo.relatedId = '';
+    this.baseInfo.relatedEntityName = '';
+    this.baseInfo.relatedName = '';
+    this.baseInfo.relatedPosition = '';
   }
 
   getUser() {
@@ -125,6 +149,7 @@ export default class investorValidateController {
       this.userData = data;
 
       this.getState();
+
     }).catch(err => {
       if(err.code === 403) {
         this.$scope.root.user.ensureLogin();
