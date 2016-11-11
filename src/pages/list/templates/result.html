@@ -33,7 +33,8 @@
         <td>{{::obj.industryStr}}</td>
         <td>{{::obj.phase | companyFinancePhase}}</td>
         <td class="org-col">
-          <section ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
+          <span ng-if="!obj.investParts.length">未披露</span>
+          <section ng-if="obj.investParts.length" ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
         </td>
         <td>{{::obj.cityStr}}</td>
         <td class="date-time">{{::obj.publishDate | dateFilter}}</td>

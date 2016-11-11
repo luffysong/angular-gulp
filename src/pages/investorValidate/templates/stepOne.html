@@ -63,9 +63,8 @@
         <label for="">职位</label>
         <span class="error-tip" id="messagePosition"></span>
         <input  ng-model="vm.baseInfo.position"
-                validator="required,minlength=5" message-id="messagePosition"
-                minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
-                maxlength="30"
+                validator="required" message-id="messagePosition"
+                maxlength="10"
                 placeholder="输入职位"
                 type="text" name="position" class="form-control" />
       </div>

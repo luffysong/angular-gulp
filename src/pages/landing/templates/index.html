@@ -42,7 +42,7 @@
     </div>
     <div class="filter-col" ng-show="parentVm.activeTab === 'user'">
       <div class="col-default">
-        标签
+        关注行业
       </div>
       <div class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
         {{parentVm.filterData.label ? parentVm.filterData.label : '不限'}}
@@ -77,7 +77,7 @@
   </div>
 
 
-  <div class="spread-btn" ng-click="parentVm.open.filter = !parentVm.open.filter"></div>
+  <div class="spread-btn icon-filter-open" ng-click="parentVm.open.filter = !parentVm.open.filter" ng-class="{'icon-filter-close': parentVm.open.filter}"></div>
   <div ng-if="parentVm.activeTab === 'company'">
     <div class="filter-list" ng-if="parentVm.open.filter">
       <div class="filter-col">
@@ -199,7 +199,7 @@
     <div class="filter-list" ng-if="parentVm.open.filter">
       <div class="filter-col">
         <div class="col-type">
-          标签
+          关注行业
         </div>
         <div class="col-content">
           <div class="col-list-container">
