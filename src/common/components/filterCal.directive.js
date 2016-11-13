@@ -13,7 +13,7 @@ function filterCalDirective($timeout) {
           }else {
             element.parents('.filter-col').removeClass('overflow');
           }
-        });
+        },500);
       }
 
       if(scope.data) {
