@@ -1,3 +1,4 @@
+@import "../../../common/styles/var.less";
 .invest-case {
   h4 {
     a {
@@ -145,6 +146,34 @@
   }
   select {
     max-width: 140px;
+  }
+  form {
+    max-width: 520px;
+  }
+  .mt16 {
+    margin-bottom: 16px;
+  }
+  .casePhase-group, .investDate-group {
+    margin-bottom: 16px;
+  }
+  .casePhase-group, .investDate-group {
+    select {
+      margin-bottom: 4px;
+    }
+   .error-tip {
+      float: none;
+    }
+  }
+  .error-color {
+    color: @error-color;
+  }
+  .investEntity-group {
+    input[type="text"] {
+      margin-bottom: 0px;
+    }
+    .invest-com {
+      margin-bottom: 16px;
+    }
   }
   .invest-entity {
     margin-top: 15px;

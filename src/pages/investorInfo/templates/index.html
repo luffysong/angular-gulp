@@ -29,22 +29,20 @@
           <a ngf-select="investorEditVM.uploadAvatar($files)"
             ngf-accept="'image/*'"
             class="btn-upload-logo" href="javascript:;"></a>
-          <p>请上传自⼰真实
-          <p>头像,⽅便创业者</p>
+          <p ng-class="{'error-color': investorEditVM.baseData.form.avatar.$invalid === true}">请上传自⼰真实
+          <p ng-class="{'error-color': investorEditVM.baseData.form.avatar.$invalid === true}">头像,⽅便创业者</p>
         </div>
         <div>
           <form name="investorEditVM.baseData.form">
-
+            <input type="hidden"
+            name="avatar" ng-model="investorEditVM.baseData.avatar" >
             <div class="form-group">
-              <label for=""><span class="required">*</span> 项目名称</label>
-              <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
-                <input  ng-model="investorEditVM.baseData.name"
-                  word="investorEditVM.baseData.orgName"
-                  placeholder="请填写真实姓名"
-                  mass-autocomplete-item="investorEditVM.suggestComOptions"
-                  maxlength="50"
-                  type="text" name="cname" class="form-control" />
-              </div>
+              <label for=""><span class="required">*</span>姓名</label>
+              <input  ng-model="investorEditVM.baseData.name"
+                placeholder="请填写真实姓名"
+                validator="required"
+                maxlength="30"
+                type="text" name="investorName" class="form-control" />
             </div>
 
             <div class="form-group">
@@ -54,9 +52,9 @@
                 class="error-tip"></span>
               <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
                 <input  ng-model="investorEditVM.baseData.orgName"
-                  word="investorEditVM.baseData.orgName"
+                  validator="required"
                   placeholder="请填写现任职机构"
-                  mass-autocomplete-item="investorEditVM.suggestOrgOptions"
+                  mass-autocomplete-item="investorEditVM.baseOrgOptions"
                   maxlength="50"
                   type="text" name="orgName" class="form-control" />
               </div>
@@ -78,7 +76,7 @@
                 <input  ng-model="investorEditVM.baseData.cityText"
                   placeholder="请填写常在城市"
                   mass-autocomplete-item="investorEditVM.suggestCityOptions"
-                  validator="requiredCity" message-id="messageWebsite"
+                  validator="requiredList=investorEditVM.baseData.city" message-id="messageWebsite"
                   type="text" name="city" class="form-control" />
               </div>
                 <div>

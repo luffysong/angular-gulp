@@ -14,6 +14,7 @@ module.exports = {
   rules: {
     "no-debugger": 0,
     "new-cap": 0,
+    "no-underscore-dangle": 0,
     "babel/new-cap": 2,
     "no-param-reassign": 0,
     "prefer-rest-params": 1,

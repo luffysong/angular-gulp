@@ -67,7 +67,6 @@ angular.module('MassAutoComplete', [])
 					};
 
 					var _user_options = $scope.options() || {};
-                    var returnTrue = function () {return true;};
 					var user_options = {
             notFocus: _user_options.notFocus || false,
 						debounce_position: _user_options.debounce_position || 150,
@@ -77,7 +76,7 @@ angular.module('MassAutoComplete', [])
 						top: _user_options.top || 0,
 						left: _user_options.left || 0,
 						position: _user_options.position || "body",
-                        full_match: _user_options.full_match || returnTrue
+            full_match: _user_options.full_match || angular.noop,
 					};
 
 
@@ -210,9 +209,8 @@ angular.module('MassAutoComplete', [])
 										}].concat(suggestions);
    										$scope.show_autocomplete = true;
                       testContainerWidth();
-										if (current_options.auto_select_first &&
-                                            current_options.
-                                            full_match($scope.results[1], term))
+										if (current_options.auto_select_first && $scope.results[1] &&
+                      current_options.full_match($scope.results[1], term))
 											set_selection(1);
 									} else {
                     set_selection(-1);
@@ -263,7 +261,7 @@ angular.module('MassAutoComplete', [])
 							current_options.on_detach && current_options.on_detach(value);
               var selected_index = $scope.selected_index;
               //精确匹配的情况下 视为选中
-              if (selected_index &&
+              if (selected_index && $scope.results[selected_index] &&
                   current_options.full_match($scope.results[selected_index], value)&&
                   last_selected_value !== $scope.results[selected_index].obj.name) {
                   $scope.apply_selection($scope.selected_index);

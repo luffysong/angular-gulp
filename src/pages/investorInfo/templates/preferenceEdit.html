@@ -5,10 +5,10 @@
         <label for=""><span class="required">*</span> 关注标签</label>
         <span class="form-tip">同“我的关注”中标签管理，修改后将同步⾄“我的关注”中</span>
         <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
-          <input  ng-model="investorEditVM.preferData.cityText"
+          <input  ng-model="investorEditVM.preferData.labelText"
             placeholder="添加关注的标签"
-            mass-autocomplete-item="investorEditVM.suggestCityOptions"
-            validator="required=investEditVM.preferData.focusIndustry" message-id="messageWebsite"
+            mass-autocomplete-item="investorEditVM.suggestLabelOptions"
+            validator="requiredList=investorEditVM.preferData.focusIndustry" message-id="messageWebsite"
             type="text" name="city" class="form-control" />
         </div>
         <div>
@@ -24,15 +24,17 @@
       <div class="form-group preference-group">
         <label for=""><span class="required">*</span> 偏好轮次</label>
         <span id="messageFullName" class="error-tip"></span>
-        <select  ng-model="investorEditVM.preferData.preferPhaseText"
-          ng-options="item.value as item.desc for item in root.COMPANY_SEARCH_PHASE_META"
+        <select  ng-model="investorEditVM.preferData.preferPhaseItem"
+          validator="requiredList=investorEditVM.preferData.preferPhase"
+          ng-options="item as item.desc for item in root.COMPANY_SEARCH_PHASE_META"
+          ng-change="investorEditVM.selectPreferPhase()"
           name="preferencePhase" class="form-control" >
           <option value="">添加关注的轮次</option>
         </select>
         <div>
           <ul ng-if="investorEditVM.preferData.preferPhase.length" class="tags">
             <li  ng-repeat="item in investorEditVM.preferData.preferPhase">
-              {{item}}<span
+              {{item.desc}}<span
                 ng-click="investorEditVM.preferData.preferPhase.splice($index, 1)"
               >x</span></li>
           </ul>
@@ -46,7 +48,8 @@
             class="form-control money mr10" ng-model="investorEditVM.preferData.singleInvestMin"
             validator="required, number"
             placeholder="输入具体金额" /><span class="mr12">万</span><span class="to mr10">至</span
-            ><input kr-valid
+            ><input
+            validator="bigger"
             type="text" name="singleInvestMax"
             class="form-control money mr10"
             ng-model="investorEditVM.preferData.singleInvestMax"

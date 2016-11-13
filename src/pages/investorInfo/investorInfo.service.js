@@ -2,6 +2,7 @@ import krData from 'krData';
 
 const investorInfoApi = new krData.API('/investor/:id', ['investment',
   'updateBasic',
+  'updateIntro',
   'addInvestment',
   'add',
 ], {

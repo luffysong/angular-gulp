@@ -8,10 +8,10 @@ export default class investorInfoController {
   }
   investorInfoService = new InvestorInfoService();
   investorData = this.resolveData.investorData;
-  investorEditVM = new InvestorEditVM(this.investorData);
 
   init() {
-    const investorEditVM = new InvestorEditVM(this.investorData);
+    this.investorData.basic.id = this.$stateParams.id;
+    const investorEditVM = new InvestorEditVM(this.investorData, this.$scope);
     this.getInvestorInfo(this.$stateParams.id);
     this.getInvestmentInfo(this.$stateParams.id);
     this.$scope.investorEditVM = investorEditVM;
