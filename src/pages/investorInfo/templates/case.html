@@ -12,7 +12,7 @@
           <div class="case-brief">
             <img class="case-logo" src="{{case.logo}}">
             <div class="company-name">
-              <span>{{case.companyName}}</span>
+              <span class="bold">{{case.companyName}}</span>
               <span href="#" class="show" ng-show="case.visible">显示</span>
               <span href="#" class="show" ng-show="!case.visible">不显示</span>
             </div>
@@ -25,7 +25,7 @@
               <div class="circular2"></div>
               <div class="line"></div>
             </div>
-            <span>{{phase.phase | companyFinancePhase}}</span>
+            <span class="bold">{{phase.phase | companyFinancePhase}}</span>
           </div>
 
           <div ng-show="case.entityVo.length > 2" >

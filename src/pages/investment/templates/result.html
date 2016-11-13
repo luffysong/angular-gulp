@@ -14,7 +14,7 @@
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
           <a target="_blank" ui-sref="project({id: obj.project.cid})" class="project-logo"
-            style="background-image: url({{obj.project.logo}})" ></a>
+            style="background-image: url({{obj.project.logo || '/images/default-logo.png'}})" ></a>
           <div class="project-info">
             <div class="project-name">
               <a target="_blank" ui-sref="project({id: obj.project.cid})" class="company-name" >
