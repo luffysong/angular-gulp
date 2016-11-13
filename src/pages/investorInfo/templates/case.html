@@ -1,6 +1,12 @@
 <div class="invest-case">
-  <h4>投资案例<a href="javascript:void(0)" ng-if="investorInfoVm.allInvestments.length">({{investorInfoVm.allInvestments.length}})</a></h4>
-  <div class="case-content">
+  <h4>投资案例<a href="javascript:void(0)"
+    ng-if="investorInfoVm.allInvestments.length">({{investorInfoVm.allInvestments.length}})</a>
+    <div ng-if="!investorEditVM.editCase"
+      ng-click="investorEditVM.enterCase()"
+      class="btn-edit">
+      <span>编辑</span><span class="icon-Edit"></span></div>
+  </h4>
+  <div ng-if="!investorEditVM.editCase" class="case-content">
     <div class="has-content" ng-if="investorInfoVm.industry.length || investorInfoVm.allInvestments.length">
       <div class="case-tags">
         <ul class="tags">
@@ -43,7 +49,7 @@
       <p>暂无数据</p>
     </div>
   </div>
-  <div ng-if="false" ng-include="'/pages/investorInfo/templates/caseEdit.html'">
+  <div ng-if="investorEditVM.editCase" ng-include="'/pages/investorInfo/templates/caseEdit.html'">
 
   </div>
 </div>

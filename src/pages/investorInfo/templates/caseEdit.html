@@ -1,112 +1,171 @@
 <div class="case-edit-wrapper">
-  <form>
+  <form  name="investorEditVM.caseData.form">
     <div class="form-group">
       <label for=""><span class="required">*</span> 项目名称</label>
       <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
-        <input  ng-model="investorEditVM.baseData.name"
-          word="investorEditVM.baseData.orgName"
-          placeholder="请填写真实姓名"
-          mass-autocomplete-item="investorEditVM.suggestComOptions"
+        <input  ng-model="investorEditVM.caseData.companyName"
+          placeholder="请填写投资项目简称"
+          mass-autocomplete-item="investorEditVM.caseComOptions"
           maxlength="50"
-          type="text" name="cname" class="form-control" />
+          validator="required"
+          type="text" name="companyName" class="form-control" />
       </div>
     </div>
 
-    <div class="form-group">
+    <div ng-if="!investorEditVM.caseData.selectCom" class="form-group">
       <label for=""><span class="required">*</span> 产品链接</label>
-
-      <span id="messageFullName"
+      <span id="productTypeMessage"
         class="error-tip"></span>
+      <select class="form-control mr10" ng-model="investorEditVM.caseData.companyType"
+      validator="required"
+      message-id="productTypeMessage"
+      ng-options="item.value as item.desc for item in root.PROJECT_TYPE_META"
+      name="productType">
+      </select >
+    </div>
 
-      <div class="inline-control">
-        <select class="form-control finance-date mr10" ng-model="vm.financeVM.financeDateYear"
-        validator="required"
-        message-id="editFinanceDateYear"
-        required-error-message="请选择融资时间"
-        ng-options="item for item in root.fromYear2000"
-        name="financeDateYear">
-          <option value="">年份</option>
-        </select
-        ><input  ng-model="investorEditVM.baseData.orgName"
-          word="investorEditVM.baseData.orgName"
-          placeholder="请填写现任职机构"
-          maxlength="50"
-          type="text" name="orgName" class="form-control" />
+    <div ng-if="investorEditVM.isWeb() || investorEditVM.isWebApp()" class="form-group">
+      <label for=""><span class="required">*</span> 公司官网</label>
+      <span id="messageWebsite" class="error-tip" ></span>
+      <input  ng-model="investorEditVM.caseData.website"
+        placeholder="请填写公司的官网，请以http(s)://开头"
+        ng-blur="investorEditVM.searchClaimList()"
+        validator="required,http" message-id="messageWebsite"
+        type="text" name="website" class="form-control" />
+    </div>
+
+    <div ng-if="investorEditVM.isApp()" class="form-group">
+      <label for="">公司官网</label>
+      <span id="messageWebsite" class="error-tip" ></span>
+      <input  ng-model="investorEditVM.caseData.website"
+        placeholder="请填写公司的官网，请以http(s)://开头"
+        ng-blur="investorEditVM.searchClaimList()"
+        kr-valid
+        validator="http" message-id="messageWebsite"
+        type="text" name="website" class="form-control" />
+    </div>
+
+    <div ng-if="investorEditVM.isWebApp() || investorEditVM.isApp()"  class="form-group">
+      <label for="">iOS下载地址</label>
+      <span ng-if="investorEditVM.caseData.form.ioslink.$invalid !== true" class="form-tip" >
+        iOS与Android下载链接至少填写一个</span>
+      <span id="messageIoslink" class="error-tip" ></span>
+      <input  ng-model="investorEditVM.caseData.iosLink"
+        validator="applink,http" message-id="messageIoslink"
+        ng-blur="investorEditVM.searchClaimList()"
+        applink-error-message="iOS与Android下载链接至少填写一个"
+        placeholder="请填写产品iOS下载地址"
+        type="text" name="ioslink" class="form-control" />
+    </div>
+    <div ng-if="investorEditVM.isWebApp() || investorEditVM.isApp()"  class="form-group">
+      <label for="">Android下载地址</label>
+      <span ng-if="investorEditVM.caseData.form.androidlink.$invalid !== true" class="form-tip" >
+        iOS与Android下载链接至少填写一个</span>
+      <span id="messageAndroidlink" class="error-tip" ></span>
+      <input  ng-model="investorEditVM.caseData.androidLink"
+        placeholder="请填写产品的Android下载地址"
+        ng-blur="investorEditVM.searchClaimList()"
+        validator="applink,http" message-id="messageAndroidlink"
+        applink-error-message="iOS与Android下载链接至少填写一个"
+        type="text" name="androidlink" class="form-control" />
+    </div>
+    <div ng-if="investorEditVM.isWeixin()" class="form-group">
+      <label for=""><span class="required">*</span>微信公众号</label>
+      <span ng-if="investorEditVM.caseData.form.weixin.$invalid === true" class="error-tip" >
+        微信号最小长度为6位</span>
+      <input  ng-model="investorEditVM.caseData.weixin"
+        placeholder="请填写微信公众号"
+        ng-blur="investorEditVM.searchClaimList()"
+        validator="required,minlength=6,maxlength=16"
+        maxlength="16"
+        type="text" name="weixin" class="form-control" />
+    </div>
+    <div ng-if="investorEditVM.isIdea()" class="form-group">
+      <label for=""><span class="required">*</span> 产品介绍</label>
+      <div class="textarea-control">
+        <textarea  ng-model="investorEditVM.caseData.intro"
+          placeholder="输入产品介绍"
+          maxlength="100"
+          validator="required"
+          message-id="none"
+          type="text" name="intro" class="form-control" ></textarea>
+        <div class="textarea-border"></div>
+        <span class="text-length">{{investorEditVM.caseData.intro.length || 0}}/100</span>
       </div>
     </div>
 
-    <div class="form-group preference-group">
+    <div class="form-group casePhase-group">
       <label for=""><span class="required">*</span> 投资轮次</label>
-
-      <span id="messageFullName"
-        class="error-tip"></span>
-        <select  ng-model="investorEditVM.baseData.orgName"
-          ng-options="item.value as item.desc for item in root.COMPANY_SEARCH_PHASE_META"
-          word="investorEditVM.baseData.orgName"
-          name="preferencePhase" class="form-control" >
-          <option value="">添加关注的轮次</option>
+        <select  ng-model="investorEditVM.caseData.phase"
+          ng-options="item.value as item.desc for item in root.FINANCE_PHASE_META"
+          message-id="casePhaseMessage"
+          required-error-message="请选择所投轮次"
+          validator="required"
+          name="casePhase" class="form-control" >
+          <option value="">选择轮次</option>
         </select>
-        <div>
-          <ul ng-if="investorEditVM.baseData.city.length" class="tags">
-            <li  ng-repeat="item in investorEditVM.baseData.city">
-              {{item.name}}<span
-                ng-click="investorEditVM.baseData.city.splice($index, 1)"
-              >x</span></li>
-          </ul>
-        </div>
+        <span class="error-tip" id="casePhaseMessage">
+        </span>
     </div>
 
-    <div class="form-group">
-      <label class="date-title"><span class="required">*</span> 投资时间</label>
+    <div class="form-group investDate-group">
+      <label ><span class="required">*</span> 投资时间</label>
       <div class="inline-control error-inline">
-        <select class="form-control finance-date mr10" ng-model="vm.financeVM.financeDateYear"
+        <select class="form-control  mr10" ng-model="investorEditVM.caseData.startYear"
         validator="required"
-        message-id="editFinanceDateYear"
+        message-id="caseYearMessage"
         required-error-message="请选择融资时间"
         ng-options="item for item in root.fromYear2000"
-        name="financeDateYear">
+        name="caseStartYear">
           <option value="">年份</option>
-        </select><select class="form-control finance-date" ng-model="vm.financeVM.financeDateMonth"
+        </select><select class="form-control finance-date" ng-model="investorEditVM.caseData.startMonth"
+        message-id="caseDateMessage"
+        no-validate-message="true"
         ng-options="item for item in root.getAllMonths" validator="required"
-        name="financeDateMonth">
+        name="caseStartMonth">
           <option value="">月份</option>
         </select>
         <div>
-        <span class="error-tip" id="editFinanceDateYear"></span>
+        <span class="error-tip" id="caseYearMessage"></span>
         </div>
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group investEntity-group">
       <label><span class="required">*</span> 表投资主体</label>
       <div class="invest-entity">
         <div >
-          <input type="radio" name="investEntity" />
-          <span>个人</span>
+          <input type="radio" required ng-model="investorEditVM.caseData.entityType"
+          value="INDIVIDUAL" name="investEntity" />
+          <span ng-class="{'error-color': investorEditVM.caseData.form.investEntity.$invalid === true}">个人</span>
         </div>
         <div class="inline-control">
-          <input type="radio"  name="investEntity" />
-          <span>机构</span>
-          <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
-            <input  ng-model="investorEditVM.baseData.name"
-              word="investorEditVM.baseData.orgName"
-              placeholder="请填写真实姓名"
-              mass-autocomplete-item="investorEditVM.suggestComOptions"
+          <input required type="radio" ng-model="investorEditVM.caseData.entityType"
+          value="ORGANIZATION" name="investEntity" />
+          <span ng-class="{'error-color': investorEditVM.caseData.form.investEntity.$invalid === true}">机构</span>
+          <div  ng-if="investorEditVM.caseData.entityType === 'ORGANIZATION'"
+            mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
+            <input  ng-model="investorEditVM.caseData.entityName"
+              placeholder="请填写代表投资机构名称"
+              validator="required"
+              mass-autocomplete-item="investorEditVM.caseEntityOrgOptions"
               maxlength="50"
-              type="text" name="cname" class="form-control" />
+              type="text" name="delegateOrgName" class="form-control" />
           </div>
         </div>
 
-        <div class="inline-control">
-          <input type="radio" name="investEntity" />
-          <span>公司</span>
-          <div mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
-            <input  ng-model="investorEditVM.baseData.name"
-              word="investorEditVM.baseData.orgName"
-              placeholder="请填写真实姓名"
-              mass-autocomplete-item="investorEditVM.suggestComOptions"
+        <div class="inline-control invest-com">
+          <input required type="radio" ng-model="investorEditVM.caseData.entityType"
+          value="COMPANY" name="investEntity" />
+          <span ng-class="{'error-color': investorEditVM.caseData.form.investEntity.$invalid === true}">公司</span>
+          <div ng-if="investorEditVM.caseData.entityType === 'COMPANY'"
+            mass-autocomplete="{left:0.1, top: 40,debounce_blur:300,minWidth:'100%', position: 'parent'}">
+            <input  ng-model="investorEditVM.caseData.entityName"
+              placeholder="请填写代表投资公司名称"
+              mass-autocomplete-item="investorEditVM.caseEntityComOptions"
               maxlength="50"
-              type="text" name="cname" class="form-control" />
+              validator="required"
+              type="text" name="delegateComName" class="form-control mt16" />
           </div>
         </div>
       </div>
@@ -118,8 +177,8 @@
     <p class="splitter"> </p>
     <p class="tip-text">注意：提交融资事件会提交审核，审核期间不可对此事件做任何的更改，通过后对所有用户公开</p>
     <div>
-      <a class="save" ng-click="vm.financeVM.update()" href="javascript:void(0)">保存</a>
-      <a class="cancel" ng-click="vm.financeVM.cancel()" href="javascript:void(0)">取消</a>
+      <a class="save" ng-click="investorEditVM.saveCase()" href="javascript:void(0)">保存</a>
+      <a class="cancel" ng-click="investorEditVM.cancelCase()" href="javascript:void(0)">取消</a>
     </div>
   </div>
 </div>
