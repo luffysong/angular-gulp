@@ -3,7 +3,7 @@
     <section  class="base-info-wrapper">
       <div ng-if="!investorEditVM.editBase" class="base-info-content">
         <div>
-          <img ng-src="{{investorInfoVm.basic.avatar}}" class="logo" alt="">
+          <img ng-src="{{investorInfoVm.basic.avatar || '/images/investor-logo.png'}}" class="logo" alt="">
         </div>
         <div>
           <h1>{{investorInfoVm.basic.name}}

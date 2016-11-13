@@ -1,7 +1,10 @@
 <div class="invest-resume">
   <h4>个人履历</h4>
-  <div class="resume-content">
+  <div class="resume-content" ng-if="investorInfoVm.basic.intro !== ''">
     <span class="re-info" text-overflow text="investorInfoVm.basic.intro"></span>
+  </div>
+  <div class="no-data" ng-if="investorInfoVm.basic.intro == ''">
+    <p>暂无数据</p>
   </div>
   <div ng-if="false" ng-include="'/pages/investorInfo/templates/resumeEdit.html'"></div>
 </div>

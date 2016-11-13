@@ -187,7 +187,13 @@ export default class OrgController {
     this.renderChart();
   }
 
+  // init() {
+  //   this.init();
+  // }
+  // orgData = this.resolveData.orgData;
+  // console.log(orgData);
   init() {
+    console.log(this.orgData);
     if (this.orgData) {
       this.baseInfoVM = new BaseInfoVM(this.orgData);
       this.memberVM = new MemberVM(this.orgData);

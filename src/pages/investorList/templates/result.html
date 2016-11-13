@@ -1,0 +1,56 @@
+<div class="investorList-result-container" >
+  <div class="result-tip">
+    共<b>{{vm.listData.totalCount}}</b>个结果
+  </div>
+  <div class="result-content">
+    <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading || vm.noMore'
+      infinite-scroll-distance='0'>
+    <!-- <table > -->
+      <tr>
+        <td width="420">投资人</td>
+        <td>关注领域</td>
+        <td>偏好轮次</td>
+        <td>投资总数</td>
+        <td>最近投资</td>
+        <td>所在地</td>
+      </tr>
+      <tr ng-repeat="obj in vm.listData.data track by $index">
+        <td>
+          <a target="_blank" ui-sref="investor({id: obj.id})" class="investor-logo"
+            style="background-image: url({{obj.logo || '/images/default-logo.png'}})" ></a>
+          <div class="investor-info">
+            <div class="investor-name">
+              <span class="inv-name">{{obj.name}}</span>
+            </div>
+            <div class="investor-intro">
+              {{obj.orgName}} <span class="split">|</span> {{obj.position}}
+            </div>
+          </div>
+        </td>
+        <td class="org-col">
+          <section ng-repeat="item in obj.industry | limitTo:3 track by $index"ng-bind="item"></section>
+        </td>
+        <td class="org-col">
+          <section ng-repeat="item in obj.phase | limitTo:3 track by $index"ng-bind="item"></section>
+        </td>
+        <td>
+          {{obj.investCnt}}
+        </td>
+        <td class="org-col">
+          <p ng-repeat="item in obj.investCaseList | limitTo:3 track by $index" >
+            <a  target="_blank" ui-sref="project({id: item.id})">{{item.name}}</a>
+          </p>
+        </td>
+        <td class="org-col">
+          <section ng-repeat="item in obj.city | limitTo:3 track by $index"ng-bind="item"></section>
+        </td>
+      </tr>
+    </table>
+    <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">
+      正在加载更多...
+    </div>
+    <div class="load-more"  ng-if="vm.loadEnd && !vm.needAuthorizeInvestorList() && !vm.needLogin">
+      已无更多数据
+    </div>
+  </div>
+</div>

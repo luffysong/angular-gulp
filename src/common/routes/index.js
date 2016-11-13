@@ -7,6 +7,7 @@ import { listView, list } from './list.route';
 import { organizationView, organization } from './organization.route';
 import { investmentView, investment } from './investment.route';
 import { investorInfoView } from './investorInfo.route';
+import { investorListView, investorList } from './investorList.route';
 import { labelView, label } from './label.route';
 import { landingView, landing } from './landing.route';
 import { followView, follow } from './follow.route';
@@ -51,6 +52,9 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
 
   /*投资人详情页*/
   $stateProvider.state('investorInfo', investorInfoView);
+  /*投资人筛选页*/
+  $stateProvider.state('investorList', investorListView);
+  $stateProvider.state('investorList.result', investorList);
 }
 
 function stateChangeError($rootScope, $log) {
