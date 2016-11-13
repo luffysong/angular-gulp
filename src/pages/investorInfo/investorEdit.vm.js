@@ -345,6 +345,7 @@ export default class InvestorEditVM {
         }
         delete basicData.form;
         delete basicData.selectOrg;
+        delete basicData.cityText;
         return investorInfoService.api.updateBasic(null, basicData);
       })
       .then(() => {

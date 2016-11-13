@@ -16,6 +16,18 @@ const investorInfoView = {
   },
 };
 
+const investorInfoEdit = {
+  url: '/edit',
+  parent: investorInfoView,
+  views: {
+    NULL: {
+      template: '',
+      controlrAs: 'editProjectVM',
+      controller: 'EditInvestorController',
+    },
+  },
+};
 export {
   investorInfoView,
+  investorInfoEdit,
 };
