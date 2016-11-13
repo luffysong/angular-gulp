@@ -327,7 +327,7 @@ export default class InvestorEditVM {
     this.editBase = true;
     this.baseData = {};
     krData.utls.mapProps(['name', 'avatar', 'position', 'orgName', 'city', 'orgId'],
-    this.copyData.basic, this.baseData);
+    angular.copy(this.copyData.basic), this.baseData);
     this.baseData.city = this.baseData.city || [];
   }
 
@@ -350,6 +350,7 @@ export default class InvestorEditVM {
       })
       .then(() => {
         this.success();
+        this.editBase = false;
       })
       .catch((err) => this.fail(err));
   }
@@ -379,6 +380,7 @@ export default class InvestorEditVM {
       })
       .then(() => {
         this.success();
+        this.editPrefer = false;
       })
       .catch((err) => this.fail(err));
   }
@@ -403,6 +405,7 @@ export default class InvestorEditVM {
       })
       .then(() => {
         this.success();
+        this.editResume = false;
       })
       .catch((err) => this.fail(err));
   }
