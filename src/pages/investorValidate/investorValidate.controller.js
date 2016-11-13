@@ -88,7 +88,7 @@ export default class investorValidateController {
   setBiggerValidator() {
     this.$validation.setExpression({
       bigger: (number) => {
-        if (angular.isUndefined(number) || number === '') {
+        if (angular.isUndefined(number) || number === '' || !this.baseInfo.singleInvestMin) {
           return true;
         }
         number = parseFloat(number);
@@ -98,7 +98,9 @@ export default class investorValidateController {
         return false;
       },
     }).setDefaultMsg({
-      bigger: {},
+      bigger: {
+        error: '最大投资金额必须大于最小投资金额'
+      },
     });
   }
 

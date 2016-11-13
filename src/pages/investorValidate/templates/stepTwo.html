@@ -1,8 +1,8 @@
 <div  class="finance-apply-wrapper next-step-wrapper">
-  <section class="next-tip">
+  <section class="next-tip" ng-if="vm.suggestInvestor.length">
     根据您填写的信息，系统智能判断您为<span class="famous-investor">知名投资人</span>，已获取了您的公开信息，请选择并确认与您匹配的信息：
   </section>
-  <div class="famous-investor-container">
+  <div class="famous-investor-container" ng-if="vm.suggestInvestor.length">
     <span class="left-arrow icon-left-arrow" ng-if="vm.suggestInvestor.length >= 3" ng-hide="vm.currentIndex+'' === '0'"></span>
     <span class="right-arrow icon-right-arrow" ng-if="vm.suggestInvestor.length >= 3" ng-hide="vm.currentIndex >= vm.suggestInvestor.length-2"></span>
     <div class="clear-fix" ng-if="vm.suggestInvestor.length < 3">
@@ -136,7 +136,7 @@
                  number-error-message="最大投资金额只能为纯数字"
                  bigger-error-message="最大投资金额必须大于最小投资金额"
                  message-id="singleInvestMin"
-                validator="required, number, bigger"
+                validator="number, bigger"
                 placeholder="输入具体金额" />
           <span>万</span>
           <select  ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
