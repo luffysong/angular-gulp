@@ -29,10 +29,13 @@
           </td>
           <td class='round' ng-bind="item.financePhase"></td>
           <td class='invest'>
-            <ul>
+            <ul ng-if="item.pastInvestor.length">
               <li ng-repeat="invest in item.pastInvestor | limitTo:3" ng-bind="invest | introFormat">
 
               </li>
+            </ul>
+            <ul ng-if="!item.pastInvestor.length">
+              <li>未披露</li>
             </ul>
           </td>
           <td class="related-info" ng-show="item.similarInfo.length">

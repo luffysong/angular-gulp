@@ -5,9 +5,8 @@
     <div class="industry">
       <p class="list">行业</p>
       <ul id="industry" ng-class="{'spread':vm.investedCaseVM.hasSpreaded.industry}">
-        <li ui-sref="investment.result({id: vm.orgData.basic.id})"
-          ng-repeat="item in vm.orgData.investment.industry">
-          <span class="label">{{item.name}}<span>({{item.count}})</span></span>
+        <li ng-repeat="item in vm.orgData.investment.industry">
+          <span class="label" ui-sref="investment.result({id: vm.orgData.basic.id,industry:item.value})">{{item.name}}<span>({{item.count}})</span></span>
         </li>
       </ul>
       <div ng-if="vm.orgData.investment.industry.length"
@@ -20,8 +19,8 @@
     <div class="phase">
       <p class="list">轮次</p>
       <ul id="phase" ng-class="{'spread':vm.investedCaseVM.hasSpreaded.phase}">
-        <li ui-sref="investment.result({id: vm.orgData.basic.id})" ng-repeat="item in vm.orgData.investment.phase">
-          <span class="label">{{item.name}}<span>({{item.count}})</span></span>
+        <li ng-repeat="item in vm.orgData.investment.phase">
+          <span ui-sref="investment.result({id: vm.orgData.basic.id,phase:item.value})" class="label">{{item.name}}<span>({{item.count}})</span></span>
         </li>
       </ul>
       <div kr-ele-clamp-checker="{container: '#phase'}" class="col-control">
@@ -44,13 +43,13 @@
           <td>
             <div>
               <div class="logo">
-                <a ui-sref="project({id: item.project.id})" target="_blank">
+                <a ui-sref="project({id: item.project.cid})" target="_blank">
                   <img ng-src="{{item.project.logo}}">
                 </a>
               </div>
               <div class="project">
                 <div class="company-name">
-                  <a ui-sref="project({id: item.project.id})" target="_blank">
+                  <a ui-sref="project({id: item.project.cid})" target="_blank">
                     {{item.project.companyName}}
                   </a>
                   <a ui-sref="list.result({industry: item.project.industryEnum})" target="_blank">
