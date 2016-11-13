@@ -4,13 +4,13 @@
     <div class="brief">
     <span class="org-brief" text-overflow text="investorInfoVm.org.brief"></span>
     </div>
-    <div class="industry">已投行业：
+    <div class="industry" ng-if="investorInfoVm.org.investedIndustry.length">已投行业：
       <span ng-repeat="industry in investorInfoVm.org.investedIndustry">{{industry}}</span>
     </div>
     <div class="project">
-      <span>已投项目：{{investorInfoVm.org.totalInvestedCom}}</span>
-      <span> | </span>
-      <span>入驻投资人：{{investorInfoVm.org.totalMember}}</span>
+      <span ng-if="investorInfoVm.org.totalInvestedCom">已投项目：{{investorInfoVm.org.totalInvestedCom}}</span>
+      <span ng-if="investorInfoVm.org.totalInvestedCom"> | </span>
+      <span ng-if="investorInfoVm.org.totalMember">入驻投资人：{{investorInfoVm.org.totalMember}}</span>
     </div>
   </div>
 </div>

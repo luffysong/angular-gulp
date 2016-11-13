@@ -17,6 +17,7 @@ export default class investorInfoController {
     this.$scope.investorEditVM = investorEditVM;
     this.moreBtn = 'open';
     this.more = false;
+    this.moreCase = false;
   }
 
   getInvestorInfo() {
@@ -28,7 +29,9 @@ export default class investorInfoController {
   getInvestmentInfo(id) {
     this.investorInfoService.getInvestment(id)
     .then(data => {
-      this.investment = data;
+      this.industry = data.industry;
+      this.allInvestments = data.voList;
+      this.investment = data.voList.slice(0,4);
     });
   }
 
@@ -39,6 +42,11 @@ export default class investorInfoController {
     } else if (state === 'open') {
       this.more = false;
     }
+  }
+
+  showMoreCase() {
+    this.moreCase = true;
+    this.investment = this.allInvestments;
   }
 
   // setNavigation() {
