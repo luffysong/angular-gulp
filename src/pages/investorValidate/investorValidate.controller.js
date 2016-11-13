@@ -268,6 +268,12 @@ export default class investorValidateController {
     },this.baseInfo);
     delete params.selectedPhase;
     delete params.selectedIndustry;
+    /*个人投资人过滤投资机构和职位*/
+    if(params.investorRoleEnum !== 'ORG_INVESTOR') {
+      delete params.orgName;
+      delete params.orgId;
+      delete params.position;
+    }
     console.warn(params);
     this.projectService.submitValidate(params).then(data => {
       console.log(data);

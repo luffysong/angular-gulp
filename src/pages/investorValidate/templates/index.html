@@ -23,7 +23,7 @@
 
     </div>
     <div ng-show="vm.step === 1 && vm.userData.investorType >= 100" ng-include="'/pages/investorValidate/templates/stepOne.html'"> </div>
-    <div ng-show="vm.step === 2 && vm.userData.investorType >= 100" ng-include="'/pages/investorValidate/templates/stepTwo.html'"> </div>
+    <div ng-if="vm.step === 2 && vm.userData.investorType >= 100" ng-include="'/pages/investorValidate/templates/stepTwo.html'"> </div>
     <div ng-show="vm.step === 3 || vm.userData.investorType < 100" ng-include="'/pages/investorValidate/templates/result.html'"> </div>
   </div>
 </section>

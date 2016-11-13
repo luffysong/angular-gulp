@@ -9,9 +9,9 @@
       <div class="investor-item" ng-repeat="item in vm.suggestInvestor" ng-click="vm.selectItem($index)" ng-class="{active: item.active}">
         <span class="select-tag icon-checked-tag"></span>
         <div class="user-top">
-          <img ng-src="{{item.logo || '/images/investor-logo.png'}}" class="user-logo" alt="">
+          <img ng-src="{{item.logo || '/images/investor-logo.png'}}" ui-sref="investorInfo({id:item.id})" ng-click="$event.stopPropagation();" class="user-logo" alt="">
           <div class="user-content">
-            <section class="user-name">
+            <section class="user-name" ui-sref="investorInfo({id:item.id})" ng-click="$event.stopPropagation();">
               {{item.name}}
             </section>
             <section class="user-work">
@@ -42,49 +42,48 @@
         </div>
       </div>
     </div>
-    <div ng-if="vm.suggestInvestor.length >= 3">
-      <slick infinite="true" slides-to-show="2" prev-arrow=".left-arrow" next-arrow=".right-arrow">
-        <div class="investor-container" ng-repeat="item in vm.suggestInvestor" >
-          <div class="investor-item" ng-click="vm.selectItem($index)" ng-class="{active: item.active}">
-            <span class="select-tag icon-checked-tag"></span>
-            <div class="user-top">
+    <slick infinite="true" slides-to-show="2" prev-arrow=".left-arrow" next-arrow=".right-arrow" ng-if="vm.suggestInvestor.length >= 3">
+      <div class="investor-container" ng-repeat="item in vm.suggestInvestor">
+        <div class="investor-item" ng-click="vm.selectItem($index)" ng-class="{active: item.active}">
+          <span class="select-tag icon-checked-tag"></span>
+          <div class="user-top">
+            <a href="" ui-sref="investorInfo({id:item.id})" target="_blank" ng-click="$event.stopPropagation();">
               <img ng-src="{{item.logo || '/images/investor-logo.png'}}" class="user-logo" alt="">
-              <div class="user-content">
-                <section class="user-name">
-                  {{item.name}}
-                </section>
-                <section class="user-work">
-                  {{item.orgName}} | {{item.position}}
-                </section>
-                <section class="follow-industry">
-                  近期关注:
-                  <span ng-repeat="obj in item.industryEnumList">
-                <span>{{obj | industry}}</span>
-                <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
-              </span>
-                </section>
-                <section class="follow-industry">
-                  偏好轮次:
-                  <span ng-repeat="obj in item.phaseEnumList">
-                <span>{{obj | companySearchPhase}}</span>
-                <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
-              </span>
-                </section>
-              </div>
-            </div>
-            <div class="user-bottom">
-              最近投资：
-              <span ng-repeat="obj in item.investCaseList">
-                <span>{{obj.name}}</span>
-                <span ng-if="$index !== item.industryEnumList.length - 1">、</span>
-              </span>
+            </a>
+            <div class="user-content">
+              <a href="" class="user-name" ui-sref="investorInfo({id:item.id})" target="_blank" ng-click="$event.stopPropagation();">
+                {{item.name}}
+              </a>
+              <section class="user-work">
+                {{item.orgName}} | {{item.position}}
+              </section>
+              <section class="follow-industry">
+                近期关注:
+                <span ng-repeat="obj in item.industryEnumList">
+              <span>{{obj | industry}}</span>
+              <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
+            </span>
+              </section>
+              <section class="follow-industry">
+                偏好轮次:
+                <span ng-repeat="obj in item.phaseEnumList">
+              <span>{{obj | companySearchPhase}}</span>
+              <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
+            </span>
+              </section>
             </div>
           </div>
-          <div class="selected-tip" ng-show="item.active">您已选择该投资人身份!</div>
+          <div class="user-bottom">
+            最近投资：
+            <span ng-repeat="obj in item.investCaseList">
+              <span>{{obj.name}}</span>
+              <span ng-if="$index !== item.industryEnumList.length - 1">、</span>
+            </span>
+          </div>
         </div>
-
-      </slick>
-    </div>
+        <div class="selected-tip" ng-show="item.active">您已选择该投资人身份!</div>
+      </div>
+    </slick>
   </div>
   <div class="investor-validate-form">
     <form name='vm.financeInfo.form'>
