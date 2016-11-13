@@ -119,8 +119,8 @@ export function validateBP(file) {
   };
 }
 
-export function validateImage(file) {
-  const MAX_SIZE = 2 * 1024 * 1024;
+export function validateImage(file, option) {
+  const MAX_SIZE = option && option.maxSize ? option.maxSize * 1024 * 1024 : 2 * 1024 * 1024;
   const suffixReg = /\.gif|\.png|\.jpg|\.jpeg$/i;
   if (!suffixReg.test(file.name)) {
     return {
@@ -130,10 +130,11 @@ export function validateImage(file) {
     };
   }
   if (file.size > MAX_SIZE) {
+    var msg = option && option.maxSize ? '图片文件不能超过'+option.maxSize+'M' : '图片文件不能超过2M';
     return {
       valid: false,
       code: FAILED,
-      msg: '图片文件不能超过2M',
+      msg: msg,
     };
   }
   return {
@@ -143,7 +144,7 @@ export function validateImage(file) {
 }
 
 export function uploadImage(image, options = {}) {
-  const validateObj = validateImage(image);
+  const validateObj = validateImage(image,options);
   if (validateObj.code === FAILED) {
     return getService('$q').reject(validateObj);
   }

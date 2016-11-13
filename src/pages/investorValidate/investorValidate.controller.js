@@ -27,8 +27,9 @@ export default class investorValidateController {
     this.investorRole = this.$scope.root.INVESTOR_ROLE_META;
 
     this.step = 1;
-    //this.getSuggestInvestor();
 
+    this.currentIndex = 0;
+    //this.getSuggestInvestor();
 
 
     this.autocompleteOptions = {
@@ -295,7 +296,9 @@ export default class investorValidateController {
         krData.Alert.alert(validObj.msg);
         return;
       }*/
-      krData.utls.uploadImage($files[0])
+      krData.utls.uploadImage($files[0],{
+        maxSize: '5'
+      })
         .then(data => {
           console.warn(data);
           this.baseInfo.businessCard = data.src;
