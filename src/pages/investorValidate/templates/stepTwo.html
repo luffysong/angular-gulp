@@ -15,7 +15,7 @@
               {{item.name}}
             </section>
             <section class="user-work">
-              {{item.orgName}} | {{item.position}}
+              {{item.orgName}} <span ng-if="item.orgName">|</span> {{item.position}}
             </section>
             <section class="follow-industry">
               近期关注:
@@ -55,7 +55,7 @@
                 {{item.name}}
               </a>
               <section class="user-work">
-                {{item.orgName}} | {{item.position}}
+                {{item.orgName}} <span ng-if="item.orgName">|</span> {{item.position}}
               </section>
               <section class="follow-industry">
                 近期关注:
@@ -198,10 +198,6 @@
 
     <a class="prev" ng-click="vm.prev()" href="javascript:;">上一步</a>
     <a class="save next active" href="javascript:;" ng-click='vm.submitValidate()'>提交认证</a>
-  </div>
-  <div class="form-bottom">
-    <p class="splitter"> </p>
-    <p class="tip-text">注意：提交融资申请内容均需审核，审核期间不可重复提交，5个工作日内反馈结果</p>
   </div>
 </div>
 
