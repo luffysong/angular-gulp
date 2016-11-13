@@ -83,6 +83,8 @@ export default {
     investorInfo: [
       '/pages/investorInfo/index.js',
       ...PROJECT_ORG,
+    ],investorList: [
+      '/pages/investorList/index.js',
     ],
   },
 };
