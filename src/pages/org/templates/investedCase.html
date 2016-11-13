@@ -44,7 +44,7 @@
             <div>
               <div class="logo">
                 <a ui-sref="project({id: item.project.cid})" target="_blank">
-                  <img ng-src="{{item.project.logo}}">
+                  <img ng-src="{{item.project.logo || '/images/default-logo.png'}}">
                 </a>
               </div>
               <div class="project">
@@ -52,7 +52,7 @@
                   <a ui-sref="project({id: item.project.cid})" target="_blank">
                     {{item.project.companyName}}
                   </a>
-                  <a ui-sref="list.result({industry: item.project.industryEnum})" target="_blank">
+                  <a class="hover" ui-sref="list.result({industry: item.project.industryEnum})" target="_blank">
                     {{item.project.industry}}
                   </a>
                 </div>

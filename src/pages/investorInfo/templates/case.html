@@ -35,8 +35,10 @@
           </div>
 
           <div ng-show="case.entityVo.length > 2" >
-            <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'open'" ng-click="investorInfoVm.moreShow('close')">展开</a>
-            <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'close'" ng-click="investorInfoVm.moreShow('open')">收起</a>
+            <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'open'"
+              ng-click="investorInfoVm.moreShow('close')">展开</a>
+            <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'close'"
+              ng-click="investorInfoVm.moreShow('open')">收起</a>
           </div>
         </div>
         <div class="show-more" ng-hide="investorInfoVm.allInvestments.length <= 4  || investorInfoVm.moreCase"

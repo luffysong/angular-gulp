@@ -22,8 +22,10 @@
     </ul>
     <ul class="company-info">
       <li ng-if="vm.projectData.baseInfo.scale">公司规模：{{::vm.projectData.baseInfo.scale}}</li>
-      <li ng-if="vm.projectData.baseInfo.operationStatusEnum">运营状态：{{vm.projectData.baseInfo.operationStatusEnum | operationStatus}}</li>
-      <li class="more underline" ng-if="vm.projectData.baseInfo.businessInfoUrl"><a ng-href="{{vm.projectData.baseInfo.businessInfoUrl}}" target="_blank">查看更多工商信息</a></li>
+      <li ng-if="vm.projectData.baseInfo.operationStatusEnum">
+        运营状态：{{vm.projectData.baseInfo.operationStatusEnum | operationStatus}}</li>
+      <li class="more underline" ng-if="vm.projectData.baseInfo.businessInfoUrl">
+        <a ng-href="{{vm.projectData.baseInfo.businessInfoUrl}}" target="_blank">查看更多工商信息</a></li>
     </ul>
   </div>
 </div>
