@@ -75,7 +75,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
         return value ? value.length >= param : true;
       },
       phoneExp: value => {
-        return /\d{11}/.test(value);
+        return /^1[34578]\d{9}$/.test(value);
       }
     }).setDefaultMsg({
       notEqual: {},
