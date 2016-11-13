@@ -20,14 +20,14 @@
             <section class="follow-industry">
               近期关注:
               <span ng-repeat="obj in item.industryEnumList">
-                <span>{{obj}}</span>
+                <span>{{obj | industry}}</span>
                 <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
               </span>
             </section>
             <section class="follow-industry">
               偏好轮次:
               <span ng-repeat="obj in item.phaseEnumList">
-                <span>{{obj}}</span>
+                <span>{{obj | companySearchPhase}}</span>
                 <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
               </span>
             </section>
