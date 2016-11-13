@@ -71,7 +71,7 @@
             <div ng-repeat="val in item.investments">
               <!-- 战略投资不做跳转 -->
               <a ng-class="::{'plan-invest': val.phaseEnum === 'INFORMAL'}"
-                ui-sref="list.result({pahse: val.phaseEnum})" target="_blank"><span>{{val.phase}}</span></a>
+                ui-sref="list.result({phase: val.phaseEnum})" target="_blank"><span>{{val.phase}}</span></a>
             </div>
           </td>
           <td>
