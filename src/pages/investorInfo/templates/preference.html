@@ -11,7 +11,7 @@
         <span ng-repeat="industry in investorInfoVm.investPreference.focusIndustry">{{industry}}</span>
       </div>
     </div>
-    <div class="phase m-top" ng-if="investorInfoVm.investPreference.preferPhase">
+    <div class="phase m-top" ng-if="investorInfoVm.investPreference.preferPhase.length">
       <div class="title">偏好轮次</div>
       <div class="list">
         <span ng-repeat="phase in investorInfoVm.investPreference.preferPhase">{{phase}}</span>
