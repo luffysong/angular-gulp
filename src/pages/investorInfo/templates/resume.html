@@ -7,7 +7,7 @@
   <div class="resume-content" ng-if="investorInfoVm.basic.intro !== '' && !investorEditVM.editResume">
     <span class="re-info" text-overflow text="investorInfoVm.basic.intro"></span>
   </div>
-  <div class="no-data" ng-if="investorInfoVm.basic.intro == ''">
+  <div class="no-data" ng-if="!investorInfoVm.basic.intro.length">
     <p>暂无数据</p>
   </div>
   <div ng-if="investorEditVM.editResume" ng-include="'/pages/investorInfo/templates/resumeEdit.html'"></div>
