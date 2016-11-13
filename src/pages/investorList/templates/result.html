@@ -16,11 +16,11 @@
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
-          <a target="_blank" ui-sref="investor({id: obj.id})" class="investor-logo"
+          <a target="_blank" ui-sref="investorInfo({id: obj.id})" class="investor-logo"
             style="background-image: url({{obj.logo || '/images/default-logo.png'}})" ></a>
           <div class="investor-info">
             <div class="investor-name">
-              <span class="inv-name">{{obj.name}}</span>
+              <a target="_blank" ui-sref="investorInfo({id: obj.id})" class="inv-name">{{obj.name}}</a>
             </div>
             <div class="investor-intro">
               {{obj.orgName}} <span class="split">|</span> {{obj.position}}
