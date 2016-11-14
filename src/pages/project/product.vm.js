@@ -286,7 +286,7 @@ export default class ProductVM extends krData.FormVM {
               return `<div class='tooltip-wrapper'>
                         <div class='my-tooltip'>
                           <div>
-                            ${this.key.slice(0, 4)}年${this.key.slice(4, 6)}月
+                            ${this.key.slice(0, 4)}年${this.key.slice(5, 7)}月
                           </div>
                           <div>
                             ${this.series.name.split('/')[0]}:${this.y}${this.series.name.split('/')[1]}

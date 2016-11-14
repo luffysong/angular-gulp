@@ -1,5 +1,5 @@
 <div class="invest-resume">
-  <h4>个人履历 <div ng-if="!investorEditVM.editResume"
+  <h4>个人履历 <div ng-if="!investorEditVM.editResume && investorInfoVm.isEditMode"
       ng-click="investorEditVM.enterResume()"
       class="btn-edit">
       <span>编辑</span><span class="icon-Edit"></span></div>
@@ -7,7 +7,7 @@
   <div class="resume-content" ng-if="investorInfoVm.basic.intro !== '' && !investorEditVM.editResume">
     <span class="re-info" text-overflow text="investorInfoVm.basic.intro"></span>
   </div>
-  <div class="no-data" ng-if="investorInfoVm.basic.intro == ''">
+  <div class="no-data" ng-if="!investorInfoVm.basic.intro.length">
     <p>暂无数据</p>
   </div>
   <div ng-if="investorEditVM.editResume" ng-include="'/pages/investorInfo/templates/resumeEdit.html'"></div>

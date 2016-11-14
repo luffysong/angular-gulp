@@ -273,6 +273,21 @@
         color: @text-color;
       }
     }
+    li:last-child {
+      float: right;
+      a {
+        .border1(@anchor-color);
+        color: @anchor-color;
+        .dlk();
+        padding: 3px 16px;
+        .rd(4px);
+        .font(12, 18);
+      }
+      a:hover{
+        background-color: #6BA2FC;
+        color: #fff;
+      }
+    }
     li>a.active {
       display: relative;
       color: #222C38;

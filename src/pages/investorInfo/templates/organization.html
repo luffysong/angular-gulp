@@ -13,4 +13,8 @@
       <span ng-if="investorInfoVm.org.totalMember">入驻投资人：</span><span class="bold">{{investorInfoVm.org.totalMember}}</span>
     </div>
   </div>
+  <div class="no-data" ng-if="!investorInfoVm.org">
+    <p>暂无数据</p>
+  </div>
+
 </div>

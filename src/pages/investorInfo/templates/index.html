@@ -19,7 +19,7 @@
             <span>{{investorInfoVm.basic.position}}</span>
           </p>
         </div>
-        <div ng-click="investorEditVM.enterBase()" class="btn-edit">
+        <div ng-if="investorInfoVm.isEditMode" ng-click="investorEditVM.enterBase()" class="btn-edit">
           <span>编辑个人信息</span><span class="icon-Edit"></span>
         </div>
       </div>
@@ -127,6 +127,10 @@
               <a kr-scroll-click href="#organization" du-smooth-scroll="" du-scrollspy="" offset="114" >
                 所属机构
               </a>
+            </li>
+            <li>
+              <a href="#" ui-sref="investorInfo.edit({id: investorInfoVm.basic.id})"
+                ng-show="!investorInfoVm.isEditMode && investorInfoVm.editable " >编辑</a>
             </li>
           </ul>
         </nav>

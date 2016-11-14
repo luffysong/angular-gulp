@@ -139,7 +139,7 @@
         .project{
           margin-left: 78px;
           .company-name{
-            span:first-child{
+            a:first-child{
               display: inline-block;
               .font(14,14);
               color: #222C38;
@@ -152,16 +152,24 @@
               white-space: nowrap;
               vertical-align: middle;
             }
-            span:nth-child(2){
+            a:nth-child(2){
               .font(12,18);
               color: @text-color;
               margin-left: 10px;
+              &:hover {
+                color: @anchor-color;
+              }
             }
           }
           .brief{
             .font(12,18);
             color: @text-color;
             margin-top: 6px;
+            span{
+              width: 300px;
+              max-height: 50px;
+              overflow: hidden;
+            }
           }
         }
       }

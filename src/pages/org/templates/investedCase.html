@@ -44,7 +44,7 @@
             <div>
               <div class="logo">
                 <a ui-sref="project({id: item.project.cid})" target="_blank">
-                  <img ng-src="{{item.project.logo}}">
+                  <img ng-src="{{item.project.logo || '/images/default-logo.png'}}">
                 </a>
               </div>
               <div class="project">
@@ -52,12 +52,12 @@
                   <a ui-sref="project({id: item.project.cid})" target="_blank">
                     {{item.project.companyName}}
                   </a>
-                  <a ui-sref="list.result({industry: item.project.industryEnum})" target="_blank">
+                  <a class="hover" ui-sref="list.result({industry: item.project.industryEnum})" target="_blank">
                     {{item.project.industry}}
                   </a>
                 </div>
                 <div class="brief">
-                  <span>{{item.project.brief}}</span>
+                  <span data-ellipsis ellipsis-separator data-ellipsis-symbol="..." data-overflow="true">{{item.project.brief}}</span>
                 </div>
               </div>
             </div>
@@ -71,7 +71,7 @@
             <div ng-repeat="val in item.investments">
               <!-- 战略投资不做跳转 -->
               <a ng-class="::{'plan-invest': val.phaseEnum === 'INFORMAL'}"
-                ui-sref="list.result({pahse: val.phaseEnum})" target="_blank"><span>{{val.phase}}</span></a>
+                ui-sref="list.result({phase: val.phaseEnum})" target="_blank"><span>{{val.phase}}</span></a>
             </div>
           </td>
           <td>

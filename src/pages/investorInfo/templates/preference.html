@@ -1,5 +1,5 @@
 <div class="invest-preference">
-  <h4>投资偏好 <div ng-if="!investorEditVM.editPrefer"
+  <h4>投资偏好 <div ng-if="!investorEditVM.editPrefer && investorInfoVm.isEditMode"
       ng-click="investorEditVM.enterPrefer()"
       class="btn-edit">
       <span>编辑</span><span class="icon-Edit"></span></div>
@@ -23,6 +23,9 @@
         <span>{{investorInfoVm.investPreference.singleInvestAmount}}</span>
       </div>
     </div>
+  </div>
+  <div class="no-data" ng-if="!investorInfoVm.investPreference.length">
+    <p>暂无数据</p>
   </div>
   <div ng-if="investorEditVM.editPrefer" ng-include="'/pages/investorInfo/templates/preferenceEdit.html'"></div>
 </div>

@@ -22,6 +22,7 @@ export default class investorInfoController {
 
   getInvestorInfo() {
     this.basic = this.investorData.basic;
+    this.editable = this.investorData.editable;
     this.investPreference = this.investorData.investPreference;
     this.org = this.investorData.org;
   }
@@ -31,7 +32,7 @@ export default class investorInfoController {
     .then(data => {
       this.industry = data.industry;
       this.allInvestments = data.voList;
-      this.investment = data.voList.slice(0,4);
+      this.investment = data.voList.slice(0, 4);
     });
   }
 

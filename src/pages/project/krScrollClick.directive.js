@@ -16,7 +16,7 @@ export default function krScrollClick($rootScope, $timeout) {
     link: function postLink($scope, ele, attr) {
       ele.click(() => {
         $timeout(() => {
-          $('.active').removeClass('active');
+          $('.active', ele.parent().parent()).removeClass('active');
           if (!ele.hasClass('active')) {
             ele.addClass('active');
           }

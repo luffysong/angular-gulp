@@ -6,7 +6,7 @@ import { search } from './search.route';
 import { listView, list } from './list.route';
 import { organizationView, organization } from './organization.route';
 import { investmentView, investment } from './investment.route';
-import { investorInfoView } from './investorInfo.route';
+import { investorInfoView, investorInfoEdit } from './investorInfo.route';
 import { investorListView, investorList } from './investorList.route';
 import { labelView, label } from './label.route';
 import { landingView, landing } from './landing.route';
@@ -38,21 +38,22 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
 
   $urlRouterProvider.when('^/list', '^/list/result');
   $stateProvider.state('financeRoute', financeRoute);
-  /*投资机构列表页*/
+  /* 投资机构列表页*/
   $stateProvider.state('organization', organizationView);
   $stateProvider.state('organization.result', organization);
-  /*投资案例列表页*/
+  /* 投资案例列表页*/
   $stateProvider.state('investment', investmentView);
   $stateProvider.state('investment.result', investment);
 
   /* 机构页 */
   $stateProvider.state('org', org);
-  /*投资人认证*/
+  /* 投资人认证*/
   $stateProvider.state('investorValidate', investorValidate);
 
-  /*投资人详情页*/
+  /* 投资人详情页*/
   $stateProvider.state('investorInfo', investorInfoView);
-  /*投资人筛选页*/
+  $stateProvider.state('investorInfo.edit', investorInfoEdit);
+  /* 投资人筛选页*/
   $stateProvider.state('investorList', investorListView);
   $stateProvider.state('investorList.result', investorList);
 }
