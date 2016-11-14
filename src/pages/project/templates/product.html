@@ -48,15 +48,15 @@
               <span class="text"
               ng-mouseenter="vm.productVM.setHovered()">
               留存数据
+                <span class="angle" ng-if="vm.productVM.hasHovered"><span class="little-angle"></span></span>
+                <div class="keepData" ng-if="vm.productVM.hasHovered"
+                     ng-mouseleave="vm.productVM.setHovered()">
+                  <span ng-repeat="item in vm.productVM.dataKeepTypes">
+                    <span ng-click="vm.productVM.setType(item.fid)"
+                          ng-class="{'active':vm.productVM.curType === item.fid}">{{item.fdesc}}</span>
+                  </span>
+                </div>
               </span>
-              <div class="keepData" ng-if="vm.productVM.hasHovered"
-                   ng-mouseleave="vm.productVM.setHovered()">
-                <span class="angle"><span class="little-angle"></span></span>
-                <span ng-repeat="item in vm.productVM.dataKeepTypes">
-                  <span ng-click="vm.productVM.setType(item.fid)"
-                        ng-class="{'active':vm.productVM.curType === item.fid}">{{item.fdesc}}</span>
-                </span>
-              </div>
             </span>
           </div>
           <div class="chart">

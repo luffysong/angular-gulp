@@ -22,7 +22,7 @@
         float: left;
       }
       .product-name{
-        width: 130px;
+        max-width: 200px;
         height: 46px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -30,14 +30,15 @@
         .font(16,24);
         text-align: center;
         padding-top: 11px;
-        padding-left: 6px;
-        padding-right: 6px;
+        // padding-left: 6px;
+        margin-left: 40px;
+        padding-right: 20px;
         // padding: 11px 20px 36px 40px;
         border-right: 1px solid #E7E7E7;
       }
       .base-info{
         height: 46px;
-        width: 520px;
+        max-width: 420px;
         margin-left: 20px;
         margin-right: 40px;
         .inner{
@@ -49,7 +50,7 @@
           height: 46px;
           // margin-top: -12px;
           .info{
-            width: 520px;
+            max-width: 420px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -128,39 +129,10 @@
           }
           .absolute-pos{
             position: relative;
-            width: 100%;
-            .keepData{
-              white-space: nowrap;
-              // width: 370px;
-              background-color: #FFF;
-              animation: popup 1s;
-              position: absolute;
-              top: 25px;
-              left: 18%;
-              z-index: 999;
-              .font(14,21);
-              .text-center();
-              color: #5A626D;
-              border-radius: 0px 0px 0px 4px;
-              box-shadow: 0px 0px 4px 0px #969FA9;
-              padding: 20px 16px;
-              margin-top: 4px;
-              &>span{
-                cursor: pointer;
-                margin-right: 20px;
-                padding-bottom: 4px;
-                &:first-child{
-                  padding-bottom: 0;
-                }
-                &:last-child{
-                  margin-right: 0px;
-                }
-                &>span.active{
-                  padding-bottom: 4px;
-                  border-bottom: 2px solid #969FA9;
-                }
-              }
+            .text{
+              position: relative;
               .angle{
+                z-index: 1000;
                 position: absolute;
                 width: 0;
                 height: 0;
@@ -168,8 +140,8 @@
                 border-style: dashed dashed solid dashed;
                 border-color: transparent transparent #969FA9 transparent;
                 border-bottom-width: 10px;
-                left: 20px;
-                top: -20px;
+                left: 18px;
+                top: 8px;
                 .little-angle{
                   position: absolute;
                   top: -9px;
@@ -180,6 +152,40 @@
                   border-style: dashed dashed solid dashed;
                   border-color: transparent transparent #fff transparent;
                 }
+              }
+              .keepData{
+                white-space: nowrap;
+                // width: 370px;
+                background-color: #FFF;
+                animation: popup 1s;
+                position: absolute;
+                top: 25px;
+                left: 50%;
+                z-index: 999;
+                .font(14,21);
+                .text-center();
+                color: #5A626D;
+                border-radius: 0px 0px 0px 4px;
+                box-shadow: 0px 0px 4px 0px #969FA9;
+                padding: 20px 16px;
+                margin-top: 4px;
+                transform: translateX(-50%);
+                &>span{
+                  cursor: pointer;
+                  margin-right: 20px;
+                  padding-bottom: 4px;
+                  &:first-child{
+                    padding-bottom: 0;
+                  }
+                  &:last-child{
+                    margin-right: 0px;
+                  }
+                  &>span.active{
+                    padding-bottom: 4px;
+                    border-bottom: 2px solid #969FA9;
+                  }
+                }
+
               }
             }
           }
@@ -267,6 +273,7 @@
             }
           }
           .hideData{
+            font-size: 12px;
             width: 118px;
             line-height: 28px;
             text-align: center;
