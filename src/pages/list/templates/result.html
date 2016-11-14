@@ -30,13 +30,13 @@
             </div>
           </div>
         </td>
-        <td>{{::obj.industryStr}}</td>
-        <td>{{::obj.phase | companyFinancePhase}}</td>
+        <td class="filter-item" ng-click="vm.clickFilter(obj.industry,'industry')" ng-class="{'disabled': parentVm.getPermission()}">{{::obj.industryStr}}</td>
+        <td class="filter-item" ng-click="vm.clickFilter(obj.phase,'phase')" ng-class="{'disabled': obj.phase === 'NONE' || parentVm.getPermission()}">{{::obj.phase | companyFinancePhase}}</td>
         <td class="org-col">
           <span ng-if="!obj.investParts.length">未披露</span>
           <section ng-if="obj.investParts.length" ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
         </td>
-        <td>{{::obj.cityStr}}</td>
+        <td class="filter-item" ng-click="vm.clickFilter(obj.city,'city')" ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr}}</td>
         <td class="date-time">{{::obj.publishDate | dateFilter}}</td>
         <td>
           <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>

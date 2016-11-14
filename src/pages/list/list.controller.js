@@ -275,5 +275,19 @@ export default class listIndexController {
     this.$scope.parentVm.open.sideBar = false;
   }
 
+  clickFilter(item,type) {
+    angular.forEach(this.$scope.parentVm.itemList, o => {
+      if(o.name === type) {
+        var key = o.key;
+        angular.forEach(this.$scope.parentVm.data[type],(obj,index) => {
+          if(obj[key] === item) {
+            console.warn(index);
+            this.$scope.parentVm.selectIndustry(index,type);
+          }
+        });
+      }
+    })
+  }
+
 }
 
