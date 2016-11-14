@@ -8,12 +8,12 @@
       <span class="bold" ng-repeat="industry in investorInfoVm.org.investedIndustry">{{industry}}</span>
     </div>
     <div class="project">
-    <span ng-if="investorInfoVm.org.totalInvestedCom">已投项目：</span> <span class="bold">{{investorInfoVm.org.totalInvestedCom}}</span>
+    <span ng-if="investorInfoVm.org.totalInvestedCom">已投项目：</span> <span class="bold" ng-if="investorInfoVm.org.totalInvestedCom">{{investorInfoVm.org.totalInvestedCom}}</span>
       <span ng-if="investorInfoVm.org.totalInvestedCom"> | </span>
-      <span ng-if="investorInfoVm.org.totalMember">入驻投资人：</span><span class="bold">{{investorInfoVm.org.totalMember}}</span>
+      <span ng-if="investorInfoVm.org.totalMember">入驻投资人：</span><span class="bold" ng-if="investorInfoVm.org.totalMember">{{investorInfoVm.org.totalMember}}</span>
     </div>
   </div>
-  <div class="no-data" ng-if="!investorInfoVm.org">
+  <div class="no-data" ng-if="!investorInfoVm.org.investedIndustry.length && !investorInfoVm.org.totalInvestedCom && !investorInfoVm.org.totalMember">
     <p>暂无数据</p>
   </div>
 
