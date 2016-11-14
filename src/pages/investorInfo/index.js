@@ -1,4 +1,3 @@
-import { utls } from 'krData';
 import investorInfoController from './investorInfo.controller';
 import EditInvestorController from './investorInfoEdit.controller';
 import investorInfoService from './investorInfo.service';
