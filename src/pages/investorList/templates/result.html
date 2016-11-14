@@ -23,7 +23,7 @@
               <a target="_blank" ui-sref="investorInfo({id: obj.id})" class="inv-name">{{obj.name}}</a>
             </div>
             <div class="investor-intro">
-              {{obj.orgName}} <span class="split">|</span> {{obj.position}}
+              {{obj.orgName}} <span class="split" ng-show="obj.position">|</span> {{obj.position}}
             </div>
           </div>
         </td>
