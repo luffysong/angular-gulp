@@ -7,6 +7,7 @@ import infiniteScrollDirective from './infiniteScroll.directive';
 import calPositionDirective from './calPosition.directive';
 import krEleClampChecker from './krEleClampChecker.directive.js';
 import filterCalDirective from './filterCal.directive';
+import { krLoadingDirective, Loading } from './krLoading.directive.js';
 function makeDirective(directive) {
   return () => directive;
 }
@@ -20,4 +21,6 @@ angular.module('@@app.components', [])
   .directive('krBindHtml', makeDirective(krBindHtml))
   .directive('krEleClampChecker', makeDirective(krEleClampChecker))
   .directive('calPosition', calPositionDirective)
+  .directive('krLoading', krLoadingDirective)
+  .service('loading', Loading)
   .directive('filterCal', filterCalDirective);
