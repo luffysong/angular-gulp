@@ -130,11 +130,13 @@ export function validateImage(file, option) {
     };
   }
   if (file.size > MAX_SIZE) {
-    var msg = option && option.maxSize ? '图片文件不能超过'+option.maxSize+'M' : '图片文件不能超过2M';
+    const msg = option && option.maxSize ?
+      `图片文件不能超过${option.maxSize}M` :
+      '图片文件不能超过2M';
     return {
       valid: false,
       code: FAILED,
-      msg: msg,
+      msg,
     };
   }
   return {
@@ -144,7 +146,7 @@ export function validateImage(file, option) {
 }
 
 export function uploadImage(image, options = {}) {
-  const validateObj = validateImage(image,options);
+  const validateObj = validateImage(image, options);
   if (validateObj.code === FAILED) {
     return getService('$q').reject(validateObj);
   }

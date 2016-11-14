@@ -74,9 +74,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
         param = parseInt(param, 10) || 0;
         return value ? value.length >= param : true;
       },
-      phoneExp: value => {
-        return /^1[34578]\d{9}$/.test(value) || /^233\d{8}$/.test(value);
-      }
+      phoneExp: value => /^1[34578]\d{9}$/.test(value) || /^233\d{8}$/.test(value),
     }).setDefaultMsg({
       notEqual: {},
       required: {},
@@ -86,7 +84,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
         error: '请输入合法的邮箱地址',
       },
       phoneExp: {
-        error: '手机号码格式错误'
+        error: '手机号码格式错误',
       },
       number: {},
       integer: {},
@@ -99,6 +97,21 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     notify.config({
       duration: 2000,
     });
+  })
+  .run(function safeMoudle($injector) {
+    const module = angular.module;
+    angular.moudle = (...moduleArgs) => {
+      const moduleInstance = module(...moduleArgs);
+      ['directive', 'filter', 'service'].forEach(methodName => {
+        const api = moduleInstance[methodName].bind(moduleInstance);
+        moduleInstance[methodName] = (name, factory) => {
+          if (!$injector.has(name)) {
+            api(name, factory);
+          }
+          return moduleInstance;
+        };
+      });
+    };
   })
   .run(function run($rootScope) {
     $rootScope.$on('$stateChangeSuccess',

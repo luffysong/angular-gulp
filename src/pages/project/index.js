@@ -17,5 +17,5 @@ angular.module('@@pages.project', [])
   .directive('center', centerDirective)
   .directive('loginBtn', loginBtnDirective)
   .directive('krScrollClick', krScrollClick)
-  .filter('introFormat',introFormat)
+  .filter('introFormat', introFormat)
   .directive('moreShow', moreShowDirective);

@@ -1,3 +1,4 @@
+import { utls } from 'krData';
 import investorInfoController from './investorInfo.controller';
 import EditInvestorController from './investorInfoEdit.controller';
 import investorInfoService from './investorInfo.service';
@@ -13,4 +14,4 @@ angular.module('@@pages.investorInfo', [])
   .filter('dateFilter', dateFilter)
   .filter('briefFilter', briefFilter)
   .directive('krScrollClick', krScrollClick)
-  .directive('textOverflow', textOverflowDirective);
+  .directive('textOverflowDirective', textOverflowDirective);
