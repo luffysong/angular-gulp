@@ -28,10 +28,27 @@ export default class OrgController {
       },
       plotOptions: {
         line: {
+          lineWidth: 1,
+          states: {
+            hover: {
+              lineWidth: 1,
+              halo: {
+                size: 0,
+              },
+            },
+          },
           marker: {
             fillColor: '#fff',
             lineColor: '#88C4FF',
-            lineWidth: 1,
+            lineWidth: 2,
+            symbol: 'circle',
+            states: {
+              hover: {
+                radius: 4,
+                radiusPlus: 0,
+                lineWidthPlus: 0,
+              },
+            },
           },
         },
         column: {
@@ -162,7 +179,7 @@ export default class OrgController {
       },
     },
     title: {
-      y: 60,
+      y: 65,
       x: -40,
       align: 'center',
       style: {
@@ -193,7 +210,6 @@ export default class OrgController {
   // orgData = this.resolveData.orgData;
   // console.log(orgData);
   init() {
-    console.log(this.orgData);
     if (this.orgData) {
       this.baseInfoVM = new BaseInfoVM(this.orgData);
       this.memberVM = new MemberVM(this.orgData);
