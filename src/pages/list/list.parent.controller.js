@@ -257,7 +257,11 @@ export default class listParentController {
   /*融资中、优选、新品列表 未登录用户或已登录的非投资人用户禁用筛选器*/
   getPermission () {
     var columnId = this.params.columnId+'';
-    return (columnId === '5' || columnId === '1' || columnId === '3') && (!this.user.isLogin || !this.user.isInvestor());
+    if(columnId === '0' || columnId === '4') {
+      return false;
+    }else if(!this.user.isLogin || !this.user.isInvestor()) {
+      return true;
+    }
   }
   /*获取融资需求数据*/
   /*getisFundingLimit() {

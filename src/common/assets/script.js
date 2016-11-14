@@ -53,6 +53,9 @@ export default {
       '/local_lib/slick-carousel/slick/slick.css',
       '/local_lib/angular-slick/dist/slick.js'
     ],
+    fail: [
+      '/pages/fail/index.js'
+    ],
     project: [
       '/pages/project/index.js',
       ...PROJECT_ORG,
