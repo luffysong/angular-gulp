@@ -29,9 +29,11 @@
         </td>
         <td class="org-col">
           <section ng-repeat="item in obj.industry | limitTo:3 track by $index"ng-bind="item"></section>
+          <span ng-if="!obj.industry.length">暂无</span>
         </td>
         <td class="org-col">
           <section ng-repeat="item in obj.phase | limitTo:3 track by $index"ng-bind="item"></section>
+          <span ng-if="!obj.phase.length">暂无</span>
         </td>
         <td>
           {{obj.investCnt}}
@@ -40,9 +42,11 @@
           <p ng-repeat="item in obj.investCaseList | limitTo:3 track by $index" >
             <a  target="_blank" ui-sref="project({id: item.id})">{{item.name}}</a>
           </p>
+          <span ng-if="!obj.investCaseList.length">暂无</span>
         </td>
         <td class="org-col">
           <section ng-repeat="item in obj.city | limitTo:3 track by $index"ng-bind="item"></section>
+          <span ng-if="!obj.city.length">暂无</span>
         </td>
       </tr>
     </table>
