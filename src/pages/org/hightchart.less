@@ -2,6 +2,11 @@
 @import "../../common/styles/var";
 
 .org-wrapper {
+  .analysis-module h4 {
+    &:before {
+      top: 3px;
+    }
+  }
   .highcharts-container, .invest-status, .pie-chart {
     overflow: visible !important;
     h5 {
@@ -19,6 +24,10 @@
     }
   }
   .chart-tooltip {
+    &:after {
+      display: block;
+      content: " ";
+    }
     background: rgba(90,98,109,0.69);
     color: #fff;
     padding: 8px 13px;
@@ -69,14 +78,14 @@
       width: 2px;
       content: " ";
       background: #F2F4F5;
-      height: 170px;
       position: absolute;
       left: -30px;
-      top: -6px;
+      top: 0px;
+      bottom: 0px;
     }
     table {
       width: 265px;
-      height: 138px;
+      height: 142px;
       color: @title-color;
       border-collapse: collapse;
       .text-center();
@@ -119,6 +128,7 @@
     position: relative;
     h5 {
       margin-bottom: 20px;
+      margin-left: 10px;
     }
     width: 220px;
     height: 170px;

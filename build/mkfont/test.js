@@ -54,7 +54,7 @@ function selectAll() {
     }, 100);
 }
 function uploadFile(i) {
-    if(i >= files.length - 1) {
+    if(i >= files.length) {
     setTimeout(function() {
         page.evaluate(selectAll);
     }, 10)
