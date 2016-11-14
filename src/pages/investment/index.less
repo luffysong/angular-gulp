@@ -11,7 +11,7 @@
     display: flex;
     -ms-flex-align: center;
     align-items: center;
-    margin: 15px 0 15px 25px;
+    margin: 20px 0 15px 25px;
   }
   h4:before {
     content: " ";
@@ -37,11 +37,14 @@
     }
     .arrow {
       margin: 0 8px 0 5px;
+      position: relative;
+      bottom: 1px;
     }
   }
   .investCount {
     font-size: 16px;
     color: #969FA9;
+    margin-left: 6px;
   }
   .col-handle {
     position: absolute;
@@ -153,6 +156,9 @@
     line-height:51px;
     .clear-both();
 
+  }
+  .mg-bottom {
+    margin-bottom: 5px
   }
   .filter-list {
     border-bottom: 1px dashed #F2F4F5;
@@ -339,7 +345,7 @@
   background: #F2F4F5;
   padding:0 30px 40px;
   .result-tip {
-    height:35px;
+    height:24px;
     line-height: 35px;
     font-size: 12px;
     color: #5A626D;
@@ -397,6 +403,9 @@
               line-height: 21px;
               margin-bottom:5px;
               white-space: nowrap;
+              .line {
+                color: #ccc;
+              }
               .company-name {
                 margin-right:10px;
                 cursor: pointer;
@@ -448,7 +457,7 @@
               text-overflow: ellipsis;
               white-space: normal;
               font-size: 12px;
-              color: #5A626D;
+              color: #969FA9;
               letter-spacing: 0px;
               line-height: 18px;
             }
