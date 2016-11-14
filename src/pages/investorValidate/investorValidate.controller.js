@@ -18,7 +18,7 @@ export default class investorValidateController {
       singleInvestUnit: 'CNY'
     };
 
-    this.auditStatus = 'auditing';
+    this.auditStatus = '';
 
     this.companyIndustry = this.$scope.root.COMPANY_INDUSTRY_META;
 
@@ -83,6 +83,12 @@ export default class investorValidateController {
 
   prev() {
     this.step = 1;
+    this.clearInfo();
+  }
+
+  clearInfo() {
+    this.baseInfo.selectedIndustry = [];
+    this.baseInfo.selectedPhase = [];
   }
 
   setBiggerValidator() {
@@ -164,6 +170,9 @@ export default class investorValidateController {
     });*/
   }
 
+  reSubmit() {
+    this.step = 1;
+  }
   getState() {
     this.projectService.getState().then(data => {
       console.log(data);
