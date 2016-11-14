@@ -76,10 +76,10 @@
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
-          <img ng-src="{{obj.logo || '/images/investor-logo.png'}}" class="investor-logo" />
+          <img ui-sref="investorInfo({id:obj.id})" ng-src="{{obj.logo || '/images/investor-logo.png'}}" class="investor-logo" />
           <div class="project-info">
             <div class="project-name">
-              <span class="company-name">{{obj.name}}</span>
+              <span class="company-name" ui-sref="investorInfo({id:obj.id})">{{obj.name}}</span>
             </div>
             <div class="project-intro">
               <span class="user-brief">{{obj.brief}}</span>
