@@ -86,7 +86,11 @@ export default class FinanceVM extends krData.FormVM {
       if (val.entityType === 1) {
         return {
           label: that.$sce.trustAsHtml(
-            `<div class="suggest-label suggest-label-investor"><p>${val.entityName}</p></div>`
+            `<div class="suggest-label suggest-label-investor">
+              <img src="${val.logo || '/images/investor-logo.png'}" />
+              <span class="investor-name">${val.entityName}</span>
+              <span class="investor-position">${val.position}</span>
+            </div>`
             ),
           value: val.entityName,
           obj: val,
@@ -95,7 +99,7 @@ export default class FinanceVM extends krData.FormVM {
       return {
         label: that.$sce.trustAsHtml(
           `<div class="suggest-label suggest-label-investment">
-            <img src="${val.logo}" alt="logo" />
+            <img src="${val.logo || '/images/org-logo.png'}" />
             <span>${val.entityName}</span>
           </div>`
           ),
