@@ -98,7 +98,9 @@
         <td class="org-col">
           <section ng-repeat="org in obj.investCaseList | limitTo:3 track by $index" ng-bind="org.name"></section>
         </td>
-        <td>{{obj.city}}</td>
+        <td class="org-col">
+          <section ng-repeat="c in obj.city | limitTo:3 track by $index" ng-bind="c"></section>
+        </td>
       </tr>
     </table>
     <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading' infinite-scroll-distance='0' ng-if="vm.$scope.parentVm.activeTab === 'org'">
