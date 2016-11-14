@@ -1,49 +1,4 @@
 @import "../../common/styles/function.less";
-.label-converge {
-  width:100%;
-  background: url('../../../images/label-bg.png') no-repeat center;
-  background-size: cover;
-  text-align: center;
-  padding:20px 0;
-  min-height:160px;
-  .title-info {
-    padding-left:60px;
-    text-align: left;
-    font-size: 14px;
-    color: #FFFFFF;
-    letter-spacing: 0px;
-    line-height: 21px;
-    .project-list {
-      cursor: pointer;
-    }
-  }
-  .title-name {
-    font-size: 18px;
-    color: #FFFFFF;
-    letter-spacing: 0px;
-    line-height: 27px;
-    margin-bottom:4px;
-  }
-  .content-intro {
-    font-size: 14px;
-    color: #FFFFFF;
-    letter-spacing: 0px;
-    line-height: 21px;
-  }
-  .follow-btn {
-    display: block;
-    width:104px;
-    height:30px;
-    line-height:28px;
-    text-align: center;
-    border: 1px solid #FFFFFF;
-    border-radius: 4px;
-    font-size:12px;
-    color: #fff;
-    margin:18px auto 0;
-  }
-}
-
 .investment-filter-container {
   h4 {
     font-size: 18px;
@@ -81,7 +36,7 @@
       color: #5A626D;
     }
     .arrow {
-      margin: 0 5px 0 5px;
+      margin: 0 8px 0 5px;
     }
   }
   .investCount {
@@ -257,6 +212,16 @@
           padding:12px 0 6px;
           overflow: hidden;
         }
+        .filter-outside-container {
+          height:32px;
+          overflow: hidden;
+          &.height-auto {
+            height:auto !important;
+          }
+          .item-cnt {
+            opacity: .5;
+          }
+        }
         ul {
           float: left;
           overflow: hidden;
@@ -292,7 +257,7 @@
         }
         .col-item {
           display: inline-block;
-          padding: 3px 6px;
+          padding: 4px 6px;
           font-size: 12px;
           letter-spacing: 0px;
           line-height: 18px;
@@ -302,7 +267,7 @@
 
           .clear-btn {
             position: relative;
-            top:1px;
+            top:0;
             vertical-align: middle;
             visibility: visible;
             &.hide {
@@ -430,7 +395,7 @@
               color: #222C38;
               letter-spacing: 0px;
               line-height: 21px;
-              margin-bottom:8px;
+              margin-bottom:5px;
               white-space: nowrap;
               .company-name {
                 margin-right:10px;
@@ -663,29 +628,29 @@
             font-size: 12px;
             color: #5A626D;
             letter-spacing: 0px;
+            font-weight:600;
           }
         }
       }
     }
 
     .load-more {
-      height: 73px;
-      background: #fff;
+      height: 50px;
+      line-height:50px;
       text-align: center;
       font-size: 12px;
       color: #5A626D;
       margin-top: -2px;
-      padding-top: 20px;
+      background: #F9F9F9;
       >a {
-        display: block;
+        display: inline-block;
         background: #6BA2FC;
         border-radius: 4px;
-        width: 130px;
-        height: 33px;
-        line-height: 33px;
+        width: 160px;
+        height: 31px;
+        line-height: 31px;
         font-size: 14px;
         color: #FFFFFF;
-        margin: auto;
       }
     }
   }
