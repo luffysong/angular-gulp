@@ -6,7 +6,7 @@
     基本介绍编辑
   </section>
   <div ng-if="!vm.introductionVM.isEdit">
-    <ul class="tags" ng-show="vm.projectData.baseInfo.industryTag">
+    <ul class="tags">
       <li class="tag-icon"><span class="icon-Tags"></span></li>
       <li ng-if="tag" class="operation-tag" ng-repeat="tag in vm.projectData.baseInfo.operationTag">
         <a ui-sref="list.result({label: tag.id})" target="_blank">{{tag.name}}</a>

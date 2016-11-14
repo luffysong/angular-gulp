@@ -6,7 +6,7 @@
       <p class="list">行业</p>
       <ul id="industry" ng-class="{'spread':vm.investedCaseVM.hasSpreaded.industry}">
         <li ng-repeat="item in vm.orgData.investment.industry">
-          <span class="label" ui-sref="investment.result({id: vm.orgData.basic.id,industry:item.value})">{{item.name}}<span>({{item.count}})</span></span>
+          <span class="label" ui-sref="investment.result({id: vm.orgData.basic.id,industry:item.value})">{{item.name}}<span class="count">({{item.count}})</span></span>
         </li>
       </ul>
       <div ng-if="vm.orgData.investment.industry.length"
@@ -20,7 +20,7 @@
       <p class="list">轮次</p>
       <ul id="phase" ng-class="{'spread':vm.investedCaseVM.hasSpreaded.phase}">
         <li ng-repeat="item in vm.orgData.investment.phase">
-          <span ui-sref="investment.result({id: vm.orgData.basic.id,phase:item.value})" class="label">{{item.name}}<span>({{item.count}})</span></span>
+          <span ui-sref="investment.result({id: vm.orgData.basic.id,phase:item.value})" class="label">{{item.name}}<span class="count">({{item.count}})</span></span>
         </li>
       </ul>
       <div kr-ele-clamp-checker="{container: '#phase'}" class="col-control">
