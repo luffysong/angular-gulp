@@ -17,7 +17,7 @@ import { failView, fail } from './fail.route';
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode(true);
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/fail/404');
   $stateProvider.state('home', home);
   $stateProvider.state('project', project);
   $stateProvider.state('project.edit', editProject);
