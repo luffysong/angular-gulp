@@ -76,6 +76,7 @@ export default class OrgController {
     title: {
       useHTML: true,
       align: 'left',
+      x: -10,
       text: '<h5 class="trend-title">投资规模及案例数趋势</h5>',
     },
     xAxis: {
@@ -116,7 +117,7 @@ export default class OrgController {
         floating: true,
         layout: 'vertical',
         align: 'right',
-        verticalAlign: 'top',
+        verticalAlign: 'middle',
         y: 0,
         symbolHeight: 8,
         symbolWidth: 8,

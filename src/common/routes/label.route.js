@@ -10,7 +10,7 @@ const labelView = {
     loadBundle: getLoadBundle(assets.page.label),
     loadProjectBundle: getLoadBundle(assets.page.project),
     loadSearchBundle: getLoadBundle(assets.page.search),
-  }
+  },
 };
 
 const label = {
@@ -20,11 +20,11 @@ const label = {
   controller: 'labelIndexController',
   resolve: {
     loadBundle: getLoadBundle(assets.page.label),
-  }
+  },
 };
 
 
 export {
   labelView,
-  label
+  label,
 };

@@ -2,6 +2,12 @@
 @import "../../common/styles/var";
 
 .org-wrapper {
+  section.analysis-module {
+    padding-bottom: 40px;
+    .conditions {
+      margin-top: 10px;
+    }
+  }
   .analysis-module h4 {
     &:before {
       top: 3px;
@@ -19,6 +25,7 @@
         .dlk();
         margin-right: 6px;
         background: #88C4FF;
+        margin-top: -3px;
         .vam();
       }
     }
@@ -99,8 +106,10 @@
       td:nth-child(2) {
         width: 84px;
         padding: 10px 6px;
+        line-height: 18px;
       }
       td:nth-child(3) {
+        line-height: 18px;
         padding: 10px 13px;
       }
       thead tr {
@@ -128,7 +137,6 @@
     position: relative;
     h5 {
       margin-bottom: 20px;
-      margin-left: 10px;
     }
     width: 220px;
     height: 170px;
