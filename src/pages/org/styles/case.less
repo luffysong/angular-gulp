@@ -16,7 +16,8 @@
       letter-spacing: 0px;
       margin-left: 24px;
       margin-right: 28px;
-      margin-top: 4px;
+      // margin-top: 4px;
+      padding: 4px 6px;
     }
     .label{
       .font(12,18);
@@ -32,10 +33,15 @@
         height: 26px;
         padding: 4px 6px;
         color: #222C38;
+        .count{
+          color: rgba(90,98,109,0.6);
+        }
         &:first-child{
           background-color: rgba(107,162,252,0.2);
           color: #2868D1;
-
+          .count{
+            color: rgba(40,104,209,0.6);
+          }
         }
       }
     }
@@ -50,6 +56,9 @@
       }
     }
     .phase{
+      // .count{
+      //     color: rgba(90,98,109,0.8);
+      //   }
       position: relative;
       background-color: #F9F9F9;
       padding-top: 18px;
@@ -112,6 +121,8 @@
           height: 72px;
           .text-center();
           &:first-child{
+            padding-top: 14px;
+            padding-bottom: 16px;
             text-align: left;
           }
           &:nth-child(2),&:last-child{

@@ -8,7 +8,8 @@
         <p>
           <span tooltips tooltip-template="{{vm.orgData.basic.weixin}}"  tooltip-class="tooltip"
             class="kr-icon icon-Wechat" ng-if="vm.orgData.basic.weixin"></span
-          ><span class="kr-icon icon-websitelink" ng-if="vm.orgData.basic.website"></span
+          ><span class="kr-icon icon-websitelink" ng-if="::vm.orgData.basic.website">
+            <span class="path1"></span><span class="path2"></span><span class="path3"></span></span
           ><a ng-href="{{vm.orgData.basic.website}}" target="_blank"
             ng-if="vm.orgData.basic.website">{{vm.orgData.basic.website}}</a>
         </p>

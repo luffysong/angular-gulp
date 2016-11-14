@@ -14,13 +14,13 @@
         </ul>
       </div>
       <div class="case-list">
-        <div class="case-info" ng-repeat="case in investorInfoVm.investment" ng-class="{'f-right':$index % 2 == 1}">
+        <div class="case-info" ng-repeat="case in investorInfoVm.investment" ng-class="{'f-right':$index % 2 == 1}" ng-if="case.visible">
           <div class="case-brief">
             <img class="case-logo" src="{{case.logo}}">
             <div class="company-name">
               <span class="bold">{{case.companyName}}</span>
-              <span href="#" class="show" ng-show="case.visible">显示</span>
-              <span href="#" class="show" ng-show="!case.visible">不显示</span>
+              <span href="#" class="show" ng-show="case.visible && investorInfoVm.isEditMode">显示</span>
+              <span href="#" class="show" ng-show="!case.visible && investorInfoVm.isEditMode">不显示</span>
             </div>
             <div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
           </div>

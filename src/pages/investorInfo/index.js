@@ -13,4 +13,4 @@ angular.module('@@pages.investorInfo', [])
   .filter('dateFilter', dateFilter)
   .filter('briefFilter', briefFilter)
   .directive('krScrollClick', krScrollClick)
-  .directive('textOverflowDirective', textOverflowDirective);
+  .directive('textOverflow', textOverflowDirective);

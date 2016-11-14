@@ -25,7 +25,10 @@
             <a ng-if="vm.productVM.data.companyProduct.android!==''"
               ng-href="{{vm.productVM.data.companyProduct.android}}" target="_blank">
               <span class="kr-icon icon-Andriod"></span></a>
-            <span class="kr-icon icon-websitelink" ng-if="vm.productVM.data.companyProduct.website!==''"></span>
+            <span class="kr-icon icon-websitelink" ng-show="::vm.productVM.data.companyProduct.website!==''">
+            <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+            </span>
+            <!-- <span class="kr-icon icon-websitelink" ng-if="vm.productVM.data.companyProduct.website!==''"></span> -->
             <a target="_blank" ng-href="{{vm.productVM.data.companyProduct.website}}"
               ng-if="vm.productVM.data.companyProduct.website!==''" class="website-link">
               {{vm.productVM.data.companyProduct.website}}</a>
@@ -33,27 +36,28 @@
         </div>
       </div>
     </div>
-    <div class="investor" ng-show="vm.productVM.data.hasDataPrivilege">
-      <div class="companyData" ng-show="vm.productVM.showChart">
+    <div class="investor" ng-if="vm.productVM.data.hasDataPrivilege">
+      <div class="companyData" ng-if="vm.productVM.showChart">
         <div class="data-info">
           <div class="tab">
             <span ng-repeat="item in vm.productVM.dataTypes">
               <span class="text" ng-click="vm.productVM.setType(item.fid)"
                     ng-class="{'active':vm.productVM.curType === item.fid}">{{item.fdesc}}</span>
             </span>
-            <span>
-              <span class="text" ng-mouseenter="vm.productVM.setHovered()">
+            <span class="absolute-pos"  ng-if="vm.productVM.dataKeepTypes.length">
+              <span class="text"
+              ng-mouseenter="vm.productVM.setHovered()">
               留存数据
               </span>
+              <div class="keepData" ng-if="vm.productVM.hasHovered"
+                   ng-mouseleave="vm.productVM.setHovered()">
+                <span class="angle"><span class="little-angle"></span></span>
+                <span ng-repeat="item in vm.productVM.dataKeepTypes">
+                  <span ng-click="vm.productVM.setType(item.fid)"
+                        ng-class="{'active':vm.productVM.curType === item.fid}">{{item.fdesc}}</span>
+                </span>
+              </div>
             </span>
-            <div class="keepData"  ng-if="vm.productVM.hasHovered"
-                 ng-mouseleave="vm.productVM.setHovered()">
-              <span class="angle"><span class="little-angle"></span></span>
-              <span ng-repeat="item in vm.productVM.dataKeepTypes">
-                <span ng-click="vm.productVM.setType(item.fid)"
-                      ng-class="{'active':vm.productVM.curType === item.fid}">{{item.fdesc}}</span>
-              </span>
-            </div>
           </div>
           <div class="chart">
             <highchart id="monthChart" config="vm.productVM.chartConfig"></highchart>
@@ -82,7 +86,7 @@
           </div>
         </div>
       </div>
-      <div ng-show="!vm.productVM.showChart" class="no-data">
+      <div ng-if="!vm.productVM.showChart" class="no-data">
         <p>暂无数据</p>
       </div>
     </div>

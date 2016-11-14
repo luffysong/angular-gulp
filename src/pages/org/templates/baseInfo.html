@@ -19,7 +19,7 @@
     <div class="prefer-phase" ng-if="vm.orgData.basic.investedPhase.length">
       <span class="label">已投轮次</span>
       <span ng-repeat="item in vm.orgData.basic.investedPhase">
-        <span>{{item}}</span>
+        <span class="sub-label">{{item}}</span>
       </span>
     </div>
     <div class="start-date" ng-show="vm.baseInfoVM.showMore && vm.orgData.basic.startDate">

@@ -1,45 +1,45 @@
 <nav class="rz-sidebar-wrapper" >
   <ul class="nav" id='sidebar'>
     <li class='home'>
-    	<a href="">
-    		<span class="icon-home kr-icon" id="Img"></span>
-			<span class="kr-tags">首页</span>
-    	</a>
+      <a href="">
+        <span class="icon-home kr-icon" id="Img"></span>
+      <span class="kr-tags">首页</span>
+      </a>
     </li>
     <li ng-class="{active: root.toState.name === 'list.result' || root.toState.name === 'follow.result'}"
       kr-project-nav class='project search'>
-    	<a href="javvascript:;">
-    		<span class="icon-Company kr-icon"></span>
-    		<span class="kr-tags">创业公司</span>
-    	</a>
+      <a href="javvascript:;">
+        <span class="icon-Company kr-icon"></span>
+        <span class="kr-tags">创业公司</span>
+      </a>
     </li>
     <li class='institution'>
-    	<a ui-sref="organization.result()">
-    		<span class="icon-institute kr-icon"></span>
-    		<span class="kr-tags">投资机构</span>
-    	</a>
+      <a ui-sref="organization.result()">
+        <span class="icon-institute kr-icon"></span>
+        <span class="kr-tags">投资机构</span>
+      </a>
     </li>
-    <li class='investor' ui-sref="investorValidate" ui-sref-active="active">
-    	<a href="">
-    		<span class="icon-Investor kr-icon"></span>
-    		<span class="kr-tags">投资人</span>
-    	</a>
+    <li class='investor' ui-sref="investorList" ui-sref-active="active">
+      <a href="">
+        <span class="icon-Investor kr-icon"></span>
+        <span class="kr-tags">投资人</span>
+      </a>
 
     </li>
     <li class='issue'>
-    	<a href="">
+      <a href="">
         <span class="icon-Issue kr-icon">
           <span class="path1"></span><span class="path2"></span>
         </span>
-    		<span class="kr-tags">投资事件</span>
-    	</a>
+        <span class="kr-tags">投资事件</span>
+      </a>
 
     </li>
     <li class='worker'>
-    	<a href="">
-    		<span class="icon-MyDesk kr-icon"></span>
-    		<span class="kr-tags">我的工作台</span>
-    	</a>
+      <a href="">
+        <span class="icon-MyDesk kr-icon"></span>
+        <span class="kr-tags">我的工作台</span>
+      </a>
 
     </li>
   </ul>
@@ -49,13 +49,13 @@
 
 
 <script>
-	var local = location.pathname;
-	var arr = local.split('/');
-	var objLi = document.getElementById('sidebar').getElementsByTagName('li');
-	function hasClass(obj, cls) {
+  var local = location.pathname;
+  var arr = local.split('/');
+  var objLi = document.getElementById('sidebar').getElementsByTagName('li');
+  function hasClass(obj, cls) {
     return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
   }
-	function addClass(obj, cls) {
+  function addClass(obj, cls) {
     if (!hasClass(obj, cls)) obj.className += " " + cls;
   }
 
@@ -67,7 +67,7 @@
   }
 
 
-	var objUl = document.querySelector('#sidebar');
+  var objUl = document.querySelector('#sidebar');
   function narrow(){
      addClass(objUl,'narrow');
   }

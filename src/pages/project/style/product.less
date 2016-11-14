@@ -126,51 +126,60 @@
               }
             }
           }
-          .keepData{
-            background-color: #FFF;
-            animation: popup 1s;
-            position: absolute;
-            top: 25px;
-            right: 18%;
-            z-index: 999;
-            .font(14,21);
-            .text-center();
-            color: #5A626D;
-            border-radius: 0px 0px 0px 4px;
-            box-shadow: 0px 0px 4px 0px #969FA9;
-            padding: 20px 16px 16px 20px;
-            margin-top: 4px;
-            &>span{
-              cursor: pointer;
-              margin-right: 20px;
-              padding-bottom: 4px;
-              &:first-child{
-                padding-bottom: 0;
-              }
-              &>span.active{
-                padding-bottom: 4px;
-                border-bottom: 2px solid #969FA9;
-              }
-            }
-            .angle{
+          .absolute-pos{
+            position: relative;
+            width: 100%;
+            .keepData{
+              white-space: nowrap;
+              // width: 370px;
+              background-color: #FFF;
+              animation: popup 1s;
               position: absolute;
-              width: 0;
-              height: 0;
-              border-width: 10px;
-              border-style: dashed dashed solid dashed;
-              border-color: transparent transparent #969FA9 transparent;
-              border-bottom-width: 10px;
-              right: 20px;
-              top: -20px;
-              .little-angle{
+              top: 25px;
+              left: 18%;
+              z-index: 999;
+              .font(14,21);
+              .text-center();
+              color: #5A626D;
+              border-radius: 0px 0px 0px 4px;
+              box-shadow: 0px 0px 4px 0px #969FA9;
+              padding: 20px 16px;
+              margin-top: 4px;
+              &>span{
+                cursor: pointer;
+                margin-right: 20px;
+                padding-bottom: 4px;
+                &:first-child{
+                  padding-bottom: 0;
+                }
+                &:last-child{
+                  margin-right: 0px;
+                }
+                &>span.active{
+                  padding-bottom: 4px;
+                  border-bottom: 2px solid #969FA9;
+                }
+              }
+              .angle{
                 position: absolute;
-                top: -9px;
-                left: -10px;
-                height: 0;
                 width: 0;
+                height: 0;
                 border-width: 10px;
                 border-style: dashed dashed solid dashed;
-                border-color: transparent transparent #fff transparent;
+                border-color: transparent transparent #969FA9 transparent;
+                border-bottom-width: 10px;
+                left: 20px;
+                top: -20px;
+                .little-angle{
+                  position: absolute;
+                  top: -9px;
+                  left: -10px;
+                  height: 0;
+                  width: 0;
+                  border-width: 10px;
+                  border-style: dashed dashed solid dashed;
+                  border-color: transparent transparent #fff transparent;
+                }
               }
             }
           }

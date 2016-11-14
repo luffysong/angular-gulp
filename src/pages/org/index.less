@@ -6,6 +6,7 @@
 @import "./hightchart.less";
 
 .org-wrapper {
+  padding-bottom: 40px;
   width: 100%;
   height: 100%;
   background:@bg-global-color;
@@ -16,6 +17,10 @@
   .no-data {
     color: #ccc;
   }
+  header+section:nth-child(2) {
+    margin-top: 30px;
+  }
+
   header {
     width: 100%;
     background: #fff;
@@ -42,6 +47,7 @@
         .square(90);
         .rd(6px);
         float: left;
+        border: 1px solid #E7E7E7;
       }
       .en-name{
         .font(14,19);
@@ -60,10 +66,12 @@
         }
         .icon-Wechat{
           color: #34C600;
+          margin-right: 11px;
         }
         .icon-websitelink{
-          margin-left: 11px;
-          margin-right: 11px;
+          .font(20,20);
+          vertical-align: sub;
+          margin-right: 2px;
           color: #34C600;
         }
       }

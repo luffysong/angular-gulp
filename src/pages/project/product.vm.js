@@ -7,6 +7,7 @@ export default class ProductVM extends krData.FormVM {
     this.$filter = $filter;
     // this.$scope = $scope;
     // this.$compile = $compile;
+    this.showChart = false;
     this.init();
     console.log(this.data);
     this.productLink = [{
@@ -16,12 +17,11 @@ export default class ProductVM extends krData.FormVM {
     this.projectService = krData.utls.getService('projectService');
 
     this.hasValidated = true;
-    this.showChart = false;
-    if (angular.isUndefined(this.data.companyData)) {
-      this.showChart = false;
-    } else {
-      this.showChart = true;
-    }
+    // if (angular.isUndefined(this.data.companyData)) {
+    //   this.showChart = false;
+    // } else {
+    //   this.showChart = true;
+    // }
   }
 
   props = ['url', 'desc', 'name', 'ios', 'android', 'weixin'];
@@ -77,8 +77,9 @@ export default class ProductVM extends krData.FormVM {
     this.completeData = [];
 
 
-    if(this.data.companyData){
+    if(!angular.isUndefined(this.data.companyData) && !this.isNullObj(this.data.companyData)){
       this.getDataTypes();
+      this.showChart = true;
       this.renderChart(this.curType);
       this.renderData(this.curType);
     }
@@ -189,8 +190,8 @@ export default class ProductVM extends krData.FormVM {
   renderChart(curId) {
 
     this.chartConfig = this.setBasicConfig();
-    const yAxis = this.getYAxisData(curId);
-    const xAxis = this.data.companyData.x;
+    const yAxis = this.getYAxisData(curId).slice(-12);
+    const xAxis = this.data.companyData.x.slice(-12);
 
     //Y轴单位设置
     if (this.curType === 'md_0006' || this.curType === 'md_0001' || this.curType === 'md_0009'){
@@ -204,21 +205,25 @@ export default class ProductVM extends krData.FormVM {
     }
 
     let name = '';
-    this.data.companyData.y_list.map((val) => {
-      if (val.fid === curId) {
-        name = val.fdesc;
-      }
-    });
+    if (this.data.companyData.y_list) {
+      this.data.companyData.y_list.map((val) => {
+        if (val.fid === curId) {
+          name = val.fdesc;
+        }
+      });
+    }
 
-    this.chartConfig.series.push({
-      data: xAxis.map((val, i) => {
-        const xVal = `${val.slice(0, 4)}-${val.slice(4, 6)}`;
-        const y = this.$filter('number')(yAxis[i], 2) - 0.00;
-        return [xVal, y];
-      }),
-      type: 'line',
-      name: name,
-    })
+    if (xAxis.length) {
+      this.chartConfig.series.push({
+        data: xAxis.map((val, i) => {
+          const xVal = `${val.slice(0, 4)}-${val.slice(4, 6)}`;
+          const y = this.$filter('number')(yAxis[i], 2) - 0.00;
+          return [xVal, y];
+        }),
+        type: 'line',
+        name: name,
+      })
+    }
   }
   // 获取产品数据
   renderData(curId) {
@@ -229,12 +234,14 @@ export default class ProductVM extends krData.FormVM {
     // const dataTypeList = this.data.companyData.y_list.map((val) => {
     //   return { fdesc: val.fdesc, y: val.y };
     // });
-    this.data.companyData.y_list.map((val) => {
-      if (val.fid === curId) {
-        that.yList = val.y;
-        that.curName = val.fdesc;
-      }
-    });
+    if (this.data.companyData.y_list) {
+      this.data.companyData.y_list.map((val) => {
+        if (val.fid === curId) {
+          that.yList = val.y;
+          that.curName = val.fdesc;
+        }
+      });
+    }
     this.curHead = [{ value: '月份' }, { value: that.curName }];
     months.map((val, i) => {
       this.completeData.push({
@@ -246,24 +253,28 @@ export default class ProductVM extends krData.FormVM {
 
   // 获取绘制数据类型
   getDataTypes() {
-    this.data.companyData.y_list.map((val) => {
-      if (val.fdesc.indexOf('留存') === -1) {
-        this.dataTypes.push({ fid: val.fid, fdesc: val.fdesc });
-      } else {
-        this.dataKeepTypes.push({ fid: val.fid, fdesc: val.fdesc });
-      }
-    });
+    if (this.data.companyData.y_list) {
+      this.data.companyData.y_list.map((val) => {
+        if (val.fdesc.indexOf('留存') === -1) {
+          this.dataTypes.push({ fid: val.fid, fdesc: val.fdesc });
+        } else {
+          this.dataKeepTypes.push({ fid: val.fid, fdesc: val.fdesc });
+        }
+      });
+    }
   }
 
   // 获取Y轴相应数据
   getYAxisData(typeId) {
     const that = this;
     const yAxisData = [];
-    this.data.companyData.y_list.map((val) => {
-      if (val.fid === typeId) {
-        that.yAxisData = val.y;
-      }
-    });
+    if (this.data.companyData.y_list) {
+      this.data.companyData.y_list.map((val) => {
+        if (val.fid === typeId) {
+          that.yAxisData = val.y;
+        }
+      });
+    }
     return that.yAxisData;
   }
 
@@ -322,6 +333,11 @@ export default class ProductVM extends krData.FormVM {
           startOnTick: true,
           tickMarkPlacement: 'on',
           tickWidth: 0,
+          labels: {
+            style: {
+              font: '1px',
+            },
+          },
         },
         yAxis: {
           title: {
@@ -334,6 +350,13 @@ export default class ProductVM extends krData.FormVM {
         series: [],
       };
     return config;
+  }
+
+  isNullObj(obj) {
+    for (let key in obj) {
+      return false;
+    }
+    return true;
   }
 
 }
