@@ -13,6 +13,7 @@ import { landingView, landing } from './landing.route';
 import { followView, follow } from './follow.route';
 import org from './org.route.js';
 import investorValidate from './investorValidate.route';
+import { failView, fail } from './fail.route';
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode(true);
@@ -56,6 +57,10 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   /* 投资人筛选页*/
   $stateProvider.state('investorList', investorListView);
   $stateProvider.state('investorList.result', investorList);
+
+  /*404页面*/
+  $stateProvider.state('fail', failView);
+  $stateProvider.state('fail.404', fail);
 }
 
 function stateChangeError($rootScope, $log) {

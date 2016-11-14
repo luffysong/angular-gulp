@@ -5,7 +5,7 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('followIndexService', '$timeout', '$window','$stateParams','$state','$scope', '$q', 'user', 'ngDialog')
+@Inject('$timeout', '$window','$stateParams','$state','$scope', '$q', 'user')
 export default class failIndexController {
 
   constructor() {

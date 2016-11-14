@@ -5,7 +5,7 @@ const failView = {
   url: '/fail',
   template: '<div ui-view></div>',
   controllerAs: 'parentVm',
-  controller: 'failController',
+  controller: 'failIndexController',
   resolve: {
     loadBundle: getLoadBundle(assets.page.fail),
   }
@@ -15,7 +15,7 @@ const fail = {
   url: '/404',
   templateUrl: '/pages/fail/templates/404.html',
   controllerAs: 'vm',
-  controller: 'failController',
+  controller: 'failIndexController',
   resolve: {
     loadBundle: getLoadBundle(assets.page.fail),
   }
