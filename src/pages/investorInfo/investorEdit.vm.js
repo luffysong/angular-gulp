@@ -239,9 +239,6 @@ export default class InvestorEditVM {
       suggest: this.suggestOnlyText.bind(this, '/suggest/label'),
       full_match: (item, value) => item.obj && item.obj.name.toLowerCase() === value.toLowerCase(),
       on_select: item => {
-        if (this.preferData.focusIndustry.length > 10) {
-          Alert.alert('最多可选10个城市');
-        }
         if (this.preferData.focusIndustry.every(label => label !== item.obj.name)) {
           this.preferData.focusIndustry.push(item.obj.name);
           this.preferData.labelText = '';

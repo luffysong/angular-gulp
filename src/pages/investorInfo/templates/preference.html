@@ -14,7 +14,7 @@
     <div class="phase m-top" ng-if="investorInfoVm.investPreference.preferPhase.length">
       <div class="title">偏好轮次</div>
       <div class="list">
-        <span ng-repeat="phase in investorInfoVm.investPreference.preferPhase">{{phase}}</span>
+        <span ng-repeat="phase in investorInfoVm.investPreference.preferPhase">{{phase.desc}}</span>
       </div>
     </div>
     <div class="quota m-top" ng-if="investorInfoVm.investPreference.singleInvestAmount">
