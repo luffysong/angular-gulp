@@ -13,7 +13,8 @@
             <span ng-repeat="address in investorInfoVm.basic.city">{{address}}</span>
           </h1>
           <p class="organization-name">
-          <a ui-sref="org({id: investorInfoVm.org.id})" >{{investorInfoVm.basic.orgName}} <span ng-show="investorInfoVm.basic.orgName"> >> </span></a>
+            <a ui-sref="org({id: investorInfoVm.org.id})" >
+              {{investorInfoVm.basic.orgName}} <span ng-show="investorInfoVm.basic.orgName"> >> </span></a>
           </p>
           <p>
             <span>{{investorInfoVm.basic.position}}</span>
@@ -45,7 +46,16 @@
                 type="text" name="investorName" class="form-control" />
             </div>
 
-            <div class="form-group">
+            <div class="form-group entityType-group">
+              <label for=""><span class="required">*</span> 投资人类型</label>
+              <div>
+                <input type="radio" name="baseEntityType" value="INDIVIDUAL" ng-model="investorEditVM.baseData.entityType">
+                <span>个人投资人</span>
+                <input type="radio" name="baseEntityType" value="ORGANIZATION" ng-model="investorEditVM.baseData.entityType">
+                <span>机构投资人</span>
+              </div>
+            </div>
+            <div ng-if="investorEditVM.isOrgInvestor()"  class="form-group">
               <label for=""><span class="required">*</span> 所属机构</label>
 
               <span id="messageFullName"
@@ -60,7 +70,7 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <div ng-if="investorEditVM.isOrgInvestor()" class="form-group">
               <label for=""><span class="required">*</span> 职位</label>
               <span class="error-tip" id="messageBrief"></span>
               <input  ng-model="investorEditVM.baseData.position"
@@ -69,6 +79,7 @@
               placeholder="请填写个人投资人或现任职位"
               type="text" name="position" class="form-control" />
             </div>
+
             <div class="form-group">
               <label for=""><span class="required">*</span> 所在地</label>
               <span id="messageWebsite" class="error-tip" ></span>

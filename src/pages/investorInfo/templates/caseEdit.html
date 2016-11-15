@@ -97,7 +97,7 @@
     <div class="form-group casePhase-group">
       <label for=""><span class="required">*</span> 投资轮次</label>
         <select  ng-model="investorEditVM.caseData.phase"
-          ng-options="item.value as item.desc for item in root.FINANCE_PHASE_META"
+          ng-options="item.value as item.desc for item in root.COMPANY_SEARCH_PHASE_META"
           message-id="casePhaseMessage"
           required-error-message="请选择所投轮次"
           validator="required"
@@ -139,7 +139,7 @@
           value="INDIVIDUAL" name="investEntity" />
           <span ng-class="{'error-color': investorEditVM.caseData.form.investEntity.$invalid === true}">个人</span>
         </div>
-        <div class="inline-control">
+        <div class="inline-control invest-org">
           <input required type="radio" ng-model="investorEditVM.caseData.entityType"
           value="ORGANIZATION" name="investEntity" />
           <span ng-class="{'error-color': investorEditVM.caseData.form.investEntity.$invalid === true}">机构</span>

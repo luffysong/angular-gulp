@@ -3,6 +3,12 @@ const getService = utls.getService;
 const $validation = getService('$validation');
 const CURRENCY_UNIT = getService('CURRENCY_UNIT');
 const PROJECT_TYPE = krData.utls.getService('PROJECT_TYPE');
+const ENTITY_TYPE = {
+  INDIVIDUAL: 'INDIVIDUAL',
+  ORGANIZATION: 'ORGANIZATION',
+  COMPANY: 'COMPANY',
+};
+
 let investorInfoService = null;
 
 function validate(ctrl) {
@@ -20,12 +26,7 @@ export default class InvestorEditVM {
 
   selectProject = null;
   selectOrg = null;
-
-  ENTITY_TYPE = {
-    INDIVIDUAL: 'INDIVIDUAL',
-    ORGANIZATION: 'ORGANIZATION',
-    COMPANY: 'COMPANY',
-  };
+  ENTITY_TYPE = ENTITY_TYPE;
 
   init() {
     this.setRequiredList();
@@ -49,6 +50,10 @@ export default class InvestorEditVM {
     this.watchCompanyType();
     this.setApplinkValidator();
     this.watchApplink();
+  }
+
+  isOrgInvestor() {
+    return this.baseData.entityType === ENTITY_TYPE.ORGANIZATION;
   }
 
   isWeb() {
@@ -326,7 +331,7 @@ export default class InvestorEditVM {
   enterBase() {
     this.editBase = true;
     this.baseData = {};
-    krData.utls.mapProps(['name', 'avatar', 'position', 'orgName', 'city', 'orgId'],
+    krData.utls.mapProps(['name', 'avatar', 'position', 'orgName', 'city', 'orgId', 'entityType'],
     angular.copy(this.copyData.basic), this.baseData);
     this.baseData.city = this.baseData.city || [];
   }
