@@ -257,7 +257,7 @@ export default class listParentController {
   /*融资中、优选、新品列表 未登录用户或已登录的非投资人用户禁用筛选器*/
   getPermission () {
     var columnId = this.params.columnId+'';
-    if(columnId === '0' || columnId === '4') {
+    if(columnId === '0' || columnId === '4' || columnId === 'undefined') {
       return false;
     }else if(!this.user.isLogin || !this.user.isInvestor()) {
       return true;
