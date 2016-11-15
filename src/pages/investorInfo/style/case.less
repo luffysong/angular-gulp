@@ -1,4 +1,5 @@
 @import "../../../common/styles/var.less";
+@import "../../../common/styles/function.less";
 .invest-case {
   h4 {
     a {
@@ -25,16 +26,23 @@
       }
     }
     .case-list{
-        .bold {
-          font-weight: bold;
-        }
+      overflow: hidden;
+      .case-left {
+        float: left;
+      }
+      .case-right {
+        float: right;
+      }
+      .bold {
+        color: #222C38;
+        font-weight: bold;
+      }
       .case-info {
         width: 385px;
         min-height: 180px;
         background: #FFFFFF;
         border: 1px solid #F2F4F5;
         box-shadow: 0px 0px 8px 0px #E7E7E7;
-        display: inline-block;
         margin-bottom: 40px;
         .case-brief {
           height: 105px;
@@ -113,12 +121,14 @@
       .more-hide {
         display:none;
       }
-
+      .more-show-btn {
+        height: 13px;
+      }
       .more-btn {
         position: relative;
         float: right;
         right: 24px;
-        bottom: 10px;
+        bottom: 15px;
         font-size: 12px;
         color: #6BA2FC;
       }
@@ -171,9 +181,11 @@
     input[type="text"] {
       margin-bottom: 0px;
     }
+
     .invest-com {
       margin-bottom: 16px;
     }
+
   }
   .invest-entity {
     margin-top: 15px;
@@ -183,8 +195,17 @@
         margin-right: 16px;
       }
     }
-    .inline-control {
-      margin-top: 18px;
+    .inline-control > * {
+      .dlk();
+      .vam();
+    }
+    .invest-com,.invest-org {
+      margin-top: 21px;
+      height: 41px;
+      line-height: 41px;
+    }
+    .invest-com {
+      margin-top: 10px;
     }
   }
 }

@@ -58,10 +58,10 @@ function resolveActions(actions) {
       actions[key].transformRequest = data => angular.toJson(data);
       delete actions[key].dataType;
     }
-    actions[key].params = actions[key].params || {};
-    actions[key].params.action = actions[key].action || action.params.action;
-    actions[key].params.action2 = actions[key].action2 || action.params.action2;
-    actions[key].params.action3 = actions[key].action3 || action.params.action3;
+    if (!actions[key].url) {
+      actions[key].params = actions[key].params || {};
+      actions[key].params.action = actions[key].action || action.params.action;
+    }
   });
 }
 
@@ -90,7 +90,7 @@ export default class API {
     resolveActions(this.actions);
     mergeActions(this.getMethods, this.actions);
     this.request = getService('$resource')(
-      `${this.API_PATH}${url}/:action/:action2Id/:action2/:action3Id/:action3`,
+      `${this.API_PATH}${url}/:action`,
       null, this.actions);
     this.copyMethod();
   }
@@ -98,8 +98,12 @@ export default class API {
   copyMethod() {
     Object.keys(this.actions).forEach((methodName) => {
       this[methodName] = function request(...parameters) {
+        let actionOption = { action: methodName };
+        if (this.actions[methodName].url) {
+          actionOption = {};
+        }
         parameters[0] = parameters[0] || {};
-        parameters[0] = angular.extend({ action: methodName },
+        parameters[0] = angular.extend(actionOption,
           this.actions[methodName].params || {},
           parameters[0]);
         return this.request[methodName](...parameters).$promise;

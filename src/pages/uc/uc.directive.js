@@ -52,7 +52,5 @@ export default {
   restrict: 'AE',
   controllerAs: 'vm',
   templateUrl: '/pages/uc/templates/index.html',
-  link: (scope, ele, attrs) => {
-  },
   controller: UcPageController,
 };

@@ -10,41 +10,71 @@
     <div class="has-content" ng-if="investorInfoVm.industry.length || investorInfoVm.allInvestments.length">
       <div class="case-tags">
         <ul class="tags">
-          <li class="tag" ng-repeat="industry in investorInfoVm.industry">{{industry | industry}}</li>
+          <li class="tag" ng-repeat="industry in investorInfoVm.industry"><a ui-sref="list.result({industry: industry})" href="#" target="blank">{{industry | industry}}</a></li>
         </ul>
       </div>
       <div class="case-list">
-        <div class="case-info" ng-repeat="case in investorInfoVm.investment" ng-class="{'f-right':$index % 2 == 1}" ng-if="case.visible">
-          <div class="case-brief">
-            <img class="case-logo" src="{{case.logo || '/images/default-logo.png'}}">
-            <div class="company-name">
-              <span class="bold">{{case.companyName}}</span>
-              <span href="#" class="show" ng-show="case.visible && investorInfoVm.isEditMode">显示</span>
-              <span href="#" class="show" ng-show="!case.visible && investorInfoVm.isEditMode">不显示</span>
+        <div class="case-left">
+          <div class="case-info" ng-repeat="case in investorInfoVm.investment" ng-if="case.visible && $index % 2 == 0">
+            <div class="case-brief">
+              <a ui-sref="project({id: case.cid})" href="#" target="blank"><img class="case-logo" src="{{case.logo || '/images/default-logo.png'}}"></a>
+              <div class="company-name">
+                <a ui-sref="project({id: case.cid})" href="#" class="bold" target="_blank"><span>{{case.companyName}}</span></a>
+                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,case.visible)"><span href="#" class="show" ng-show="!case.visible && investorInfoVm.isEditMode">显示</span></a>
+                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,case.visible)"><span href="#" class="show" ng-show="case.visible && investorInfoVm.isEditMode">不显示</span></a>
+              </div>
+              <div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
             </div>
-            <div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
-          </div>
-          <div class="case-phase" ng-repeat="phase in case.entityVo"
-          ng-class="{'more-show': investorInfoVm.more || $index < 2, 'more-hide': !investorInfoVm.more && $index > 1}">
-            <span>{{phase.investDate | dateFilter}}</span>
-            <div class="circular">
-              <div class="circular2"></div>
-              <div class="line"></div>
+            <div class="case-phase" ng-repeat="phase in case.entityVo"
+            ng-class="{'more-show': investorInfoVm.more || $index < 2, 'more-hide': !investorInfoVm.more && $index > 1}">
+              <span>{{phase.investDate | dateFilter}}</span>
+              <div class="circular">
+                <div class="circular2"></div>
+                <div class="line"></div>
+              </div>
+              <span class="bold">{{phase.phase | companyFinancePhase}}</span>
             </div>
-            <span class="bold">{{phase.phase | companyFinancePhase}}</span>
+            <div ng-show="case.entityVo.length > 2" class="more-show-btn">
+              <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'open'"
+                ng-click="investorInfoVm.moreShow('close')">展开</a>
+              <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'close'"
+                ng-click="investorInfoVm.moreShow('open')">收起</a>
+            </div>
           </div>
+        </div>
 
-          <div ng-show="case.entityVo.length > 2" >
-            <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'open'"
-              ng-click="investorInfoVm.moreShow('close')">展开</a>
-            <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'close'"
-              ng-click="investorInfoVm.moreShow('open')">收起</a>
+        <div class="case-right">
+          <div class="case-info" ng-repeat="case in investorInfoVm.investment" ng-if="case.visible && $index % 2 == 1">
+            <div class="case-brief">
+              <a ui-sref="project({id: case.cid})" href="#" target="blank"><img class="case-logo" src="{{case.logo || '/images/default-logo.png'}}"></a>
+              <div class="company-name">
+                <a ui-sref="project({id: case.cid})" href="#" class="bold" target="_blank"><span>{{case.companyName}}</span></a>
+                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,case.visible)"><span href="#" class="show" ng-show="!case.visible && investorInfoVm.isEditMode">显示</span></a>
+                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,case.visible)"><span href="#" class="show" ng-show="case.visible && investorInfoVm.isEditMode">不显示</span></a>
+              </div>
+              <div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
+            </div>
+            <div class="case-phase" ng-repeat="phase in case.entityVo"
+            ng-class="{'more-show': investorInfoVm.more || $index < 2, 'more-hide': !investorInfoVm.more && $index > 1}">
+              <span>{{phase.investDate | dateFilter}}</span>
+              <div class="circular">
+                <div class="circular2"></div>
+                <div class="line"></div>
+              </div>
+              <span class="bold">{{phase.phase | companyFinancePhase}}</span>
+            </div>
+            <div ng-show="case.entityVo.length > 2" class="more-show-btn">
+              <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'open'"
+                ng-click="investorInfoVm.moreShow('close')">展开</a>
+              <a href="#" class="more-btn" ng-show="investorInfoVm.moreBtn == 'close'"
+                ng-click="investorInfoVm.moreShow('open')">收起</a>
+            </div>
           </div>
         </div>
-        <div class="show-more" ng-hide="investorInfoVm.allInvestments.length <= 4  || investorInfoVm.moreCase"
-        ng-click="investorInfoVm.showMoreCase()">
-          <p>查看更多</p>
-        </div>
+      </div>
+      <div class="show-more" ng-hide="investorInfoVm.allInvestments.length <= 4  || investorInfoVm.moreCase"
+      ng-click="investorInfoVm.showMoreCase()">
+        <p>查看更多</p>
       </div>
     </div>
     <div class="no-data" ng-if="!investorInfoVm.industry.length && !investorInfoVm.allInvestments.length">

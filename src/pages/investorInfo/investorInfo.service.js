@@ -8,7 +8,8 @@ const investorInfoApi = new krData.API('/investor/:id', ['investment',
 ], {
   updatePrefer: 'invest_preference',
   setVisible: {
-    url: ' /api/investor/investment/:cid/visible',
+    method: 'put',
+    url: '/api/investor/investment/:cid/visible',
   },
 });
 
@@ -28,4 +29,13 @@ export default class InvestorInfo {
     }).catch(() => ({}));
   }
 
+  changeInvestmenVisible(cid,state) {
+    const visible = {
+      visible: state,
+    };
+    return investorInfoApi.setVisible({
+      cid
+    }, visible)
+    .catch(() => ({}));
+  }
 }

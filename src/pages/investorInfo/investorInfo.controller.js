@@ -50,6 +50,13 @@ export default class investorInfoController {
     this.investment = this.allInvestments;
   }
 
+  changeVisible(cid,state) {
+    this.investorInfoService.changeInvestmenVisible(cid,state)
+    .then(data => {
+      this.visible = data;
+      console.log(data);
+    });
+  }
   // setNavigation() {
   //   const first = 300;
   //   const other = 114;
