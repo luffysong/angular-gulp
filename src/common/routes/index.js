@@ -15,6 +15,7 @@ import org from './org.route.js';
 import investorValidate from './investorValidate.route';
 import { failView, fail } from './fail.route';
 import { workstationIndex, workstationPackage, workstationCompare } from './workstation.route';
+import indexView from './index.route';
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode(true);
@@ -67,6 +68,9 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   /* 404页面*/
   $stateProvider.state('fail', failView);
   $stateProvider.state('fail.404', fail);
+
+  /*首页*/
+  $stateProvider.state('index', indexView);
 }
 
 function stateChangeError($rootScope, $log) {

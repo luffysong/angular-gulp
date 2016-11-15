@@ -56,6 +56,12 @@ export default {
     fail: [
       '/pages/fail/index.js',
     ],
+    index: [
+      '/pages/index/index.js',
+      '/local_lib/slick-carousel/slick/slick.min.js',
+      '/local_lib/slick-carousel/slick/slick.css',
+      '/local_lib/angular-slick/dist/slick.js',
+    ],
     project: [
       '/pages/project/index.js',
       ...PROJECT_ORG,
