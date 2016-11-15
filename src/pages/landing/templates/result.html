@@ -89,6 +89,7 @@
           </div>
         </td>
         <td class="org-col">
+          <section ng-if="!obj.industry.length">暂无</section>
           <section ng-repeat="c in obj.industry | limitTo:3 track by $index" ng-bind="c"></section>
         </td>
         <td class="org-col">
@@ -101,6 +102,7 @@
           <section ng-repeat="org in obj.investCaseList | limitTo:3 track by $index" ng-bind="org.name"></section>
         </td>
         <td class="org-col">
+          <section ng-if="!obj.city.length">暂无</section>
           <section ng-repeat="c in obj.city | limitTo:3 track by $index" ng-bind="c"></section>
         </td>
       </tr>
