@@ -15,8 +15,7 @@
 
       </div>
       <div class="buttons">
-        <!--TODO:跳转的写法和目标URL-->
-        <a href="" class="btn" ng-if="vm.user.investor">我的主页</a>
+        <a ui-sref="investorInfo({id: vm.user.profileId})" class="btn" ng-if="vm.user.investor">我的主页</a>
         <a href="" class="btn">我的工作台</a>
       </div>
     </div>
