@@ -171,7 +171,7 @@ export default class InvestorEditVM {
   }
 
   setCaseEntityComOptions() {
-    this.caseEntityComOptions = this._getSuggestOrgOptions({
+    this.caseEntityComOptions = this._getSuggestComOptions({
       on_select: (item) => {
         this.caseData.selectEntity = item.obj;
       },
