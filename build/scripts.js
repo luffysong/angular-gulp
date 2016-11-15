@@ -35,6 +35,7 @@ export default function scrtips() {
 }
 export function babelHelper() {
   const file = global.changeJsFile || '';
+  global.changeJsFile = null;
   return gulp.src([file || 'src/**/**/*.js', '!src/bower/**/*.*'])
     .pipe(g.preprocess({
       context: {
