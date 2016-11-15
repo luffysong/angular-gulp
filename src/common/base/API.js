@@ -98,8 +98,12 @@ export default class API {
   copyMethod() {
     Object.keys(this.actions).forEach((methodName) => {
       this[methodName] = function request(...parameters) {
+        let actionOption = { action: methodName };
+        if (this.actions[methodName].url) {
+          actionOption = {};
+        }
         parameters[0] = parameters[0] || {};
-        parameters[0] = angular.extend({ action: methodName },
+        parameters[0] = angular.extend(actionOption,
           this.actions[methodName].params || {},
           parameters[0]);
         return this.request[methodName](...parameters).$promise;
