@@ -134,7 +134,6 @@ export default class investorListParentController {
   /* 筛选器展开*/
   spreadMore(type) {
     this.open[type] = !this.open[type];
-    console.log(this.open);
   }
 
   /* 取消选择行业*/

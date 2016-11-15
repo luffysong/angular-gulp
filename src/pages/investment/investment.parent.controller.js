@@ -114,7 +114,6 @@ export default class investmentParentController {
       this.go();
       return;
     }
-    console.log(this.data[type][index]);
     const attr = 'value';
     if (this.params[type]) {
       if (this.params[type].split(',').indexOf(String(this.data[type][index][attr])) < 0) {

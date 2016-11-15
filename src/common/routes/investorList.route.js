@@ -2,7 +2,7 @@ import assets from '../assets/script';
 import { getLoadBundle } from '../base/utls';
 
 const investorListView = {
-  url: '/investor/list',
+  url: '/investor',
   templateUrl: '/pages/investorList/templates/index.html',
   controllerAs: 'investorListVm',
   controller: 'investorListParentController',
