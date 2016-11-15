@@ -3,7 +3,7 @@ import { getLoadBundle } from '../base/utls';
 
 const workstationIndex = {
   url: '/workstation',
-  templateUrl: '/pages/workstationIndex/templates/index.html',
+  templateUrl: '/pages/workstation/templates/index.html',
   controllerAs: 'vm',
   controller: 'WorkStationIndexController',
   resolve: {
@@ -13,7 +13,7 @@ const workstationIndex = {
 
 const workstationPackage = {
   url: '/workstation/:package',
-  templateUrl: '/pages/workstationPackage/templates/index.html',
+  templateUrl: '/pages/workstationList/templates/index.html',
   controllerAs: 'vm',
   controller: 'WorkstationPackageController',
   resolve: {
@@ -22,10 +22,10 @@ const workstationPackage = {
 };
 
 const workstationCompare = {
-  url: '/workstation/:package',
+  url: '/workstation/:package/compare',
   templateUrl: '/pages/workstationPackage/templates/index.html',
   controllerAs: 'vm',
-  controller: 'WorkstationPackageController',
+  controller: 'WorkstationCompareController',
   resolve: {
     loadBundle: getLoadBundle(assets.page.workstationPackage),
   },
