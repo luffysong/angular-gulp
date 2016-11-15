@@ -23,11 +23,11 @@ const workstationPackage = {
 
 const workstationCompare = {
   url: '/workstation/:package/compare',
-  templateUrl: '/pages/workstationPackage/templates/index.html',
+  templateUrl: '/pages/workstationCompare/templates/index.html',
   controllerAs: 'vm',
   controller: 'WorkstationCompareController',
   resolve: {
-    loadBundle: getLoadBundle(assets.page.workstationPackage),
+    loadBundle: getLoadBundle(assets.page.workstationCompare),
   },
 };
 

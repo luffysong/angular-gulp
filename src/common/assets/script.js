@@ -23,25 +23,25 @@ export default {
       '/pages/list/index.js',
       '/bower/ng-dialog/js/ngDialog.min.js',
       '/bower/ng-dialog/css/ngDialog.min.css',
-      '/bower/ng-dialog/css/ngDialog-theme-default.min.css'
+      '/bower/ng-dialog/css/ngDialog-theme-default.min.css',
     ],
     label: [
       '/pages/label/index.js',
       '/bower/ng-dialog/js/ngDialog.min.js',
       '/bower/ng-dialog/css/ngDialog.min.css',
-      '/bower/ng-dialog/css/ngDialog-theme-default.min.css'
+      '/bower/ng-dialog/css/ngDialog-theme-default.min.css',
     ],
     follow: [
       '/pages/follow/index.js',
       '/bower/ng-dialog/js/ngDialog.min.js',
       '/bower/ng-dialog/css/ngDialog.min.css',
-      '/bower/ng-dialog/css/ngDialog-theme-default.min.css'
+      '/bower/ng-dialog/css/ngDialog-theme-default.min.css',
     ],
     landing: [
       '/pages/landing/index.js',
       '/bower/ng-dialog/js/ngDialog.min.js',
       '/bower/ng-dialog/css/ngDialog.min.css',
-      '/bower/ng-dialog/css/ngDialog-theme-default.min.css'
+      '/bower/ng-dialog/css/ngDialog-theme-default.min.css',
     ],
     investorValidate: [
       '/pages/investorValidate/index.js',
@@ -51,10 +51,10 @@ export default {
       '/bower/checklist-model/checklist-model.js',
       '/local_lib/slick-carousel/slick/slick.min.js',
       '/local_lib/slick-carousel/slick/slick.css',
-      '/local_lib/angular-slick/dist/slick.js'
+      '/local_lib/angular-slick/dist/slick.js',
     ],
     fail: [
-      '/pages/fail/index.js'
+      '/pages/fail/index.js',
     ],
     project: [
       '/pages/project/index.js',
@@ -86,8 +86,12 @@ export default {
     investorInfo: [
       '/pages/investorInfo/index.js',
       ...PROJECT_ORG,
-    ],investorList: [
+    ],
+    investorList: [
       '/pages/investorList/index.js',
+    ],
+    workstationCompare: [
+      '/pages/workstationCompare/index.js',
     ],
   },
 };

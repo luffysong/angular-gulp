@@ -34,7 +34,8 @@ export default function scrtips() {
     .pipe(g.connect.reload());
 }
 export function babelHelper() {
-  return gulp.src(['src/**/**/*.js', '!src/bower/**/*.*'])
+  const file = global.changeJsFile || '';
+  return gulp.src([file || 'src/**/**/*.js', '!src/bower/**/*.*'])
     .pipe(g.preprocess({
       context: {
         DEBUG: set.debug,
@@ -54,8 +55,9 @@ export function babelHelper() {
     .pipe(g.ngAnnotate())
     .pipe(g.babelExternalHelpers('babelHelpers.js'))
     .pipe(g.if(!set.debug && 'babelHelpers.js', g.uglify()))
-    .pipe(g.if('babelHelpers.js', gulp.dest('dist/')))
-    .pipe(g.if('*.js', gulp.dest(path.join(tmp, 'src'))));
+    .pipe(g.if(!file && 'babelHelpers.js', gulp.dest('dist/')))
+    .pipe(g.if(!file && '*.js', gulp.dest(path.join(tmp, 'src'))))
+    .pipe(g.if('!babelHelpers.js', gulp.dest(path.join(tmp, path.dirname(file)))));
 }
 
 export function copyLib() {
