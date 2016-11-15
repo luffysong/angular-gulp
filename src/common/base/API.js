@@ -58,8 +58,10 @@ function resolveActions(actions) {
       actions[key].transformRequest = data => angular.toJson(data);
       delete actions[key].dataType;
     }
-    actions[key].params = actions[key].params || {};
-    actions[key].params.action = actions[key].action || action.params.action;
+    if (!actions[key].url) {
+      actions[key].params = actions[key].params || {};
+      actions[key].params.action = actions[key].action || action.params.action;
+    }
   });
 }
 
