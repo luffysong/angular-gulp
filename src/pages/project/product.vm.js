@@ -316,6 +316,13 @@ export default class ProductVM extends krData.FormVM {
                 symbol: 'circle',
               },
             },
+            series: {
+              events: {
+                legendItemClick: function () {
+                  return false;
+                }
+              }
+            }
           },
           legend: {
             verticalAlign: 'top',

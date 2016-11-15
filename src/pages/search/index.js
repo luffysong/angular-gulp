@@ -8,6 +8,8 @@ angular.module('@pages.search', [])
       link: function postLink($scope, ele) {
         $scope.$watch('searchVm.columnOptions.companyId', (nv) => {
           if (nv) {
+            ele[0].innerHTML = '<div kr-loading="columnProject" loading="true" ></div>';
+            $compile(ele.contents())($scope);
             projectService.allData({
               id: nv,
             })
