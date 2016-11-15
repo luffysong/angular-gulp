@@ -345,6 +345,11 @@ export default class InvestorEditVM {
         if (basicData.selectOrg) {
           basicData.orgId = basicData.selectOrg.id;
         }
+
+        if (basicData.entityType === ENTITY_TYPE.INDIVIDUAL) {
+          delete basicData.orgId;
+          delete basicData.orgName;
+        }
         delete basicData.form;
         delete basicData.selectOrg;
         delete basicData.cityText;
