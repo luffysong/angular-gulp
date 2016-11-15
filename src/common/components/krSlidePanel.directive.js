@@ -1,29 +1,26 @@
-import API from '../base/API.js';
-import { getService } from '../base/utls.js';
-
-// import $ from 'jquery';
-
 @Inject('$rootScope', '$scope')
 class SlidePanelController {
 
   constructor() {
-    this.show=false;
+    this.show = false;
     this.$scope.$on('$locationChangeStart', () => {
-      this.show=false;
+      this.show = false;
+      $('html').removeClass('overflow-hidden');
     });
-    // this.trigger();
   }
 
-  trigger(e){
-    if(this.$scope.disabled){
+  watch() {
+  }
+
+  trigger(e) {
+    if (this.$scope.disabled) {
       return;
     }
-    if(e){
+    if (e) {
       e.preventDefault();
     }
-    console.log('clicked!');
     this.show = !this.show;
-    if(this.show){
+    if (this.show) {
       $('html').addClass('overflow-hidden');
     } else {
       $('html').removeClass('overflow-hidden');
@@ -35,11 +32,11 @@ export default {
   restrict: 'AE',
   controllerAs: 'vm',
   transclude: {
-    'body': '?paneBody',
-    'trigger': 'paneTrigger'
+    body: '?paneBody',
+    trigger: 'paneTrigger',
   },
   scope: {
-    disabled: '=disabled'
+    disabled: '=disabled',
   },
   template: `
     <div>
@@ -51,10 +48,9 @@ export default {
           <div class="panel-content" ng-transclude="body"></div>
         </div>
       </div>
-    </div>  
+    </div>
   `,
-  link:(scope, ele, attrs) => {
-    console.log(ele.find('.kr-slide-panel'));
+  link: (scope, ele) => {
     ele.find('.kr-slide-panel').appendTo('body');
   },
   controller: SlidePanelController,
