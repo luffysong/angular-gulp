@@ -48,7 +48,6 @@ export default class investorListParentController {
         this.$scope.$broadcast('get-list', data);
         this.totalCount = data.pageData.totalCount;
         this.data.label = data.label;
-        this.data.phase = data.phase;
         this.data.city = data.city;
         this.handleActive();
         this.updateData(data);
@@ -60,6 +59,7 @@ export default class investorListParentController {
       this.open.sideBar = true;
     });
     this.getFilterData();
+    this.getPhase();
   }
 
   /* 过滤不限条件*/
@@ -156,6 +156,7 @@ export default class investorListParentController {
       active: false,
       id: 0,
       value: 'unlimited',
+      desc: '不限'
     };
     obj.unshift(c);
     return obj;
@@ -173,12 +174,16 @@ export default class investorListParentController {
     });
   }
 
+  /*获取轮次静态数据*/
+  getPhase() {
+    this.data.phase = this.addItem(this.$scope.root.COMPANY_SEARCH_PHASE_META);
+  }
+
+
   // /*获取静态行业数据*/
   getFilterData() {
-    // this.data.industry = this.addItem(this.$scope.root.INDUSTRY_META);
     this.investorService.getList().then(data => {
       this.data.label = data.label;
-      this.data.phase = data.phase;
       this.data.city = data.city;
       this.data['label'][0].active = true;
       this.data['phase'][0].active = true;
