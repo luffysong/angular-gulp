@@ -19,17 +19,17 @@ export default class CompanyIntroduceVM extends krData.FormVM{
     this.data = data;
     this.id = id;
     this.companyIntroduce.id = id;
-    this.companyIntroduce.productService = data.companyIntroduce.productService;
-    this.companyIntroduce.userMarket = data.companyIntroduce.userMarket;
-    this.companyIntroduce.businessMode = data.companyIntroduce.businessMode;
-    this.companyIntroduce.coreSource = data.companyIntroduce.coreSource;
-    this.companyIntroduce.operationData = data.companyIntroduce.operationData;
+    this.productService = data.companyIntroduce.productService;
+    this.userMarket = data.companyIntroduce.userMarket;
+    this.businessMode = data.companyIntroduce.businessMode;
+    this.coreSource = data.companyIntroduce.coreSource;
+    this.operationData = data.companyIntroduce.operationData;
   }
 
   recovery() {
     const tempData = {};
     angular.copy(this.origCompanyData,tempData);
-    angular.extend(this,tempData);
+    angular.extend(this,tempData.companyIntroduce);
     angular.extend(this.data,tempData);
     // angular.extends(this.data.companyIntroduce,tempData);
   }
@@ -37,7 +37,7 @@ export default class CompanyIntroduceVM extends krData.FormVM{
   save() {
     this.projectService.editIntroduce({
       id: this.id,
-    }, this.mapProps(this.props, this.companyIntroduce))
+    }, this.mapProps(this.props, this))
     .then(() => {
       this.recovery();
       krData.Alert.success('数据保存成功');
