@@ -97,6 +97,8 @@ export default {
       '/pages/investorList/index.js',
     ],
     workstationCompare: [
+      '/bower/highcharts/highcharts.js',
+      '/bower/highcharts-ng/dist/highcharts-ng.min.js',
       '/pages/workstationCompare/index.js',
     ],
   },

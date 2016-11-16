@@ -1,0 +1,113 @@
+@import "../../common/styles/var.less";
+@import "../../common/styles/function.less";
+.compare-wrapper {
+  width: 1080px;
+  margin: 0 auto;
+  color: @text-color;
+
+  table {
+    width: 100%;
+    background: #fff;
+    border-collapse: collapse;
+    color: #5a626d;
+    tr {
+      width: 1080px;
+    }
+    td {
+      min-width: 190px;
+      text-align: center;
+      border: 1px solid #F2F4F5;
+      font-size: 14px;
+      line-height: 21px;
+    }
+    thead {
+      background: #F9F9F9;
+      td {
+        font-weight: 600;
+        width: 88%;
+      }
+      td:first-child {
+        height: 61px;
+        width: 129px;
+        min-width: auto;
+      }
+    }
+    tbody {
+      td {
+        padding:14px 16px;
+      }
+      td:first-child {
+        width: 129px;
+        min-width: auto;
+        font-weight: 600;
+      }
+      .inline-block-text {
+        td {
+          padding: 11px 16px;
+        }
+        a, >td>span {
+          display: inline-block;
+          height: 26px;
+          line-height: 26px;
+          margin-right: 6px;
+          &:last-child {
+            margin-right: 0px;
+          }
+        }
+        a span, >td>span>span {
+          display: inline-block;
+          vertical-align: middle;
+          padding: 0 6px;
+          .font(12,20);
+          height: 20px;
+          background: rgba(107,162,252,.2);
+          color: @anchor-color;
+
+        }
+      }
+      tr.investors {
+        td > span {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+
+.compare-wrapper {
+  .chart-module {
+    position: relative;
+    margin-top: 16px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 8px 0px #DDDDDD;
+    border-radius: 4px;
+    .highcharts-container  {
+      width: 940px;
+      margin:0 auto;
+    }
+    h4 {
+      padding: 0 30px;
+      background: #F9F9F9;
+      height: 61px;
+      line-height: 61px;
+      .icon-open-select {
+        float: right;
+        font-size: 26px;
+        color: #ccc;
+        margin-top: 17px;
+      }
+      span {
+        .vam();
+        .dlk();
+      }
+      &:before {
+        content: " ";
+        background: @anchor-color;
+        .dlk();
+        .vam();
+        .square(8);
+      }
+    }
+  }
+}
