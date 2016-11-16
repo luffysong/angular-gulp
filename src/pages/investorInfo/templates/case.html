@@ -10,7 +10,7 @@
     <div class="has-content" ng-if="investorInfoVm.industry.length || investorInfoVm.allInvestments.length">
       <div class="case-tags">
         <ul class="tags">
-          <li class="tag" ng-repeat="industry in investorInfoVm.industry"><a ui-sref="list.result({industry: industry})" href="#" target="blank">{{industry | industry}}</a></li>
+          <li class="tag" ng-repeat="industry in investorInfoVm.industry"><a ui-sref="list.result({industry: industry,columnId: 0})" href="#" target="blank">{{industry | industry}}</a></li>
         </ul>
       </div>
       <div class="case-list">
