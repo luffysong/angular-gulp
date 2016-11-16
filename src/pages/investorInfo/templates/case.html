@@ -50,8 +50,8 @@
               <a ui-sref="project({id: case.cid})" href="#" target="blank"><img class="case-logo" src="{{case.logo || '/images/default-logo.png'}}"></a>
               <div class="company-name">
                 <a ui-sref="project({id: case.cid})" href="#" class="bold" target="_blank"><span>{{case.companyName}}</span></a>
-                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,case.visible)"><span href="#" class="show" ng-show="!case.visible && investorInfoVm.isEditMode">显示</span></a>
-                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,case.visible)"><span href="#" class="show" ng-show="case.visible && investorInfoVm.isEditMode">不显示</span></a>
+                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="!case.visible && investorInfoVm.isEditMode">显示</span></a>
+                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="case.visible && investorInfoVm.isEditMode">不显示</span></a>
               </div
               ><div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
             </div>
