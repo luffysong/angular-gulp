@@ -15,8 +15,6 @@ export default class investorInfoController {
     this.getInvestorInfo(this.$stateParams.id);
     this.getInvestmentInfo(this.$stateParams.id);
     this.$scope.investorEditVM = investorEditVM;
-    this.moreBtn = 'open';
-    this.more = false;
     this.moreCase = false;
   }
 
@@ -36,13 +34,17 @@ export default class investorInfoController {
     });
   }
 
-  moreShow(state) {
+  moreShow(cid,state) {
     this.moreBtn = state;
-    if (state === 'close') {
-      this.more = true;
-    } else if (state === 'open') {
-      this.more = false;
-    }
+    this.allInvestments.forEach((item) => {
+      if(item.cid === cid){
+        if (state === 'close') {
+          item.moreShow = true;
+        } else if (state === 'open') {
+          item.moreShow = false;
+        }
+      }
+    });
   }
 
   showMoreCase() {
@@ -53,8 +55,15 @@ export default class investorInfoController {
   changeVisible(cid,state) {
     this.investorInfoService.changeInvestmenVisible(cid,state)
     .then(data => {
-      this.visible = data;
-      console.log(data);
+      this.allInvestments.forEach((item) => {
+        if(item.cid === cid){
+          if(item.visible){
+            item.visible = false;
+          }else{
+            item.visible = true;
+          }
+        }
+      });
     });
   }
   // setNavigation() {
