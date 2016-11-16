@@ -1,5 +1,5 @@
 <div class="base-info">
-  <h4>基本介绍<a href="javascript:void(0)" ng-click="vm.introductionVM.enterEditMode()"
+  <h4>概述<a href="javascript:void(0)" ng-click="vm.introductionVM.enterEditMode()"
       ng-if="!vm.introductionVM.isEdit && vm.isEditMode">编辑</a></h4>
   <section id="baseInfoEdit" ng-include="'/pages/project/templates/baseInfoEdit.html'"
     ng-if="vm.introductionVM.isEdit">
@@ -21,8 +21,10 @@
     </div>
     <ul class="company-info">
       <li ng-if="vm.projectData.baseInfo.fullName">公司全称：{{::vm.projectData.baseInfo.fullName}}</li>
-      <li ng-if="vm.projectData.baseInfo.address1Desc">地点：{{::vm.projectData.baseInfo.address1Desc}}</li>
-      <li ng-if="vm.projectData.baseInfo.startDate">成立时间：{{::vm.projectData.baseInfo.startDateDesc}}年</li>
+      <li ng-if="vm.projectData.baseInfo.address1Desc"
+      >地点：{{::vm.projectData.baseInfo.address1Desc}}</li>
+      <li ng-if="vm.projectData.baseInfo.startDate"
+      >成立时间：{{::vm.projectData.baseInfo.startDateDesc}}年</li>
     </ul>
     <ul class="company-info">
       <li ng-if="vm.projectData.baseInfo.scale">公司规模：{{::vm.projectData.baseInfo.scale}}</li>

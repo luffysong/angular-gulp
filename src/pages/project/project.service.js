@@ -29,6 +29,7 @@ export default class ProjectService extends API {
       'editHeader',
       'editBase',
       'editmember',
+      'editIntroduce',
       'addprivilege',
       'addnews',
       'addproduct',

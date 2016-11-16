@@ -1,0 +1,73 @@
+<div class="intro-edit-wrapper">
+  <form action="" name="vm.companyIntroduceVM.form">
+    <div class="content form-group">
+      <div class="section product">
+        <div class="title">产品服务</div>
+        <div class="textarea-control">
+          <textarea  name="product" id=""
+            class="form-control" ng-model='vm.companyIntroduceVM.companyIntroduce.productService'
+            maxlength="200"
+            type="text" class="form-control" ></textarea>
+          <div class="textarea-border">
+          </div>
+          <span class="text-length">{{vm.companyIntroduceVM.companyIntroduce.productService.length || 0}}/200</span>
+        </div>
+      </div>
+      <div class="section market">
+        <div class="title">用户市场</div>
+        <div class="textarea-control">
+          <textarea  name="product" id=""
+            class="form-control" ng-model='vm.companyIntroduceVM.companyIntroduce.userMarket'
+            maxlength="200"
+            type="text" class="form-control" ></textarea>
+          <div class="textarea-border">
+          </div>
+          <span class="text-length">{{vm.companyIntroduceVM.companyIntroduce.userMarket.length || 0}}/200</span>
+        </div>
+      </div>
+      <div class="section product">
+        <div class="title">商业模式</div>
+        <div class="textarea-control">
+          <textarea  name="product" id=""
+            class="form-control" ng-model='vm.companyIntroduceVM.companyIntroduce.businessMode'
+            maxlength="200"
+            type="text" class="form-control" ></textarea>
+          <div class="textarea-border">
+          </div>
+          <span class="text-length">{{vm.companyIntroduceVM.companyIntroduce.businessMode.length || 0}}/200</span>
+        </div>
+      </div>
+      <div class="section product">
+        <div class="title">运营数据</div>
+        <div class="textarea-control">
+          <textarea  name="product" id=""
+            class="form-control" ng-model='vm.companyIntroduceVM.companyIntroduce.operationData'
+            maxlength="200"
+            type="text" class="form-control" ></textarea>
+          <div class="textarea-border">
+          </div>
+          <span class="text-length">{{vm.companyIntroduceVM.companyIntroduce.operationData.length || 0}}/200</span>
+        </div>
+      </div>
+      <div class="section product">
+        <div class="title">核心资源</div>
+        <div class="textarea-control">
+          <textarea  name="product" id=""
+            class="form-control" ng-model='vm.companyIntroduceVM.companyIntroduce.coreSource'
+            maxlength="200"
+            type="text" class="form-control" ></textarea>
+          <div class="textarea-border">
+          </div>
+          <span class="text-length">{{vm.companyIntroduceVM.companyIntroduce.coreSource.length || 0}}/200</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-bottom">
+      <p class="tip">注意：所有更改内容均会提交审核，通过后“产品服务”&nbsp&nbsp“用户市场”对登录用户展示，其余对投资人展示</p>
+      <div>
+        <a class="save" href="javascript:void(0)" ng-click="vm.companyIntroduceVM.save()">保存</a>
+        <a class="cancel" href="" ng-click="vm.companyIntroduceVM.cancel()">取消</a>
+      </div>
+    </div>
+  </form>
+</div>
