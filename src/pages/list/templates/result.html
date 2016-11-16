@@ -41,7 +41,7 @@
           <section ng-if="obj.investParts.length" ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
         </td>
         <td class="filter-item">
-          <span ng-click="vm.clickFilter(obj.city,'city')" ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr}}</span>
+          <span ng-click="vm.clickFilter(obj.city,'city')" ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
         </td>
         <td class="date-time">{{::obj.publishDate | dateFilter}}</td>
         <td>
