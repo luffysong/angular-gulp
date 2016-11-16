@@ -12,7 +12,7 @@ const investorListView = {
 };
 
 const investorList = {
-  url: '/list?{phase}&{label}&{city}&{open}',
+  url: '/list?{phase}&{label}&{city}&{open}&{type}',
   templateUrl: '/pages/investorList/templates/result.html',
   parent: investorListView,
   controllerAs: 'vm',
