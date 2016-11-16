@@ -184,6 +184,8 @@ export default class investorValidateController {
         case 'REJECT':
               this.step = 3;
               this.auditStatus = 'auditFail';
+              this.failReason = data.reason;
+              break;
 
       }
     }).catch(err => {
