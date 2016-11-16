@@ -62,7 +62,6 @@ export default class investorValidateController {
   makeSuggestResult(kw, list) {
     const that = this;
     return list.map(function makeLabel(val) {
-      console.log(val);
       return {
         label: that.$sce.trustAsHtml(
           `<div class="suggest-label suggest-label-investment">
@@ -76,7 +75,6 @@ export default class investorValidateController {
   }
 
   onSelect(selectedItem) {
-    console.log(selectedItem);
     this.baseInfo.orgId = selectedItem.obj.id;
     this.baseInfo.orgName = selectedItem.obj.name;
   }
@@ -162,7 +160,6 @@ export default class investorValidateController {
     }).catch(err => {
       if(err.code === 403) {
         this.$scope.root.user.ensureLogin();
-        console.log('未登录');
       }
     });
     /*this.user.then(data => {
@@ -175,7 +172,6 @@ export default class investorValidateController {
   }
   getState() {
     this.projectService.getState().then(data => {
-      console.log(data);
       switch (data.state) {
         case 'PENDING':
               this.step = 3;
@@ -210,9 +206,7 @@ export default class investorValidateController {
       this.projectService.getMsgCode({
         phone: this.baseInfo.phone
       }).then(data => {
-        console.log(data);
       }).catch(err => {
-        console.log(err);
       });
   }
 
@@ -228,11 +222,9 @@ export default class investorValidateController {
       code: this.baseInfo.code,
       phone: this.baseInfo.phone
     }).then(data => {
-      console.log(data);
       this.codeError = false;
       this.getSuggestInvestor();
     }).catch(err => {
-      console.log(err);
       krData.Alert.alert(err.msg);
       this.codeError = true;
     });
@@ -243,11 +235,9 @@ export default class investorValidateController {
       name: this.baseInfo.realName,
       orgName: this.baseInfo.orgName
     }).then(data => {
-      console.log(data);
       this.suggestInvestor = data;
       this.step = 2;
     }).catch(err => {
-      console.log(err);
     });
   }
 
@@ -265,10 +255,8 @@ export default class investorValidateController {
   /*提交认证*/
   submitValidate() {
     this.$validation.validate(this.financeInfo.form).catch(() => {
-      console.log('Submit fail');
       return this.$q.reject();
     }).then(() => {
-      console.log('Submit suc');
       this.submitRequest();
     });
   }
@@ -288,13 +276,12 @@ export default class investorValidateController {
     }
     console.warn(params);
     this.projectService.submitValidate(params).then(data => {
-      console.log(data);
       this.step = 3;
+      this.auditStatus = 'auditing';
     }).catch(err => {
       if(err && err.msg) {
         krData.Alert.alert(err.msg);
       }
-      console.log(err);
     });
   }
 
@@ -311,7 +298,6 @@ export default class investorValidateController {
         maxSize: '5'
       })
         .then(data => {
-          console.warn(data);
           this.baseInfo.businessCard = data.src;
           /*this.finance.bp = data.src;
           this.bpName = `[${name}]商业计划书.pdf`;*/
