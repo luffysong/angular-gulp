@@ -1,5 +1,6 @@
 import krData from 'krData';
 import InvestorService from '../investorList/investorList.service';
+import ProjectService from '../project/project.service';
 
 class TestAPI extends krData.API {
 
@@ -14,6 +15,7 @@ export default class investorListParentController {
   }
 
   investorService = new InvestorService();
+  projectService = new ProjectService();
 
   init() {
     this.params = {
@@ -48,7 +50,6 @@ export default class investorListParentController {
         this.$scope.$broadcast('get-list', data);
         this.totalCount = data.pageData.totalCount;
         this.data.label = data.label;
-        this.data.city = data.city;
         this.handleActive();
         this.updateData(data);
       });
@@ -60,6 +61,7 @@ export default class investorListParentController {
     });
     this.getFilterData();
     this.getPhase();
+    this.getCity();
   }
 
   /* 过滤不限条件*/
@@ -79,7 +81,7 @@ export default class investorListParentController {
       if (!d[item.name].length) return;
       angular.forEach(d[item.name], (obj) => {
         angular.forEach(this.data[item.name], (c) => {
-          if ((c[item.key] && c[item.key] === obj[item.key]) || (obj.name === '不限' && (c.name === '不限' || c.desc === '不限'))) {
+          if ((c[item.key] && c[item.key] === obj[item.key]) || obj.name === c.name || (obj.name === '不限' && (c.name === '不限' || c.desc === '不限'))) {
             c.cnt = obj.cnt;
           }
         });
@@ -151,13 +153,18 @@ export default class investorListParentController {
   }
 
   /* 增加默认数据*/
-  addItem(obj) {
+  addItem(obj,type) {
     const c = {
       active: false,
       id: 0,
       value: 'unlimited',
       desc: '不限'
     };
+    if(type === 'city'){
+      c.name = '不限';
+    } else {
+      c.desc = '不限';
+    }
     obj.unshift(c);
     return obj;
   }
@@ -176,15 +183,26 @@ export default class investorListParentController {
 
   /*获取轮次静态数据*/
   getPhase() {
-    this.data.phase = this.addItem(this.$scope.root.COMPANY_SEARCH_PHASE_META);
+    this.data.phase = this.addItem(this.$scope.root.COMPANY_SEARCH_PHASE_META,'phase');
   }
 
+  getCity() {
+    this.projectService.getArea(0)
+    .then(data => {
+      var city = this.addItem(data,'city');
+      city.forEach((item) => {
+        if(item.id !==0){
+          item.value = item.id;
+        }
+      });
+      this.data.city = city;
+    });
+  }
 
   // /*获取静态行业数据*/
   getFilterData() {
     this.investorService.getList().then(data => {
       this.data.label = data.label;
-      this.data.city = data.city;
       this.data['label'][0].active = true;
       this.data['phase'][0].active = true;
       this.data['city'][0].active = true;

@@ -1,1 +1,70 @@
-hellow World
+<div class="compare-wrapper">
+  <header>
+
+  </header>
+
+  <section>
+    <table >
+      <thead>
+        <tr>
+          <td></td>
+          <td ng-if="!vm.projects"></td>
+          <td ng-style="{width: (88/vm.projects.length) + '%'}" ng-repeat="item in vm.projects">{{item.companyName}}</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>行业</td>
+          <td ng-repeat="item in vm.projects">{{item.industry.name}}</td>
+        </tr>
+        <tr class="inline-block-text">
+          <td>标签</td>
+          <td ng-repeat="item in vm.projects">
+            <a ui-sref="list.result({label: tag.id})"  ng-repeat="tag in item.tags"
+              target="_blank">
+              <span> {{tag.name}} </span>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>当前轮次</td>
+          <td ng-repeat="item in vm.projects">{{item.phase.name}}</td>
+        </tr>
+        <tr class="inline-block-text investors">
+          <td>过往投资方</td>
+          <td ng-repeat="item in vm.projects">
+            <span ng-repeat="investor in item.investor">{{investor.name}}</span>
+          </td>
+        </tr>
+        <tr class="inline-block-text team-keywords">
+          <td>团队关键</td>
+          <td ng-repeat="item in vm.projects">
+            <span ng-repeat="key in item.teamKeyWords"><span>{{key}}</span></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="chart-module">
+    <h4> <span>DAU（每日活跃用户数）数据对比</span><span class="icon-open-select"></span></h4>
+    <highchart  config="vm.dauHg"></highchart>
+  </section>
+
+
+  <section class="chart-module">
+    <h4> <span>下载量数据对比</span><span class="icon-open-select"></span></h4>
+    <highchart  config="vm.downloadHg"></highchart>
+  </section>
+
+  <section class="chart-module">
+    <h4> <span>卸载量数据对比</span><span class="icon-open-select"></span></h4>
+    <highchart  config="vm.uninstallHg"></highchart>
+  </section>
+
+  <section class="chart-module">
+    <h4> <span>留存率数据对比</span><span class="icon-open-select"></span></h4>
+    <highchart  config="vm.saveHg"></highchart>
+  </section>
+
+</div>

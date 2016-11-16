@@ -83,18 +83,35 @@
   .login-out{
     width: 100%;
     height: 180px;
-    background-image: url('../../../images/finance.png');
-    background-size: 100% 100%;
+    background-image: url('../../../images/history.png');
+    // background-size: 100% 100%;
+    background-repeat: no-repeat;
     text-align: center;
     line-height: 180px;
-    .login{
-      background: #6BA2FC;
-      border-radius: 4px;
-      font-size: 14px;
-      color: #FFFFFF;
-      letter-spacing: 0px;
-      line-height: 21px;
-      padding:6px 23px;
+    padding-top: 57px;
+    padding-bottom: 56px;
+    a{
+      display: block;
+      width: 130px;
+      margin: auto;
+      margin-top: 0px;
+      .login{
+        .size(130,33);
+        background: #6BA2FC;
+        border-radius: 4px;
+        .font(14,21);
+        color: #FFFFFF;
+        letter-spacing: 0px;
+        padding:6px 37px;
+      }
+    }
+    .intro1{
+      margin: 12px auto 0px;
+      .size(84,21);
+      color: #5A626D;
+      .font(14,21);
+      .text-center();
+      vertical-align: middle;
     }
   }
 }

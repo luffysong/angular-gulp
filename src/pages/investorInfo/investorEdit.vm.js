@@ -312,7 +312,7 @@ export default class InvestorEditVM {
       requiredList: (value, scope, element, attrs, param) => {
         const args = param.split(':');
         const list = scope.$eval(args[0]);
-        const count = parseInt(args[1], 10) || 10;
+        const count = parseInt(args[1], 10) || 100;
         if (list && !list.length) {
           return false;
         } else if (list.length > count) {
@@ -366,6 +366,7 @@ export default class InvestorEditVM {
     this.editPrefer = true;
     this.preferData = angular.copy(this.copyData.investPreference);
     this.preferData.singleInvestUnit = this.preferData.unit || CURRENCY_UNIT.CNY;
+    this.preferData.focusIndustry = this.preferData.focusIndustry || [];
     delete this.preferData.unit;
     delete this.preferData.singleInvestAmount;
   }

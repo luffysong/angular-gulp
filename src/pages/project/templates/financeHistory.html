@@ -38,5 +38,9 @@
         <span>未收录相关信息</span>
       </span>
   </div>
-  <div ng-include="'/pages/project/templates/loginOut.html'" ng-if='!vm.userId'></div>
+  <!-- <div ng-include="'/pages/project/templates/loginOut.html'" ng-if='!vm.userId'></div> -->
+  <div ng-if="!vm.userId" class="login-out">
+    <a ng-href="https://passport.36kr.com/pages/?ok_url=http%3A%2F%2Frongtest03.36kr.com%2F#/login?pos=header" href="javascript:void()"><div class="login">立即登录</div></a>
+    <div class="intro1">查看融资经历</div>
+  </div>
 </div>
