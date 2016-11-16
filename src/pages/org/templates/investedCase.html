@@ -52,7 +52,7 @@
                   <a ui-sref="project({id: item.project.cid})" target="_blank">
                     {{item.project.companyName}}
                   </a>
-                  <a class="hover" ui-sref="list.result({industry: item.project.industryEnum})" target="_blank">
+                  <a class="hover" ui-sref="list.result({industry: item.project.industryEnum})" ui-sref-opts="{reload:true}" target="_blank">
                     {{item.project.industry}}
                   </a>
                 </div>
