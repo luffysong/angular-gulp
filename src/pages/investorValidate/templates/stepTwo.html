@@ -15,18 +15,20 @@
               {{item.name}}
             </section>
             <section class="user-work">
-              {{item.orgName}} <span ng-if="item.orgName">|</span> {{item.position}}
+              {{item.orgName}} <span ng-if="item.orgName && item.position">|</span> {{item.position}}
             </section>
             <section class="follow-industry">
               近期关注:
-              <span ng-repeat="obj in item.industryEnumList">
+              <span ng-if="!item.industryEnumList.length">暂无</span>
+              <span ng-repeat="obj in item.industryEnumList" ng-if="item.industryEnumList.length">
                 <span>{{obj | industry}}</span>
                 <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
               </span>
             </section>
             <section class="follow-industry">
               偏好轮次:
-              <span ng-repeat="obj in item.phaseEnumList">
+              <span ng-if="!item.phaseEnumList.length">暂无</span>
+              <span ng-repeat="obj in item.phaseEnumList" ng-if="item.phaseEnumList.length">
                 <span>{{obj | companySearchPhase}}</span>
                 <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
               </span>
