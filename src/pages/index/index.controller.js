@@ -85,6 +85,12 @@ export default class homeController {
     this.$timeout(() => this.labelLoading = false,500);
   }
 
-
+  createProject() {
+    if(!this.user.isLogin) {
+      this.$scope.root.user.ensureLogin();
+    }else {
+      this.$state.go('createProject');
+    }
+  }
 }
 
