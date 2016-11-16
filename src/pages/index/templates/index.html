@@ -5,8 +5,12 @@
       <span class="left-arrow icon-left-arrow"></span>
       <span class="right-arrow icon-right-arrow"></span>
       <slick infinite="true" slides-to-show="3" prev-arrow=".left-arrow" next-arrow=".right-arrow" dots="true">
-        <div class="investor-container" ng-repeat="item in [1,2,3,4,5,6]" ng-class="{active: item.active}">
-          <div class="investor-item" ng-click="vm.selectItem($index)" ng-class="{active: item.active}">
+        <div class="banner-container" ng-repeat="item in [1,2,3,4,5,6]">
+          <div class="banner-item">
+            <div class="banner-info">
+              <section class="banner-title">创投助手</section>
+              <section>2016WISE独角兽大会预热中</section>
+            </div>
           </div>
         </div>
       </slick>
@@ -15,38 +19,44 @@
     <div class="project-container">
       <div class="project-title">
         <div class="title-text">
-          网罗全网 <span class="project-number">75800</span> 家项目
+          网罗全网 <a class="project-number" ui-sref="list.result({columnId:0})">{{vm.columnData.projectCnt}}</a> 家项目
           <span class="login-tip">登录拥有全世界</span>
         </div>
       </div>
       <ul class="status-list">
-        <li ng-repeat="item in vm.statusList" ng-class="{'active': item.active}" ng-click="vm.switchStatus($index)">
+        <li ng-repeat="item in vm.columnData.columnList" ng-class="{'active': item.active}" ng-mouseenter="vm.switchStatus($index,item.columnId)">
           <span class="active-tag"></span>
-          {{item.name}}
+          {{item.columnName}}
         </li>
       </ul>
       <div class="result-wrapper">
-        <div class="result-list" ng-repeat="item in [1,2,3]">
-          <img ng-src="" alt="">
-          <div class="item-info">
-            <div class="company-info">
-              <span class="company-name">36氪</span>
-              <span class="company-industry">电子商务</span>
+        <div kr-loading loading="vm.columnLoading"></div>
+        <div ng-hide="vm.columnLoading">
+          <div class="result-list" ng-repeat="item in vm.columnCompany | limitTo:3">
+            <img ng-src="{{item.logo}}" alt="">
+            <div class="item-info">
+              <div class="company-info">
+                <span class="company-name">{{item.name}}</span>
+                <span class="company-industry">{{item.industryStr}}</span>
+              </div>
+              <div class="company-brief">
+                {{item.brief}}
+              </div>
+              <div class="company-intro">
+                <span class="company-phase">
+                  {{item.phase | companyFinancePhase}}
+                </span>
+                <span class="company-sp">|</span>
+                <span class="company-address">
+                  <i class="icon-location"></i>
+                  {{item.cityStr}}
+                </span>
+              </div>
             </div>
-            <div class="company-brief">
-              为创业者提供最好的产品和服务
-            </div>
-            <div class="company-intro">
-              <span class="company-phase">A轮</span>
-              <span class="company-sp">|</span>
-              <span class="company-address">
-                <i class="icon-location"></i>北京市
-              </span>
-            </div>
+            <a class="handle-btn" href="" ui-sref="project({id:item.id})">联系创始人</a>
           </div>
-          <a class="handle-btn" href="">联系创始人</a>
+          <div class="see-detail" ui-sref="list.result({columnId:vm.columnId})">查看更多项目</div>
         </div>
-        <div class="see-detail">查看更多项目</div>
       </div>
       <div class="bottom-line"></div>
     </div>
@@ -54,7 +64,7 @@
     <div class="project-container">
       <div class="project-title">
         <div class="title-text">
-          提供<span class="project-number">75800</span>个标签订阅
+          提供 <a class="project-number" ui-sref="follow.result">{{vm.labelData.projectCnt}}</a> 个标签订阅
           <span class="login-tip">想看的都在这里</span>
         </div>
       </div>
@@ -63,33 +73,41 @@
           <li>
             近期热门领域排行榜
           </li>
-          <li ng-repeat="item in vm.tagList" ng-class="{'active': item.active}" ng-click="vm.switchTag($index)">
-            <span class="icon-tag"></span>
-            {{item.name}}
+          <li ng-repeat="item in vm.labelData.columnList | limitTo:8" ng-class="{'active': item.active}" ng-mouseenter="vm.switchTag($index)">
+            <span class="column-name">
+               <span class="icon-tag"></span>
+              {{item.columnName}}
+            </span>
           </li>
         </ul>
         <div class="result-wrapper tag-wrapper">
-          <div class="result-list" ng-repeat="item in [1,2,3]">
-            <img ng-src="" alt="">
-            <div class="item-info">
-              <div class="company-info">
-                <span class="company-name">36氪</span>
-                <span class="company-industry">电子商务</span>
+          <div kr-loading loading="vm.labelLoading"></div>
+          <div ng-hide="vm.labelLoading">
+            <div class="result-list" ng-repeat="item in vm.labelCompany | limitTo:3">
+              <img ng-src="{{item.logo}}" alt="">
+              <div class="item-info">
+                <div class="company-info">
+                  <span class="company-name">{{item.name}}</span>
+                  <span class="company-industry">{{item.industryStr}}</span>
+                </div>
+                <div class="company-brief">
+                  {{item.brief}}
+                </div>
+                <div class="company-intro">
+                  <span class="company-phase">
+                    {{item.phase | companyFinancePhase}}
+                  </span>
+                  <span class="company-sp">|</span>
+                  <span class="company-address">
+                    <i class="icon-location"></i>
+                    {{item.cityStr}}
+                  </span>
+                </div>
               </div>
-              <div class="company-brief">
-                为创业者提供最好的产品和服务
-              </div>
-              <div class="company-intro">
-                <span class="company-phase">A轮</span>
-                <span class="company-sp">|</span>
-                <span class="company-address">
-                <i class="icon-location"></i>北京市
-              </span>
-              </div>
+              <a class="handle-btn" href="" ui-sref="project({id:item.id})">联系创始人</a>
             </div>
-            <a class="handle-btn" href="">联系创始人</a>
+            <div class="see-detail" ui-sref="label.result({labelId:vm.labelId})">查看更多项目</div>
           </div>
-          <div class="see-detail">查看更多项目</div>
         </div>
       </div>
 
@@ -99,19 +117,25 @@
     <div class="project-container">
       <div class="project-title last-page">
         <div class="title-text">
-          <span class="project-number">3788</span> 名投资人每天
-          <span class="project-number">58776</span> 即刻对接
+          <a class="project-number" ui-sref="investorList.result">3788</a> 名投资人每天
+          <a class="project-number" ui-sref="investorList.result">58776</a> 即刻对接
           <span class="login-tip">精准匹配找到你想要</span>
         </div>
       </div>
       <a class="submit-btn" href="">我也要提交项目</a>
-      <div class="investor-container">
+      <div class="investor-container" ng-if="vm.investorData.columnList.length">
         <span class="submit-left-arrow icon-left-arrow"></span>
         <span class="submit-right-arrow icon-right-arrow"></span>
         <slick infinite="false" slides-to-show="4" prev-arrow=".submit-left-arrow" next-arrow=".submit-right-arrow">
-          <div class="investor-container" ng-repeat="item in [1,2,3,4,5,6,7,8]" ng-class="{active: item.active}">
-            <div class="investor-item" ng-click="vm.selectItem($index)" ng-class="{active: item.active}">
-            </div>
+          <div class="user-container" ng-repeat="item in vm.investorData.columnList">
+            <a href="" ui-sref="investorInfo({id:item.id})" target="_blank">
+              <div class="investor-item">
+                <img ng-src="{{item.avatar || 'images/investor-logo.png'}}" alt="">
+                <div class="item-name">{{item.name}}</div>
+                <div class="item-org">{{item.entityName}}</div>
+                <div class="item-position">{{item.position}}</div>
+              </div>
+            </a>
           </div>
         </slick>
       </div>
@@ -122,7 +146,7 @@
   <div class="home-footer">
     <div class="footer-container">
       <div class="left-footer">
-        <img ng-src="" alt="">
+        <img ng-src="../../images/rong-logo.png" alt="">
         <div class="download-tip">
           <div class="download-name">下载36氪创投助手</div>
           <div class="download-intro">提供最好的投融资产品和服务</div>
@@ -131,8 +155,8 @@
       <div class="right-footer">
         <img ng-src="" alt="">
         <div class="download-tip">
-          <div class="download-intro">ios客户端下载</div>
-          <div class="download-intro">Android客户端下载</div>
+          <div class="download-address">ios客户端下载</div>
+          <div class="download-address">Android客户端下载</div>
         </div>
       </div>
     </div>

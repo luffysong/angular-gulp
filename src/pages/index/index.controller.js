@@ -17,66 +17,72 @@ export default class homeController {
 
   init() {
 
-    this.statusList = [
-      {
-        name: '正在融资',
-        value: 'funding',
-        active: true
-      },{
-        name: '优选',
-        value: 'funding',
-        active: false
-      },{
-        name: '36氪报道',
-        value: 'funding',
-        active: false
-      },{
-        name: '融资完成',
-        value: 'funding',
-        active: false
-      }
-    ];
+    this.columnLoading = true;
+    this.labelLoading = true;
 
-    this.tagList = [
-      {
-        name: '文化娱乐/IP',
-        value: 'funding',
-        active: true
-      },{
-        name: '企业服务',
-        value: 'funding',
-        active: false
-      },{
-        name: '智力能硬件',
-        value: 'funding',
-        active: false
-      },{
-        name: '电子商务',
-        value: 'funding',
-        active: false
-      }
-    ];
+    this.getColumn();
+    this.getTag();
+    this.getInvestor();
+  }
 
+
+  getColumn() {
+    this.projectService.indexColumn().then(data => {
+      this.columnData = data;
+      this.switchStatus(0);
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
+  getTag() {
+    this.projectService.indexLabel().then(data => {
+      this.labelData = data;
+      this.switchTag(0);
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
+  getInvestor() {
+    this.projectService.indexInvestor().then(data => {
+      this.investorData = data;
+      console.log(data);
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
   switchStatus(i) {
-    this.statusList.forEach((item,index) => {
+    if(this.statusIndex === i)return;
+    this.statusIndex = i;
+    this.columnLoading = true;
+    this.columnData.columnList.forEach((item,index) => {
       if(index+'' === i+'') {
         item.active = true;
       }else {
         item.active = false;
       }
-    })
+    });
+    this.columnCompany = this.columnData.columnList[i].companyVoList;
+    this.columnId = this.columnData.columnList[i].columnId;
+    this.$timeout(() => this.columnLoading = false,500);
   }
 
   switchTag(i) {
-    this.tagList.forEach((item,index) => {
+    if(this.tagIndex === i)return;
+    this.tagIndex = i;
+    this.labelLoading = true;
+    this.labelData.columnList.forEach((item,index) => {
       if(index+'' === i+'') {
         item.active = true;
       }else {
         item.active = false;
       }
-    })
+    });
+    this.labelCompany = this.labelData.columnList[i].companyVoList;
+    this.labelId = this.labelData.columnList[i].columnId;
+    this.$timeout(() => this.labelLoading = false,500);
   }
 
 

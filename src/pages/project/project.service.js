@@ -18,6 +18,18 @@ const investorApi = new krData.API('/investor/auth',[], {
   }
 });
 
+const indexApi = new krData.API('/index',[], {
+  column: {
+    action: 'column'
+  },
+  label: {
+    action: 'label'
+  },
+  investor: {
+    action: 'investor'
+  }
+});
+
 @Inject('$q')
 export default class ProjectService extends API {
 
@@ -310,6 +322,21 @@ export default class ProjectService extends API {
       email: emai,
     };
     return new API('/investor/common-email').update(null, email);
+  }
+
+  //首页公司栏目模块
+  indexColumn() {
+    return indexApi.column();
+  }
+
+  //首页
+  indexLabel() {
+    return indexApi.label();
+  }
+
+  /*首页投资人接口*/
+  indexInvestor() {
+    return indexApi.investor();
   }
 
   // FIXME: 此处因为服务端数据出错
