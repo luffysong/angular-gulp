@@ -412,13 +412,25 @@
           border-bottom:1px solid #F2F4F5;
           padding:14px 0;
           &.filter-item {
-            cursor: pointer;
-            &.disabled {
-              cursor: auto;
-              pointer-events: none;
+            .label-item {
+              cursor: pointer;
+              &.disabled {
+                cursor: auto;
+                pointer-events: none;
+              }
+              &:hover {
+                color: #2868D1;
+              }
             }
-            &:hover {
-              color: #2868D1;
+            >span {
+              cursor: pointer;
+              &.disabled {
+                cursor: auto;
+                pointer-events: none;
+              }
+              &:hover {
+                color: #2868D1;
+              }
             }
           }
           &.date-time {
