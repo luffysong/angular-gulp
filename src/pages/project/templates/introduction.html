@@ -13,19 +13,19 @@
       <span class="sub-title">用户市场</span>
       <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.userMarket}}</span>
     </div>
-    <div class="item"  ng-if="vm.userId == 'admin' || vm.investorType">
+    <div class="item"  ng-if="vm.user == 'admin' || vm.investorType">
       <span class="sub-title">商业模式</span>
       <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.businessMode}}</span>
     </div>
-    <div class="item"  ng-if="vm.userId == 'admin' || vm.investorType">
+    <div class="item"  ng-if="vm.user == 'admin' || vm.investorType">
       <span class="sub-title">运营数据</span>
       <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.operationData}}</span>
     </div>
-    <div class="item" ng-if="vm.userId == 'admin' || vm.investorType">
+    <div class="item" ng-if="vm.user == 'admin' || vm.investorType">
       <span class="sub-title">核心资源</span>
       <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.coreSource}}</span>
     </div>
-    <div class="part-hide" ng-if="vm.user=='commen'">
+    <div class="part-hide" ng-if="vm.user=='commen' && !vm.investorType">
       <a class="certify" ng-href="https://rongtest03.36kr.com/m/#/investor" href="javascript:void()"><p>认证投资人</p></a>
       <p class="complete">查看完整项目介绍</p>
     </div>
