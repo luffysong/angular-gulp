@@ -1,0 +1,18 @@
+<div class="collection-delete">
+  <span class="icon-dialogClose" ng-click="vm.collectCancle()"></span>
+  <span class="title">添加到收藏夹</span>
+  <span class="suc" ng-class="{'hidden':vm.suc}">添加成功！</span>
+  <span class="cancle" ng-class="{'hidden':vm.cancle}">取消成功！</span>
+
+  <div class="create-box">
+    <span class="create" ng-hide="vm.createShow" ng-click="vm.createNew()">创建收藏夹+</span>
+    <form class="new-box" ng-hide="!vm.createShow" name="collectionName">
+      <div class="form-group">
+        <input type="text" name='createName' ng-model='vm.collectionName' validator="required" class="form-control" maxlength="8">
+      <span class="new-button" ng-click="vm.create()">创建</span>
+      </div>
+
+    </form>
+
+  </div>
+</div>
