@@ -1,7 +1,7 @@
 <nav class="rz-sidebar-wrapper" >
   <ul class="nav" id='sidebar'>
-    <li class='home'>
-      <a href="">
+    <li class='home' ng-class="{active: root.toState.name === 'index'}">
+      <a href="" ui-sref="index">
         <span class="icon-home kr-icon" id="Img"></span>
       <span class="kr-tags">首页</span>
       </a>
