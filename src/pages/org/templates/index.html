@@ -1,7 +1,9 @@
 <div class="org-wrapper">
   <header>
     <section>
-      <img ng-src="{{vm.orgData.basic.logo || '/images/org-logo.png'}}" alt=""/>
+      <span class="img-border">
+        <img ng-src="{{vm.orgData.basic.logo || '/images/org-logo.png'}}" alt=""/>
+      </span>
       <div class="right-content">
         <h1>{{vm.orgData.basic.nameAbbr}}</h1>
         <p class="en-name">{{vm.orgData.basic.enName}}</p>
@@ -54,11 +56,11 @@
         <select ng-options="item.value as item.desc for item in root.INDUSTRY_META"
           class="form-control address-select" ng-model="vm.industry" ng-change="vm.changeCondition()"
           message-id="messageAddress" >
-        <option value="">投资行业</option>
+        <option value="">全部行业</option>
         </select><select ng-options="item.value as item.desc for item in root.FINANCE_PHASE_META"
           ng-model="vm.phase" ng-change="vm.changeCondition()"
           class="form-control address-select"  >
-        <option value="">投资轮次</option>
+        <option value="">全部轮次</option>
         </select><select ng-model="vm.year" ng-change="vm.changeCondition()"
          ng-options="item for item in vm.years"
           class="form-control address-select">

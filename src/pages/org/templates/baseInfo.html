@@ -30,12 +30,12 @@
       <span class="label contact">联系方式</span>
       <div class="all-addr">
         <span ng-repeat="item in vm.orgData.basic.addresses">
-          <div class="address">
-            <span class="city" ng-if="item.city !== '' && item.city">{{item.city}}</span
+          <div class="address"  ng-if="item.city !== '' && item.city">
+            <span class="city">{{item.city}}</span
             ><span ng-if="item.address !== '' && item.address">{{item.address}}</span>
           </div
-          ><div class="phone-email">
-            <span class="phone" ng-if="item.phone !== '' && item.phone">{{item.phone}}</span
+          ><div class="phone-email" ng-if="item.phone !== '' && item.phone">
+            <span class="phone">{{item.phone}}</span
             ><span ng-if="item.email !== '' && item.email">{{item.email}}</span>
           </div>
         </span>

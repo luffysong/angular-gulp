@@ -43,11 +43,22 @@
           border-top:6px solid rgba(90,98,109,1);
         }
       }
-      img {
+      .img-border{
+        display: block;
         .square(90);
-        .rd(6px);
-        float: left;
-        border: 1px solid #E7E7E7;
+          .rd(6px);
+          float: left;
+          border: 1px solid #E7E7E7;
+          line-height: 84px;
+          text-align: center;
+        img {
+          .rd(6px);
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
+          vertical-align: middle;
+        }
       }
       .en-name{
         .font(14,19);
@@ -127,7 +138,7 @@
     width: @content-width;
     margin: 0 auto;
     padding: 20px 42px 30px;
-    box-shadow: 0px 0px 8px 0px #CCC;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,.1);
     margin-top: 16px;
     h4 {
       color: @title-color;
