@@ -27,9 +27,14 @@
         span{
           display: block;
           margin-top: 1px;
-          .font(14,21);
           margin-left: 64px;
-          letter-spacing: 0px;
+          p{
+            white-space: nowrap;
+            .font(14,21);
+            letter-spacing: 0px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
           &:first-child{
             color: #222C38;
           }
