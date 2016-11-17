@@ -116,10 +116,10 @@
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
-          <img ng-src="{{obj.logo || '/images/org-logo.png'}}" class="project-logo" />
+          <img ui-sref="org({id:obj.id})" ng-src="{{obj.logo || '/images/org-logo.png'}}" class="project-logo" />
           <div class="project-info">
             <div class="project-name">
-              <span class="company-name">{{obj.name}}</span>
+              <span class="company-name" ui-sref="org({id:obj.id})">{{obj.name}}</span>
             </div>
             <div class="org-intro">
               {{obj.brief}}
@@ -129,8 +129,12 @@
         <td class="org-col">
           <section ng-repeat="org in obj.investCaseList | limitTo:3 track by $index" ng-bind="org.name"></section>
         </td>
-        <td>{{obj.investCnt}}</td>
-        <td>{{obj.memberCnt}}</td>
+        <td class="org-count">
+          <a href="" ui-sref="org({id:obj.id})">{{obj.investCnt}}</a>
+        </td>
+        <td class="org-count">
+          <a href="" ui-sref="org({id:obj.id})">{{obj.memberCnt}}</a>
+        </td>
 
       </tr>
     </table>
