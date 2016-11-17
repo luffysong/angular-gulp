@@ -1,58 +1,24 @@
+import krData from 'krData';
+
 import WorkstationIndexService from './WorkstationIndex.service';
 @Inject('$stateParams', 'resolveData','$validation', '$scope', '$sce', '$state', '$q', '$filter')
 export default class WorkstationIndexController {
   constructor() {
     this.init();
   }
-  // workstationService = new WorkstationIndexService();
+
+  workstationService = new WorkstationIndexService();
 
   init() {
-    // this.getworkstation(this.$stateParams.id);
-    // this.getInvestmentInfo(this.$stateParams.id);
-    // this.$scope.investorEditVM = investorEditVM;
-    // this.moreCase = false;
+    this.getCollectionList();
   }
 
-
-  getInvestmentInfo(id) {
-    this.workstationService.getInvestment(id)
+  getCollectionList() {
+    this.workstationService.collectionList()
     .then(data => {
-      this.industry = data.industry;
-      this.allInvestments = data.voList;
-      this.investment = data.voList.slice(0, 4);
-    });
+      this.data = data;
+      console.log(this.data);
+    });;
   }
 
-  moreShow(cid,state) {
-    this.moreBtn = state;
-    this.allInvestments.forEach((item) => {
-      if(item.cid === cid){
-        if (state === 'close') {
-          item.moreShow = true;
-        } else if (state === 'open') {
-          item.moreShow = false;
-        }
-      }
-    });
-  }
-
-  showMoreCase() {
-    this.moreCase = true;
-    this.investment = this.allInvestments;
-  }
-
-  changeVisible(cid,state) {
-    this.workstationService.changeInvestmenVisible(cid,state)
-    .then(data => {
-      this.allInvestments.forEach((item) => {
-        if(item.cid === cid){
-          if(item.visible){
-            item.visible = false;
-          }else{
-            item.visible = true;
-          }
-        }
-      });
-    });
-  }
 }

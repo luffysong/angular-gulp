@@ -1,7 +1,7 @@
 <div class="member-wrapper">
   <h4>机构成员<span class="number">({{vm.orgData.member.total}})</span></h4>
   <div class="all-members" ng-if="vm.orgData.member.total">
-    <div class="member" ng-repeat="item in vm.memberVM.memberData">
+    <span class="member" ng-repeat="item in vm.memberVM.memberData">
       <div class="logo">
         <img ng-src="{{item.userInfo.avatar || '/images/investor-logo.png'}}">
       </div>
@@ -9,7 +9,7 @@
         <span>{{item.userInfo.name}}</span>
         <span>{{item.title}}</span>
       </div>
-    </div>
+    </span>
   </div>
   <div class="more" ng-if="!vm.memberVM.isMore && vm.orgData.member.total>3"
        ng-click="vm.memberVM.more()">

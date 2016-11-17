@@ -2,7 +2,15 @@ import { utls } from 'krData';
 import { FID_KEY } from './WorkstationCompare.service';
 const getService = utls.getService;
 let service = null;
+const wanYLabel = {
+  format: '{value}万',
+};
 
+const percentYLabel = {
+  formatter: function formatterPercent() {
+    return `${this.value * 100}%`;
+  },
+};
 function getHichartsOptions() {
   return {
     colors: ['#88C4FF', '#B3DD6A', '#CAD1FF', '#FFD46B', '#9DE3D9'],
@@ -13,6 +21,9 @@ function getHichartsOptions() {
     chart: {
       width: 940,
       height: 340,
+    },
+    credits: {
+      enabled: false,
     },
     title: {
       text: null,
@@ -63,7 +74,7 @@ function getHichartsOptions() {
         dashStyle: 'LongDash',
       },
     },
-    yAxis: [{
+    yAxis: {
       lineColor: '#E7E7E7',
       gridLineColor: '#F2F4F5',
       gridLineDashStyle: 'longdash',
@@ -72,7 +83,7 @@ function getHichartsOptions() {
       title: {
         enabled: false,
       },
-    }],
+    },
   };
 }
 export default class WorkstationCompareController {
@@ -96,6 +107,7 @@ export default class WorkstationCompareController {
           options: getHichartsOptions(),
         };
         hichartsOptions.options.xAxis.categories = data.x;
+        hichartsOptions.options.yAxis.labels = wanYLabel;
         hichartsOptions.series = data.seriesData[key];
         this[`${key}Hg`] = hichartsOptions;
       });

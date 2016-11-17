@@ -99,6 +99,9 @@ export default {
     workstation: [
       '/pages/workstation/index.js',
     ],
+    workstationList: [
+      '/pages/workstationList/index.js',
+    ],
     workstationCompare: [
       '/bower/highcharts/highcharts.js',
       '/bower/highcharts-ng/dist/highcharts-ng.min.js',
