@@ -9,7 +9,7 @@
         <div class="col-content">
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.industry}">
-              <ul filter-cal ng-if="parentVm.data.industry">
+              <ul filter-cal open-filter="parentVm.open.industry" ng-if="parentVm.data.industry">
                 <li class="col-item" ng-repeat="item in parentVm.data.industry" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'industry')">
                   {{item.desc}}
                   <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
@@ -32,7 +32,7 @@
         <div class="col-content">
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.label}">
-              <ul filter-cal ng-if="parentVm.data.label">
+              <ul filter-cal open-filter="parentVm.open.label" data="parentVm.data.label">
                 <li class="col-item" ng-repeat="item in parentVm.data.label" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'label')">
                   {{item.name}}
                   <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
@@ -55,7 +55,7 @@
         <div class="col-content">
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.phase}">
-              <ul filter-cal ng-if="parentVm.data.phase">
+              <ul filter-cal open-filter="parentVm.open.phase" ng-if="parentVm.data.phase">
                 <li class="col-item" ng-repeat="item in parentVm.data.phase" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'phase')">
                   {{item.desc}}
                   <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
@@ -78,7 +78,7 @@
         <div class="col-content">
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.city}">
-              <ul filter-cal ng-if="parentVm.data.city">
+              <ul filter-cal open-filter="parentVm.open.city" ng-if="parentVm.data.city">
                 <li class="col-item" ng-repeat="item in parentVm.data.city" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'city')">
                   {{item.name}}
                   <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
