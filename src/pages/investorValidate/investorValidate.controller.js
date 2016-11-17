@@ -137,6 +137,9 @@ export default class investorValidateController {
         this.baseInfo.relatedEntityName = this.suggestInvestor[index].orgName;
         this.baseInfo.relatedName = this.suggestInvestor[index].name;
         this.baseInfo.relatedPosition = this.suggestInvestor[index].position;
+        this.baseInfo.singleInvestMin = this.suggestInvestor[index].singleInvestMin;
+        this.baseInfo.singleInvestMax = this.suggestInvestor[index].singleInvestMax;
+        this.baseInfo.singleInvestUnit = this.suggestInvestor[index].singleInvestUnit;
       }
     });
   }
@@ -148,6 +151,9 @@ export default class investorValidateController {
     this.baseInfo.relatedEntityName = '';
     this.baseInfo.relatedName = '';
     this.baseInfo.relatedPosition = '';
+    this.baseInfo.singleInvestMin = '';
+    this.baseInfo.singleInvestMax = '';
+    this.baseInfo.singleInvestUnit = '';
   }
 
   getUser() {
