@@ -89,6 +89,7 @@ export default class FinanceVM extends krData.FormVM {
             `<div class="suggest-label suggest-label-investor">
               <img src="${val.logo || '/images/investor-logo.png'}" />
               <span class="investor-name">${val.entityName}</span>
+              <span class="investor-org">${val.orgName}</span>
               <span class="investor-position">${val.position}</span>
             </div>`
             ),
