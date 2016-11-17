@@ -13,8 +13,11 @@
         <span class="info-lun">
           <a href="" class="darkColor" ng-if="data.phase">{{data.phase | financePhase}}</a>
         </span>
-        <span class="info-company" >
+        <span class="info-company" ng-if="data.participantVos" >
           <a href="" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
+        </span>
+        <span ng-if="vm.financeVM.isUndefined(data.participantVos)" class="info-company">
+          暂无
         </span>
         <span ng-if="data.financeAmount!==''" class="info-level">{{data.financeAmount}} {{data.financeAmountUnit | currencyUnit}}
           <!-- <span ng-show="data.financeAmountUnit == 'USD'">美元</span>

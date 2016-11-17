@@ -1,10 +1,10 @@
 <div class="base-info">
   <h4>概述<a href="javascript:void(0)" ng-click="vm.introductionVM.enterEditMode()"
-      ng-if="!vm.introductionVM.isEdit && vm.isEditMode">该模块不开放编辑</a></h4>
-  <!-- <section id="baseInfoEdit" ng-include="'/pages/project/templates/baseInfoEdit.html'"
+      ng-if="!vm.introductionVM.isEdit && vm.isEditMode">编辑</a></h4>
+  <section id="baseInfoEdit" ng-include="'/pages/project/templates/baseInfoEdit.html'"
     ng-if="vm.introductionVM.isEdit">
     基本介绍编辑
-  </section> -->
+  </section>
   <div ng-if="!vm.introductionVM.isEdit">
     <ul ng-if="vm.projectData.baseInfo.operationTag.length || vm.projectData.baseInfo.industryTag.length" class="tags">
       <li class="tag-icon"><span class="icon-Tags"></span></li>
