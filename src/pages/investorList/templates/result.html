@@ -39,7 +39,7 @@
           {{obj.investCnt}}
         </td>
         <td class="org-col">
-          <p ng-repeat="item in obj.investCaseList | limitTo:3 track by $index" >
+          <p ng-repeat="item in obj.investCaseList | limitTo:3 track by $index" class="case-name">
             <a  target="_blank" ui-sref="project({id: item.id})">{{item.name}}</a>
           </p>
           <span ng-if="!obj.investCaseList.length">暂无</span>

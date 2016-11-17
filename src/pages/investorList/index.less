@@ -141,6 +141,9 @@
           &.height-auto {
             height:auto !important;
           }
+          .item-cnt {
+            opacity: .5;
+          }
         }
         ul {
           float: left;
@@ -162,7 +165,7 @@
             margin-bottom:6px;
             .clear-btn {
               position: relative;
-              top:1px;
+              top: 1px;
               vertical-align: middle;
               visibility: visible;
               &.hide {
@@ -177,7 +180,7 @@
         }
         .col-item {
           display: inline-block;
-          padding: 3px 6px;
+          padding: 4px 6px;
           font-size: 12px;
           letter-spacing: 0px;
           line-height: 18px;
@@ -187,7 +190,7 @@
 
           .clear-btn {
             position: relative;
-            top:1px;
+            top:0;
             vertical-align: middle;
             visibility: visible;
             &.hide {
@@ -276,7 +279,14 @@
       color: #5A626D;
       border-collapse: collapse;
       tr {
-
+        &:first-of-type {
+          &:hover {
+            background-color: #fff;
+          }
+        }
+        &:hover {
+          background-color: #F2F4F5;
+        }
         td {
           border-bottom:1px solid #F2F4F5;
           padding:14px 0;
@@ -317,7 +327,7 @@
             .investor-name {
               letter-spacing: 0px;
               line-height: 21px;
-              margin-bottom:8px;
+              margin-bottom:5px;
               white-space: nowrap;
               .inv-name {
                 font-size: 14px;
@@ -543,6 +553,11 @@
           &:last-of-type {
             padding-right:38px;
           }
+
+          .case-name {
+            line-height: 21px;
+            margin-bottom: 6px;
+          }
         }
 
         &:first-of-type {
@@ -559,28 +574,24 @@
         }
       }
     }
-    tr:hover {
-      background-color: #f2f4f5;
-    }
 
     .load-more {
-      height: 73px;
-      background: #fff;
+      height: 50px;
+      line-height:50px;
       text-align: center;
       font-size: 12px;
       color: #5A626D;
       margin-top: -2px;
-      padding-top: 20px;
+      background: #F9F9F9;
       >a {
-        display: block;
+        display: inline-block;
         background: #6BA2FC;
         border-radius: 4px;
-        width: 130px;
-        height: 33px;
-        line-height: 33px;
+        width: 160px;
+        height: 31px;
+        line-height: 31px;
         font-size: 14px;
         color: #FFFFFF;
-        margin: auto;
       }
     }
   }
