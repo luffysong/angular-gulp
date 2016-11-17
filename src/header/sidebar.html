@@ -13,7 +13,7 @@
         <span class="kr-tags">创业公司</span>
       </a>
     </li>
-    <li class='institution'>
+    <li  ng-class="{active: root.toState.name === 'organization.result'}" class='institution'>
       <a ui-sref="organization.result()">
         <span class="icon-institute kr-icon"></span>
         <span class="kr-tags">投资机构</span>
