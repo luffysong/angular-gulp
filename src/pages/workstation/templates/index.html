@@ -21,12 +21,12 @@
     <div class="collect-list">
       <div class="collect-item" ng-repeat="item in vm.data.groupList">
         <div class="collect-title">
-          <span class="icon-bookmark">[icon]</span>
-          <span class="collect-name">{{item.name}}</span>
+          <span class="icon-bookmark"></span>
+          <a ui-sref="workstationList({id: item.id})" href="#"><span class="collect-name">{{item.name}}</span></a>
         </div>
         <div class="collect-count">
           <span class="describe">该收藏夹共 {{item.count}} 个项目</span>
-          <span class="icon-dustbin">[icon]</span>
+          <a href="#" ng-click="expression"><span class="icon-delete"></span></a>
         </div>
       </div>
       <a href="#">

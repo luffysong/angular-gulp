@@ -133,4 +133,8 @@ export default class FinanceVM extends krData.FormVM {
     this.investorList.splice(index, 1);
   }
 
+  isUndefined(obj){
+    return (typeof obj === 'undefined');
+  }
+
 }

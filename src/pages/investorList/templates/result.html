@@ -17,7 +17,7 @@
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
           <a target="_blank" ui-sref="investorInfo({id: obj.id})" class="investor-logo"
-            style="background-image: url({{obj.logo || '/images/default-logo.png'}})" ></a>
+            style="background-image: url({{obj.logo || '/images/investor-logo.png'}})" ></a>
           <div class="investor-info">
             <div class="investor-name">
               <a target="_blank" ui-sref="investorInfo({id: obj.id})" class="inv-name">{{obj.name}}</a>
@@ -39,7 +39,7 @@
           {{obj.investCnt}}
         </td>
         <td class="org-col">
-          <p ng-repeat="item in obj.investCaseList | limitTo:3 track by $index" >
+          <p ng-repeat="item in obj.investCaseList | limitTo:3 track by $index" class="case-name">
             <a  target="_blank" ui-sref="project({id: item.id})">{{item.name}}</a>
           </p>
           <span ng-if="!obj.investCaseList.length">暂无</span>
