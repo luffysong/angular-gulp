@@ -42,7 +42,7 @@
       </div>
     </div>
   </div>
-  <div class="more" ng-show="!vm.baseInfoVM.showMore"
+  <div class="more" ng-show="!vm.baseInfoVM.showMore && (vm.orgData.basic.addresses.length || vm.orgData.basic.startDate)"
        ng-click="vm.baseInfoVM.isMore()">
        <p >查看更多</p>
   </div>
