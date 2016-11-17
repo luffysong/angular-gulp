@@ -1,0 +1,84 @@
+<div class="wklist-wrapper">
+  <header></header>
+
+  <section >
+    <div>
+      <a href="#" target="_blank">查看项目对比</a>
+      <span>你还可以选择 2-5 个项目</span>
+    </div>
+    <div class="result-content">
+      <!-- <table infinite&#45;scroll="vm.loadMore()" infinite&#45;scroll&#45;disabled='vm.dataLoading || vm.noMore' -->
+      <!--   infinite&#45;scroll&#45;distance='0'> -->
+      <table >
+        <tr>
+          <td width="320">项目</td>
+          <td>行业</td>
+          <td>轮次</td>
+          <td width="150">投资方</td>
+          <td>所在地</td>
+          <td>时间</td>
+          <td width="120">操作</td>
+        </tr>
+        <tr ng-repeat="obj in vm.listData.data track by $index">
+          <td>
+            <img ng-src="{{obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" class="project-logo" />
+            <div class="project-info">
+              <div class="project-name">
+                <span class="company-name" ng-click="vm.seeDetail(obj.id)">{{obj.name}}</span>
+              </div>
+              <div class="project-intro" title="{{obj.brief}}">
+                {{::obj.brief}}
+              </div>
+            </div>
+          </td>
+          <td class="filter-item">
+            <span>{{::obj.industryStr}}</span>
+          </td>
+          <td class="filter-item">
+            <span >{{::obj.phase | companyFinancePhase}}</span>
+          </td>
+          <td class="org-col">
+            <span ng-if="!obj.investParts.length">未披露</span>
+            <section ng-if="obj.investParts.length"
+              ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
+          </td>
+          <td class="filter-item">
+            <span ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
+          </td>
+          <td class="date-time">{{::obj.publishDate | dateFilter}}</td>
+          <td>
+            <span class="collect-btn"
+               ng-class="{'collected':obj.followed}" >
+              <span ng-show="obj.followed">已</span>收藏
+              <div class="collect-modal" ng-hide="!vm.user.isLogin || !vm.user.isInvestor()"
+                ng-if="obj.id === vm.cid" ng-click="$event.stopPropagation();">
+                <section class="modal-title">选择收藏夹</section>
+                <ul>
+                   <li ng-repeat="item in vm.collections">
+                     <input type="checkbox" class="checkbox" name='collection' ng-model="item.followed"
+                     ng-change="vm.change(item,$index)" ng-checked="item.followed">
+                    <span class="favorite-name">{{item.name}}</span>
+                    <span class="favorite-number">({{item.count}})</span>
+                    <span class="favorite-status" ng-class="{'hidden':vm.status === 'suc' && $index == vm.activeIndex}"
+                      ng-hide="vm.status === 'cancel'">已添加</span>
+                    <span class="favorite-status"
+                      ng-class="{'hidden':vm.status === 'cancel' && $index == vm.activeIndex}"
+                      ng-hide="vm.status === 'suc'">取消成功</span>
+                   </li>
+                </ul>
+                <div class="new-create">
+                  <input type="text" name='createName' placeholder="创建新收藏夹"
+                  ng-model='vm.collectionName' maxlength="8">
+                  <a href="javascript:void(0)" class="create-link" ng-click="vm.create()">创建</a>
+                </div>
+                <div class="create-suc" ng-show="vm.createSuc && !vm.errMsg">创建成功</div>
+                <div class="error-msg" ng-show="vm.errMsg && !vm.createSuc" ng-bind="vm.errMsg"></div>
+              </div>
+            </span>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </section>
+</div>

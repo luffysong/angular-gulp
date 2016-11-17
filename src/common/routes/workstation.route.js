@@ -11,18 +11,18 @@ const workstationIndex = {
   },
 };
 
-const workstationPackage = {
-  url: '/workstation/:package',
+const workstationList = {
+  url: '/workstation/{id:int}?name',
   templateUrl: '/pages/workstationList/templates/index.html',
   controllerAs: 'vm',
-  controller: 'WorkstationPackageController',
+  controller: 'WorkstationListController',
   resolve: {
-    loadBundle: getLoadBundle(assets.page.workstationPackage),
+    loadBundle: getLoadBundle(assets.page.workstationList),
   },
 };
 
 const workstationCompare = {
-  url: '/workstation/:package/compare',
+  url: '/workstation/compare?cids',
   templateUrl: '/pages/workstationCompare/templates/index.html',
   controllerAs: 'vm',
   controller: 'WorkstationCompareController',
@@ -34,7 +34,7 @@ const workstationCompare = {
 
 export {
   workstationIndex,
-  workstationPackage,
+  workstationList,
   workstationCompare,
 };
 

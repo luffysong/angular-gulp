@@ -14,7 +14,7 @@ import { followView, follow } from './follow.route';
 import org from './org.route.js';
 import investorValidate from './investorValidate.route';
 import { failView, fail } from './fail.route';
-import { workstationIndex, workstationPackage, workstationCompare } from './workstation.route';
+import { workstationIndex, workstationList, workstationCompare } from './workstation.route';
 import indexView from './index.route';
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
@@ -62,14 +62,14 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
 
   // 工作台
   $stateProvider.state('workstationCompare', workstationCompare);
-  $stateProvider.state('workstationPackage', workstationPackage);
+  $stateProvider.state('workstationList', workstationList);
   $stateProvider.state('workstationIndex', workstationIndex);
 
   /* 404页面*/
   $stateProvider.state('fail', failView);
   $stateProvider.state('fail.404', fail);
 
-  /*首页*/
+  /* 首页*/
   $stateProvider.state('index', indexView);
 }
 
