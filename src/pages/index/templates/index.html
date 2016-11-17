@@ -1,5 +1,19 @@
 <div class="home-page">
-  <div class="home-banner"></div>
+  <div class="home-banner">
+    <div class="top-container">
+      <img class="logo" src="../../images/index/logo.png" alt="">
+      <img class="left-logo" src="../../images/index/left-logo.png" alt="">
+      <img class="right-logo" src="../../images/index/right-logo.png" alt="">
+      <img class="right-circle" src="../../images/index/right-circle.png" alt="">
+      <h3 class="top-title">36氪创投助手</h3>
+      <section class="top-intro">提供最好的投融资产品和服务</section>
+      <div class="brief-list">
+        <span class="top-brief">好项目一网打尽</span>
+        <span class="top-brief">投资人即刻对接</span>
+        <span class="top-brief">新/热/全行业订阅</span>
+      </div>
+    </div>
+  </div>
   <div class="home-container">
     <div class="adv-container">
       <span class="left-arrow icon-left-arrow"></span>
@@ -8,19 +22,20 @@
         <div class="banner-container" ng-repeat="item in [1,2,3,4,5,6]">
           <div class="banner-item">
             <div class="banner-info">
-              <section class="banner-title">创投助手</section>
-              <section>2016WISE独角兽大会预热中</section>
             </div>
+            <section class="banner-title">海量优质项目任你选</section>
           </div>
         </div>
       </slick>
     </div>
 
     <div class="project-container">
-      <div class="project-title">
-        <div class="title-text">
-          网罗全网 <a class="project-number" ui-sref="list.result({columnId:0})">{{vm.columnData.projectCnt}}</a> 家项目
-          <span class="login-tip">登录拥有全世界</span>
+      <div>
+        <div class="project-title">
+          <div class="title-text">
+            网罗全网 <a class="project-number" ui-sref="list.result({columnId:0})">{{vm.columnData.projectCnt}}</a> 家项目
+            <span class="login-tip">登录拥有全世界</span>
+          </div>
         </div>
       </div>
       <ul class="status-list">
@@ -62,10 +77,12 @@
     </div>
 
     <div class="project-container">
-      <div class="project-title">
-        <div class="title-text">
-          提供 <a class="project-number" ui-sref="follow.result">{{vm.labelData.projectCnt}}</a> 个标签订阅
-          <span class="login-tip">想看的都在这里</span>
+      <div>
+        <div class="project-title">
+          <div class="title-text">
+            提供 <a class="project-number" ui-sref="follow.result">{{vm.labelData.projectCnt}}</a> 个标签订阅
+            <span class="login-tip">想看的都在这里</span>
+          </div>
         </div>
       </div>
       <div class="tag-container">
@@ -115,7 +132,7 @@
     </div>
 
     <div class="project-container">
-      <div class="project-title last-page">
+      <div class="project-title">
         <div class="title-text">
           <a class="project-number" ui-sref="investorList.result">3788</a> 名投资人每天
           <a class="project-number" ui-sref="investorList.result">58776</a> 即刻对接

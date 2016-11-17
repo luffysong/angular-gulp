@@ -6,6 +6,7 @@ import cityFilterFactory from './city.filter.js';
 import companySearchPhase from './companySearchPhase.filter.js';
 import { getConstantFilterFactory } from '../base/utls';
 import dateFilter from './dateFilter.filter';
+import followArea from './followArea.filter';
 
 angular.module('@@app.filters', [])
   .filter('financePhase', getConstantFilterFactory(META.FINANCE_PHASE_META))
@@ -19,4 +20,5 @@ angular.module('@@app.filters', [])
   .filter('city', cityFilterFactory)
   .filter('companySearchPhase', companySearchPhase)
   .filter('industry', industry)
-  .filter('dateFilter', dateFilter);
+  .filter('dateFilter', dateFilter)
+  .filter('followArea', followArea);

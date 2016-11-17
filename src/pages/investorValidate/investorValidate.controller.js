@@ -20,7 +20,7 @@ export default class investorValidateController {
 
     this.auditStatus = '';
 
-    this.companyIndustry = this.$scope.root.COMPANY_INDUSTRY_META;
+    this.companyIndustry = this.$scope.root.FOLLOW_AREA_META;
 
     this.followPhase = this.$scope.root.COMPANY_SEARCH_PHASE_META;
 

@@ -1,7 +1,69 @@
 .home-page {
   .home-banner {
     height:240px;
-    background-image: linear-gradient(-180deg, rgba(234,244,255,0.33) 0%, #293040 100%);
+    background-color: #F5F9FB;
+    overflow: hidden;
+    .top-container {
+      position: relative;
+      width:860px;
+      height:100%;
+      text-align: left;
+      padding-top:60px;
+      margin:auto;
+      .logo {
+        position: absolute;
+        bottom:-24px;
+        right:135px;
+      }
+      .left-logo {
+        position: absolute;
+        left: -320px;
+        bottom: -338px;
+      }
+      .right-logo {
+        position: absolute;
+        right: -427px;
+        top: -428px;
+      }
+      .right-circle {
+        position: absolute;
+        right: -50px;
+        bottom: -50px;
+      }
+      .top-title {
+        font-size: 36px;
+        color: #222C38;
+        margin-bottom:6px;
+      }
+      .top-intro {
+        font-size: 20px;
+        color: #5A626D;
+        letter-spacing: 0.66px;
+        line-height: 30px;
+        margin-bottom:28px;
+      }
+      .brief-list {
+        .top-brief {
+          position: relative;
+          font-size: 14px;
+          color: #5A626D;
+          line-height: 21px;
+          padding:0 25px;
+          &:first-of-type {
+            padding-left:0;
+          }
+          &:after {
+            content: '';
+            position: absolute;
+            right:0;
+            top:3px;
+            width:1px;
+            height:14px;
+            background: #969FA9;
+          }
+        }
+      }
+    }
   }
   .home-container {
     padding: 40px 0 80px;
@@ -139,23 +201,26 @@
           float: left;
           width:270px;
           height:160px;
-          background: #FFFFFF;
           border: 1px solid #E7E7E7;
           cursor: pointer;
           .banner-info {
             position: absolute;
             width:100%;
-            height:50px;
-            background: rgba(34,43,56,0.60);
+            height:100%;
             bottom:0;
             left:0;
-            padding:7px 0 0 14px;
-            font-size: 13px;
-            color: #F9F9F9;
-            letter-spacing: 0.43px;
-            .banner-title {
-              margin-bottom:5px;
-            }
+            background-image: url("https://krplus-pic.b0.upaiyun.com/201611/08/4cb96146ec4e2909aeeec7dd1271e9f7.jpg!800");
+            background-size: cover;
+            -webkit-filter: blur(2px);
+          }
+          .banner-title {
+            position: absolute;
+            width:100%;
+            font-size: 16px;
+            color: #fff;
+            top:50%;
+            margin-top:-8px;
+            text-align: center;
           }
         }
       }
@@ -167,15 +232,17 @@
 
       .project-title {
         position: relative;
-        width:450px;
+        display: inline-block;
+        width:auto;
+        padding:0 16px;
         height:20px;
         background-image: linear-gradient(-225deg, rgba(231,243,249,0.00) 0%, #F1F8FD 100%);
         margin:0 auto 40px;
-        &.last-page {
+        /*&.last-page {
           width:595px;
-        }
+        }*/
         .title-text {
-          position: absolute;
+          position: relative;
           width:100%;
           text-align: center;
           left:0;
@@ -411,7 +478,7 @@
   .home-footer {
     height:180px;
     padding:40px 0;
-    background: #4C5563;
+    background: #F5F9FB;
     box-shadow: 0px 10px 10px 0px #C8DCEE;
     .footer-container {
       display: flex;
@@ -436,13 +503,13 @@
           vertical-align: middle;
           .download-name {
             font-size: 20px;
-            color: #E5EBF0;
+            color: #222c38;
             letter-spacing: 0.66px;
             margin-bottom:4px;
           }
           .download-intro {
             font-size: 14px;
-            color: #969FA9;
+            color: #5a626d;
             letter-spacing: 0.46px;
             line-height: 21px;
           }
@@ -462,7 +529,7 @@
           display: inline-block;
           vertical-align: middle;
           font-size: 14px;
-          color: #E5EBF0;
+          color: #5a626d;
           line-height: 21px;
           .download-address {
             margin-bottom:10px;

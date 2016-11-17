@@ -21,7 +21,7 @@
               近期关注:
               <span ng-if="!item.industryEnumList.length">暂无</span>
               <span ng-repeat="obj in item.industryEnumList" ng-if="item.industryEnumList.length">
-                <span>{{obj | industry}}</span>
+                <span>{{obj | followArea}}</span>
                 <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
               </span>
             </section>
@@ -63,7 +63,7 @@
                 近期关注:
                 <span ng-if="!item.industryEnumList.length">暂无</span>
                 <span ng-repeat="obj in item.industryEnumList" ng-if="item.industryEnumList.length">
-                  <span>{{obj | industry}}</span>
+                  <span>{{obj | followArea}}</span>
                   <span ng-if="$index !== item.industryEnumList.length - 1"> · </span>
                 </span>
               </section>
