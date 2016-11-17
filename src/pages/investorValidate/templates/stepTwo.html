@@ -40,7 +40,7 @@
           <span ng-if="!item.investCaseList.length">暂无</span>
           <span class="case-item" ng-repeat="obj in item.investCaseList" ng-if="item.investCaseList.length" ng-class="{'hidePoint' : $index === item.phaseEnumList.length-1}">
             <span>{{obj.name}}</span>
-            <span class="list-point" ng-if="$index !== item.industryEnumList.length - 1">、</span>
+            <span class="list-point" ng-if="$index !== item.investCaseList.length - 1">、</span>
           </span>
         </div>
       </div>
@@ -83,7 +83,7 @@
             <span ng-if="!item.investCaseList.length">暂无</span>
             <span class="case-item" ng-repeat="obj in item.investCaseList" ng-if="item.investCaseList.length" ng-class="{'hidePoint' : $index === item.phaseEnumList.length-1}">
               <span>{{obj.name}}</span>
-              <span class="list-point" ng-if="$index !== item.industryEnumList.length - 1">、</span>
+              <span class="list-point" ng-if="$index !== item.investCaseList.length - 1">、</span>
             </span>
           </div>
         </div>

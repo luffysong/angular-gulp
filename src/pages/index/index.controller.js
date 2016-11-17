@@ -5,7 +5,7 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('$timeout', '$window','$stateParams','$state','$scope', '$q', 'user')
+@Inject('$timeout', '$window','$stateParams','$state','$scope', '$q', 'user', 'parallaxHelper')
 export default class homeController {
 
   constructor() {
@@ -19,6 +19,8 @@ export default class homeController {
 
     this.columnLoading = true;
     this.labelLoading = true;
+
+    console.warn(this.parallaxHelper);
 
     this.getColumn();
     this.getTag();
