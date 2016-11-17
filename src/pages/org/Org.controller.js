@@ -24,7 +24,7 @@ export default class OrgController {
         layout: 'vertical',
         align: 'right',
         verticalAlign: 'top',
-        y: 5,
+        y: 0,
       },
       plotOptions: {
         line: {
@@ -106,6 +106,9 @@ export default class OrgController {
       tickPixelInterval: 34,
       title: {
         enabled: false,
+      },
+      labels: {
+        format: '{value}个',
       },
       opposite: true,
     }],

@@ -10,7 +10,7 @@
     <div class="has-content" ng-if="investorInfoVm.industry.length || investorInfoVm.allInvestments.length">
       <div class="case-tags">
         <ul class="tags">
-          <li class="tag" ng-repeat="industry in investorInfoVm.industry"><a ui-sref="list.result({industry: industry,columnId: 0})" href="#" target="blank">{{industry | industry}}</a></li>
+          <li class="tag" ng-repeat="industry in investorInfoVm.industry"><a ui-sref="list.result({industry: industry,columnId: 0})" href="#" target="_blank">{{industry | industry}}</a></li>
         </ul>
       </div>
       <div class="case-list">
@@ -20,8 +20,8 @@
               <a ui-sref="project({id: case.cid})" href="#" target="blank"><img class="case-logo" src="{{case.logo || '/images/default-logo.png'}}"></a>
               <div class="company-name">
                 <a ui-sref="project({id: case.cid})" href="#" class="bold" target="_blank"><span>{{case.companyName}}</span></a>
-                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,case.visible)"><span href="#" class="show" ng-show="investorInfoVm.isEditMode && !case.visible">显示</span></a>
-                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,case.visible)"><span href="#" class="show" ng-show="investorInfoVm.isEditMode && case.visible">不显示</span></a>
+                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="investorInfoVm.isEditMode && !case.visible">显示</span></a>
+                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="investorInfoVm.isEditMode && case.visible">不显示</span></a>
               </div>
               <div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
             </div>
@@ -50,8 +50,8 @@
               <a ui-sref="project({id: case.cid})" href="#" target="blank"><img class="case-logo" src="{{case.logo || '/images/default-logo.png'}}"></a>
               <div class="company-name">
                 <a ui-sref="project({id: case.cid})" href="#" class="bold" target="_blank"><span>{{case.companyName}}</span></a>
-                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,case.visible)"><span href="#" class="show" ng-show="!case.visible && investorInfoVm.isEditMode">显示</span></a>
-                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,case.visible)"><span href="#" class="show" ng-show="case.visible && investorInfoVm.isEditMode">不显示</span></a>
+                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="!case.visible && investorInfoVm.isEditMode">显示</span></a>
+                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="case.visible && investorInfoVm.isEditMode">不显示</span></a>
               </div
               ><div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
             </div>

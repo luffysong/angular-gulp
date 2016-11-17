@@ -7,15 +7,17 @@
         </div>
         <div class="col-content">
           <div class="col-list-container">
-            <ul filter-cal ng-class="{'height-auto':investorListVm.open.label}">
-              <li class="col-item" ng-repeat="item in investorListVm.data.label" ng-class="{'active': item.active}"
-                ng-click="investorListVm.selectIndustry($index,'label')">
-                {{item.name}}({{item.cnt ? item.cnt : 0}})
-                <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.name === '不限'"></span>
-                <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.name !== '不限'"
-                  ng-click="investorListVm.clearIndustry(item.value,'label');$event.stopPropagation();"></span>
-              </li>
-            </ul>
+            <div class="filter-outside-container" ng-class="{'height-auto':investorListVm.open.label}">
+              <ul filter-cal ng-class="{'height-auto':investorListVm.open.label}">
+                <li class="col-item" ng-repeat="item in investorListVm.data.label" ng-class="{'active': item.active}"
+                  ng-click="investorListVm.selectIndustry($index,'label')">
+                  {{item.name}}({{item.cnt ? item.cnt : 0}})
+                  <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.name === '不限'"></span>
+                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.name !== '不限'"
+                    ng-click="investorListVm.clearIndustry(item.value,'label');$event.stopPropagation();"></span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-handle">

@@ -5,9 +5,9 @@ const workstationIndex = {
   url: '/workstation',
   templateUrl: '/pages/workstation/templates/index.html',
   controllerAs: 'vm',
-  controller: 'WorkStationIndexController',
+  controller: 'WorkstationIndexController',
   resolve: {
-    loadBundle: getLoadBundle(assets.page.workstationIndex),
+    loadBundle: getLoadBundle(assets.page.workstation),
   },
 };
 
