@@ -21,7 +21,7 @@ export default class homeController {
     this.labelLoading = true;
 
     console.warn(this.parallaxHelper);
-
+    this.background = this.parallaxHelper.createAnimator(-0.3);
     this.getColumn();
     this.getTag();
     this.getInvestor();

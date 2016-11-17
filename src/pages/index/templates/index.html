@@ -1,13 +1,13 @@
 <div class="home-page">
   <div class="home-banner">
-    <div class="top-container">
-      <img class="logo" src="../../images/index/logo.png" alt="">
-      <img class="left-logo" src="../../images/index/left-logo.png" alt="">
-      <img class="right-logo" src="../../images/index/right-logo.png" alt="">
-      <img class="right-circle" src="../../images/index/right-circle.png" alt="">
-      <img class="middle-circle" src="../../images/index/middle-circle.png" alt="">
-      <img class="border-circle" src="../../images/index/border-circle.png" alt="">
-      <img class="bg-circle" src="../../images/index/bg-circle.png" alt="">
+    <div class="top-container" ng-if="vm.background">
+      <img class="logo" du-parallax y="vm.background" opacity="fadeIn" src="../../images/index/logo.png" alt="">
+      <img class="left-logo" du-parallax y="vm.background" opacity="fadeIn" src="../../images/index/left-logo.png" alt="">
+      <img class="right-logo" du-parallax y="vm.background" src="../../images/index/right-logo.png" alt="">
+      <img class="right-circle" du-parallax y="vm.background" src="../../images/index/right-circle.png" alt="">
+      <img class="middle-circle" du-parallax y="vm.background" src="../../images/index/middle-circle.png" alt="">
+      <img class="border-circle" du-parallax y="vm.background" src="../../images/index/border-circle.png" alt="">
+      <img class="bg-circle" du-parallax y="vm.background" src="../../images/index/bg-circle.png" alt="">
       <h3 class="top-title">36氪创投助手</h3>
       <section class="top-intro">让融资更高效</section>
       <div class="brief-list">
