@@ -77,6 +77,7 @@ module.exports = {
     angular: true,
     jquery: true,
     $: true,
+    Highcharts: true,
   },
   parser: "babel-eslint",
   extends: 'airbnb'

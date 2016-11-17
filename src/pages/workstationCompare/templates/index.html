@@ -1,21 +1,33 @@
 <div class="compare-wrapper">
   <header>
 
+    <nav>
+      <a ui-sref="workstationIndex">项目列表</a><span class="icon-right-arrow"></span><a ui-sref=".">项目对比</a>
+    </nav>
+    <h3><b>项目对比</b><span class="vline">|</span><span>共 {{vm.count}} 个项目进行对比</span></h3>
   </header>
 
-  <section>
+  <section class="chart-module">
     <table >
       <thead>
         <tr>
           <td></td>
           <td ng-if="!vm.projects"></td>
-          <td ng-style="{width: (88/vm.projects.length) + '%'}" ng-repeat="item in vm.projects">{{item.companyName}}</td>
+          <td class="name" ng-style="{width: (88/vm.projects.length) + '%'}" ng-repeat="item in vm.projects">
+            <a class="hover" target="_blank" ui-sref="project({id: item.cid})">
+              <span>{{item.companyName}}</span><span class="icon-websitelink">
+              <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+              </span>
+            </a>
+          </td>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>行业</td>
-          <td ng-repeat="item in vm.projects">{{item.industry.name}}</td>
+          <td ng-repeat="item in vm.projects">
+            <a target="_blank" ui-sref="list.result({industry: item.industry.id })">{{item.industry.name}}</a>
+          </td>
         </tr>
         <tr class="inline-block-text">
           <td>标签</td>
@@ -26,14 +38,27 @@
             </a>
           </td>
         </tr>
-        <tr>
+       <tr>
           <td>当前轮次</td>
-          <td ng-repeat="item in vm.projects">{{item.phase.name}}</td>
+          <td ng-repeat="item in vm.projects">
+            <span ng-if="item.phase.name === '未融资'">{{item.phase.name}}</span>
+            <a ng-if="item.phase.name !== '未融资'"
+              target="_blank" ui-sref="list.result({phase: item.phase.id})">{{item.phase.name}}</a>
+          </td>
         </tr>
         <tr class="inline-block-text investors">
           <td>过往投资方</td>
           <td ng-repeat="item in vm.projects">
-            <span ng-repeat="investor in item.investor">{{investor.name}}</span>
+            <span ng-repeat="investor in item.investor">
+              <a ng-if="investor.entityType === 'ORGANIZATION'" target="_blank" ui-sref="org({id: investor.entityId})">
+                {{investor.name}}</a>
+              <a ng-if="investor.entityType === 'COMPANY'"
+                target="_blank" ui-sref="project({id: investor.entityId})">
+                {{investor.name}}</a>
+              <a ng-if="investor.entityType === 'INDIVIDUAL'"
+                target="_blank" ui-sref="investorInfo({id: investor.entityId})">
+                {{investor.name}}</a>
+            </span>
           </td>
         </tr>
         <tr class="inline-block-text team-keywords">
@@ -47,24 +72,55 @@
   </section>
 
   <section class="chart-module">
-    <h4> <span>DAU（每日活跃用户数）数据对比</span><span class="icon-open-select"></span></h4>
-    <highchart  config="vm.dauHg"></highchart>
+    <h4>
+      <span>DAU（每日活跃用户数）数据对比</span><span
+        ng-class="{open: vm.collapseDau}"
+        ng-click="vm.collapseDau = !vm.collapseDau"
+        class="icon-open-select"></span>
+    </h4>
+    <highchart ng-class="{'hide': vm.collapseDau }" ng-if="vm.dataLoaded" class="hg-container" config="vm.dauHg">
+    </highchart>
   </section>
 
 
   <section class="chart-module">
-    <h4> <span>下载量数据对比</span><span class="icon-open-select"></span></h4>
-    <highchart  config="vm.downloadHg"></highchart>
+    <h4> <span>下载量数据对比</span><span
+        ng-class="{open: vm.collapseDownload}"
+        ng-click="vm.collapseDownload = !vm.collapseDownload"
+        class="icon-open-select"></span></h4>
+    <highchart ng-class="{'hide': vm.collapseDownload }"
+      ng-if="vm.dataLoaded" class="hg-container" config="vm.downloadHg"></highchart>
   </section>
 
   <section class="chart-module">
-    <h4> <span>卸载量数据对比</span><span class="icon-open-select"></span></h4>
-    <highchart  config="vm.uninstallHg"></highchart>
+    <h4> <span>卸载量数据对比</span><span
+        ng-class="{open: vm.collapseUninstall}"
+        ng-click="vm.collapseUninstall = !vm.collapseUninstall"
+        class="icon-open-select"></span></h4>
+    <highchart ng-if="vm.dataLoaded" ng-class="{'hide': vm.collapseUninstall }"
+      class="hg-container" config="vm.uninstallHg"></highchart>
   </section>
 
   <section class="chart-module">
-    <h4> <span>留存率数据对比</span><span class="icon-open-select"></span></h4>
-    <highchart  config="vm.saveHg"></highchart>
+    <h4> <span>留存率数据对比</span><span
+        ng-class="{open: vm.collapseSave}"
+        ng-click="vm.collapseSave = !vm.collapseSave"
+        class="icon-open-select"></span></h4>
+    <div class="save-hg-wrapper" ng-class="{'hide': vm.collapseSave }">
+      <div class=buttons>
+        <a href="javascript:;" ng-class="{active: vm.activeSave === 'saveHg'}"
+          ng-click="vm.changeSave('saveHg')">日留存</a>
+        <a href="javascript:;" ng-class="{active: vm.activeSave === 'save3Hg'}"
+          ng-click="vm.changeSave('save3Hg')">3日留存</a>
+        <a href="javascript:;" ng-class="{active: vm.activeSave === 'save7Hg'}"
+          ng-click="vm.changeSave('save7Hg')">周留存</a>
+        <a href="javascript:;" ng-class="{active: vm.activeSave === 'save30Hg'}"
+          ng-click="vm.changeSave('save30Hg')">月留存</a>
+      </div>
+      <highchart ng-if="vm.dataLoaded"
+        class="hg-container save-hg-container"  config="vm.activeSaveHg"></highchart>
+    </div>
+
   </section>
 
 </div>
