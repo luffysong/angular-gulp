@@ -249,6 +249,7 @@ export default class ProductVM extends krData.FormVM {
         data: that.yList[i],
       });
     });
+    this.completeData.reverse();
   }
 
   // 获取绘制数据类型
