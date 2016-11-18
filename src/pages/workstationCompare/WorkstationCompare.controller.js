@@ -114,13 +114,12 @@ function getHichartsOptions(key) {
       },
     },
     xAxis: {
-      tickWidth: 2,
       lineWidth: 2,
-      tickPosition: 'inside',
       tickColor: '#ddd',
+      tickWidth: 1,
       lineColor: '#E7E7E7',
       crosshair: {
-        width: 2,
+        width: 1,
         color: '#ddd',
         dashStyle: 'LongDash',
       },
@@ -147,7 +146,7 @@ function getHichartsOptions(key) {
     ],
   };
 }
-@Inject('$stateParams')
+@Inject('$stateParams', '$scope')
 export default class WorkstationCompareController {
 
   constructor() {
@@ -157,7 +156,19 @@ export default class WorkstationCompareController {
         thousandsSep: ',',
       },
     });
+    this.orginGetMarkPath = Highcharts.Tick.prototype.getMarkPath;
+    Highcharts.wrap(Highcharts.Tick.prototype, 'getMarkPath',
+     (prev, x, y, tickLength, tickWidth, horiz, renderer) => {
+       const path = renderer.path(['M', x, y, 'L', x, y - 5]).d;
+       return path;
+     });
     this.init();
+  }
+
+  onDestroy() {
+    this.$scope.$on('$destroy', () => {
+      Highcharts.Tick.prototype.getMarkPath = this.orginGetMarkPath;
+    });
   }
 
   init() {
