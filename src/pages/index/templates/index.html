@@ -1,13 +1,33 @@
 <div class="home-page">
   <div class="home-banner">
-    <div class="top-container" ng-if="vm.background">
-      <img class="logo" du-parallax y="vm.background" opacity="fadeIn" src="../../images/index/logo.png" alt="">
-      <img class="left-logo" du-parallax y="vm.background" opacity="fadeIn" src="../../images/index/left-logo.png" alt="">
-      <img class="right-logo" du-parallax y="vm.background" src="../../images/index/right-logo.png" alt="">
-      <img class="right-circle" du-parallax y="vm.background" src="../../images/index/right-circle.png" alt="">
-      <img class="middle-circle" du-parallax y="vm.background" src="../../images/index/middle-circle.png" alt="">
-      <img class="border-circle" du-parallax y="vm.background" src="../../images/index/border-circle.png" alt="">
-      <img class="bg-circle" du-parallax y="vm.background" src="../../images/index/bg-circle.png" alt="">
+
+    <ul class="top-container" kr-parallax un-able="vm.unableAnimate">
+      <li class="layer" data-depth="1.00">
+        <img class="logo" src="./images/index/logo.png" alt="">
+      </li>
+      <li class="layer" data-depth="0.80">
+        <img class="left-logo" data-depth="1.00" src="./images/index/left-logo.png" alt="">
+      </li>
+      <li class="layer" data-depth="0.60">
+        <img class="right-logo" data-depth="0.8" src="./images/index/right-logo.png" alt="">
+      </li>
+      <li class="layer" data-depth="0.40">
+        <img class="right-circle" data-depth="0.6" src="./images/index/right-circle.png" alt="">
+      </li>
+      <li class="layer" data-depth="0.20">
+        <img class="middle-circle" data-depth="0.4" src="./images/index/middle-circle.png" alt="">
+      </li>
+      <li class="layer" data-depth="0.20">
+        <img class="border-circle" data-depth="0.2" src="./images/index/border-circle.png" alt="">
+      </li>
+      <li class="layer" data-depth="0.20">
+        <img class="border-circle" data-depth="0.2" src="./images/index/border-circle.png" alt="">
+      </li>
+      <li class="layer" data-depth="0.20">
+        <img class="bg-circle" data-depth="0" src="./images/index/bg-circle.png" alt="">
+      </li>
+    </ul>
+    <div class="relative-container">
       <h3 class="top-title">36氪创投助手</h3>
       <section class="top-intro">让融资更高效</section>
       <div class="brief-list">
@@ -16,6 +36,22 @@
         <span class="top-brief">新/热/全行业订阅</span>
       </div>
     </div>
+    <!--<div class="top-container" kr-parallax id="scene">
+      <img class="logo" data-depth="1.00" src="../../images/index/logo.png" alt="">
+      <img class="left-logo" src="../../images/index/left-logo.png" alt="">
+      <img class="right-logo" data-depth="0.8" src="../../images/index/right-logo.png" alt="">
+      <img class="right-circle" data-depth="0.6" src="../../images/index/right-circle.png" alt="">
+      <img class="middle-circle" data-depth="0.4" src="../../images/index/middle-circle.png" alt="">
+      <img class="border-circle" data-depth="0.2" src="../../images/index/border-circle.png" alt="">
+      <img class="bg-circle" data-depth="0" src="../../images/index/bg-circle.png" alt="">
+      <h3 class="top-title">36氪创投助手</h3>
+      <section class="top-intro">让融资更高效</section>
+      <div class="brief-list">
+        <span class="top-brief">好项目一网打尽</span>
+        <span class="top-brief">投资人即刻对接</span>
+        <span class="top-brief">新/热/全行业订阅</span>
+      </div>
+    </div>-->
   </div>
   <div class="home-container">
     <div class="adv-container">

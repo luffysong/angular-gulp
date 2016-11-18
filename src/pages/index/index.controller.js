@@ -5,7 +5,7 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('$timeout', '$window','$stateParams','$state','$scope', '$q', 'user', 'parallaxHelper')
+@Inject('$timeout', '$window','$stateParams','$state','$scope', '$q', 'user')
 export default class homeController {
 
   constructor() {
@@ -19,9 +19,10 @@ export default class homeController {
 
     this.columnLoading = true;
     this.labelLoading = true;
+    this.unableAnimate = true;
 
-    console.warn(this.parallaxHelper);
-    this.background = this.parallaxHelper.createAnimator(-0.3);
+    /*console.warn(this.parallaxHelper);
+    this.background = this.parallaxHelper.createAnimator(-0.3);*/
     this.bannerList = [
       {
         title: '海量优质项目任你选'

@@ -29,7 +29,8 @@ const jsplugins = [
   '/local_lib/slick-carousel/slick/slick.css',
   '/local_lib/angular-slick/dist/slick.js',
   '/bower/checklist-model/checklist-model.js',
-  '/bower/ng-parallax/angular-parallax.min.js'
+  /*'/bower/ng-parallax/angular-parallax.min.js',*/
+  '/local_lib/parallax/parallax.min.js'
 ];
 
 const proxyConfig = {

@@ -62,7 +62,8 @@ export default {
       '/local_lib/slick-carousel/slick/slick.css',
       '/local_lib/angular-slick/dist/slick.js',
       '/bower/angular-scroll/angular-scroll.min.js',
-      '/bower/ng-parallax/angular-parallax.min.js'
+      /*'/bower/ng-parallax/angular-parallax.min.js',*/
+      '/local_lib/parallax/parallax.min.js',
     ],
     project: [
       '/pages/project/index.js',

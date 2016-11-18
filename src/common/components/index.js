@@ -8,6 +8,7 @@ import calPositionDirective from './calPosition.directive';
 import krEleClampChecker from './krEleClampChecker.directive.js';
 import filterCalDirective from './filterCal.directive';
 import { krLoadingDirective, Loading } from './krLoading.directive.js';
+import parallaxDirective from './parallax.directive';
 function makeDirective(directive) {
   return () => directive;
 }
@@ -23,4 +24,5 @@ angular.module('@@app.components', [])
   .directive('calPosition', calPositionDirective)
   .directive('krLoading', krLoadingDirective)
   .service('loading', Loading)
-  .directive('filterCal', filterCalDirective);
+  .directive('filterCal', filterCalDirective)
+  .directive('krParallax', parallaxDirective);
