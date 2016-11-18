@@ -22,11 +22,11 @@
       <span class="left-arrow icon-left-arrow"></span>
       <span class="right-arrow icon-right-arrow"></span>
       <slick infinite="true" slides-to-show="3" prev-arrow=".left-arrow" next-arrow=".right-arrow" dots="true">
-        <div class="banner-container" ng-repeat="item in [1,2,3,4,5,6]">
+        <div class="banner-container" ng-repeat="item in vm.bannerList">
           <div class="banner-item">
             <div class="banner-info">
             </div>
-            <section class="banner-title">海量优质项目任你选</section>
+            <section class="banner-title">{{item.title}}</section>
           </div>
         </div>
       </slick>
@@ -36,8 +36,8 @@
       <div>
         <div class="project-title">
           <div class="title-text">
-            网罗全网 <a class="project-number" ui-sref="list.result({columnId:0})">{{vm.columnData.projectCnt}}</a> 家项目
-            <span class="login-tip">登录拥有全世界</span>
+            精选全网 <a class="project-number" ui-sref="list.result({columnId:0})">{{vm.columnData.projectCnt}}</a> 家项目
+            <span class="login-tip">没有你找不到的优质项目</span>
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@
         <div class="project-title">
           <div class="title-text">
             提供 <a class="project-number" ui-sref="follow.result">{{vm.labelData.projectCnt}}</a> 个标签订阅
-            <span class="login-tip">想看的都在这里</span>
+            <span class="login-tip">给你个性化的项目匹配</span>
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@
               </div>
               <a class="handle-btn" href="" ui-sref="project({id:item.id})">联系创始人</a>
             </div>
-            <div class="see-detail" ui-sref="label.result({labelId:vm.labelId})">查看更多项目</div>
+            <div class="see-detail" ui-sref="label.result({labelId:vm.labelId})">查看标签更多项目</div>
           </div>
         </div>
       </div>
@@ -137,9 +137,11 @@
     <div class="project-container">
       <div class="project-title">
         <div class="title-text">
-          <a class="project-number" ui-sref="investorList.result">3788</a> 名投资人每天
-          <a class="project-number" ui-sref="investorList.result">58776</a> 即刻对接
-          <span class="login-tip">精准匹配找到你想要</span>
+          以大数据筛选配对
+          <a class="project-number" ui-sref="investorList.result">{{vm.investorData.investorCnt}}</a>
+          名投资人
+          平均每个项目获得
+          <a class="project-number" ui-sref="investorList.result">{{vm.investorData.contactCnt}}</a> 次有效对接
         </div>
       </div>
       <a class="submit-btn" href="javascript:void(0)" ng-click="vm.createProject()">我也要提交项目</a>
@@ -173,7 +175,10 @@
         </div>
       </div>
       <div class="right-footer">
-        <img ng-src="" alt="">
+        <div class="qrcode-container">
+          <img ng-src="../../images/index/qrcode.png" alt="">
+        </div>
+
         <div class="download-tip">
           <div class="download-address">ios客户端下载</div>
           <div class="download-address">Android客户端下载</div>

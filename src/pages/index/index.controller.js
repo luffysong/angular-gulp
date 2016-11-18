@@ -22,6 +22,15 @@ export default class homeController {
 
     console.warn(this.parallaxHelper);
     this.background = this.parallaxHelper.createAnimator(-0.3);
+    this.bannerList = [
+      {
+        title: '海量优质项目任你选'
+      },{
+        title: '专属行业订阅为你「配对」'
+      },{
+        title: '随时随地对接顶级投资人'
+      }
+    ];
     this.getColumn();
     this.getTag();
     this.getInvestor();
