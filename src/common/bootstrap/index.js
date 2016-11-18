@@ -100,7 +100,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
   })
   .run(function safeMoudle($injector) {
     const module = angular.module;
-    angular.moudle = (...moduleArgs) => {
+    angular.module = (...moduleArgs) => {
       const moduleInstance = module(...moduleArgs);
       ['directive', 'filter', 'service'].forEach(methodName => {
         const api = moduleInstance[methodName].bind(moduleInstance);
@@ -111,6 +111,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
           return moduleInstance;
         };
       });
+      return moduleInstance;
     };
   })
   .run(function run($rootScope) {

@@ -318,14 +318,15 @@ export default class OrgController {
     }
     this.trendHg.xAxis.categories = investmentTrend.map(item => item.x);
     this.trendHg.series = [{
-      color: '#F1FAFF',
       name: '投资金额 / 万',
+      color: '#F1FAFF',
       data: investmentTrend.map((item) => ({
         y: item.investAmount,
         item,
         year: this.year,
       })),
       yAxis: 0,
+      zIndex: 0,
       type: 'column',
     },
     {
@@ -336,9 +337,11 @@ export default class OrgController {
         item,
         year: this.year,
       })),
+      zIndex: 1,
       lineWidth: 1,
       yAxis: 1,
     },
     ];
+    this.trendHg.options.series = this.trendHg.series;
   }
 }
