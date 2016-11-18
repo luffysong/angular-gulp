@@ -33,10 +33,9 @@
       ng-mouseenter="vm.showDelete(item.id,true)" ng-mouseleave="vm.showDelete(item.id,false)">
         <div class="collect-title">
           <span class="icon-bookmark"></span>
-          <a ui-sref="workstationList({id: item.id})" href="#">
-            <input class="editCollection" id="{{item.id}}" get-focus ng-readonly="!item.isEdit" type="text" ng-model="item.name"
+            <a ui-sref="workstationList({id: item.id})" href="#" ng-show="!item.isEdit">{{item.name}}</a>
+            <input class="editCollection" id="{{item.id}}" get-focus ng-show="item.isEdit" type="text" ng-model="item.name"
             ng-keyup="vm.updateCollection($event,item.id,item.name)">
-          </a>
           <a href="#" class="edit" ng-show="item.id !==0 && item.isDelete" ng-click="vm.editCollection(item.id)">编辑</a>
         </div>
         <div class="collect-count">
