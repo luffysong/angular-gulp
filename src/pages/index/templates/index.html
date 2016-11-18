@@ -5,15 +5,15 @@
       <li class="layer" data-depth="1.00">
         <img class="logo" src="./images/index/logo.png" alt="">
       </li>
-      <li class="layer" data-depth="0.80">
+      <!--<li class="layer" data-depth="0.80">
         <img class="left-logo" data-depth="1.00" src="./images/index/left-logo.png" alt="">
-      </li>
+      </li>-->
       <li class="layer" data-depth="0.60">
         <img class="right-logo" data-depth="0.8" src="./images/index/right-logo.png" alt="">
       </li>
-      <li class="layer" data-depth="0.40">
+     <!-- <li class="layer" data-depth="0.40">
         <img class="right-circle" data-depth="0.6" src="./images/index/right-circle.png" alt="">
-      </li>
+      </li>-->
       <li class="layer" data-depth="0.20">
         <img class="middle-circle" data-depth="0.4" src="./images/index/middle-circle.png" alt="">
       </li>
@@ -28,6 +28,8 @@
       </li>
     </ul>
     <div class="relative-container">
+      <img class="left-logo" data-depth="1.00" src="./images/index/left-logo.png" alt="">
+      <img class="right-circle" data-depth="0.6" src="./images/index/right-circle.png" alt="">
       <h3 class="top-title">36氪创投助手</h3>
       <section class="top-intro">让融资更高效</section>
       <div class="brief-list">
@@ -78,7 +80,7 @@
         </div>
       </div>
       <ul class="status-list">
-        <li ng-repeat="item in vm.columnData.columnList" ng-class="{'active': item.active}" ng-mouseenter="vm.switchStatus($index,item.columnId)">
+        <li ng-repeat="item in vm.columnData.columnList | limitTo:4" ng-class="{'active': item.active}" ng-mouseenter="vm.switchStatus($index,item.columnId)">
           <span class="active-tag"></span>
           {{item.columnName}}
         </li>

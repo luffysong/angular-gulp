@@ -19,22 +19,28 @@ export default class homeController {
 
     this.columnLoading = true;
     this.labelLoading = true;
+    this.bannerLoading = true;
     this.unableAnimate = true;
 
     /*console.warn(this.parallaxHelper);
     this.background = this.parallaxHelper.createAnimator(-0.3);*/
     this.bannerList = [
       {
-        title: '海量优质项目任你选'
+        title: '海量优质项目任你选',
+        url: '../../images/index/bg1.png'
       },{
-        title: '专属行业订阅为你「配对」'
+        title: '专属行业订阅为你「配对」',
+        url: '../../images/index/bg2.png'
       },{
-        title: '随时随地对接顶级投资人'
+        title: '随时随地对接顶级投资人',
+        url: '../../images/index/bg3.png'
       }
     ];
+
     this.getColumn();
     this.getTag();
     this.getInvestor();
+    this.$timeout(() => this.bannerLoading = false,500);
   }
 
 
