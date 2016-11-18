@@ -22,7 +22,7 @@
       <div class="collect-item" ng-show="vm.$scope.newCollection">
         <div class="collect-title">
           <span class="icon-bookmark"></span>
-          <input class="newCollection" get-focus type="text" placeholder="收藏夹名称" ng-focus="vm.newFocus"
+          <input class="newCollection" id="newColl" get-focus type="text" placeholder="收藏夹名称" ng-focus="vm.newFocus"
            ng-model="vm.collectionName" ng-keyup="vm.createCollection($event)">
         </div>
         <div class="collect-count">
@@ -33,7 +33,7 @@
       ng-mouseenter="vm.showDelete(item.id,true)" ng-mouseleave="vm.showDelete(item.id,false)">
         <div class="collect-title">
           <span class="icon-bookmark"></span>
-          <a ui-sref="workstationList({id: item.id})" href="#" ng-if="!item.isEdit">
+          <a ui-sref="workstationList({id: item.id})" href="#">
             <input class="editCollection" id="{{item.id}}" get-focus ng-readonly="!item.isEdit" type="text" ng-model="item.name"
             ng-keyup="vm.updateCollection($event,item.id,item.name)">
           </a>

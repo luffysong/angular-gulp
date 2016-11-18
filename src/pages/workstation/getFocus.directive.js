@@ -5,9 +5,11 @@ function getFocusDirective() {
     link(scope, element) {
       scope.$watch("isFocus",function(newValue,oldValue, scope) {
         if(newValue && scope.newCollection){
-          setTimeout(function(){
-            element[0].focus();
-          },100);
+          if(element[0].id === 'newColl'){
+            setTimeout(function(){
+              element[0].focus();
+            },100);
+          }
         }
         if(newValue && scope.isEdit){
           element.each(function (i){
