@@ -4,31 +4,34 @@
   <section id="companyIntroduceEdit" ng-include="'/pages/project/templates/introductionEdit.html'" ng-if="vm.companyIntroduceVM.isEdit">
     项目介绍编辑
   </section>
-  <div class="introduce-detail" ng-if="vm.userId">
-    <div class="item">
+  <div class="introduce-detail" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.productService !== '' || vm.companyIntroduceVM.data.companyIntroduce.userMarket !== '' || (vm.companyIntroduceVM.data.companyIntroduce.businessMode !== '') || (vm.companyIntroduceVM.data.companyIntroduce.operationData !== '') || (vm.companyIntroduceVM.data.companyIntroduce.coreSource !== '')) && vm.userId">
+    <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.productService !== ''">
       <span class="sub-title">产品服务</span>
       <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.productService}}</span>
     </div>
-    <div class="item">
+    <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.userMarket !== ''">
       <span class="sub-title">用户市场</span>
       <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.userMarket}}</span>
     </div>
-    <div class="item"  ng-if="vm.user == 'admin' || vm.investorType">
+    <div class="item" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.businessMode && vm.companyIntroduceVM.data.companyIntroduce.businessMode !== '') && (vm.user == 'admin' || vm.investorType)" >
       <span class="sub-title">商业模式</span>
       <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.businessMode}}</span>
     </div>
-    <div class="item"  ng-if="vm.user == 'admin' || vm.investorType">
+    <div class="item" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.operationData && vm.companyIntroduceVM.data.companyIntroduce.operationData !== '') && (vm.user == 'admin' || vm.investorType)">
       <span class="sub-title">运营数据</span>
       <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.operationData}}</span>
     </div>
-    <div class="item" ng-if="vm.user == 'admin' || vm.investorType">
+    <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.coreSource && vm.companyIntroduceVM.data.companyIntroduce.coreSource !== ''" ng-if="vm.user == 'admin' || vm.investorType">
       <span class="sub-title">核心资源</span>
       <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.coreSource}}</span>
     </div>
-    <div class="part-hide" ng-if="vm.user=='commen' && !vm.investorType">
-      <a class="certify" ng-href="https://rongtest03.36kr.com/m/#/investor" href="javascript:void()"><p>认证投资人</p></a>
-      <p class="complete">查看完整项目介绍</p>
-    </div>
+  </div>
+  <div class="no-data" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.productService == '' && vm.companyIntroduceVM.data.companyIntroduce.userMarket == '' && vm.companyIntroduceVM.data.companyIntroduce.businessMode == '' && vm.companyIntroduceVM.data.companyIntroduce.operationData == '' && vm.companyIntroduceVM.data.companyIntroduce.coreSource == '') && vm.userId">
+    <p>暂无数据</p>
+  </div>
+  <div class="part-hide" ng-if="vm.userId && vm.user=='commen' && !vm.investorType">
+    <a class="certify" ng-href="https://rongtest03.36kr.com/m/#/investor" href="javascript:void()"><p>认证投资人</p></a>
+    <p class="complete">查看完整项目介绍</p>
   </div>
   <!--- 未登录状态全部不可见 -->
   <div class="login-out" ng-if="!vm.userId">
