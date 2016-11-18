@@ -19,11 +19,13 @@ export default class CompanyIntroduceVM extends krData.FormVM{
     this.data = data;
     this.id = id;
     this.companyIntroduce.id = id;
-    this.productService = data.companyIntroduce.productService;
-    this.userMarket = data.companyIntroduce.userMarket;
-    this.businessMode = data.companyIntroduce.businessMode;
-    this.coreSource = data.companyIntroduce.coreSource;
-    this.operationData = data.companyIntroduce.operationData;
+    if(data.companyIntroduce) {
+      this.productService = data.companyIntroduce.productService;
+      this.userMarket = data.companyIntroduce.userMarket;
+      this.businessMode = data.companyIntroduce.businessMode;
+      this.coreSource = data.companyIntroduce.coreSource;
+      this.operationData = data.companyIntroduce.operationData;
+    }
   }
 
   recovery() {
