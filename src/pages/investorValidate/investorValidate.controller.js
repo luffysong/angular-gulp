@@ -142,7 +142,7 @@ export default class investorValidateController {
         this.baseInfo.relatedPosition = angular.copy(this.suggestInvestor[index].position);
         this.baseInfo.singleInvestMin = angular.copy(this.suggestInvestor[index].singleInvestMin);
         this.baseInfo.singleInvestMax = angular.copy(this.suggestInvestor[index].singleInvestMax);
-        this.baseInfo.singleInvestUnit = angular.copy(this.suggestInvestor[index].singleInvestUnit);
+        this.baseInfo.singleInvestUnit = this.suggestInvestor[index].singleInvestUnit ? angular.copy(this.suggestInvestor[index].singleInvestUnit) : 'CNY';
       }
     });
   }
