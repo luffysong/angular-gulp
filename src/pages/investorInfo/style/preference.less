@@ -54,6 +54,22 @@
     .form-tip {
       float: none;
     }
+    .money-error {
+      overflow: hidden;
+      margin-bottom: 16px;
+      margin-top: -12px;
+      .error-tip {
+        float: left;
+        display: inline-block;
+        min-height: 1px;
+        &:first-child {
+          width: 200px;
+        }
+        &[style*="none"] + span {
+          margin-left: 200px;
+        }
+      }
+    }
   }
   select {
     width: 140px;
