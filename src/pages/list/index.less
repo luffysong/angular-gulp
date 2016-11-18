@@ -490,13 +490,15 @@
               line-height: 21px;
               white-space: nowrap;
               .company-name {
+                display: inline-block;
+                height:20px;
                 margin-right: 10px;
                 cursor: pointer;
                 max-width: 165px;
-                display: inline-block;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                vertical-align: top;
               }
               .project-industry {
                 margin-left: 10px;
@@ -505,38 +507,27 @@
               }
               .icon-hot-tag,.icon-classicTag,.icon-funding {
                 position: relative;
-                top:-2px;
                 color: #F8627E;
                 font-size:20px;
+                vertical-align: top;
               }
               .icon-funding {
                 color: #6BA2FC;
+                vertical-align: top;
               }
               .icon-classicTag {
                 display: inline-block;
                 width:20px;
                 height:20px;
                 color: #FFA546;
-                top:-1px;
                 background: url('../../../images/classicTag.svg') no-repeat center;
-              }
-              .classic-tag {
-                display: inline-block;
-                width:auto;
-                height:18px;
-                line-height:18px;
-                background: #FFA546;
-                border-radius: 2px;
-                font-size:12px;
-                color: #fff;
-                text-align: center;
-                padding:0 4px;
-                margin-right:6px;
                 vertical-align: top;
               }
+
               .fund-state {
                 /*.hot-tag;*/
                 background: #6BA2FC;
+                vertical-align: top;
               }
             }
             .project-intro {
