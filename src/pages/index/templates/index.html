@@ -2,7 +2,7 @@
   <div class="home-banner">
 
     <ul class="top-container" kr-parallax un-able="vm.unableAnimate">
-      <li class="layer" data-depth="1.00">
+      <li class="layer" data-depth="0.40">
         <img class="logo" src="./images/index/logo.png" alt="">
       </li>
       <!--<li class="layer" data-depth="0.80">
@@ -57,17 +57,10 @@
   </div>
   <div class="home-container">
     <div class="adv-container">
-      <span class="left-arrow icon-left-arrow"></span>
-      <span class="right-arrow icon-right-arrow"></span>
-      <slick infinite="true" slides-to-show="3" prev-arrow=".left-arrow" next-arrow=".right-arrow" dots="true">
-        <div class="banner-container" ng-repeat="item in vm.bannerList">
-          <div class="banner-item">
-            <div class="banner-info">
-            </div>
-            <section class="banner-title">{{item.title}}</section>
-          </div>
-        </div>
-      </slick>
+      <div class="banner-item" ng-repeat="item in vm.bannerList">
+        <img class="banner-info" ng-src="{{item.url}}" />
+        <section class="banner-title">{{item.title}}</section>
+      </div>
     </div>
 
     <div class="project-container">

@@ -188,7 +188,8 @@
       position: relative;
       width:860px;
       margin:auto;
-      .slick-dots {
+      .clear;
+      /*.slick-dots {
         bottom:-32px;
       }
       .left-arrow {
@@ -224,38 +225,35 @@
         &:hover {
           background: #F2F4F5;
         }
-      }
-      .banner-container {
-        position:relative;
+      }*/
+      .banner-item {
+        position: relative;
+        float: left;
+        width:270px;
         height:160px;
-        max-width:270px;
+        border: 1px solid #E7E7E7;
+        cursor: pointer;
         margin-right:25px;
-        .banner-item {
-          position: relative;
-          float: left;
-          width:270px;
-          height:160px;
-          border: 1px solid #E7E7E7;
-          cursor: pointer;
-          .banner-info {
-            position: absolute;
-            width:100%;
-            height:100%;
-            bottom:0;
-            left:0;
-            background-image: url("https://krplus-pic.b0.upaiyun.com/201611/08/4cb96146ec4e2909aeeec7dd1271e9f7.jpg!800");
-            background-size: cover;
-            -webkit-filter: blur(2px);
-          }
-          .banner-title {
-            position: absolute;
-            width:100%;
-            font-size: 16px;
-            color: #fff;
-            top:50%;
-            margin-top:-8px;
-            text-align: center;
-          }
+        &:last-of-type {
+          margin-right:0;
+        }
+        .banner-info {
+          position: absolute;
+          width:100%;
+          height:100%;
+          bottom:0;
+          left:0;
+        }
+        .banner-title {
+          position: absolute;
+          width:100%;
+          height:64px;
+          line-height:64px;
+          font-size: 16px;
+          color: #fff;
+          text-align: center;
+          bottom:0;
+          background: rgba(0,0,0,.5);
         }
       }
     }
