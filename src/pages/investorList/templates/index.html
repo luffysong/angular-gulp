@@ -8,7 +8,7 @@
         <div class="col-content">
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':investorListVm.open.label}">
-              <ul filter-cal ng-class="{'height-auto':investorListVm.open.label}">
+              <ul ng-if="investorListVm.data.label" filter-cal ng-class="{'height-auto':investorListVm.open.label}">
                 <li class="col-item" ng-repeat="item in investorListVm.data.label" ng-class="{'active': item.active}"
                   ng-click="investorListVm.selectIndustry($index,'label')">
                   {{item.name}}
@@ -34,13 +34,13 @@
         <div class="col-content">
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':investorListVm.open.phase}">
-              <ul filter-cal ng-class="{'height-auto':investorListVm.open.phase}">
+              <ul ng-if="investorListVm.data.phase" filter-cal ng-class="{'height-auto':investorListVm.open.phase}">
                 <li class="col-item" ng-repeat="item in investorListVm.data.phase" ng-class="{'active': item.active}"
                   ng-click="investorListVm.selectIndustry($index,'phase')">
-                  {{item.desc}}
+                  {{item.name}}
                   <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
-                  <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.desc === '不限'"></span>
-                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.desc !== '不限'"
+                  <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.name === '不限'"></span>
+                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.name !== '不限'"
                     ng-click="investorListVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
                 </li>
               </ul>
@@ -60,7 +60,7 @@
         <div class="col-content">
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':investorListVm.open.city}">
-              <ul filter-cal ng-if="investorListVm.data.city">
+              <ul ng-if="investorListVm.data.city" filter-cal ng-if="investorListVm.data.city">
                 <li class="col-item" ng-repeat="item in investorListVm.data.city" ng-class="{'active': item.active}" ng-click="investorListVm.selectIndustry($index,'city')">
                   {{item.name}}
                   <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
