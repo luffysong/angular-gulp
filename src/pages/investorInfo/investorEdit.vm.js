@@ -218,8 +218,9 @@ export default class InvestorEditVM {
       suggest: this.suggestOnlyText.bind(this, '/suggest/city'),
       full_match: (item, value) => item.obj && item.obj.name.toLowerCase() === value.toLowerCase(),
       on_select: item => {
-        if (this.baseData.city.length > 10) {
-          Alert.alert('最多可选10个城市');
+        if (this.baseData.city.length > 9) {
+          Alert.alert('最多添加10个所在地');
+          return;
         }
         if (this.baseData.city.every(city => city !== item.obj.name)) {
           this.baseData.city.push(item.obj.name);

@@ -2,21 +2,63 @@ import { utls } from 'krData';
 import { FID_KEY } from './WorkstationCompare.service';
 const getService = utls.getService;
 let service = null;
+const LABEL_DESC = {
+  dau: 'DAU数据',
+  download: '下载数据',
+  uninstall: '卸载数据',
+  save: '一日留存率',
+  save3: '三日留存率',
+  save7: '七日留存率',
+  save30: '月留存率',
+};
 const wanYLabel = {
   format: '{value}万',
 };
 
 const percentYLabel = {
-  formatter: function formatterPercent() {
-    return `${this.value * 100}%`;
-  },
+  format: '{value}%',
 };
-function getHichartsOptions() {
+
+function getLableDesc(key) {
+  return LABEL_DESC[key];
+}
+function getLabel(key) {
+  switch (key) {
+    case FID_KEY.dau:
+    case FID_KEY.download:
+    case FID_KEY.uninstall:
+      return wanYLabel;
+    default:
+      return percentYLabel;
+  }
+}
+
+function getUnit(key) {
+  if (key.indexOf('save') > -1) {
+    return '%';
+  }
+  return '万';
+}
+function getHichartsOptions(key) {
   return {
     colors: ['#88C4FF', '#B3DD6A', '#CAD1FF', '#FFD46B', '#9DE3D9'],
     tooltip: {
       shared: true,
+      backgroundColor: 'rgba(150,159,169,1)',
+      borderColor: 'rgba(150,159,169,1)',
       crosshairs: true,
+      valueDecimals: 2,
+      padding: 0,
+      headerFormat: `<span class="label-row"><span class="mr6">{point.key}</span>
+        ${getLableDesc(key)} </span> `,
+      pointFormat:
+      '<span class="label-row"><span class="tooltip-icon" style="color:{point.color}">\u25CF' +
+      `</span> {series.name}：{point.y}${getUnit(key)}</span>`,
+      useHTML: true,
+      style: {
+        color: '#fff',
+        fontSize: '12px',
+      },
     },
     chart: {
       width: 940,
@@ -30,9 +72,17 @@ function getHichartsOptions() {
       float: true,
     },
     legend: {
-      float: true,
       align: 'right',
       verticalAlign: 'top',
+      useHTML: true,
+      margin: 30,
+      y: 0,
+      itemDistance: 10,
+      labelFormatter: function labelFormatter() {
+        return `<span class="kr-legend-item">
+          <span style="background:${this.color}" class="kr-circle"></span><span>${this.name}</span>
+          </span>`;
+      },
     },
     plotOptions: {
       series: {
@@ -64,53 +114,79 @@ function getHichartsOptions() {
       },
     },
     xAxis: {
-      tickWidth: 1,
-      lineWidth: 1,
+      tickWidth: 2,
+      lineWidth: 2,
       tickPosition: 'inside',
+      tickColor: '#ddd',
       lineColor: '#E7E7E7',
       crosshair: {
-        width: 1,
+        width: 2,
         color: '#ddd',
         dashStyle: 'LongDash',
       },
     },
-    yAxis: {
+    yAxis: [{
       lineColor: '#E7E7E7',
+      labels: getLabel(FID_KEY[key]),
       gridLineColor: '#F2F4F5',
       gridLineDashStyle: 'longdash',
-      lineWidth: 1,
+      lineWidth: 2,
       tickPixelInterval: 51,
       title: {
         enabled: false,
       },
     },
+    // {
+    //   lineColor: '#E7E7E7',
+    //   lineWidth: 2,
+    //   opposite: true,
+    //   title: {
+    //     enabled: false,
+    //   },
+    // }
+    ],
   };
 }
+@Inject('$stateParams')
 export default class WorkstationCompareController {
 
   constructor() {
     service = getService('workstationCompareService');
+    Highcharts.setOptions({
+      lang: {
+        thousandsSep: ',',
+      },
+    });
     this.init();
   }
 
   init() {
+    this.cids = this.$stateParams.cids.split(',');
+    this.count = this.cids.length;
     this.setData();
   }
-
+  changeSave(saveKey) {
+    this.setActiveSave(saveKey);
+  }
+  setActiveSave(saveKey) {
+    this.activeSaveHg = this[saveKey];
+    this.activeSave = saveKey;
+  }
   setData() {
     service.getCompareData({
-      cids: '1112,20633,25396',
+      cids: this.$stateParams.cids,
     }).then(data => {
       this.projects = data.projects;
+      this.dataLoaded = true;
       Object.keys(FID_KEY).forEach(key => {
         const hichartsOptions = {
-          options: getHichartsOptions(),
+          options: getHichartsOptions(key),
         };
         hichartsOptions.options.xAxis.categories = data.x;
-        hichartsOptions.options.yAxis.labels = wanYLabel;
         hichartsOptions.series = data.seriesData[key];
         this[`${key}Hg`] = hichartsOptions;
       });
+      this.setActiveSave('saveHg');
     });
   }
 

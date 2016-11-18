@@ -10,7 +10,11 @@ export const FID_KEY = {
   save30: 'md_0027',
 };
 function getY(map, name) {
-  return (map[FID_KEY[name]] || {}).y || [];
+  const y = (map[FID_KEY[name]] || {}).y || [];
+  if (name.indexOf('save') > -1) {
+    return y.map(value => value * 100);
+  }
+  return y;
 }
 export default class WorkstationCompareService {
 
