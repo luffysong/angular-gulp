@@ -50,6 +50,7 @@ export default class investorListParentController {
         this.$scope.$broadcast('get-list', data);
         this.totalCount = data.pageData.totalCount;
         this.data.label = data.label;
+        this.data.phase = data.phase;
         this.handleActive();
         this.updateData(data);
       });
