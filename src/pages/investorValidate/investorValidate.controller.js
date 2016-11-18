@@ -31,6 +31,9 @@ export default class investorValidateController {
     this.currentIndex = 0;
     //this.getSuggestInvestor();
 
+    /*this.$scope.$watch('vm.suggestInvestor[0].industryEnumList',obj => {
+      console.log(obj);
+    },true);*/
 
     this.autocompleteOptions = {
       suggest: this.suggest.bind(this),
@@ -131,15 +134,15 @@ export default class investorValidateController {
     this.initField();
     this.suggestInvestor.forEach((item,index) => {
       if(item.active) {
-        this.baseInfo.selectedIndustry = this.suggestInvestor[index].industryEnumList;
-        this.baseInfo.selectedPhase = this.suggestInvestor[index].phaseEnumList;
-        this.baseInfo.relatedId = this.suggestInvestor[index].id;
-        this.baseInfo.relatedEntityName = this.suggestInvestor[index].orgName;
-        this.baseInfo.relatedName = this.suggestInvestor[index].name;
-        this.baseInfo.relatedPosition = this.suggestInvestor[index].position;
-        this.baseInfo.singleInvestMin = this.suggestInvestor[index].singleInvestMin;
-        this.baseInfo.singleInvestMax = this.suggestInvestor[index].singleInvestMax;
-        this.baseInfo.singleInvestUnit = this.suggestInvestor[index].singleInvestUnit;
+        this.baseInfo.selectedIndustry = angular.copy(this.suggestInvestor[index].industryEnumList);
+        this.baseInfo.selectedPhase = angular.copy(this.suggestInvestor[index].phaseEnumList);
+        this.baseInfo.relatedId = angular.copy(this.suggestInvestor[index].id);
+        this.baseInfo.relatedEntityName = angular.copy(this.suggestInvestor[index].orgName);
+        this.baseInfo.relatedName = angular.copy(this.suggestInvestor[index].name);
+        this.baseInfo.relatedPosition = angular.copy(this.suggestInvestor[index].position);
+        this.baseInfo.singleInvestMin = angular.copy(this.suggestInvestor[index].singleInvestMin);
+        this.baseInfo.singleInvestMax = angular.copy(this.suggestInvestor[index].singleInvestMax);
+        this.baseInfo.singleInvestUnit = angular.copy(this.suggestInvestor[index].singleInvestUnit);
       }
     });
   }
