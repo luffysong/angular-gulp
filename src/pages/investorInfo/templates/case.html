@@ -20,12 +20,14 @@
               <a ui-sref="project({id: case.cid})" href="#" target="blank" class="case-logo-a">
                 <img class="case-logo" src="{{case.logo || '/images/default-logo.png'}}">
               </a>
-              <div class="company-name">
-                <a ui-sref="project({id: case.cid})" href="#" class="bold" target="_blank"><span>{{case.companyName}}</span></a>
-                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="investorInfoVm.isEditMode && !case.visible">显示</span></a>
-                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="investorInfoVm.isEditMode && case.visible">不显示</span></a>
+              <div class="company-all">
+                <div class="company-name">
+                  <a ui-sref="project({id: case.cid})" href="#" class="bold" target="_blank"><span>{{case.companyName}}</span></a>
+                  <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="investorInfoVm.isEditMode && !case.visible">显示</span></a>
+                  <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="investorInfoVm.isEditMode && case.visible">不显示</span></a>
+                </div>
+                <div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
               </div>
-              <div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
             </div>
             <div class="case-phase" ng-repeat="phase in case.entityVo"
             ng-class="{'more-show': case.moreShow || $index < 2,
