@@ -41,7 +41,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
           delete clonedData[k];
         }
       }
-      return $.param(clonedData);
+      return $.param(clonedData,true);
     }
   })
   .config(function configResource($resourceProvider) {

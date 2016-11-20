@@ -3,13 +3,20 @@
     <div class="uc-message-title">
       系统消息
     </div>
-    <div class="uc-message-list" ng-repeat="item in vm.msg">
-      <span class="message-time">{{item.time}}</span>
-      <span class="un-read" ng-if="!item.hasRead">未读</span>
-      <span class="has-read" ng-if="item.hasRead">已读</span>
-      <section class="message-content">
-        {{item.content}}
-      </section>
+    <div>
+      <div class="uc-message-list" ng-repeat="item in vm.msg" ng-click="vm.setRead(item.id)">
+        <span class="message-time">{{item.createdAt | msgDate}}</span>
+        <span class="un-read" ng-if="!item.readed">未读</span>
+        <span class="has-read" ng-if="item.readed">已读</span>
+        <section class="message-content" kr-bind-html="item.content">
+        </section>
+      </div>
     </div>
+  </div>
+  <div class="loading-wrapper" ng-show="vm.dataLoading && !vm.noMore">
+    正在加载更多...
+  </div>
+  <div class="loading-wrapper" ng-if="vm.noMore">
+    已无更多...
   </div>
 </div>

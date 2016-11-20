@@ -1,5 +1,18 @@
 import { API } from 'krData';
 
+const msgApi = new krData.API('/msg',[], {
+  page: {
+    action: 'page'
+  }
+});
+
+const setMsg = new krData.API('/msg/actions',[], {
+  setRead: {
+    action: 'mark-read',
+    method: 'PUT'
+  }
+});
+
 @Inject('$q')
 export default class ProjectService extends API {
 
@@ -38,5 +51,15 @@ export default class ProjectService extends API {
     };
     return new API('/investor/common-email')
       .update(null, email);
+  }
+
+  /*获取系统消息*/
+  getMsg(obj) {
+    return msgApi.page(obj);
+  }
+
+  /*设置已读*/
+  setRead(obj) {
+    return setMsg.setRead(null,obj);
   }
 }

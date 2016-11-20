@@ -30,7 +30,13 @@
     </div>
     <div class="usr-content" message-slide-panel disabled="!root.user.data.id">
       <pane-trigger >
-        <a href="">消息</a>
+        <div class="app-item message-item">
+          <span>
+            <span class="icon-message">
+            </span>
+            <span class="app-text">消息</span>
+          </span>
+        </div>
       </pane-trigger>
       <pane-body oc-lazy-load="root.assets.page.uc" ng-if="root.user.data.id">
         <uc-message></uc-message>

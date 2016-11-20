@@ -1,5 +1,6 @@
 import UcPage from './uc.directive';
 import UcMessage from './uc.message.directive';
+
 function makeDirective(directive) {
   return () => directive;
 }

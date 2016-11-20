@@ -5,77 +5,21 @@ const ucService = new UcService();
 @Inject('$rootScope')
 class UcMessageController {
   constructor() {
-    this.msg = [
-      {
-        time: '9月21日 18:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 11:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 18:00',
-        hasRead: false,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 18:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 18:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 11:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 18:00',
-        hasRead: false,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 18:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 18:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 11:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 18:00',
-        hasRead: false,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 18:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 18:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 11:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 18:00',
-        hasRead: false,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 18:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      }
-    ];
-
     this.init();
 
+
+
+    this.params = {
+      /*senderId: 2,*/
+      endpoint: 'WEB',
+      page: 1,
+      pageSize: 10
+    };
+    this.msg = [];
+    this.dataLoading = true;
+
     this.loadMore();
+    this.getMsg();
   }
 
   init() {
@@ -83,22 +27,34 @@ class UcMessageController {
   }
 
   loadMore() {
-    console.log('Load More');
-    this.msg = this.msg.concat([
-      {
-        time: '9月21日 11:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 18:00',
-        hasRead: false,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
-      },{
-        time: '9月21日 18:00',
-        hasRead: true,
-        content: '你好，你所添加的项目XXX[链接]成功被创投助手收录；同时，恭喜你成为该项目的认领人，成为认领人你可以享有以下权限： - 为该项目填写融资计划、申请融资；...',
+    if(this.dataLoading) return;
+    this.dataLoading = true;
+    this.params.page++;
+    this.getMsg();
+  }
+
+  getMsg() {
+    ucService.getMsg(this.params).then(data => {
+      console.log(data);
+      if(!data.data || !data.data.length){
+        this.noMore = true;
+        return;
       }
-    ]);
+      angular.forEach(data.data,(item) => {
+        this.msg.push(item);
+      });
+      this.dataLoading = false;
+    },err => {
+      console.log(err);
+    });
+  }
+
+  setRead(id) {
+    ucService.setRead({
+      ids: [id]
+    }).then(data => {
+      console.log(data);
+    })
   }
 }
 
