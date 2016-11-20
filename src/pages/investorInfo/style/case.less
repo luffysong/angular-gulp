@@ -30,12 +30,12 @@
       .case-left {
         float: left;
       }
-      .case-right {
-        float: right;
-      }
       .bold {
         color: #222C38;
         font-weight: bold;
+      }
+      .case-right {
+        float: right;
       }
       .case-info {
         width: 390px;
@@ -53,26 +53,29 @@
       }
       .case-logo-a {
         display: inline-block;
+        float: left;
       }
       .case-logo {
+        float: left;
         width: 60px;
         height: 60px;
         border: 1px solid #e7e7e7;
         border-radius: 6px;
-        margin: 20px 0 0 24px;
+        margin-left:24px;
       }
-
       .company-name {
-        display: inline-block;
-        position: relative;
-        bottom: 40px;
-        left: 16px;
+        display: block;
+        max-width: 270px;
+        margin-left: 100px;
+        margin-top: 25px;
+        margin-bottom: 6px;
       }
       .show {
-        position: relative;
+        // position: relative;
+        // float: right;
+        // right: 40px;
+        // top: 64px;
         float: right;
-        right: 40px;
-        top: 64px;
         font-size: 12px;
         color: #6BA2FC;
       }
@@ -81,11 +84,8 @@
         color: #5A626D;
         line-height: 21px;
         width: 270px;
-        position: relative;
-        display: inline-block;
-        left: 100px;
-        bottom: 30px;
         min-height: 42px;
+        margin-left: 100px;
       }
 
       .case-phase {

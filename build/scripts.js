@@ -19,7 +19,7 @@ export default function scrtips() {
       .pipe(g.webpack({
         output: {
           filename: file.replace('.tmp/src/', ''),
-          sourceMapFilename: `${file.replace('.tmp/src/', '')}.map`,
+          sourceMapFilename: !set.prod ? `${file.replace('.tmp/src/', '')}.map` : null,
         },
         ...webpackConfig,
       }))

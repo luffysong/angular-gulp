@@ -17,15 +17,21 @@
         <div class="case-left">
           <div class="case-info" ng-repeat="case in investorInfoVm.investment" ng-if="$index % 2 == 0" ng-show="case.visible || investorInfoVm.isEditMode">
             <div class="case-brief">
-              <a ui-sref="project({id: case.cid})" href="#" target="blank" class="case-logo-a">
+              <a ui-sref="project({id: case.cid})" ng-show="case.cid > 0" href="#" target="blank" class="case-logo-a">
                 <img class="case-logo" src="{{case.logo || '/images/default-logo.png'}}">
               </a>
-              <div class="company-name">
-                <a ui-sref="project({id: case.cid})" href="#" class="bold" target="_blank"><span>{{case.companyName}}</span></a>
-                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="investorInfoVm.isEditMode && !case.visible">显示</span></a>
-                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="investorInfoVm.isEditMode && case.visible">不显示</span></a>
+              <a ng-show="case.cid === 0" href="javascript:void(0);" target="blank" class="case-logo-a">
+                <img class="case-logo" src="{{case.logo || '/images/default-logo.png'}}">
+              </a>
+              <div class="company-all">
+                <div class="company-name">
+                  <a ui-sref="project({id: case.cid})" ng-show="case.cid > 0" href="#" class="bold" target="_blank"><span>{{case.companyName}}</span></a>
+                  <a ng-show="case.cid === 0" href="javascript:void(0);" class="bold" target="_blank"><span>{{case.companyName}}</span></a>
+                  <a href="#" ng-click="investorInfoVm.changeVisible(case.companyName,!case.visible)"><span href="#" class="show" ng-show="investorInfoVm.isEditMode && !case.visible">显示</span></a>
+                  <a href="#" ng-click="investorInfoVm.changeVisible(case.companyName,!case.visible)"><span href="#" class="show" ng-show="investorInfoVm.isEditMode && case.visible">不显示</span></a>
+                </div>
+                <div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
               </div>
-              <div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
             </div>
             <div class="case-phase" ng-repeat="phase in case.entityVo"
             ng-class="{'more-show': case.moreShow || $index < 2,
@@ -39,9 +45,9 @@
             </div>
             <div ng-show="case.entityVo.length > 2" class="more-show-btn">
               <a href="#" class="more-btn" ng-show="!case.moreShow"
-                ng-click="investorInfoVm.moreShow(case.cid,'close')">展开</a>
+                ng-click="investorInfoVm.moreShow(case.companyName,'close')">展开</a>
               <a href="#" class="more-btn" ng-show="case.moreShow"
-                ng-click="investorInfoVm.moreShow(case.cid,'open')">收起</a>
+                ng-click="investorInfoVm.moreShow(case.companyName,'open')">收起</a>
             </div>
           </div>
         </div>
@@ -49,11 +55,13 @@
         <div class="case-right">
           <div class="case-info" ng-repeat="case in investorInfoVm.investment" ng-if="$index % 2 == 1" ng-show="case.visible || investorInfoVm.isEditMode">
             <div class="case-brief">
-              <a ui-sref="project({id: case.cid})" href="#" target="blank"><img class="case-logo" src="{{case.logo || '/images/default-logo.png'}}"></a>
+              <a ui-sref="project({id: case.cid})" ng-show="case.cid > 0" href="#" target="blank"><img class="case-logo" src="{{case.logo || '/images/default-logo.png'}}"></a>
+              <a ng-show="case.cid === 0" href="javascript:void(0);" target="blank"><img class="case-logo" src="{{case.logo || '/images/default-logo.png'}}"></a>
               <div class="company-name">
-                <a ui-sref="project({id: case.cid})" href="#" class="bold" target="_blank"><span>{{case.companyName}}</span></a>
-                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="!case.visible && investorInfoVm.isEditMode">显示</span></a>
-                <a href="#" ng-click="investorInfoVm.changeVisible(case.cid,!case.visible)"><span href="#" class="show" ng-show="case.visible && investorInfoVm.isEditMode">不显示</span></a>
+                <a ui-sref="project({id: case.cid})" ng-show="case.cid > 0" href="#" class="bold" target="_blank"><span>{{case.companyName}}</span></a>
+                <a ng-show="case.cid === 0" href="javascript:void(0);" class="bold" target="_blank"><span>{{case.companyName}}</span></a>
+                <a href="#" ng-click="investorInfoVm.changeVisible(case.companyName,!case.visible)"><span href="#" class="show" ng-show="!case.visible && investorInfoVm.isEditMode">显示</span></a>
+                <a href="#" ng-click="investorInfoVm.changeVisible(case.companyName,!case.visible)"><span href="#" class="show" ng-show="case.visible && investorInfoVm.isEditMode">不显示</span></a>
               </div
               ><div class="company-brief"><span>{{case.brief | briefFilter}}</span></div>
             </div>
@@ -69,9 +77,9 @@
             </div>
             <div ng-show="case.entityVo.length > 2" class="more-show-btn">
               <a href="#" class="more-btn" ng-show="!case.moreShow"
-                ng-click="investorInfoVm.moreShow(case.cid,'close')">展开</a>
+                ng-click="investorInfoVm.moreShow(case.companyName,'close')">展开</a>
               <a href="#" class="more-btn" ng-show="case.moreShow"
-                ng-click="investorInfoVm.moreShow(case.cid,'open')">收起</a>
+                ng-click="investorInfoVm.moreShow(case.companyName,'open')">收起</a>
             </div>
           </div>
         </div>
