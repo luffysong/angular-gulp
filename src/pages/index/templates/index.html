@@ -1,46 +1,39 @@
 <div class="home-page" kr-parallax>
   <ul class="logo-container">
     <li class="layer" data-depth="0.1">
-      <img class="logo" src="./images/index/logo.png" alt="">
+      <img class="logo" src="/images/index/logo.png" alt="">
     </li>
   </ul>
   <div class="home-banner">
-
     <ul class="top-container" >
-      <!--<li class="layer" data-depth="0.40">
-        <img class="logo" src="./images/index/logo.png" alt="">
-      </li>-->
-      <!--<li class="layer" data-depth="0.80">
-        <img class="left-logo" data-depth="1.00" src="./images/index/left-logo.png" alt="">
-      </li>-->
       <li class="layer" data-depth="0.1">
-        <img class="left-logo" src="./images/index/left-logo.png" alt="">
+        <img class="left-logo" src="/images/index/left-logo.png" alt="">
       </li>
       <li class="layer" data-depth="0.1">
-        <img class="right-circle" src="./images/index/right-circle.png" alt="">
+        <img class="right-circle" src="/images/index/right-circle.png" alt="">
       </li>
       <li class="layer" data-depth="0.1">
-        <img class="right-logo" src="./images/index/right-logo.png" alt="">
+        <img class="right-logo" src="/images/index/right-logo.png" alt="">
       </li>
      <!-- <li class="layer" data-depth="0.40">
-        <img class="right-circle" data-depth="0.6" src="./images/index/right-circle.png" alt="">
+        <img class="right-circle" data-depth="0.6" src="/images/index/right-circle.png" alt="">
       </li>-->
       <li class="layer" data-depth="0.1">
-        <img class="middle-circle" src="./images/index/middle-circle.png" alt="">
+        <img class="middle-circle" src="/images/index/middle-circle.png" alt="">
       </li>
       <li class="layer" data-depth="0.1">
-        <img class="border-circle" src="./images/index/border-circle.png" alt="">
+        <img class="border-circle" src="/images/index/border-circle.png" alt="">
       </li>
       <li class="layer" data-depth="0.1">
-        <img class="border-circle" src="./images/index/border-circle.png" alt="">
+        <img class="border-circle" src="/images/index/border-circle.png" alt="">
       </li>
       <li class="layer" data-depth="0.1">
-        <img class="bg-circle" src="./images/index/bg-circle.png" alt="">
+        <img class="bg-circle" src="/images/index/bg-circle.png" alt="">
       </li>
     </ul>
     <div class="relative-container">
-     <!-- <img class="left-logo" data-depth="1.00" src="./images/index/left-logo.png" alt="">
-      <img class="right-circle" data-depth="0.6" src="./images/index/right-circle.png" alt="">-->
+     <!-- <img class="left-logo" data-depth="1.00" src="/images/index/left-logo.png" alt="">
+      <img class="right-circle" data-depth="0.6" src="/images/index/right-circle.png" alt="">-->
       <h3 class="top-title">36氪创投助手</h3>
       <section class="top-intro">让融资更高效</section>
       <div class="brief-list">
@@ -172,18 +165,20 @@
       </div>
       <a class="submit-btn" href="javascript:void(0)" ng-click="vm.createProject()">我也要提交项目</a>
       <div class="investor-container" ng-if="vm.investorData.columnList.length">
-        <span class="submit-left-arrow icon-left-arrow"></span>
-        <span class="submit-right-arrow icon-right-arrow"></span>
-        <slick infinite="false" slides-to-show="4" prev-arrow=".submit-left-arrow" next-arrow=".submit-right-arrow">
+        <span class="submit-left-arrow icon-left-arrow" ng-hide="vm.currentIndex+'' === '0'"></span>
+        <span class="submit-right-arrow icon-right-arrow" ng-hide="vm.currentIndex >= vm.investorData.columnList.length-4"></span>
+        <slick infinite="false" slides-to-show="4" prev-arrow=".submit-left-arrow" next-arrow=".submit-right-arrow" current-index="vm.currentIndex">
           <div class="user-container" ng-repeat="item in vm.investorData.columnList">
-            <a href="" ui-sref="investorInfo({id:item.id})" target="_blank">
               <div class="investor-item">
-                <img ng-src="{{item.avatar || 'images/investor-logo.png'}}" alt="">
-                <div class="item-name">{{item.name}}</div>
+                <a href="" ui-sref="investorInfo({id:item.id})" target="_blank">
+                  <img ng-src="{{item.avatar || 'images/investor-logo.png'}}" alt="">
+                </a>
+                <a href="" ui-sref="investorInfo({id:item.id})" target="_blank">
+                  <div class="item-name">{{item.name}}</div>
+                </a>
                 <div class="item-org">{{item.entityName}}</div>
                 <div class="item-position">{{item.position}}</div>
               </div>
-            </a>
           </div>
         </slick>
       </div>
@@ -194,7 +189,7 @@
   <div class="home-footer">
     <div class="footer-container">
       <div class="left-footer">
-        <img ng-src="../../images/rong-logo.png" alt="">
+        <img ng-src="/images/rong-logo.png" alt="">
         <div class="download-tip">
           <div class="download-name">下载36氪创投助手</div>
           <div class="download-intro">提供最好的投融资产品和服务</div>
@@ -202,7 +197,7 @@
       </div>
       <div class="right-footer">
         <div class="qrcode-container">
-          <img ng-src="../../images/index/qrcode.png" alt="">
+          <img ng-src="/images/index/qrcode.png" alt="">
         </div>
 
         <div class="download-tip">

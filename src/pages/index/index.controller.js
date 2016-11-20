@@ -21,19 +21,20 @@ export default class homeController {
     this.labelLoading = true;
     this.bannerLoading = true;
     this.unableAnimate = true;
+    this.currentIndex = 0;
 
     /*console.warn(this.parallaxHelper);
     this.background = this.parallaxHelper.createAnimator(-0.3);*/
     this.bannerList = [
       {
         title: '海量优质项目任你选',
-        url: '../../images/index/bg1.png'
+        url: '/images/index/bg1.png'
       },{
         title: '专属行业订阅为你「配对」',
-        url: '../../images/index/bg2.png'
+        url: '/images/index/bg2.png'
       },{
         title: '随时随地对接顶级投资人',
-        url: '../../images/index/bg3.png'
+        url: '/images/index/bg3.png'
       }
     ];
 
@@ -111,4 +112,7 @@ export default class homeController {
     }
   }
 }
+
+
+
 
