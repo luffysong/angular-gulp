@@ -1,13 +1,15 @@
-<div class="uc-message-wrapper" infinite-scroll="vm.loadMore()" infinite-scroll-distance='0'>
-  <div class="uc-message-title">
-    系统消息
-  </div>
-  <div class="uc-message-list" ng-repeat="item in vm.msg">
-    <span class="message-time">{{item.time}}</span>
-    <span class="un-read" ng-if="!item.hasRead">未读</span>
-    <span class="has-read" ng-if="item.hasRead">已读</span>
-    <section class="message-content">
-      {{item.content}}
-    </section>
+<div id="ucMessageWrapper">
+  <div class="uc-message-wrapper" infinite-scroll="vm.loadMore()" infinite-scroll-distance='0' infinite-scroll-container="'#ucMessageWrapper'">
+    <div class="uc-message-title">
+      系统消息
+    </div>
+    <div class="uc-message-list" ng-repeat="item in vm.msg">
+      <span class="message-time">{{item.time}}</span>
+      <span class="un-read" ng-if="!item.hasRead">未读</span>
+      <span class="has-read" ng-if="item.hasRead">已读</span>
+      <section class="message-content">
+        {{item.content}}
+      </section>
+    </div>
   </div>
 </div>
