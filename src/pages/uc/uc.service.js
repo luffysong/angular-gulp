@@ -13,7 +13,7 @@ const setMsg = new krData.API('/msg/actions',[], {
   }
 });
 
-@Inject('$q')
+@Inject('$q', '$http')
 export default class ProjectService extends API {
 
   constructor() {
@@ -61,5 +61,15 @@ export default class ProjectService extends API {
   /*设置已读*/
   setRead(obj) {
     return setMsg.setRead(null,obj);
+  }
+
+  sendAction(url, callback, error) {
+    setTimeout(() => {
+      this.$http.post(url).success(function (data) {
+        callback && callback(data);
+      }).catch(function (err) {
+        error && error(err);
+      });
+    }, 20);
   }
 }

@@ -49,6 +49,28 @@ class UcMessageController {
     });
   }
 
+  handelUrl(data) {
+    data.forEach(function (item) {
+      item.content = item.content
+        .replace(/bind-url="(.+?)"/g, function ($0, $1) {
+          return 'ng-if="notification.submitLoading !== item" ng-click="vm.triggerAction(\'' +
+            $1.replace(/http:\/\//g, '//') + '\',item,$event)"';
+        })
+        .replace(/class="actions"/g, 'class="actions"');
+    });
+  }
+
+  triggerAction(url, item, e) {
+    e && e.preventDefault();
+    ucService.sendAction(url, data => {
+      item.content = data.content;
+    }, err => {
+      krData.Alert.alert(err.msg);
+      var index = this.msg.indexOf(item);
+      this.msg.splice(index, 1);
+    });
+  }
+
   setRead(id) {
     ucService.setRead({
       ids: [id]
