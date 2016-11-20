@@ -51,6 +51,9 @@
       .f-right {
         float: right;
       }
+      .case-logo-a {
+        display: inline-block;
+      }
       .case-logo {
         width: 60px;
         height: 60px;
@@ -59,9 +62,8 @@
         margin: 20px 0 0 24px;
       }
 
-
       .company-name {
-        display: inline;
+        display: inline-block;
         position: relative;
         bottom: 40px;
         left: 16px;
@@ -160,6 +162,9 @@
   form {
     max-width: 520px;
   }
+  .ac-container {
+    z-index: 11;
+  }
   .mt16 {
     margin-bottom: 16px;
   }
@@ -174,6 +179,7 @@
       float: none;
     }
   }
+
   .error-color {
     color: @error-color;
   }
@@ -186,6 +192,10 @@
       margin-bottom: 16px;
     }
 
+  }
+  .new-com {
+    text-align: center;
+    color: @anchor-color;
   }
   .invest-entity {
     margin-top: 15px;

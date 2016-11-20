@@ -4,11 +4,11 @@
       <div class="collect-count">
         <h3>我的收藏夹</h3>
         <div class="total-count">
-          <span>共 {{vm.data.groupList.length}} 个收藏夹</span><span class="split">|</span><span>共收藏 {{vm.data.companyCnt}} 个项目</span>
+          <span>共 {{collectionVM.dataList.groupList.length}} 个收藏夹</span><span class="split">|</span><span>共收藏 {{collectionVM.dataList.companyCnt}} 个项目</span>
         </div>
       </div>
       <div class="collect-btn">
-        <a href="#">
+        <a href="#" ng-click="vm.showNewCollection()">
           <div class="create-collect">
             <span>创建收藏夹 +</span>
           </div>
@@ -19,23 +19,35 @@
 
   <div class="content">
     <div class="collect-list">
-      <div class="collect-item" ng-repeat="item in vm.data.groupList">
+      <div class="collect-item" ng-show="vm.$scope.newCollection">
         <div class="collect-title">
           <span class="icon-bookmark"></span>
-          <a ui-sref="workstationList({id: item.id})" href="#"><span class="collect-name">{{item.name}}</span></a>
+          <input class="newCollection" id="newColl" get-focus type="text" placeholder="收藏夹名称" ng-focus="vm.newFocus"
+           ng-model="vm.collectionName" ng-keyup="vm.createCollection($event)">
+        </div>
+        <div class="collect-count">
+          <span class="describe">该收藏夹共 0 个项目</span>
+        </div>
+      </div>
+      <div class="collect-item" ng-repeat="item in collectionVM.dataList.groupList"
+      ng-mouseenter="vm.showDelete(item.id,true)" ng-mouseleave="vm.showDelete(item.id,false)">
+        <div class="collect-title">
+          <span class="icon-bookmark"></span>
+            <a ui-sref="workstationList({id: item.id})" href="#" ng-show="!item.isEdit">{{item.name}}</a>
+            <input class="editCollection" id="{{item.id}}" get-focus ng-show="item.isEdit" type="text" ng-model="item.name"
+            ng-keyup="vm.updateCollection($event,item.id,item.name)">
+          <a href="#" class="edit" ng-show="item.id !==0 && item.isDelete" ng-click="vm.editCollection(item.id)">编辑</a>
         </div>
         <div class="collect-count">
           <span class="describe">该收藏夹共 {{item.count}} 个项目</span>
-          <a href="#" ng-click="expression"><span class="icon-delete"></span></a>
+          <a href="#" ng-click="collectionVM.collection({id: item.id})" ng-show="item.id !==0 && item.isDelete"><span class="icon-delete"></span></a>
         </div>
       </div>
-      <a href="#">
+      <a href="#" ng-click="vm.showNewCollection()">
         <div class="collect-item-new">
           <span class="new-btn">新建 +</span>
         </div>
       </a>
-
-
     </div>
   </div>
 </div>

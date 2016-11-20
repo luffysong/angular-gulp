@@ -1,0 +1,195 @@
+.workstation-collection{
+  .icon-dialogClose{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #969FA9;
+    cursor:pointer;
+  }
+  .collection-head {
+    margin-top: 10px;
+    margin-bottom: 60px;
+    display: block;
+    position: relative;
+    top: 20px;
+    left: 70px;
+    .title{
+      font-size: 18px;
+      color: #222C38;
+      line-height: 27px;
+      font-weight: 500;
+      position: relative;
+      left: 70px;
+    }
+    .note {
+      font-size: 14px;
+      color: #969FA9;
+      line-height: 21px;
+    }
+  }
+
+  .suc,.cancle{
+    font-size: 12px;
+    color: #6BA2FC;
+    letter-spacing: 0px;
+    line-height: 18px;
+    position: absolute;
+    top: 15px;
+    left: 225px;
+    transform:translateX(-50%);
+    opacity: 0;
+  }
+  .hidden{
+    animation:success 3s linear 1;
+  }
+  @keyframes success{
+    0%{
+      opacity: 1;
+    }
+    90%{
+      opacity: 1;
+    }
+    100%{
+      opacity: 0;
+    }
+  }
+  .content-list{
+    margin: 0 20px;
+    text-align: left;
+    .checkbox{
+      width: 15px;
+      height: 15px;
+      margin-right: 16px;
+      vertical-align: middle;
+    }
+    ul{
+      width: 465px;
+    }
+    ul>li{
+      width: 205px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+    ul>li:nth-child(2n-1){
+      margin-right: 50px;
+    }
+    .collection-name{
+      font-size: 14px;
+      color: #5A626D;
+      letter-spacing: 0px;
+      line-height: 21px;
+      margin-right: 5px;
+      vertical-align: middle;
+      width: 112px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .collections{
+      font-size: 14px;
+      color: #969FA9;
+      letter-spacing: 0px;
+      line-height: 21px;
+      position: relative;
+      padding-left: 12px;
+      &:before{
+        content:'|';
+        display: inline-block;
+        font-size: 16px;
+        position: absolute;
+        left:0;
+        top: -1px;
+      }
+    }
+  }
+  .create-box{
+    text-align: left;
+    padding-left: 53px;
+    margin-bottom: 20px;
+    .collect-btn {
+      position: relative;
+      left: 35px;
+      .cancle-btn {
+        width: 108px;
+        height: 37px;
+        border: 1px solid #6BA2FC;
+        border-radius: 4px;
+        padding: 5px 38px;
+        display: inline-block;
+        margin-right: 30px;
+        span {
+          font-size: 14px;
+          color: #6BA2FC;
+          line-height: 21px;
+        }
+      }
+      .delete-btn {
+        width: 108px;
+        height: 37px;
+        background-color: #6BA2FC;
+        border-radius: 4px;
+        padding: 5px 38px;
+        display: inline-block;
+        span {
+          font-size: 14px;
+          color: #FFFFFF;
+          line-height: 21px;
+        }
+      }
+    }
+  }
+  .operate{
+    margin-bottom: 20px;
+    .save{
+      border-radius: 4px;
+      font-size: 14px;
+      color: #FFFFFF;
+      letter-spacing: 0px;
+      line-height: 21px;
+      padding:8px 30px;
+      background: #6BA2FC;
+      margin-right: 30px;
+    }
+    .display{
+      background: #CCCCCC;
+    }
+    .cancle{
+      border: 1px solid #CCCCCC;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #969FA9;
+      letter-spacing: 0px;
+      line-height: 21px;
+      padding:8px 30px;
+      cursor: pointer;
+    }
+  }
+  .new-box{
+    .form-group{
+      input{
+        background: #FFFFFF;
+        border-radius: 4px;
+        padding:8px 10px;
+        width: 267px !important;
+        font-size: 14px;
+        color: #5A626D;
+        letter-spacing: 0px;
+        line-height: 19px;
+        margin-right: 10px;
+        display: inline-block;
+        margin-bottom: 0;
+      }
+    }
+    .new-button{
+      background: #FFFFFF;
+      border: 1px solid #6BA2FC;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #6BA2FC;
+      line-height: 19px;
+      padding:8px 26px;
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 @import "../../common/styles/function";
 @import "../../common/styles/var";
+@import "./style/collection";
 
 .workstation-wrapper {
   .head-bg {
@@ -81,8 +82,34 @@
           margin: 16px 0 0 26px;
           border:0 none;
           border-bottom:1px solid #E7E7E7;
-          width: 190px;
+          width: 200px;
           height: 40px;
+          a {
+            color: #5A626D;
+            margin-left: 1px;
+          }
+          input {
+            color: #5A626D;
+          }
+          .newCollection {
+            border: 0;
+          }
+          input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+            color: #ccc;
+          }
+          input:-moz-placeholder, textarea:-moz-placeholder {
+            color:#666;
+          }
+          input::-moz-placeholder, textarea::-moz-placeholder {
+            color:#666;
+          }
+          input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+            color:#666;
+          }
+          .editCollection {
+            width: 145px;
+            border: 0;
+          }
           .icon-bookmark {
             font-size: 20px;
             position: relative;
@@ -93,6 +120,16 @@
             color: #5A626D;
             line-height: 24px;
             font-weight: bold;
+          }
+          .edit {
+            font-size: 14px;
+            float: right;
+            top: 6px;
+            position: relative;
+            color: #5A626D;
+            &:hover {
+              color: #6BA2FC;
+            }
           }
         }
         .collect-count {
@@ -108,8 +145,16 @@
             right: 30px;
             color: #ccc;
             font-size: 20px;
+            display: block;
           }
         }
+      }
+      .collect-item:hover::before {
+        width: 6px;
+        height: 105px;
+        content: "";
+        position: absolute;
+        background: #6ba2fc;
       }
     }
   }

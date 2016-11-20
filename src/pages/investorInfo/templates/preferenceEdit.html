@@ -46,18 +46,27 @@
         <div class="inline-control">
           <input type="text" name="singleInvestMin"
             class="form-control money mr10" ng-model="investorEditVM.preferData.singleInvestMin"
-            validator="required, number"
+            validator="required, integer"
+            integer-error-message="必须填入整数"
+            message-id="minMessage"
             placeholder="输入具体金额" /><span class="mr12">万</span><span class="to mr10">至</span
             ><input
-            validator="bigger"
+            validator="integer,bigger"
             type="text" name="singleInvestMax"
             class="form-control money mr10"
+            integer-error-message="必须填入整数"
+            bigger-error-message="必须大于最低金额"
             ng-model="investorEditVM.preferData.singleInvestMax"
+            message-id="maxMessage"
             placeholder="输入具体金额" /><span class="mr10">万</span
               ><select  ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
                 ng-model="investorEditVM.preferData.singleInvestUnit"
             type="text" name="singleInvestUnit" class="form-control unit mr10" > </select
             ><span class="form-tip money-tip">若非区间则仅填写前输入框即可</span>
+            <div class="money-error">
+              <span class="error-tip" id="minMessage"></span>
+              <span class="error-tip" id="maxMessage"></span>
+            </div>
         </div>
       </div>
 

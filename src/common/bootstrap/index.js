@@ -64,7 +64,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
         return value ? /^([a-zA-Z0-9]+[_|_|\.|\+]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/.test(value) : true;
         /* eslint-enable */
       },
-      integer: value => (value ? /\d+$/.test(value) : true),
+      integer: value => (value ? /^(?:[1-9]\d*|0)$/.test(value) : true),
       number: value => (value ? /^\d*(\.\d+)?$/.test(value) : true),
       maxlength: (value, scope, element, attrs, param) => {
         param = parseInt(param, 10) || 0;
@@ -100,7 +100,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
   })
   .run(function safeMoudle($injector) {
     const module = angular.module;
-    angular.moudle = (...moduleArgs) => {
+    angular.module = (...moduleArgs) => {
       const moduleInstance = module(...moduleArgs);
       ['directive', 'filter', 'service'].forEach(methodName => {
         const api = moduleInstance[methodName].bind(moduleInstance);
@@ -111,6 +111,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
           return moduleInstance;
         };
       });
+      return moduleInstance;
     };
   })
   .run(function run($rootScope) {

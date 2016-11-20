@@ -162,12 +162,19 @@ export default class InvestorEditVM {
       on_select: (item) => {
         this.caseData.selectCom = item.obj;
         this.caseData.companyType = null;
+        this.newCom = false;
+        if (item.obj.newCom) {
+          this.caseData.selectCom = null;
+          this.caseData.companyType = getService('PROJECT_TYPE').WEB;
+          this.newCom = true;
+        }
       },
       on_leaveSelect: () => {
         this.caseData.selectCom = null;
         this.caseData.companyType = getService('PROJECT_TYPE').WEB;
+        this.newCom = true;
       },
-    });
+    }, true);
   }
 
   setCaseEntityComOptions() {
@@ -192,10 +199,10 @@ export default class InvestorEditVM {
     });
   }
 
-  _getSuggestComOptions(options) {
+  _getSuggestComOptions(options, isCreateCompany) {
     return {
       auto_select_first: true,
-      suggest: this.suggest.bind(this, '/suggest/company'),
+      suggest: this.suggest.bind(this, '/suggest/company', isCreateCompany),
       full_match: (item, value) => item.obj.name.toLowerCase() === value.toLowerCase(),
       on_select: options.on_select,
       on_leaveSelect: options.on_leaveSelect,
@@ -422,7 +429,6 @@ export default class InvestorEditVM {
   enterCase() {
     this.editCase = true;
     this.caseData = {};
-    this.caseData.companyType = getService('PROJECT_TYPE').WEB;
     this.caseData.entityType = this.ENTITY_TYPE.ORGANIZATION;
   }
 
@@ -471,18 +477,26 @@ export default class InvestorEditVM {
     Alert.success('数据保存成功');
   }
 
-  suggest(path, kw) {
+  suggest(path, isCreateCompany, kw) {
+    const newCom = {
+      value: kw,
+      obj: { name: '', newCom: true },
+      label: `<div class="new-com">创建“${kw}”</div>`,
+    };
     return new API(path).query({
       kw,
-    }).then(list =>
-      list.map(org => ({
+    }).then(list => {
+      if (isCreateCompany && !list.length) {
+        return [newCom];
+      }
+      return list.map(org => ({
         value: org.name,
         obj: org,
         label:
         '<div><img ng-src="{{result.obj.logo || ' +
         '\'/images/org-logo.png\'}}">{{result.obj.name}}</div>',
-      }))
-    );
+      }));
+    });
   }
 
   suggestOnlyText(path, kw) {

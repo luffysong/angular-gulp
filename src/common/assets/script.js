@@ -101,6 +101,9 @@ export default {
     ],
     workstation: [
       '/pages/workstation/index.js',
+      '/bower/ng-dialog/js/ngDialog.min.js',
+      '/bower/ng-dialog/css/ngDialog.min.css',
+      '/bower/ng-dialog/css/ngDialog-theme-default.min.css',
     ],
     workstationList: [
       '/pages/workstationList/index.js',
