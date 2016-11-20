@@ -6,6 +6,6 @@ export default {
   controllerAs: 'vm',
   controller: 'homeController',
   resolve: {
-    loadBundle: getLoadBundle(assets.page.index)
+    loadBundle: getLoadBundle(assets.page.index),
   },
 };
