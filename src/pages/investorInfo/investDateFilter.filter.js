@@ -1,5 +1,5 @@
 
-function dateFilter() {
+function investDateFilter() {
   return function (input) {
     if(!input)return '';
     var date = new Date(input);
@@ -13,7 +13,7 @@ function dateFilter() {
   }
 }
 angular
-  .module('@@pages.investment', [])
-  .filter('dateFilter', dateFilter);
+  .module('@@pages.investorInfo', [])
+  .filter('investDateFilter', investDateFilter);
 
-export default dateFilter;
+export default investDateFilter;

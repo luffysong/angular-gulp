@@ -42,7 +42,6 @@ export default class WorkstationListController {
       this.checkedCids.splice(idx,1);
     }
     this.$stateParams.cids = this.checkedCids;
-    console.log(this.$stateParams.cids);
   }
 
 }
