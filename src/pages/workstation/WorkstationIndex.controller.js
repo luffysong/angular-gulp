@@ -46,7 +46,6 @@ export default class WorkstationIndexController {
       this.workstationService.updateCollection(id,name)
       .then(data => {
         this.$scope.newCollection = false;
-        this.collectionName = '';
         this.getCollectionList();
       });
     }
