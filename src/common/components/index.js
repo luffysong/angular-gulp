@@ -3,6 +3,7 @@ import krValid from './krValid.directive.js';
 import krSearch from './krSearch.directive.js';
 import krProjectNav from './krProjectNav.directive.js';
 import krSlidePanel from './krSlidePanel.directive.js';
+import messageSlidePanel from './messageSlidePanel.directive';
 import infiniteScrollDirective from './infiniteScroll.directive';
 import calPositionDirective from './calPosition.directive';
 import krEleClampChecker from './krEleClampChecker.directive.js';
@@ -18,6 +19,7 @@ angular.module('@@app.components', [])
   .value('THROTTLE_MILLISECONDS', 300)
   .directive('krProjectNav', makeDirective(krProjectNav))
   .directive('krSlidePanel', makeDirective(krSlidePanel))
+  .directive('messageSlidePanel', makeDirective(messageSlidePanel))
   .directive('infiniteScroll', infiniteScrollDirective)
   .directive('krBindHtml', makeDirective(krBindHtml))
   .directive('krEleClampChecker', makeDirective(krEleClampChecker))
