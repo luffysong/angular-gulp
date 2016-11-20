@@ -5,7 +5,7 @@ import scripts, { babelHelper, concatTemplate, copyLib } from './scripts';
 import style from './style';
 
 const prod = {
-  cdn: '',
+  cdn: process.env.cdn ? '//sta.36krcnd.com/krplus' : '',
 };
 
 const jsplugins = [

@@ -62,7 +62,7 @@ export function getUpToken(options, type) {
     'save-key': options.pattern || '/{year}{mon}/{day}{hour}{min}{sec}/{random}{.suffix}',
   }, options);
 
-  return getService('$http').post('/api/upload/form-api', {
+  return getService('$http').post('/n/api/upload/form-api', {
     param: angular.toJson(data),
     type, // UPLOAD_TYPE
   });
