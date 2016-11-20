@@ -36,7 +36,7 @@ const jsplugins = [
 const proxyConfig = {
   proxy: [
     {
-      path: '/api',
+      path: '/n/api',
       target: 'http://nrongtest03.36kr.com',
     },
   ],

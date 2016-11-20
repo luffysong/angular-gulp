@@ -22,7 +22,7 @@ export const UPLOAD_TYPE = {
 export function getLoadBundle(page) {
   return function loadBundle($ocLazyLoad) {
     'ngInject';
-    return $ocLazyLoad.load(page);
+    return $ocLazyLoad.load(page.map(path => `/n${path}`));
   };
 }
 let injector = null;
