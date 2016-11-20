@@ -90,7 +90,6 @@ export default {
     ],
     uc: [
       '/pages/uc/index.js',
-      '/pages/uc/index.css',
     ],
     investorInfo: [
       '/pages/investorInfo/index.js',
