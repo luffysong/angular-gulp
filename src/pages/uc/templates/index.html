@@ -1,7 +1,7 @@
 <div class="uc-page-wrapper">
   <div class="inset-wrapper">
     <div class="base-info">
-      <a href="" class="edit">编辑</a>
+      <a ng-if="vm.user.investor" ui-sref="investorInfo.edit({id: vm.user.profileId})" class="edit">编辑</a>
       <div class="avatar" ng-style="{backgroundImage:vm.getBgImage(vm.user.avatar)}">
 
       </div>

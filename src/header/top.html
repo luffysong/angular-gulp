@@ -44,8 +44,8 @@
     </div>
     <div class="usr-content" kr-slide-panel disabled="!root.user.data.id">
       <pane-trigger >
-        <img ng-src="{{root.user.data.avatar}}" src="/images/investor-logo.png" alt="">
-        <span class='icon-open down ng-hide' ng-show="root.user.data.id"></span>
+        <img ng-src="{{root.user.data.avatar}}" ng-click="root.user.ensureLogin()" src="/images/investor-logo.png" alt="">
+        <span class='icon-Setting'></span>
       </pane-trigger>
       <pane-body oc-lazy-load="root.assets.page.uc" ng-if="root.user.data.id">
         <uc-page></uc-page>

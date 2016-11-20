@@ -38,6 +38,8 @@ export default class User {
   ensureLogin() {
     if (this.loaded && !this.isLogin) {
       login();
+    } else {
+      this.catch(() => login());
     }
   }
 
