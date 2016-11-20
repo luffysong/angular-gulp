@@ -34,11 +34,11 @@ export default class investorInfoController {
     });
   }
 
-  moreShow(cid,state) {
+  moreShow(cname,state) {
     this.moreBtn = state;
     this.allInvestments.forEach((item) => {
-      if(item.cid === cid){
-        if (state === 'close') {
+      if(item.cname === cname){
+        if (companyName === 'close') {
           item.moreShow = true;
         } else if (state === 'open') {
           item.moreShow = false;
@@ -52,11 +52,11 @@ export default class investorInfoController {
     this.investment = this.allInvestments;
   }
 
-  changeVisible(cid,state) {
-    this.investorInfoService.changeInvestmenVisible(cid,state)
+  changeVisible(cname,state) {
+    this.investorInfoService.changeInvestmenVisible(cname,state)
     .then(data => {
       this.allInvestments.forEach((item) => {
-        if(item.cid === cid){
+        if(item.companyName === cname){
           if(item.visible){
             item.visible = false;
           }else{
