@@ -77,7 +77,7 @@ export default class API {
   static fail(code) {
     return code !== ERROR_CODE.SUCCESS;
   }
-  API_PATH = `//${location.host}/api`;
+  API_PATH = `//${location.host}/n/api`;
   constructor(url, getMethods, actions) {
     // 参数调换
     if (!angular.isArray(getMethods)) {
