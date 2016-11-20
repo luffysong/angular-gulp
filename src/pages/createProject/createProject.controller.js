@@ -86,6 +86,7 @@ export default class CreateProjectController {
     if (this.type === FINANCE) {
       this.title = '融资申请';
       this.id = this.$stateParams.id;
+      this.name = this.$stateParams.name;
       if (this.financeState === this.project.FINANCE_AUDITING) {
         this.step = 4;
       } else if (this.financeState === this.project.FINANCE_NONE) {
