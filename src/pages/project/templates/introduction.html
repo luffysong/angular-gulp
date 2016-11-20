@@ -26,7 +26,7 @@
       <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.coreSource}}</span>
     </div>
   </div>
-  <div class="no-data" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.productService == '' && vm.companyIntroduceVM.data.companyIntroduce.userMarket == '' && vm.companyIntroduceVM.data.companyIntroduce.businessMode == '' && vm.companyIntroduceVM.data.companyIntroduce.operationData == '' && vm.companyIntroduceVM.data.companyIntroduce.coreSource == '') && vm.userId">
+  <div class="no-data" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.productService == '' && vm.companyIntroduceVM.data.companyIntroduce.userMarket == '' && (vm.companyIntroduceVM.data.companyIntroduce.businessMode == '' || !vm.companyIntroduceVM.data.companyIntroduce.businessMode) && (vm.companyIntroduceVM.data.companyIntroduce.operationData == '' || !vm.companyIntroduceVM.data.companyIntroduce.operationData) && (vm.companyIntroduceVM.data.companyIntroduce.coreSource == '' || !vm.companyIntroduceVM.data.companyIntroduce.coreSource)) && vm.userId">
     <p>暂无数据</p>
   </div>
   <div class="part-hide" ng-if="vm.userId && vm.user=='commen' && !vm.investorType">
