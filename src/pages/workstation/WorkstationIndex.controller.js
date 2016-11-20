@@ -30,7 +30,7 @@ export default class WorkstationIndexController {
   }
 
   createCollection(e) {
-    if (e.keyCode === 13) {
+    if (e.type == 'blur' || e.keyCode === 13) {
       this.workstationService.createCollection(this.collectionName)
       .then(data => {
         this.$scope.newCollection = false;
@@ -42,7 +42,7 @@ export default class WorkstationIndexController {
   }
 
   updateCollection(e,id,name) {
-    if (e.keyCode === 13) {
+    if (e.type == 'blur' || e.keyCode === 13) {
       this.workstationService.updateCollection(id,name)
       .then(data => {
         this.$scope.newCollection = false;
