@@ -49,7 +49,7 @@
             <span class="label-item" ng-click="vm.clickLabel(item)">{{item}}</span>
           </section>
         </td>
-        <td>{{obj.publishDate | dateFilter}}</td>
+        <td>{{obj.publishDate | listDateFilter}}</td>
         <td>
           <span ng-click="vm.collect()" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
             <span ng-show="obj.followed">已</span>收藏

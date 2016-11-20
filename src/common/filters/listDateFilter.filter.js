@@ -1,4 +1,4 @@
-function dateFilter() {
+function listDateFilter() {
   return function (input) {
     if(!input)return '';
     var date = new Date(input);
@@ -23,4 +23,4 @@ function dateFilter() {
 
   }
 }
-export default dateFilter;
+export default listDateFilter;

@@ -36,7 +36,7 @@
           <section ng-if="obj.investParts.length" ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
         </td>
         <td>{{obj.cityStr || '暂无'}}</td>
-        <td>{{obj.publishDate | dateFilter}}</td>
+        <td>{{obj.publishDate | listDateFilter}}</td>
         <td>
           <span ng-click="vm.collect()" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
             <span ng-show="obj.followed">已</span>收藏
