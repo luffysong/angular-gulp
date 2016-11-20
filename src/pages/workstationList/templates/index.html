@@ -15,9 +15,7 @@
         <a href="#" ng-show="!vm.isCompare">
           <div class="open-compare" ng-click="vm.openCompare()">
             <span class="icon-compare">
-              <span class="path1"></span>
-              <span class="path2"></span>
-              <span class="path3"></span>
+              <span class="path1"></span><span class="path2"></span><span class="path3"></span>
             </span>
             <span>开启项目对比</span>
           </div>
@@ -58,7 +56,7 @@
         <tr ng-repeat="obj in vm.listData.data track by $index">
           <td>
             <input name="selectedCompare" type="checkbox" value=""
-            ng-disabled="vm.checkedCids.length > 4 && vm.checkedCids.indexOf(obj.id.toString()) == -1" ng-show="vm.isCompare" id="{{obj.id}}" ng-click="vm.checkboxSelected($event)"/>
+            ng-disabled="vm.checkedCids.length > 4 && vm.checkedCids.indexOf(obj.id.toString()) == -1" ng-show="vm.isCompare" id="{{obj.cid}}" ng-click="vm.checkboxSelected($event)"/>
           </td>
           <td>
             <img ng-src="{{obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" class="project-logo" />

@@ -33,8 +33,8 @@ export default class WorkstationIndexController {
     if (e.keyCode === 13) {
       this.workstationService.createCollection(this.collectionName)
       .then(data => {
-        this.newCollection = false;
-        this.newFocus = false;
+        this.$scope.newCollection = false;
+        this.$scope.newFocus = false;
         this.collectionName = '';
         this.getCollectionList();
       });
@@ -45,8 +45,7 @@ export default class WorkstationIndexController {
     if (e.keyCode === 13) {
       this.workstationService.updateCollection(id,name)
       .then(data => {
-        this.newCollection = false;
-        this.collectionName = '';
+        this.$scope.newCollection = false;
         this.getCollectionList();
       });
     }
