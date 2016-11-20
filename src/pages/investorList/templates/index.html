@@ -37,10 +37,10 @@
               <ul ng-if="investorListVm.data.phase" filter-cal ng-class="{'height-auto':investorListVm.open.phase}">
                 <li class="col-item" ng-repeat="item in investorListVm.data.phase" ng-class="{'active': item.active}"
                   ng-click="investorListVm.selectIndustry($index,'phase')">
-                  {{item.name}}
+                  {{item.desc}}
                   <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
-                  <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.name === '不限'"></span>
-                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.name !== '不限'"
+                  <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.desc === '不限'"></span>
+                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.desc !== '不限'"
                     ng-click="investorListVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
                 </li>
               </ul>

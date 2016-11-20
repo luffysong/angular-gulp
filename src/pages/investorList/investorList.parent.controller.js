@@ -50,7 +50,6 @@ export default class investorListParentController {
         this.$scope.$broadcast('get-list', data);
         this.totalCount = data.pageData.totalCount;
         this.data.label = data.label;
-        this.data.phase = data.phase;
         this.handleActive();
         this.updateData(data);
       });
@@ -78,6 +77,13 @@ export default class investorListParentController {
 
   /* 通过接口返回数据更新筛选器数字*/
   updateData(d) {
+    Object.keys(this.data).forEach(item => {
+      if(item !== 'label') {
+        angular.forEach(this.data[item],obj => {
+          obj.cnt = 0;
+        });
+      }
+    });
     angular.forEach(this.itemList, (item) => {
       if (!d[item.name].length) return;
       angular.forEach(d[item.name], (obj) => {
