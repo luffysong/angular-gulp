@@ -46,4 +46,8 @@ export default class CompanyIntroduceVM extends krData.FormVM{
       this.isEdit = !this.isEdit;
     });
   }
+
+  isUndefined(obj){
+    return angular.isUndefined(obj);
+  }
 }
