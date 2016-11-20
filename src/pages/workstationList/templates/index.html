@@ -71,9 +71,12 @@
           </td>
           <td class="filter-item">
             <span>{{::obj.industryStr}}</span>
+            <span ng-if="!obj.industryStr.length">暂无</span>
+
           </td>
           <td class="filter-item">
             <span >{{::obj.phase | companyFinancePhase}}</span>
+            <span ng-if="!obj.phase.length">暂无</span>
           </td>
           <td class="org-col">
             <span ng-if="!obj.investParts.length">未披露</span>
@@ -83,7 +86,10 @@
           <td class="filter-item">
             <span ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
           </td>
-          <td class="date-time">{{::obj.publishDate}}</td>
+          <td class="date-time">
+            {{::obj.publishDate}}
+            <span ng-if="!obj.publishDate.length">暂无</span>
+          </td>
           <td>
             <span class="collect-btn" ng-click="vm.cancelCollection(obj)" >
               <span>取消收藏</span>
