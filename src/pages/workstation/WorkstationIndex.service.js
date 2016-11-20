@@ -5,15 +5,15 @@ const workstationApi = new krData.API('/user/follow/company/', [
   ],{
     delete: {
       method: 'delete',
-      url: '/api/user/follow/company/group/:id',
+      url: '/n/api/user/follow/company/group/:id',
     },
     create: {
       method: 'post',
-      url: '/api/user/follow/company/group',
+      url: '/n/api/user/follow/company/group',
     },
     update: {
       method: 'put',
-      url: '/api/user/follow/company/group/:id'
+      url: '/n/api/user/follow/company/group/:id'
     }
   });
 export default class WorkstationIndexService {
