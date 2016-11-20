@@ -22,7 +22,10 @@
             </div>
           </div>
         </td>
-        <td class="org-col"><section ng-repeat="invest in obj.latestInvest | limitTo:3 track by $index" ng-bind="invest.companyName"></section></td>
+        <td class="org-col">
+          <section ng-if="!obj.latestInvest.length">暂无</section>
+          <section ng-repeat="invest in obj.latestInvest | limitTo:3 track by $index" ng-bind="invest.companyName" ng-if="obj.latestInvest.length"></section>
+        </td>
         <td ><a  ui-sref="org({id: obj.org.id})">{{obj.totalCount}}</a></td>
         <td><a  ui-sref="org({id: obj.org.id})">{{obj.totalMember}}</a></td>
       </tr>
