@@ -3,18 +3,31 @@
   	<img src="/images/head.png" alt="" class='kr-logo' id="showImg">
   	<span class="kr-name">创投助手</span>
   </div>
-  <div mass-autocomplete="{debounce_blur:700,top:38,left:0.01,maxWidth:400,
-    onClick: root.onClick, notFocus: true,
-    position:'parent'}" search-out="root.searchOut"
-    class="section right-content search-result-wrapper">
-    <input ng-trim="false" mass-autocomplete-item="root.autocompleteOptions"
-      ng-model="root.kw"
-      type="text" class="search" placeholder="输入创业项目、投资人、投资机构名称搜索">
-    <div class="history" ng-if="!root.kw" kr-search>
+  <div class="right-content">
+    <div mass-autocomplete="{debounce_blur:700,top:38,left:0.01,maxWidth:400,
+      onClick: root.onClick, notFocus: true,
+      position:'parent'}" search-out="root.searchOut"
+      class="search-result-wrapper">
+      <input ng-trim="false" mass-autocomplete-item="root.autocompleteOptions"
+        ng-model="root.kw"
+        type="text" class="search" placeholder="输入创业项目、投资人、投资机构名称搜索">
+      <div class="history" ng-if="!root.kw" kr-search>
+      </div>
+      <span tabindex="2" ng-click="root.searchRecord(root.kw)" class="icon-Search input-search">
+        <span class="path1"></span><span class="path2"></span>
+      </span>
     </div>
-    <span tabindex="2" ng-click="root.searchRecord(root.kw)" class="icon-Search input-search">
-      <span class="path1"></span><span class="path2"></span>
-    </span>
+    <div class="app-item">
+      <span>
+        <span class="icon-iPhone">
+          <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+        </span>
+        <span class="app-text">客户端</span>
+      </span>
+      <div class="app-pop-wrapper">
+        <img width="214" height="275" src="/images/app.png" alt=""/>
+      </div>
+    </div>
     <div class="usr-content" message-slide-panel disabled="!root.user.data.id">
       <pane-trigger >
         <a href="">消息</a>
@@ -23,7 +36,7 @@
         <uc-message></uc-message>
       </pane-body>
     </div>
-  	<div class="usr-content" kr-slide-panel disabled="!root.user.data.id">
+    <div class="usr-content" kr-slide-panel disabled="!root.user.data.id">
       <pane-trigger >
         <img ng-src="{{root.user.data.avatar}}" src="/images/investor-logo.png" alt="">
         <span class='icon-open down ng-hide' ng-show="root.user.data.id"></span>
@@ -31,8 +44,10 @@
       <pane-body oc-lazy-load="root.assets.page.uc" ng-if="root.user.data.id">
         <uc-page></uc-page>
       </pane-body>
-  	</div>
+    </div>
+
   </div>
+
 </header>
 
 <script>

@@ -43,8 +43,10 @@
   .right-content{
     float: right;
     position: relative;
+    display: flex;
+    height: 100%;
+    align-items: center;
     padding-right: 50px;
-    vertical-align: middle;
     .history {
       display: none;
       background: #fff;
@@ -85,24 +87,23 @@
       border-radius: 15px;
       color:#5A626d;
       vertical-align: middle;
-      margin-right: 30px;
     }
     .search::placeholder {
       color: #e7e7e7;
     }
     .input-search{
       position: absolute;
-      margin-left: -65px;
+      right: 10px;
+      top: 4px;
       color: #97a0a9;
       font-size: 20px;
-      line-height: 30px;
       cursor: pointer;
       &:focus {
         outline: none;
       }
     }
     .usr-content{
-      display: inline-block;
+      display: flex;
       vertical-align: middle;
 
       img{
@@ -339,7 +340,82 @@
   }
 }
 
-
+.rz-header-wrapper {
+  .app-item {
+    margin-left: 30px;
+    margin-right: 30px;
+    &>span {
+      display: block;
+      text-align: center;
+    }
+    position: relative;
+    display: inline-block;
+    .icon-iPhone {
+      display: inline-block;
+    }
+    .app-text {
+      display: block;
+      font-size: 10px;
+      line-height: 14px;
+    }
+  }
+  .app-item:hover {
+    color: @anchor-color;
+    .icon-iPhone {
+      & span[class *="path"]:before {
+        color: @anchor-color;
+      }
+    }
+  }
+  .app-item:hover .app-pop-wrapper {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1) translateX(-50%);
+    z-index: 100;
+    transition: all 0.3s cubic-bezier(0.31, 0.57, 0.68, 1.36);
+  }
+  .app-pop-wrapper {
+    transition: none;
+    transform-origin: 0 0;
+    visibility: hidden;
+    position: absolute;
+    min-width: 180px;
+    left: 50%;
+    transform: scale(0) translateX(-50%);
+    top: 38px;
+    background: #fff;
+    background-clip: padding-box;
+    border: solid 4px rgba(221, 221, 221, 0.5);
+    padding: 20px;
+    &:before {
+      width: 10px;
+      height: 10px;
+      transform: rotate(-45deg);
+      background: #fff;
+      background-clip: padding-box;
+      border: solid 4px rgba(221, 221, 221, 0);
+      border-width: 4px 4px 0 0;
+      position: absolute;
+      top: -7px;
+      left: 50%;
+      transform: translateX(-46%) rotate(-45deg);
+      content: " ";
+    }
+    &:after {
+      position: absolute;
+      width: 0;
+      height: 0;
+      content: "";
+      border: 5px solid rgba(221, 221, 221, 0.5);
+      border-top-color: transparent;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
 
 
 //sidebar end

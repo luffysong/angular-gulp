@@ -478,6 +478,10 @@ export default class InvestorEditVM {
   }
 
   suggest(path, isCreateCompany, kw) {
+    if (angular.isString(isCreateCompany)) {
+      kw = isCreateCompany;
+      isCreateCompany = false;
+    }
     const newCom = {
       value: kw,
       obj: { name: '', newCom: true },
