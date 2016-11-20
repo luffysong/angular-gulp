@@ -2,7 +2,7 @@ import assets from '../assets/script';
 import { getLoadBundle } from '../base/utls';
 
 const landingView = {
-  url: '/landing',
+  url: '/landing?{kw}',
   templateUrl: '/pages/landing/templates/index.html',
   controllerAs: 'parentVm',
   controller: 'landingParentController',
@@ -14,7 +14,7 @@ const landingView = {
 };
 
 const landing = {
-  url: '/detail?{city}&{phase}&{industry}&{label}&{isFundingLimit}&{open}&{type}&{kw}',
+  url: '/detail?{city}&{phase}&{industry}&{label}&{isFundingLimit}&{open}&{type}',
   templateUrl: '/pages/landing/templates/result.html',
   controllerAs: 'vm',
   controller: 'landingIndexController',

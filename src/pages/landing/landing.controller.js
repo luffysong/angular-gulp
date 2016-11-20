@@ -34,6 +34,7 @@ export default class landingIndexController {
 
     this.handleActive();
 
+
   }
 
   collect() {
