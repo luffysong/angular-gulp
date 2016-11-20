@@ -9,12 +9,12 @@ export default class User {
   }
 
   static getUserInfo() {
-    return getService('$http').get('/api/user')
+    return getService('$http').get('/n/api/user')
     .then(data => data.data);
   }
 
   init() {
-    this.promise = this.$http.get('/api/user')
+    this.promise = this.$http.get('/n/api/user')
       .then(data => {
         data = data.data;
         this.loaded = true;
