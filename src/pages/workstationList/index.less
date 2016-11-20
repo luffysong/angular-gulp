@@ -1,7 +1,78 @@
 .wklist-wrapper {
+  .navigation {
+    font-size: 14px;
+    color: #969FA9;
+    line-height: 21px;
+    margin: 20px 0 0 60px;
+    a {
+      color: #969FA9;
+      font-size: 14px;
+    }
+    .arrow {
+      margin: 0 8px 0 5px;
+      position: relative;
+      bottom: 1px;
+    }
+  }
+  .head {
+    margin: 30px 0 30px 60px;
+    color: #5A626D;
+    font-size: 14px;
+    line-height: 21px;
+    .groupName {
+      font-size: 18px;
+      line-height: 27px;
+    }
+    .arrow {
+      margin: 0 14px;
+    }
+  }
   .result-content {
     background: #FFFFFF;
     box-shadow: 0px 2px 6px 0px #CCCCCC;
+    .compare {
+      height: 60px;
+      background: #F9F9F9;
+      padding: 16px 30px;
+      font-size: 12px;
+      .open-compare {
+        width: 124px;
+        height: 30px;
+        border: 1px solid #6BA2FC;
+        border-radius: 4px;
+        padding: 4px;
+        display: inline-block;
+        .icon-compare {
+          color: #6BA2FC;
+          width: 20px;
+          height: 20px;
+        }
+        span {
+          color: #6BA2FC;
+          line-height: 18px;
+        }
+      }
+      .show-compare {
+        width: 124px;
+        height: 30px;
+        background: #CCCCCC;
+        border-radius: 4px;
+        padding: 5px 25px;
+        display: inline-block;
+        .icon-compare {
+
+        }
+        span {
+          color: #FFFFFF;
+          line-height: 18px;
+        }
+      }
+      .case-count {
+        display: inline-block;
+        margin-left: 15px;
+        color: #5A626D;
+      }
+    }
     table {
       width:100%;
       text-align: center;
@@ -9,10 +80,21 @@
       color: #5A626D;
       border-collapse: collapse;
       tr {
+        &:first-of-type {
+          &:hover {
+            background-color: #fff;
+          }
+        }
         &:hover {
           background-color: #F2F4F5;
         }
         td {
+          .checkboxs {
+            background: #FFFFFF;
+            border: 1px solid #DDDDDD;
+            box-shadow: inset 0px 1px 3px 0px #DDDDDD;
+            border-radius: 4px;
+          }
           border-bottom:1px solid #F2F4F5;
           padding:14px 0;
           &.filter-item {
