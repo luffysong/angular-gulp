@@ -102,8 +102,8 @@
         <span id="companyIndustry" class="error-tip bp-error"></span>
         <div class="invest-area">
           <span class="area-item" ng-repeat="item in vm.companyIndustry">
-            <input type="checkbox" checklist-model="vm.baseInfo.selectedIndustry" checklist-value="item.value">
-            <span class="item-name">{{item.desc}}</span>
+            <input type="checkbox" checklist-model="vm.baseInfo.selectedIndustry" checklist-value="item.value" id="{{item.value}}+Industry">
+            <label class="item-name" for="{{item.value}}+Industry">{{item.desc}}</label>
           </span>
         </div>
       </div>
@@ -116,8 +116,8 @@
         <span id="financeRound" class="error-tip bp-error"></span>
         <div class="invest-area">
           <span class="area-item" ng-repeat="item in vm.followPhase">
-            <input type="checkbox" checklist-model="vm.baseInfo.selectedPhase" checklist-value="item.value">
-            <span class="item-name">{{item.desc}}</span>
+            <input type="checkbox" checklist-model="vm.baseInfo.selectedPhase" checklist-value="item.value" id="{{item.value}}+Phase">
+            <label class="item-name" for="{{item.value}}+Phase">{{item.desc}}</label>
           </span>
         </div>
       </div>
