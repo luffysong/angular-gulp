@@ -3,10 +3,13 @@
   <div class="all-members" ng-if="vm.orgData.member.total">
     <span class="member" ng-repeat="item in vm.memberVM.memberData">
       <div class="logo">
-        <img ng-src="{{item.userInfo.avatar || '/images/investor-logo.png'}}">
+        <a ui-sref="investorInfo({id: item.userInfo.uid})"
+        href="#" target="blank"><img ng-src="{{item.userInfo.avatar || '/images/investor-logo.png'}}"></a>
       </div>
       <div class="info">
-        <span><p>{{item.userInfo.name}}</p></span>
+        <span>
+          <p><a ui-sref="investorInfo({id:item.userInfo.uid})" href="#" target="blank">{{item.userInfo.name}}</a></p>
+        </span>
         <span><p>{{item.title}}</p></span>
       </div>
     </span>
