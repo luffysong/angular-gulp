@@ -19,7 +19,6 @@ export default class homeController {
 
     this.columnLoading = true;
     this.labelLoading = true;
-    this.bannerLoading = true;
     this.unableAnimate = true;
     this.currentIndex = 0;
 
@@ -41,7 +40,6 @@ export default class homeController {
     this.getColumn();
     this.getTag();
     this.getInvestor();
-    this.$timeout(() => this.bannerLoading = false,500);
   }
 
 

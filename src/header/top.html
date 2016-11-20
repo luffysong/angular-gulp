@@ -15,6 +15,14 @@
     <span tabindex="2" ng-click="root.searchRecord(root.kw)" class="icon-Search input-search">
       <span class="path1"></span><span class="path2"></span>
     </span>
+    <div class="usr-content" kr-slide-panel disabled="!root.user.data.id">
+      <pane-trigger >
+        <a href="">消息</a>
+      </pane-trigger>
+      <pane-body oc-lazy-load="root.assets.page.uc" ng-if="root.user.data.id">
+        <uc-message></uc-message>
+      </pane-body>
+    </div>
   	<div class="usr-content" kr-slide-panel disabled="!root.user.data.id">
       <pane-trigger >
         <img ng-src="{{root.user.data.avatar}}" src="/images/investor-logo.png" alt="">
