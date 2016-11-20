@@ -36,7 +36,7 @@
             <div class="case-phase" ng-repeat="phase in case.entityVo"
             ng-class="{'more-show': case.moreShow || $index < 2,
              'more-hide': !case.moreShow && $index > 1}">
-              <span>{{phase.investDate | dateFilter}}</span>
+              <span>{{phase.investDate | investDateFilter}}</span>
               <div class="circular">
                 <div class="circular2"></div>
                 <div class="line"></div>
@@ -68,7 +68,7 @@
             <div class="case-phase" ng-repeat="phase in case.entityVo"
             ng-class="{'more-show': case.moreShow || $index < 2,
             'more-hide': !case.moreShow && $index > 1}">
-              <span>{{phase.investDate | dateFilter}}</span>
+              <span>{{phase.investDate | investDateFilter}}</span>
               <div class="circular">
                 <div class="circular2"></div>
                 <div class="line"></div>
