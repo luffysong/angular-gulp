@@ -31,6 +31,8 @@ export default class WorkstationIndexController {
 
   createCollection(e) {
     if(!this.collectionName){
+        this.$scope.newCollection = false;
+        this.$scope.isFocus = false;
         return
     }
     if (e.type == 'blur' || e.keyCode === 13) {
