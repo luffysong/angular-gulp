@@ -85,11 +85,3 @@ export function concatTemplate() {
     del.sync('dist/pages/**/template.js');
   });
 }
-
-// export function copyVendors(srcs, out) {
-//   srcs = srcs.map((path) => {
-//     if(set.debug){
-//       return path.replace('.min', '');
-//     }
-//   });
-// }

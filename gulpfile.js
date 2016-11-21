@@ -51,7 +51,9 @@ gulp.task('clean', function clean() {
 });
 
 gulp.task('prod', function runSquence() {
-  return runSequence('clean', ['scripts', 'buildTemplates', 'iconfont'],
+  return runSequence('clean', ['scripts', 'buildTemplates', 'iconfont',
+    'copy:images',
+    'copy:jsplugins'],
     'concatTemplate', 'hash-replace',
     'prod:html', 'prod:clean-unused');
 });
@@ -84,25 +86,23 @@ gulp.task('copy:jsplugins', function copyJsplugins() {
 });
 
 gulp.task('hash-replace', function hashReplace() {
-  runSequence(['copy:images', 'copy:jsplugins'], function revReplace() {
-    const manifest = gulp.src('.tmp/rev-manifest.json');
-    const jsFilter = g.filter(['dist/pages/**/*.js', 'dist/bower/**/*.js', 'dist/local_lib/**/*.*',
-      'dist/bower/**/*.css', 'dist/fonts/krDataFont.*'],
-      { restore: true });
-    return gulp.src(['dist/**/*.*', '!dist/lib/**/*.*', '!dist/common/**/*.*'], { base: 'dist' })
-      .pipe(jsFilter)
-      .pipe(g.rev())
-      .pipe(g.revDeleteOriginal())
-      .pipe(jsFilter.restore)
-      .pipe(g.revReplace({
-        prefix: prod.cdn,
-      }))
-      .pipe(g.revReplace({
-        prefix: prod.cdn,
-        manifest,
-      }))
-      .pipe(gulp.dest('dist'));
-  });
+  const manifest = gulp.src('.tmp/rev-manifest.json');
+  const jsFilter = g.filter(['dist/pages/**/*.js', 'dist/bower/**/*.js', 'dist/local_lib/**/*.*',
+    'dist/bower/**/*.css', 'dist/fonts/krDataFont.*'],
+    { restore: true });
+  return gulp.src(['dist/**/*.*'], { base: 'dist' })
+    .pipe(jsFilter)
+    .pipe(g.rev())
+    .pipe(g.revDeleteOriginal())
+    .pipe(jsFilter.restore)
+    .pipe(g.revReplace({
+      prefix: prod.cdn,
+    }))
+    .pipe(g.revReplace({
+      prefix: prod.cdn,
+      manifest,
+    }))
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('concatTemplate', concatTemplate);
