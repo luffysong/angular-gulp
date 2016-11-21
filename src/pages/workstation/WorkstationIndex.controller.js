@@ -35,6 +35,7 @@ export default class WorkstationIndexController {
       .then(data => {
         this.$scope.newCollection = false;
         this.$scope.newFocus = false;
+        this.$scope.isFocus = false;
         this.collectionName = '';
         this.getCollectionList();
       });
@@ -46,6 +47,7 @@ export default class WorkstationIndexController {
       this.workstationService.updateCollection(id,name)
       .then(data => {
         this.$scope.newCollection = false;
+        this.$scope.isFocus = false;
         this.getCollectionList();
       });
     }
