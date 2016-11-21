@@ -29,7 +29,7 @@
           <a class="website ellipsis" target="_blank" ng-href="{{::vm.baseInfoVM.website}}">
             {{::vm.baseInfoVM.website}}
           </a>
-          <span class="hot-container">
+          <span ng-if="root.user.isInvestor()" class="hot-container">
             <span class="kr-icon icon-Hot" ng-show="vm.baseInfoVM.advantage"></span>
             <span class="hot-text" ng-show="vm.baseInfoVM.advantage">{{vm.baseInfoVM.advantage}}</span>
           </span>
