@@ -74,12 +74,12 @@
             </div>
           </td>
           <td class="filter-item">
-            <span>{{::obj.industryStr}}</span>
+            <a ui-sref="list.result({industry: obj.industryEnum,columnId: 0})" target="_blank">{{::obj.industryStr}}</a>
             <span ng-if="!obj.industryStr.length">暂无</span>
 
           </td>
           <td class="filter-item">
-            <span >{{::obj.industryEnum | industry}}</span>
+            <a ui-sref="list.result({phase: obj.phaseEnum,columnId: 0})" target="_blank">{{::obj.phaseEnum | companyFinancePhase}}</a>
             <span ng-if="!obj.industryEnum.length">暂无</span>
           </td>
           <td class="org-col">
@@ -88,7 +88,8 @@
               ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
           </td>
           <td class="filter-item">
-            <span ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
+            <a ui-sref="list.result({city: obj.city,columnId: 0})" target="_blank" ng-if="obj.cityStr">{{::obj.cityStr}}</a>
+            <span ng-class="{'disabled': parentVm.getPermission()}" ng-if="!obj.cityStr">暂无</span>
           </td>
           <td class="date-time">
             {{::obj.followDate | listDateFilter}}
