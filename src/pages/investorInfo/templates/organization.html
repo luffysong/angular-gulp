@@ -11,6 +11,8 @@
       <span ng-if="investorInfoVm.org.totalInvestedCom">已投项目：</span> <span class="bold" ng-if="investorInfoVm.org.totalInvestedCom">{{investorInfoVm.org.totalInvestedCom}}</span>
       <span ng-if="investorInfoVm.org.totalInvestedCom" class="split"> | </span>
       <span ng-if="investorInfoVm.org.totalMember">入驻投资人：</span><span class="bold" ng-if="investorInfoVm.org.totalMember">{{investorInfoVm.org.totalMember}}</span>
+      <span class="split"> | </span>
+      <a class="org" ui-sref="org({id: investorInfoVm.org.id})" target="blank"><span>查看机构详情</span></a>
     </div>
   </div>
   <div class="no-data" ng-if="!investorInfoVm.org.investedIndustry.length && !investorInfoVm.org.totalInvestedCom && !investorInfoVm.org.totalMember">

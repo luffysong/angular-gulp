@@ -190,8 +190,8 @@ export default class ProductVM extends krData.FormVM {
   renderChart(curId) {
 
     this.chartConfig = this.setBasicConfig();
-    const yAxis = this.getYAxisData(curId).slice(-12);
-    const xAxis = this.data.companyData.x.slice(-12);
+    const yAxis = this.getYAxisData(curId).slice(-11);
+    const xAxis = this.data.companyData.x.slice(-11);
 
     //Y轴单位设置
     if (this.curType === 'md_0006' || this.curType === 'md_0001' || this.curType === 'md_0009'){
@@ -310,6 +310,7 @@ export default class ProductVM extends krData.FormVM {
           colors: ['#88c4FF'],
           plotOptions: {
             line: {
+              gapSize: 10000,
               marker: {
                 fillColor: '#fff',
                 lineColor: '#88C4FF',
