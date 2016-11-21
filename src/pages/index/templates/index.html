@@ -171,7 +171,7 @@
           <div class="user-container" ng-repeat="item in vm.investorData.columnList">
               <div class="investor-item">
                 <a href="" ui-sref="investorInfo({id:item.id})" target="_blank">
-                  <img ng-src="{{item.avatar || 'images/investor-logo.png'}}" alt="">
+                  <img ng-src="{{item.avatar || '/images/investor-logo.png'}}" alt="">
                 </a>
                 <a href="" ui-sref="investorInfo({id:item.id})" target="_blank">
                   <div class="item-name" title="{{item.name}}">{{item.name}}</div>
