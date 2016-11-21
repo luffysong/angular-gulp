@@ -26,10 +26,10 @@ export default class investorValidateController {
 
     this.investorRole = this.$scope.root.INVESTOR_ROLE_META;
 
-    this.step = 1;
+    this.step = 2;
 
     this.currentIndex = 0;
-    //this.getSuggestInvestor();
+    this.getSuggestInvestor();
 
     /*this.$scope.$watch('vm.suggestInvestor[0].industryEnumList',obj => {
       console.log(obj);
@@ -243,7 +243,7 @@ export default class investorValidateController {
 
   getSuggestInvestor() {
     this.projectService.suggestInvestor({
-      name: this.baseInfo.realName,
+      name: this.baseInfo.realName || '王',
       orgName: this.baseInfo.orgName
     }).then(data => {
       this.suggestInvestor = data;

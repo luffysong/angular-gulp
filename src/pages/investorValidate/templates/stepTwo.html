@@ -124,26 +124,18 @@
 
       <div class="form-group">
         <label for="">单笔投资金额</label>
-        <span id="singleInvestMin" class="error-tip bp-error"></span>
-        <span id="singleInvestMax" class="error-tip bp-error"></span>
+
         <div class="inline-control">
-          <input
-            type="text" name="investAmountMin"
-            class="form-control money" ng-model="vm.baseInfo.singleInvestMin"
-            message-id="singleInvestMin"
-            number-error-message="最小投资金额只能为纯数字"
-            validator="required, number"
-            placeholder="输入具体金额" /><span>万</span>
+          <div class="amount-min">
+            <input type="text" name="investAmountMin" class="form-control money" ng-model="vm.baseInfo.singleInvestMin" message-id="singleInvestMin" number-error-message="必须输入整数" validator="required, number" placeholder="输入具体金额" />
+            <span id="singleInvestMin" class="error-tip bp-error"></span>
+          </div>
+          <span>万</span>
           <span class="to">至</span>
-          <input kr-valid
-                type="text" name="investAmountMax"
-                class="form-control money"
-                ng-model="vm.baseInfo.singleInvestMax"
-                 number-error-message="最大投资金额只能为纯数字"
-                 bigger-error-message="最大投资金额必须大于最小投资金额"
-                 message-id="singleInvestMin"
-                validator="number, bigger"
-                placeholder="输入具体金额" />
+          <div class="amount-min">
+            <input kr-valid type="text" name="investAmountMax" class="form-control money" ng-model="vm.baseInfo.singleInvestMax" number-error-message="必须输入整数" bigger-error-message="最大投资金额必须大于最小投资金额" message-id="singleInvestMax" validator="number, bigger" placeholder="输入具体金额" />
+            <span id="singleInvestMax" class="error-tip bp-error"></span>
+          </div>
           <span>万</span>
           <select  ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
                   ng-model="vm.baseInfo.singleInvestUnit"
