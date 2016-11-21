@@ -30,8 +30,7 @@ export default function scrtips() {
     pagePipes.push(source);
   });
 
-  return mergeStream(pagePipes)
-    .pipe(g.connect.reload());
+  return mergeStream(pagePipes);
 }
 export function babelHelper() {
   const file = global.changeJsFile || '';

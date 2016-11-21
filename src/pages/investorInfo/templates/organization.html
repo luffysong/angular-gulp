@@ -1,7 +1,7 @@
 <div class="invest-organization">
   <h4>所属机构</h4>
   <div class="organization-content">
-    <div class="brief">
+    <div class="brief" ng-if="investorInfoVm.org.brief">
     <span class="org-brief" text-overflow text="investorInfoVm.org.brief"></span>
     </div>
     <div class="industry" ng-if="investorInfoVm.org.investedIndustry.length">已投行业：
@@ -11,6 +11,8 @@
       <span ng-if="investorInfoVm.org.totalInvestedCom">已投项目：</span> <span class="bold" ng-if="investorInfoVm.org.totalInvestedCom">{{investorInfoVm.org.totalInvestedCom}}</span>
       <span ng-if="investorInfoVm.org.totalInvestedCom" class="split"> | </span>
       <span ng-if="investorInfoVm.org.totalMember">入驻投资人：</span><span class="bold" ng-if="investorInfoVm.org.totalMember">{{investorInfoVm.org.totalMember}}</span>
+      <span class="split" ng-if="investorInfoVm.org.id"> | </span>
+      <a  ng-if="investorInfoVm.org.id" class="org" ui-sref="org({id: investorInfoVm.org.id})" target="blank"><span>查看机构详情</span></a>
     </div>
   </div>
   <div class="no-data" ng-if="!investorInfoVm.org.investedIndustry.length && !investorInfoVm.org.totalInvestedCom && !investorInfoVm.org.totalMember">

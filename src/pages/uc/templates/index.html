@@ -1,7 +1,7 @@
 <div class="uc-page-wrapper">
   <div class="inset-wrapper">
     <div class="base-info">
-      <a ng-if="vm.user.investor" ui-sref="investorInfo.edit({id: vm.user.profileId})" class="edit">编辑</a>
+      <a ng-if="vm.user.investor" ui-sref="investorInfo.edit({id: vm.user.profileId})" class="edit">退出登录</a>
       <div class="avatar" ng-style="{backgroundImage:vm.getBgImage(vm.user.avatar)}">
 
       </div>
@@ -16,7 +16,7 @@
       </div>
       <div class="buttons">
         <a ui-sref="investorInfo({id: vm.user.profileId})" class="btn" ng-if="vm.user.investor">我的主页</a>
-        <a href="" class="btn">我的工作台</a>
+        <a ui-sref="workstationIndex()" href="" class="btn">我的工作台</a>
       </div>
     </div>
     <!--投资人-->
