@@ -80,7 +80,7 @@
           </td>
           <td class="filter-item">
             <a ui-sref="list.result({phase: obj.phaseEnum,columnId: 0})" target="_blank">{{::obj.phaseEnum | companyFinancePhase}}</a>
-            <span ng-if="!obj.industryEnum.length">暂无</span>
+            <span ng-if="!obj.phaseEnum">暂无</span>
           </td>
           <td class="org-col">
             <span ng-if="!obj.investParts.length">未披露</span>
