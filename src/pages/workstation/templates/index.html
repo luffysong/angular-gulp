@@ -22,7 +22,7 @@
       <div class="collect-item" ng-show="vm.$scope.newCollection">
         <div class="collect-title">
           <span class="icon-bookmark"></span>
-          <input class="newCollection" id="newColl" get-focus type="text" placeholder="收藏夹名称" ng-focus="vm.newFocus"
+          <input class="newCollection" id="newColl" maxlength="8" get-focus type="text" placeholder="收藏夹名称" ng-focus="vm.newFocus"
            ng-model="vm.collectionName" ng-keyup="vm.createCollection($event)" ng-blur="vm.createCollection($event)">
         </div>
         <div class="collect-count">
@@ -33,9 +33,9 @@
       ng-mouseenter="vm.showDelete(item.id,true)" ng-mouseleave="vm.showDelete(item.id,false)">
         <div class="collect-title">
           <span class="icon-bookmark"></span>
-            <a ui-sref="workstationList({id: item.id})"  href="#" ng-show="!item.isEdit" ng-if="item.count > 1">{{item.name | nameFormat}}</a>
-            <a href="#" ng-show="!item.isEdit" ng-if="item.count < 2">{{item.name | nameFormat}}</a>
-            <input class="editCollection" id="{{item.id}}" get-focus ng-show="item.isEdit" type="text" ng-model="item.name"
+            <a ui-sref="workstationList({id: item.id})"  href="#" ng-show="!item.isEdit" ng-if="item.count > 1">{{item.name}}</a>
+            <a href="#" ng-show="!item.isEdit" ng-if="item.count < 2">{{item.name}}</a>
+            <input class="editCollection" id="{{item.id}}" maxlength="8" get-focus ng-show="item.isEdit" type="text" ng-model="item.name"
             ng-keyup="vm.updateCollection($event,item.id,item.name)" ng-blur="vm.updateCollection($event,item.id,item.name)">
           <a href="#" class="edit" ng-show="item.id !==0 && item.isDelete" ng-click="vm.editCollection(item.id)">编辑</a>
         </div>
