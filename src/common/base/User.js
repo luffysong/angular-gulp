@@ -47,6 +47,9 @@ export default class User {
     return this.loaded;
   }
 
+  notInvestor() {
+    return this.isLogin && !this.isInvestor();
+  }
   isInvestor() {
     return this.data.investorType < 100;
   }

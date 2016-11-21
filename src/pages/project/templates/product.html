@@ -92,7 +92,9 @@
     </div>
     <div class="uninvestor" ng-show="{{!vm.productVM.data.hasDataPrivilege}}">
       <div class="index">
-        <div class="certify"><a ui-sref="investorValidate">认证投资人</a></div>
+        <div class="certify">
+          <a ng-show="root.user.isLogin === false" login-btn>立即登录</a>
+          <a ng-show="root.user.notInvestor()" ui-sref="investorValidate">认证投资人</a></div>
         <div class="text">查看更多产品数据</div>
       </div>
     </div>
