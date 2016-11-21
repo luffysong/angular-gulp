@@ -1,3 +1,4 @@
+<form name="vm.emailForm">
 <div class="uc-page-wrapper">
   <div class="inset-wrapper">
     <div class="base-info">
@@ -28,11 +29,13 @@
           <label>接收BP邮箱 </label>
           <div class="col-input">
             <span class="error-tip" id="messageBrief"></span>
-            <input ng-model="vm.user.commonEmail"
+
+              <input ng-model="vm.user.commonEmail"
                    validator="email" message-id="messageBrief"
                    email-error-message="请输入正确邮箱地址"
                    placeholder="请输入邮箱..."
                    type="text" name="email" class="form-control"/>
+
           </div>
           <div class="col-action">
             <a href="" ng-click="vm.setBpEmail()">确认</a>
@@ -122,3 +125,4 @@
     </div>
   </div>
 </div>
+</form>

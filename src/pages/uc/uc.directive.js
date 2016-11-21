@@ -3,7 +3,7 @@ import krData from 'krData';
 
 const ucService = new UcService();
 
-@Inject('$rootScope','$window')
+@Inject('$rootScope','$window', '$validation', '$q')
 class UcPageController {
 
   constructor() {
@@ -40,8 +40,13 @@ class UcPageController {
     if (!this.user.commonEmail) {
       return;
     }
-    ucService.addBPEmail(this.user.commonEmail);
-    this.editEmail = false;
+
+    this.$validation.validate(this.emailForm).catch(() => {
+      return this.$q.reject();
+    }).then(() => {
+      ucService.addBPEmail(this.user.commonEmail);
+      this.editEmail = false;
+    });
   }
 
   editBpEmail() {
