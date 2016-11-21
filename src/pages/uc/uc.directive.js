@@ -1,8 +1,9 @@
 import UcService from './uc.service';
+import krData from 'krData';
 
 const ucService = new UcService();
 
-@Inject('$rootScope')
+@Inject('$rootScope','$window')
 class UcPageController {
 
   constructor() {
@@ -45,6 +46,14 @@ class UcPageController {
 
   editBpEmail() {
     this.editEmail = true;
+  }
+
+  loginOut(){
+    krData.utls.logout();
+    const vm = this;
+    setTimeout(function(){
+      vm.$window.location.reload();
+    },500);
   }
 
 }

@@ -100,7 +100,7 @@ export function login(url) {
 }
 
 export function logout() {
-  getService('http').get('/n/api/user/logout', () => {
+  getService('$http').get('/n/api/user/logout', () => {
     getService('$location').refresh();
   });
 }

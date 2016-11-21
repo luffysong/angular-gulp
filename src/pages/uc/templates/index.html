@@ -1,7 +1,7 @@
 <div class="uc-page-wrapper">
   <div class="inset-wrapper">
     <div class="base-info">
-      <a ng-if="vm.user.investor" ui-sref="investorInfo.edit({id: vm.user.profileId})" class="edit">退出登录</a>
+      <a ng-if="vm.user.investor" class="edit" href="#" ng-click="vm.loginOut()">退出登录</a>
       <div class="avatar" ng-style="{backgroundImage:vm.getBgImage(vm.user.avatar)}">
 
       </div>
@@ -43,7 +43,7 @@
           <span class="col-text">
             {{vm.user.commonEmail}}
           </span>
-          <div class="col-action">
+          <div class="col-action edit">
             <a href="" ng-click="vm.editBpEmail()">修改</a>
           </div>
         </div>
@@ -53,7 +53,7 @@
 
     <!--创业者-->
     <div class="section">
-      <a href="" class="edit">创建项目</a>
+      <a href="" class="edit" href="#" ui-sref="createProject()">创建项目</a>
       <h3>项目</h3>
       <div class="bd">
         <div class="section-inside">
@@ -81,9 +81,9 @@
           <div class="project-list">
             <div class="item"
                  ng-repeat="item in vm.companies.START_UP_MEMBER | limitTo: vm.companies.START_UP_MEMBER_limit">
-              <a href="" class="logo" ng-style="{backgroundImage:vm.getBgImage(item.logo)}"></a>
+              <a href="" class="logo" ng-style="{backgroundImage:vm.getBgImage(item.logo)}" ui-sref="project({id: item.cid})"></a>
               <div class="desc">
-                <a href="" class="name">{{item.companyName}}</a>
+                <a href="" class="name" ui-sref="project({id: item.cid})">{{item.companyName}}</a>
                 <div class="brief">
                   {{item.brief}}
                 </div>
