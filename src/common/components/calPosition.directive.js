@@ -4,7 +4,7 @@ function calPositionDirective($timeout) {
     restrict: 'AE',
     link(scope, elem, attrs) {
       elem.hover(function () {
-        if($(document).height() - elem.offset().top < 272){
+        if($(window).height() - elem.height() - elem[0].getBoundingClientRect().top < 272){
           elem.addClass('show-top');
         }else {
           elem.removeClass('show-top');
