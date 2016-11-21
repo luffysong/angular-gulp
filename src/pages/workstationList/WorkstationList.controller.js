@@ -32,7 +32,7 @@ export default class WorkstationListController {
 
   checkboxSelected($event){
     const checkbox = $event.target;
-    const action = (checkbox.checked?'add':'remove');
+    const action = (checkbox.checked? 'add':'remove');
     const id = checkbox.id;
     if(action == 'add' && this.checkedCids.indexOf(id) == -1){
       this.checkedCids.push(id);
