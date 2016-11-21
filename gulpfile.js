@@ -85,7 +85,8 @@ gulp.task('copy:jsplugins', function copyJsplugins() {
 gulp.task('hash-replace', function hashReplace() {
   runSequence(['copy:images', 'copy:jsplugins'], function revReplace() {
     const manifest = gulp.src('.tmp/rev-manifest.json');
-    const jsFilter = g.filter(['dist/pages/**/*.js', 'dist/bower/**/*.js', 'dist/bower/**/*.css'],
+    const jsFilter = g.filter(['dist/pages/**/*.js', 'dist/bower/**/*.js',
+      'dist/bower/**/*.css', 'dist/fonts/krDataFont.*'],
       { restore: true });
     return gulp.src(['dist/**/*.*', '!dist/lib/**/*.*', '!dist/common/**/*.*'], { base: 'dist' })
       .pipe(jsFilter)
