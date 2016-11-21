@@ -36,17 +36,19 @@ export default class labelIndexController {
 
   }
 
-  collect() {
+  collect(i) {
     if(!this.user.isLogin) {
       this.$scope.root.user.ensureLogin();
     }else if (!this.user.isInvestor()) {
       this.investor();
     }else {
+      if(this.listData.data[i].followed)return;
       this.projectService.collectCompany({
         cid: this.cid,
         groupId: 0
       })
         .then(() => {
+          this.listData.data[i].followed = true;
           this.projectService.collect(this.cid).then(
             (data) => this.collections = data
           );
@@ -123,6 +125,7 @@ export default class labelIndexController {
 
   change (item,index) {
     this.activeIndex = index;
+    this.status = '';
     const form = {
       cid: this.cid,
       groupId: item.id,
@@ -130,6 +133,7 @@ export default class labelIndexController {
     if (item.followed) {
       this.projectService.collectCompany(form)
         .then(() => {
+          this.handleCollect();
           this.status = 'suc';
           setTimeout(() => {
             this.status = '';
@@ -139,12 +143,37 @@ export default class labelIndexController {
     } else {
       this.projectService.deconsteCompany(form)
         .then(() => {
+          this.cancelCollect();
           this.status = 'cancel';
           setTimeout(() => {
             this.status = '';
           }, 2000);
           --item.count;
         });
+    }
+  }
+
+  handleCollect() {
+    this.listData.data.forEach(obj => {
+      if(obj.id === this.cid) {
+        obj.followed = true;
+      }
+    });
+  }
+
+  cancelCollect() {
+    var isEmpty = true;
+    this.collections.forEach(item => {
+      if(item.followed) {
+        isEmpty = false;
+      }
+    });
+    if(isEmpty) {
+      this.listData.data.forEach(obj => {
+        if(obj.id === this.cid) {
+          obj.followed = false;
+        }
+      });
     }
   }
 

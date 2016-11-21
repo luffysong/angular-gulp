@@ -38,7 +38,7 @@
         <td>{{obj.cityStr || '暂无'}}</td>
         <td>{{obj.publishDate | listDateFilter}}</td>
         <td>
-          <span ng-click="vm.collect()" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
+          <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
             <span ng-show="obj.followed">已</span>收藏
             <div class="collect-modal" ng-if="vm.user.isLogin && vm.user.isInvestor()" ng-if="obj.id === vm.cid" ng-click="$event.stopPropagation();">
               <section class="modal-title">选择收藏夹</section>
