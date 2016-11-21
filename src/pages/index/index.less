@@ -101,6 +101,11 @@
           &:first-of-type {
             padding-left:0;
           }
+          &:last-of-type {
+            &:after {
+              display: none;
+            }
+          }
           &:after {
             content: '';
             position: absolute;
@@ -384,6 +389,7 @@
             height:60px;
             border: 1px solid #E7E7E7;
             border-radius: 6px;
+            cursor: pointer;
           }
           .item-info {
             margin-left:80px;
@@ -397,6 +403,7 @@
                 font-size: 16px;
                 color: #222C38;
                 line-height: 24px;
+                cursor: pointer;
               }
               .company-industry {
                 margin-left:11px;

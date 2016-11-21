@@ -289,5 +289,12 @@ export default class listIndexController {
     })
   }
 
+  valLogin(e) {
+    if(!this.user.isLogin) {
+      this.$scope.root.user.ensureLogin();
+      e.preventDefault();
+    }
+  }
+
 }
 

@@ -70,10 +70,10 @@
         <div kr-loading loading="vm.columnLoading"></div>
         <div ng-hide="vm.columnLoading">
           <div class="result-list" ng-repeat="item in vm.columnCompany | limitTo:3">
-            <img ng-src="{{item.logo}}" alt="">
+            <img ng-src="{{item.logo}}" ui-sref="project({id:item.id})" alt="">
             <div class="item-info">
               <div class="company-info">
-                <span class="company-name">{{item.name}}</span>
+                <span class="company-name" ui-sref="project({id:item.id})">{{item.name}}</span>
                 <span class="company-industry">{{item.industryStr}}</span>
               </div>
               <div class="company-brief">
@@ -83,10 +83,10 @@
                 <span class="company-phase">
                   {{item.phase | companyFinancePhase}}
                 </span>
-                <span class="company-sp">|</span>
+                <spa class="company-sp">|</span>
                 <span class="company-address">
-                  <i class="icon-location"></i>
-                  {{item.cityStr}}
+                  <i class="icon-location" ng-if="item.cityStr"></i>
+                  {{item.cityStr ? item.cityStr : '暂无'}}
                 </span>
               </div>
             </div>
@@ -123,10 +123,10 @@
           <div kr-loading loading="vm.labelLoading"></div>
           <div ng-hide="vm.labelLoading">
             <div class="result-list" ng-repeat="item in vm.labelCompany | limitTo:3">
-              <img ng-src="{{item.logo}}" alt="">
+              <img ng-src="{{item.logo}}" ui-sref="project({id:item.id})" alt="">
               <div class="item-info">
                 <div class="company-info">
-                  <span class="company-name">{{item.name}}</span>
+                  <span class="company-name" ui-sref="project({id:item.id})">{{item.name}}</span>
                   <span class="company-industry">{{item.industryStr}}</span>
                 </div>
                 <div class="company-brief">
