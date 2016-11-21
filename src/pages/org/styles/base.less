@@ -38,16 +38,24 @@
     &>div{
       margin-bottom: 12px;
     }
-    .sub-label{
+    .inline-sub-label{
+      display: inline-block;
+      vertical-align: 20px;
+      max-width: 720px;
+      .sub-label{
         height: 20px;
         background-color: rgba(107,162,252,0.2);
         .font(12,20);
         color: #2868D1;
         margin-right: 10px;
         padding: 0px 6px;
+        margin-bottom: 6px;
         .dlk();
       }
+    }
     .label{
+      display: inline-block;
+      vertical-align: top;
       .font(14,21);
       font-weight: 600;
       color:@text-color;
@@ -57,7 +65,7 @@
       margin-top: 20px;
     }
     .prefer-phase{
-      span:last-child{
+      .sub-label-phase{
         .font(14,21);
         color: @anchor-color;
         margin-right: 16px;
@@ -114,6 +122,6 @@
     .font(12,28);
     color: @text-color;
     letter-spacing: 0px;
-    margin: 30px auto 0px;
+    margin: 25px auto 0px;
   }
 }
