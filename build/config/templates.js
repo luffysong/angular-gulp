@@ -42,7 +42,7 @@ const webpackConfig = {
   externals: {
     krData: 'krData',
   },
-  devtool: 'source-map',
+  devtool: set.prod ? null : 'source-map',
 };
 
 export {

@@ -17,7 +17,7 @@
         <div class="case-left">
           <div class="case-info" ng-repeat="case in investorInfoVm.investment" ng-if="$index % 2 == 0" ng-show="case.visible || investorInfoVm.isEditMode">
             <div class="case-brief">
-              <a ui-sref="project({id: case.cid})" ng-show="case.cid > 0" href="#" target="blank" class="case-logo-a">
+              <a ui-sref="project({id: case.cid})" ng-show="case.cid > 0" href="#" target="_blank" class="case-logo-a">
                 <img class="case-logo" src="{{case.logo || '/images/default-logo.png'}}">
               </a>
               <a ng-show="case.cid === 0" href="javascript:void(0);" target="blank" class="case-logo-a">

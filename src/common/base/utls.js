@@ -99,6 +99,12 @@ export function login(url) {
   /* eslint-enable */
 }
 
+export function logout() {
+  getService('http').get('/n/api/user/logout', () => {
+    getService('$location').refresh();
+  });
+}
+
 export function validateBP(file) {
   const MAX_SIZE = 7.5 * 1024 * 1024;
   const suffixReg = /.pdf$/;
