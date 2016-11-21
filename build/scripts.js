@@ -31,7 +31,7 @@ export default function scrtips() {
   });
 
   return mergeStream(pagePipes)
-    .pipe(g.connect.reload());
+    .pipe();
 }
 export function babelHelper() {
   const file = global.changeJsFile || '';

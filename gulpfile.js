@@ -51,8 +51,8 @@ gulp.task('clean', function clean() {
 });
 
 gulp.task('prod', function runSquence() {
-  return runSequence('clean', ['scripts', 'buildTemplates', 'iconfont'], ['hash-replace'],
-    'concatTemplate',
+  return runSequence('clean', ['scripts', 'buildTemplates', 'iconfont'],
+    'concatTemplate', 'hash-replace',
     'prod:html', 'prod:clean-unused');
 });
 
