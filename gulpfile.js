@@ -110,6 +110,7 @@ gulp.task('concatTemplate', concatTemplate);
 
 gulp.task('prod:html', ['header:style', 'style'], function html() {
   let jsFilter = null;
+  const manifest = gulp.src('.tmp/rev-manifest.json');
   return gulp.src(['src/*.html'])
     .pipe(g.fileInclude())
     .pipe(g.replaceTask({
@@ -131,6 +132,7 @@ gulp.task('prod:html', ['header:style', 'style'], function html() {
     .pipe(g.if('!*.html', g.rev()))
     .pipe(g.revReplace({
       prefix: prod.cdn,
+      manifest,
     }))
     .pipe(g.if(!set.debug && '*.html', g.htmlmin({
       collapseWhitespace: true,
