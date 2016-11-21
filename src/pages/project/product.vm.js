@@ -217,7 +217,8 @@ export default class ProductVM extends krData.FormVM {
       this.chartConfig.series.push({
         data: xAxis.map((val, i) => {
           const xVal = `${val.slice(0, 4)}-${val.slice(4, 6)}`;
-          const y = this.$filter('number')(yAxis[i], 2) - 0.00;
+          const y = this.$filter('number')(yAxis[i], 2).replace(",","") - 0.00;
+          console.log(y);
           return [xVal, y];
         }),
         type: 'line',
@@ -310,7 +311,7 @@ export default class ProductVM extends krData.FormVM {
           colors: ['#88c4FF'],
           plotOptions: {
             line: {
-              gapSize: 10000,
+              // gapSize: 10000,
               marker: {
                 fillColor: '#fff',
                 lineColor: '#88C4FF',
