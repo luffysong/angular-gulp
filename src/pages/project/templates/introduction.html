@@ -27,9 +27,12 @@
     </div>
   </div>
   <div class="no-data" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.productService == '' && vm.companyIntroduceVM.data.companyIntroduce.userMarket == '' && (vm.companyIntroduceVM.data.companyIntroduce.businessMode == '' || !vm.companyIntroduceVM.data.companyIntroduce.businessMode) && (vm.companyIntroduceVM.data.companyIntroduce.operationData == '' || !vm.companyIntroduceVM.data.companyIntroduce.operationData) && (vm.companyIntroduceVM.data.companyIntroduce.coreSource == '' || !vm.companyIntroduceVM.data.companyIntroduce.coreSource)) && vm.userId">
-    <p>暂无数据</p>
+    <span>
+        <span class="icon-Company icon"></span>
+        <span>未收录相关信息</span>
+      </span>
   </div>
-  <div class="part-hide" ng-if="vm.userId && (vm.user=='commen' || vm.user=='assert') && !vm.investorType">
+  <div class="part-hide" ng-if="vm.userId && (vm.user=='commen' || vm.user=='assert') && !vm.investorType && !(vm.companyIntroduceVM.data.companyIntroduce.productService =='' && vm.companyIntroduceVM.data.companyIntroduce.userMarket =='')">
     <a class="certify" ui-sref="investorValidate" href="javascript:void()"><p>认证投资人</p></a>
     <p class="complete">查看完整项目介绍</p>
   </div>

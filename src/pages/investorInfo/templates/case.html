@@ -90,7 +90,10 @@
       </div>
     </div>
     <div class="no-data" ng-if="!investorInfoVm.industry.length && !investorInfoVm.allInvestments.length">
-      <p>暂无数据</p>
+      <span>
+        <span class="icon-Company icon"></span>
+        <span>未收录相关信息</span>
+      </span>
     </div>
   </div>
   <div ng-if="investorEditVM.editCase" ng-include="'/pages/investorInfo/templates/caseEdit.html'">

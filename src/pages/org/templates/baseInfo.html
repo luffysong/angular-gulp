@@ -6,20 +6,26 @@
   <div class="detail">
     <div class="area" ng-if="vm.orgData.basic.investedIndustry.length">
       <span class="label">已投行业</span>
-      <span ng-repeat="item in vm.orgData.basic.investedIndustry">
-        <span class="sub-label">{{item}}</span>
+      <span class="inline-sub-label">
+        <span ng-repeat="item in vm.orgData.basic.investedIndustry">
+          <a class="sub-label" ui-sref="list.result({industry:item.id,columnId:0})" target="_blank"><span>{{item.name}}</span></a>
+        </span>
       </span>
     </div>
     <div class="prefer-industry" ng-if="vm.orgData.basic.preferIndustry.length">
       <span class="label">偏好行业</span>
-      <span ng-repeat="item in vm.orgData.basic.preferIndustry">
-        <span class="sub-label">{{item}}</span>
+      <span class="inline-sub-label">
+        <span ng-repeat="item in vm.orgData.basic.preferIndustry">
+          <a class="sub-label" ui-sref="list.result({industry:item.id,columnId:0})" target="_blank"><span>{{item.name}}</span></a>
+        </span>
       </span>
     </div>
     <div class="prefer-phase" ng-if="vm.orgData.basic.investedPhase.length">
       <span class="label">已投轮次</span>
-      <span ng-repeat="item in vm.orgData.basic.investedPhase">
-        <span class="sub-label">{{item}}</span>
+      <span class="inline-sub-label">
+        <span ng-repeat="item in vm.orgData.basic.investedPhase">
+          <a class="sub-label-phase" ui-sref="list.result({phase:item.id,columnId:0})" target="_blank"><span>{{item.name}}</span></a>
+        </span>
       </span>
     </div>
     <div class="start-date" ng-show="vm.baseInfoVM.showMore && vm.orgData.basic.startDate">

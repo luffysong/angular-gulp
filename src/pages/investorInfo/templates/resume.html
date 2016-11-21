@@ -8,7 +8,10 @@
     <span class="re-info" text-overflow text="investorInfoVm.basic.intro"></span>
   </div>
   <div class="no-data" ng-if="investorInfoVm.basic.intro === '' && !investorEditVM.editResume">
-    <p>暂无数据</p>
+    <span>
+        <span class="icon-Company icon"></span>
+        <span>未收录相关信息</span>
+      </span>
   </div>
   <div ng-if="investorEditVM.editResume" ng-include="'/pages/investorInfo/templates/resumeEdit.html'"></div>
 </div>
