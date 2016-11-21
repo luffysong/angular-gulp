@@ -395,6 +395,9 @@
             margin-left:80px;
             text-align: left;
             .company-info {
+              display: flex;
+              max-width:310px;
+              align-items: center;
               font-size: 14px;
               color: #5A626D;
               line-height: 21px;
@@ -404,9 +407,13 @@
                 color: #222C38;
                 line-height: 24px;
                 cursor: pointer;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
               }
               .company-industry {
                 margin-left:11px;
+                white-space: nowrap;
               }
             }
 

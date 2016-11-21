@@ -28,8 +28,8 @@
         <img width="214" height="275" src="/images/app.png" alt=""/>
       </div>
     </div>
-    <div class="usr-content" kr-slide-panel disabled="!root.user.data.id">
-      <pane-trigger >
+    <div class="usr-content" kr-slide-panel disabled="!root.user.data.id" key="msg">
+      <pane-trigger>
         <div class="app-item message-item">
           <span>
             <span class="icon-message">
@@ -42,8 +42,8 @@
         <uc-message></uc-message>
       </pane-body>
     </div>
-    <div class="usr-content" kr-slide-panel disabled="!root.user.data.id">
-      <pane-trigger >
+    <div class="usr-content" kr-slide-panel disabled="!root.user.data.id" key="user">
+      <pane-trigger>
         <img ng-src="{{root.user.data.avatar}}" ng-click="root.user.ensureLogin()" src="/images/investor-logo.png" alt="">
         <span class='icon-Setting'></span>
       </pane-trigger>

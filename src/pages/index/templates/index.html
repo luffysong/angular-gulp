@@ -73,7 +73,7 @@
             <img ng-src="{{item.logo}}" ui-sref="project({id:item.id})" alt="">
             <div class="item-info">
               <div class="company-info">
-                <span class="company-name" ui-sref="project({id:item.id})">{{item.name}}</span>
+                <span class="company-name" ui-sref="project({id:item.id})" title="{{item.name}}">{{item.name}}</span>
                 <span class="company-industry">{{item.industryStr}}</span>
               </div>
               <div class="company-brief">
@@ -126,7 +126,7 @@
               <img ng-src="{{item.logo}}" ui-sref="project({id:item.id})" alt="">
               <div class="item-info">
                 <div class="company-info">
-                  <span class="company-name" ui-sref="project({id:item.id})">{{item.name}}</span>
+                  <span class="company-name" ui-sref="project({id:item.id})" title="{{item.name}}">{{item.name}}</span>
                   <span class="company-industry">{{item.industryStr}}</span>
                 </div>
                 <div class="company-brief">
