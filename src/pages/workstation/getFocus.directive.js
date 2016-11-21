@@ -7,6 +7,7 @@ function getFocusDirective() {
         if(newValue && scope.newCollection){
           if(element[0].id === 'newColl'){
             setTimeout(function(){
+              element[0].value = '';
               element[0].focus();
             },100);
           }
@@ -16,6 +17,7 @@ function getFocusDirective() {
             if(parseInt(this.id) === parseInt(scope.editId)){
               const item = this;
               setTimeout(function(){
+                item.value = '';
                 item.focus();
               },100);
             }
