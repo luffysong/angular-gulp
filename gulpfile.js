@@ -51,8 +51,9 @@ gulp.task('clean', function clean() {
 });
 
 gulp.task('prod', function runSquence() {
-  return runSequence('clean', ['scripts', 'buildTemplates', 'iconfont'], 'concatTemplate',
-    'prod:html', 'hash-replace', 'prod:clean-unused');
+  return runSequence('clean', ['scripts', 'buildTemplates', 'iconfont'], ['hash-replace'],
+    'concatTemplate',
+    'prod:html', 'prod:clean-unused');
 });
 
 gulp.task('prod:clean-unused', function cleanUnused() {
@@ -85,7 +86,7 @@ gulp.task('copy:jsplugins', function copyJsplugins() {
 gulp.task('hash-replace', function hashReplace() {
   runSequence(['copy:images', 'copy:jsplugins'], function revReplace() {
     const manifest = gulp.src('.tmp/rev-manifest.json');
-    const jsFilter = g.filter(['dist/pages/**/*.js', 'dist/bower/**/*.js',
+    const jsFilter = g.filter(['dist/pages/**/*.js', 'dist/bower/**/*.js', 'dist/local_lib/**/*.*',
       'dist/bower/**/*.css', 'dist/fonts/krDataFont.*'],
       { restore: true });
     return gulp.src(['dist/**/*.*', '!dist/lib/**/*.*', '!dist/common/**/*.*'], { base: 'dist' })
