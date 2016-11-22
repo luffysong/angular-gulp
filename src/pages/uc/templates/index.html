@@ -105,7 +105,7 @@
           <div class="project-list">
             <div class="item"
                  ng-repeat="item in vm.companies.MEMBER | limitTo: vm.companies.MEMBER_limit">
-              <a href="" class="logo" ng-style="{backgroundImage:vm.getBgImage(item.logo)}"></a>
+              <a href="" class="logo" ng-style="{backgroundImage:vm.getBgImage(item.logo || '/images/default-logo.png')}"></a>
               <div class="desc">
                 <a href="" class="name">{{item.companyName}}</a>
                 <div class="brief">
