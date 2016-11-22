@@ -17,7 +17,6 @@ function getFocusDirective() {
             if(parseInt(this.id) === parseInt(scope.editId)){
               const item = this;
               setTimeout(function(){
-                item.value = '';
                 item.focus();
               },100);
             }
