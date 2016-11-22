@@ -609,6 +609,7 @@
               z-index:8;
               opacity: 0;
             }
+
             &:hover {
               background: #6BA2FC;
               color: #fff;
@@ -621,9 +622,19 @@
               }
             }
             &.collected {
-              border:none;
+              border:1px solid transparent;
             }
             &.show-top {
+              &:before {
+                content: '';
+                position: absolute;
+                right:0;
+                top:-10px;
+                width:100px;
+                height:20px;
+                z-index:8;
+                opacity: 0;
+              }
               .collect-modal {
                 top:inherit;
                 bottom:36px;
