@@ -1,6 +1,7 @@
 import krData from 'krData';
 export default class IntroductionVM extends krData.FormVM {
   projectService = krData.utls.getService('projectService');
+  isEmpty = false;
   constructor(data, $scope) {
     super(data);
     this.$scope = $scope;
@@ -12,6 +13,7 @@ export default class IntroductionVM extends krData.FormVM {
     'startDate']
   initData(data) {
     this.mapProps(this.props, data, this);
+    this.isEmpty = krData.utls.isEmpty(data);
     this.startDate = parseInt(data.startDateDesc, 10);
     this.operationStatus = data.operationStatusEnum || krData.META.OPERATION_STATUS.OPEN;
     this.scale = data.scale;
@@ -53,7 +55,7 @@ export default class IntroductionVM extends krData.FormVM {
     this.scale = item;
     this.scaleHidden = true;
     krData.utls.getService('$timeout')(() => {
-        this.scaleHidden = false;
+      this.scaleHidden = false;
     }, 500);
   }
 
