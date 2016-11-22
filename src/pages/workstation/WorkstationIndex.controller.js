@@ -30,12 +30,12 @@ export default class WorkstationIndexController {
   }
 
   createCollection(e) {
-    if(!this.collectionName){
-        this.$scope.newCollection = false;
-        this.$scope.isFocus = false;
-        return
-    }
     if (e.type == 'blur' || e.keyCode === 13) {
+      if(!this.collectionName){
+          this.$scope.newCollection = false;
+          this.$scope.isFocus = false;
+          return
+      }
       this.workstationService.createCollection(this.collectionName)
       .then(data => {
         this.$scope.newCollection = false;

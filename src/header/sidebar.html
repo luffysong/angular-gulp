@@ -2,27 +2,23 @@
   <ul class="nav" id='sidebar'>
     <li class='home' ng-class="{active: root.toState.name === 'index'}">
       <a href="" ui-sref="index">
-        <span class="icon-home kr-icon" id="Img"></span>
-      <span class="kr-tags">首页</span>
+        <span class="icon-home kr-icon" id="Img"></span><span class="kr-tags">首页</span>
       </a>
     </li>
     <li ng-class="{active: root.toState.name === 'list.result' || root.toState.name === 'follow.result'}"
       kr-project-nav class='project search'>
       <a href="javvascript:;">
-        <span class="icon-Company kr-icon"></span>
-        <span class="kr-tags">创业公司</span>
+        <span class="icon-Company kr-icon"></span><span class="kr-tags">创业公司</span>
       </a>
     </li>
     <li  ng-class="{active: root.toState.name === 'organization.result'}" class='institution'>
       <a ui-sref="organization.result()">
-        <span class="icon-institute kr-icon"></span>
-        <span class="kr-tags">投资机构</span>
+        <span class="icon-institute kr-icon"></span><span class="kr-tags">投资机构</span>
       </a>
     </li>
     <li class='investor' ui-sref="investorList.result()" ui-sref-active="active">
       <a href="javascript:;">
-        <span class="icon-Investor kr-icon"></span>
-        <span class="kr-tags">投资人</span>
+        <span class="icon-Investor kr-icon"></span><span class="kr-tags">投资人</span>
       </a>
 
     </li>
@@ -37,8 +33,7 @@
     <!-- </li> -->
     <li class='worker' ui-sref="workstationIndex()" ui-sref-active="active">
       <a href="javascript:;">
-        <span class="icon-MyDesk kr-icon"></span>
-        <span class="kr-tags">我的工作台</span>
+        <span class="icon-MyDesk kr-icon"></span><span class="kr-tags">我的工作台</span>
       </a>
     </li>
     <li ui-sref="index" class="back-home">
