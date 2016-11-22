@@ -48,17 +48,17 @@
               <p class="clear company-info-container">
                   <span ng-click="searchVm.open(item.id)" class="name mr10" title="{{item.name}}">{{item.name}}</span>
                   <span ng-if="item.hot" class="icon-hot-tag"></span>
-                  <span>
-                    <span ng-if="item.classic" class="icon-classicTag"></span>
+                  <span ng-if="item.classic">
+                    <span class="icon-classicTag"></span>
                   </span>
                   <span ng-if="item.funding" class="icon-funding"></span>
-                  <span>
+                  <span class="item-time">
                      <span class="time">{{item.publishDate | listDateFilter}}</span>
                   </span>
               </p>
               <p class="brief" title="{{item.brief}}">{{item.brief}}</p>
-              <p><span class="icon-industry"></span><span>{{item.industryStr}}</span></p>
-              <p ng-if="item.advantage" class="hot-wrapper"><span class="icon-Hot"></span>{{item.advantage}}</p>
+              <p><span class="icon-listIndustry"></span><span>{{item.industryStr}}</span></p>
+              <p ng-if="item.advantage" class="hot-wrapper" title="{{item.advantage}}"><span class="icon-listPoint"></span>{{item.advantage}}</p>
             </div>
           </li>
         </ul>

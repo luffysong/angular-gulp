@@ -144,6 +144,11 @@
         position: relative;
         display: flex;
         padding-right:50px;
+        .item-time {
+          position: absolute;
+          right:0;
+          white-space: nowrap;
+        }
         >span {
           min-width:20px;
         }
@@ -152,15 +157,28 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        color: #969fa9;
       }
       p {
-        margin-top: 4px;
+        margin-top: 5px;
+        .icon-listIndustry {
+          color: #6BA2FC;
+          font-size: 15px;
+          vertical-align: middle;
+          margin-right: 5px;
+        }
+        .icon-listPoint {
+          color: #F8627E;
+          font-size: 15px;
+          vertical-align: middle;
+          margin-right: 5px;
+        }
       }
       p:first-child {
         margin-top: 0px;
         height: 21px;
         &+p {
-          margin-top: 8px;
+          margin-top: 5px;
         }
       }
       .font(12, 18);
@@ -179,7 +197,10 @@
         margin-right: 4px;
       }
       .hot-wrapper {
-        color: #F8627E;
+        color: #5A626D;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         .icon-Hot {
           margin-right: 4px;
         }
@@ -192,6 +213,7 @@
       }
       .icon-funding {
         color: #6BA2FC;
+        margin-right:10px;
       }
       .icon-classicTag {
         display: inline-block;
