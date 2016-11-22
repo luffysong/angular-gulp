@@ -8,7 +8,7 @@
         <div>
           <h1>
             <span class="investor-name">{{investorInfoVm.basic.name}}</span>
-            <span class="icon-Address">
+            <span class="icon-Address" ng-if="investorInfoVm.basic.city.length">
               <span class="path1"></span>
             </span>
             <span ng-repeat="address in investorInfoVm.basic.city">{{address}}</span>

@@ -11,24 +11,27 @@
     <tbody>
       <tr ng-repeat="item in vm.similarProjects">
       <td>
-        <a target="_blank" ng-href="/project/{{item.id}}"><img ng-src="{{item.logo}}" class="item-logo"></a>
+        <a target="_blank" ui-sref="project({id:item.id})"><img ng-src="{{item.logo}}" class="item-logo"></a>
         <span class="item-info">
-          <a target="_blank" ng-href="/project/{{item.id}}"><div class="item-name">{{item.name}}</div></a>
+          <a target="_blank" ui-sref="project({id:item.id})"><div class="item-name">{{item.name}}</div></a>
           <div class="item-breif">{{item.brief}}</div>
         </span>
       </td>
       <td>{{item.industry}}</td>
       <td>{{item.financePhase}}</td>
       <td>{{item.city}}</td>
-      <td>
+      <td ng-if="item.pastInvestor.length">
         <div ng-repeat="inv in item.pastInvestor">
           {{inv}}
         </div>
+      </td>
+      <td ng-if="!item.pastInvestor.length" class="no-investor">
+        暂无
       </td>
       </tr>
     </tbody>
   </table>
   <div class="more-btn">
-    <a href="javascript:alert('页面还在开发');" class="more-item">查看更多项目</a>
+    <a ui-sref="list.result" class="more-item">查看更多项目</a>
   </div>
 </div>

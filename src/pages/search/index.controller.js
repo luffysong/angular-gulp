@@ -12,6 +12,7 @@ export default class SearchIndexController {
   init() {
     this.outVm = this.$scope.searchVm.columnOptions.context;
     this.$scope.outVm = this.outVm;
+    this.$scope.root = this.$rootScope.root;
     this.activeLabel = '综合';
     this.watchOutVm();
   }

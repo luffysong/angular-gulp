@@ -13,9 +13,11 @@
         <tr>
           <td></td>
           <td ng-if="!vm.projects"></td>
-          <td class="name" ng-style="{width: (88/vm.projects.length) + '%'}" ng-repeat="item in vm.projects">
+          <td class="name"ng-style="{'width': (88/vm.projects.length) + '%'}"
+             ng-repeat="item in vm.projects">
             <a class="hover" target="_blank" ui-sref="project({id: item.cid})">
-              <span>{{item.companyName}}</span><span class="icon-websitelink">
+              <span ng-style="{'max-width': (950/vm.projects.length) - 30 + 'px'}"
+                class="ellipsis">{{item.companyName}}</span><span class="icon-websitelink">
               <span class="path1"></span><span class="path2"></span><span class="path3"></span>
               </span>
             </a>

@@ -53,7 +53,7 @@ function getHichartsOptions(key) {
         ${getLableDesc(key)} </span> `,
       pointFormat:
       '<span class="label-row"><span class="tooltip-icon" style="color:{point.color}">\u25CF' +
-      `</span> {series.name}：{point.y}${getUnit(key)}</span>`,
+      `</span><span class="ellipsis">{series.name}</span>：{point.y}${getUnit(key)}</span>`,
       useHTML: true,
       style: {
         color: '#fff',
@@ -80,7 +80,8 @@ function getHichartsOptions(key) {
       itemDistance: 10,
       labelFormatter: function labelFormatter() {
         return `<span class="kr-legend-item">
-          <span style="background:${this.color}" class="kr-circle"></span><span>${this.name}</span>
+          <span style="background:${this.color}" class="kr-circle"></span
+          ><span class="ellipsis">${this.name}</span>
           </span>`;
       },
     },

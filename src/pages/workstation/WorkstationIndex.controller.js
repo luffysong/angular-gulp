@@ -30,6 +30,11 @@ export default class WorkstationIndexController {
   }
 
   createCollection(e) {
+    if(!this.collectionName){
+        this.$scope.newCollection = false;
+        this.$scope.isFocus = false;
+        return
+    }
     if (e.type == 'blur' || e.keyCode === 13) {
       this.workstationService.createCollection(this.collectionName)
       .then(data => {
@@ -43,6 +48,9 @@ export default class WorkstationIndexController {
   }
 
   updateCollection(e,id,name) {
+    if(this.name === ''){
+        return
+    }
     if (e.type == 'blur' || e.keyCode === 13) {
       this.workstationService.updateCollection(id,name)
       .then(data => {
