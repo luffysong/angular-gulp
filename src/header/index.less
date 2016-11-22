@@ -7,6 +7,10 @@
   * {
     box-sizing: border-box;
   }
+  ul,li {
+    margin:0;
+    padding:0;
+  }
   li {
     list-style: none;
   }
@@ -126,6 +130,7 @@
         border:1px solid #ececec;
         border-radius: 50%;
         vertical-align: middle;
+        cursor: pointer;
       }
       .down{
         display: inline-block;
@@ -205,9 +210,25 @@
         padding-top: 2px;
       }
     }
+    .icon-open-icon {
+      font-size: 12px;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+    .expand{
+      .icon-open-icon {
+        transform: rotate(90deg);
+      }
+      & + ul.column {
+        padding-bottom: 14px;
+        height: auto;
+      }
+    }
     ul.column {
       padding-left: 37px;
-      padding-bottom: 14px;
+      height: 0;
+      padding-bottom: 0;
+      overflow: hidden;
       li:hover {
         color: @anchor-color;
       }
@@ -234,6 +255,7 @@
           background: @anchor-color;
         }
       }
+
 
     }
     a{
@@ -268,7 +290,7 @@
   &:not(:hover) .narrow{
     width:50px;
     transition: width .3s;
-    .kr-tags{
+    .kr-tags, .kr-tags + span{
       display: none;
     }
     a{
@@ -383,6 +405,7 @@
 .rz-header-wrapper {
   .app-item {
     margin-left: 30px;
+    cursor: pointer;
     &.message-item {
       margin-right:30px;
     }
@@ -409,7 +432,7 @@
       }
     }
   }
-  .app-item:hover .app-pop-wrapper {
+  .app-item:hover .app-pop-wrapper{
     visibility: visible;
     opacity: 1;
     transform: scale(1) translateX(-50%);
@@ -417,19 +440,25 @@
     transition: all 0.3s cubic-bezier(0.31, 0.57, 0.68, 1.36);
   }
   .app-pop-wrapper {
-    transition: none;
-    transform-origin: 0 0;
-    visibility: hidden;
+    padding-top: 20px;
     position: absolute;
-    min-width: 180px;
+    transform-origin: 0 0;
+    top: 25px;
     left: 50%;
+    transition: none;
+    visibility: hidden;
     transform: scale(0) translateX(-50%);
-    top: 47px;
+  }
+  .app-pop-container {
+    min-width: 180px;
+    position:relative;
     background: #fff;
     background-clip: padding-box;
     border: solid 4px rgba(221, 221, 221, 0.5);
     img {
       display: block;
+      width: 220px;
+      height: 280px;
     }
     &:before {
       width: 10px;

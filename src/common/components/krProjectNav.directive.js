@@ -1,6 +1,6 @@
 import API from '../base/API.js';
 
-@Inject('$state')
+@Inject('$state', '$rootScope')
 class ProjectNavController {
   columnApi = new API('/column/:id');
 
@@ -9,7 +9,17 @@ class ProjectNavController {
   }
 
   init() {
+    this.setExpand();
     this.loadColumns();
+  }
+
+  setExpand() {
+    const root = this.$rootScope.root;
+    this.$rootScope.$on('$stateChangeSuccess', () => {
+      if (root.toState.name === 'list.result' || root.toState.name === 'follow.result') {
+        this.expand = true;
+      }
+    });
   }
 
   go(id, e) {
@@ -34,8 +44,12 @@ export default {
   controller: ProjectNavController,
   controllerAs: 'projectNavVm',
   template: `
-  <a ui-sref="list.result({columnId: projectNavVm.list[0].id})">
-    <span class="icon-Company kr-icon"></span><span class="kr-tags">创业公司</span>
+  <a ng-click="projectNavVm.expand = !projectNavVm.expand"
+    ng-class="{expand: projectNavVm.expand}"
+    ui-sref="list.result({columnId: projectNavVm.list[0].id})">
+    <span class="icon-Company kr-icon"></span><span class="kr-tags">创业公司</span
+    ><span       class="icon-open-icon kr-icon">
+    </span>
   </a>
   <ul class="column">
     <li ng-class="{active: item.id+'' === root.toParams.columnId+''}"
