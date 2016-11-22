@@ -1,5 +1,5 @@
 import UcService from './uc.service';
-
+import krData from 'krData';
 const ucService = new UcService();
 
 @Inject('$rootScope')

@@ -34,7 +34,7 @@ class SlidePanelController {
     if (e) {
       e.preventDefault();
     }
-    type === 'hover' || !this.show ? this.showModal() : this.hideModal();
+    !this.show ? this.showModal() : this.hideModal();
   }
 
 }
@@ -51,7 +51,7 @@ export default {
   },
   template: `
     <div>
-      <div class="title" ng-transclude="trigger" ng-mouseenter="vm.trigger($event,'hover')">点我显示</div>
+      <div class="title" ng-transclude="trigger" ng-click="vm.trigger($event)">点我显示</div>
       <div class="kr-slide-panel" ng-class="vm.show?'show':''">
         <div class="bg" ng-click="vm.trigger($event)"></div>
         <div class="panel-body">
