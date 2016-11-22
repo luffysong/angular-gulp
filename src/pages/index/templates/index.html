@@ -164,7 +164,7 @@
       <div class="investor-container" ng-if="vm.investorData.columnList.length">
         <span class="submit-left-arrow icon-left-arrow" ng-hide="vm.currentIndex+'' === '0'"></span>
         <span class="submit-right-arrow icon-right-arrow" ng-hide="vm.currentIndex >= vm.investorData.columnList.length-4"></span>
-        <slick infinite="false" slides-to-show="4" prev-arrow=".submit-left-arrow" next-arrow=".submit-right-arrow" current-index="vm.currentIndex">
+        <slick infinite="false" slides-to-show="4" prev-arrow=".submit-left-arrow" next-arrow=".submit-right-arrow" current-index="vm.currentIndex" ng-if="vm.investorData.columnList.length > 4">
           <div class="user-container" ng-repeat="item in vm.investorData.columnList">
               <div class="investor-item">
                 <a href="" ui-sref="investorInfo({id:item.id})" target="_blank">
@@ -178,6 +178,18 @@
               </div>
           </div>
         </slick>
+        <div class="user-container" ng-repeat="item in vm.investorData.columnList" ng-if="vm.investorData.columnList.length <= 4">
+          <div class="investor-item">
+            <a href="" ui-sref="investorInfo({id:item.id})" target="_blank">
+              <img ng-src="{{item.avatar || '/images/investor-logo.png'}}" alt="">
+            </a>
+            <a href="" ui-sref="investorInfo({id:item.id})" target="_blank">
+              <div class="item-name" title="{{item.name}}">{{item.name}}</div>
+            </a>
+            <div class="item-org">{{item.entityName}}</div>
+            <div class="item-position">{{item.position}}</div>
+          </div>
+        </div>
       </div>
     </div>
 

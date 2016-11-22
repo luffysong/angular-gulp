@@ -6,7 +6,8 @@
         <img ng-src="{{vm.baseInfoVM.logo || '/images/default-logo.png'}}" class="logo" alt="">
       </div>
       <div>
-        <h1>{{::vm.baseInfoVM.name}}
+        <h1>
+          <div class="base-info-name" title="{{::vm.baseInfoVM.name}}">{{::vm.baseInfoVM.name}}</div>
           <span>{{vm.baseInfoVM.industryEnum | industry}}</span>
           <a class="btn-edit"
             ng-if="vm.isEditMode"
