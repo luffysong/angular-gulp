@@ -33,7 +33,7 @@
               <input ng-model="vm.user.commonEmail"
                    validator="required,email" message-id="messageBrief"
                    email-error-message="请输入正确邮箱地址"
-                   placeholder="请输入邮箱..."
+                   placeholder="请输入邮箱"
                    type="text" name="email" class="form-control"/>
 
           </div>
@@ -84,7 +84,8 @@
           <div class="project-list">
             <div class="item"
                  ng-repeat="item in vm.companies.START_UP_MEMBER | limitTo: vm.companies.START_UP_MEMBER_limit">
-              <a href="" class="logo" ng-style="{backgroundImage:vm.getBgImage(item.logo || '/images/default-logo.png')}" ui-sref="project({id: item.cid})"></a>
+              <a href="" class="logo" ng-style="{backgroundImage:vm.getBgImage(item.logo || '/images/default-logo.png')}"
+               ui-sref="project({id: item.cid})"></a>
               <div class="desc">
                 <a href="" class="name" ui-sref="project({id: item.cid})">{{item.companyName | nameFormat}}</a>
                 <div class="brief">
@@ -105,9 +106,10 @@
           <div class="project-list">
             <div class="item"
                  ng-repeat="item in vm.companies.MEMBER | limitTo: vm.companies.MEMBER_limit">
-              <a href="" class="logo" ng-style="{backgroundImage:vm.getBgImage(item.logo || '/images/default-logo.png')}"></a>
+              <a href="" class="logo" ng-style="{backgroundImage:vm.getBgImage(item.logo || '/images/default-logo.png')}"
+               ui-sref="project({id: item.cid})"></a>
               <div class="desc">
-                <a href="" class="name">{{item.companyName}}</a>
+                <a href="" class="name" ui-sref="project({id: item.cid})">{{item.companyName | nameFormat}}</a>
                 <div class="brief">
                   {{item.brief}}
                 </div>
