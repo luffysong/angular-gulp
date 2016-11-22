@@ -5,7 +5,7 @@
     ng-if="vm.introductionVM.isEdit">
     基本介绍编辑
   </section>
-  <div ng-if="!vm.introductionVM.isEdit">
+  <div ng-if="!vm.introductionVM.isEdit && !vm.introductionVM.isEmpty">
     <ul ng-if="vm.projectData.baseInfo.operationTag.length || vm.projectData.baseInfo.industryTag.length" class="tags">
       <li class="tag-icon"><span class="icon-Tags"></span></li>
       <li ng-if="tag" class="operation-tag" ng-repeat="tag in vm.projectData.baseInfo.operationTag">
@@ -15,7 +15,7 @@
         <a ui-sref="list.result({label: tag.id, columnId: 0})" target="_blank">{{tag.name}}</a>
       </li>
     </ul>
-    <div class="info">
+    <div ng-if="vm.projectData.baseInfo.intro" class="info">
       <span id="node" text-overflow text="vm.projectData.baseInfo.intro" >
       </span>
     </div>
@@ -33,5 +33,8 @@
       <li class="more underline" ng-if="vm.projectData.baseInfo.businessInfoUrl">
         <a ng-href="{{vm.projectData.baseInfo.businessInfoUrl}}" target="_blank">使用“启信宝”查看更多</a></li>
     </ul>
+  </div>
+  <div class="text-center" ng-if="!vm.introductionVM.isEdit && vm.introductionVM.isEmpty">
+    暂无数据
   </div>
 </div>

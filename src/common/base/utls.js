@@ -201,6 +201,20 @@ export function removeProps(arr, obj) {
   deleteProps(arr, obj);
 }
 
+export function isEmpty(obj) {
+  if (angular.isArray(obj)) {
+    return !obj.length;
+  } else if (angular.isObject(obj)) {
+    for (const prop in obj) {
+      if (obj[prop]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return false;
+}
+
 
 export function fromYear(year) {
   let nowYear = new Date().getFullYear();
