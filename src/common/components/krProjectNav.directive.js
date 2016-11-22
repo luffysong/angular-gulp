@@ -10,15 +10,14 @@ class ProjectNavController {
 
   init() {
     this.loadColumns();
-
   }
 
-  go(id,e) {
-    /*我的关注*/
-    if(id+'' === '2') {
+  go(id, e) {
+    /* 我的关注*/
+    if (parseInt(id, 10) === 2) {
       e.preventDefault();
-      this.$state.go('follow.result',{
-        columnId: id
+      this.$state.go('follow.result', {
+        columnId: id,
       });
     }
   }
@@ -27,7 +26,7 @@ class ProjectNavController {
     this.columnApi.query()
       .then(list => {
         this.list = list;
-     })
+      });
   }
 }
 export default {
@@ -36,8 +35,7 @@ export default {
   controllerAs: 'projectNavVm',
   template: `
   <a ui-sref="list.result({columnId: projectNavVm.list[0].id})">
-    <span class="icon-Company kr-icon"></span>
-    <span class="kr-tags">创业公司</span>
+    <span class="icon-Company kr-icon"></span><span class="kr-tags">创业公司</span>
   </a>
   <ul class="column">
     <li ng-class="{active: item.id+'' === root.toParams.columnId+''}"
