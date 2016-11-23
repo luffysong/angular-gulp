@@ -14,10 +14,11 @@ class ProjectNavController {
   }
 
   setExpand() {
-    const root = this.$rootScope.root;
-    this.$rootScope.$on('$stateChangeSuccess', () => {
-      if (root.toState.name === 'list.result' || root.toState.name === 'follow.result') {
+    this.$rootScope.$on('$stateChangeSuccess', (e, toState) => {
+      if (toState.name === 'list.result' || toState.name === 'follow.result') {
         this.expand = true;
+      } else {
+        this.expand = false;
       }
     });
   }
