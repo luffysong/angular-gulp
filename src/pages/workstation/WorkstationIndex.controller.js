@@ -15,6 +15,7 @@ export default class WorkstationIndexController {
     this.$scope.newCollection = false;
     this.$scope.isFocus = false;
     this.$scope.isEdit = false;
+    this.getUser();
   }
 
   getCollectionList() {
@@ -80,4 +81,13 @@ export default class WorkstationIndexController {
     });
   }
 
+  getUser() {
+    krData.User.getUserInfo().then(data => {
+      this.userData = data;
+    }).catch(err => {
+      if(err.code === 403) {
+        this.$scope.root.user.ensureLogin();
+      }
+    });
+  }
 }
