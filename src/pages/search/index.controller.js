@@ -1,5 +1,5 @@
 import krData from 'krData';
-@Inject('$stateParams', '$window', '$scope', '$rootScope')
+@Inject('$stateParams', '$window', '$scope', '$rootScope', 'user')
 export default class SearchIndexController {
   constructor() {
     this.init();
@@ -31,6 +31,13 @@ export default class SearchIndexController {
   }
   openTab() {
     this.showTab = !this.showTab;
+  }
+
+  valLogin(e) {
+    if(!this.user.isLogin) {
+      this.$scope.root.user.ensureLogin();
+      e.preventDefault();
+    }
   }
 
   getActiveLabel() {

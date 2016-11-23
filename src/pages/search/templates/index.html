@@ -73,7 +73,7 @@
           </a>
         </div>
         <div  ng-if="outVm.needAuthorizeInvestor()" class="load-more">
-          <a  href="javascript:;" ui-sref="investorValidate">
+          <a  href="javascript:;" ui-sref="investorValidate" ng-click="searchVm.valLogin($event)">
             认证投资人查看更多
           </a>
         </div>
