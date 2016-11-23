@@ -15,28 +15,28 @@
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
-          <img ng-src="{{obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" class="project-logo" />
+          <img ng-src="{{::obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" class="project-logo" />
           <div class="project-info">
             <div class="project-name">
-              <span class="company-name" ng-click="vm.seeDetail(obj.id)">{{obj.name}}</span><span class="icon-hot-tag" ng-if="obj.hot"></span><span class="icon-classicTag" ng-if="obj.classic"></span><span class="icon-funding" ng-if="obj.funding"></span>
+              <span class="company-name" ng-click="vm.seeDetail(obj.id)">{{::obj.name}}</span><span class="icon-hot-tag" ng-if="obj.hot"></span><span class="icon-classicTag" ng-if="obj.classic"></span><span class="icon-funding" ng-if="obj.funding"></span>
             </div>
             <div class="project-intro">
-              {{obj.brief}}
+              {{::obj.brief}}
             </div>
             <div class="project-tag" ng-if="obj.advantage">
               <i class="icon-Hot"></i>
-              <span>{{obj.advantage}}</span>
+              <span>{{::obj.advantage}}</span>
             </div>
           </div>
         </td>
-        <td>{{obj.industryStr}}</td>
-        <td>{{obj.phase | companyFinancePhase}}</td>
+        <td>{{::obj.industryStr}}</td>
+        <td>{{::obj.phase | companyFinancePhase}}</td>
         <td class="org-col">
           <span ng-if="!obj.investParts.length">未披露</span>
           <section ng-if="obj.investParts.length" ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
         </td>
-        <td>{{obj.cityStr || '暂无'}}</td>
-        <td>{{obj.publishDate | listDateFilter}}</td>
+        <td>{{::obj.cityStr || '暂无'}}</td>
+        <td>{{::obj.publishDate | listDateFilter}}</td>
         <td>
           <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
             <span ng-show="obj.followed">已</span>收藏
@@ -45,7 +45,7 @@
               <ul>
                  <li ng-repeat="item in vm.collections">
                   <input type="checkbox" class="checkbox" name='collection' ng-model="item.followed" ng-change="vm.change(item,$index)" ng-checked="item.followed">
-                  <span class="favorite-name">{{item.name}}</span>
+                  <span class="favorite-name">{{::item.name}}</span>
                   <span class="favorite-number">({{item.count}})</span>
                   <span class="favorite-status" ng-class="{'hidden':vm.status === 'suc' && $index == vm.activeIndex}" ng-hide="vm.status === 'cancel'">已添加</span>
                   <span class="favorite-status" ng-class="{'hidden':vm.status === 'cancel' && $index == vm.activeIndex}" ng-hide="vm.status === 'suc'">取消成功</span>

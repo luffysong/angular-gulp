@@ -16,12 +16,12 @@
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
-          <img ng-src="{{obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" class="project-logo" />
+          <img ng-src="{{::obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" class="project-logo" />
           <div class="project-info">
             <div class="project-name">
-              <span class="company-name" ng-click="vm.seeDetail(obj.id)">{{obj.name}}</span><span class="icon-hot-tag" ng-if="obj.hot"></span><span class="icon-classicTag" ng-if="obj.classic"></span><span class="icon-funding" ng-if="obj.funding"></span>
+              <span class="company-name" ng-click="vm.seeDetail(obj.id)">{{::obj.name}}</span><span class="icon-hot-tag" ng-if="obj.hot"></span><span class="icon-classicTag" ng-if="obj.classic"></span><span class="icon-funding" ng-if="obj.funding"></span>
             </div>
-            <div class="project-intro" title="{{obj.brief}}">
+            <div class="project-intro" title="{{::obj.brief}}">
               {{::obj.brief}}
             </div>
             <div class="project-tag" ng-if="obj.advantage">
@@ -52,7 +52,7 @@
               <ul>
                  <li ng-repeat="item in vm.collections">
                   <input type="checkbox" class="checkbox" name='collection' ng-model="item.followed" ng-change="vm.change(item,$index)" ng-checked="item.followed">
-                  <span class="favorite-name">{{item.name}}</span>
+                  <span class="favorite-name">{{::item.name}}</span>
                   <span class="favorite-number">({{item.count}})</span>
                   <span class="favorite-status" ng-class="{'hidden':vm.status === 'suc' && $index == vm.activeIndex}" ng-hide="vm.status === 'cancel'">已添加</span>
                   <span class="favorite-status" ng-class="{'hidden':vm.status === 'cancel' && $index == vm.activeIndex}" ng-hide="vm.status === 'suc'">取消成功</span>
