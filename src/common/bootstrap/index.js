@@ -7,7 +7,6 @@ import assets from '../assets/script.js';
 import { INDUSTRY_META } from '../filters/industry.filter';
 import commonInterceptor from '../base/commonInterceptor.service';
 import { getService, fromYear, getMonth } from '../base/utls';
-import SearchService from '../services/Search.service.js';
 const root = {};
 /* eslint-disable no-param-reassign,no-use-before-define,angular/on-watch */
 angular.module('@@app', ['@@app.routes', '@@app.components',
@@ -150,13 +149,14 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     root.COMPANY_INDUSTRY_META = COMPANY_INDUSTRY_META;
     root.INVESTOR_ROLE_META = INVESTOR_ROLE_META;
     root.FOLLOW_AREA_META = FOLLOW_AREA_META;
-    const searchInstance = new SearchService();
-    root.autocompleteOptions = searchInstance.getSearchAutoCompleteOptions();
-    root.searchRecord = searchInstance.searchRecord.bind(searchInstance);
-    root.onClick = searchInstance.onClickRow.bind(searchInstance);
-    root.searchOut = {};
+
+    // 全局共享assets
     root.assets = assets;
+
+    // 全局共享user
     root.user = user;
+
+    // 环境变量
     root.KR_ENV = getService('$window').KR_ENV;
     $rootScope.root = root;
   });

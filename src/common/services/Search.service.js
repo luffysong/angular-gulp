@@ -1,6 +1,6 @@
 import API from '../base/API.js';
 import { getService } from '../base/utls.js';
-const RESULT_TYPE = {
+export const RESULT_TYPE = {
   COMPANY: 'COMPANY',
   ORG: 'ORG',
   USER: 'USER',
@@ -144,38 +144,6 @@ export default class SearchService {
       }
       return htmlResult;
     });
-  }
-
-  onClickRow($event, item) {
-    $event.preventDefault();
-    const target = $event.target;
-    const kw = getService('$rootScope').root.kw;
-    this.historyApi.save(null, {
-      kw,
-    });
-    if (target.classList.contains('searchProject')) {
-      getService('$state').go('landing.result', { kw, type: 'company' }, { inherit: false });
-    } else if (target.classList.contains('searchInvestor')) {
-      getService('$state').go('landing.result', { kw, type: 'user' }, { inherit: false });
-    } else if (target.classList.contains('searchOrg')) {
-      getService('$state').go('landing.result', { kw, type: 'org' }, { inherit: false });
-    } else if (target.classList.contains('createProject')) {
-      getService('$state').go('createProject');
-    } else if (item.obj.type === RESULT_TYPE.COMPANY) {
-      getService('$state').go('project', { id: item.obj.id });
-    } else if (item.obj.type === RESULT_TYPE.ORG) {
-      getService('$state').go('org', { id: item.obj.id });
-    } else if (item.obj.type === RESULT_TYPE.USER) {
-      getService('$state').go('investorInfo', { id: item.obj.id });
-    }
-  }
-
-  searchRecord(kw) {
-    getService('$rootScope').root.searchOut.click = true;
-    this.historyApi.save(null, {
-      kw,
-    });
-    getService('$state').go('landing.result', { kw, type: 'company' }, { inherit: false });
   }
 
   onSelect(item, value, $event) {
