@@ -27,12 +27,15 @@
          <div class="label-container">
            <div class="item-container">
              <div class="label-item" ng-click="searchVm.columnOptions.closeMe()"
-                  ng-repeat="item in searchVm.columnOptions.tags" ng-if="searchVm.columnOptions.tags.length" ng-class="{'show-tag' : searchVm.columnOptions.tags.length > 9 && searchVm.showMoreTag}">{{item}}</div>
+               ng-repeat="item in searchVm.columnOptions.tags" ng-if="searchVm.columnOptions.tags.length"
+               ng-class="{'show-tag' : searchVm.columnOptions.tags.length > 9 && searchVm.showMoreTag}">{{item}}</div>
 
-             <div class="label-item" ng-click="searchVm.columnOptions.closeMe()" ng-if="!searchVm.columnOptions.tags.length">不限</div>
+             <div class="label-item" ng-click="searchVm.columnOptions.closeMe()"
+               ng-if="!searchVm.columnOptions.tags.length">不限</div>
            </div>
-           <div class="toggle-btn icon-filter-open" ng-if="searchVm.columnOptions.tags.length > 9 && !searchVm.showMoreTag" ng-click="searchVm.showMore()"></div>
-
+           <div class="toggle-btn icon-filter-open"
+             ng-if="searchVm.columnOptions.tags.length > 9 && !searchVm.showMoreTag" ng-click="searchVm.showMore()">
+           </div>
            <span class="icon-open-nav" ng-click="searchVm.columnOptions.closeMe()"></span>
         </div>
       </div>
@@ -41,24 +44,26 @@
         <ul>
           <li
             kr-scroll-me="{isMe: item.id === searchVm.columnOptions.companyId, container: '#column3Container'}"
-            ng-click="searchVm.open(item.id)"  ng-repeat="item in searchVm.columnOptions.companies" ng-class="{'active' : item.id === searchVm.columnOptions.companyId}">
+            ng-click="searchVm.open(item.id)"  ng-repeat="item in searchVm.columnOptions.companies"
+            ng-class="::{'active' : item.id === searchVm.columnOptions.companyId}">
             <img ng-click="searchVm.open(item.id)" width="42" height="42"
-            ng-src="{{item.logo || '/images/default-logo.png'}}" alt=""/>
+            ng-src="{{::item.logo || '/images/default-logo.png'}}" alt=""/>
             <div class="text-info-wrapper">
               <p class="clear company-info-container">
-                  <span ng-click="searchVm.open(item.id)" class="name mr10" title="{{item.name}}">{{item.name}}</span>
-                  <span ng-if="item.hot" class="icon-hot-tag"></span>
-                  <span ng-if="item.classic">
+                  <span ng-click="searchVm.open(item.id)" class="name mr10" title="{{::item.name}}">{{::item.name}}</span>
+                  <span ng-if="::item.hot" class="icon-hot-tag"></span>
+                  <span ng-if="::item.classic">
                     <span class="icon-classicTag"></span>
                   </span>
                   <span ng-if="item.funding" class="icon-funding"></span>
                   <span class="item-time">
-                     <span class="time">{{item.publishDate | listDateFilter}}</span>
+                     <span class="time">{{::item.publishDate | listDateFilter}}</span>
                   </span>
               </p>
-              <p class="brief" title="{{item.brief}}">{{item.brief}}</p>
-              <p><span class="icon-listIndustry"></span><span>{{item.industryStr}}</span></p>
-              <p ng-if="item.advantage" class="hot-wrapper" title="{{item.advantage}}"><span class="icon-listPoint"></span>{{item.advantage}}</p>
+              <p class="brief" title="{{::item.brief}}">{{::item.brief}}</p>
+              <p><span class="icon-listIndustry"></span><span>{{::item.industryStr}}</span></p>
+              <p ng-if="item.advantage" class="hot-wrapper" title="{{::item.advantage}}"
+                ><span class="icon-listPoint"></span>{{::item.advantage}}</p>
             </div>
           </li>
         </ul>
