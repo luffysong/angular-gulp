@@ -23,7 +23,6 @@ class UcMessageController {
   }
 
   init() {
-    console.log('init');
   }
 
   loadMore() {
@@ -35,7 +34,6 @@ class UcMessageController {
 
   getMsg() {
     ucService.getMsg(this.params).then(data => {
-      console.log(data);
       if(!data.data || !data.data.length){
         this.noMore = true;
         return;
@@ -45,7 +43,6 @@ class UcMessageController {
       });
       this.dataLoading = false;
     },err => {
-      console.log(err);
     });
   }
 
@@ -75,7 +72,6 @@ class UcMessageController {
     ucService.setRead({
       ids: [id]
     }).then(data => {
-      console.log(data);
     })
   }
 }

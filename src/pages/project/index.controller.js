@@ -195,12 +195,10 @@ export default class ProjectIndexController {
             // this.id = vm.id;
             const vm = this;
             vm.cancel = () => {
-              console.log('click cancel');
               outterVM.bpApplyDialog.close();
             };
 
             vm.confirm = () => {
-              console.log(vm.email);
               if (vm.form.$valid) {
                 const email = vm.email;
                 if (email) {

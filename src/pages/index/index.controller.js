@@ -48,7 +48,6 @@ export default class homeController {
       this.columnData = data;
       this.switchStatus(0);
     }).catch(err => {
-      console.log(err);
     });
   }
 
@@ -57,16 +56,13 @@ export default class homeController {
       this.labelData = data;
       this.switchTag(0);
     }).catch(err => {
-      console.log(err);
     });
   }
 
   getInvestor() {
     this.projectService.indexInvestor().then(data => {
       this.investorData = data;
-      console.log(data);
     }).catch(err => {
-      console.log(err);
     });
   }
 

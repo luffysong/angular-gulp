@@ -378,9 +378,15 @@
       p:first-child {
         span:first-child {
           font-size: 14px;
+          display: inline-block;
           line-height: 21px;
           margin-right: 12px;
-          color: @anchor-color;
+          color: #6BA2FC;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 255px;
+          vertical-align: middle;
         }
         span:nth-child(2) {
           margin-top: 3px;

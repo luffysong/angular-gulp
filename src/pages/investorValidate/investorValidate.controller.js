@@ -198,7 +198,6 @@ export default class investorValidateController {
 
       }
     }).catch(err => {
-      console.log(err);
     });
   }
 

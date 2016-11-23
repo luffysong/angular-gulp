@@ -9,7 +9,6 @@ export default class ProductVM extends krData.FormVM {
     // this.$compile = $compile;
     this.showChart = false;
     this.init();
-    console.log(this.data);
     this.productLink = [{
       urlType: 'url',
       urlAddr: '',
@@ -58,7 +57,6 @@ export default class ProductVM extends krData.FormVM {
       this.renderChart(type);
       this.completeData = [];
       this.renderData(type);
-      console.log(this.curType);
     }
 
     function getData() {
@@ -218,7 +216,6 @@ export default class ProductVM extends krData.FormVM {
         data: xAxis.map((val, i) => {
           const xVal = `${val.slice(0, 4)}-${val.slice(4, 6)}`;
           const y = this.$filter('number')(yAxis[i], 2).replace(",","") - 0.00;
-          console.log(y);
           return [xVal, y];
         }),
         type: 'line',
