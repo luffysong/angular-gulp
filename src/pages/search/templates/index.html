@@ -13,7 +13,7 @@
       <div class="condition-wrapper">
         <div class="main-nav" ng-click="searchVm.openTab()" ng-if="searchVm.isFollow()">
           {{searchVm.activeLabel}}
-          <i class="icon-label-open"></i>
+          <i class="icon-label-open" ng-class="{'rotate': searchVm.showTab}"></i>
           <div class="tag-container" ng-class="{'show':searchVm.showTab}">
             <div class="tag-item" ng-repeat="item in searchVm.columnOptions.labels" ng-class="{'active':item.active}"
               ng-click="searchVm.columnOptions.switchType($index);searchVm.closeTab($event)">
