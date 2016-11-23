@@ -53,9 +53,7 @@ export default {
       <div class="kr-slide-panel" ng-class="vm.show?'show':''">
         <div class="bg" ng-click="vm.trigger($event)"></div>
         <div class="panel-body">
-          <div class="close-layer">
-            <a class="close icon-dialogClose" ng-click="vm.trigger($event)"></a>
-          </div>
+          <a class="close icon-dialogClose" ng-click="vm.trigger($event)"></a>
           <div class="panel-content" ng-transclude="body"></div>
         </div>
       </div>

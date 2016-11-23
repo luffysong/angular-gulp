@@ -30,7 +30,7 @@
         </td>
         <td class="org-col">
           <section ng-repeat="invest in obj.investments | limitTo:3 track by $index"
-            ng-bind="invest.investAt | dateFilter"></section>
+            ng-bind="invest.investAt | date:'yyyy.MM'"></section>
         </td>
         <td class="org-col">
           <!-- 战略投资不做跳转 -->
