@@ -17,12 +17,23 @@ class UcMessageController {
     };
     this.msg = [];
     this.dataLoading = true;
+    this.hasMsg = false;
 
     this.loadMore();
     this.getMsg();
+    this.getUnRead();
   }
 
   init() {
+  }
+
+  getUnRead() {
+    ucService.getUnRead({
+      endpoint: 'WEB'
+    }).then(data => {
+      this.hasMsg = data.hasNewMsg;
+      console.log(data);
+    })
   }
 
   loadMore() {

@@ -11,8 +11,6 @@ class SlidePanelController {
     krSlide[this.$scope.key] = this;
   }
 
-  watch() {
-  }
 
   showModal() {
     for(var i in krSlide) {

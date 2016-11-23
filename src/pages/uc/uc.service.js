@@ -3,8 +3,12 @@ import { API } from 'krData';
 const msgApi = new krData.API('/msg',[], {
   page: {
     action: 'page'
+  },
+  getUnRead: {
+    action: 'has-new-msg'
   }
 });
+
 
 const setMsg = new krData.API('/msg/actions',[], {
   setRead: {
@@ -61,6 +65,10 @@ export default class ProjectService extends API {
   /*设置已读*/
   setRead(obj) {
     return setMsg.setRead(null,obj);
+  }
+
+  getUnRead(obj) {
+    return msgApi.getUnRead(obj);
   }
 
   sendAction(url, callback, error) {

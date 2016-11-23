@@ -414,6 +414,23 @@
     cursor: pointer;
     &.message-item {
       margin-right:30px;
+      .icon-message {
+        position: relative;
+      }
+      .un-read-point {
+        position: absolute;
+        display: inline-block;
+        width:4px;
+        height:4px;
+        border-radius: 50%;
+        top:0;
+        right:0;
+        background: #F8627E;
+        opacity:0;
+        &.show {
+          opacity:1;
+        }
+      }
     }
     &>span {
       display: block;
