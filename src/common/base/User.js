@@ -54,4 +54,7 @@ export default class User {
     return this.data.investorType < 100;
   }
 
+  getMsg(obj) {
+    return this.$http.get('/n/api/msg/has-new-msg?'+$.param(obj));
+  }
 }

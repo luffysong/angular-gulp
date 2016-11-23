@@ -82,10 +82,11 @@ class UcMessageController {
     });
   }
 
-  setRead(id) {
+  setRead(id,index) {
     ucService.setRead({
       ids: [id]
     }).then(data => {
+      this.msg[index].readed = true;
     })
   }
 }

@@ -4,7 +4,7 @@
       系统消息
     </div>
     <div>
-      <div class="uc-message-list" ng-repeat="item in vm.msg" ng-click="vm.setRead(item.id)">
+      <div class="uc-message-list" ng-repeat="item in vm.msg" ng-click="vm.setRead(item.id,$index)">
         <span class="message-time">{{item.createdAt | msgDate}}</span>
         <span class="un-read" ng-if="!item.readed">未读</span>
         <span class="has-read" ng-if="item.readed">已读</span>

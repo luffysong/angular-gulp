@@ -9,6 +9,7 @@ import krEleClampChecker from './krEleClampChecker.directive.js';
 import filterCalDirective from './filterCal.directive';
 import { krLoadingDirective, Loading } from './krLoading.directive.js';
 import parallaxDirective from './parallax.directive';
+import msgPoint from './msgPoint.directive';
 function makeDirective(directive) {
   return () => directive;
 }
@@ -25,4 +26,5 @@ angular.module('@@app.components', [])
   .directive('krLoading', krLoadingDirective)
   .service('loading', Loading)
   .directive('filterCal', filterCalDirective)
+  .directive('msgPoint', msgPoint)
   .directive('krParallax', parallaxDirective);
