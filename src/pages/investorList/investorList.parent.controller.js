@@ -190,7 +190,9 @@ export default class investorListParentController {
 
   /*获取轮次静态数据*/
   getPhase() {
-    this.data.phase = this.addItem(this.$scope.root.COMPANY_SEARCH_PHASE_META,'phase');
+    const financePhase = [];
+    angular.copy(this.$scope.root.COMPANY_SEARCH_PHASE_META,financePhase);
+    this.data.phase = this.addItem(financePhase,'phase');
   }
 
   getCity() {
