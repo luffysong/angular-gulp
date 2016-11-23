@@ -38,6 +38,7 @@ class UcMessageController {
         this.noMore = true;
         return;
       }
+      this.handelUrl(data.data);
       angular.forEach(data.data,(item) => {
         this.msg.push(item);
       });
@@ -53,7 +54,8 @@ class UcMessageController {
           return 'ng-if="notification.submitLoading !== item" ng-click="vm.triggerAction(\'' +
             $1.replace(/http:\/\//g, '//') + '\',item,$event)"';
         })
-        .replace(/class="actions"/g, 'class="actions"');
+        .replace(/class="actions"/g, 'class="actions"')
+        .replace(/\n/g,'<br />');
     });
   }
 
