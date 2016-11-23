@@ -4,4 +4,4 @@ import nameFormat from './nameFormat.filter';
 angular.module('@@pages.workstationCompare', [])
   .controller('WorkstationCompareController', WorkstationCompareController)
   .service('workstationCompareService', WorkstationCompareService)
-  .filter('nameFormat',nameFormat);
+  .filter('nameFormat', nameFormat);

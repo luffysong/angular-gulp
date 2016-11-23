@@ -26,6 +26,9 @@ export default class OrgController {
         verticalAlign: 'top',
         y: 0,
       },
+      credits: {
+        enabled: false,
+      },
       plotOptions: {
         line: {
           lineWidth: 1,
@@ -116,6 +119,9 @@ export default class OrgController {
 
   industryHg = {
     options: {
+      credits: {
+        enabled: false,
+      },
       legend: {
         floating: true,
         layout: 'vertical',
