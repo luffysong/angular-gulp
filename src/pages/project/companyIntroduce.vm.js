@@ -1,39 +1,43 @@
 import krData from 'krData';
-export default class CompanyIntroduceVM extends krData.FormVM{
+export default class CompanyIntroduceVM extends krData.FormVM {
   projectService = krData.utls.getService('projectService');
-  constructor(data,id) {
+  constructor(data, id) {
     super(data);
-    this.initData(data,id);
+    this.initData(data, id);
   }
 
   props = ['id', 'productService', 'userMarket', 'businessMode', 'coreSource', 'operationData'];
 
-  initData (data,id) {
+  initData(data, id) {
     // this.companyIntroduce = data.companyIntroduce;
     // this.origCompanyData = data.companyIntroduce;
     // this.id = id;
     // this.companyIntroduce.id = id;
     this.origCompanyData = {};
     this.companyIntroduce = {};
-    angular.copy(data,this.origCompanyData);
+    angular.copy(data, this.origCompanyData);
     this.data = data;
     this.id = id;
     this.companyIntroduce.id = id;
-    if(data.companyIntroduce) {
+    if (data.companyIntroduce) {
       this.productService = data.companyIntroduce.productService;
       this.userMarket = data.companyIntroduce.userMarket;
       this.businessMode = data.companyIntroduce.businessMode;
       this.coreSource = data.companyIntroduce.coreSource;
       this.operationData = data.companyIntroduce.operationData;
     }
+    this.setIntroduce();
+  }
+
+  setIntroduce() {
+    this.hasIntroduce = krData.utls.one(this.data.companyIntroduce, this.props.slice(1));
   }
 
   recovery() {
     const tempData = {};
-    angular.copy(this.origCompanyData,tempData);
-    angular.extend(this,tempData.companyIntroduce);
-    angular.extend(this.data,tempData);
-    // angular.extends(this.data.companyIntroduce,tempData);
+    angular.copy(this.origCompanyData, tempData);
+    angular.extend(this, tempData.companyIntroduce);
+    angular.extend(this.data, tempData);
   }
 
   save() {
@@ -47,7 +51,7 @@ export default class CompanyIntroduceVM extends krData.FormVM{
     });
   }
 
-  isUndefined(obj){
+  isUndefined(obj) {
     return angular.isUndefined(obj);
   }
 }
