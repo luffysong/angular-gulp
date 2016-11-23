@@ -118,6 +118,13 @@ gulp.task('prod:html', ['header:style', 'style'], function html() {
         json: set,
       }],
     }))
+    .pipe(g.replaceTask({
+      patterns: [{
+        json: {
+          KR_ENV: set,
+        },
+      }],
+    }))
     .pipe(g.useref({
       searchPath: ['dist', 'src'],
     },
@@ -153,6 +160,13 @@ gulp.task('dev:html', ['header:style'], function devhtml() {
     .pipe(g.replaceTask({
       patterns: [{
         json: set,
+      }],
+    }))
+    .pipe(g.replaceTask({
+      patterns: [{
+        json: {
+          KR_ENV: set,
+        },
       }],
     }))
     .pipe(gulp.dest(scriptConfig.out));

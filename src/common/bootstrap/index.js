@@ -157,6 +157,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     root.searchOut = {};
     root.assets = assets;
     root.user = user;
+    root.KR_ENV = getService('$window').KR_ENV;
     $rootScope.root = root;
   });
 angular.bootstrap(document, ['@@app'], { strictDi: true });
