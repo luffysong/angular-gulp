@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cdn=1 npm run prod
+cdn=1 online=1 npm run prod
 
 cdnstr="/data/work/asset/nrong"
 ####### CDN
