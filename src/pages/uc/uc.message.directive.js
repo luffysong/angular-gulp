@@ -13,7 +13,8 @@ class UcMessageController {
       /*senderId: 2,*/
       endpoint: 'WEB',
       page: 1,
-      pageSize: 10
+      pageSize: 10,
+      markReaded: false
     };
     this.msg = [];
     this.dataLoading = true;
@@ -31,8 +32,8 @@ class UcMessageController {
     ucService.getUnRead({
       endpoint: 'WEB'
     }).then(data => {
-      this.hasMsg = data.hasNewMsg;
       console.log(data);
+      this.hasMsg = data.hasNewMsg;
     })
   }
 
