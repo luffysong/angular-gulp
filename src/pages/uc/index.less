@@ -2,8 +2,8 @@
 @import "../../common/styles/function.less";
 .uc-page-wrapper {
   @padding: 30px;
-  @space-s: 10px;
-  @space-md: 16px;
+  @space-s: 20px;
+  @space-md: 20px;
   @avatarSize: 80px;
   @logoSize: 42px;
 
@@ -30,8 +30,8 @@
   .btn {
     display: inline-block;
     margin:0 6px;
-    height: 30px;
-    line-height: 30px;
+    height: 26px;
+    line-height: 26px;
     font-size: @font-size-sm;
     padding: 0 20px;
     border: solid 1px @gray;
@@ -140,7 +140,7 @@
         position: absolute;
         left:0;
         top:0;
-        width: 3px;
+        width: 4px;
         height: @font-size-base;
         background: @gray-dark;
       }
@@ -185,10 +185,11 @@
         i {
           font-size: @font-size-lg;
           vertical-align: middle;
-          color:fadeout(@blue, 70);
+          color:fadeout(@blue, 40);
           cursor: pointer;
           position: relative;
-          top: 1px;
+          top: 0;
+          right: 5px;
           .tip {
             @offsetTop: 30px;
             @shadow: 0 0 5px rgba(0,0,0,0.2);
@@ -277,7 +278,7 @@
   .project-list {
     .item {
       .clear();
-      margin-bottom:@space-md;
+      margin-bottom: 16px;
       &:last-of-type {
         margin-bottom: 0;
       }
@@ -296,7 +297,7 @@
           color:@gray-dark;
           font-weight: 600;
           display: block;
-          margin-bottom: @space-s;
+          margin-bottom: 13px;
           font-size: @font-size-base;
         }
         .brief {
