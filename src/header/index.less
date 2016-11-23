@@ -425,6 +425,7 @@
       display: inline-block;
     }
     .app-text {
+      color: #5a626d;
       display: block;
       font-size: 10px;
       line-height: 14px;
@@ -432,6 +433,9 @@
   }
   .app-item:hover {
     color: @anchor-color;
+    .app-text {
+      color: @anchor-color;
+    }
     .icon-iPhone {
       & span[class *="path"]:before {
         color: @anchor-color;

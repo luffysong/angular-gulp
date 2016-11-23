@@ -41,7 +41,7 @@
         </div>
         <div class="collect-count">
           <span class="describe">该收藏夹共 {{item.count}} 个项目</span>
-          <a href="#" ng-click="collectionVM.collection({id: item.id})" ng-show="item.id !==0 && item.isDelete"><span class="icon-delete"></span></a>
+          <a href="#" class="collectDelete" ng-click="collectionVM.collection({id: item.id})" ng-show="item.id !==0 && item.isDelete"><span class="icon-delete"></span></a>
         </div>
       </div>
       <a href="#" ng-click="vm.showNewCollection()">

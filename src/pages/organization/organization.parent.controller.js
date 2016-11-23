@@ -182,7 +182,9 @@ export default class organizationParentController {
 
   /*获取轮次静态数据*/
   getPhase() {
-    this.data.phase = this.addItem(this.$scope.root.FINANCE_PHASE_META);
+    const financePhase = [];
+    angular.copy(this.$scope.root.FINANCE_PHASE_META,financePhase);
+    this.data.phase = this.addItem(financePhase);
   }
 
 }

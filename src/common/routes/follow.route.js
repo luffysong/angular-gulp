@@ -10,7 +10,7 @@ const followView = {
     loadBundle: getLoadBundle(assets.page.follow),
     loadSearchBundle: getLoadBundle(assets.page.search),
     loadProjectBundle: getLoadBundle(assets.page.project),
-  }
+  },
 };
 
 const follow = {
@@ -20,11 +20,11 @@ const follow = {
   controller: 'followIndexController',
   resolve: {
     loadBundle: getLoadBundle(assets.page.follow),
-  }
+  },
 };
 
 
 export {
   followView,
-  follow
+  follow,
 };
