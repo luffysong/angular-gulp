@@ -215,6 +215,19 @@ export function isEmpty(obj) {
   return false;
 }
 
+export function one(obj, arr) {
+  if (angular.isUndefined(obj) || obj === null) {
+    return false;
+  } else if (arr) {
+    for (let i = 0, len = arr.length; i < len; i++) {
+      if (angular.isDefined(obj[arr[i]])) {
+        return true;
+      }
+    }
+    return false;
+  }
+  return isEmpty(obj);
+}
 
 export function fromYear(year) {
   let nowYear = new Date().getFullYear();
