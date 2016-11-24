@@ -165,7 +165,7 @@ angular.module('MassAutoComplete', [])
 						$scope.results = [];
 						$scope.selected_index = -1;
 						bind_element();
-
+            _suggest('', current_element);
 						value_watch = $scope.$watch(
 							function() {
 								return ngmodel.$modelValue;
@@ -180,7 +180,7 @@ angular.module('MassAutoComplete', [])
                 trimValue = false;
                 last_selected_value = undefined;
 								_position_autocomplete();
-								suggest(nv, current_element);
+                suggest(nv, current_element);
 							}
 						);
 					}
@@ -195,6 +195,9 @@ angular.module('MassAutoComplete', [])
 					function _suggest(term, target_element) {
 						$scope.selected_index = 0;
 						$scope.waiting_for_suggestion = true;
+            if (!$scope.container.perfectScrollbar) {
+              $scope.container.perfectScrollbar = angular.noop;
+            }
             var suggestPromiseFn = _getSuggestFn(term);
 						if (suggestPromiseFn) {
 							$q.when(suggestPromiseFn(term),
@@ -212,8 +215,10 @@ angular.module('MassAutoComplete', [])
 											value: term,
 											label: ''
 										}].concat(suggestions);
-   										$scope.show_autocomplete = true;
-                      testContainerWidth();
+                    $scope.show_autocomplete = true;
+                    testContainerWidth();
+                    $scope.container[0].scrollTop = 0;
+                    $scope.container.perfectScrollbar('update');
 										if (current_options.auto_select_first && $scope.results[1] &&
                       current_options.full_match($scope.results[1], term))
 											set_selection(1);
