@@ -14,6 +14,7 @@ export const upyun = {
 
 const SUCCESS = 0;
 const FAILED = 1;
+const USEOWNORDER = 1;
 // 上传类型
 export const UPLOAD_TYPE = {
   FILE: 'file',
@@ -55,11 +56,12 @@ export function getConstantFilterFactory(meta) {
   };
 }
 
-export function getUpToken(options, type) {
+export function getUpToken(options, type, useOwnOrder) {
   const data = angular.extend({}, {
     bucket: upyun.bucket.name,
     expiration: parseInt((new Date().getTime() + (3600 * 1000 * 24 * 365)) / 1000, 10),
     'save-key': options.pattern || '/{year}{mon}/{day}{hour}{min}{sec}/{random}{.suffix}',
+    useOwnOrder: useOwnOrder || 0,
   }, options);
 
   return getService('$http').post('/n/api/upload/form-api', {
@@ -71,8 +73,8 @@ export function getUpToken(options, type) {
 export function uploadBp(name, file) {
   return getUpToken({
     bucket: upyun.fileBucket.name,
-    pattern: `/{year}{mon}/{filemd5}/[${encodeURIComponent(name)}]商业计划书{.suffix}`,
-  }, UPLOAD_TYPE.FILE)
+    pattern: `/{year}{mon}{day}/{filemd5}/[${encodeURIComponent(name)}]商业计划书{.suffix}`,
+  }, UPLOAD_TYPE.FILE, USEOWNORDER)
   .then(function uploadStart(data) {
     return getService('Upload').upload({
       url: `${upyun.apiHost}/${upyun.fileBucket.name}/`,
@@ -220,7 +222,7 @@ export function one(obj, arr) {
     return false;
   } else if (arr) {
     for (let i = 0, len = arr.length; i < len; i++) {
-      if (angular.isDefined(obj[arr[i]])) {
+      if (angular.isDefined(obj[arr[i]]) && obj[arr[i]] !== '') {
         return true;
       }
     }

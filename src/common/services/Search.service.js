@@ -24,10 +24,8 @@ function makeCreateProjectHtml(name) {
       </p>
     `;
 }
-function makeProjectHtml(project, isFirst, isLast) {
-  project.type = RESULT_TYPE.COMPANY;
+function makeProjectHtml(project) {
   return `
-  ${isFirst ? '<h4>项目</h4>' : ''}
   <div  class="search-row">
     <img src="${project.logo || '/images/default-logo.png'}" >
     <div class="search-entity-text">
@@ -38,16 +36,11 @@ function makeProjectHtml(project, isFirst, isLast) {
       <p>${project.brief}</p>
     </div>
   </div>
-  ${isLast ?
-    '<h4 tabindex="3"  class="search-more kr-button searchProject">搜索更多项目</h4>' :
-   ''}
     `;
 }
 
-function makeUserHtml(user, isFirst, isLast) {
-  user.type = RESULT_TYPE.USER;
+function makeUserHtml(user) {
   return `
-  ${isFirst ? '<h4>投资人</h4>' : ''}
   <div class="search-row">
     <img class="investor-avatar" src="${user.logo || '/images/investor-logo.png'}" >
     <div class="search-entity-text">
@@ -60,15 +53,11 @@ function makeUserHtml(user, isFirst, isLast) {
       ng-bind="result.obj.vitae" class="intro"></p>
     </div>
   </div>
-  ${isLast ?
-    '<h4  tabindex="3" class="search-more kr-button searchInvestor">搜索更多投资人</h4>' :
-   ''}
+
     `;
 }
-function makeOrgHtml(org, isFirst, isLast) {
-  org.type = RESULT_TYPE.ORG;
+function makeOrgHtml(org) {
   return `
-  ${isFirst ? '<h4>机构</h4>' : ''}
   <div class="search-row">
     <img src="${org.logo || '/images/org-logo.png'}" >
     <div class="search-entity-text">
@@ -79,9 +68,6 @@ function makeOrgHtml(org, isFirst, isLast) {
       ng-bind="result.obj.intro" class="intro"></p>
     </div>
   </div>
-  ${isLast ?
-    '<h4 tabindex="3" class="search-more searchOrg kr-button">搜索更多投资机构</h4>' :
-   ''}
     `;
 }
 export default class SearchService {
@@ -99,73 +85,127 @@ export default class SearchService {
     }));
   }
 
+  _getTitle(title) {
+    return {
+      value: '',
+      type: 'title',
+      obj: null,
+      label: `<div class="search-row title">${title}</div>`,
+    };
+  }
+  _getAction(action, type) {
+    return {
+      value: '',
+      type: 'action',
+      obj: { type },
+      label: `<div class="search-row search-more action">${action}</div>`,
+    };
+  }
   makeResult(kw) {
     return this.search(kw).then(result => {
       let htmlResult = [];
-      let i = 0;
       const MAX_PROJECT_LENGTH = 3;
       const MAX_USER_ORG_LENGTH = 2;
       if (result.companies.length) {
-        htmlResult = htmlResult.concat(result.companies.slice(0, MAX_PROJECT_LENGTH).map(project =>
-          getContentHtml(project, makeProjectHtml(project,
-            ++i === 1,
-            (i === MAX_PROJECT_LENGTH) &&
-          (result.companies.length > MAX_PROJECT_LENGTH),
-          kw
-          ))
-        ));
+        htmlResult.unshift(this._getTitle('项目'));
+        htmlResult = htmlResult.concat(
+          result.companies.slice(0, MAX_PROJECT_LENGTH).map(project => {
+            project.type = RESULT_TYPE.COMPANY;
+            return getContentHtml(project, makeProjectHtml(project));
+          }));
+        if (result.companies.length > MAX_PROJECT_LENGTH) {
+          htmlResult.push(this._getAction('搜索更多项目', RESULT_TYPE.COMPANY));
+        }
       } else {
         htmlResult.push(getContentHtml(kw,
           makeCreateProjectHtml(kw)));
       }
 
-      i = 0;
       if (result.users.length) {
-        htmlResult = htmlResult.concat(result.users.slice(0, MAX_USER_ORG_LENGTH).map(user =>
-          getContentHtml(user, makeUserHtml(user,
-            ++i === 1,
-            (i === MAX_USER_ORG_LENGTH) &&
-          (result.users.length > MAX_USER_ORG_LENGTH),
-          kw
-          ))
-        ));
+        htmlResult.push(this._getTitle('投资人'));
+        htmlResult = htmlResult.concat(
+          result.users.slice(0, MAX_USER_ORG_LENGTH).map(user => {
+            user.type = RESULT_TYPE.USER;
+            return getContentHtml(user, makeUserHtml(user));
+          }));
+        if (result.companies.length > MAX_USER_ORG_LENGTH) {
+          htmlResult.push(this._getAction('搜索更多投资人', RESULT_TYPE.USER));
+        }
       }
 
-      i = 0;
       if (result.orgs.length) {
-        htmlResult = htmlResult.concat(result.orgs.slice(0, MAX_USER_ORG_LENGTH).map(org =>
-          getContentHtml(org, makeOrgHtml(org,
-            ++i === 1,
-            (i === MAX_USER_ORG_LENGTH) &&
-          (result.orgs.length > MAX_USER_ORG_LENGTH),
-          kw
-          ))
-        ));
+        htmlResult.push(this._getTitle('投资机构'));
+        htmlResult = htmlResult.concat(
+          result.orgs.slice(0, MAX_USER_ORG_LENGTH).map(org => {
+            org.type = RESULT_TYPE.ORG;
+            return getContentHtml(org, makeOrgHtml(org));
+          }));
+        if (result.companies.length > MAX_USER_ORG_LENGTH) {
+          htmlResult.push(this._getAction('搜索更多投资机构', RESULT_TYPE.ORG));
+        }
       }
       return htmlResult;
     });
   }
 
-  onSelect(item, value, $event) {
-    if (!$event) {
-      this.historyApi.save(null, {
-        kw: value,
-      }).then(() => {
-        if (item.obj.type === RESULT_TYPE.COMPANY) {
-          getService('$state').go('project', { id: item.obj.id });
-        } else if (item.obj.type === RESULT_TYPE.ORG) {
-          getService('$state').go('org', { id: item.obj.id });
-        } else if (item.obj.type === RESULT_TYPE.USER) {
-          getService('$state').go('investorInfo', { id: item.obj.id });
-        }
-      });
-    }
+
+  historySuggest() {
+    return this.historyApi.query()
+      .then(list => (list.length ? ['搜索历史'].concat(list) : []))
+      .then(list => list.map((str, i) => ({
+        value: str,
+        obj: str,
+        type: i === 0 ? 'title' : 'row',
+        label:
+        `<div ng-class="::{'his-title': $index === 1}"
+        class="search-row history-text">${str}</div>`,
+      })));
   }
 
+  onSelect(item, value) {
+    this.historyApi.save(null, {
+      kw: value,
+    }).then(() => {
+      if (item.obj.type === RESULT_TYPE.COMPANY) {
+        getService('$state').go('project', { id: item.obj.id });
+      } else if (item.obj.type === RESULT_TYPE.ORG) {
+        getService('$state').go('org', { id: item.obj.id });
+      } else if (item.obj.type === RESULT_TYPE.USER) {
+        getService('$state').go('investorInfo', { id: item.obj.id });
+      } else if (angular.isString(item.obj)) {
+        getService('$state').go('landing.result',
+          { kw: item.value, type: 'company' }, { inherit: false });
+      }
+    });
+  }
+
+  _isAction(item) {
+    return item.type === 'action';
+  }
+
+  action(item, kw) {
+    this.historyApi.save(null, {
+      kw,
+    });
+    if (this._isAction(item) && item.obj) {
+      getService('$state').go('landing.result', { kw, type: item.obj.type.toLowerCase() },
+        { inherit: false });
+    } else if (this._isAction(item)) {
+      getService('$state').go('createProject');
+    } else if (item.obj.type === RESULT_TYPE.COMPANY) {
+      getService('$state').go('project', { id: item.obj.id });
+    } else if (item.obj.type === RESULT_TYPE.ORG) {
+      getService('$state').go('org', { id: item.obj.id });
+    } else if (item.obj.type === RESULT_TYPE.USER) {
+      getService('$state').go('investorInfo', { id: item.obj.id });
+    }
+  }
   getSearchAutoCompleteOptions() {
     return {
       suggest: this.makeResult.bind(this),
       auto_select_first: false,
+      history_suggest: this.historySuggest.bind(this),
+      action: this.action.bind(this),
       full_match: angular.noop,
       on_select: this.onSelect.bind(this),
       on_leaveSelect: (value, e = {}) => {

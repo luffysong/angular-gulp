@@ -16,7 +16,7 @@ angular.module('MassAutoComplete', [])
         '<perfect-scrollbar wheel-propagation="true" wheel-speed="10" min-scrollbar-length="15"' +
         ' class="ac-container" ng-show="show_autocomplete && results.length > 0" style="position:absolute;">' +
 					'<ul class="ac-menu">' +
-					'<li ng-click="onClick($event, result)" ng-mousemove="onMousemove($index)" ng-repeat="result in results" ng-if="$index > 0" ' +
+					'<li ng-mousemove="onMousemove($index)" ng-repeat="result in results" ng-if="$index > 0" ' +
 					'class="ac-menu-item" ng-class="$index == selected_index ? \'ac-state-focus\': \'\'">' +
 					'<a href ng-click="apply_selection($index, $event)" kr-bind-html="result.label"></a>' +
 					'</li>' +
@@ -191,12 +191,18 @@ angular.module('MassAutoComplete', [])
 					}
 					that.attach = debounce(_attach, user_options.debounce_attach);
 
+          function _getSuggestFn(term) {
+            if (term && term.length > 0 ) {
+              return current_options.suggest;
+            }
+            return current_options.history_suggest;
+          }
 					function _suggest(term, target_element) {
 						$scope.selected_index = 0;
 						$scope.waiting_for_suggestion = true;
-
-						if (typeof(term) === 'string' && term.length > 0) {
-							$q.when(current_options.suggest(term),
+            var suggestPromiseFn = _getSuggestFn(term);
+						if (suggestPromiseFn) {
+							$q.when(suggestPromiseFn(term),
 								function suggest_succeeded(suggestions) {
 									// Make sure the suggestion we are processing is of the current element.
 									// When using remote sources for example, a suggestion cycnle might be
@@ -302,6 +308,10 @@ angular.module('MassAutoComplete', [])
 						// We use value instead of setting the model's view value
 						// because we watch the model value and setting it will trigger
 						// a new suggestion cycle.
+
+            if (!isValidRow(i)) {
+              return;
+            }
 						var selected = $scope.results[i];
 						//current_element.val(selected.value);
 						$scope.selected_index = i;
@@ -324,20 +334,27 @@ angular.module('MassAutoComplete', [])
               $scope.show_autocomplete = false;
               return ;
             }
-            if ($scope.searchOut && $scope.searchOut.click ) {
-              $scope.searchOut.click = false;
+						var selected = set_selection(i);
+            if (selected.type === 'action') {
               $scope.show_autocomplete = false;
+              current_options.action && current_options.action(selected, searchValue);
               return;
             }
-						var selected = set_selection(i);
 						last_selected_value = selected.value;
 						update_model_value(selected.value);
 						$scope.show_autocomplete = false;
 
             current_options.on_select && current_options.on_select(selected,
-              searchValue, $event
-              );
+              searchValue, $event);
 					};
+
+          function isValidRow(i) {
+            return $scope.results[i].type !== 'title';
+          }
+
+          function isAction(i) {
+            return $scope.results[i].type !== 'action';
+          }
 
 					function bind_element() {
 						angular.element($window).bind(EVENTS.RESIZE, position_autocomplete);
@@ -416,8 +433,12 @@ angular.module('MassAutoComplete', [])
 								case KEYS.DOWN:
 									if ($scope.results.length > 0) {
 										if ($scope.show_autocomplete) {
-											set_selection($scope.selected_index + 1 > $scope.results.length -
-												1 ? 0 : $scope.selected_index + 1);
+                      var index = $scope.selected_index + 1 > $scope.results.length -
+												1 ? 0 : $scope.selected_index + 1;
+                      if (!isValidRow(index)) {
+                        index = index + 1;
+                      }
+											set_selection(index);
 										} else {
 											$scope.show_autocomplete = true;
 											$scope.selected_index = 0;
@@ -430,8 +451,12 @@ angular.module('MassAutoComplete', [])
 								case KEYS.UP:
 									if ($scope.show_autocomplete) {
 										e.preventDefault();
-										set_selection($scope.selected_index - 1 >= 0 ? $scope.selected_index -
-											1 : $scope.results.length - 1);
+                    var index = $scope.selected_index - 1 >= 0 ? $scope.selected_index -
+											1 : $scope.results.length - 1;
+                    if (!isValidRow(index)) {
+                      index = index - 1;
+                    }
+										set_selection(index);
 										$scope.$apply();
 									}
 									break;
