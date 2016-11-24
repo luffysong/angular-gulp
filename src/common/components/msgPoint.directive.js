@@ -3,11 +3,7 @@ function msgPointDirective(user) {
   return {
     restrict: 'AE',
     link(scope, element) {
-      scope.timer = window.setInterval(() => {
-        if(!$('body').find(element).length){
-          window.clearInterval(scope.timer);
-          return;
-        }
+      function getMsg() {
         user.getMsg({
           endpoint: 'WEB'
         }).then(data => {
@@ -17,7 +13,20 @@ function msgPointDirective(user) {
             element.css('opacity',0);
           }
         });
-      },1000);
+      }
+
+      getMsg();
+
+      /*随机时长10-30秒*/
+      var delay = (Math.random() * 20 + 10)*1000;
+      scope.timer = window.setInterval(() => {
+        if(!$('body').find(element).length){
+          window.clearInterval(scope.timer);
+          return;
+        }
+        getMsg();
+      },delay);
+
       scope.$on('$destroy',() => {
         window.clearInterval(scope.timer);
       });
