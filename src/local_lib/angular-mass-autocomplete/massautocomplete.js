@@ -9,7 +9,6 @@ angular.module('MassAutoComplete', [])
 				restrict: "A",
 				scope: {
           options: '&massAutocomplete',
-          searchOut: '=?',
 				},
 				transclude: true,
 				template: '<span ng-transclude></span>' +
@@ -178,10 +177,6 @@ angular.module('MassAutoComplete', [])
 								// suggestion the value that is currently selected - this is unnecessary.
 								if (nv === last_selected_value || trimValue === nv)
 									return;
-                if ($scope.searchOut.setWord) {
-                  $scope.searchOut.setWord = false;
-                  return;
-                }
                 trimValue = false;
                 last_selected_value = undefined;
 								_position_autocomplete();
@@ -349,10 +344,12 @@ angular.module('MassAutoComplete', [])
 					};
 
           function isValidRow(i) {
+            if(i === -1) return true;
             return $scope.results[i].type !== 'title';
           }
 
           function isAction(i) {
+            if(i === -1) return false;
             return $scope.results[i].type !== 'action';
           }
 

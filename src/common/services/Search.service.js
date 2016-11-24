@@ -19,10 +19,14 @@ function getContentHtml(entity, content) {
 }
 
 function makeCreateProjectHtml(name) {
-  return `
-      <p class="search-no-result"><span class="createProject">无结果，创建 ”${name}“ 创业项目</span>
-      </p>
-    `;
+  return {
+    obj: { type: 'newCom' },
+    type: 'action',
+    label: `
+      <p class="search-row search-no-result"><span class="createProject">
+        无结果，创建 ”${name}“ 创业项目</span>
+      </p> `,
+  };
 }
 function makeProjectHtml(project) {
   return `
@@ -117,8 +121,7 @@ export default class SearchService {
           htmlResult.push(this._getAction('搜索更多项目', RESULT_TYPE.COMPANY));
         }
       } else {
-        htmlResult.push(getContentHtml(kw,
-          makeCreateProjectHtml(kw)));
+        htmlResult.push(makeCreateProjectHtml(kw));
       }
 
       if (result.users.length) {
@@ -187,10 +190,10 @@ export default class SearchService {
     this.historyApi.save(null, {
       kw,
     });
-    if (this._isAction(item) && item.obj) {
+    if (this._isAction(item) && item.obj.type !== 'newCom') {
       getService('$state').go('landing.result', { kw, type: item.obj.type.toLowerCase() },
         { inherit: false });
-    } else if (this._isAction(item)) {
+    } else if (this._isAction(item) && item.obj.type === 'newCom') {
       getService('$state').go('createProject');
     } else if (item.obj.type === RESULT_TYPE.COMPANY) {
       getService('$state').go('project', { id: item.obj.id });
