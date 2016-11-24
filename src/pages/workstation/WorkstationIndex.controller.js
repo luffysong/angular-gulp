@@ -42,8 +42,12 @@ export default class WorkstationIndexController {
         this.$scope.newCollection = false;
         this.$scope.newFocus = false;
         this.$scope.isFocus = false;
-        this.collectionName = '';
-        this.getCollectionList();
+        const item = {
+            name: this.collectionName,
+            count: 0,
+            id: data.id,
+          }
+        this.$scope.collectionVM.dataList.groupList.unshift(item);
       });
     }
   }
