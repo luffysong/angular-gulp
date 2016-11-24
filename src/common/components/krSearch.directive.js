@@ -1,4 +1,5 @@
 import API from '../base/API.js';
+import { getService } from '../base/utls.js';
 import SearchService from '../services/Search.service.js';
 // const KEYS = {
 //   UP: 38,
@@ -17,6 +18,13 @@ class SearchController {
   init() {
     const searchInstance = new SearchService();
     this.autocompleteOptions = searchInstance.getSearchAutoCompleteOptions();
+  }
+
+  searchRecord(kw) {
+    this.historyApi.save(null, {
+      kw,
+    });
+    getService('$state').go('landing.result', { kw, type: 'company' }, { inherit: false });
   }
 
 }
