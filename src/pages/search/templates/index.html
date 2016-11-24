@@ -45,7 +45,7 @@
           <li
             kr-scroll-me="{isMe: item.id === searchVm.columnOptions.companyId, container: '#column3Container'}"
             ng-click="searchVm.open(item.id)"  ng-repeat="item in searchVm.columnOptions.companies"
-            ng-class="::{'active' : item.id === searchVm.columnOptions.companyId}">
+            ng-class="{'active' : item.id === searchVm.columnOptions.companyId}">
             <img ng-click="searchVm.open(item.id)" width="42" height="42"
             ng-src="{{::item.logo || '/images/default-logo.png'}}" alt=""/>
             <div class="text-info-wrapper">
