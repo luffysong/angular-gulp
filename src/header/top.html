@@ -13,17 +13,17 @@
           <input ng-trim="false" mass-autocomplete-item="vm.autocompleteOptions"
             ng-model="vm.kw"
             type="text" class="search" placeholder="输入创业项目、投资人、投资机构名称搜索">
-          <div class="history" ng-if="!vm.kw && vm.history.length && !vm.loadingHistory">
-            <ul >
-              <li>搜索历史</li>
-              <li ng-click="vm.setSearchWord(item)"
-                ng-mouseenter="vm.historyIndex = $index"
-                ng-class="{active: vm.historyIndex === $index}"
-                ng-repeat="item in vm.history track by $index">
-                {{item}}
-              </li>
-            </ul>
-          </div>
+          <!-- <div class="history" ng&#45;if="!vm.kw &#38;&#38; vm.history.length &#38;&#38; !vm.loadingHistory"> -->
+          <!--   <ul > -->
+          <!--     <li>搜索历史</li> -->
+          <!--     <li ng&#45;click="vm.setSearchWord(item)" -->
+          <!--       ng&#45;mouseenter="vm.historyIndex = $index" -->
+          <!--       ng&#45;class="{active: vm.historyIndex === $index}" -->
+          <!--       ng&#45;repeat="item in vm.history track by $index"> -->
+          <!--       {{item}} -->
+          <!--     </li> -->
+          <!--   </ul> -->
+          <!-- </div> -->
           <span tabindex="2" ng-click="vm.searchRecord(vm.kw)" class="icon-Search input-search">
             <span class="path1"></span><span class="path2"></span>
           </span>
