@@ -64,7 +64,7 @@ class UcMessageController {
             $1.replace(/http:\/\//g, '//') + '\',item,$event)"';
         })
         .replace(/class="actions"/g, 'class="actions"')
-        .replace(/\n/g,'<br />');
+        /*.replace(/\n/g,'<br />');*/
     });
   }
 
