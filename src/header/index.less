@@ -69,9 +69,10 @@
         color: #969FA9;
       }
       li {
-        &:hover {
+        &.active {
           background: #f9f9f9;
         }
+        cursor: pointer;
         border-bottom: 1px solid #F2F4F5;
         color: #5A626D;
         padding-left: 30px;
@@ -350,6 +351,9 @@
       background: #fff;
     }
     h4.search-more {
+      &:focus {
+        outline: 0;
+      }
       padding-left: 0px;
       border-bottom: 1px solid #f2f4f5;
       text-align: center;
