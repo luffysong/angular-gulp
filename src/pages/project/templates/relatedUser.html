@@ -3,7 +3,7 @@
   <div class="relate-user">
     <ul>
       <li class="user-info" ng-repeat='usr in vm.relateUser'>
-        <img src="{{usr.logo}}" alt="" class="pic">
+        <img src="{{usr.logo || '/images/investor-logo.png'}}" alt="" class="pic">
         <div class="info">
           <span class="name">{{usr.name}}</span><span class="claim" ng-show='usr.privilegeEnum == "START_UP_MEMBER"'>认领人</span>
           <p class=""><span>{{usr.companyRoleEnum | role}}</span><span ng-show='usr.position' class="position">|</span><span>{{usr.position}}</span></p>
