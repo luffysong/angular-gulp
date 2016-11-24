@@ -8,7 +8,7 @@
         <span class="message-time">{{item.createdAt | msgDate}}</span>
         <span class="un-read" ng-if="!item.readed">未读</span>
         <span class="has-read" ng-if="item.readed">已读</span>
-        <section class="message-content" kr-bind-html="item.content">
+        <section class="message-content" kr-bind-html="item.content" is-watch="true" ng-if="item.content">
         </section>
       </div>
     </div>
