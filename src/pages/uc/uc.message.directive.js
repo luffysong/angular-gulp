@@ -1,8 +1,6 @@
-import UcService from './uc.service';
 import krData from 'krData';
-const ucService = new UcService();
 
-@Inject('$rootScope')
+@Inject('$rootScope', 'ucService')
 class UcMessageController {
   constructor() {
     this.init();
@@ -29,10 +27,9 @@ class UcMessageController {
   }
 
   getUnRead() {
-    ucService.getUnRead({
+    this.ucService.getUnRead({
       endpoint: 'WEB'
     }).then(data => {
-      console.log(data);
       this.hasMsg = data.hasNewMsg;
     })
   }
@@ -45,7 +42,7 @@ class UcMessageController {
   }
 
   getMsg() {
-    ucService.getMsg(this.params).then(data => {
+    this.ucService.getMsg(this.params).then(data => {
       if(!data.data || !data.data.length){
         this.noMore = true;
         return;
@@ -73,7 +70,7 @@ class UcMessageController {
 
   triggerAction(url, item, e) {
     e && e.preventDefault();
-    ucService.sendAction(url, data => {
+    this.ucService.sendAction(url, data => {
       item.content = data.content;
     }, err => {
       krData.Alert.alert(err.msg);
@@ -83,7 +80,7 @@ class UcMessageController {
   }
 
   setRead(id,index) {
-    ucService.setRead({
+    this.ucService.setRead({
       ids: [id]
     }).then(data => {
       this.msg[index].readed = true;

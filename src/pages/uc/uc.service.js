@@ -18,9 +18,10 @@ const setMsg = new krData.API('/msg/actions',[], {
 });
 
 @Inject('$q', '$http')
-export default class ProjectService extends API {
+export default class UcService extends API {
 
   constructor() {
+
     super('/user/:id', [
       'company',
       // 'addfinance',
