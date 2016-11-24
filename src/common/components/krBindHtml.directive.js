@@ -2,24 +2,26 @@ import { getService } from '../base/utls.js';
 export default {
   restrict: 'AE',
   link: function krBindHtmlPostLink($scope, ele, attr) {
-
     function handleHtml() {
-      var html = $scope.$eval(attr.krBindHtml);
+      let html = $scope.$eval(attr.krBindHtml);
       if (angular.isString(html)) {
-        const $compile = getService('$compile');
+        html = getService('$sce').getTrustedHtml(html);
         ele.html(html);
-        $compile(ele.contents())($scope);
       } else {
-        ele[0].innerHTML = getService('$sce').getTrustedHtml(html);
+        const $compile = getService('$compile');
+        ele.html(getService('$sce').getTrustedHtml(html));
+        $compile(ele.contents())($scope);
       }
     }
 
-    handleHtml();
-
-    if(attr.isWatch) {
-      $scope.$watch(attr.krBindHtml,o => {
-        handleHtml();
-      })
+    if (attr.isWatch) {
+      $scope.$watch(attr.krBindHtml, (v) => {
+        if (v) {
+          handleHtml();
+        }
+      });
+    } else {
+      handleHtml();
     }
   },
 };
