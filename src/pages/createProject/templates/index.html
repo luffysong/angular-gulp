@@ -1,5 +1,7 @@
 <section class="create-project-wrapper">
-
+  <div class="navigation" ng-show="vm.type === 'finance'">
+    <a ui-sref="project({id: vm.id})" href="#">{{vm.name}}</a><span class="arrow"> > </span><span>融资需求</span>
+  </div>
   <div class="create-project-module">
     <h1>{{ vm.title || '添加创业项目' }}</h1>
     <div ng-show="vm.step === 1" ng-include="'/pages/createProject/templates/stepOne.html'"> </div>
