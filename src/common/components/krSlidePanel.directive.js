@@ -1,4 +1,4 @@
-var krSlide = {};
+const krSlide = {};
 
 @Inject('$rootScope', '$scope')
 class SlidePanelController {
@@ -13,7 +13,7 @@ class SlidePanelController {
 
 
   showModal() {
-    for(var i in krSlide) {
+    for (const i in krSlide) {
       krSlide[i].show = false;
     }
     this.show = true;
@@ -25,14 +25,18 @@ class SlidePanelController {
     $('html').removeClass('overflow-hidden');
   }
 
-  trigger(e,type) {
+  trigger(e) {
     if (this.$scope.disabled) {
       return;
     }
     if (e) {
       e.preventDefault();
     }
-    !this.show ? this.showModal() : this.hideModal();
+    if (!this.show) {
+      this.showModal();
+    } else {
+      this.hideModal();
+    }
   }
 
 }
@@ -45,7 +49,7 @@ export default {
   },
   scope: {
     disabled: '=disabled',
-    key: '@key'
+    key: '@key',
   },
   template: `
     <div>
