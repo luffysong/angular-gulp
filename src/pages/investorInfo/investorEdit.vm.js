@@ -154,7 +154,7 @@ export default class InvestorEditVM {
         this.baseData.selectOrg = null;
         this.baseData.orgId = null;
       },
-    });
+    }, true);
   }
 
   setCaseComOptions() {
@@ -209,10 +209,14 @@ export default class InvestorEditVM {
     };
   }
 
-  _getSuggestOrgOptions(options) {
+  _getSuggestOrgOptions(options, includeCom) {
+    let path = '/suggest/org';
+    if (includeCom) {
+      path = '/suggest/com-and-org';
+    }
     return {
       auto_select_first: true,
-      suggest: this.suggest.bind(this, '/suggest/org'),
+      suggest: this.suggest.bind(this, path),
       full_match: (item, value) => item.obj.name.toLowerCase() === value.toLowerCase(),
       on_select: options.on_select,
       on_leaveSelect: options.on_leaveSelect,
@@ -350,8 +354,10 @@ export default class InvestorEditVM {
       .then(() => {
         const basicData = angular.copy(this.baseData);
         basicData.city = basicData.city.join(',');
+        delete basicData.orgId;
         if (basicData.selectOrg) {
           basicData.orgId = basicData.selectOrg.id;
+          basicData.orgType = basicData.selectOrg.entityType;
         }
 
         if (basicData.entityType === ENTITY_TYPE.INDIVIDUAL) {
@@ -485,7 +491,7 @@ export default class InvestorEditVM {
     const newCom = {
       value: kw,
       obj: { name: '', newCom: true },
-      label: `<div class="new-com">创建“${kw}”</div>`,
+      label: utls.getService('$sce').trustAsHtml(`<div class="new-com">创建“${kw}”</div>`),
     };
     return new API(path).query({
       kw,
@@ -496,9 +502,9 @@ export default class InvestorEditVM {
       return list.map(org => ({
         value: org.name,
         obj: org,
-        label:
+        label: utls.getService('$sce').trustAsHtml(
         '<div><img ng-src="{{result.obj.logo || ' +
-        '\'/images/org-logo.png\'}}">{{result.obj.name}}</div>',
+        '\'/images/org-logo.png\'}}">{{result.obj.name}}</div>'),
       }));
     });
   }
@@ -510,7 +516,7 @@ export default class InvestorEditVM {
       list.map(city => ({
         value: city.name,
         obj: city,
-        label: '<div>{{result.obj.name}}</div>',
+        label: utls.getService('$sce').trustAsHtml('<div>{{result.obj.name}}</div>'),
       }))
     );
   }
