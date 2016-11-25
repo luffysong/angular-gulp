@@ -186,7 +186,7 @@ function middleware() {
 }
 
 gulp.task('serve', () => {
-  runSequence('clean', ['scripts', 'style', 'dev:html', 'watch', 'iconfont', 'copy:lib'],
+  runSequence('clean', 'copy:lib', ['scripts', 'style', 'dev:html', 'watch', 'iconfont'],
     function serve() {
       g.connect.server({
         root: ['dist', '.tmp', 'src'],

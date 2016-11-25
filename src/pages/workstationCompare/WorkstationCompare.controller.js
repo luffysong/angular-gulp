@@ -1,5 +1,6 @@
 import { utls } from 'krData';
 import { FID_KEY } from './WorkstationCompare.service';
+import noDataFactory from '../../bower/highcharts/modules/no-data-to-display.src.js';
 const getService = utls.getService;
 let service = null;
 const LABEL_DESC = {
@@ -14,11 +15,9 @@ const LABEL_DESC = {
 const wanYLabel = {
   format: '{value}万',
 };
-
 const percentYLabel = {
   format: '{value}%',
 };
-
 function getLableDesc(key) {
   return LABEL_DESC[key];
 }
@@ -58,6 +57,13 @@ function getHichartsOptions(key) {
       style: {
         color: '#fff',
         fontSize: '12px',
+      },
+    },
+    noData: {
+      style: {
+        fontSize: '16px',
+        color: '#ccc',
+        fontWeight: 'normal',
       },
     },
     chart: {
@@ -135,16 +141,7 @@ function getHichartsOptions(key) {
       title: {
         enabled: false,
       },
-    },
-    // {
-    //   lineColor: '#E7E7E7',
-    //   lineWidth: 2,
-    //   opposite: true,
-    //   title: {
-    //     enabled: false,
-    //   },
-    // }
-    ],
+    }],
   };
 }
 @Inject('$stateParams', '$scope')
@@ -152,9 +149,11 @@ export default class WorkstationCompareController {
 
   constructor() {
     service = getService('workstationCompareService');
+    noDataFactory(Highcharts);
     Highcharts.setOptions({
       lang: {
         thousandsSep: ',',
+        noData: '暂无数据',
       },
     });
     this.orginGetMarkPath = Highcharts.Tick.prototype.getMarkPath;
@@ -184,6 +183,7 @@ export default class WorkstationCompareController {
     this.activeSaveHg = this[saveKey];
     this.activeSave = saveKey;
   }
+
   setData() {
     service.getCompareData({
       cids: this.$stateParams.cids,
@@ -191,15 +191,34 @@ export default class WorkstationCompareController {
       this.projects = data.projects;
       this.dataLoaded = true;
       Object.keys(FID_KEY).forEach(key => {
-        const hichartsOptions = {
+        const highchartsOptions = {
           options: getHichartsOptions(key),
         };
-        hichartsOptions.options.xAxis.categories = data.x;
-        hichartsOptions.series = data.seriesData[key];
-        this[`${key}Hg`] = hichartsOptions;
+        highchartsOptions.options.xAxis.categories = data.x;
+        highchartsOptions.series = data.seriesData[key];
+        this._setNoDataConfig(highchartsOptions);
+        this[`${key}Hg`] = highchartsOptions;
       });
       this.setActiveSave('saveHg');
     });
+  }
+
+  _hasData(series) {
+    return series.some(serie => serie.data.length);
+  }
+
+  _setNoDataConfig(cfg) {
+    if (!this._hasData(cfg.series)) {
+      const x = cfg.options.xAxis;
+      const y = cfg.options.yAxis[0];
+
+      // 无数据时 强制X Y周
+      x.min = 0;
+      x.max = 11;
+      y.min = 0;
+      y.max = 100;
+      y.gridLineWidth = 0;
+    }
   }
 
 }
