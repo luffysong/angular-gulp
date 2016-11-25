@@ -51,7 +51,7 @@ gulp.task('clean', function clean() {
 });
 
 gulp.task('prod', function runSquence() {
-  return runSequence('clean', ['scripts', 'buildTemplates', 'iconfont',
+  return runSequence('clean', 'copy:lib', ['scripts', 'buildTemplates', 'iconfont',
     'copy:images',
     'copy:jsplugins'],
     'concatTemplate', 'hash-replace',
