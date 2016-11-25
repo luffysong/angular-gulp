@@ -22,6 +22,13 @@ export default class WorkstationListController {
   cancelCollection(item){
     service.cancelCollect(item.cid,item.groupId)
     .then(data => {
+        console.log(item);
+        const index = this.checkedCids.indexOf(item.cid.toString());
+        console.log(this.checkedCids);
+        if (index > -1) {
+          this.checkedCids.splice(index, 1);
+          console.log(this.checkedCids);
+        }
         this.setListData();
     });
   }

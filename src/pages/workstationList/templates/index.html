@@ -53,7 +53,7 @@
         </tr>
         <tr ng-repeat="obj in vm.listData.data track by $index">
           <td>
-            <input name="selectedCompare" type="checkbox" value=""
+            <input name="selectedCompare" type="checkbox" value="" ng-checked="vm.checkedCids.indexOf(obj.cid.toString()) !== -1"
             ng-disabled="vm.checkedCids.length > 4 && vm.checkedCids.indexOf(obj.cid.toString()) == -1"
             ng-show="vm.isCompare" id="{{obj.cid}}" ng-click="vm.checkboxSelected($event)"/>
           </td>
