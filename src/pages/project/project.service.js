@@ -2,32 +2,32 @@ import { API } from 'krData';
 
 
 
-const investorApi = new krData.API('/investor/auth',[], {
+const investorApi = new API('/investor/auth', [], {
   getState: {
-    action: 'state'
+    action: 'state',
   },
   getMsgCode: {
-    action: 'get-verify-code'
+    action: 'get-verify-code',
   },
   validateMsgCode: {
-    action: 'validate-code'
+    action: 'validate-code',
   },
   suggestInvestor: {
     action: 'suggest-investor',
-    isArray: true
-  }
+    isArray: true,
+  },
 });
 
-const indexApi = new krData.API('/index',[], {
+const indexApi = new API('/index', [], {
   column: {
-    action: 'column'
+    action: 'column',
   },
   label: {
-    action: 'label'
+    action: 'label',
   },
   investor: {
-    action: 'investor'
-  }
+    action: 'investor',
+  },
 });
 
 @Inject('$q')
@@ -194,8 +194,8 @@ export default class ProjectService extends API {
       id: obj.columnId,
     };
     delete obj.columnId;
-    for(var k in obj) {
-      if(!obj[k]) {
+    for (const k in obj) {
+      if (!obj[k]) {
         delete obj[k];
       }
     }
@@ -222,7 +222,7 @@ export default class ProjectService extends API {
       });
   }
 
-  /*标签信息*/
+  /* 标签信息*/
   getLabel(obj) {
     const id = {
       id: obj.labelId,
@@ -230,7 +230,7 @@ export default class ProjectService extends API {
     return new API('/label/:id').get(id);
   }
 
-  /*标签下公司数据*/
+  /* 标签下公司数据*/
   getLabelCompany(obj) {
     const id = {
       id: obj.labelId,
@@ -239,38 +239,38 @@ export default class ProjectService extends API {
     return new API('/label/:id/company?' + $.param(obj)).get(id);
   }
 
-  /*关注标签*/
+  /* 关注标签*/
   followLabel(obj) {
     return new API('/label/:id/followed').save({
       id: obj.id,
     });
   }
 
-  /*取消关注标签*/
+  /* 取消关注标签*/
   unFollowLabel(obj) {
     return new API('/label/:id/followed').remove({
       id: obj.id,
     });
   }
 
-  /*落地页获取公司列表*/
+  /* 落地页获取公司列表*/
   searchCompany(obj) {
     const type = obj.type || 'company';
     delete obj.type;
-    for(var k in obj) {
-      if(!obj[k]) {
+    for (const k in obj) {
+      if (!obj[k]) {
         delete obj[k];
       }
     }
-    return new API('/search/'+type+'?' + $.param(obj)).get();
+    return new API('/search/' + type + '?' + $.param(obj)).get();
   }
 
-  /*获取关注标签列表*/
+  /* 获取关注标签列表*/
   getFollowList() {
     return new API('/label', {
       followed: {
         isArray: true,
-      }
+      },
     }).followed();
   }
 
@@ -279,40 +279,40 @@ export default class ProjectService extends API {
       id: obj.labelId,
     };
     delete obj.labelId;
-    for(var k in obj) {
-      if(!obj[k]) {
+    for (const k in obj) {
+      if (!obj[k]) {
         delete obj[k];
       }
     }
     return new API('/label/:id/followed/company?' + $.param(obj)).get(id);
   }
 
-  /*获取全部标签*/
+  /* 获取全部标签*/
   getAllLabel() {
     return new API('/label', {
       expose: {
         isArray: true,
-      }
+      },
     }).expose();
   }
 
-  /*获取短信验证码*/
+  /* 获取短信验证码*/
   getMsgCode(obj) {
     return investorApi.getMsgCode(obj);
   }
-  /*验证短信码*/
+  /* 验证短信码*/
   validateMsgCode(obj) {
     return investorApi.validateMsgCode(obj);
   }
-  /*提交认证*/
+  /* 提交认证*/
   submitValidate(obj) {
-    return investorApi.save(null,obj);
+    return investorApi.save(null, obj);
   }
-  /*获取推荐投资人*/
+  /* 获取推荐投资人*/
   suggestInvestor(obj) {
     return investorApi.suggestInvestor(obj);
   }
-  /*获取投资人认证状态*/
+  /* 获取投资人认证状态*/
   getState() {
     return investorApi.getState();
   }
@@ -325,17 +325,17 @@ export default class ProjectService extends API {
     return new API('/investor/common-email').update(null, email);
   }
 
-  //首页公司栏目模块
+  // 首页公司栏目模块
   indexColumn() {
     return indexApi.column();
   }
 
-  //首页
+  // 首页
   indexLabel() {
     return indexApi.label();
   }
 
-  /*首页投资人接口*/
+  /* 首页投资人接口*/
   indexInvestor() {
     return indexApi.investor();
   }
