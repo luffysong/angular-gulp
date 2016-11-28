@@ -47,7 +47,7 @@ class UcMessageController {
         this.noData = true;
         return;
       }
-      if(!data.data || !data.data.length){
+      if (!data.data || !data.data.length) {
         this.noMore = true;
         return;
       }
