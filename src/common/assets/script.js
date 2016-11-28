@@ -111,5 +111,8 @@ export default {
       '/bower/highcharts-ng/dist/highcharts-ng.min.js',
       '/pages/workstationCompare/index.js',
     ],
+    login: [
+      '/pages/login/index.js',
+    ],
   },
 };
