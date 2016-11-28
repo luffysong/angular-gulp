@@ -113,7 +113,11 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       return moduleInstance;
     };
   })
-  .run(function run($rootScope) {
+  .run(function run($rootScope, $location) {
+    /*全局PageView埋点统计事件触发*/
+    $rootScope.$on('$locationChangeStart', function () {
+      window.krtracker('trackPageView', $location.url());
+    });
     $rootScope.$on('$stateChangeSuccess',
       function $stateChangeSuccess(event, toState, toParams, fromState, fromParams) {
         root.fromParams = fromParams;
