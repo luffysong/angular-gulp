@@ -34,7 +34,7 @@
           <span>未收录相关信息</span>
         </span>
     </div>
-    <div class="part-hide" ng-if="vm.companyIntroduceVM.hasIntroduce && root.user.notInvestor()">
+    <div class="part-hide" ng-if="vm.companyIntroduceVM.hasIntroduce && vm.user === 'commen'">
       <a class="certify" ui-sref="investorValidate" href="javascript:void()"><p>认证投资人</p></a>
       <p class="complete">查看完整项目介绍</p>
     </div>
