@@ -10,5 +10,5 @@ angular.module('@@pages.uc', [])
   .service('ucService', UcService)
   .directive('ucPage', makeDirective(UcPage))
   .directive('ucMessage', makeDirective(UcMessage))
-  .filter('nameFormat',nameFormat);
+  .filter('nameFormat', nameFormat);
 

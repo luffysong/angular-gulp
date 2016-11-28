@@ -12,7 +12,7 @@ const KEYS = {
 
 function getContentHtml(entity, content) {
   return {
-    label: content,
+    label: getService('$sce').trustAsHtml(content),
     value: entity.name || entity,
     obj: entity,
   };
@@ -28,48 +28,48 @@ function makeCreateProjectHtml(name) {
       </p> `,
   };
 }
-function makeProjectHtml(project) {
+function makeProjectHtml() {
   return `
   <div  class="search-row">
-    <img src="${project.logo || '/images/default-logo.png'}" >
+    <img src="{{::result.obj.logo || '/images/default-logo.png'}}" >
     <div class="search-entity-text">
       <p>
-        <span>${project.name}</span>
-        <span>${getService('$filter')('industry')(project.industry)}</span>
+        <span>{{result.obj.name}}</span>
+        <span>{{result.obj.industry | industry}}</span>
       </p>
-      <p>${project.brief}</p>
+      <p>{{::result.obj.brief}}</p>
     </div>
   </div>
     `;
 }
 
-function makeUserHtml(user) {
+function makeUserHtml() {
   return `
   <div class="search-row">
-    <img class="investor-avatar" src="${user.logo || '/images/investor-logo.png'}" >
+    <img class="investor-avatar" ng-src="{{::result.obj.logo || '/images/investor-logo.png'}}" >
     <div class="search-entity-text">
       <p>
-        <span>${user.name}</span>
-        <span>${user.orgName}</span>
-        <span>${user.position}</span>
+        <span ng-bind="::result.obj.name"></span>
+        <span ng-bind="::result.obj.orgName"></span>
+        <span ng-bind="::result.obj.position"></span>
       </p>
       <p data-ellipsis ellipsis-separator="" data-ellipsis-symbol="..."
-      ng-bind="result.obj.vitae" class="intro"></p>
+      ng-bind="::result.obj.vitae" class="intro"></p>
     </div>
   </div>
 
     `;
 }
-function makeOrgHtml(org) {
+function makeOrgHtml() {
   return `
   <div class="search-row">
-    <img src="${org.logo || '/images/org-logo.png'}" >
+    <img ng-src="{{::result.obj.logo || '/images/org-logo.png'}}" >
     <div class="search-entity-text">
       <p>
-        <span>${org.name}</span>
+        <span ng-bind="::result.obj.name"></span>
       </p>
       <p data-ellipsis ellipsis-separator="" data-ellipsis-symbol="..."
-      ng-bind="result.obj.intro" class="intro"></p>
+      ng-bind="::result.obj.intro" class="intro"></p>
     </div>
   </div>
     `;

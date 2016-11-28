@@ -1,4 +1,4 @@
-import krData from 'krData';
+import krData, { utls } from 'krData';
 
 @Inject('$rootScope', 'ucService')
 class UcMessageController {
@@ -6,13 +6,12 @@ class UcMessageController {
     this.init();
 
 
-
     this.params = {
-      /*senderId: 2,*/
+      /* senderId: 2,*/
       endpoint: 'WEB',
       page: 1,
       pageSize: 10,
-      markReaded: false
+      markReaded: false,
     };
     this.msg = [];
     this.dataLoading = true;
@@ -28,14 +27,14 @@ class UcMessageController {
 
   getUnRead() {
     this.ucService.getUnRead({
-      endpoint: 'WEB'
+      endpoint: 'WEB',
     }).then(data => {
       this.hasMsg = data.hasNewMsg;
-    })
+    });
   }
 
   loadMore() {
-    if(this.dataLoading) return;
+    if (this.dataLoading) return;
     this.dataLoading = true;
     this.params.page++;
     this.getMsg();
@@ -43,52 +42,59 @@ class UcMessageController {
 
   getMsg() {
     this.ucService.getMsg(this.params).then(data => {
+<<<<<<< HEAD
       if(data.totalCount === 0) {
         this.noData = true;
         return;
       }
       if(!data.data || !data.data.length){
+=======
+      if (!data.data || !data.data.length) {
+>>>>>>> 1d3ae6260463531907808e869e2bed25725c66f8
         this.noMore = true;
         return;
       }
       this.handelUrl(data.data);
-      angular.forEach(data.data,(item) => {
+      angular.forEach(data.data, (item) => {
         this.msg.push(item);
       });
       this.dataLoading = false;
-    },err => {
+    }, err => {
+      krData.Alert.alert(err.msg);
     });
   }
 
   handelUrl(data) {
-    data.forEach(function (item) {
+    data.forEach(function eachUrl(item) {
       item.content = item.content
-        .replace(/bind-url="(.+?)"/g, function ($0, $1) {
-          return 'ng-if="notification.submitLoading !== item" ng-click="vm.triggerAction(\'' +
-            $1.replace(/http:\/\//g, '//') + '\',item,$event)"';
+        .replace(/bind-url="(.+?)"/g, function replaceBindUrl($0, $1) {
+          return `ng-if="notification.submitLoading !== item" ng-click="vm.triggerAction('
+            ${$1.replace(/http:\/\//g, '//')}',item,$event)"`;
         })
-        .replace(/class="actions"/g, 'class="actions"')
-        /*.replace(/\n/g,'<br />');*/
+        .replace(/class="actions"/g, 'class="actions"');
+      item.content = utls.getService('$sce').trustAsHtml(item.content);
     });
   }
 
   triggerAction(url, item, e) {
-    e && e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     this.ucService.sendAction(url, data => {
-      item.content = data.content;
+      item.content = utls.getService('$sce').trustAsHtml(data.content);
     }, err => {
       krData.Alert.alert(err.msg);
-      var index = this.msg.indexOf(item);
+      const index = this.msg.indexOf(item);
       this.msg.splice(index, 1);
     });
   }
 
-  setRead(id,index) {
+  setRead(id, index) {
     this.ucService.setRead({
-      ids: [id]
-    }).then(data => {
+      ids: [id],
+    }).then(() => {
       this.msg[index].readed = true;
-    })
+    });
   }
 }
 

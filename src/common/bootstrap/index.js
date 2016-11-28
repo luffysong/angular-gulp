@@ -103,8 +103,13 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       const moduleInstance = module(...moduleArgs);
       ['directive', 'filter', 'service'].forEach(methodName => {
         const api = moduleInstance[methodName].bind(moduleInstance);
+        const suffix = methodName.charAt(0).toUpperCase() + methodName.slice(1);
         moduleInstance[methodName] = (name, factory) => {
-          if (!$injector.has(name)) {
+          let cacheName = name;
+          if (methodName !== 'service') {
+            cacheName += suffix;
+          }
+          if (!$injector.has(cacheName)) {
             api(name, factory);
           }
           return moduleInstance;

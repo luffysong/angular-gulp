@@ -10,7 +10,7 @@
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.industry}">
               <ul filter-cal open-filter="parentVm.open.industry" ng-if="parentVm.data.industry">
-                <li class="col-item" ng-repeat="item in parentVm.data.industry" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'industry')">
+                <li class="col-item" ng-repeat="item in parentVm.data.industry" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'industry')" data-stat-click="list.industry.{{item.value}}">
                   {{item.desc}}
                   <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
                   <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.value !== 'unlimited'" ng-click="parentVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="col-handle">
-          <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="parentVm.spreadMore('industry')" ng-class="{'open': parentVm.open.industry}"></a>
+          <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="parentVm.spreadMore('industry')" ng-class="{'open': parentVm.open.industry}" data-stat-click="list.industry.zhankaianniu"></a>
         </div>
       </div>
     </div>

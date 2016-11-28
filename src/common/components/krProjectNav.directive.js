@@ -9,11 +9,11 @@ class ProjectNavController {
   }
 
   init() {
-    this.setExpand();
+    this.expandFirst();
     this.loadColumns();
   }
 
-  setExpand() {
+  expandFirst() {
     this.$rootScope.$on('$stateChangeSuccess', (e, toState) => {
       if (toState.name === 'list.result' || toState.name === 'follow.result') {
         this.expand = true;
@@ -21,6 +21,12 @@ class ProjectNavController {
         this.expand = false;
       }
     });
+  }
+
+  setExpand(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.expand = !this.expand;
   }
 
   go(id, e) {
@@ -49,7 +55,8 @@ export default {
     ng-class="{expand: projectNavVm.expand}"
     ui-sref="list.result({columnId: projectNavVm.list[0].id})">
     <span class="icon-Company kr-icon"></span><span class="kr-tags">创业公司</span
-    ><span       class="icon-open-icon kr-icon">
+    ><span ng-click="projectNavVm.setExpand($event)" >
+      <span class="icon-open-icon kr-icon"></span>
     </span>
   </a>
   <ul class="column">

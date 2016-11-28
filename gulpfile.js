@@ -51,7 +51,7 @@ gulp.task('clean', function clean() {
 });
 
 gulp.task('prod', function runSquence() {
-  return runSequence('clean', ['scripts', 'buildTemplates', 'iconfont',
+  return runSequence('clean', 'copy:lib', ['scripts', 'buildTemplates', 'iconfont',
     'copy:images',
     'copy:jsplugins'],
     'concatTemplate', 'hash-replace',
@@ -186,7 +186,7 @@ function middleware() {
 }
 
 gulp.task('serve', () => {
-  runSequence('clean', ['scripts', 'style', 'dev:html', 'watch', 'iconfont', 'copy:lib'],
+  runSequence('clean', 'copy:lib', ['scripts', 'style', 'dev:html', 'watch', 'iconfont'],
     function serve() {
       g.connect.server({
         root: ['dist', '.tmp', 'src'],
