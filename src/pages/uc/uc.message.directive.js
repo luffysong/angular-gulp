@@ -42,15 +42,11 @@ class UcMessageController {
 
   getMsg() {
     this.ucService.getMsg(this.params).then(data => {
-<<<<<<< HEAD
       if(data.totalCount === 0) {
         this.noData = true;
         return;
       }
       if(!data.data || !data.data.length){
-=======
-      if (!data.data || !data.data.length) {
->>>>>>> 1d3ae6260463531907808e869e2bed25725c66f8
         this.noMore = true;
         return;
       }
