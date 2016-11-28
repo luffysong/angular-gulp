@@ -3,7 +3,6 @@ import krData, { utls } from 'krData';
 @Inject('$rootScope', 'ucService', 'user')
 class UcMessageController {
   constructor() {
-    this.init();
 
 
     this.params = {

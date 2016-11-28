@@ -1,4 +1,4 @@
-<div class="result-container" ng-if="!parentVm.open.sideBar">
+<div class="result-container" ng-if="!parentVm.open.sideBar" data-stat-module="list">
   <div class="result-tip">
     共<b>{{vm.listData.totalCount}}</b>个结果
   </div>
@@ -16,10 +16,10 @@
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
         <td>
-          <img ng-src="{{::obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" class="project-logo" />
+          <img ng-src="{{::obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" class="project-logo" data-stat-click="company.{{obj.id}}"  />
           <div class="project-info">
             <div class="project-name">
-              <span class="company-name" ng-click="vm.seeDetail(obj.id)">{{::obj.name}}</span><span class="icon-hot-tag" ng-if="obj.hot"></span><span class="icon-classicTag" ng-if="obj.classic"></span><span class="icon-funding" ng-if="obj.funding"></span>
+              <span class="company-name" ng-click="vm.seeDetail(obj.id)" data-stat-click="company.{{obj.id}}">{{::obj.name}}</span><span class="icon-hot-tag" ng-if="obj.hot"></span><span class="icon-classicTag" ng-if="obj.classic"></span><span class="icon-funding" ng-if="obj.funding"></span>
             </div>
             <div class="project-intro" title="{{::obj.brief}}">
               {{::obj.brief}}
@@ -31,10 +31,10 @@
           </div>
         </td>
         <td class="filter-item">
-          <span ng-click="vm.clickFilter(obj.industry,'industry')" ng-class="{'disabled': parentVm.getPermission()}">{{::obj.industryStr}}</span>
+          <span ng-click="vm.clickFilter(obj.industry,'industry')" data-stat-click="industry.{{obj.industry}}" ng-class="{'disabled': parentVm.getPermission()}">{{::obj.industryStr}}</span>
         </td>
         <td class="filter-item">
-          <span ng-click="vm.clickFilter(obj.phase,'phase')" ng-class="{'disabled': obj.phase === 'NONE' || parentVm.getPermission()}">{{::obj.phase | companyFinancePhase}}</span>
+          <span ng-click="vm.clickFilter(obj.phase,'phase')" data-stat-click="phase.{{obj.phase}}" ng-class="{'disabled': obj.phase === 'NONE' || parentVm.getPermission()}">{{::obj.phase | companyFinancePhase}}</span>
         </td>
         <td class="org-col">
           <span ng-if="!obj.investParts.length">未披露</span>
@@ -45,7 +45,7 @@
         </td>
         <td class="date-time">{{::obj.publishDate | listDateFilter}}</td>
         <td>
-          <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
+          <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position data-stat-click="collect.{{obj.id}}">
             <span ng-show="obj.followed">已</span>收藏
             <div class="collect-modal" ng-hide="!vm.user.isLogin || !vm.user.isInvestor()" ng-if="obj.id === vm.cid" ng-click="$event.stopPropagation();">
               <section class="modal-title">选择收藏夹</section>
@@ -60,7 +60,7 @@
               </ul>
               <div class="new-create">
                 <input type="text" name='createName' placeholder="创建新收藏夹" ng-model='vm.collectionName' maxlength="8">
-                <a href="javascript:void(0)" class="create-link" ng-click="vm.create()">创建</a>
+                <a href="javascript:void(0)" class="create-link" ng-click="vm.create()" data-stat-click="collection.create">创建</a>
               </div>
               <div class="create-suc" ng-show="vm.createSuc && !vm.errMsg">创建成功</div>
               <div class="error-msg" ng-show="vm.errMsg && !vm.createSuc" ng-bind="vm.errMsg"></div>
@@ -73,12 +73,12 @@
       正在加载更多...
     </div>
     <div  ng-if="vm.needLogin" class="load-more">
-      <a  href="javascript:;" ng-click="vm.login()">
+      <a  href="javascript:;" ng-click="vm.login()" data-stat-click="login">
         登录查看更多
       </a>
     </div>
     <div  ng-if="vm.needAuthorizeInvestor()" class="load-more">
-      <a  href="javascript:;" ui-sref="investorValidate" ng-click="vm.valLogin($event)">
+      <a  href="javascript:;" ui-sref="investorValidate" ng-click="vm.valLogin($event)" data-stat-click="investorValidate">
         认证投资人查看更多
       </a>
     </div>
