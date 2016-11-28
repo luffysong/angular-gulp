@@ -1,6 +1,6 @@
 import krData, { utls } from 'krData';
 
-@Inject('$rootScope', 'ucService')
+@Inject('$rootScope', 'ucService', 'user')
 class UcMessageController {
   constructor() {
     this.init();
@@ -17,12 +17,14 @@ class UcMessageController {
     this.dataLoading = true;
     this.hasMsg = false;
 
-    this.loadMore();
-    this.getMsg();
-    this.getUnRead();
+    this.init();
   }
 
   init() {
+    if(!this.user.isLogin)return;
+    this.loadMore();
+    this.getMsg();
+    this.getUnRead();
   }
 
   getUnRead() {
