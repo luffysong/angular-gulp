@@ -87,8 +87,10 @@ export default class FinanceVM extends krData.FormVM {
         const html = [];
         html.push(`<div class="suggest-label suggest-label-investor">
               <img src="${val.logo || '/images/investor-logo.png'}" />
-              <div class="investor-name"><span>${val.entityName}</span></div>
-              <span class="investor-org">${val.orgName}</span>`);
+              <div class="investor-name"><span>${val.entityName}</span></div>`);
+        if(val.orgName){
+            html.push(`<span class="investor-org">${val.orgName}</span>`);
+        }
         if(val.position){
             html.push(`<span class="split">|</span>
                 <span class="investor-position">${val.position}</span>`);
