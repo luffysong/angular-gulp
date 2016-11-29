@@ -1,6 +1,4 @@
-import { API } from 'krData';
-
-
+import { API } from 'krData' ;
 
 const investorApi = new API('/investor/auth', [], {
   getState: {
@@ -236,7 +234,7 @@ export default class ProjectService extends API {
       id: obj.labelId,
     };
     delete obj.labelId;
-    return new API('/label/:id/company?' + $.param(obj)).get(id);
+    return new API(`/label/:id/company?${$.param(obj)}`).get(id);
   }
 
   /* 关注标签*/
@@ -262,7 +260,7 @@ export default class ProjectService extends API {
         delete obj[k];
       }
     }
-    return new API('/search/' + type + '?' + $.param(obj)).get();
+    return new API(`/search/${type}?${$.param(obj)}`).get();
   }
 
   /* 获取关注标签列表*/
@@ -284,7 +282,7 @@ export default class ProjectService extends API {
         delete obj[k];
       }
     }
-    return new API('/label/:id/followed/company?' + $.param(obj)).get(id);
+    return new API(`/label/:id/followed/company?${$.param(obj)}`).get(id);
   }
 
   /* 获取全部标签*/
