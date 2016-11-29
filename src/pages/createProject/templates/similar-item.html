@@ -14,7 +14,7 @@
         <a target="_blank" ui-sref="project({id:item.id})"><img ng-src="{{item.logo}}" class="item-logo"></a>
         <span class="item-info">
           <a target="_blank" ui-sref="project({id:item.id})"><div class="item-name">{{item.name}}</div></a>
-          <div class="item-breif">{{item.brief}}</div>
+          <div class="item-breif" title="{{item.brief}}">{{item.brief}}</div>
         </span>
       </td>
       <td>{{item.industry}}</td>

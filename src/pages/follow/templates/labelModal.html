@@ -1,15 +1,15 @@
-<div class="label-pop">
-  <i class="icon-dialogClose" ng-click="vm.cancel()"></i>
+<div class="label-pop" data-stat-module="follow">
+  <i class="icon-dialogClose" ng-click="vm.cancel()" data-stat-click="label.close"></i>
   <h3 class="pop-title">标签管理</h3>
   <div class="pop-col">
     <span class="col-tag"></span>
     已关注标签
   </div>
   <div class="pop-content">
-    <div class="followed-label" ng-repeat="item in vm.followLabelList" ng-click="vm.goDetail(item.id)">
+    <div class="followed-label" ng-repeat="item in vm.followLabelList" ng-click="vm.goDetail(item.id)" data-stat-click="label.{{item.id}}">
       {{item.name}}
-      <span class="unFollow-icon icon-dialogClose" ng-click="vm.unFollowLabel(item.id,$event);"></span>
-      <span class="clear-layer" ng-click="vm.unFollowLabel(item.id,$event);"></span>
+      <span class="unFollow-icon icon-dialogClose" ng-click="vm.unFollowLabel(item.id,$event);" data-stat-click="label.{{item.id}}.unfollow"></span>
+      <span class="clear-layer" ng-click="vm.unFollowLabel(item.id,$event);" data-stat-click="label.{{item.id}}.unfollow"></span>
     </div>
   </div>
   <div class="pop-col recommend-label">
@@ -17,7 +17,7 @@
     推荐标签
   </div>
   <div class="pop-content recommend-content" ng-class="{'heightAuto':vm.showMore}">
-    <div class="followed-label" ng-repeat="item in vm.allLabel" ng-bind="item.name" ng-click="vm.followLabel(item.id)" ></div>
+    <div class="followed-label" ng-repeat="item in vm.allLabel" ng-bind="item.name" ng-click="vm.followLabel(item.id)" data-stat-click="label.{{item.id}}.follow"></div>
   </div>
-  <a href="javascript:void(0)" class="see-more" ng-click="vm.showMore = true" ng-if="!vm.showMore">查看更多</a>
+  <a href="javascript:void(0)" class="see-more" ng-click="vm.showMore = true" ng-if="!vm.showMore" data-stat-click="label.showMore">查看更多</a>
 </div>

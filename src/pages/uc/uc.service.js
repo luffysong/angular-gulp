@@ -58,12 +58,13 @@ export default class UcService extends API {
       .update(null, email);
   }
 
-  /*获取系统消息*/
+  /* 获取系统消息 */
+
   getMsg(obj) {
     return msgApi.page(obj);
   }
 
-  /*设置已读*/
+  /* 设置已读 */
   setRead(obj) {
     return setMsg.setRead(null,obj);
   }
@@ -73,12 +74,10 @@ export default class UcService extends API {
   }
 
   sendAction(url, callback, error) {
-    setTimeout(() => {
-      this.$http.post(url).success(function (data) {
-        callback && callback(data);
-      }).catch(function (err) {
-        error && error(err);
-      });
-    }, 20);
+    this.$http.post(url).success(function (data) {
+      callback && callback(data);
+    }).catch(function (err) {
+      error && error(err);
+    });
   }
 }

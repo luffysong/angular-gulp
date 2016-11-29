@@ -1,4 +1,4 @@
-<div class="home-page" kr-parallax>
+<div class="home-page" kr-parallax data-stat-module="home">
   <ul class="logo-container">
     <li class="layer" data-depth="0.05">
       <img class="logo" src="/images/index/logo.png" alt="">
@@ -67,10 +67,10 @@
         <div kr-loading loading="vm.columnLoading"></div>
         <div ng-hide="vm.columnLoading">
           <div class="result-list" ng-repeat="item in vm.columnCompany | limitTo:3">
-            <img ng-src="{{item.logo}}" ui-sref="project({id:item.id})" alt="">
+            <img ng-src="{{item.logo}}" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}" alt="">
             <div class="item-info">
               <div class="company-info">
-                <span class="company-name" ui-sref="project({id:item.id})" title="{{item.name}}">{{item.name}}</span>
+                <span class="company-name" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}" title="{{item.name}}">{{item.name}}</span>
                 <span class="company-industry">{{item.industryStr}}</span>
               </div>
               <div class="company-brief">
@@ -87,9 +87,9 @@
                 </span>
               </div>
             </div>
-            <a class="handle-btn" href="" ui-sref="project({id:item.id})">联系创始人</a>
+            <a class="handle-btn" href="" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}">联系创始人</a>
           </div>
-          <div class="see-detail" ui-sref="list.result({columnId:vm.columnId})">查看更多项目</div>
+          <div class="see-detail" ui-sref="list.result({columnId:vm.columnId})" data-stat-click="project.seeMore">查看更多项目</div>
         </div>
       </div>
       <div class="bottom-line"></div>
@@ -120,10 +120,10 @@
           <div kr-loading loading="vm.labelLoading"></div>
           <div ng-hide="vm.labelLoading">
             <div class="result-list" ng-repeat="item in vm.labelCompany | limitTo:3">
-              <img ng-src="{{item.logo}}" ui-sref="project({id:item.id})" alt="">
+              <img ng-src="{{item.logo}}" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}" alt="">
               <div class="item-info">
                 <div class="company-info">
-                  <span class="company-name" ui-sref="project({id:item.id})" title="{{item.name}}">{{item.name}}</span>
+                  <span class="company-name" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}" title="{{item.name}}">{{item.name}}</span>
                   <span class="company-industry">{{item.industryStr}}</span>
                 </div>
                 <div class="company-brief">
@@ -140,7 +140,7 @@
                   </span>
                 </div>
               </div>
-              <a class="handle-btn" href="" ui-sref="project({id:item.id})">联系创始人</a>
+              <a class="handle-btn" href="" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}">联系创始人</a>
             </div>
             <div class="see-detail" ui-sref="label.result({labelId:vm.labelId})">查看标签更多项目</div>
           </div>
@@ -160,17 +160,17 @@
           <a class="project-number" ui-sref="investorList.result">{{vm.investorData.contactCnt}}</a> 次有效对接
         </div>
       </div>
-      <a class="submit-btn" href="javascript:void(0)" ng-click="vm.createProject()">我也要提交项目</a>
+      <a class="submit-btn" href="javascript:void(0)" ng-click="vm.createProject()" data-stat-click="project.create">我也要提交项目</a>
       <div class="investor-container" ng-if="vm.investorData.columnList.length">
         <span class="submit-left-arrow icon-left-arrow" ng-hide="vm.currentIndex+'' === '0'"></span>
         <span class="submit-right-arrow icon-right-arrow" ng-hide="vm.currentIndex >= vm.investorData.columnList.length-4"></span>
         <slick infinite="false" slides-to-show="4" prev-arrow=".submit-left-arrow" next-arrow=".submit-right-arrow" current-index="vm.currentIndex" ng-if="vm.investorData.columnList.length > 4">
           <div class="user-container" ng-repeat="item in vm.investorData.columnList">
               <div class="investor-item">
-                <a href="" ui-sref="investorInfo({id:item.id})" target="_blank">
+                <a href="" ui-sref="investorInfo({id:item.id})" data-stat-click="investor.{{item.id}}" target="_blank">
                   <img ng-src="{{item.avatar || '/images/investor-logo.png'}}" alt="">
                 </a>
-                <a href="" ui-sref="investorInfo({id:item.id})" target="_blank">
+                <a href="" ui-sref="investorInfo({id:item.id})" data-stat-click="investor.{{item.id}}" target="_blank">
                   <div class="item-name" title="{{item.name}}">{{item.name}}</div>
                 </a>
                 <div class="item-org">{{item.entityName}}</div>
@@ -180,10 +180,10 @@
         </slick>
         <div class="user-container" ng-repeat="item in vm.investorData.columnList" ng-if="vm.investorData.columnList.length <= 4">
           <div class="investor-item">
-            <a href="" ui-sref="investorInfo({id:item.id})" target="_blank">
+            <a href="" ui-sref="investorInfo({id:item.id})" data-stat-click="investor.{{item.id}}" target="_blank">
               <img ng-src="{{item.avatar || '/images/investor-logo.png'}}" alt="">
             </a>
-            <a href="" ui-sref="investorInfo({id:item.id})" target="_blank">
+            <a href="" ui-sref="investorInfo({id:item.id})" data-stat-click="investor.{{item.id}}" target="_blank">
               <div class="item-name" title="{{item.name}}">{{item.name}}</div>
             </a>
             <div class="item-org">{{item.entityName}}</div>

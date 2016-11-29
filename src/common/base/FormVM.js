@@ -29,7 +29,7 @@ export default class FormVM {
     console.log('deprecated , use validate2');
     if (!this.$validation.checkValid(this.form)) {
       this.$validation.validate(this.form);
-      Alert.alert('表单不合法，请更正红色表示部分');
+      /* Alert.alert('表单不合法，请更正红色表示部分'); */
       return false;
     }
     return true;
@@ -38,7 +38,7 @@ export default class FormVM {
   validate2() {
     return this.$validation.validate(this.form)
       .catch(() => {
-        Alert.alert('表单不合法，请更正红色表示部分');
+        /* Alert.alert('表单不合法，请更正红色表示部分'); */
         return this.$q.reject();
       });
   }
