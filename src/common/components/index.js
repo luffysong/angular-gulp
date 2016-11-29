@@ -1,5 +1,6 @@
 import krBindHtml from './krBindHtml.directive.js';
 import krValid from './krValid.directive.js';
+import rongTrack from './rongTrack.directive';
 import krSearch from './krSearch.directive.js';
 import krProjectNav from './krProjectNav.directive.js';
 import krSlidePanel from './krSlidePanel.directive.js';
@@ -27,4 +28,5 @@ angular.module('@@app.components', [])
   .service('loading', Loading)
   .directive('filterCal', filterCalDirective)
   .directive('msgPoint', msgPoint)
-  .directive('krParallax', parallaxDirective);
+  .directive('krParallax', parallaxDirective)
+  .directive('rongTrack', rongTrack);
