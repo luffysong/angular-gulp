@@ -88,9 +88,14 @@ export default class WorkstationIndexController {
   getUser() {
     krData.User.getUserInfo().then(data => {
       this.userData = data;
+      if(data.investorType > 90){
+        this.$state.go('validate');
+      }
     }).catch(err => {
       if(err.code === 403) {
-        this.$scope.root.user.ensureLogin();
+        const okUrl = window.location.href;
+        console.log(okUrl);
+        this.$state.go('login',{okUrl: okUrl, test: 111});
       }
     });
   }

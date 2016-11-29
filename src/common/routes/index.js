@@ -16,7 +16,7 @@ import investorValidate from './investorValidate.route';
 import { failView, fail } from './fail.route';
 import { workstationIndex, workstationList, workstationCompare } from './workstation.route';
 import indexView from './index.route';
-import { loginView, login } from './login.route';
+import { loginView, validateView } from './login.route';
 
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
@@ -73,6 +73,7 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
 
   /* 登录引导页 */
   $stateProvider.state('login', loginView);
+  $stateProvider.state('validate', validateView);
 
   /* 首页*/
   $stateProvider.state('index', indexView);
