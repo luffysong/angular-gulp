@@ -16,12 +16,16 @@ export default class loginIndexController {
   projectService = new ProjectService();
 
   init() {
-
-
-
+    this.okUrl = this.$stateParams.okUrl;
   }
 
+  toLogin(){
+    krData.utls.login(this.okUrl);
+  }
 
+  toValidate(){
+    this.$state.go('investorValidate');
+  }
 
 }
 
