@@ -84,15 +84,18 @@ export default class FinanceVM extends krData.FormVM {
     const that = this;
     return list.map(function makeLabel(val) {
       if (val.entityType === 1) {
-        return {
-          label: that.$sce.trustAsHtml(
-            `<div class="suggest-label suggest-label-investor">
+        const html = [];
+        html.push(`<div class="suggest-label suggest-label-investor">
               <img src="${val.logo || '/images/investor-logo.png'}" />
-              <span class="investor-name">${val.entityName}</span>
-              <span class="investor-org">${val.orgName}</span>
-              <span class="investor-position">${val.position}</span>
-            </div>`
-            ),
+              <div class="investor-name"><span>${val.entityName}</span></div>
+              <span class="investor-org">${val.orgName}</span>`);
+        if(val.position){
+            html.push(`<span class="split">|</span>
+                <span class="investor-position">${val.position}</span>`);
+        }
+        html.push(`</div>`);
+        return {
+          label: that.$sce.trustAsHtml(html.join('')),
           value: val.entityName,
           obj: val,
         };
@@ -100,7 +103,7 @@ export default class FinanceVM extends krData.FormVM {
       return {
         label: that.$sce.trustAsHtml(
           `<div class="suggest-label suggest-label-investment">
-            <img src="${val.logo || '/images/org-logo.png'}" />
+            <img src="${val.logo || '/images/default-logo.png'}" />
             <span>${val.entityName}</span>
           </div>`
           ),

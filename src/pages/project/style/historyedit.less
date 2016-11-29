@@ -39,17 +39,33 @@
           .font(14,21);
           color: #222C38;
           margin-right: 12px;
+          max-width: 100px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          display: inline-block;
+          position: relative;
+          top: 6px;
         }
         .investor-org{
           .font(12,18);
           color: #5A626D;
-          padding-right: 8px;
-          border-right: 1px solid #CCC;
-          margin-right: 8px;
+          display: inline-block;
+        }
+        .split {
+          margin: 0 6px;
+          color: #ccc;
         }
         .investor-position{
           .font(12,18);
           color: #5A626D;
+          max-width: 200px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          display: inline-block;
+          position: relative;
+          top: 6px;
         }
       }
       .suggest-label-investment{
