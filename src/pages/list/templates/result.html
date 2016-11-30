@@ -60,7 +60,7 @@
               </ul>
               <div class="new-create">
                 <input type="text" name='createName' placeholder="创建新收藏夹" ng-model='vm.collectionName' maxlength="8">
-                <a href="javascript:void(0)" class="create-link" ng-click="vm.create()" data-stat-click="collection.create">创建</a>
+                <a href="javascript:void(0)" class="create-link" ng-click="vm.create($index)" data-stat-click="collection.create">创建</a>
               </div>
               <div class="create-suc" ng-show="vm.createSuc && !vm.errMsg">创建成功</div>
               <div class="error-msg" ng-show="vm.errMsg && !vm.createSuc" ng-bind="vm.errMsg"></div>

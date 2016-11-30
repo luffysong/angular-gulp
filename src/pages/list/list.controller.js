@@ -26,7 +26,7 @@ export default class listIndexController {
     this.currentPage = 1;
     this.dataLoading = true;
 
-    this.$scope.$on('get-list',(e,d) => {
+    this.$scope.$on('get-list',(e, d) => {
       this.listData = d;
       this.dataLoading = false;
     });
@@ -36,12 +36,12 @@ export default class listIndexController {
   }
 
   collect(i) {
-    if(!this.user.isLogin) {
+    if (!this.user.isLogin) {
       this.$scope.root.user.ensureLogin();
-    }else if (!this.user.isInvestor()) {
+    } else if (!this.user.isInvestor()) {
       this.investor();
-    }else {
-      if(this.listData.data[i].followed)return;
+    } else {
+      if (this.listData.data[i].followed) return;
       this.projectService.collectCompany({
         cid: this.cid,
         groupId: 0
@@ -71,22 +71,21 @@ export default class listIndexController {
     });
   }
 
-  /*根据路由参数激活*/
+  /* 根据路由参数激活 */
   handleActive() {
-    /*var obj = {};*/
-    angular.forEach(this.$stateParams,(val,key) => {
-      if(val || parseInt(val) === 0) {
+    angular.forEach(this.$stateParams,(val, key) => {
+      if (val || parseInt(val) === 0) {
         this.paramsData[key] = val;
       }
     });
     this.$scope.$emit('get-change',this.paramsData);
   }
 
-  /*过滤不限条件*/
+  /* 过滤不限条件 */
   paramsFilter(target) {
     var o = Object.assign({},target);
     Object.keys(o).forEach((item) => {
-      if(o[item] === 'unlimited'){
+      if (o[item] === 'unlimited') {
         delete o[item];
       }
     });
@@ -94,8 +93,8 @@ export default class listIndexController {
   }
 
 
-  triggerCollect (id) {
-    if(this.cid === id || !this.user.isLogin)return;
+  triggerCollect(id) {
+    if (this.cid === id || !this.user.isLogin) return;
     this.cid = id;
     this.projectService.collect(this.cid).then((data) => {
       this.collections = data;
@@ -109,9 +108,9 @@ export default class listIndexController {
   login() {
     krData.utls.login();
   }
-  loadMore ()  {
+  loadMore() {
 
-    if(this.dataLoading) return;
+    if (this.dataLoading) return;
     if (this.needAuthorizeInvestor()) {
       this.dataLoading = false;
       return;
@@ -150,7 +149,7 @@ export default class listIndexController {
 
   }
 
-  change (item,index) {
+  change(item, index) {
     this.activeIndex = index;
     this.status = '';
     const form = {
@@ -205,8 +204,8 @@ export default class listIndexController {
     }
   }
 
-  create () {
-    if(!this.collectionName)return;
+  create(i) {
+    if (!this.collectionName) return;
     this.projectService.createCollect({
       name:this.collectionName
     }).then(
@@ -220,6 +219,7 @@ export default class listIndexController {
           cid: this.cid,
           groupId: data.id,
         }).then(() => {
+          this.listData.data[i].followed = true;
           this.projectService.collect(this.cid).then(
             (data) => this.collections = data
           );
@@ -271,17 +271,16 @@ export default class listIndexController {
     this.$scope.$emit('open-sideBar',columnOptions);
   }
 
-  closeMe () {
+  closeMe() {
     this.$scope.parentVm.open.sideBar = false;
   }
 
   clickFilter(item,type) {
     angular.forEach(this.$scope.parentVm.itemList, o => {
-      if(o.name === type) {
+      if (o.name === type) {
         var key = o.key;
         angular.forEach(this.$scope.parentVm.data[type],(obj,index) => {
-          if(obj[key] === item) {
-            console.warn(index);
+          if (obj[key] === item) {
             this.$scope.parentVm.selectIndustry(index,type);
           }
         });
@@ -290,7 +289,7 @@ export default class listIndexController {
   }
 
   valLogin(e) {
-    if(!this.user.isLogin) {
+    if (!this.user.isLogin) {
       this.$scope.root.user.ensureLogin();
       e.preventDefault();
     }
