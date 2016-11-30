@@ -22,10 +22,10 @@ function makeCreateProjectHtml(name) {
   return {
     obj: { type: 'newCom' },
     type: 'action',
-    label: `
-      <p class="search-row search-no-result"><span class="createProject">
+    label: getService('$sce').trustAsHtml(`
+      <p class="search-row search-no-result" data-stat-click="search.project.create"><span class="createProject">
         无结果，创建 ”${name}“ 创业项目</span>
-      </p> `,
+      </p> `),
   };
 }
 function makeProjectHtml() {

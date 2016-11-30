@@ -203,7 +203,7 @@
           </a>
         </li>
         <li>
-        <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user == 'commen'" login-btn>认领</a>
+        <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user == 'commen'" login-btn data-stat-click="project.{{vm.id}}.claim">认领</a>
           <a ui-sref="financeRoute({id: vm.id, name: vm.name})"
             ng-show="vm.isEditMode && vm.financeState === '1'" >申请融资</a>
           <a ui-sref="financeRoute({id: vm.id, name: vm.name})"
@@ -211,7 +211,7 @@
 
 
           <a href="#" ui-sref="project.edit({id: vm.id})"
-            ng-show="vm.user != 'commen' && vm.userId && !vm.isEditMode" >编辑项目</a>
+            ng-show="vm.user != 'commen' && vm.userId && !vm.isEditMode" data-stat-click="project.{{vm.id}}.edit">编辑项目</a>
         </li>
       </ul>
     </nav>

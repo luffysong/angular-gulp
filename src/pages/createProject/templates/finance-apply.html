@@ -162,7 +162,7 @@
 
     <a class="prev" ng-if="!vm.financeVM.name" ng-click="vm.prev()" href="javascript:;">上一步</a
     ><a class="save next" href="javascript:;" ng-click='vm.next(vm.financeVM.form)'
-      ng-class="{active:vm.financeVM.isActive()}">提交</a>
+      ng-class="{active:vm.financeVM.isActive()}" data-stat-click="createProject.submit">提交</a>
   </div>
   <div class="form-bottom">
     <p class="splitter"> </p>
