@@ -50,8 +50,8 @@ function makeUserHtml() {
     <div class="search-entity-text">
       <p>
         <span ng-bind="::result.obj.name"></span>
-        <span ng-bind="::result.obj.orgName"></span>
-        <span ng-bind="::result.obj.position"></span>
+        <span ng-bind="::result.obj.orgName" ng-if="result.obj.orgName"></span>
+        <span ng-bind="::result.obj.position" ng-if="result.obj.position"></span>
       </p>
       <p data-ellipsis ellipsis-separator="" data-ellipsis-symbol="..."
       ng-bind="::result.obj.vitae" class="intro"></p>

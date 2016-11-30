@@ -356,6 +356,9 @@
         overflow: hidden;
       }
       p:first-child {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
         span:first-child {
           font-size: 14px;
           display: inline-block;
@@ -365,11 +368,15 @@
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          max-width: 255px;
           vertical-align: middle;
         }
         span:nth-child(2) {
-          margin-top: 3px;
+        }
+        span:nth-child(3) {
+          max-width:120px;
+          min-width:60px;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
       }
       p:nth-child(2) {
