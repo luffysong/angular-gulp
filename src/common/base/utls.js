@@ -91,6 +91,16 @@ export function uploadBp(name, file) {
   });
 }
 
+export function register(url) {
+  url = url || location.href;
+  url = encodeURIComponent(url);
+  /* eslint-disable */
+  setTimeout(() => {
+    location.href = `https://passport.36kr.com/pages/?ok_url=${url}#/register`;
+  }, 100);
+  /* eslint-enable */
+}
+
 export function login(url) {
   url = url || location.href;
   url = encodeURIComponent(url);

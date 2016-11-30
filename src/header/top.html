@@ -33,7 +33,21 @@
         </div>
       </div>
     </div>
-    <div class="usr-content" kr-slide-panel disabled="!root.user.data.id" key="msg">
+    <div class="app-item login" ng-click="root.user.ensureLogin()" ng-class="{'show': !root.user.data.id}">
+      <span>
+        <span class="icon-login">
+        </span>
+        <span class="app-text">登录</span>
+      </span>
+    </div>
+    <div class="app-item register" ng-click="root.user.goRegister()" ng-class="{'show': !root.user.data.id}">
+      <span>
+        <span class="icon-register">
+        </span>
+        <span class="app-text">注册</span>
+      </span>
+    </div>
+    <div class="usr-content" kr-slide-panel disabled="!root.user.data.id" key="msg" ng-show="root.user.data.id">
       <pane-trigger>
         <div class="app-item message-item" ng-click="root.user.ensureLogin()">
           <span>
@@ -48,7 +62,7 @@
         <uc-message></uc-message>
       </pane-body>
     </div>
-    <div class="usr-content" kr-slide-panel disabled="!root.user.data.id" key="user">
+    <div class="usr-content" kr-slide-panel disabled="!root.user.data.id" key="user" ng-show="root.user.data.id">
       <pane-trigger>
         <img ng-src="{{root.user.data.avatar}}" ng-click="root.user.ensureLogin()" src="/images/investor-logo.png" alt="">
         <span class='icon-Setting'></span>

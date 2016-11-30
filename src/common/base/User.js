@@ -1,4 +1,4 @@
-import { login, getService } from '../base/utls.js';
+import { login, getService, register} from '../base/utls.js';
 @Inject('$http', '$q')
 export default class User {
 
@@ -52,6 +52,14 @@ export default class User {
   }
   isInvestor() {
     return this.data.investorType < 100;
+  }
+
+  goRegister() {
+    if (this.loaded && !this.isLogin) {
+      register();
+    } else {
+      this.catch(() => register());
+    }
   }
 
   getMsg(obj) {

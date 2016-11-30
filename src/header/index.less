@@ -399,6 +399,12 @@
   .app-item {
     margin-left: 30px;
     cursor: pointer;
+    &.login,&.register {
+      display: none;
+      &.show {
+        display: block;
+      }
+    }
     &.message-item {
       margin-right:30px;
       .icon-message {
