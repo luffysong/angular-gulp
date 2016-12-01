@@ -176,6 +176,14 @@ export default class ProjectService extends API {
       kw,
     });
   }
+
+  suggestComAndOrg(kw) {
+    const api = new API('/suggest/com-and-org');
+    return api.query({
+      kw,
+    });
+  }
+
   // 判断当前用户是否在审核认领
   claimPeding(cid) {
     const id = {

@@ -56,7 +56,7 @@ export default class investorValidateController {
 
   suggest(kw) {
     const defered = this.$q.defer();
-    this.projectService.suggestOrg(kw).then((list) => {
+    this.projectService.suggestComAndOrg(kw).then((list) => {
       defered.resolve(this.makeSuggestResult(kw, list.slice(0, 5)));
     });
     return defered.promise;
@@ -80,6 +80,7 @@ export default class investorValidateController {
   onSelect(selectedItem) {
     this.baseInfo.orgId = selectedItem.obj.id;
     this.baseInfo.orgName = selectedItem.obj.name;
+    this.baseInfo.entityType = selectedItem.obj.entityType;
   }
 
   prev() {
