@@ -19,7 +19,7 @@
       <tbody class='content-body'>
         <tr ng-repeat="item in vm.similarVM.companyList">
           <td class='item-info'>
-            <a ui-sref="project({id: item.id})" target="_blank"><img ng-src="{{item.logo}}" alt=""></a>
+            <a ui-sref="project({id: item.id})" target="_blank"><img ng-src="{{item.logo || '/images/default-logo.png'}}" alt=""></a>
 
             <div class="info">
               <a class='i-name darkColor' ui-sref="project({id: item.id})" ng-bind="item.name" target="_blank" ></a>
