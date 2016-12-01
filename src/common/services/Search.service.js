@@ -23,7 +23,7 @@ function makeCreateProjectHtml(name) {
     obj: { type: 'newCom' },
     type: 'action',
     label: getService('$sce').trustAsHtml(`
-      <p class="search-row search-no-result" 
+      <p class="search-row search-no-result"
       data-stat-click="search.project.create"><span class="createProject">
         无结果，创建 ”${name}“ 创业项目</span>
       </p> `),
@@ -169,18 +169,17 @@ export default class SearchService {
   onSelect(item, value) {
     this.historyApi.save(null, {
       kw: value,
-    }).then(() => {
-      if (item.obj.type === RESULT_TYPE.COMPANY) {
-        getService('$state').go('project', { id: item.obj.id });
-      } else if (item.obj.type === RESULT_TYPE.ORG) {
-        getService('$state').go('org', { id: item.obj.id });
-      } else if (item.obj.type === RESULT_TYPE.USER) {
-        getService('$state').go('investorInfo', { id: item.obj.id });
-      } else if (angular.isString(item.obj)) {
-        getService('$state').go('landing.result',
-          { kw: item.value, type: 'company' }, { inherit: false });
-      }
     });
+    if (item.obj.type === RESULT_TYPE.COMPANY) {
+      getService('$state').go('project', { id: item.obj.id });
+    } else if (item.obj.type === RESULT_TYPE.ORG) {
+      getService('$state').go('org', { id: item.obj.id });
+    } else if (item.obj.type === RESULT_TYPE.USER) {
+      getService('$state').go('investorInfo', { id: item.obj.id });
+    } else if (angular.isString(item.obj)) {
+      getService('$state').go('landing.result',
+        { kw: item.value, type: 'company' }, { inherit: false });
+    }
   }
 
   _isAction(item) {
