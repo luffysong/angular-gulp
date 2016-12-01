@@ -109,6 +109,12 @@
         position: relative;
         font-size: @font-size-lg;
         font-weight: 600;
+        .cut-name {
+          max-width: 200px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
         .character {
           position: absolute;
           left: 100%;
