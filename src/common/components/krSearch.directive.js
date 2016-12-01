@@ -1,11 +1,6 @@
 import API from '../base/API.js';
 import { getService } from '../base/utls.js';
 import SearchService from '../services/Search.service.js';
-// const KEYS = {
-//   UP: 38,
-//   DOWN: 40,
-//   ENTER: 13,
-// };
 @Inject('$scope')
 class SearchController {
 
