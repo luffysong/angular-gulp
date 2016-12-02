@@ -1,4 +1,4 @@
-<div id="investorDetailWrapper" ng-class="{small: searchVm.small || searchVm.tinly}" class="investorInfo-wrapper">
+<div id="investorDetailWrapper" ng-class="{small: searchVm.small || searchVm.tinly}" class="investorInfo-wrapper" data-stat-module="investorInfo">
   <header>
     <section  class="base-info-wrapper">
       <div ng-if="!investorEditVM.editBase" class="base-info-content">
@@ -21,7 +21,7 @@
             <span>{{investorInfoVm.basic.position}}</span>
           </p>
         </div>
-        <div ng-if="investorInfoVm.isEditMode" ng-click="investorEditVM.enterBase()" class="btn-edit">
+        <div ng-if="investorInfoVm.isEditMode" ng-click="investorEditVM.enterBase()" data-stat-click="baseInfo.edit" class="btn-edit">
           <span>编辑个人信息</span><span class="icon-Edit"></span>
         </div>
       </div>
@@ -108,8 +108,8 @@
           <p class="splitter"> </p>
           <p class="tip-text">注意：所有更改内容均会提交审核，通过后对所有用户公开</p>
           <div>
-            <a class="save" ng-click="investorEditVM.saveBase()" href="javascript:;">保存</a>
-            <a class="cancel" ng-click="investorEditVM.cancelBase()" href="javascript:;">取消</a>
+            <a class="save" ng-click="investorEditVM.saveBase()" href="javascript:;" data-stat-click="baseInfo.save">保存</a>
+            <a class="cancel" ng-click="investorEditVM.cancelBase()" href="javascript:;" data-stat-click="baseInfo.cancel">取消</a>
           </div>
         </div>
 

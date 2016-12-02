@@ -1,4 +1,4 @@
-<div id="workstationDetailWrapper" class="workstation-wrapper">
+<div id="workstationDetailWrapper" class="workstation-wrapper" data-stat-module="workstation">
   <div class="head-bg">
     <div class="head">
       <div class="collect-count">
@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="collect-btn">
-        <a href="#" ng-click="vm.showNewCollection()">
+        <a href="#" ng-click="vm.showNewCollection()" data-stat-click="createCollection">
           <div class="create-collect">
             <span>创建收藏夹 +</span>
           </div>
@@ -36,14 +36,14 @@
             <a ui-sref="workstationList({id: item.id})"  href="#" ng-show="!item.isEdit">{{item.name}}</a>
             <input class="editCollection" id="{{item.id}}" maxlength="8" get-focus ng-show="item.isEdit" type="text" ng-model="item.name"
             ng-keyup="vm.updateCollection($event,item.id,item.name)" ng-blur="vm.updateCollection($event,item.id,item.name)">
-          <a href="#" class="edit" ng-show="item.id !==0 && item.isDelete" ng-click="vm.editCollection(item.id)">编辑</a>
+          <a href="#" class="edit" ng-show="item.id !==0 && item.isDelete" ng-click="vm.editCollection(item.id)" data-stat-click="collection.groupList.{{item.id}}.edit">编辑</a>
         </div>
         <div class="collect-count">
           <span class="describe">该收藏夹共 {{item.count}} 个项目</span>
-          <a href="#" class="collectDelete" ng-click="collectionVM.collection({id: item.id})" ng-show="item.id !==0 && item.isDelete"><span class="icon-delete"></span></a>
+          <a href="#" class="collectDelete" ng-click="collectionVM.collection({id: item.id})" data-stat-click="collection.groupList.{{item.id}}.delete" ng-show="item.id !==0 && item.isDelete"><span class="icon-delete"></span></a>
         </div>
       </div>
-      <a href="#" ng-click="vm.showNewCollection()">
+      <a href="#" ng-click="vm.showNewCollection()" data-stat-click="collection.groupList.create">
         <div class="collect-item-new">
           <span class="new-btn">新建 +</span>
         </div>

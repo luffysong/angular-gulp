@@ -1,4 +1,4 @@
-<div class="wklist-wrapper">
+<div class="wklist-wrapper" data-stat-module="workstationList">
   <div class="navigation">
     <a ui-sref="workstationIndex()" href="#">项目列表</a>
     <span class="arrow">&gt;</span><span>{{vm.listData.groupName}}</span>
@@ -13,7 +13,7 @@
     <div class="result-content">
       <div class="compare">
         <a href="#" ng-show="!vm.isCompare">
-          <div class="open-compare" ng-click="vm.openCompare()">
+          <div class="open-compare" ng-click="vm.openCompare()" data-stat-click="openCompare">
             <span class="icon-compare">
               <span class="path1"></span><span class="path2"></span><span class="path3"></span>
             </span>
@@ -21,7 +21,7 @@
           </div>
         </a>
         <a href="#" ng-show="vm.isCompare && vm.checkedCids.length < 2" >
-          <div class="show-compare" ng-click="vm.openCompare()">
+          <div class="show-compare" ng-click="vm.openCompare()" data-stat-click="openCompare">
             <span class="icon-compare">
               <span class="path1"></span><span class="path2"></span><span class="path3"></span>
             </span>
@@ -99,7 +99,7 @@
             <span ng-if="!obj.followDate">暂无</span>
           </td>
           <td>
-            <span class="collect-btn" ng-click="vm.cancelCollection(obj)" >
+            <span class="collect-btn" ng-click="vm.cancelCollection(obj)" data-stat-click="cancelCollection">
               <span>取消收藏</span>
             </span>
           </td>

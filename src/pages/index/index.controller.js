@@ -5,7 +5,7 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('$timeout', '$window','$stateParams','$state','$scope', '$q', 'user')
+@Inject('$timeout', '$window', '$stateParams', '$state', '$scope', '$q', 'user')
 export default class homeController {
 
   constructor() {
@@ -27,14 +27,14 @@ export default class homeController {
     this.bannerList = [
       {
         title: '海量优质项目任你选',
-        url: '/images/index/bg1.png'
-      },{
+        url: '/images/index/bg1.png',
+      }, {
         title: '专属行业订阅为你「配对」',
-        url: '/images/index/bg2.png'
-      },{
+        url: '/images/index/bg2.png',
+      }, {
         title: '随时随地对接顶级投资人',
-        url: '/images/index/bg3.png'
-      }
+        url: '/images/index/bg3.png',
+      },
     ];
 
     this.getColumn();
@@ -47,7 +47,7 @@ export default class homeController {
     this.projectService.indexColumn().then(data => {
       this.columnData = data;
       this.switchStatus(0);
-    }).catch(err => {
+    }).catch(() => {
     });
   }
 
@@ -55,53 +55,55 @@ export default class homeController {
     this.projectService.indexLabel().then(data => {
       this.labelData = data;
       this.switchTag(0);
-    }).catch(err => {
+    }).catch(() => {
     });
   }
 
   getInvestor() {
     this.projectService.indexInvestor().then(data => {
       this.investorData = data;
-    }).catch(err => {
+    }).catch(() => {
     });
   }
 
   switchStatus(i) {
-    if(this.statusIndex === i)return;
+    if (this.statusIndex === i) return;
     this.statusIndex = i;
-    this.columnLoading = true;
-    this.columnData.columnList.forEach((item,index) => {
-      if(index+'' === i+'') {
+    this.columnData.columnList.forEach((item, index) => {
+      if (`${index}` === `${i}`) {
         item.active = true;
-      }else {
+      } else {
         item.active = false;
       }
     });
-    this.columnCompany = this.columnData.columnList[i].companyVoList;
     this.columnId = this.columnData.columnList[i].columnId;
-    this.$timeout(() => this.columnLoading = false,500);
+    this.columnLoading = false;
+
+    /*this.columnCompany = this.columnData.columnList[i].companyVoList;
+    this.columnId = this.columnData.columnList[i].columnId;
+    this.$timeout(() => this.columnLoading = false,500);*/
   }
 
   switchTag(i) {
-    if(this.tagIndex === i)return;
+    if (this.tagIndex === i) return;
     this.tagIndex = i;
     this.labelLoading = true;
     this.labelData.columnList.forEach((item,index) => {
-      if(index+'' === i+'') {
+      if (`${index}` === `${i}`) {
         item.active = true;
-      }else {
+      } else {
         item.active = false;
       }
     });
     this.labelCompany = this.labelData.columnList[i].companyVoList;
     this.labelId = this.labelData.columnList[i].columnId;
-    this.$timeout(() => this.labelLoading = false,500);
+    this.$timeout(() => this.labelLoading = false, 500);
   }
 
   createProject() {
-    if(!this.user.isLogin) {
+    if (!this.user.isLogin) {
       this.$scope.root.user.ensureLogin();
-    }else {
+    } else {
       this.$state.go('createProject');
     }
   }

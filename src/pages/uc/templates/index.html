@@ -1,9 +1,9 @@
-<div id="ucPageWrapper">
+<div id="ucPageWrapper" data-stat-module="uc">
   <form name="vm.emailForm">
   <div class="uc-page-wrapper">
     <div class="inset-wrapper">
       <div class="base-info">
-        <a class="edit" href="#" ng-click="vm.loginOut()">退出登录</a>
+        <a class="edit" href="#" ng-click="vm.loginOut()" data-stat-click="loginOut">退出登录</a>
         <div class="avatar" ng-style="{backgroundImage:vm.getBgImage(vm.user.avatar)}">
 
         </div>
@@ -40,7 +40,7 @@
 
             </div
             ><div class="col-action">
-              <a href="" ng-click="vm.setBpEmail()">确认</a>
+              <a href="" ng-click="vm.setBpEmail()" data-stat-click="setBpEmail.ensure">确认</a>
             </div>
           </div>
           <div class="form-group" ng-if="!vm.editEmail">
@@ -49,7 +49,7 @@
               {{vm.user.commonEmail}}
             </span>
             <div class="col-action edit">
-              <a href="" ng-click="vm.editBpEmail()">修改</a>
+              <a href="" ng-click="vm.editBpEmail()" data-stat-click="setBpEmail.edit">修改</a>
             </div>
           </div>
         </div>
@@ -73,10 +73,10 @@
               </label>
               <div class="col-checkbox">
                 <label>
-                  <input type="checkbox" ng-model="vm.user.autoReplyByWeiXin" ng-click="vm.setContact('weixin')"> 微信
+                  <input type="checkbox" ng-model="vm.user.autoReplyByWeiXin" ng-click="vm.setContact('weixin')" data-stat-click="setContact.weixin"> 微信
                 </label>
                 <label>
-                  <input type="checkbox" ng-model="vm.user.autoReplyByPhone" ng-click="vm.setContact('phone')"> 电话
+                  <input type="checkbox" ng-model="vm.user.autoReplyByPhone" ng-click="vm.setContact('phone')" data-stat-click="setContact.phone"> 电话
                 </label>
               </div>
             </div>

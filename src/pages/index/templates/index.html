@@ -63,34 +63,36 @@
           {{item.columnName}}
         </li>
       </ul>
-      <div class="result-wrapper">
+      <div class="outside-wrapper">
         <div kr-loading loading="vm.columnLoading"></div>
-        <div ng-hide="vm.columnLoading">
-          <div class="result-list" ng-repeat="item in vm.columnCompany | limitTo:3">
-            <img ng-src="{{item.logo}}" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}" alt="">
-            <div class="item-info">
-              <div class="company-info">
-                <span class="company-name" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}" title="{{item.name}}">{{item.name}}</span>
-                <span class="company-industry">{{item.industryStr}}</span>
+        <div class="result-wrapper" ng-hide="vm.columnLoading">
+          <div class="wrapper-container" ng-repeat="obj in vm.columnData.columnList" ng-class="{enter: $index == vm.statusIndex,leave: $index != vm.statusIndex}">
+            <div class="result-list" ng-repeat="item in obj.companyVoList | limitTo:3">
+              <img ng-src="{{item.logo}}" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}" alt="">
+              <div class="item-info">
+                <div class="company-info">
+                  <span class="company-name" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}" title="{{item.name}}">{{item.name}}</span>
+                  <span class="company-industry">{{item.industryStr}}</span>
+                </div>
+                <div class="company-brief">
+                  {{item.brief}}
+                </div>
+                <div class="company-intro">
+                  <span class="company-phase">
+                    {{item.phase | companyFinancePhase}}
+                  </span>
+                  <span class="company-sp">|</span>
+                  <span class="company-address">
+                    <i class="icon-location" ng-if="item.cityStr"></i>
+                    {{item.cityStr ? item.cityStr : '暂无'}}
+                  </span>
+                </div>
               </div>
-              <div class="company-brief">
-                {{item.brief}}
-              </div>
-              <div class="company-intro">
-                <span class="company-phase">
-                  {{item.phase | companyFinancePhase}}
-                </span>
-                <span class="company-sp">|</span>
-                <span class="company-address">
-                  <i class="icon-location" ng-if="item.cityStr"></i>
-                  {{item.cityStr ? item.cityStr : '暂无'}}
-                </span>
-              </div>
+              <a class="handle-btn" href="" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}">联系创始人</a>
             </div>
-            <a class="handle-btn" href="" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}">联系创始人</a>
           </div>
-          <div class="see-detail" ui-sref="list.result({columnId:vm.columnId})" data-stat-click="project.seeMore">查看更多项目</div>
         </div>
+        <div class="see-detail" ui-sref="list.result({columnId:vm.columnId})" data-stat-click="project.seeMore">查看更多项目</div>
       </div>
       <div class="bottom-line"></div>
     </div>

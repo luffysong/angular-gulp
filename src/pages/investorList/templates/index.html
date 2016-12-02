@@ -1,4 +1,4 @@
-<div ng-if="!investorListVm.open.sideBar">
+<div ng-if="!investorListVm.open.sideBar" data-stat-module="investorList">
   <div class="investorList-filter-container">
     <div class="filter-list">
       <div class="filter-col">
@@ -10,7 +10,7 @@
             <div class="filter-outside-container" ng-class="{'height-auto':investorListVm.open.label}">
               <ul ng-if="investorListVm.data.label" filter-cal ng-class="{'height-auto':investorListVm.open.label}">
                 <li class="col-item" ng-repeat="item in investorListVm.data.label" ng-class="{'active': item.active}"
-                  ng-click="investorListVm.selectIndustry($index,'label')">
+                  ng-click="investorListVm.selectIndustry($index,'label')" data-stat-click="label.{{item.value}}">
                   {{item.name}}
                   <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
                   <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.name === '不限'"></span>
@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="col-handle">
-          <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="investorListVm.spreadMore('label')" ng-class="{'open': investorListVm.open.label}"></a>
+          <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="investorListVm.spreadMore('label')" ng-class="{'open': investorListVm.open.label}" data-stat-click="label.zhankaianniu"></a>
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
             <div class="filter-outside-container" ng-class="{'height-auto':investorListVm.open.phase}">
               <ul ng-if="investorListVm.data.phase" filter-cal ng-class="{'height-auto':investorListVm.open.phase}">
                 <li class="col-item" ng-repeat="item in investorListVm.data.phase" ng-class="{'active': item.active}"
-                  ng-click="investorListVm.selectIndustry($index,'phase')">
+                  ng-click="investorListVm.selectIndustry($index,'phase')" data-stat-click="phase.{{item.value}}">
                   {{item.desc}}
                   <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
                   <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.desc === '不限'"></span>
@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="col-handle">
-          <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="investorListVm.spreadMore('phase')" ng-class="{'open': investorListVm.open.phase}"></a>
+          <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="investorListVm.spreadMore('phase')" ng-class="{'open': investorListVm.open.phase}" data-stat-click="phase.zhankaianniu"></a>
         </div>
       </div>
     </div>
@@ -61,7 +61,7 @@
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':investorListVm.open.city}">
               <ul ng-if="investorListVm.data.city" filter-cal ng-if="investorListVm.data.city">
-                <li class="col-item" ng-repeat="item in investorListVm.data.city" ng-class="{'active': item.active}" ng-click="investorListVm.selectIndustry($index,'city')">
+                <li class="col-item" ng-repeat="item in investorListVm.data.city" ng-class="{'active': item.active}" ng-click="investorListVm.selectIndustry($index,'city')" data-stat-click="city.{{item.value}}">
                   {{item.name}}
                   <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
                   <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.name === '不限'"></span>
@@ -73,7 +73,7 @@
           </div>
         </div>
         <div class="col-handle">
-          <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="investorListVm.spreadMore('city')" ng-class="{'open': investorListVm.open.city}"></a>
+          <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="investorListVm.spreadMore('city')" ng-class="{'open': investorListVm.open.city}" data-stat-click="city.zhankaianniu"></a>
         </div>
       </div>
     </div>
