@@ -80,7 +80,7 @@ export default class investorValidateController {
   onSelect(selectedItem) {
     this.baseInfo.orgId = selectedItem.obj.id;
     this.baseInfo.orgName = selectedItem.obj.name;
-    this.baseInfo.entityType = selectedItem.obj.entityType;
+    this.baseInfo.orgType = selectedItem.obj.entityType;
   }
 
   prev() {
