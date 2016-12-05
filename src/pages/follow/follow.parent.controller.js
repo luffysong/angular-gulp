@@ -20,9 +20,9 @@ export default class followParentController {
     this.params = {
 
     };
-    /*筛选器展开*/
+    /* 筛选器展开 */
     this.open = {
-      filter: false
+      filter: false,
     };
 
     this.result = [];
@@ -30,17 +30,17 @@ export default class followParentController {
     this.itemList = [
       {
         name: 'industry',
-        key: 'value'
-      },{
+        key: 'value',
+      }, {
         name: 'phase',
-        key: 'value'
-      },{
+        key: 'value',
+      }, {
         name: 'city',
-        key: 'id'
-      },{
+        key: 'id',
+      }, {
         name: 'isFundingLimit',
-        key: 'id'
-      }
+        key: 'id',
+      },
     ];
 
     this.data = {
@@ -66,7 +66,7 @@ export default class followParentController {
         });
 
       } else {
-        const params = Object.assign({ columnId: this.params.columnId || 2}, this.paramsFilter(this.params));
+        const params = Object.assign({ columnId: this.params.columnId || 2 }, this.paramsFilter(this.params));
         this.projectService.getColumn(params).then(data => {
           this.dataHandle(data);
         }).catch(data => {
