@@ -39,7 +39,8 @@ export default class investorInfoController {
             isVisible.push(item);
           }
         });
-        this.investment = isVisible;
+        this.showInvestment = isVisible;
+        this.investment = isVisible.slice(0, 4);
       }
     });
   }
@@ -59,7 +60,11 @@ export default class investorInfoController {
 
   showMoreCase() {
     this.moreCase = true;
-    this.investment = this.allInvestments;
+    if(this.isEditMode){
+      this.investment = this.allInvestments;
+    } else {
+      this.investment = this.showInvestment;
+    }
   }
 
   changeVisible(cname,state) {
