@@ -14,7 +14,7 @@
             <span ng-repeat="address in investorInfoVm.basic.city">{{address}}</span>
           </h1>
           <p class="organization-name">
-            <a ui-sref="org({id: investorInfoVm.org.id})" >
+            <a ui-sref="org({id: investorInfoVm.basic.orgId})" >
               {{investorInfoVm.basic.orgName}} <span ng-show="investorInfoVm.basic.orgName"> >> </span></a>
           </p>
           <p>
