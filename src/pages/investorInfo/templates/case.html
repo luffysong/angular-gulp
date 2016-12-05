@@ -84,7 +84,11 @@
           </div>
         </div>
       </div>
-      <div class="show-more" ng-hide="investorInfoVm.allInvestments.length <= 4  || investorInfoVm.moreCase"
+      <div class="show-more" ng-if="!investorInfoVm.isEditMode" ng-hide="investorInfoVm.investment.length <= 4 || investorInfoVm.moreCase"
+      ng-click="investorInfoVm.showMoreCase()">
+        <p>查看更多</p>
+      </div>
+      <div class="show-more" ng-if="investorInfoVm.isEditMode" ng-hide="investorInfoVm.allInvestments.length <= 4 || investorInfoVm.moreCase"
       ng-click="investorInfoVm.showMoreCase()">
         <p>查看更多</p>
       </div>

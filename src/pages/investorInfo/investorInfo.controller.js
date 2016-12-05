@@ -30,15 +30,25 @@ export default class investorInfoController {
     .then(data => {
       this.industry = data.industry;
       this.allInvestments = data.voList;
-      this.investment = data.voList.slice(0, 4);
+      if(this.isEditMode){
+        this.investment = this.allInvestments.slice(0, 4);
+      } else {
+        const isVisible = [];
+        data.voList.forEach((item) => {
+          if (item.visible){
+            isVisible.push(item);
+          }
+        });
+        this.investment = isVisible;
+      }
     });
   }
 
   moreShow(cname,state) {
     this.moreBtn = state;
     this.allInvestments.forEach((item) => {
-      if(item.cname === cname){
-        if (companyName === 'close') {
+      if(item.companyName === cname){
+        if (state === 'close') {
           item.moreShow = true;
         } else if (state === 'open') {
           item.moreShow = false;
