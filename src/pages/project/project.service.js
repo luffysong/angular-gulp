@@ -134,9 +134,8 @@ export default class ProjectService extends API {
     const id = {
       id: cid,
     };
-    this.send = new API('/company/:id/funds/bp?action=send2email', [''])
-    .save(id, id);
-    return this.send;
+    this.sendBp = new API('/company/:id/funds/bp?action=send2email', ['']).save(id, id);
+    return this.sendBp;
   }
   // // 申请查看bp
   applyBP(cid) {

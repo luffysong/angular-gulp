@@ -26,6 +26,14 @@ class ProjectNavController {
   setExpand(e) {
     e.preventDefault();
     e.stopPropagation();
+    /* 其他栏目点击箭头默认跳转全部项目优选,并展开 */
+    const name = this.$rootScope.root.toState.name;
+    console.warn(name);
+    if (name !== 'list.result' && name !== 'follow.result') {
+      this.$state.go('list.result', {
+        columnId: 1,
+      });
+    }
     this.expand = !this.expand;
   }
 
@@ -55,7 +63,7 @@ export default {
     ng-class="{expand: projectNavVm.expand}"
     ui-sref="list.result({columnId: projectNavVm.list[0].id})">
     <span class="icon-Company kr-icon"></span><span class="kr-tags">创业公司</span
-    ><span ng-click="projectNavVm.setExpand($event)" >
+    ><span ng-click="projectNavVm.setExpand($event)">
       <span class="icon-open-icon kr-icon"></span>
     </span>
   </a>

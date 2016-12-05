@@ -44,39 +44,37 @@ export default class followParentController {
     ];
 
     this.data = {
-      city:[],
+      city: [],
       isFundingLimit: [
         {
-          "id": 'unlimited',
-          "name": "不限"
+          id: 'unlimited',
+          name: '不限'
         },{
-          "id": 1,
-          "name": "融资中"
+          id: 1,
+          name: '融资中'
         }
       ]
     };
 
-    this.$scope.$on('get-change',(e,d) => {
+    this.$scope.$on('get-change', (e, d) => {
       angular.extend(this.params,d);
 
-      if(this.params.labelId) {
-        var params = Object.assign({},this.paramsFilter(this.params));
+      if (this.params.labelId) {
+        const params = Object.assign({}, this.paramsFilter(this.params));
         this.projectService.getFollowCompany(params).then(data => {
           this.dataHandle(data);
         });
 
-      }else {
-        var params = Object.assign({columnId:this.params.columnId || 2},this.paramsFilter(this.params));
+      } else {
+        const params = Object.assign({ columnId: this.params.columnId || 2}, this.paramsFilter(this.params));
         this.projectService.getColumn(params).then(data => {
           this.dataHandle(data);
         }).catch(data => {
-          /*没有关注的标签*/
-          if(data.code+'' === '200') {
+          if (`${data.code}` === '200') {
             this.labelEmpty = true;
           }
         });
       }
-      /*this.searchCompany(params);*/
     });
 
     this.$scope.$on('open-sideBar',(e,d) => {
@@ -92,8 +90,6 @@ export default class followParentController {
 
     this.getPhase();
 
-    /*this.getAll();*/
-
     this.getLabel();
 
     this.getAllLabel();
@@ -106,9 +102,9 @@ export default class followParentController {
 
       this.getLabel = function () {
         vm.projectService.getFollowList().then(data => {
-          if(!data.length) {
+          if (!data.length) {
             vm.labelEmpty = true;
-          }else {
+          } else {
             vm.labelEmpty = false;
           }
           this.followLabelList = data;
@@ -117,12 +113,16 @@ export default class followParentController {
       };
       this.cancel = function () {
         vm.labelDialog.close();
-        vm.getLabel();
+        vm.$state.go('follow.result', {
+          columnId: 2,
+        }, {
+          reload: true,
+        });
       };
       this.followLabel = function (id) {
         vm.projectService.followLabel({
           id: id
-        }).then(data => {
+        }).then(() => {
           this.getLabel();
         }).catch(err => {
           krData.Alert.alert(`出错啦：${err.msg || '未知错误'}`);
@@ -130,25 +130,25 @@ export default class followParentController {
       };
       this.goDetail = function (id) {
         this.cancel();
-        vm.$state.go('label.result',{
-          labelId:id
+        vm.$state.go('label.result', {
+          labelId: id
         });
       };
-      this.unFollowLabel = function (id,e) {
+      this.unFollowLabel = function (id, e) {
         e.stopPropagation();
         vm.projectService.unFollowLabel({
           id: id
-        }).then(data => {
+        }).then(() => {
           this.getLabel();
         });
       };
-      /*过滤已关注标签*/
-      this.updateLabel = function() {
+      /* 过滤已关注标签 */
+      this.updateLabel = function () {
         this.allLabel = vm.allLabel.concat();
-        angular.forEach(this.followLabelList,item => {
-          angular.forEach(this.allLabel,(obj,index) => {
-            if(obj.id+'' === item.id+'') {
-              this.allLabel.splice(index,1);
+        angular.forEach(this.followLabelList, item => {
+          angular.forEach(this.allLabel, (obj, index) => {
+            if (`${obj.id}` === `${item.id}`) {
+              this.allLabel.splice(index, 1);
             }
           });
         });
@@ -184,11 +184,11 @@ export default class followParentController {
 
   getLabel() {
     this.projectService.getFollowList().then(data => {
-      if(!data || !data.length)return;
+      if (!data || !data.length) return;
       this.manageLabel = data.concat();
       data.unshift({
-        active:true,
-        name: '综合'
+        active: true,
+        name: '综合',
       });
       this.followLabel = data;
       this.handleActive();
@@ -201,7 +201,7 @@ export default class followParentController {
       this.result.push(item);
     });
     data.pageData.data = this.result;
-    this.$scope.$broadcast('get-list',data.pageData);
+    this.$scope.$broadcast('get-list', data.pageData);
     this.data.label = data.label;
     this.data.label[0].value = 'unlimited';
     this.handleActive();
@@ -209,41 +209,41 @@ export default class followParentController {
 
   }
 
-  /*创业项目、投资人、投资机构切换*/
+  /* 创业项目、投资人、投资机构切换 */
   switchType(index) {
-    if(this.followLabel[index].active)return;
-    angular.forEach(this.followLabel,(item,i) => {
-      if(index == i){
+    if (this.followLabel[index].active) return;
+    angular.forEach(this.followLabel, (item, i) => {
+      if (`${index}` === `${i}`) {
         item.active = true;
-        angular.forEach(this.params,(val,key) => {
-          if(key !== 'columnId') {
+        angular.forEach(this.params, (val, key) => {
+          if (key !== 'columnId') {
             this.params[key] = null;
           }
         });
         this.params.labelId = item.id;
         this.go();
-      }else {
+      } else {
         item.active = false;
       }
     });
   }
 
 
-  /*过滤不限条件*/
+  /* 过滤不限条件 */
   paramsFilter(target) {
-    var o = Object.assign({},target);
+    const o = Object.assign({}, target);
     Object.keys(o).forEach((item) => {
-      if(o[item] === 'unlimited'){
+      if (o[item] === 'unlimited') {
         delete o[item];
       }
     });
     return o;
   }
 
-  /*通过接口返回数据更新筛选器数字*/
+  /* 通过接口返回数据更新筛选器数字 */
   updateData(d) {
     Object.keys(this.data).forEach(item => {
-      if(item !== 'label') {
+      if (item !== 'label') {
         angular.forEach(this.data[item],obj => {
           obj.cnt = 0;
         });
