@@ -48,6 +48,8 @@ export default class WorkstationIndexController {
             id: data.id,
           }
         this.$scope.collectionVM.dataList.groupList.unshift(item);
+      }).catch(err => {
+        krData.Alert.alert(err.msg);
       });
     }
   }
@@ -95,7 +97,7 @@ export default class WorkstationIndexController {
       if(err.code === 403) {
         const okUrl = window.location.href;
         console.log(okUrl);
-        this.$state.go('login',{okUrl: okUrl, test: 111});
+        this.$state.go('login',{okUrl: okUrl});
       }
     });
   }
