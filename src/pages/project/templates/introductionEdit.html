@@ -65,8 +65,8 @@
     <div class="form-bottom">
       <p class="tip">注意：所有更改内容均会提交审核，通过后“产品服务”&nbsp&nbsp“用户市场”对登录用户展示，其余对投资人展示</p>
       <div>
-        <a class="save" href="javascript:void(0)" ng-click="vm.companyIntroduceVM.save()">保存</a>
-        <a class="cancel" href="" ng-click="vm.companyIntroduceVM.cancel()">取消</a>
+        <a class="save" href="javascript:void(0)" ng-click="vm.companyIntroduceVM.save()" data-stat-click="project.{{vm.id}}.projectIntro.save">保存</a>
+        <a class="cancel" href="" ng-click="vm.companyIntroduceVM.cancel()" data-stat-click="project.{{vm.id}}.projectIntro.cancel">取消</a>
       </div>
     </div>
   </form>

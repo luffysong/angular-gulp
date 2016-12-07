@@ -65,8 +65,8 @@
     <p class="splitter"> </p>
     <p class="tip-text">注意：提交融资事件会提交审核，审核期间不可对此事件做任何的更改，通过后对所有用户公开</p>
     <div>
-      <a class="save" ng-click="vm.financeVM.update()" href="javascript:void(0)">保存</a>
-      <a class="cancel" ng-click="vm.financeVM.cancel()" href="javascript:void(0)">取消</a>
+      <a class="save" ng-click="vm.financeVM.update()" href="javascript:void(0)" data-stat-click="project.{{vm.id}}.financeHistory.save">保存</a>
+      <a class="cancel" ng-click="vm.financeVM.cancel()" href="javascript:void(0)" data-stat-click="project.{{vm.id}}.financeHistory.cancel">取消</a>
     </div>
   </div>
 </div>

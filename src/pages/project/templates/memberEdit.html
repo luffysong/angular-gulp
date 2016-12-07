@@ -32,9 +32,9 @@
     <p class="splitter"> </p>
     <p class="tip-text">注意：所有更改内容均会提交审核，审核期间不可对此模块做任何的更改，通过后对所有用户公开</p>
     <div>
-      <a class="save" ng-click="vm.memberVM.save()" href="#" ng-hide="!vm.memberVM.story &&  !vm.memberVM.teamTags.length">保存</a>
-      <a class="save disable" href="#" ng-hide="vm.memberVM.story ||  vm.memberVM.teamTags.length">保存</a>
-      <a class="cancel" ng-click="vm.memberVM.cancel()" href="javascript:void(0)">取消</a>
+      <a class="save" ng-click="vm.memberVM.save()" href="#" ng-hide="!vm.memberVM.story &&  !vm.memberVM.teamTags.length" data-stat-click="project.{{vm.id}}.member.save">保存</a>
+      <a class="save disable" href="#" ng-hide="vm.memberVM.story ||  vm.memberVM.teamTags.length" data-stat-click="project.{{vm.id}}.member.save">保存</a>
+      <a class="cancel" ng-click="vm.memberVM.cancel()" href="javascript:void(0)" data-stat-click="project.{{vm.id}}.member.cancel">取消</a>
     </div>
   </div>
 </div>

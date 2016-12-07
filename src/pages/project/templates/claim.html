@@ -138,8 +138,8 @@
     </form>
   </div>
   <div class="claim-bottom">
-    <input type="button" value="保存" class="save" ng-click="vm.save(vm.claim.form)">
-    <input type="button" value="取消" class="cancle" ng-click="vm.claimCancle()">
+    <input type="button" value="保存" class="save" ng-click="vm.save(vm.claim.form)" data-stat-click="project.{{vm.claimform.id}}.claim.save">
+    <input type="button" value="取消" class="cancle" ng-click="vm.claimCancle()"  data-stat-click="project.{{vm.claimform.id}}.claim.cancel">
   </div>
   <span class="icon-dialogClose" ng-click="vm.claimCancle()"></span>
 

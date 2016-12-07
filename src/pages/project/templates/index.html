@@ -12,7 +12,7 @@
           <a class="btn-edit"
             ng-if="vm.isEditMode"
             ng-click="vm.baseInfoVM.enterEditMode()"
-            href="javascript:void(0)">编辑</a>
+            href="javascript:void(0)" data-stat-click="project.{{vm.id}}.baseInfo.edit">编辑</a>
         </h1>
         <h3>{{::vm.baseInfoVM.brief}}</h3>
         <p>
@@ -142,8 +142,8 @@
         <p class="tip-text">注意：行业不开放编辑；所有更改内容均会提交审核，审核期间不可对此模块做任何的更改，
           通过后对所有用户公开</p>
         <div>
-          <a class="save" ng-click="vm.baseInfoVM.update()" href="javascript:;">保存</a>
-          <a class="cancel" ng-click="vm.baseInfoVM.cancel()" href="javascript:;">取消</a>
+          <a class="save" ng-click="vm.baseInfoVM.update()" href="javascript:;" data-stat-click="project.{{vm.id}}.baseInfo.edit.save">保存</a>
+          <a class="cancel" ng-click="vm.baseInfoVM.cancel()" href="javascript:;" data-stat-click="project.{{vm.id}}.baseInfo.edit.cancel">取消</a>
         </div>
       </div>
 
@@ -205,9 +205,9 @@
         <li>
         <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user == 'commen'" login-btn data-stat-click="project.{{vm.id}}.claim">认领</a>
           <a ui-sref="financeRoute({id: vm.id, name: vm.name})"
-            ng-show="vm.isEditMode && vm.financeState === '1'" >申请融资</a>
+            ng-show="vm.isEditMode && vm.financeState === '1'" data-stat-click="project.{{vm.id}}.applyFinance">申请融资</a>
           <a ui-sref="financeRoute({id: vm.id, name: vm.name})"
-            ng-show="vm.isEditMode && vm.financeState === '2'" >融资设置</a>
+            ng-show="vm.isEditMode && vm.financeState === '2'" data-stat-click="project.{{vm.id}}.financeSetting">融资设置</a>
 
 
           <a href="#" ui-sref="project.edit({id: vm.id})"

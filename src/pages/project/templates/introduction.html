@@ -1,6 +1,6 @@
 <div class="project-intro-wrapper">
   <h4>项目介绍<a href="javascript:void(0)" ng-click="vm.companyIntroduceVM.enterEditMode()"
-      ng-if="!vm.companyIntroduceVM.isEdit && vm.isEditMode">编辑</a></h4>
+      ng-if="!vm.companyIntroduceVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.projectIntro.edit">编辑</a></h4>
   <section id="companyIntroduceEdit" ng-include="'/pages/project/templates/introductionEdit.html'"
     ng-if="vm.companyIntroduceVM.isEdit">
     项目介绍编辑

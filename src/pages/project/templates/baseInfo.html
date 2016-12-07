@@ -1,6 +1,6 @@
 <div class="base-info">
   <h4>概述<a href="javascript:void(0)" ng-click="vm.introductionVM.enterEditMode()"
-      ng-if="!vm.introductionVM.isEdit && vm.isEditMode">编辑</a></h4>
+      ng-if="!vm.introductionVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.baseIntro.edit">编辑</a></h4>
   <section id="baseInfoEdit" ng-include="'/pages/project/templates/baseInfoEdit.html'"
     ng-if="vm.introductionVM.isEdit">
     基本介绍编辑

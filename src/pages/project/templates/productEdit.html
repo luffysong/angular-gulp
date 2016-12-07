@@ -57,8 +57,8 @@
       <p class="splitter"> </p>
       <p class="tip-text">注意：所有更改内容均会提交审核，审核期间不可对此事件做任何的更改，通过后对所有用户公开</p>
       <div class="btn">
-        <a class="save" href="javascript:void(0)" ng-click="vm.productVM.save()">保存</a>
-        <a class="cancel" href="javascript:void(0)" ng-click="vm.productVM.cancel()">取消</a>
+        <a class="save" href="javascript:void(0)" ng-click="vm.productVM.save()" data-stat-click="project.{{vm.id}}.product.save">保存</a>
+        <a class="cancel" href="javascript:void(0)" ng-click="vm.productVM.cancel()" data-stat-click="project.{{vm.id}}.product.cancel">取消</a>
       </div>
     </div>
   </form>
