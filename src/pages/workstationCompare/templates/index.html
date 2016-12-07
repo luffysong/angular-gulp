@@ -68,7 +68,7 @@
         <tr class="inline-block-text team-keywords">
           <td>团队关键字</td>
           <td ng-repeat="item in vm.projects">
-            <span ng-repeat="key in item.teamKeyWords"><span>{{key}}</span></span>
+            <span ng-repeat="key in item.teamKeyWords"><span>{{key | nameFormat}}</span></span>
             <span ng-if="!item.teamKeyWords.length">暂无</span>
           </td>
         </tr>
