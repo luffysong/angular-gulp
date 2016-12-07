@@ -1,49 +1,55 @@
-<div class="finance-history">
-  <h4>融资经历<a href="javascript:void(0)" ng-click="vm.financeVM.enterEditMode()"
-      ng-if="!vm.financeVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.financeHistory.add">添加</a></h4>
-  <section id="financeHistoryEdit" ng-include="'/pages/project/templates/financeHistoryEdit.html'"
-    ng-if="vm.financeVM.isEdit">
-    融资经历编辑
-  </section>
-  <div ng-show="vm.financeVM.financeList.length" ng-if="vm.userId"
-  class='finance-content'>
-    <ul class="history-list">
-      <li class="history-info" ng-repeat="data in vm.financeVM.list">
-        <span class="info-year">{{data.financeDate | date: 'yyyy.MM' }}</span>
-        <span class="info-lun">
-          <a href="" class="darkColor" ng-if="data.phase">{{data.phase | financePhase}}</a>
-        </span>
-        <span class="info-company" ng-if="data.participantVos" >
-          <a href="" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
-        </span>
-        <span ng-if="vm.financeVM.isUndefined(data.participantVos)" class="info-company">
-          暂无
-        </span>
-        <span ng-if="data.financeAmount!==''" class="info-level">{{data.financeAmount}} {{data.financeAmountUnit | currencyUnit}}
-          <!-- <span ng-show="data.financeAmountUnit == 'USD'">美元</span>
-          <span ng-show="data.financeAmountUnit == 'CNY'">人民币</span> -->
-        </span>
-        <span ng-if="data.financeAmount == ''" class="info-level">未披露</span>
-        <span class="info-news" ng-show="data.newsUrl">
-          <a ng-href="{{data.newsUrl}}" target="_blank">相关新闻</a>
-        </span>
-        <span class="info-news news-none" ng-show="!data.newsUrl">
-          <a>暂无新闻</a>
-        </span>
-      </li>
-    </ul>
-    <div class="more" ng-click="vm.financeVM.more()" ng-show="vm.financeVM.showMore()">显示更多</div>
+<div class="project-finance-history-wrapper">
+  <div class="head">
+    <span class="icon-finance-head"></span>
+    <span class="title">融资经历</span>
+  </div>
+  <div class="finance-history">
+    <a href="javascript:void(0)" ng-click="vm.financeVM.enterEditMode()"
+        ng-if="!vm.financeVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.financeHistory.add">添加</a>
+    <section id="financeHistoryEdit" ng-include="'/pages/project/templates/financeHistoryEdit.html'"
+      ng-if="vm.financeVM.isEdit">
+      融资经历编辑
+    </section>
+    <div ng-show="vm.financeVM.financeList.length" ng-if="vm.userId"
+    class='finance-content'>
+      <ul class="history-list">
+        <li class="history-info" ng-repeat="data in vm.financeVM.list">
+          <span class="info-year">{{data.financeDate | date: 'yyyy.MM' }}</span>
+          <span class="info-lun">
+            <a href="" class="darkColor" ng-if="data.phase">{{data.phase | financePhase}}</a>
+          </span>
+          <span class="info-company" ng-if="data.participantVos" >
+            <a href="" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
+          </span>
+          <span ng-if="vm.financeVM.isUndefined(data.participantVos)" class="info-company">
+            暂无
+          </span>
+          <span ng-if="data.financeAmount!==''" class="info-level">{{data.financeAmount}} {{data.financeAmountUnit | currencyUnit}}
+            <!-- <span ng-show="data.financeAmountUnit == 'USD'">美元</span>
+            <span ng-show="data.financeAmountUnit == 'CNY'">人民币</span> -->
+          </span>
+          <span ng-if="data.financeAmount == ''" class="info-level">未披露</span>
+          <span class="info-news" ng-show="data.newsUrl">
+            <a ng-href="{{data.newsUrl}}" target="_blank">相关新闻</a>
+          </span>
+          <span class="info-news news-none" ng-show="!data.newsUrl">
+            <a>暂无新闻</a>
+          </span>
+        </li>
+      </ul>
+      <div class="more" ng-click="vm.financeVM.more()" ng-show="vm.financeVM.showMore()">显示更多</div>
 
-  </div>
-  <div ng-show="!vm.financeVM.financeList.length" class="none" ng-if='vm.userId && !vm.financeVM.isEdit'>
-    <span>
-        <span class="icon-Company icon"></span>
-        <span>未收录相关信息</span>
-      </span>
-  </div>
-  <!-- <div ng-include="'/pages/project/templates/loginOut.html'" ng-if='!vm.userId'></div> -->
-  <div ng-if="!vm.userId" class="login-out">
-    <a  href="javascript:;" login-btn><div class="login">立即登录</div></a>
-    <div class="intro1">查看融资经历</div>
+    </div>
+    <div ng-show="!vm.financeVM.financeList.length" class="none" ng-if='vm.userId && !vm.financeVM.isEdit'>
+      <span>
+          <span class="icon-Company icon"></span>
+          <span>未收录相关信息</span>
+        </span>
+    </div>
+    <!-- <div ng-include="'/pages/project/templates/loginOut.html'" ng-if='!vm.userId'></div> -->
+    <div ng-if="!vm.userId" class="login-out">
+      <a  href="javascript:;" login-btn><div class="login">立即登录</div></a>
+      <div class="intro1">查看融资经历</div>
+    </div>
   </div>
 </div>

@@ -30,10 +30,7 @@
           <a class="kr-icon icon-Wechat link-none" ng-class="{'icon-Wechat-active':vm.baseInfoVM.weixin}"
             tooltips tooltip-template="{{vm.baseInfoVM.weixin?vm.baseInfoVM.weixin:'未填写'}}" tooltip-class="tooltip">
           </a>
-          <a class="website ellipsis" target="_blank" ng-href="{{::vm.baseInfoVM.website}}">
-            <span class="icon-websiteDefault">
-              <span class="path1"></span><span class="path2"></span><span class="path3"></span>
-            </span>
+          <a class="website ellipsis icon-website" target="_blank" ng-class="{'icon-website-active':vm.baseInfoVM.website}" ng-href="{{::vm.baseInfoVM.website}}">
           </a>
           <span ng-if="root.user.isInvestor()" class="hot-container">
             <span class="kr-icon icon-Hot" ng-show="vm.baseInfoVM.advantage"></span>
@@ -168,7 +165,7 @@
   <section ng-class="{small: searchVm.small, tinly: searchVm.tiny}" sticky offset="49" class="nav-wrapper">
     <nav>
       <ul class='navigate'>
-        <li >
+        <li ng-show="vm.baseInfoVM.investAdvantage">
           <a kr-scroll-click
             href="#light" du-smooth-scroll="" du-scrollspy=""  offset="{{vm.light}}" >
             投资亮点
@@ -231,6 +228,7 @@
   </section>
 </header>
   <section id="light" class="project-module light"
+  ng-if="vm.baseInfoVM.investAdvantage"
   ng-include="'/pages/project/templates/light.html'">
   </section>
 
