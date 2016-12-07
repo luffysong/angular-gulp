@@ -1,90 +1,226 @@
 @import "../../../common/styles/function";
-.base-info{
-  .tags{
-    padding-bottom: 16px;
-    border-bottom: 1px #E7E7E7 dashed;
-    margin-bottom: 16px;
-    &>li{
-      display: inline-block;
-      padding: 1px 6px;
-    }
-    li+li{
-      margin-right: 8px;
-    }
-    .type{
-      .font(12,20);
-      color: #FF5B00;
-      letter-spacing: 0px;
-      height: 20px;
-      background: rgba(245, 166, 35, 0.2);
-    }
-    .tag,.operation-tag{
-      .font(12,20);
-      height: 20px;
-      background: rgba(107, 162, 252, 0.2);
-      padding: 1px 6px;
-    }
-    .operation-tag{
-      background: rgba(245,166,35, 0.2);
-      a {
-        color: #FF5B00;
-      }
-    }
-    .tag-icon{
+.project-base-info-wrapper {
+  .head {
+    border-bottom: 1px solid #F2F4F5;
+    height: 50px;
+    .icon-introduction-head {
       font-size: 20px;
-      vertical-align: middle;
+      color: #222C38;
+      margin-left: 16px;
+      position: relative;
+      top: 2px;
+    }
+    .title {
+      color: #222C38;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: normal;
+      position: relative;
+      display: inline;
+      -ms-flex-align: center;
+      align-items: center;
+      margin: 0 0 24px 6px;
     }
   }
-  .info{
-    font-size: 14px;
-    color: #5A626D;
-    letter-spacing: 0px;
-    margin-bottom: 16px;
-    overflow: hidden;
-    &>span{
-      word-break: break-all;
-      line-height: 21px;
-      max-height: 100px;
-      display: inline-block;
-      a.toggle{
-        visibility: hidden;
-        span{
-          font-size: 12px;
+  .base-info{
+    padding: 30px 42px 0;
+    .tags{
+      padding-bottom: 16px;
+      border-bottom: 1px #E7E7E7 dashed;
+      margin-bottom: 16px;
+      &>li{
+        display: inline-block;
+        padding: 1px 6px;
+      }
+      li+li{
+        margin-right: 8px;
+      }
+      .type{
+        .font(12,20);
+        color: #FF5B00;
+        letter-spacing: 0px;
+        height: 20px;
+        background: rgba(245, 166, 35, 0.2);
+      }
+      .tag,.operation-tag{
+        .font(12,20);
+        height: 20px;
+        background: rgba(107, 162, 252, 0.2);
+        padding: 1px 6px;
+      }
+      .operation-tag{
+        background: rgba(245,166,35, 0.2);
+        a {
+          color: #FF5B00;
+        }
+      }
+      .tag-icon{
+        font-size: 20px;
+        vertical-align: middle;
+      }
+    }
+    .info{
+      font-size: 14px;
+      color: #5A626D;
+      letter-spacing: 0px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      &>span{
+        word-break: break-all;
+        line-height: 21px;
+        max-height: 100px;
+        display: inline-block;
+        a.toggle{
+          visibility: hidden;
+          span{
+            font-size: 12px;
+          }
+        }
+      }
+      &>span.is-truncated{
+        a.toggle{
+          visibility: inherit;
+        }
+      }
+      &>span.opened{
+        height: auto;
+        max-height: inherit;
+        a.toggle{
+          visibility: hidden;
         }
       }
     }
-    &>span.is-truncated{
-      a.toggle{
-        visibility: inherit;
+    .company-info{
+      margin-bottom: 4px;
+      &>li{
+        .font(12,15);
+        display: inline-block;
+        color: #969FA9;
+        letter-spacing: 0px;
+        padding: 1px 10px;
+        height: 15px;
       }
-    }
-    &>span.opened{
-      height: auto;
-      max-height: inherit;
-      a.toggle{
-        visibility: hidden;
+      li:first-child{
+        padding-left: 0px;
+      }
+      li+li{
+        border-left:1px solid #e7e7e7;
+      }
+      .more{
+        color: #6BA2FC;
+        cursor: pointer;
       }
     }
   }
-  .company-info{
-    margin-bottom: 4px;
-    &>li{
-      .font(12,15);
-      display: inline-block;
-      color: #969FA9;
-      letter-spacing: 0px;
-      padding: 1px 10px;
-      height: 15px;
-    }
-    li:first-child{
-      padding-left: 0px;
-    }
-    li+li{
-      border-left:1px solid #e7e7e7;
-    }
-    .more{
+}
+.project-intro-wrapper{
+  padding: 50px 42px 0;
+  h4 a {
+      position: absolute;
+      right: 0;
+      font-size: 14px;
       color: #6BA2FC;
-      cursor: pointer;
+      letter-spacing: 0px;
+      line-height: 21px;
+    }
+  .login-out{
+    width: 100%;
+    // height: 180px;
+    background-image: url('/images/intro.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 180px;
+    padding-top: 129px;
+    padding-bottom: 129px;
+    a{
+      display: block;
+      width: 130px;
+      margin: auto;
+      margin-top: 0px;
+      .login{
+        .size(130,33);
+        background: #6BA2FC;
+        border-radius: 4px;
+        .font(14,21);
+        color: #FFFFFF;
+        letter-spacing: 0px;
+        padding:6px 37px;
+      }
+    }
+    .intro1{
+      margin: 12px auto 0px;
+      .size(84,21);
+      color: #5A626D;
+      .font(14,21);
+      .text-center();
+      vertical-align: middle;
     }
   }
+  .introduce-detail{
+    width: 100%;
+    .item{
+      margin-top: 24px;
+      display: table;
+      .sub-title{
+        vertical-align: top;
+        .font(14,21);
+        font-weight: 600;
+        color: @text-color;
+        letter-spacing: 0px;
+        display: table-cell;
+      }
+      .intro{
+        display: inline-block;
+        max-width: 720px;
+        margin-left: 30px;
+        .font(14,21);
+        color: @text-color;
+        letter-spacing: 0px;
+      }
+    }
+  }
+  .part-hide{
+    width: 100%;
+    height: 196px;
+    background-image: url('/images/intro.png');
+    background-repeat: no-repeat;
+    margin-top: 12px;
+    text-align: center;
+    padding-top: 65px;
+    .certify{
+      display: block;
+      .size(130,33);
+      .font(14,33);
+      background-color: #6BA2FC;
+      border-radius: 4px;
+      margin: 0px auto 12px;
+      .text-center();
+      vertical-align: middle;
+      color: #FFFFFF;
+    }
+    .complete{
+      .font(14,21);
+      color: @text-color;
+      letter-spacing: 0px;
+      margin: 0px auto 65px;
+    }
+  }
+  .no-data{
+    .icon-Company{
+      &:before{
+        .font(20,20);
+        vertical-align: top;
+        text-align: center;
+      }
+    }
+    // padding-top: 15px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #969FA9;
+    letter-spacing: 0px;
+    line-height: 21px;
+  }
+
 }

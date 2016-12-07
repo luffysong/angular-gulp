@@ -19,6 +19,7 @@
 @import "./style/introduce";
 @import "./style/introductionedit";
 @import "./style/productData";
+@import "./style/founder";
 .project-wrapper {
   .project-var();
   background: @bg-global-color;
@@ -42,7 +43,7 @@
       }
       &>div:nth-child(2){
         margin-left: 18px;
-        width: 440px;
+        width: 400px;
       }
       h1 {
       font-size: 20px;
@@ -60,28 +61,33 @@
         span{
           display: inline-block;
           vertical-align: top;
-          line-height: 18px;
-          font-size: 12px;
-          color: @tag-color;
-          padding: 1px 6px;
+          line-height: 21px;
+          padding: 1px 0;
           border-radius: 1px;
-          background: fade(@tag-bg-color, 20%);
           margin-right: 5px;
+          font-size: 14px;
+          color: #6BA2FC;
         }
         span:last-child {
           margin-right: 0px;
         }
       }
       h3{
-        color: @text-color;
+        color: #969FA9;
         font-size: 14px;
         line-height: 19px;
-        margin: 10px 0 13px;
+        margin: 6px 0 6px;
         font-weight: normal;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         width: 450px;
+      }
+      .highlights {
+        margin-bottom: 10px;
+      }
+      .highlight {
+        margin-left: 5px;
       }
       .kr-icon {
         .dlk();
@@ -114,7 +120,7 @@
         color: #6BA2FC;
       }
       .website {
-        max-width: 330px;
+        font-size: 18px;
         margin-right: 10px;
         vertical-align: middle;
       }
@@ -146,41 +152,80 @@
           display: inline-block;
         }
       }
-      .finance-brief {
-        width: 249px;
-        height: 90px;
-        float: right;
-        .rd(4px);
+      .top-info {
+        width: 320px;
+        height: 120px;
+        display: inline-block;
+        color: #969FA9;
         .border1(@border-color);
-        overflow: hidden;
-        p {
-          overflow: hidden;
-          span:first-child {
-            .font(12,18);
-            color: #969FA9;
-            width: 30%;
-            display: inline-block;
-            .text-center();
+        .top-left {
+          float: left;
+          margin: 14px 0 0 20px;
+          .top1{
+            font-size: 14px;
+            color: #5A626D;
+            line-height: 21px;
           }
-          span:last-child{
+          .top-number{
+            margin: 4px 0 8px 0 ;
+            line-height: 24px;
+            .number {
+              font-size: 24px;
+              color: #5A626D;
+              margin-right: 4px;
+            }
+          }
+          .top2{
+            border-top: 1px solid #E5EBF0;
+            width: 130px;
+            padding-top: 8px;
+            span {
+              color: #5A626D;
+            }
+            .number {
+              margin: 0 4px;
+            }
+          }
+        }
+
+        .top-right{
+          display: inline-block;
+          margin: 20px 0 0 25px;
+          font-size: 12px;
+          .number{
             color: #222C38;
+            line-height: 18px;
+          }
+          .finance-number{
+            margin-left: 24px;
+          }
+          .user, .expose, .finance {
+            margin-bottom: 8px;
           }
         }
-        p:nth-child(2){
-          margin-top: 8px;
-          margin-bottom: 2px;
+        .right-angle {
+          margin: 0 4px 2px 24px;
         }
-        p:first-child {
-          .font(14, 33);
-          background: #e7e7e7;
-          .text-center();
+        .left-angle {
+          margin: 0 0 2px 6px;
         }
-        .finance-now{
-          .text-center();
-          line-height: 40px !important;
-          height: 45px !important;
-          font-size: 14px;
-          color: #222C38;
+        .up-angle {
+          border-left: 4px solid transparent;
+          border-right: 4px solid transparent;
+          border-bottom: 6px solid #FBA1B2;
+          display: inline-block;
+        }
+        .down-angle {
+          border-left: 4px solid transparent;
+          border-right: 4px solid transparent;
+          border-top: 6px solid #B3DD6A;
+          display: inline-block;
+        }
+        .up-angle-big {
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-bottom: 8px solid #FBA1B2;
+          display: inline-block;
         }
       }
     }
@@ -222,7 +267,7 @@
     }
     .logo {
       .square(90);
-      border-radius: 6px;
+      border-radius: 14px;
       .border1(#E7E7E7);
     }
   }
@@ -240,11 +285,11 @@
     width: 839px;
     margin:0 auto;
     ul {
-      border-top: 1px solid #F2F4F5;
+      // border-top: 1px solid #F2F4F5;
       overflow: hidden;
     }
     li {
-      margin-right: 30px;
+      margin-right: 40px;
       height: 47px;
       line-height: 47px;
       float: left;
@@ -252,6 +297,9 @@
       a {
         color: @text-color;
       }
+    }
+    .navigate-btn {
+      margin-right: 11px;
     }
     li:last-child {
       float: right;
@@ -299,13 +347,13 @@
     background-color: #fff;
     width: @content-width;
     margin: 0 auto;
-    padding: 20px 42px 30px;
+    padding: 20px 0 40px;
     box-shadow: 0px 0px 2px 0px rgba(0,0,0,.1);
     // min-height: 300px;
     margin-top: @module-margin;
     h4 {
       color: @deep-text-color;
-      .font(16, 24);
+      .font(14, 21);
       font-weight: normal;
       position: relative;
       display: flex;

@@ -8,13 +8,19 @@
       <div>
         <h1>
           <div class="base-info-name" title="{{::vm.baseInfoVM.name}}">{{::vm.baseInfoVM.name}}</div>
-          <span>{{vm.baseInfoVM.industryEnum | industry}}</span>
+          <span>{{vm.baseInfoVM.industryEnum | industry}}</span><span ng-if="vm.fundsVM.funds"> · 融资中</span>
           <a class="btn-edit"
             ng-if="vm.isEditMode"
             ng-click="vm.baseInfoVM.enterEditMode()"
             href="javascript:void(0)" data-stat-click="project.{{vm.id}}.baseInfo.edit">编辑</a>
         </h1>
         <h3>{{::vm.baseInfoVM.brief}}</h3>
+        <p class="highlights">
+          <span class="icon-highlights">
+            <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+          </span>
+          <span class="highlight">亮点亮点亮点亮点亮点亮点亮点亮点亮点亮点亮点亮点</span>
+        </p>
         <p>
           <a ng-if="vm.baseInfoVM.weibo"
           class="kr-icon icon-Weibo link-none" href="" ng-class="{'icon-Weibo-active':vm.baseInfoVM.weibo}"
@@ -24,11 +30,10 @@
           <a class="kr-icon icon-Wechat link-none" ng-class="{'icon-Wechat-active':vm.baseInfoVM.weixin}"
             tooltips tooltip-template="{{vm.baseInfoVM.weixin?vm.baseInfoVM.weixin:'未填写'}}" tooltip-class="tooltip">
           </a>
-          <span class="kr-icon icon-websitelink" ng-show="::vm.baseInfoVM.website">
-            <span class="path1"></span><span class="path2"></span><span class="path3"></span>
-          </span>
           <a class="website ellipsis" target="_blank" ng-href="{{::vm.baseInfoVM.website}}">
-            {{::vm.baseInfoVM.website}}
+            <span class="icon-websiteDefault">
+              <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+            </span>
           </a>
           <span ng-if="root.user.isInvestor()" class="hot-container">
             <span class="kr-icon icon-Hot" ng-show="vm.baseInfoVM.advantage"></span>
@@ -36,25 +41,36 @@
           </span>
         </p>
       </div>
-      <div class="finance-brief" ng-if='vm.fundsVM.funds'>
-        <p>融资中</p>
-        <p>
-          <span>轮次</span>
-          <span>{{vm.fundsVM.fundsPhase | financePhase}}</span>
-        </p>
-        <p>
-         <span>金额</span>
-         <span>
-           <small ng-show="vm.fundsVM.financeAmountUnit =='USD'">$</small
-           ><small ng-show="vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}万</span>
-        </p>
-      </div>
-      <div class="finance-brief" ng-if='!vm.fundsVM.funds'>
-        <p>当前轮次</p>
-        <p class="finance-now">
-          {{vm.fundsVM.fundsPhase | companyFinancePhase}}
-        </p>
-
+      <div class="top-info">
+        <div class="top-left">
+          <div>
+            <span class="top1">电子商务</span>
+          </div>
+          <div class="top-number">
+            <span class="number">203</span>名
+            <div class="up-angle-big left-angle"></div>
+          </div>
+          <div class="top2">
+            <span>娱乐新闻</span><span class="number">256</span>名
+            <div class="up-angle left-angle"></div>
+          </div>
+        </div>
+        <div class="top-right">
+          <div class="user">
+            <span>用户量</span>
+            <div class="up-angle right-angle"></div>
+            <span class="number">3000万</span>
+          </div>
+          <div class="expose">
+            <span>曝光量</span>
+            <div class="down-angle right-angle"></div>
+            <span class="number">3000</span>
+          </div>
+          <div class="finance">
+            <span>融资体量</span>
+            <span class="number finance-number">￥8亿</span>
+          </div>
+        </div>
       </div>
     </div>
     <div ng-if="vm.baseInfoVM.isEdit" class="base-info-content-edit">
@@ -152,7 +168,7 @@
   <section ng-class="{small: searchVm.small, tinly: searchVm.tiny}" sticky offset="49" class="nav-wrapper">
     <nav>
       <ul class='navigate'>
-        <li ng-show="vm.baseInfoVM.investAdvantage">
+        <li >
           <a kr-scroll-click
             href="#light" du-smooth-scroll="" du-scrollspy=""  offset="{{vm.light}}" >
             投资亮点
@@ -160,11 +176,8 @@
         </li>
         <li ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
           <a kr-scroll-click href="#baseInfo" du-smooth-scroll="" du-scrollspy="" offset="{{vm.baseInfo}}" >
-            概述
+            项目介绍
           </a>
-        </li>
-        <li>
-          <a kr-scroll-click href="#introduction" du-smooth-scroll="" du-scrollspy="" offset="114">项目介绍</a>
         </li>
         <li ng-show="(vm.fundsVM.fundsVo.scale || vm.fundsVM.fundsVo.dataLights || vm.fundsVM.fundsVo.competitor || vm.fundsVM.fundsVo.projectPlan) && (vm.user != 'commen' || vm.investorType)">
           <a kr-scroll-click href="#financeDetail" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeDetail}}" ng-class="{'active':!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)}">
@@ -202,7 +215,7 @@
             相似项目
           </a>
         </li>
-        <li>
+        <li class="navigate-btn">
         <a href="#" ng-click="vm.claimVM.claim()" ng-show="vm.user == 'commen'" login-btn data-stat-click="project.{{vm.id}}.claim">认领</a>
           <a ui-sref="financeRoute({id: vm.id, name: vm.name})"
             ng-show="vm.isEditMode && vm.financeState === '1'" data-stat-click="project.{{vm.id}}.applyFinance">申请融资</a>
@@ -218,15 +231,13 @@
   </section>
 </header>
   <section id="light" class="project-module light"
-  ng-include="'/pages/project/templates/light.html'"
-  ng-if="vm.baseInfoVM.investAdvantage">
+  ng-include="'/pages/project/templates/light.html'">
   </section>
 
   <section id="baseInfo" class="project-module" ng-include="'/pages/project/templates/baseInfo.html'"
     ng-if="vm.baseInfoVM.industryTag || vm.baseInfoVM.intro">
   </section>
-  <section id="introduction" class="project-module" ng-include="'/pages/project/templates/introduction.html'" >
-  </section>
+
   <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module finance"
     ng-show="(vm.fundsVM.fundsVo.scale || vm.fundsVM.fundsVo.dataLights || vm.fundsVM.fundsVo.competitor || vm.fundsVM.fundsVo.projectPlan) && (vm.user != 'commen' || vm.investorType)">
     融资详情

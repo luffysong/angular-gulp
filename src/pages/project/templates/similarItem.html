@@ -1,71 +1,74 @@
-<div class="similar-item">
-  <div class="header">
-
-    <span class="h-name">相似项目</span>
-    <ul class='h-title'>
-      <li ng-class="{'active':vm.similarVM.tagName == item.tagName}" ng-click="vm.similarVM.changeType(item.tagName)" ng-repeat="item in vm.similarVM.list | limitTo:5">{{item.tagName}}</li>
-    </ul>
+<div class="project-similar-item-wrapper">
+  <div class="head">
+    <span class="icon-similar-head"></span>
+    <span class="title">相似项目</span>
   </div>
-  <div class="content" ng-show="vm.similarVM.companyList.length">
-    <table class='item-list' >
-      <thead class='content-head'>
-        <tr>
-          <td class="item">项目</td>
-          <td class="round">当前轮次</td>
-          <td class="invest">过往投资方</td>
-          <td class="silimar-info">相关信息</td>
-        </tr>
-      </thead>
-      <tbody class='content-body'>
-        <tr ng-repeat="item in vm.similarVM.companyList">
-          <td class='item-info'>
-            <a ui-sref="project({id: item.id})" data-stat-click="project.{{vm.id}}.similarItem.goDetail" target="_blank"><img ng-src="{{item.logo || '/images/default-logo.png'}}" alt=""></a>
-
-            <div class="info">
-              <a class='i-name darkColor' ui-sref="project({id: item.id})" data-stat-click="project.{{vm.id}}.similarItem.goDetail" ng-bind="item.name" target="_blank" ></a>
-              <span class='i-industry' ng-bind="item.industry"></span>
-              <p class='i-brief' ng-bind="item.brief"></p>
-            </div>
-          </td>
-          <td class='round' ng-bind="item.financePhase"></td>
-          <td class='invest'>
-            <ul ng-if="item.pastInvestor.length">
-              <li ng-repeat="invest in item.pastInvestor | limitTo:3" ng-bind="invest | introFormat">
-
-              </li>
-            </ul>
-            <ul ng-if="!item.pastInvestor.length">
-              <li>未披露</li>
-            </ul>
-          </td>
-          <td class="related-info" ng-show="item.similarInfo.length">
-            <ul id="list{{$index}}" class='list' ng-init="show={}" ng-class='{"all":show[$index]}'>
-              <li ng-repeat="tag in item.similarInfo">{{tag}}</li>
-            </ul>
-            <span kr-ele-clamp-checker="{container: '#list{{$index}}'}" class='icon-close curson'
-              ng-if="item.similarInfo.length"
-              ng-click='show[$index]=!show[$index]'
-              ng-class='{"pointed":!show[$index]}' ></span>
-          </td>
-          <td class="related-info-none" ng-show="!item.similarInfo.length">
-            <span class="none-data">暂无数据</span>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot>
+  <div class="similar-item">
+    <div class="header">
+      <ul class='h-title'>
+        <li ng-class="{'active':vm.similarVM.tagName == item.tagName}" ng-click="vm.similarVM.changeType(item.tagName)" ng-repeat="item in vm.similarVM.list | limitTo:5">{{item.tagName}}</li>
+      </ul>
+    </div>
+    <div class="content" ng-show="vm.similarVM.companyList.length">
+      <table class='item-list' >
+        <thead class='content-head'>
           <tr>
-            <td class='t-foot' colspan='4'>
-              <div class="get-more" ng-click="vm.similarVM.more()" ng-show="vm.similarVM.showMore()">查看更多</div>
+            <td class="item">项目</td>
+            <td class="round">当前轮次</td>
+            <td class="invest">过往投资方</td>
+            <td class="silimar-info">相关信息</td>
+          </tr>
+        </thead>
+        <tbody class='content-body'>
+          <tr ng-repeat="item in vm.similarVM.companyList">
+            <td class='item-info'>
+              <a ui-sref="project({id: item.id})" data-stat-click="project.{{vm.id}}.similarItem.goDetail" target="_blank"><img ng-src="{{item.logo || '/images/default-logo.png'}}" alt=""></a>
+
+              <div class="info">
+                <a class='i-name darkColor' ui-sref="project({id: item.id})" data-stat-click="project.{{vm.id}}.similarItem.goDetail" ng-bind="item.name" target="_blank" ></a>
+                <span class='i-industry' ng-bind="item.industry"></span>
+                <p class='i-brief' ng-bind="item.brief"></p>
+              </div>
+            </td>
+            <td class='round' ng-bind="item.financePhase"></td>
+            <td class='invest'>
+              <ul ng-if="item.pastInvestor.length">
+                <li ng-repeat="invest in item.pastInvestor | limitTo:3" ng-bind="invest | introFormat">
+                </li>
+              </ul>
+              <ul ng-if="!item.pastInvestor.length">
+                <li>未披露</li>
+              </ul>
+            </td>
+            <td class="related-info" ng-show="item.similarInfo.length">
+              <ul id="list{{$index}}" class='list' ng-init="show={}" ng-class='{"all":show[$index]}'>
+                <li ng-repeat="tag in item.similarInfo">{{tag}}</li>
+              </ul>
+              <span kr-ele-clamp-checker="{container: '#list{{$index}}'}" class='icon-close curson'
+                ng-if="item.similarInfo.length"
+                ng-click='show[$index]=!show[$index]'
+                ng-class='{"pointed":!show[$index]}' ></span>
+            </td>
+            <td class="related-info-none" ng-show="!item.similarInfo.length">
+              <span class="none-data">暂无数据</span>
             </td>
           </tr>
-      </tfoot>
-    </table>
+        </tbody>
+        <tfoot>
+            <tr>
+              <td class='t-foot' colspan='4'>
+                <div class="get-more" ng-click="vm.similarVM.more()" ng-show="vm.similarVM.showMore()">查看更多</div>
+              </td>
+            </tr>
+        </tfoot>
+      </table>
 
-  </div>
-  <div ng-show="!vm.similarVM.companyList.length" class="none-list">
+    </div>
+    <div ng-show="!vm.similarVM.companyList.length" class="none-list">
       <span>
         <span class="icon-Company icon"></span>
         <span>未收录相关信息</span>
       </span>
     </div>
+  </div>
 </div>

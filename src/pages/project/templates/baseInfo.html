@@ -1,40 +1,94 @@
-<div class="base-info">
-  <h4>概述<a href="javascript:void(0)" ng-click="vm.introductionVM.enterEditMode()"
-      ng-if="!vm.introductionVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.baseIntro.edit">编辑</a></h4>
-  <section id="baseInfoEdit" ng-include="'/pages/project/templates/baseInfoEdit.html'"
-    ng-if="vm.introductionVM.isEdit">
-    基本介绍编辑
-  </section>
-  <div ng-if="!vm.introductionVM.isEdit && !vm.introductionVM.isEmpty">
-    <ul ng-if="vm.projectData.baseInfo.operationTag.length || vm.projectData.baseInfo.industryTag.length" class="tags">
-      <li class="tag-icon"><span class="icon-Tags"></span></li>
-      <li ng-if="tag" class="operation-tag" ng-repeat="tag in vm.projectData.baseInfo.operationTag">
-        <a ui-sref="list.result({label: tag.id, columnId: 0})" target="_blank">{{tag.name}}</a>
-      </li>
-      <li ng-if="tag" class="tag" ng-repeat="tag in vm.projectData.baseInfo.industryTag">
-        <a ui-sref="list.result({label: tag.id, columnId: 0})" target="_blank">{{tag.name}}</a>
-      </li>
-    </ul>
-    <div ng-if="vm.projectData.baseInfo.intro" class="info">
-      <span id="node" text-overflow text="vm.projectData.baseInfo.intro" >
-      </span>
-    </div>
-    <ul class="company-info">
-      <li ng-if="vm.projectData.baseInfo.fullName">公司全称：{{::vm.projectData.baseInfo.fullName}}</li>
-      <li ng-if="vm.projectData.baseInfo.address1Desc"
-      >地点：{{::vm.projectData.baseInfo.address1Desc}}</li>
-      <li ng-if="vm.projectData.baseInfo.startDate"
-      >成立时间：{{::vm.projectData.baseInfo.startDateDesc}}年</li>
-    </ul>
-    <ul class="company-info">
-      <li ng-if="vm.projectData.baseInfo.scale">公司规模：{{::vm.projectData.baseInfo.scale}}</li>
-      <li ng-if="vm.projectData.baseInfo.operationStatusEnum">
-        运营状态：{{vm.projectData.baseInfo.operationStatusEnum | operationStatus}}</li>
-      <li class="more underline" ng-if="vm.projectData.baseInfo.businessInfoUrl">
-        <a ng-href="{{vm.projectData.baseInfo.businessInfoUrl}}" target="_blank">使用“启信宝”查看更多</a></li>
-    </ul>
+<div class="project-base-info-wrapper">
+  <div class="head">
+    <span class="icon-introduction-head"></span>
+    <span class="title">项目介绍</span>
   </div>
-  <div class="text-center" ng-if="!vm.introductionVM.isEdit && vm.introductionVM.isEmpty">
-    暂无数据
+  <div class="base-info">
+    <h4>概述<a href="javascript:void(0)" ng-click="vm.introductionVM.enterEditMode()"
+        ng-if="!vm.introductionVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.baseIntro.edit">编辑</a></h4>
+    <section id="baseInfoEdit" ng-include="'/pages/project/templates/baseInfoEdit.html'"
+      ng-if="vm.introductionVM.isEdit">
+      基本介绍编辑
+    </section>
+    <div ng-if="!vm.introductionVM.isEdit && !vm.introductionVM.isEmpty">
+      <ul ng-if="vm.projectData.baseInfo.operationTag.length || vm.projectData.baseInfo.industryTag.length" class="tags">
+        <li class="tag-icon"><span class="icon-Tags"></span></li>
+        <li ng-if="tag" class="operation-tag" ng-repeat="tag in vm.projectData.baseInfo.operationTag">
+          <a ui-sref="list.result({label: tag.id, columnId: 0})" target="_blank">{{tag.name}}</a>
+        </li>
+        <li ng-if="tag" class="tag" ng-repeat="tag in vm.projectData.baseInfo.industryTag">
+          <a ui-sref="list.result({label: tag.id, columnId: 0})" target="_blank">{{tag.name}}</a>
+        </li>
+      </ul>
+      <div ng-if="vm.projectData.baseInfo.intro" class="info">
+        <span id="node" text-overflow text="vm.projectData.baseInfo.intro" >
+        </span>
+      </div>
+      <ul class="company-info">
+        <li ng-if="vm.projectData.baseInfo.fullName">公司全称：{{::vm.projectData.baseInfo.fullName}}</li>
+        <li ng-if="vm.projectData.baseInfo.address1Desc"
+        >地点：{{::vm.projectData.baseInfo.address1Desc}}</li>
+        <li ng-if="vm.projectData.baseInfo.startDate"
+        >成立时间：{{::vm.projectData.baseInfo.startDateDesc}}年</li>
+      </ul>
+      <ul class="company-info">
+        <li ng-if="vm.projectData.baseInfo.scale">公司规模：{{::vm.projectData.baseInfo.scale}}</li>
+        <li ng-if="vm.projectData.baseInfo.operationStatusEnum">
+          运营状态：{{vm.projectData.baseInfo.operationStatusEnum | operationStatus}}</li>
+        <li class="more underline" ng-if="vm.projectData.baseInfo.businessInfoUrl">
+          <a ng-href="{{vm.projectData.baseInfo.businessInfoUrl}}" target="_blank">使用“启信宝”查看更多</a></li>
+      </ul>
+    </div>
+    <div class="text-center" ng-if="!vm.introductionVM.isEdit && vm.introductionVM.isEmpty">
+      暂无数据
+    </div>
+  </div>
+
+  <div class="project-intro-wrapper">
+    <h4>详细介绍<a href="javascript:void(0)" ng-click="vm.companyIntroduceVM.enterEditMode()"
+        ng-if="!vm.companyIntroduceVM.isEdit && vm.isEditMode">编辑</a></h4>
+    <section id="companyIntroduceEdit" ng-include="'/pages/project/templates/introductionEdit.html'"
+      ng-if="vm.companyIntroduceVM.isEdit">
+      详细介绍编辑
+    </section>
+    <div ng-if="!vm.companyIntroduceVM.isEdit">
+      <div class="introduce-detail" ng-if="vm.companyIntroduceVM.hasIntroduce" >
+        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.productService">
+          <span class="sub-title">产品服务</span>
+          <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.productService}}</span>
+        </div>
+        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.userMarket">
+          <span class="sub-title">用户市场</span>
+          <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.userMarket}}</span>
+        </div>
+        <div class="item" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.businessMode)" >
+          <span class="sub-title">商业模式</span>
+          <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.businessMode}}</span>
+        </div>
+        <div class="item" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.operationData)">
+          <span class="sub-title">运营数据</span>
+          <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.operationData}}</span>
+        </div>
+        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.coreSource" >
+          <span class="sub-title">核心资源</span>
+          <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.coreSource}}</span>
+        </div>
+      </div>
+      <div class="no-data" ng-if="!vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true">
+        <span>
+            <span class="icon-Company icon"></span>
+            <span>未收录相关信息</span>
+          </span>
+      </div>
+      <div class="part-hide" ng-if="vm.companyIntroduceVM.hasIntroduce && vm.user === 'commen' && root.user.notInvestor()">
+        <a class="certify" ui-sref="investorValidate" href="javascript:void()"><p>认证投资人</p></a>
+        <p class="complete">查看完整项目介绍</p>
+      </div>
+      <!--- 未登录状态全部不可见 -->
+      <div class="login-out" ng-if="root.user.isLogin === false">
+        <a  href="javascript:;" login-btn><div class="login">立即登录</div></a>
+        <div class="intro1">查看项目介绍</div>
+      </div>
+    </div>
   </div>
 </div>

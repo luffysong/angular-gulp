@@ -1,59 +1,64 @@
-<div class="found-team">
-  <h4>创始团队<a href="javascript:void(0)" ng-click="vm.memberVM.enterEditMode()"
-      ng-if="!vm.memberVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.founder.edit">编辑</a></h4>
-  <section id="memberEdit" ng-include="'/pages/project/templates/memberEdit.html'"
-    ng-if="vm.memberVM.isEdit">
-    基本介绍编辑
-  </section>
-  <div class="content" ng-show="vm.memberVM.show()" ng-if="!vm.memberVM.isEdit && vm.userId">
-    <div class="team-key" ng-show="vm.memberVM.data.teamTags.length">
-      <span class="name">团队关键字</span>
-      <ul class="key-list">
-        <li ng-repeat="tag in vm.memberVM.data.teamTags">{{tag}}</li>
-      </ul>
-    </div>
-    <div class="advantage" ng-show="vm.memberVM.data.story">
-      <span class="name">团队优势</span>
-      <span class="ad-info" text-overflow text="vm.memberVM.data.story"></span>
-    </div>
-    <div class="team-people" ng-show="vm.memberVM.members.length">
-      <table class='item-list'>
-      <thead class='content-head'>
-        <tr>
-          <td class="team-name">姓名</td>
-          <td class="team-position">职位</td>
-          <td class="team-introduce">介绍</td>
-        </tr>
-      </thead>
-      <tbody class='content-body'>
-        <tr ng-repeat="member in vm.memberVM.members">
-          <td>
-            {{member.name}}
-          </td>
-          <td>{{member.position}}</td>
-          <td>
-            {{member.intro}}
-          </td>
-        </tr>
-      </tbody>
-      <tfoot class="content-footer">
+<div class="project-founder-wrapper">
+  <div class="head">
+    <span class="icon-team-head"></span>
+    <span class="title">创始团队<a href="javascript:void(0)" ng-click="vm.memberVM.enterEditMode()"
+        ng-if="!vm.memberVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.founder.edit">编辑</a></span>
+  </div>
+  <div class="found-team">
+    <section id="memberEdit" ng-include="'/pages/project/templates/memberEdit.html'"
+      ng-if="vm.memberVM.isEdit">
+      基本介绍编辑
+    </section>
+    <div class="content" ng-show="vm.memberVM.show()" ng-if="!vm.memberVM.isEdit && vm.userId">
+      <div class="team-key" ng-show="vm.memberVM.data.teamTags.length">
+        <span class="name">团队关键字</span>
+        <ul class="key-list">
+          <li ng-repeat="tag in vm.memberVM.data.teamTags">{{tag}}</li>
+        </ul>
+      </div>
+      <div class="advantage" ng-show="vm.memberVM.data.story">
+        <span class="name">团队优势</span>
+        <span class="ad-info" text-overflow text="vm.memberVM.data.story"></span>
+      </div>
+      <div class="team-people" ng-show="vm.memberVM.members.length">
+        <table class='item-list'>
+        <thead class='content-head'>
           <tr>
-            <td class='t-foot' colspan='3'>
-              <div class="get-more" ng-show="vm.memberVM.showMore()" ng-click="vm.memberVM.more()" >查看更多</div>
+            <td class="team-name">姓名</td>
+            <td class="team-position">职位</td>
+            <td class="team-introduce">介绍</td>
+          </tr>
+        </thead>
+        <tbody class='content-body'>
+          <tr ng-repeat="member in vm.memberVM.members">
+            <td>
+              {{member.name}}
+            </td>
+            <td>{{member.position}}</td>
+            <td>
+              {{member.intro}}
             </td>
           </tr>
-      </tfoot>
-    </table>
+        </tbody>
+        <tfoot class="content-footer">
+            <tr>
+              <td class='t-foot' colspan='3'>
+                <div class="get-more" ng-show="vm.memberVM.showMore()" ng-click="vm.memberVM.more()" >查看更多</div>
+              </td>
+            </tr>
+        </tfoot>
+      </table>
+      </div>
     </div>
-  </div>
-  <div ng-show="vm.memberVM.displayData()" class="none" ng-if='vm.userId'>
-    <span>
-        <span class="icon-Company icon"></span>
-        <span>未收录相关信息</span>
-      </span>
-  </div>
-  <div class="login-out" ng-if="!vm.userId">
-    <a href="javascript:;" login-btn><div class="login">立即登录</div></a>
-    <div class="intro">查看创始团队</div>
+    <div ng-show="vm.memberVM.displayData()" class="none" ng-if='vm.userId'>
+      <span>
+          <span class="icon-Company icon"></span>
+          <span>未收录相关信息</span>
+        </span>
+    </div>
+    <div class="login-out" ng-if="!vm.userId">
+      <a href="javascript:;" login-btn><div class="login">立即登录</div></a>
+      <div class="intro">查看创始团队</div>
+    </div>
   </div>
 </div>
