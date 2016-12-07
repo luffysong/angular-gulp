@@ -54,8 +54,7 @@ function makeUserHtml() {
         <span ng-bind="::result.obj.orgName" ng-if="result.obj.orgName"></span>
         <span ng-bind="::result.obj.position" ng-if="result.obj.position"></span>
       </p>
-      <p data-ellipsis ellipsis-separator="" data-ellipsis-symbol="..."
-      ng-bind="::result.obj.vitae" class="intro"></p>
+      <p ng-bind="::result.obj.vitae" class="intro"></p>
     </div>
   </div>
 
@@ -69,8 +68,7 @@ function makeOrgHtml() {
       <p>
         <span ng-bind="::result.obj.name"></span>
       </p>
-      <p data-ellipsis ellipsis-separator="" data-ellipsis-symbol="..."
-      ng-bind="::result.obj.intro" class="intro"></p>
+      <p ng-bind="::result.obj.intro" class="intro"></p>
     </div>
   </div>
     `;

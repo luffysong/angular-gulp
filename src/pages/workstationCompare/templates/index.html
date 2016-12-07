@@ -2,7 +2,7 @@
   <header>
 
     <nav>
-      <a ui-sref="workstationIndex">我的收藏夹</a><span class="icon-right-arrow"></span><a ui-sref=".">项目对比</a>
+      <a ui-sref="workstationIndex">我的收藏夹</a><span class="icon-right-arrow"></span><a>项目对比</a>
     </nav>
     <h3><b>项目对比</b><span class="vline">|</span><span>共 {{vm.count}} 个项目进行对比</span></h3>
   </header>
@@ -68,7 +68,7 @@
         <tr class="inline-block-text team-keywords">
           <td>团队关键字</td>
           <td ng-repeat="item in vm.projects">
-            <span ng-repeat="key in item.teamKeyWords"><span>{{key}}</span></span>
+            <span ng-repeat="key in item.teamKeyWords"><span>{{key | nameFormat}}</span></span>
             <span ng-if="!item.teamKeyWords.length">暂无</span>
           </td>
         </tr>
