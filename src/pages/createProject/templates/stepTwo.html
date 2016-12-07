@@ -129,7 +129,7 @@
   <div class="form-group text-center">
     <a class="prev" ng-click="vm.prev()" href="javascript:;">上一步</a
     ><a ng-class="{active: vm.isInvestorOrUser() || vm.user.form.$valid === true}"
-      class="next" ng-click="vm.next(vm.user.form)" href="javascript:;">
+      class="next" ng-click="vm.next(vm.user.form)" href="javascript:;" data-stat-click="{{vm.needFinance() ? '' : 'createProject.submit'}}">
           {{vm.needFinance() ? '下一步' : '提交'}}
     </a>
   </div>
