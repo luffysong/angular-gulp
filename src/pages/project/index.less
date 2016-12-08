@@ -2,7 +2,7 @@
 @import "../../common/styles/var";
 @import "./style/var";
 @import "./style/item";
-@import "./style/new";
+@import "./style/news";
 @import "./style/team";
 @import "./style/light";
 @import "./style/history";
@@ -81,14 +81,28 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        width: 450px;
+        width: 400px;
       }
       .highlights {
-        margin-bottom: 10px;
+        .icon-highlights {
+          font-size: 12px;
+          color: #e73d36;
+          border: 1px solid #e73d36;
+          padding: 1px;
+          margin-right: 5px;
+          span {
+            margin: 0px -6px 0 2px;
+          }
+        }
+        .highlight {
+          margin-left: 5px;
+        }
       }
-      .highlight {
-        margin-left: 5px;
+
+      .icons {
+        margin-top: 10px;
       }
+
       .kr-icon {
         .dlk();
         .vam();
@@ -126,9 +140,11 @@
       }
       .icon-website {
         color: #ccc;
+        padding: 1px;
       }
       .icon-website-active {
         color: #6BA2FC;
+        padding: 1px;
       }
       .hot-container {
         display: block;
@@ -198,6 +214,9 @@
           display: inline-block;
           margin: 20px 0 0 25px;
           font-size: 12px;
+          a {
+            color: #969FA9;
+          }
           .number{
             color: #222C38;
             line-height: 18px;
