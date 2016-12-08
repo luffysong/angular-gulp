@@ -81,8 +81,10 @@ export default class CreateProjectController {
   }
 
   initView() {
-    this.project.loadFinance(this.$stateParams.id, 'auditing')
-      .then((financeData) => { this.financeInfo = financeData; });
+    if (this.$stateParams.id) {
+      this.project.loadFinance(this.$stateParams.id, 'auditing')
+        .then((financeData) => { this.financeInfo = financeData; });
+    }
     if (this.type === FINANCE) {
       this.title = '融资申请';
       this.id = this.$stateParams.id;

@@ -16,9 +16,19 @@ const FUNDS_PHASE_ENUM_META = [
     value: 'A',
   },
   {
+    desc: 'A+轮',
+    id: 35,
+    value: 'A_PLUS',
+  },
+  {
     desc: 'B轮',
     id: 40,
     value: 'B',
+  },
+  {
+    desc: 'B+轮',
+    id: 45,
+    value: 'B_PLUS',
   },
   {
     desc: 'C轮',

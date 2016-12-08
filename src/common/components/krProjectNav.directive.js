@@ -28,7 +28,6 @@ class ProjectNavController {
     e.stopPropagation();
     /* 其他栏目点击箭头默认跳转全部项目优选,并展开 */
     const name = this.$rootScope.root.toState.name;
-    console.warn(name);
     if (name !== 'list.result' && name !== 'follow.result') {
       this.$state.go('list.result', {
         columnId: 1,
@@ -69,7 +68,7 @@ export default {
   </a>
   <ul class="column">
     <li ng-class="{active: item.id+'' === root.toParams.columnId+''}"
-    ui-sref-opts="{inherit: false, reload: true}"
+    ui-sref-opts="{inherit: false}"
      ui-sref="list.result({columnId:item.id})"
       ng-repeat="item in projectNavVm.list" ng-click="projectNavVm.go(item.id,$event)">
     {{item.name}}</li>
