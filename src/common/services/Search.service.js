@@ -31,7 +31,7 @@ function makeCreateProjectHtml(name) {
 }
 function makeProjectHtml() {
   return `
-  <div  class="search-row">
+  <div  class="search-row" data-stat-click="search.project.goDetail">
     <img src="{{::result.obj.logo || '/images/default-logo.png'}}" >
     <div class="search-entity-text">
       <p>
@@ -46,7 +46,7 @@ function makeProjectHtml() {
 
 function makeUserHtml() {
   return `
-  <div class="search-row">
+  <div class="search-row" data-stat-click="search.user.goDetail">
     <img class="investor-avatar" ng-src="{{::result.obj.logo || '/images/investor-logo.png'}}" >
     <div class="search-entity-text">
       <p>
@@ -62,7 +62,7 @@ function makeUserHtml() {
 }
 function makeOrgHtml() {
   return `
-  <div class="search-row">
+  <div class="search-row" data-stat-click="search.org.goDetail">
     <img ng-src="{{::result.obj.logo || '/images/org-logo.png'}}" >
     <div class="search-entity-text">
       <p>
