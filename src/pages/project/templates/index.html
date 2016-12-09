@@ -32,10 +32,6 @@
           </a>
           <a class="website ellipsis icon-website" target="_blank" ng-class="{'icon-website-active':vm.baseInfoVM.website}" ng-href="{{::vm.baseInfoVM.website}}">
           </a>
-          <span ng-if="root.user.isInvestor()" class="hot-container">
-            <span class="kr-icon icon-Hot" ng-show="vm.baseInfoVM.advantage"></span>
-            <span class="hot-text" ng-show="vm.baseInfoVM.advantage">{{vm.baseInfoVM.advantage}}</span>
-          </span>
         </p>
       </div>
       <div class="top-info">
@@ -184,11 +180,11 @@
             项目介绍
           </a>
         </li>
-        <li ng-show="(vm.fundsVM.fundsVo.scale || vm.fundsVM.fundsVo.dataLights || vm.fundsVM.fundsVo.competitor || vm.fundsVM.fundsVo.projectPlan) && (vm.user != 'commen' || vm.investorType)">
+        <!-- <li ng-show="(vm.fundsVM.fundsVo.scale || vm.fundsVM.fundsVo.dataLights || vm.fundsVM.fundsVo.competitor || vm.fundsVM.fundsVo.projectPlan) && (vm.user != 'commen' || vm.investorType)">
           <a kr-scroll-click href="#financeDetail" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeDetail}}" ng-class="{'active':!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)}">
             融资详情
           </a>
-        </li>
+        </li> -->
         <li>
           <a kr-scroll-click href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeHistory}}" ng-class="{'active':!vm.baseInfoVM.advantage && !(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro) && !vm.fundsVM.funds}">
             融资经历
@@ -244,10 +240,10 @@
     ng-if="vm.baseInfoVM.industryTag || vm.baseInfoVM.intro">
   </section>
 
-  <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module finance"
+<!--   <section id="financeDetail" ng-include="'/pages/project/templates/financeDetail.html'" class="project-module finance"
     ng-show="(vm.fundsVM.fundsVo.scale || vm.fundsVM.fundsVo.dataLights || vm.fundsVM.fundsVo.competitor || vm.fundsVM.fundsVo.projectPlan) && (vm.user != 'commen' || vm.investorType)">
     融资详情
-  </section>
+  </section> -->
   <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module">
     融资经历
   </section>
