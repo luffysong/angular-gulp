@@ -41,33 +41,39 @@
       <div class="top-info">
         <div class="top-left">
           <div>
-            <span class="top1">电子商务</span>
+            <span class="top1">{{vm.baseInfoVM.projectStatHeader.tag1.tag_name}}</span>
           </div>
           <div class="top-number">
-            <span class="number">203</span>名
-            <div class="up-angle-big left-angle"></div>
+            <span class="number">{{vm.baseInfoVM.projectStatHeader.tag1.tag_rank}}</span>名
+            <div class="up-angle-big left-angle" ng-show="vm.baseInfoVM.projectStatHeader.tag1.rank_var === 1"></div>
+            <div class="down-angle-big left-angle" ng-show="vm.baseInfoVM.projectStatHeader.tag1.rank_var === -1"></div>
           </div>
           <div class="top2">
-            <span>娱乐新闻</span><span class="number">256</span>名
-            <div class="up-angle left-angle"></div>
+            <span>{{vm.baseInfoVM.projectStatHeader.tag2.tag_name}}</span>
+            <span class="number">{{vm.baseInfoVM.projectStatHeader.tag2.tag_rank}}</span>名
+            <div class="up-angle left-angle" ng-show="vm.baseInfoVM.projectStatHeader.tag2.rank_var === 1"></div>
+            <div class="down-angle left-angle" ng-show="vm.baseInfoVM.projectStatHeader.tag2.rank_var === -1"></div>
           </div>
         </div>
         <div class="top-right">
           <div class="user">
             <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114"><span>用户量</span></a>
-            <div class="up-angle right-angle"></div>
-            <span class="number">3000万</span>
+            <div class="up-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.user_amount_var === 1"></div>
+            <div class="down-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.user_amount_var === -1"></div>
+            <span class="number">{{vm.baseInfoVM.projectStatHeader.user_amount / 10000}}万</span>
           </div>
           <div class="expose">
             <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114"><span>曝光量</span></a>
-            <div class="down-angle right-angle"></div>
-            <span class="number">3000</span>
+            <div class="up-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.exposure_amount_var === 1"></div>
+            <div class="down-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.exposure_amount_var === -1"></div>
+            <span class="number">{{vm.baseInfoVM.projectStatHeader.exposure_amount}}</span>
           </div>
           <div class="finance">
-            <a kr-scroll-click href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeHistory}}" ng-class="{'active':!vm.baseInfoVM.advantage && !(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro) && !vm.fundsVM.funds}">
+            <a kr-scroll-click href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeHistory}}"
+              ng-class="{'active':!vm.baseInfoVM.advantage && !(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro) && !vm.fundsVM.funds}">
               <span>融资体量</span>
             </a>
-            <span class="number finance-number">￥8亿</span>
+            <span class="number finance-number">￥{{vm.baseInfoVM.projectStatHeader.finance_amount / 100000000}}亿</span>
           </div>
         </div>
       </div>
