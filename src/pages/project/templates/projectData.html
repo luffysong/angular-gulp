@@ -1,15 +1,16 @@
 <div class="product-data">
-  <highchart disable-data-watch="true" config="productVM.trendHg"></highchart>
-
-
-  <highchart disable-data-watch="true" config="productVM.downloadHg"></highchart>
-
+  <div class="chart-layer">
+    <highchart disable-data-watch="true" config="productVM.trendHg"></highchart>
+  </div>
+  <div class="chart-layer">
+    <highchart disable-data-watch="true" config="productVM.downloadHg"></highchart>
+  </div>
   <div class="bottom-container">
     <div class="left-container">
       <highchart disable-data-watch="true" config="productVM.websiteHg"></highchart>
     </div>
     <div class="right-container">
-      <h5 class="right-title">留存率</h5>
+      <h5 class="trend-title">留存率</h5>
       <div class="retention-container">
         <div class="retention-item" ng-repeat="item in productVM.retentionList">
           <div class="retention-title">

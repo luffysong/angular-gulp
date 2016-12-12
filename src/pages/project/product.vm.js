@@ -84,8 +84,13 @@ export default class ProductVM {
     headerFormat: '',
     crosshairs: true,
     pointFormatter: function pointFormatter() {
+      function handleDate(date) {
+        const l = date.length;
+        const c = date.slice(l - 2, l) > 9 ? date.slice(l - 2, l) : date.slice(l - 1, l);
+        return `${date.slice(0, 4)}年${c}月`;
+      }
       return `<div class="chart-tooltip">
-       <p>${this.year}年${this.category}</p>
+       <p>${handleDate(this.category)}</p>
        <p>网站排名：<span>${this.item}名</span></p>
       </div>`;
     },
@@ -100,7 +105,7 @@ export default class ProductVM {
       color: '#88C4FF',
       data: investmentTrend.seriesData.dau.map((item, i) => ({
         y: item,
-        dau: item,
+        dau: item.toFixed(2),
         exposure: Number(investmentTrend.exposure.data[i]),
         year: this.year,
       })),
@@ -112,7 +117,7 @@ export default class ProductVM {
       name: '曝光量',
       data: investmentTrend.exposure.data.map((item, i) => ({
         y: Number(item),
-        dau: investmentTrend.seriesData.dau[i],
+        dau: investmentTrend.seriesData.dau[i].toFixed(2),
         exposure: Number(item),
         year: this.year,
       })),
