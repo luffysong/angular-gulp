@@ -1,5 +1,3 @@
-import { API } from 'krData';
-
 export const FID_KEY = {
   dau: 'md_0006',
   download: 'md_0001',
@@ -9,34 +7,26 @@ export const FID_KEY = {
   save7: 'md_0025',
   save30: 'md_0027',
 };
-@Inject('projectService')
 export default class ProductDataService {
 
 
   FID_KEY = FID_KEY;
 
 
-  constructor() {
-    this.init();
+  constructor(companyData) {
+    this.companyData = companyData;
   }
 
-  init() {
-
-  }
-
-  getProduct(params) {
-    return this.projectService.allData({
-      id: params.id,
-    }).then((data) => {
-      return {
-        seriesData: this._convertDiagram(data.product.companyData.user_stat.y_list),
-        x: data.product.companyData.user_stat.x,
-        exposure: this._convertObj(data.product.companyData.exposure_stat),
-        appRank: this._convertObj(data.product.companyData.ios_rank),
-        download: this._convertObj(data.product.companyData.android_download),
-        websiteRank: this._convertObj(data.product.companyData.website_rank),
-      };
-    });
+  getProduct() {
+    const companyData = this.companyData;
+    return {
+      seriesData: this._convertDiagram(companyData.user_stat.y_list),
+      x: companyData.user_stat.x,
+      exposure: this._convertObj(companyData.exposure_stat),
+      appRank: this._convertObj(companyData.ios_rank),
+      download: this._convertObj(companyData.android_download),
+      websiteRank: this._convertObj(companyData.website_rank),
+    };
   }
 
   _convertObj(obj) {
@@ -54,7 +44,6 @@ export default class ProductDataService {
         if (FID_KEY[key] === companyData.fid) {
           seriesData[key] = companyData.y;
         }
-        /*this._pushSerie(seriesData, companyData, key);*/
       });
     });
     return seriesData;

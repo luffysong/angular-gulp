@@ -53,7 +53,7 @@ export default class ProjectIndexController {
     const $scope = this.$scope;
     const data = this.projectData;
     $scope.userPortraitsVm = new ProductUserPortraitsVM(data.product.userPortraits);
-    $scope.productVM = new ProductVM(data.product.companyProduct);
+    $scope.productVM = new ProductVM(data.product);
   }
   getfundsState(cid) {
     const id = {

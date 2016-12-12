@@ -34,11 +34,16 @@
     </div>
     <div class="hg-btn-group">
       <div>
-        <a href="javascript:;"  ng-click="">产品数据</a
-        ><a href="javascript:;" class="active"ng-click="">用户画像</a>
+        <a href="javascript:;"  ng-class="{active: productVM.active === 'product'}"
+          ng-click="productVM.active = 'product'">产品数据</a
+          ><a href="javascript:;" ng-class="{active: productVM.active === 'user'}"
+            ng-click="productVM.active = 'user'" ng-click="">用户画像</a>
       </div>
     </div>
-    <div hg-product-wrapper>
+    <div ng-show="productVM.active === 'product'">
+      <div ng-include="'/pages/project/templates/projectData.html'"></div>
+    </div>
+    <div ng-show="productVM.active === 'user'" class="hg-product-wrapper">
       <div ng-include="'/pages/project/templates/product-user-data.html'"></div>
     </div>
     <div ng-if="!productVM.hasData()" class="no-data">

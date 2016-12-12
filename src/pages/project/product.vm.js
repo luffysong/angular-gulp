@@ -1,13 +1,13 @@
-import krData from 'krData';
+import ProductDataService from './productData.service';
 export default class ProductVM {
-  constructor(data) {
-    angular.copy(data, this);
+  constructor(product) {
+    angular.extend(this, product.companyProduct);
+    this.productDataService = new ProductDataService(product.companyData);
+    this.active = 'product';
     this.init();
-    this.productDataService = krData.utls.getService('productDataService');
   }
 
   init() {
-    this.loadAnalyze();
     this.setTrend();
     this.setDownload();
     this.setWebsite();
@@ -30,16 +30,13 @@ export default class ProductVM {
         key: 'save30',
       },
     ];
+    this.loadAnalyze();
     this.aso = '创客部落基于一定技术基础的商务运作方式和盈利模式。研究和分析电子商务模式的分类体系，挖掘新的电子商务模式，为电子商务模式创新提供途径，有助于为企业制定特定的电子商务策略和实施步骤，为品牌做到更大更强。创客部落基于一定技术基础的商务运作方式和盈利模式。研究和分析电子商务模式的分类体系，挖掘新的电子商务模式，为电子商务模式创新提供途径，有助于为企业制定特定的电子商务策略和实施步骤，为品牌做到更大更强。创客部落基于一定技术基础的商务运作方式和盈利模式。研究和分析电子商务模式的分类体系，挖掘新的电子商务模式，为电子商务模式创新提供途径，有助于为企业制定特定的电子商务策略和实施步骤，为品牌做到更大更强。';
   }
 
   loadAnalyze() {
-    this.productDataService.getProduct({
-      id: this.id,
-    }).then(data => {
-      this.analyze = data;
-      this.initChart();
-    });
+    this.analyze = this.productDataService.getProduct();
+    this.initChart();
   }
 
   initChart() {
