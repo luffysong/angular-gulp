@@ -1,96 +1,50 @@
 <div class="product-data">
-  <h4>产品及数据<a href="javascript:void(0)" ng-click="vm.productVM.enterEditMode()" ng-if="!vm.productVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.product.add">添加</a></h4>
-  <section id="productEdit" ng-include="'/pages/project/templates/productEdit.html'" ng-if="vm.productVM.isEdit">
-    产品数据添加
-  </section>
+  <h4><span class="icon-chart"></span>项目数据</h4>
   <div class="content">
     <div class="detail">
-      <div class="product-name">
-        {{vm.productVM.data.companyProduct.name}}
-      </div>
       <div class="base-info">
         <div class="inner">
-          <div class="info" ng-if="vm.productVM.data.companyProduct.desc!==''">{{vm.productVM.data.companyProduct.desc}}</div>
+          <div class="info">{{productVM.name}}</div>
           <div class="all-links">
-            <!-- <a ng-href="{{vm.productVM.data.companyProduct.}}"><span class="kr-icon icon-Weibo"></span></a> -->
-            <a ng-if="vm.productVM.data.companyProduct.weixin"
+            <a ng-href="{{productVM.website}}" ng-if="productVM.website" target="_blank">
+              <span class="kr-icon icon-officialsite">
+              </span>
+            </a><a ng-if="productVM.weixin"
               tooltips
               tooltip-smart="true"
-              tooltip-template="{{vm.productVM.data.companyProduct.weixin}}"
+              tooltip-template="{{productVM.weixin}}"
               tooltip-class="tooltip"
-              ><span class="kr-icon icon-Wechat"></span></a>
-            <a ng-if="vm.productVM.data.companyProduct.ios!==''"
-              ng-href="{{vm.productVM.data.companyProduct.ios}}" target="_blank"><span class="kr-icon icon-Apple"></span>
+              ><span class="kr-icon icon-Wechat"></span>
+            </a><a ng-if="productVM.ios"
+              ng-href="{{productVM.ios}}" target="_blank"><span class="kr-icon icon-Apple"></span>
+            </a><a ng-if="productVM.android"
+              ng-href="{{productVM.android}}" target="_blank">
+              <span class="kr-icon icon-Andriod"></span>
             </a>
-            <a ng-if="vm.productVM.data.companyProduct.android!==''"
-              ng-href="{{vm.productVM.data.companyProduct.android}}" target="_blank">
-              <span class="kr-icon icon-Andriod"></span></a>
-            <span class="kr-icon icon-websitelink" ng-show="::vm.productVM.data.companyProduct.website!==''">
-            <span class="path1"></span><span class="path2"></span><span class="path3"></span>
-            </span>
-            <!-- <span class="kr-icon icon-websitelink" ng-if="vm.productVM.data.companyProduct.website!==''"></span> -->
-            <a target="_blank" ng-href="{{vm.productVM.data.companyProduct.website}}"
-              ng-if="vm.productVM.data.companyProduct.website!==''" class="website-link">
-              {{vm.productVM.data.companyProduct.website}}</a>
+          </div>
+          <div class="aso">
+            由ASO提供
           </div>
         </div>
+      </div>
+      <div ng-if="productVM.aso" class="aso-desc">
+        <span expand-text="查看完整数据" text-overflow text="productVM.aso" >
+        </span>
       </div>
     </div>
-    <div class="investor" ng-if="vm.productVM.data.hasDataPrivilege">
-      <div class="companyData" ng-if="vm.productVM.showChart">
-        <div class="data-info">
-          <div class="tab">
-            <span ng-repeat="item in vm.productVM.dataTypes">
-              <span class="text" ng-click="vm.productVM.setType(item.fid)"
-                    ng-class="{'active':vm.productVM.curType === item.fid}">{{item.fdesc}}</span>
-            </span>
-            <span class="absolute-pos"  ng-if="vm.productVM.dataKeepTypes.length">
-              <span class="text"
-              ng-mouseenter="vm.productVM.setHovered()">
-              留存数据
-                <span class="angle" ng-if="vm.productVM.hasHovered"><span class="little-angle"></span></span>
-                <div class="keepData" ng-if="vm.productVM.hasHovered"
-                     ng-mouseleave="vm.productVM.setHovered()">
-                  <span ng-repeat="item in vm.productVM.dataKeepTypes">
-                    <span ng-click="vm.productVM.setType(item.fid)"
-                          ng-class="{'active':vm.productVM.curType === item.fid}">{{item.fdesc}}</span>
-                  </span>
-                </div>
-              </span>
-            </span>
-          </div>
-          <div class="chart">
-            <highchart id="monthChart" config="vm.productVM.chartConfig"></highchart>
-          </div>
-        </div>
-        <div class="more-data">
-          <div class="getMore" ng-click="vm.productVM.getData()" ng-show="vm.productVM.hideData">查看完整数据
-          </div>
-          <div class="complete-data" ng-show="!vm.productVM.hideData">
-            <table class="table">
-              <thead>
-                <tr>
-                  <td ng-repeat="item in vm.productVM.curHead">
-                    {{item.value}}
-                  </td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="item in vm.productVM.completeData">
-                  <td class="month">{{item.month}}</td>
-                  <td>{{item.data | number:2}}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="hideData" ng-click="vm.productVM.hide()">收起</div>
-          </div>
-        </div>
-      </div>
-      <div ng-if="!vm.productVM.showChart" class="no-data">
-        <p>暂无数据</p>
+    <div class="hg-btn-group">
+      <div>
+        <a href="javascript:;"  ng-click="">产品数据</a
+        ><a href="javascript:;" class="active"ng-click="">用户画像</a>
       </div>
     </div>
-    <div class="uninvestor" ng-show="{{!vm.productVM.data.hasDataPrivilege}}">
+    <div hg-product-wrapper>
+      <div ng-include="'/pages/project/templates/product-user-data.html'"></div>
+    </div>
+    <div ng-if="!productVM.hasData()" class="no-data">
+      <p><span class="icon-chart"></span>项目数据内测中，仅部分项目展示</p>
+    </div>
+    <div class="uninvestor" ng-show="{{root.user.notInvestor()}}">
       <div class="index">
         <div class="certify">
           <a ng-show="root.user.isLogin === false" login-btn>立即登录</a>

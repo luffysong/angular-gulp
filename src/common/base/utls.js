@@ -56,6 +56,10 @@ export function getConstantFilterFactory(meta) {
   };
 }
 
+export function percent(num, round = 2) {
+  return `${(num * 100).toFixed(round)}%`;
+}
+
 export function getUpToken(options, type, useOwnOrder) {
   const data = angular.extend({}, {
     bucket: upyun.bucket.name,

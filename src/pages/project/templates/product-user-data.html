@@ -1,0 +1,57 @@
+<section class="hg-user-data-wrapper">
+  <div class="gender-age">
+    <div class="gender">
+      <h4>性别占比</h4>
+      <div class="gender-proportion">
+        <div class="male">
+          <div>
+            <p class="icon-male"></p>
+            <span>
+              男性
+            </span>
+          </div>
+          <div>
+            <span class="percent">{{userPortraitsVm.male.percent}}</span>
+            <div class="graph">
+              <span ng-style="{width: userPortraitsVm.male.width}"></span>
+            </div>
+          </div>
+        </div>
+        <div class="female">
+          <div>
+            <p class="icon-female"></p>
+            <span>
+              女性
+            </span>
+          </div>
+          <div>
+            <span class="percent">{{userPortraitsVm.female.percent}}</span>
+            <div class="graph">
+              <span ng-style="{width: userPortraitsVm.female.width}"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="age">
+      <h4>年龄占比</h4>
+      <div class="age-proportion">
+        <ul>
+          <li ng-repeat="item in userPortraitsVm.age"><span class="age-text">{{item.x}}</span> <span class="bar">
+              <span ng-style="{width: item.width}"></span><span class="percent">{{ item.percent }}</span>
+          </span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="use-period">
+      <div class="period-chart">
+        <highchart config="userPortraitsVm.periodCfg"></highchart>
+      </div>
+  </div>
+  <div class="use-time-domain">
+    <div>
+      <highchart config="userPortraitsVm.domainCfg"></highchart>
+    </div>
+  </div>
+</section>

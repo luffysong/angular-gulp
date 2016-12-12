@@ -5,9 +5,10 @@ import FundsVM from './funds.vm';
 import FinanceVM from './finance.vm';
 import MemberVM from './member.vm';
 import SimilarVM from './similar.vm';
-import ProductVM from './product.vm';
+import ProductUserPortraitsVM from './ProductUserPortraits.vm.js';
 import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
+import ProductVM from './product.vm.js';
 import CompanyIntroduceVM from './companyIntroduce.vm';
 const FINANCE_ALLOW = '1';
 const FINANCE_AUDITING = '2';
@@ -38,14 +39,21 @@ export default class ProjectIndexController {
         this.$sce, this.$q);
       this.memberVM = new MemberVM(this.projectData.member, this.id);
       this.similarVM = new SimilarVM(this.projectData.similar);
-      this.productVM = new ProductVM(this.projectData.product, this.id, this.$filter);
       this.companyIntroduceVM = new CompanyIntroduceVM(this.projectData.baseInfo, this.id);
+      this.setVM();
     }
     this.getRelateUser();
     this.getBPPermission(this.id);
     this.setNavigation();
     this.getUser();
     this.getfundsState(this.id);
+  }
+
+  setVM() {
+    const $scope = this.$scope;
+    const data = this.projectData;
+    $scope.userPortraitsVm = new ProductUserPortraitsVM(data.product.userPortraits);
+    $scope.productVM = new ProductVM(data.product.companyProduct);
   }
   getfundsState(cid) {
     const id = {
