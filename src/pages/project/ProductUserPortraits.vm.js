@@ -69,6 +69,7 @@ const trendHg = {
     },
     chart: {
       height: 270,
+      spacingLeft: 0,
     },
     tooltip: {
       useHTML: true,
