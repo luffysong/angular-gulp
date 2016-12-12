@@ -10,6 +10,7 @@ import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
 import ProductVM from './product.vm.js';
 import CompanyIntroduceVM from './companyIntroduce.vm';
+import NewsVM from './news.vm';
 const FINANCE_ALLOW = '1';
 const FINANCE_AUDITING = '2';
 const BP_PERMISSION = {
@@ -41,6 +42,7 @@ export default class ProjectIndexController {
       this.similarVM = new SimilarVM(this.projectData.similar);
       this.companyIntroduceVM = new CompanyIntroduceVM(this.projectData.baseInfo, this.id);
       this.setVM();
+      this.newsVM = new NewsVM(this.projectData.news,this.$scope, this.id);
     }
     this.getRelateUser();
     this.getBPPermission(this.id);

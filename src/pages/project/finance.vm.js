@@ -32,16 +32,17 @@ export default class FinanceVM extends krData.FormVM {
   financeList ;
   getlist(limitlist = [], list = [], n) {
     this.financeList = list;
-    if (list.length > (5 * n)) {
-      limitlist = list.slice(0, (5 * n));
+    if (list.length > (3 * n)) {
+      limitlist = list.slice(0, (3 * n));
     } else {
       limitlist = list;
     }
     return limitlist;
   }
   more() {
-    ++this.num;
-    this.list = this.getlist(this.list, this.financeList, this.num);
+    // ++this.num;
+    // this.list = this.getlist(this.list, this.financeList, this.num);
+    this.list = this.financeList;
   }
   showMore() {
     return !(this.list.length === this.financeList.length);

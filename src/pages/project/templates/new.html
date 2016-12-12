@@ -13,27 +13,26 @@
           <span class="time">{{news.publishDateStr}}</span>
           <span class="point"></span>
           <div class="news-info">
-            <span class="tag">{{news.newsType}}</span>
+            <span class="tag" ng-show="news.newsType">{{news.newsType}}</span>
             <div class="news-article">
               <p class="n-title">
                 <a ng-href="{{news.newsUrl}}" ng-bind="news.title"></a>
               </p>
-              <p>
+              <p ng-show="news.source">
                 <span class="from">来源</span><span class='address'>{{news.source}}</span>
               </p>
             </div>
           </div>
         </li>
       </ul>
-      <div class="more">
-        <span class="get-more" ng-click="vm.newsVM.more()" ng-show="vm.newsVM.showMore()">查看更多</span>
-      </div>
+      <div class="more" ng-click="vm.newsVM.more()" ng-show="vm.newsVM.showMore">展开全部新闻</div>
+      <div class="more" ng-click="vm.newsVM.more()" ng-show="!vm.newsVM.showMore" ng-class="{'hide-more': !vm.newsVM.showMore}">收起</div>
     </div>
-    <div ng-show="!vm.newsVM.newsList.length" class="none-data">
+    <div ng-show="!vm.newsVM.list.length" class="none-data">
       <span>
-          <span class="icon-Company icon"></span>
-          <span>未收录相关信息</span>
-        </span>
+        <span class="icon-Company icon"></span>
+        <span>未收录相关信息</span>
+      </span>
     </div>
   </div>
 </div>

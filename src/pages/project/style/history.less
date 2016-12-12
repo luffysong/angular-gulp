@@ -59,185 +59,199 @@
         }
       }
     }
-
-    .history-list{
-      // border-bottom: 1px solid #E7E7E7;
-    }
-    .history-info{
-      width: 100%;
-      .font(14,21);
-      color: #5A626D;
-      letter-spacing: 0px;
-      padding-bottom: 20px;
-      // span{
-      //   display: inline-block;
-      //   text-align: center;
-      //   vertical-align:middle;
-      // }
-      .info-year{
+    .detail-content {
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px dashed #E7E7E7;
+      margin-top: 24px;
+      display: table;
+      .title{
+        vertical-align: top;
+        margin: 10px 0 0 30px;
+        font-weight: bold;
+        font-size: 14px;
+        color: #5A626D;
+        line-height: 21px;
       }
-
-      .circular {
-        width:12px;
-        height:12px;
-        background: #FFFFFF;
-        border: 1px solid #6BA2FC;
-        border-radius: 100px;
-        padding: 2px;
-        display:inline-block;
-        position: relative;
-        right: 30px;
-        .circular2 {
-          width:6px;
-          height:6px;
-          background: #6BA2FC;
+      .content{
+        display: inline-block;
+        max-width: 720px;
+        margin: 10px 0 20px 30px;
+        font-size: 14px;
+        color: #5A626D;
+        line-height: 24px;
+      }
+      .hidden-details {
+        float: right;
+        margin-top: 10px;
+      }
+    }
+    .finance-content {
+      margin-top: 40px;
+      .history-info{
+        width: 100%;
+        .font(14,21);
+        color: #5A626D;
+        letter-spacing: 0px;
+        .info-year{
+        }
+        .circular {
+          width:12px;
+          height:12px;
+          background: #FFFFFF;
+          border: 1px solid #6BA2FC;
           border-radius: 100px;
-        }
-      }
-      .line {
-        background: #F2F4F5;
-        height: 30px;
-        width: 2px;
-        position: relative;
-        right: 12px;
-        bottom: 11px;
-        display:inline-block;
-        margin-left: 30px;
-      }
-      .line2 {
-        background: #F2F4F5;
-        height: 30px;
-        width: 2px;
-        position: relative;
-        right: 19px;
-        top: 30px;
-        display:inline-block;
-      }
-      .angle {
-        border-left: 1px solid #E9F0F5;
-        border-bottom: 1px solid #E9F0F5;
-        width:12px;
-        height:12px;
-        background: #FFF;
-        -moz-transform:rotate(45deg);
-        -webkit-transform:rotate(45deg);
-        -o-transform:rotate(45deg);
-        -ms-transform:rotate(45deg);
-        transform:rotate(45deg);
-        display: inline-block;
-        position: relative;
-        z-index: 10;
-      }
-      .finance-info {
-        background: #FFFFFF;
-        border: 1px solid #F2F4F5;
-        box-shadow: 0px 0px 10px 0px #E9F0F5;
-        display: inline-block;
-        padding: 6px 0 18px;
-        position: relative;
-        right: 12px;
-        top: 25px;
-        .info-lun{
-          font-size: 18px;
-          font-weight: bold;
-          line-height: 24px;
-          margin-left: 30px;
-          float: left;
+          padding: 2px;
+          display:inline-block;
           position: relative;
-          top: 15px;
-          a {
-            color: #222C38;
+          left: 12px;
+          .circular2 {
+            width:6px;
+            height:6px;
+            background: #6BA2FC;
+            border-radius: 100px;
           }
         }
-        .split {
-          background: #E5EBF0;
-          height: 35px;
-          width: 2px;
-          position: relative;
-          top: 10px;
-          float: left;
-          // display: inline-block;
-          margin: 0 28px;
-        }
-        .split2 {
-          background: #E5EBF0;
-          height: 35px;
-          width: 2px;
-          position: relative;
-          top: 10px;
-          float: left;
-          // display: inline-block;
-          margin: 0 16px 0 28px;
-        }
-        .amount-participant {
-          // display: inline-block;
-          float: left;
-        }
-        .amount {
-          // display: inline-block;
-          float: left;
-          .label-name {
-            font-size: 14px;
-            color: #969FA9;
-            line-height: 21px;
-          }
-          .amount-top {
-            position:relative;
-            top: 5px;
-            margin-right: 12px;
-          }
-          .participant-down-label {
-            position: relative;
-            top: 10px;
-            margin-right: 32px;
-          }
-          .participant-down {
-            position: relative;
-            top: 10px;
-            right: 6px;
-          }
-        }
-        .news {
-          float: left;
-          position: relative;
-          margin-right: 16px;
-          top: 16px;
-          font-size: 20px;
-
-        }
-        .participant {
+        .angle {
+          border-left: 1px solid #E9F0F5;
+          border-bottom: 1px solid #E9F0F5;
+          width:12px;
+          height:12px;
+          background: #FFF;
+          -moz-transform:rotate(45deg);
+          -webkit-transform:rotate(45deg);
+          -o-transform:rotate(45deg);
+          -ms-transform:rotate(45deg);
+          transform:rotate(45deg);
           display: inline-block;
+          position: relative;
+          z-index: 10;
+        }
+        .left-line {
+          display: inline-block;
+          padding-left: 30px;
+          border-left: 2px solid #F2F4F5;
+        }
+        .finance-info {
+          background: #FFFFFF;
+          border: 1px solid #F2F4F5;
+          box-shadow: 0px 0px 10px 0px #E9F0F5;
+          display: inline-block;
+          position: relative;
+          right: 12px;
+          margin-bottom: 28px;
+          .info-lun{
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 24px;
+            margin-left: 30px;
+            display: inline-block;
+            position: relative;
+            a {
+              color: #222C38;
+            }
+          }
+          .split {
+            background: #E5EBF0;
+            height: 35px;
+            width: 2px;
+            position: relative;
+            top: 10px;
+            display: inline-block;
+            // display: inline-block;
+            margin: 0 28px;
+          }
+          .split2 {
+            background: #E5EBF0;
+            height: 35px;
+            width: 2px;
+            position: relative;
+            top: 10px;
+            display: inline-block;
+            margin-right: 16px;
+          }
+          .amount-participant {
+            display: inline-block;
+            padding: 10px 0;
+          }
+          .amount {
+            display: inline-block;
+            .label-name {
+              font-size: 14px;
+              color: #969FA9;
+              line-height: 21px;
+            }
+            .amount-top {
+              position:relative;
+              top: 5px;
+              margin-right: 12px;
+            }
+            .participant-down-label {
+              position: relative;
+              top: 10px;
+              margin-right: 32px;
+            }
+            .participant-down {
+              position: relative;
+              right: 6px;
+            }
+            .participants {
+              .participant{
+                float: left;
+                margin-bottom: 15px;
+              }
+              .tags {
+                display: inline-block;
+                max-width: 350px;
+                padding-bottom: 15px;
+                position: relative;
+                top: 10px;
+                margin-right: 16px;
+              }
+            }
+          }
+          .news {
+            display: inline-block;
+            position: relative;
+            margin-right: 16px;
+            font-size: 20px;
 
-        }
-        .info-company{
-          color: #6BA2FC;
-          padding-right: 5px;
-          a+a{
-            margin-left: 15px;
           }
-        }
-        .info-level{
-        }
-        .info-news{
-          a{
-            color: #969FA9;
+          .participant {
+            display: inline-block;
+
           }
-          a:hover{
-            color:#6BA2FC;
+          .info-company{
+            color: #6BA2FC;
+            padding-right: 5px;
+            a+a{
+              margin-left: 15px;
+            }
           }
-          cursor: pointer;
-        }
-        .news-none{
-          cursor: default;
-          a {
-            color:#cccccc;
+          .info-level{
           }
-          a:hover {
-            color:#cccccc;
+          .info-news{
+            a{
+              color: #969FA9;
+            }
+            a:hover{
+              color:#6BA2FC;
+            }
+            cursor: pointer;
+          }
+          .news-none{
+            cursor: default;
+            a {
+              color:#cccccc;
+            }
+            a:hover {
+              color:#cccccc;
+            }
           }
         }
       }
     }
+
     .more,.login-more{
       .font(12,18);
       color: #5A626D;

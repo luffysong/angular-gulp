@@ -23,15 +23,19 @@ export default class NewsVM extends krData.FormVM {
     return limitlist;
   }
   more() {
-    ++this.num;
-    this.newsList = this.getList(this.newsList, this.list, this.num);
+    // ++this.num;
+    // this.newsList = this.getList(this.newsList, this.list, this.num);
+    this.newsList = this.list;
+    this.showMore = !this.showMore;
+    if(this.showMore){
+        this.newsList = this.initList;
+    }
   }
-  showMore() {
-    return !(this.newsList.length === this.list.length);
-  }
+
   init(data) {
     this.newsList = this.getList(this.newsList, this.list, 1);
-
+    this.initList = this.getList(this.newsList, this.list, 1);
+    this.showMore = true;
     // this.noTitle = true;
     this.mapProps(this.props, data, this);
   }
