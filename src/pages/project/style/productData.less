@@ -1,0 +1,98 @@
+@import "../../../common/styles/function";
+.product-data{
+  .bottom-container {
+    .clear();
+    .left-container {
+      float: left;
+      width:50%;
+    }
+    .right-container {
+      .left-container;
+      .right-title {
+        font-size: 14px;
+        color: #5A626D;
+        letter-spacing: 0px;
+        line-height: 21px;
+        margin-bottom:41px;
+      }
+      .retention-container {
+        .retention-item {
+          margin-bottom:18px;
+          .clear();
+          &:nth-of-type(2) {
+            .retention-bar {
+              transition-delay: 1.3s;
+            }
+          }
+          &:nth-of-type(3) {
+            .retention-bar {
+              transition-delay: 1.6s;
+            }
+          }
+          &:nth-of-type(4) {
+            .retention-bar {
+              transition-delay: 1.9s;
+            }
+          }
+          .retention-title {
+            float: left;
+            width:84px;
+            font-size: 12px;
+            color: #5A626D;
+            letter-spacing: 0px;
+            line-height: 18px;
+            text-align: right;
+            margin-right:14px;
+          }
+          .retention-bar {
+            float: left;
+            width:0;
+            height:16px;
+            background: #BBE4FF;
+            transition: width 1.5s 1s;
+          }
+          .retention-percent {
+            float: left;
+            font-size: 12px;
+            color: #5A626D;
+            letter-spacing: 0px;
+            line-height: 18px;
+            margin-left:8px;
+          }
+        }
+      }
+    }
+  }
+  .chart-tooltip {
+    &:after {
+      display: block;
+      content: " ";
+    }
+    background: rgba(90,98,109,0.69);
+    color: #fff;
+    padding: 8px 13px;
+    line-height: 20px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px 0px #969FA9;
+    ul {
+      border-top: 1px solid #ccc;
+      margin-top: 6px;
+      padding-top: 6px;
+    }
+    p span {
+      font-weight: 600;
+    }
+  }
+  .kr-legend-item {
+    .kr-circle{
+      width: 8px;
+      height: 8px;
+      margin-right: 6px;
+      border-radius: 50%;
+    }
+    > span:nth-child(2) {
+      max-width: 200px;
+    }
+    transform: translateX(10px);
+  }
+}

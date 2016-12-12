@@ -8,6 +8,8 @@ import moreShowDirective from './moreShow.directive';
 import EditProjectController from './EditProject.controller';
 import krScrollClick from './krScrollClick.directive.js';
 import introFormat from './introFormat.filter';
+import ProductDataService from './productData.service';
+
 angular.module('@@pages.project', [])
   .controller('ProjectIndexController', ProjectIndexController)
   .controller('EditProjectController', EditProjectController)
@@ -18,4 +20,5 @@ angular.module('@@pages.project', [])
   .directive('loginBtn', loginBtnDirective)
   .directive('krScrollClick', krScrollClick)
   .filter('introFormat', introFormat)
-  .directive('moreShow', moreShowDirective);
+  .directive('moreShow', moreShowDirective)
+  .service('productDataService', ProductDataService);
