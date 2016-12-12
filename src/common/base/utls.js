@@ -227,6 +227,8 @@ export function isEmpty(obj) {
       }
     }
     return true;
+  } else if (angular.isUndefined(obj)) {
+    return true;
   }
   return false;
 }

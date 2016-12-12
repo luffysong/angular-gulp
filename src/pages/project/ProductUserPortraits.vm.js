@@ -1,4 +1,4 @@
-import krData from 'krData';
+import krData, { utls } from 'krData';
 import ProductUserPortraits from './ProductUserPortraits';
 const percent = krData.utls.percent;
 const wanTooltip = {
@@ -101,14 +101,23 @@ const trendHg = {
 };
 export default class ProductUserPortraitsVM {
   constructor(data) {
-    this.userPortraits = new ProductUserPortraits(data);
+    this.userPortraitsData = data;
+    this.init();
+  }
+
+  init() {
+    if (utls.isEmpty(this.userPortraitsData)) {
+      this.hasData = false;
+      return;
+    }
+    this.hasData = true;
+    this.userPortraits = new ProductUserPortraits(this.userPortraitsData);
     this.data = this.userPortraits.getData();
     this.setGender(this.data.sex);
     this.setAge(this.data.age);
     this.setPeriodHg(this.data.freq);
     this.setDomainHg(this.data.area);
   }
-
   setGender(sex) {
     this.male = {
       percent: percent(sex.male),
