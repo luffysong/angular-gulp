@@ -124,7 +124,7 @@ export default class ProductVM {
       name: '曝光量',
       data: investmentTrend.exposure.data.map((item, i) => ({
         y: Number(item),
-        dau: investmentTrend.seriesData.dau[i].toFixed(2),
+        dau: investmentTrend.seriesData.dau[i] ? investmentTrend.seriesData.dau[i].toFixed(2) : 0,
         exposure: Number(item),
         year: this.year,
       })),
@@ -523,7 +523,7 @@ export default class ProductVM {
   handleRetention(d) {
     this.retentionList.forEach((item) => {
       const a = d[item.key];
-      item.percent = a[a.length - 1].toFixed(2);
+      item.percent = a.length ? a[a.length - 1].toFixed(2) : 0;
     });
     let index = 0;
     const width = 250;
@@ -533,7 +533,7 @@ export default class ProductVM {
       }
     });
     this.retentionList.forEach((item, i) => {
-      if (index === i) {
+      if (index === i && item.percent !== 0) {
         item.width = width;
       } else {
         item.width = `${width * (item.percent / this.retentionList[index].percent)}px`;

@@ -32,7 +32,7 @@ export default class ProductDataService {
   _convertObj(obj) {
     return {
       x: obj.x,
-      data: obj.y_list[0].y,
+      data: obj.y_list[0] && obj.y_list[0].y ? obj.y_list[0].y : [],
     };
   }
 
