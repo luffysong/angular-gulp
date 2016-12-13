@@ -107,17 +107,25 @@ export default class ProductUserPortraitsVM {
   }
 
   init() {
-    if (utls.isEmpty(this.userPortraitsData)) {
+    if (utls.isEmpty(this.userPortraitsData.chart)) {
       this.hasData = false;
       return;
     }
     this.hasData = true;
     this.userPortraits = new ProductUserPortraits(this.userPortraitsData);
     this.data = this.userPortraits.getData();
-    this.setGender(this.data.sex);
-    this.setAge(this.data.age);
-    this.setPeriodHg(this.data.freq);
-    this.setDomainHg(this.data.area);
+    if (this.data.sex) {
+      this.setGender(this.data.sex);
+    }
+    if (this.data.age) {
+      this.setAge(this.data.age);
+    }
+    if (this.data.freq) {
+      this.setPeriodHg(this.data.freq);
+    }
+    if (this.data.area) {
+      this.setDomainHg(this.data.area);
+    }
   }
   setGender(sex) {
     this.male = {
