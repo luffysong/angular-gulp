@@ -4,7 +4,7 @@
     <div class="detail">
       <div class="base-info">
         <div class="inner">
-          <div class="info">{{productVM.name}}</div>
+          <div class="info">{{productVM.app_name || productVM.name}}</div>
           <div class="all-links">
             <a ng-href="{{productVM.website}}" ng-if="productVM.website" target="_blank">
               <span class="kr-icon icon-officialsite">
@@ -23,12 +23,12 @@
             </a>
           </div>
           <div class="aso">
-            由ASO提供
+            <a ng-href="{{productVM.aso}}" class="aso" target="_blank">由ASO提供</a>
           </div>
         </div>
       </div>
-      <div ng-if="productVM.aso" class="aso-desc">
-        <span expand-text="查看完整数据" text-overflow text="productVM.aso" >
+      <div ng-if="productVM.app_desc" class="aso-desc">
+        <span expand-text="查看完整数据" text-overflow text="productVM.app_desc" >
         </span>
       </div>
     </div>

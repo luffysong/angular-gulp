@@ -81,11 +81,23 @@ div.product-data{
             margin-top: 8px;
             color: #969FA9;
             line-height: 18px;
+            &:hover {
+              color: @anchor-color;
+            }
+
           }
         }
 
       }
       .aso-desc > span {
+        .toggle {
+          visibility: hidden;
+        }
+        &.is-truncated, &.opened{
+          .toggle {
+            visibility: visible;
+          }
+        }
         &.opened {
           height: auto;
         }
