@@ -32,11 +32,14 @@ export default class NewsVM extends krData.FormVM {
     }
   }
 
+  showBtn(){
+    return !(this.list === this.newsList);
+  }
+
   init(data) {
     this.newsList = this.getList(this.newsList, this.list, 1);
     this.initList = this.getList(this.newsList, this.list, 1);
     this.showMore = true;
-    // this.noTitle = true;
     this.mapProps(this.props, data, this);
   }
 
