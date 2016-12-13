@@ -107,7 +107,7 @@ export default class ProductUserPortraitsVM {
   }
 
   init() {
-    if (utls.isEmpty(this.userPortraitsData.chart)) {
+    if (!this.userPortraitsData || utls.isEmpty(this.userPortraitsData.chart)) {
       this.hasData = false;
       return;
     }
