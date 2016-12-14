@@ -13,7 +13,7 @@
            <small ng-show="vm.fundsVM.financeAmountUnit =='USD'">$</small
            ><small ng-show="vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}万
         </span>
-        <a href="#" ng-click="vm.fundsVM.showFinanceDetail()" ng-hide="!vm.fundsVM.hideDetail">查看融资详情</a>
+        <a href="#" class="" ng-click="vm.fundsVM.showFinanceDetail()" ng-hide="!vm.fundsVM.hideDetail" ng-class="{disable: vm.fundsVM.hideDetail}">查看融资详情</a>
       </div>
     </div>
     <a href="javascript:void(0)" ng-click="vm.financeVM.enterEditMode()"
@@ -74,7 +74,9 @@
                     </div>
                     <div class="tags">
                       <span class="info-company" ng-if="data.participantVos" >
-                        <a ui-sref="org({id: entity.entityId})" target="_blank" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
+                        <a ui-sref="investorInfo({id: entity.entityId})" ng-if="entity.entityType === 1" target="_blank" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
+                        <a ui-sref="org({id: entity.entityId})" ng-if="entity.entityType === 2" target="_blank" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
+                        <a ui-sref="project({id: entity.entityId})" ng-if="entity.entityType === 3" target="_blank" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
                       </span>
                       <span ng-if="vm.financeVM.isUndefined(data.participantVos)" class="participant-down info-company">
                         暂无
