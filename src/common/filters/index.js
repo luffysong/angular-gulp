@@ -8,6 +8,7 @@ import { getConstantFilterFactory } from '../base/utls';
 import listDateFilter from './listDateFilter.filter';
 import followArea from './followArea.filter';
 import msgDateFilter from './msgDate.filter';
+import brLineFilterFactory from './brLine.filter';
 
 angular.module('@@app.filters', [])
   .filter('financePhase', getConstantFilterFactory(META.FINANCE_PHASE_META))
@@ -23,4 +24,5 @@ angular.module('@@app.filters', [])
   .filter('industry', industry)
   .filter('listDateFilter', listDateFilter)
   .filter('followArea', followArea)
+  .filter('brLine', brLineFilterFactory)
   .filter('msgDate', msgDateFilter);

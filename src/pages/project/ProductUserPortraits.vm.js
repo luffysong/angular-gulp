@@ -6,7 +6,7 @@ const wanTooltip = {
   pointFormatter: function pointFormatter() {
     return `<div class="chart-tooltip">
        <p>${this.category}</p>
-       <p>使用人数：<span>${this.y}万</span></p>
+       <p>使用人数：<span>${this.y.toFixed(2)}万</span></p>
       </div>`;
   },
 };

@@ -10,7 +10,7 @@ function textOverflowDirective() {
       const collapseText = attr.collapseText || '收起';
       const more = $(`<a class="toggle underline" href="javascript:;"><span class="open">
         ${expandText}</a>`);
-      element.text(scope.text);
+      element.html(scope.text);
       element.append(more);
       const moreBtn = element.find('.open');
       function createDots() {
