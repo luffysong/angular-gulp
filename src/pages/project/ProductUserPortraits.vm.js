@@ -85,6 +85,9 @@ const trendHg = {
     gridLineWidth: 1,
     gridLineColor: '#F2F4F5',
     gridLineDashStyle: 'longdash',
+    labels: {
+      autoRotation: 0,
+    },
   },
   yAxis: {
     lineColor: '#E7E7E7',
