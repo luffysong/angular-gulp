@@ -21,7 +21,7 @@
         </li>
       </ul>
       <div ng-if="vm.projectData.baseInfo.intro" class="info">
-        <span id="node" text-overflow text="vm.projectData.baseInfo.intro" >
+        <span id="node" text-overflow text="vm.projectData.baseInfo.intro | enterFormat" >
         </span>
       </div>
       <ul class="company-info">
@@ -55,23 +55,23 @@
       <div class="introduce-detail" ng-if="vm.companyIntroduceVM.hasIntroduce" >
         <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.productService">
           <span class="sub-title">产品服务</span>
-          <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.productService}}</span>
+          <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.productService | enterFormat"></span>
         </div>
         <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.userMarket">
           <span class="sub-title">用户市场</span>
-          <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.userMarket}}</span>
+          <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.userMarket | enterFormat"></span>
         </div>
         <div class="item" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.businessMode)" >
           <span class="sub-title">商业模式</span>
-          <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.businessMode}}</span>
+          <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.businessMode | enterFormat"></span>
         </div>
         <div class="item" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.operationData)">
           <span class="sub-title">运营数据</span>
-          <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.operationData}}</span>
+          <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.operationData | enterFormat"></span>
         </div>
         <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.coreSource" >
           <span class="sub-title">核心资源</span>
-          <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.coreSource}}</span>
+          <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.coreSource | enterFormat"></span>
         </div>
       </div>
       <div class="no-data" ng-if="!vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true">
