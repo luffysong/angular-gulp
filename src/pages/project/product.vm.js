@@ -14,7 +14,7 @@ export default class ProductVM {
       this.hasData = false;
       return;
     }
-    this.hasData = true;
+    this.hasData = false;
     this.setTrend();
     this.setDownload();
     this.setWebsite();
@@ -51,15 +51,17 @@ export default class ProductVM {
     }
   }
 
-  isEmpty(o) {
-    return !o.length;
-  }
-
   loadAnalyze() {
     this.analyze = this.productDataService.getProduct();
-    console.log(this.analyze);
     Object.keys(this.analyze).forEach(key => {
-      console.log(key);
+        if (this.analyze.x.length || (this.analyze[key].data && this.analyze[key].data.length)) {
+          this.hasData = true;
+        }
+    });
+    Object.keys(this.analyze.seriesData).forEach(item => {
+      if (this.analyze.seriesData[item].length) {
+        this.hasData = true;
+      }
     });
     this.initChart();
   }
