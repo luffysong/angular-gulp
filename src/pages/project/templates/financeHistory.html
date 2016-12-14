@@ -58,7 +58,7 @@
             <div class="angle"></div
             ><div class="finance-info">
               <span class="info-lun">
-                <a href="" class="darkColor" ng-if="data.phase">{{data.phase | financePhase}}</a>
+                <a ui-sref="list.result({phase: data.phase})" target="_blank" class="darkColor" ng-if="data.phase">{{data.phase | financePhase}}</a>
               </span>
               <div class="split"></div>
               <div class="amount-participant">
@@ -72,7 +72,7 @@
                     </div>
                     <div class="tags">
                       <span class="info-company" ng-if="data.participantVos" >
-                        <a href="" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
+                        <a ui-sref="org({id: entity.entityId})" target="_blank" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
                       </span>
                       <span ng-if="vm.financeVM.isUndefined(data.participantVos)" class="participant-down info-company">
                         暂无

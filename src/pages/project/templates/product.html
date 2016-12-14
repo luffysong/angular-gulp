@@ -22,13 +22,13 @@
               <span class="kr-icon icon-Andriod"></span>
             </a>
           </div>
-          <div class="aso">
+          <div ng-if="productVM.aso" class="aso">
             <a ng-href="{{productVM.aso}}" class="aso" target="_blank">由ASO提供</a>
           </div>
         </div>
       </div>
-      <div ng-if="productVM.app_desc" class="aso-desc">
-        <span expand-text="查看完整数据" text-overflow text="productVM.app_desc" >
+      <div class="aso-desc">
+        <span expand-text="查看完整数据" text-overflow text="productVM.app_desc || productVM.desc" >
         </span>
       </div>
     </div>
