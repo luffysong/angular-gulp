@@ -51,8 +51,16 @@ export default class ProductVM {
     }
   }
 
+  isEmpty(o) {
+    return !o.length;
+  }
+
   loadAnalyze() {
     this.analyze = this.productDataService.getProduct();
+    console.log(this.analyze);
+    Object.keys(this.analyze).forEach(key => {
+      console.log(key);
+    });
     this.initChart();
   }
 
@@ -76,7 +84,7 @@ export default class ProductVM {
       }
       return `<div class="chart-tooltip">
        <p>${handleDate(this.category)}</p>
-       <p>DAU：<span>${this.dau}万人</span></p>
+       <p>用户量：<span>${this.dau}万人</span></p>
        <p>曝光量：<span>${this.exposure}</span></p>
       </div>`;
     },
@@ -118,7 +126,7 @@ export default class ProductVM {
     }
     this.trendHg.xAxis.categories = investmentTrend.x.map(item => handleDate(item));
     this.trendHg.series = [{
-      name: 'DAU (日活跃用户量) / 人',
+      name: '用户量 / 人',
       color: '#88C4FF',
       data: investmentTrend.seriesData.dau.map((item, i) => ({
         y: item,
@@ -284,6 +292,13 @@ export default class ProductVM {
           dashStyle: 'LongDash',
         },
         categories: [],
+        labels: {
+          autoRotation: 0,
+          useHTML: true,
+          style: {
+            whiteSpace: 'nowrap',
+          },
+        },
       },
       yAxis: [{
         lineColor: '#E7E7E7',
@@ -400,6 +415,13 @@ export default class ProductVM {
           dashStyle: 'LongDash',
         },
         categories: [],
+        labels: {
+          autoRotation: 0,
+          useHTML: true,
+          style: {
+            whiteSpace: 'nowrap',
+          },
+        },
       },
       yAxis: [{
         lineColor: '#E7E7E7',
