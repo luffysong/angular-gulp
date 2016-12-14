@@ -10,7 +10,7 @@
     <div class="content" ng-show="vm.newsVM.newsList">
       <ul>
         <li class="news-detail" ng-repeat="news in vm.newsVM.newsList">
-          <span class="time">{{news.publishDateStr}}</span
+          <div class="time"><span>{{news.publishDateStr}}</span></div
           ><div class="news-info"><span class="point"></span>
             <span class="tag" ng-show="news.newsType">{{news.newsType}}</span>
             <div class="news-article">
