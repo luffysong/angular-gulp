@@ -97,10 +97,13 @@
         .font(14,21);
         color: #5A626D;
         letter-spacing: 0px;
+        position: relative;
         .info-year{
           display: inline-block;
           width: 55px;
-          margin-right: 20px;
+          position: absolute;
+          top: 50%;
+          margin-top: -23px;
         }
         .circular {
           width:12px;
@@ -111,8 +114,9 @@
           padding: 2px;
           display:inline-block;
           position: absolute;
-          left: -7px;
-          top: 35px;
+          left: -26px;
+          top: 50%;
+          margin-top: -6px;
           .circular2 {
             width:6px;
             height:6px;
@@ -132,15 +136,18 @@
           -ms-transform:rotate(45deg);
           transform:rotate(45deg);
           display: inline-block;
-          position: relative;
+          position: absolute;
           z-index: 10;
-          margin-right: 5px;
+          left: -6px;
+          top: 50%;
+          margin-top: -6px;
         }
         .left-line {
           display: inline-block;
           padding-left: 30px;
           border-left: 2px solid #F2F4F5;
           position: relative;
+          margin-left: 72px;
         }
         .finance-info {
           background: #FFFFFF;

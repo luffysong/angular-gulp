@@ -56,11 +56,11 @@
             <span>{{data.financeDate | date: 'yyyy.MM' }}</span>
           </div>
           <div class="left-line">
-            <div class="circular">
-              <div class="circular2"></div>
-            </div>
-            <div class="angle"></div
-            ><div class="finance-info">
+            <div class="finance-info">
+              <div class="circular">
+                <div class="circular2"></div>
+              </div>
+              <div class="angle"></div>
               <span class="info-lun">
                 <a ui-sref="list.result({phase: data.phase})" target="_blank" class="darkColor" ng-if="data.phase">{{data.phase | financePhase}}</a>
               </span>
