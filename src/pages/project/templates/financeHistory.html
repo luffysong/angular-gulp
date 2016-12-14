@@ -13,7 +13,9 @@
            <small ng-show="vm.fundsVM.financeAmountUnit =='USD'">$</small
            ><small ng-show="vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}万
         </span>
-        <a href="#" class="" ng-click="vm.fundsVM.showFinanceDetail()" ng-hide="!vm.fundsVM.hideDetail" ng-class="{disable: vm.fundsVM.hideDetail}">查看融资详情</a>
+        <a href="#" class="" ng-click="vm.fundsVM.showFinanceDetail()" ng-hide="!vm.fundsVM.hideDetail" ng-class="
+        {disable: !vm.fundsVM.fundsVo.scale && !vm.fundsVM.fundsVo.dataLights && !vm.fundsVM.fundsVo.competitor &&
+        !vm.fundsVM.fundsVo.projectPlan}">查看融资详情</a>
       </div>
     </div>
     <a href="javascript:void(0)" ng-click="vm.financeVM.enterEditMode()"
