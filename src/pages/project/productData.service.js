@@ -21,7 +21,7 @@ export default class ProductDataService {
     const companyData = this.companyData;
     return {
       seriesData: this._convertDiagram(companyData.user_stat.y_list),
-      x: companyData.user_stat.x,
+      x: companyData.user_stat.x ? companyData.user_stat.x : [],
       exposure: this._convertObj(companyData.exposure_stat),
       appRank: this._convertObj(companyData.ios_rank),
       download: this._convertObj(companyData.android_download),
@@ -31,15 +31,15 @@ export default class ProductDataService {
 
   _convertObj(obj) {
     return {
-      x: obj.x,
-      data: obj.y_list[0] && obj.y_list[0].y ? obj.y_list[0].y : [],
+      x: obj.x ? obj.x : [],
+      data: obj.y_list && obj.y_list[0] && obj.y_list[0].y ? obj.y_list[0].y : [],
     };
   }
 
   _convertDiagram(diagram) {
     const seriesData = {};
     Object.keys(FID_KEY).forEach(key => (seriesData[key] = []));
-    diagram.forEach(companyData => {
+    diagram && diagram.forEach(companyData => {
       Object.keys(FID_KEY).forEach((key) => {
         if (FID_KEY[key] === companyData.fid) {
           seriesData[key] = companyData.y;
