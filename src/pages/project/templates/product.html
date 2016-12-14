@@ -32,7 +32,7 @@
         </span>
       </div>
     </div>
-    <div class="investor" ng-if="root.user.isInvestor()">
+    <div class="investor" ng-if="root.user.isInvestor() && (productVM.hasData || userPortraitsVm.hasData)">
       <div class="hg-btn-group">
         <div>
           <a href="javascript:;"  ng-class="{active: productVM.active === 'product'}"
