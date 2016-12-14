@@ -10,16 +10,19 @@
       基本介绍编辑
     </section>
     <div class="content" ng-show="vm.memberVM.show()" ng-if="!vm.memberVM.isEdit && vm.userId">
-      <div class="team-key" ng-show="vm.memberVM.data.teamTags.length">
-        <span class="name">团队关键字</span>
-        <ul class="key-list">
-          <li ng-repeat="tag in vm.memberVM.data.teamTags">{{tag}}</li>
-        </ul>
+      <div class="info" ng-hide="!vm.memberVM.data.teamTags.length && !vm.memberVM.data.story">
+        <div class="team-key" ng-show="vm.memberVM.data.teamTags.length">
+          <span class="name">团队关键字</span>
+          <ul class="key-list">
+            <li ng-repeat="tag in vm.memberVM.data.teamTags">{{tag}}</li>
+          </ul>
+        </div>
+        <div class="advantage" ng-show="vm.memberVM.data.story">
+          <span class="name">团队优势</span>
+          <span class="ad-info" text-overflow text="vm.memberVM.data.story"></span>
+        </div>
       </div>
-      <div class="advantage" ng-show="vm.memberVM.data.story">
-        <span class="name">团队优势</span>
-        <span class="ad-info" text-overflow text="vm.memberVM.data.story"></span>
-      </div>
+
       <div class="team-people" ng-show="vm.memberVM.members.length">
         <table class='item-list'>
         <thead class='content-head'>

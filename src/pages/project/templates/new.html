@@ -10,12 +10,12 @@
     <div class="content" ng-show="vm.newsVM.newsList">
       <ul>
         <li class="news-detail" ng-repeat="news in vm.newsVM.newsList">
-          <div class="time"><span>{{news.publishDateStr}}</span></div
+          <div class="time"><span>{{news.publishDate | date: 'yyyy.MM' }}</span></div
           ><div class="news-info"><span class="point"></span>
             <span class="tag" ng-show="news.newsType">{{news.newsType}}</span>
             <div class="news-article">
               <p class="n-title">
-                <a ng-href="{{news.newsUrl}}" ng-bind="news.title"></a>
+                <a ng-href="{{news.newsUrl}}" target="_blank" ng-bind="news.title"></a>
               </p>
               <p ng-show="news.source">
                 <span class="from">来源</span><span class='address'>{{news.source}}</span>
