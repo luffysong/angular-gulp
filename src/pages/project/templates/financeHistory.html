@@ -50,11 +50,13 @@
     <div ng-show="vm.financeVM.financeList.length" ng-if="vm.userId" class='finance-content'>
       <ul class="history-list">
         <li class="history-info" ng-repeat="data in vm.financeVM.list track by $index">
-          <span class="info-year">{{data.financeDate | date: 'yyyy.MM' }}</span>
-          <div class="circular">
-            <div class="circular2"></div>
-          </div
-          ><div class="left-line">
+          <div class="info-year">
+            <span>{{data.financeDate | date: 'yyyy.MM' }}</span>
+          </div>
+          <div class="left-line">
+            <div class="circular">
+              <div class="circular2"></div>
+            </div>
             <div class="angle"></div
             ><div class="finance-info">
               <span class="info-lun">
