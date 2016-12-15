@@ -472,10 +472,10 @@ export default class ProductVM {
         },
         plotOptions: {
           line: {
-            lineWidth: 1,
+            lineWidth: 2,
             states: {
               hover: {
-                lineWidth: 1,
+                lineWidth: 2,
                 halo: {
                   size: 0,
                 },
