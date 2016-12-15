@@ -53,6 +53,7 @@ export default class ProductVM {
 
   loadAnalyze() {
     this.analyze = this.productDataService.getProduct();
+    console.log(this.analyze);
     Object.keys(this.analyze).forEach(key => {
         if (this.analyze.x.length || (this.analyze[key].data && this.analyze[key].data.length)) {
           this.hasData = true;
@@ -162,7 +163,9 @@ export default class ProductVM {
     function handleDate(date) {
       return `${date.slice(0, 4)}-${date.slice(4, 6)}`;
     }
-    this.downloadHg.xAxis.categories = investmentTrend.download.x.map(item => handleDate(item));
+    const arr = investmentTrend.download.x && investmentTrend.download.x.length
+      ? investmentTrend.download.x : investmentTrend.appRank.x;
+    this.downloadHg.xAxis.categories = arr.map(item => handleDate(item));
     this.downloadHg.series = [{
       name: 'App排名 / 位',
       color: '#9cd141',
