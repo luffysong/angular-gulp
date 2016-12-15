@@ -12,10 +12,7 @@ export default {
     function loadProjectData(loadProjectBundle, projectService, $stateParams, resolveData) {
       return projectService.allData({
         id: $stateParams.id,
-      }).then(data => {
-        console.log(data);
-        resolveData.projectData = data;
-      });
+      }).then(data => (resolveData.projectData = data));
     },
   },
 };
