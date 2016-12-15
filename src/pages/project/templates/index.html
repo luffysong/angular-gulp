@@ -55,10 +55,10 @@
 
         <div class="top-right">
           <div class="user">
-            <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" ng-click="productVM.active = 'user'"><span>用户量</span></a>
+            <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" ng-click="productVM.active = 'product'"><span>用户量</span></a>
             <div class="up-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.user_amount_var === 1"></div>
             <div class="down-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.user_amount_var === -1"></div>
-            <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" ng-click="productVM.active = 'user'">
+            <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" ng-click="productVM.active = 'product'">
               <span class="number" ng-show="vm.baseInfoVM.projectStatHeader.user_amount">{{vm.baseInfoVM.projectStatHeader.user_amount / 10000}}万</span>
             </a>
             <span class="number no-number" ng-show="!vm.baseInfoVM.projectStatHeader.user_amount">—</span>
