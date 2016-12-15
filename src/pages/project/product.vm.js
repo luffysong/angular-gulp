@@ -315,7 +315,6 @@ export default class ProductVM {
         gridLineColor: '#F2F4F5',
         gridLineDashStyle: 'longdash',
         lineWidth: 1,
-        tickPixelInterval: 34,
         labels: {
           format: '{value}万',
         },
@@ -327,7 +326,6 @@ export default class ProductVM {
         gridLineColor: '#F2F4F5',
         lineColor: '#E7E7E7',
         lineWidth: 1,
-        tickPixelInterval: 34,
         title: {
           enabled: false,
         },
@@ -438,7 +436,6 @@ export default class ProductVM {
         gridLineColor: '#F2F4F5',
         gridLineDashStyle: 'longdash',
         lineWidth: 1,
-        tickPixelInterval: 34,
         labels: {
           format: '{value}',
         },
@@ -451,7 +448,6 @@ export default class ProductVM {
         gridLineColor: '#F2F4F5',
         lineColor: '#E7E7E7',
         lineWidth: 1,
-        tickPixelInterval: 34,
         title: {
           enabled: false,
         },
@@ -538,7 +534,6 @@ export default class ProductVM {
         gridLineColor: '#F2F4F5',
         gridLineDashStyle: 'longdash',
         lineWidth: 1,
-        tickInterval: 5,
         labels: {
           format: '{value}',
         },
@@ -550,7 +545,6 @@ export default class ProductVM {
         gridLineColor: '#F2F4F5',
         lineColor: '#E7E7E7',
         lineWidth: 1,
-        tickInterval: 4,
         title: {
           enabled: false,
         },
