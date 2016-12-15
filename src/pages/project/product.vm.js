@@ -130,7 +130,9 @@ export default class ProductVM {
     function handleDate(date) {
       return `${date.slice(0, 4)}-${date.slice(4, 6)}`;
     }
-    this.trendHg.xAxis.categories = investmentTrend.x.map(item => handleDate(item));
+    const arr = investmentTrend.x && investmentTrend.x.length
+      ? investmentTrend.x : investmentTrend.exposure.x;
+    this.trendHg.xAxis.categories = arr.map(item => handleDate(item));
     this.trendHg.series = [{
       name: '用户量 / 人',
       color: '#88C4FF',
