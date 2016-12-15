@@ -144,7 +144,7 @@ export default class ProductVM {
       zIndex: 1,
       lineWidth: 1,
     }, {
-      color: '#F1FAFF',
+      color: '#DDF1FF',
       name: '曝光量',
       data: investmentTrend.exposure.data.map((item, i) => ({
         y: Number(item) || 0,
@@ -179,7 +179,7 @@ export default class ProductVM {
       zIndex: 1,
       lineWidth: 1,
     }, {
-      color: '#f1fae2',
+      color: '#D9EDB4 ',
       name: '下载量 / 万次',
       data: investmentTrend.download.data.map((item, i) => ({
         y: Number(item),
@@ -209,7 +209,7 @@ export default class ProductVM {
       })),
       yAxis: 1,
       zIndex: 1,
-      lineWidth: 1,
+      lineWidth: 2,
     }];
     this.websiteHg.options.series = this.websiteHg.series;
   }
