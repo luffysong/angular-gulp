@@ -80,6 +80,7 @@ export default class ProductVM {
     crosshairs: true,
     pointFormatter: function pointFormatter() {
       function handleDate(date) {
+        if (!date || !date.length || !date.slice) return;
         const l = date.length;
         const c = date.slice(l - 2, l) > 9 ? date.slice(l - 2, l) : date.slice(l - 1, l);
         return `${date.slice(0, 4)}年 / ${c}月`;
@@ -96,6 +97,7 @@ export default class ProductVM {
     crosshairs: true,
     pointFormatter: function pointFormatter() {
       function handleDate(date) {
+        if (!date || !date.length || !date.slice) return;
         const l = date.length;
         const c = date.slice(l - 2, l) > 9 ? date.slice(l - 2, l) : date.slice(l - 1, l);
         return `${date.slice(0, 4)}年 / ${c}月`;
@@ -112,6 +114,7 @@ export default class ProductVM {
     crosshairs: true,
     pointFormatter: function pointFormatter() {
       function handleDate(date) {
+        if (!date || !date.length || !date.slice) return;
         const l = date.length;
         const c = date.slice(l - 2, l) > 9 ? date.slice(l - 2, l) : date.slice(l - 1, l);
         return `${date.slice(0, 4)}年${c}月`;
@@ -133,7 +136,7 @@ export default class ProductVM {
       data: investmentTrend.seriesData.dau.map((item, i) => ({
         y: item,
         dau: item.toFixed(2),
-        exposure: Number(investmentTrend.exposure.data[i]),
+        exposure: investmentTrend.exposure.data[i] || 0,
         year: this.year,
       })),
       yAxis: 1,
@@ -143,9 +146,9 @@ export default class ProductVM {
       color: '#F1FAFF',
       name: '曝光量',
       data: investmentTrend.exposure.data.map((item, i) => ({
-        y: Number(item),
+        y: Number(item) || 0,
         dau: investmentTrend.seriesData.dau[i] ? investmentTrend.seriesData.dau[i].toFixed(2) : 0,
-        exposure: Number(item),
+        exposure: Number(item) || 0,
         year: this.year,
       })),
       zIndex: 0,
@@ -159,14 +162,14 @@ export default class ProductVM {
     function handleDate(date) {
       return `${date.slice(0, 4)}-${date.slice(4, 6)}`;
     }
-    this.downloadHg.xAxis.categories = investmentTrend.appRank.x.map(item => handleDate(item));
+    this.downloadHg.xAxis.categories = investmentTrend.download.x.map(item => handleDate(item));
     this.downloadHg.series = [{
       name: 'App排名 / 位',
       color: '#9cd141',
       data: investmentTrend.appRank.data.map((item, i) => ({
         y: Number(item),
         rank: item,
-        download: investmentTrend.download.data[i],
+        download: investmentTrend.download.data[i] || 0,
         year: this.year,
       })),
       yAxis: 1,
@@ -177,8 +180,8 @@ export default class ProductVM {
       name: '下载量 / 万次',
       data: investmentTrend.download.data.map((item, i) => ({
         y: Number(item),
-        rank: investmentTrend.appRank.data[i],
-        download: item,
+        rank: investmentTrend.appRank.data[i] || 0,
+        download: item || 0,
         year: this.year,
       })),
       zIndex: 0,

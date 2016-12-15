@@ -32,8 +32,8 @@
         </span>
       </div>
     </div>
-    <div class="investor" ng-if="root.user.isInvestor() && (productVM.hasData || userPortraitsVm.hasData)">
-      <div class="hg-btn-group">
+    <div class="investor" ng-if="root.user.isInvestor()">
+      <div class="hg-btn-group" ng-hide="!productVM.hasData && !userPortraitsVm.hasData">
         <div>
           <a href="javascript:;"  ng-class="{active: productVM.active === 'product'}"
             ng-click="productVM.active = 'product'">产品数据</a
