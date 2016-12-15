@@ -2,13 +2,15 @@ import krData, { utls } from 'krData';
 import ProductUserPortraits from './ProductUserPortraits';
 const percent = krData.utls.percent;
 
-function getWanText(num) {
+function getWanText(num, fixed = true) {
   let unit = '万';
   if (num < 1) {
     num *= 10000;
     unit = '';
-    num = num.toFixed(0);
-  } else {
+    if (fixed) {
+      num = num.toFixed(0);
+    }
+  } else if (fixed) {
     num = num.toFixed(2);
   }
   return {
@@ -28,8 +30,8 @@ const wanTooltip = {
 };
 const wanLabel = {
   formatter: function yAxisLabelFormatter() {
-    const wanNum = getWanText(this.value);
-    return wanNum.num.split('.')[0] + wanNum.unit;
+    const wanNum = getWanText(this.value, false);
+    return wanNum.num + wanNum.unit;
   },
 };
 const percentToolTip = {
