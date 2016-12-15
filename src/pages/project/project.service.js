@@ -28,7 +28,7 @@ const indexApi = new API('/index', [], {
   },
 });
 
-@Inject('$q')
+@Inject('$q','$state')
 export default class ProjectService extends API {
 
   constructor() {
@@ -350,7 +350,11 @@ export default class ProjectService extends API {
   // 2016-10-23 11:27
   allData(id) {
     return this.$q.all({
-      baseInfo: this.get(id),
+      baseInfo: this.get(id).catch((err) => {
+        if (err.code === 404) {
+            this.$state.go('fail.404');
+        }
+      }),
       product: this.product(id).catch(() => {}),
       finance: this.getFinance(id),
       similar: this.similar(id).catch(() => []),
