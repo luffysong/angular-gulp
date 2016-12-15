@@ -1,13 +1,37 @@
 import krData, { utls } from 'krData';
 import ProductUserPortraits from './ProductUserPortraits';
 const percent = krData.utls.percent;
+
+function getWanText(num, fixed = true) {
+  let unit = '万';
+  if (num < 1) {
+    num *= 10000;
+    unit = '';
+    if (fixed) {
+      num = num.toFixed(0);
+    }
+  } else if (fixed) {
+    num = num.toFixed(2);
+  }
+  return {
+    num,
+    unit,
+    text: num + unit,
+  };
+}
 const wanTooltip = {
   headerFormat: '',
   pointFormatter: function pointFormatter() {
     return `<div class="chart-tooltip">
        <p>${this.category}</p>
-       <p>使用人数：<span>${this.y.toFixed(2)}万</span></p>
+       <p>使用人数：<span>${getWanText(this.y).text}</span></p>
       </div>`;
+  },
+};
+const wanLabel = {
+  formatter: function yAxisLabelFormatter() {
+    const wanNum = getWanText(this.value, false);
+    return wanNum.num + wanNum.unit;
   },
 };
 const percentToolTip = {
@@ -95,9 +119,7 @@ const trendHg = {
     gridLineDashStyle: 'longdash',
     lineWidth: 1,
     tickPixelInterval: 34,
-    labels: {
-      format: '{value}万',
-    },
+    labels: wanLabel,
     title: {
       enabled: false,
     },
@@ -170,7 +192,7 @@ export default class ProductUserPortraitsVM {
     domainCfg.options.title.text = '<div><h4>地域分布</h4></div>';
     domainCfg.options.legend.enabled = false;
     domainCfg.xAxis.categories = domain.map(tuple => tuple[0]);
-    domainCfg.yAxis.labels.format = null;
+    domainCfg.yAxis.labels.formatter = null;
     domainCfg.series = [
       {
         data: domain.map(tuple => tuple[1]),

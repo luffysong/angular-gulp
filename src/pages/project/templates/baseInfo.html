@@ -52,7 +52,7 @@
       详细介绍编辑
     </section>
     <div ng-if="!vm.companyIntroduceVM.isEdit">
-      <div class="introduce-detail" ng-if="vm.companyIntroduceVM.hasIntroduce" >
+      <div class="introduce-detail" ng-if="vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true" >
         <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.productService">
           <span class="sub-title">产品服务</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.productService | enterFormat"></span>
@@ -61,15 +61,15 @@
           <span class="sub-title">用户市场</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.userMarket | enterFormat"></span>
         </div>
-        <div class="item" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.businessMode)" >
+        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.businessMode && vm.investorType" >
           <span class="sub-title">商业模式</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.businessMode | enterFormat"></span>
         </div>
-        <div class="item" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.operationData)">
+        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.operationData && vm.investorType">
           <span class="sub-title">运营数据</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.operationData | enterFormat"></span>
         </div>
-        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.coreSource" >
+        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.coreSource && vm.investorType" >
           <span class="sub-title">核心资源</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.coreSource | enterFormat"></span>
         </div>
@@ -88,6 +88,8 @@
       <div class="login-out" ng-if="root.user.isLogin === false">
         <a  href="javascript:;" login-btn><div class="login">立即登录</div></a>
         <div class="intro1">查看项目介绍</div>
+      </div>
+      <div class="login-out" ng-if="!vm.investorType && root.user.isLogin === true">
       </div>
     </div>
   </div>
