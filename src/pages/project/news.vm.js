@@ -41,6 +41,7 @@ export default class NewsVM extends krData.FormVM {
     this.initList = this.getList(this.newsList, this.list, 1);
     this.showMore = true;
     this.mapProps(this.props, data, this);
+    this.isEdit = false;
   }
 
   // 获取新闻标题
@@ -58,6 +59,7 @@ export default class NewsVM extends krData.FormVM {
   update() {
     // console.log('newsId', this);
     // console.log(this);
+    const vm = this;
     this.publishDate = `${this.publishDateYear}-${this.publishDateMonth}-01`;
     if (!this.validate()) return;
     this.projectService.addnews({
@@ -65,6 +67,7 @@ export default class NewsVM extends krData.FormVM {
     }, this.mapProps(this.props, this))
     .then(function () {
       krData.Alert.success('数据保存成功');
+      vm.isEdit = !vm.isEdit;
     });
     // angular.extend(this.originalData, this);
     // this.projectService.update({

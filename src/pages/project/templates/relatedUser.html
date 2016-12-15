@@ -1,15 +1,21 @@
-<div class="related-user">
-  <h4>相关用户</h4>
-  <div class="relate-user">
-    <ul>
-      <li class="user-info" ng-repeat='usr in vm.relateUser'>
-        <img src="{{usr.logo || '/images/investor-logo.png'}}" alt="" class="pic">
-        <div class="info">
-          <span class="name">{{usr.name}}</span><span class="claim" ng-show='usr.privilegeEnum == "START_UP_MEMBER"'>认领人</span>
-          <p class=""><span>{{usr.companyRoleEnum | role}}</span><span ng-show='usr.position' class="position">|</span><span>{{usr.position}}</span></p>
-        </div>
-      </li>
-    </ul>
-    <div class="get-more" ng-show='vm.usrShow' ng-click='vm.getMore()'>查看更多</div>
+<div class="project-related-user-wrapper">
+  <div class="head">
+    <span class="icon-news-head"></span>
+    <span class="title">相关用户</span>
+    <span class="edit-btn grey" ng-show="vm.isEditMode">该模块不开放编辑</span>
+  </div>
+  <div class="related-user">
+    <div class="relate-user">
+      <ul>
+        <li class="user-info" ng-repeat='usr in vm.relateUser'>
+          <img src="{{usr.logo || '/images/investor-logo.png'}}" alt="" class="pic">
+          <div class="info">
+            <span class="name">{{usr.name}}</span><span class="claim" ng-show='usr.privilegeEnum == "START_UP_MEMBER"'>认领人</span>
+            <p class=""><span>{{usr.companyRoleEnum | role}}</span><span ng-show='usr.position' class="position">|</span><span>{{usr.position}}</span></p>
+          </div>
+        </li>
+      </ul>
+      <div class="get-more" ng-show='vm.usrShow' ng-click='vm.getMore()'>查看更多</div>
+    </div>
   </div>
 </div>

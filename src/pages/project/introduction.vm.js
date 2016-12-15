@@ -10,7 +10,8 @@ export default class IntroductionVM extends krData.FormVM {
 
   props = ['id', 'intro', 'fullName', 'scale',
     'operationStatus', 'address1', 'address2',
-    'startDate']
+    'startDate','productService', 'userMarket', 'businessMode', 'coreSource', 'operationData'];
+
   initData(data) {
     this.mapProps(this.props, data, this);
     this.isEmpty = krData.utls.isEmpty(data);
@@ -19,6 +20,24 @@ export default class IntroductionVM extends krData.FormVM {
     this.scale = data.scale;
     this.loadArea0();
     this.watch();
+
+    this.origCompanyData = {};
+    this.companyIntroduce = {};
+    angular.copy(data, this.origCompanyData);
+    this.data = data;
+    this.companyIntroduce.id = data.id;
+    if (data.companyIntroduce) {
+      this.productService = data.companyIntroduce.productService;
+      this.userMarket = data.companyIntroduce.userMarket;
+      this.businessMode = data.companyIntroduce.businessMode;
+      this.coreSource = data.companyIntroduce.coreSource;
+      this.operationData = data.companyIntroduce.operationData;
+    }
+    this.setIntroduce();
+  }
+
+  setIntroduce() {
+    this.hasIntroduce = krData.utls.one(this.data.companyIntroduce, this.props.slice(1));
   }
 
   setData(data) {
@@ -29,6 +48,10 @@ export default class IntroductionVM extends krData.FormVM {
   recovery() {
     this.originalData.startDate = parseInt(this.originalData.startDateDesc, 10);
     angular.extend(this, this.originalData);
+    const tempData = {};
+    angular.copy(this.origCompanyData, tempData);
+    angular.extend(this, tempData.companyIntroduce);
+    angular.extend(this.data, tempData);
   }
 
   watch() {
@@ -68,8 +91,17 @@ export default class IntroductionVM extends krData.FormVM {
         this.recovery();
         krData.Alert.success('数据保存成功');
         this.isEdit = !this.isEdit;
+        this.projectService.editIntroduce({
+          id: this.id,
+        }, this.mapProps(this.props, this))
+        .then(() => {
+        });
       });
     });
   }
 
+  isUndefined(obj) {
+    return angular.isUndefined(obj);
+  }
 }
+
