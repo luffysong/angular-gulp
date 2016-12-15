@@ -2,6 +2,8 @@
   <div class="head">
     <span class="icon-news-head"></span>
     <span class="title">相关新闻</span>
+    <a class="edit-btn" href="javascript:void(0)" ng-click="vm.newsVM.enterEditMode()"
+        ng-if="!vm.newsVM.isEdit && vm.isEditMode">添加+</a>
   </div>
   <div class="news-item">
     <section id="news" ng-include="'/pages/project/templates/newEdit.html'" ng-if="vm.newsVM.isEdit">

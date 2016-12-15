@@ -2,6 +2,8 @@
   <div class="head">
     <span class="icon-finance-head"></span>
     <span class="title">融资经历</span>
+    <a class="edit-btn" href="javascript:void(0)" ng-click="vm.financeVM.enterEditMode()"
+        ng-if="!vm.financeVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.financeHistory.add">添加+</a>
   </div>
   <div class="finance-history">
     <div class="finance-detail" ng-if="vm.fundsVM.funds && vm.fundsVM.fundsVo.fundsPhase && vm.fundsVM.financeAmountUnit && vm.investorType">
@@ -18,8 +20,6 @@
         !vm.fundsVM.fundsVo.projectPlan}">查看融资详情</a>
       </div>
     </div>
-    <a href="javascript:void(0)" ng-click="vm.financeVM.enterEditMode()"
-        ng-if="!vm.financeVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.financeHistory.add">添加</a>
     <section id="financeHistoryEdit" ng-include="'/pages/project/templates/financeHistoryEdit.html'"
       ng-if="vm.financeVM.isEdit">
       融资经历编辑

@@ -19,6 +19,8 @@
 @import "./style/introductionedit";
 @import "./style/productData";
 @import "./style/founder";
+@import "./style/user";
+
 .project-wrapper {
   .project-var();
   background: @bg-global-color;
@@ -385,6 +387,14 @@
     box-shadow: 0px 0px 2px 0px rgba(0,0,0,.1);
     // min-height: 300px;
     margin-top: @module-margin;
+    .edit-btn {
+      float: right;
+      margin-right: 42px;
+      margin-top: 5px;
+    }
+    .grey {
+      color: #969FA9;
+    }
     h4 {
       color: @deep-text-color;
       .font(14, 21);
@@ -582,6 +592,9 @@
           display: none;
       }
     }
+    .introduction-edit {
+      margin-top: 60px;
+    }
   }
 }
 
@@ -607,7 +620,7 @@
         margin-bottom: 5px !important;
       }
     }
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     font-size: 14px;
     color: #222C38;
     letter-spacing: 0px;

@@ -1,6 +1,6 @@
 import { API } from 'krData';
 
-@Inject('$q')
+@Inject('$q','$state')
 export default class OrgService extends API {
   constructor() {
     super('/org/:id', [

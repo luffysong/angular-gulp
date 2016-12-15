@@ -13,6 +13,7 @@ const investorInfoApi = new krData.API('/investor/:id', ['investment',
   },
 });
 
+@Inject('$state')
 export default class InvestorInfo {
 
   api = investorInfoApi;
@@ -20,7 +21,11 @@ export default class InvestorInfo {
   getInfo(id) {
     return investorInfoApi.get({
       id,
-    }).catch(() => ({}));
+    }).catch((err) => {
+      if (err.code === 404) {
+        this.$state.go('fail.404');
+      }
+    });
   }
 
   getInvestment(id) {
