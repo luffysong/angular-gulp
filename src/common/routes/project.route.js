@@ -9,7 +9,9 @@ export default {
   resolve: {
     loadProjectBundle: getLoadBundle(assets.page.project),
     projectData: /* @ngInject */
-    function loadProjectData(loadProjectBundle, projectService, $stateParams, resolveData) {
+    function loadProjectData(loadProjectBundle, projectService, $stateParams, resolveData,
+      projectRun) {
+      projectRun.run();
       return projectService.allData({
         id: $stateParams.id,
       }).then(data => (resolveData.projectData = data));
