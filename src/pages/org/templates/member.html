@@ -1,27 +1,33 @@
 <div class="member-wrapper">
-  <h4>机构成员<span class="number">({{vm.orgData.member.total}})</span></h4>
-  <div class="all-members" ng-if="vm.orgData.member.total">
-    <span class="member" ng-repeat="item in vm.memberVM.memberData">
-      <div class="logo">
-        <a ui-sref="investorInfo({id: item.userInfo.uid})"
-        href="#" target="blank"><img ng-src="{{item.userInfo.avatar || '/images/investor-logo.png'}}"></a>
-      </div>
-      <div class="info">
-        <span>
-          <p><a ui-sref="investorInfo({id:item.userInfo.uid})" href="#" target="blank">{{item.userInfo.name}}</a></p>
-        </span>
-        <span><p>{{item.title}}</p></span>
-      </div>
-    </span>
+  <div class="title">
+    <span class="icon-team-head"></span>
+    <span>机构成员</span>
+    <span class="number">({{vm.orgData.member.total}})</span>
   </div>
-  <div class="more" ng-if="!vm.memberVM.isMore && vm.orgData.member.total>3"
-       ng-click="vm.memberVM.more()">
-    <p>查看更多</p>
-  </div>
-  <div class="no-data" ng-if="!vm.orgData.member.total">
-    <span>
-        <span class="icon-Company icon"></span>
-        <span>未收录相关信息</span>
+  <div class="member-info">
+    <div class="all-members" ng-if="vm.orgData.member.total">
+      <span class="member" ng-repeat="item in vm.memberVM.memberData">
+        <div class="logo">
+          <a ui-sref="investorInfo({id: item.userInfo.uid})"
+          href="#" target="blank"><img ng-src="{{item.userInfo.avatar || '/images/investor-logo.png'}}"></a>
+        </div>
+        <div class="info">
+          <span>
+            <p><a ui-sref="investorInfo({id:item.userInfo.uid})" href="#" target="blank">{{item.userInfo.name}}</a></p>
+          </span>
+          <span><p>{{item.title}}</p></span>
+        </div>
       </span>
+    </div>
+    <div class="more" ng-if="!vm.memberVM.isMore && vm.orgData.member.total>3"
+         ng-click="vm.memberVM.more()">
+      <p>查看更多</p>
+    </div>
+    <div class="no-data" ng-if="!vm.orgData.member.total">
+      <span>
+          <span class="icon-Company icon"></span>
+          <span>未收录相关信息</span>
+        </span>
+    </div>
   </div>
 </div>

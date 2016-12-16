@@ -1,96 +1,102 @@
 <div class="invested-case-wrapper">
-  <h4>投资案例<span ui-sref="investment.result({id: vm.orgData.basic.id})"
-      class="number pointer">({{vm.investment.investments.totalCount}})</span></h4>
-  <div class="filter" ng-if="vm.investment.investments.totalCount>5">
-    <div class="industry">
-      <p class="list">行业</p>
-      <ul id="industry" ng-class="{'spread':vm.investedCaseVM.hasSpreaded.industry}">
-        <li ng-repeat="item in vm.orgData.investment.industry">
-          <span class="label" ui-sref="investment.result({id: vm.orgData.basic.id,industry:item.value})">{{item.name}}<span class="count">({{item.count}})</span></span>
-        </li>
-      </ul>
-      <div ng-if="vm.orgData.investment.industry.length"
-        kr-ele-clamp-checker="{container: '#industry'}" class="col-control">
-        <a href="javascript:void(0)" class="open-btn icon-open-select"
-          ng-click="vm.investedCaseVM.spreadList('industry')"
-          ng-class="{'open-list':vm.investedCaseVM.hasSpreaded.industry}"></a>
-      </div>
-    </div>
-    <div class="phase">
-      <p class="list">轮次</p>
-      <ul id="phase" ng-class="{'spread':vm.investedCaseVM.hasSpreaded.phase}">
-        <li ng-repeat="item in vm.orgData.investment.phase">
-          <span ui-sref="investment.result({id: vm.orgData.basic.id,phase:item.value})" class="label">{{item.name}}<span class="count">({{item.count}})</span></span>
-        </li>
-      </ul>
-      <div kr-ele-clamp-checker="{container: '#phase'}" class="col-control">
-        <a href="javascript:void(0)" class="open-btn icon-open-select"
-          ng-click="vm.investedCaseVM.spreadList('phase')"
-          ng-class="{'open-list':vm.investedCaseVM.hasSpreaded.phase}"></a>
-      </div>
-    </div>
+  <div class="title">
+    <span class="icon-finance-head"></span>
+    <span>投资案例</span>
+    <span ui-sref="investment.result({id: vm.orgData.basic.id})"
+      class="number pointer">({{vm.investment.investments.totalCount}})</span>
   </div>
-  <div class="case-list" ng-if="vm.investment.investments.totalCount">
-    <table>
-      <thead>
-        <td>项目</td>
-        <td>投资时间</td>
-        <td>轮次</td>
-        <td>融资金额</td>
-      </thead>
-      <tbody>
-        <tr ng-repeat="item in vm.orgData.investment.investments.data | limitTo:5">
-          <td>
-            <div>
-              <div class="logo">
-                <a ui-sref="project({id: item.project.cid})" target="_blank">
-                  <img ng-src="{{item.project.logo || '/images/default-logo.png'}}">
-                </a>
-              </div>
-              <div class="project">
-                <div class="company-name">
+  <div class="invested-info">
+    <div class="filter" ng-if="vm.investment.investments.totalCount>5">
+      <div class="industry">
+        <p class="list">行业</p>
+        <ul id="industry" ng-class="{'spread':vm.investedCaseVM.hasSpreaded.industry}">
+          <li ng-repeat="item in vm.orgData.investment.industry">
+            <span class="label" ui-sref="investment.result({id: vm.orgData.basic.id,industry:item.value})">{{item.name}}<span class="count">({{item.count}})</span></span>
+          </li>
+        </ul>
+        <div ng-if="vm.orgData.investment.industry.length"
+          kr-ele-clamp-checker="{container: '#industry'}" class="col-control">
+          <a href="javascript:void(0)" class="open-btn icon-open-select"
+            ng-click="vm.investedCaseVM.spreadList('industry')"
+            ng-class="{'open-list':vm.investedCaseVM.hasSpreaded.industry}"></a>
+        </div>
+      </div>
+      <div class="phase">
+        <p class="list">轮次</p>
+        <ul id="phase" ng-class="{'spread':vm.investedCaseVM.hasSpreaded.phase}">
+          <li ng-repeat="item in vm.orgData.investment.phase">
+            <span ui-sref="investment.result({id: vm.orgData.basic.id,phase:item.value})" class="label">{{item.name}}<span class="count">({{item.count}})</span></span>
+          </li>
+        </ul>
+        <div kr-ele-clamp-checker="{container: '#phase'}" class="col-control">
+          <a href="javascript:void(0)" class="open-btn icon-open-select"
+            ng-click="vm.investedCaseVM.spreadList('phase')"
+            ng-class="{'open-list':vm.investedCaseVM.hasSpreaded.phase}"></a>
+        </div>
+      </div>
+    </div>
+    <div class="case-list" ng-if="vm.investment.investments.totalCount">
+      <table>
+        <thead>
+          <td>项目</td>
+          <td>投资时间</td>
+          <td>轮次</td>
+          <td>融资金额</td>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in vm.orgData.investment.investments.data | limitTo:5">
+            <td>
+              <div>
+                <div class="logo">
                   <a ui-sref="project({id: item.project.cid})" target="_blank">
-                    {{item.project.companyName}}
-                  </a>
-                  <a class="hover" ui-sref="list.result({industry: item.project.industryEnum})" ui-sref-opts="{reload:true}" target="_blank">
-                    {{item.project.industry}}
+                    <img ng-src="{{item.project.logo || '/images/default-logo.png'}}">
                   </a>
                 </div>
-                <div class="brief">
-                  <span data-ellipsis ellipsis-separator data-ellipsis-symbol="..." data-overflow="true">{{item.project.brief}}</span>
+                <div class="project">
+                  <div class="company-name">
+                    <a ui-sref="project({id: item.project.cid})" target="_blank">
+                      {{item.project.companyName}}
+                    </a>
+                    <a class="hover" ui-sref="list.result({industry: item.project.industryEnum})" ui-sref-opts="{reload:true}" target="_blank">
+                      {{item.project.industry}}
+                    </a>
+                  </div>
+                  <div class="brief">
+                    <span data-ellipsis ellipsis-separator data-ellipsis-symbol="..." data-overflow="true">{{item.project.brief}}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </td>
-          <td>
-            <div ng-repeat="val in item.investments">
-              <span>{{val.investAt | date:'yyyy.MM'}}</span>
-            </div>
-          </td>
-          <td>
-            <div ng-repeat="val in item.investments">
-              <!-- 战略投资不做跳转 -->
-              <a ng-class="::{'plan-invest': val.phaseEnum === 'INFORMAL'}"
-                ui-sref="list.result({phase: val.phaseEnum})" target="_blank"><span>{{val.phase}}</span></a>
-            </div>
-          </td>
-          <td>
-            <div ng-repeat="val in item.investments">
-              <span>{{val.fundsAmount}}</span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="more"  ng-if="vm.investment.investments.totalCount>5">
-      <p ui-sref="investment.result({id: vm.orgData.basic.id})">查看更多</p>
+            </td>
+            <td>
+              <div ng-repeat="val in item.investments">
+                <span>{{val.investAt | date:'yyyy.MM'}}</span>
+              </div>
+            </td>
+            <td>
+              <div ng-repeat="val in item.investments">
+                <!-- 战略投资不做跳转 -->
+                <a ng-class="::{'plan-invest': val.phaseEnum === 'INFORMAL'}"
+                  ui-sref="list.result({phase: val.phaseEnum})" target="_blank"><span>{{val.phase}}</span></a>
+              </div>
+            </td>
+            <td>
+              <div ng-repeat="val in item.investments">
+                <span>{{val.fundsAmount}}</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="more"  ng-if="vm.investment.investments.totalCount>5">
+        <p ui-sref="investment.result({id: vm.orgData.basic.id})">查看更多</p>
+      </div>
     </div>
-  </div>
-  <div class="no-data" ng-if="!vm.investment.investments.totalCount">
-    <span>
-      <span class="icon-Company icon"></span>
-      <span>未收录相关信息</span>
-    </span>
-    <!-- <p>暂无数据</p> -->
+    <div class="no-data" ng-if="!vm.investment.investments.totalCount">
+      <span>
+        <span class="icon-Company icon"></span>
+        <span>未收录相关信息</span>
+      </span>
+      <!-- <p>暂无数据</p> -->
+    </div>
   </div>
 </div>
