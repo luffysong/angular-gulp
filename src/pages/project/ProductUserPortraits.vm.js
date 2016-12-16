@@ -43,6 +43,12 @@ const percentToolTip = {
       </div>`;
   },
 };
+const noDataLables = {
+  style: {
+    color: '#ccc',
+  },
+  autoRotation: 0,
+};
 const trendHg = {
   options: {
     legend: {
@@ -54,6 +60,15 @@ const trendHg = {
     },
     credits: {
       enabled: false,
+    },
+    noData: {
+      style: {
+        fontFamily: 'inherit',
+        fontSize: '18px',
+        color: '#ccc',
+        fontWeight: 'normal',
+      },
+      useHTML: true,
     },
     plotOptions: {
       line: {
@@ -103,26 +118,26 @@ const trendHg = {
       borderWidth: 0,
       padding: 0,
     },
-  },
-  xAxis: {
-    tickWidth: 0,
-    lineColor: '#E7E7E7',
-    gridLineWidth: 1,
-    gridLineColor: '#F2F4F5',
-    gridLineDashStyle: 'longdash',
-    labels: {
-      autoRotation: 0,
+    xAxis: {
+      tickWidth: 0,
+      lineColor: '#E7E7E7',
+      gridLineWidth: 1,
+      gridLineColor: '#F2F4F5',
+      gridLineDashStyle: 'longdash',
+      labels: {
+        autoRotation: 0,
+      },
     },
-  },
-  yAxis: {
-    lineColor: '#E7E7E7',
-    gridLineColor: '#F2F4F5',
-    gridLineDashStyle: 'longdash',
-    lineWidth: 1,
-    tickPixelInterval: 34,
-    labels: wanLabel,
-    title: {
-      enabled: false,
+    yAxis: {
+      lineColor: '#E7E7E7',
+      gridLineColor: '#F2F4F5',
+      gridLineDashStyle: 'longdash',
+      lineWidth: 1,
+      tickPixelInterval: 34,
+      labels: wanLabel,
+      title: {
+        enabled: false,
+      },
     },
   },
 };
@@ -146,12 +161,8 @@ export default class ProductUserPortraitsVM {
     if (this.data.age) {
       this.setAge(this.data.age);
     }
-    if (this.data.freq) {
-      this.setPeriodHg(this.data.freq);
-    }
-    if (this.data.area) {
-      this.setDomainHg(this.data.area);
-    }
+    this.setPeriodHg(this.data.freq);
+    this.setDomainHg(this.data.area);
   }
   setGender(sex) {
     this.male = {
@@ -174,8 +185,20 @@ export default class ProductUserPortraitsVM {
 
   setPeriodHg(freq) {
     this.periodCfg = angular.copy(trendHg);
-    this.periodCfg.xAxis.categories = freq.x;
-    this.periodCfg.xAxis.crosshair = {
+    const x = this.periodCfg.options.xAxis;
+    const y = this.periodCfg.options.yAxis;
+    if (!freq) {
+      x.categories = utls.range(0, 23, '时');
+      x.min = 0;
+      x.max = 23;
+      y.min = 0;
+      y.max = 1000000;
+      this._setNoDataChart(this.periodCfg, x, y);
+      this.periodCfg.options.legend.enabled = false;
+      return;
+    }
+    x.categories = freq.x;
+    x.crosshair = {
       width: 1,
       color: '#ddd',
       dashStyle: 'LongDash',
@@ -188,19 +211,37 @@ export default class ProductUserPortraitsVM {
     ];
   }
 
+  _setNoDataChart(cfg, x, y) {
+    cfg.series = [{
+      data: [],
+    }];
+    x.gridLineWidth = 0;
+    x.tickWidth = 1;
+    x.tickColor = '#ddd';
+    angular.extend(x.labels, noDataLables);
+    angular.extend(y.labels, noDataLables);
+  }
   setDomainHg(domain) {
-    const domainCfg = angular.copy(trendHg);
-    domainCfg.options.title.text = '<div><h4>地域分布</h4></div>';
+    this.domainCfg = angular.copy(trendHg);
+    const domainCfg = this.domainCfg;
+    const y = this.domainCfg.options.yAxis;
+    const x = this.domainCfg.options.xAxis;
     domainCfg.options.legend.enabled = false;
-    domainCfg.xAxis.categories = domain.map(tuple => tuple[0]);
-    domainCfg.yAxis.labels.formatter = null;
+    domainCfg.options.title.text = '<div><h4>地域分布</h4></div>';
+    y.min = 0;
+    if (!domain) {
+      y.max = 100;
+      this._setNoDataChart(domainCfg, x, y);
+      return;
+    }
+    x.categories = domain.map(tuple => tuple[0]);
+    y.labels.formatter = null;
     domainCfg.series = [
       {
         data: domain.map(tuple => tuple[1]),
         type: 'column',
       },
     ];
-    this.domainCfg = domainCfg;
   }
 
 }
