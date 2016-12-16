@@ -1,52 +1,70 @@
 @import "../../../common/styles/function";
 @import "../../../common/styles/var";
-.invest-resume {
-  span {
-    line-height: 21px;
-  }
-  .re-info{
-    display: inline-block;
-    max-height: 100px;
-    max-width: 815px;
-    vertical-align: top;
-    color: #5A626D;
-    letter-spacing: 0px;
-    .font(14,21);
-    a.toggle{
-      visibility: hidden;
+.invest-resume-wrapper {
+  .title {
+    padding: 13px 0;
+    border-bottom: 1px solid #f2f4f5;
+    .icon-user-head {
+      margin: 0 6px 0 16px;
+      font-size: 20px;
+      position: relative;
+      top: 2px;
+      font-weight: none;
+    }
+    .title-name {
+      font-size: 16px;
+      font-weight: bold;
     }
   }
-  .re-info.opened{
-    height: auto;
-    max-height: inherit;
-    a.toggle{
-      visibility: hidden;
+  .invest-resume {
+    padding: 20px 42px 30px;
+    span {
+      line-height: 21px;
+    }
+    .re-info{
+      display: inline-block;
+      max-height: 100px;
+      max-width: 815px;
+      vertical-align: top;
+      color: #5A626D;
+      letter-spacing: 0px;
+      .font(14,21);
+      a.toggle{
+        visibility: hidden;
+      }
+    }
+    .re-info.opened{
+      height: auto;
+      max-height: inherit;
+      a.toggle{
+        visibility: hidden;
+      }
+    }
+    .re-info.is-truncated{
+      a.toggle{
+        visibility: inherit;
+      }
+    }
+    .re-info.opened{
+      height: auto;
+      max-height: inherit;
+      a.toggle{
+        display: none;
+      }
     }
   }
-  .re-info.is-truncated{
-    a.toggle{
-      visibility: inherit;
+  .resume-edit-wrapper {
+    .textarea-control {
+      height: 154px;
     }
-  }
-  .re-info.opened{
-    height: auto;
-    max-height: inherit;
-    a.toggle{
-      display: none;
+    .date-title {
+      display: block;
     }
-  }
-}
-.resume-edit-wrapper {
-  .textarea-control {
-    height: 154px;
-  }
-  .date-title {
-    display: block;
-  }
-  .select-inline {
-    select {
-      width: 140px;
-      .dlk();
+    .select-inline {
+      select {
+        width: 140px;
+        .dlk();
+      }
     }
   }
 }

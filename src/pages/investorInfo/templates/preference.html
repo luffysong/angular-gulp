@@ -1,35 +1,41 @@
-<div class="invest-preference">
-  <h4>投资偏好 <div ng-if="!investorEditVM.editPrefer && investorInfoVm.isEditMode"
+<div class="invest-preference-wrapper">
+  <div class="title">
+    <span class="icon-invest-head"></span>
+    <span class="title-name">投资偏好</span>
+    <div ng-if="!investorEditVM.editPrefer && investorInfoVm.isEditMode"
       ng-click="investorEditVM.enterPrefer()"
       class="btn-edit">
-      <span>编辑</span><span class="icon-Edit"></span></div>
-  </h4>
-  <div ng-if="!investorEditVM.editPrefer" class="preference-content">
-    <div class="industry" ng-if="investorInfoVm.investPreference.focusIndustry.length">
-      <div class="title">关注行业</div>
-      <div class="list">
-        <span ng-repeat="industry in investorInfoVm.investPreference.focusIndustry">{{industry}}</span>
-      </div>
-    </div>
-    <div class="phase m-top" ng-if="investorInfoVm.investPreference.preferPhase.length">
-      <div class="title">偏好轮次</div>
-      <div class="list">
-        <span ng-repeat="phase in investorInfoVm.investPreference.preferPhase">{{phase.desc}}</span>
-      </div>
-    </div>
-    <div class="quota m-top" ng-if="investorInfoVm.investPreference.singleInvestAmount">
-      <div class="title">单笔额度</div>
-      <div class="list">
-        <span>{{investorInfoVm.investPreference.singleInvestAmount}}</span>
-      </div>
+      <span>编辑</span><span class="icon-Edit"></span>
     </div>
   </div>
-  <div class="no-data" ng-if="!investorInfoVm.investPreference.focusIndustry.length && !investorEditVM.editPrefer &&
-    !investorInfoVm.investPreference.preferPhase.length && investorInfoVm.investPreference.singleInvestAmount === ''">
-    <span>
-        <span class="icon-Company icon"></span>
-        <span>未收录相关信息</span>
-      </span>
+  <div class="invest-preference">
+    <div ng-if="!investorEditVM.editPrefer" class="preference-content">
+      <div class="industry" ng-if="investorInfoVm.investPreference.focusIndustry.length">
+        <div class="preference-title">关注行业</div>
+        <div class="list">
+          <span ng-repeat="industry in investorInfoVm.investPreference.focusIndustry">{{industry}}</span>
+        </div>
+      </div>
+      <div class="phase m-top" ng-if="investorInfoVm.investPreference.preferPhase.length">
+        <div class="preference-title">偏好轮次</div>
+        <div class="list">
+          <span ng-repeat="phase in investorInfoVm.investPreference.preferPhase">{{phase.desc}}</span>
+        </div>
+      </div>
+      <div class="quota m-top" ng-if="investorInfoVm.investPreference.singleInvestAmount">
+        <div class="preference-title">单笔额度</div>
+        <div class="list">
+          <span>{{investorInfoVm.investPreference.singleInvestAmount}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="no-data" ng-if="!investorInfoVm.investPreference.focusIndustry.length && !investorEditVM.editPrefer &&
+      !investorInfoVm.investPreference.preferPhase.length && investorInfoVm.investPreference.singleInvestAmount === ''">
+      <span>
+          <span class="icon-Company icon"></span>
+          <span>未收录相关信息</span>
+        </span>
+    </div>
+    <div ng-if="investorEditVM.editPrefer" ng-include="'/pages/investorInfo/templates/preferenceEdit.html'"></div>
   </div>
-  <div ng-if="investorEditVM.editPrefer" ng-include="'/pages/investorInfo/templates/preferenceEdit.html'"></div>
 </div>

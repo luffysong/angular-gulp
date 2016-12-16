@@ -1,77 +1,95 @@
 @import "../../../common/styles/var.less";
 @import "./common.less";
-.invest-preference {
-  span {
-    line-height: 21px;
-    margin-right: 10px;
-  }
+.invest-preference-wrapper {
   .title {
-    float: left;
-    margin-top: 2px;
-    font-weight: bold;
-  }
-  .list {
-    width: 650px;
-    display: inline-block;
-    margin-left: 30px;
-  }
-  .m-top {
-    margin-top: 16px;
-  }
-}
-
-.preference-edit-wrapper {
-  span {
-    line-height: normal;
-    margin-right: 0px;
-  }
-  span.mr10 {
-    margin-right: 10px;
-  }
-  span.mr12 {
-    margin-right: 12px;
-  }
-  .form-group {
-    max-width: 520px;
-  }
-  .ac-container {
-    z-index: 1;
-  }
-  .tags {
-    .tags();
-  }
-  .preference-group {
-    select {
-      width: 150px;
+    padding: 13px 0;
+    border-bottom: 1px solid #f2f4f5;
+    .icon-invest-head {
+      margin: 0 6px 0 16px;
+      font-size: 20px;
+      position: relative;
+      top: 2px;
+      font-weight: none;
+    }
+    .title-name {
+      font-size: 16px;
+      font-weight: bold;
     }
   }
-  form .form-group .inline-control {
-    white-space: nowrap;
-    input[type="text"], select {
+  .invest-preference {
+    padding: 20px 42px 30px;
+    span {
+      line-height: 21px;
+      margin-right: 10px;
+    }
+    .preference-title {
+      float: left;
+      margin-top: 2px;
+      font-weight: bold;
+    }
+    .list {
+      width: 650px;
       display: inline-block;
-      width: 140px;
+      margin-left: 30px;
     }
-    .form-tip {
-      float: none;
+    .m-top {
+      margin-top: 16px;
     }
-    .money-error {
-      overflow: hidden;
-      margin-bottom: 16px;
-      margin-top: -12px;
-      .error-tip {
-        float: left;
+  }
+
+  .preference-edit-wrapper {
+    span {
+      line-height: normal;
+      margin-right: 0px;
+    }
+    span.mr10 {
+      margin-right: 10px;
+    }
+    span.mr12 {
+      margin-right: 12px;
+    }
+    .form-group {
+      max-width: 520px;
+    }
+    .ac-container {
+      z-index: 1;
+    }
+    .tags {
+      .tags();
+    }
+    .preference-group {
+      select {
+        width: 150px;
+      }
+    }
+    form .form-group .inline-control {
+      white-space: nowrap;
+      input[type="text"], select {
         display: inline-block;
-        min-height: 1px;
-        &:first-child {
-          width: 200px;
-        }
-        &[style*="none"] + span {
-          margin-left: 200px;
+        width: 140px;
+      }
+      .form-tip {
+        float: none;
+      }
+      .money-error {
+        overflow: hidden;
+        margin-bottom: 16px;
+        margin-top: -12px;
+        .error-tip {
+          float: left;
+          display: inline-block;
+          min-height: 1px;
+          &:first-child {
+            width: 200px;
+          }
+          &[style*="none"] + span {
+            margin-left: 200px;
+          }
         }
       }
     }
-  }
-  select {
-    width: 140px;
+    select {
+      width: 140px;
+    }
   }
 }
