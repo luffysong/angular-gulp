@@ -20,8 +20,32 @@
         margin-top:7px;
       }
       .retention-container {
+        position: relative;
         margin-top:41px;
+        &.noData {
+          &:after {
+            content: '暂无数据';
+            position: absolute;
+            font-size: 18px;
+            color: #CCCCCC;
+            letter-spacing: 0px;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            margin-left:12px;
+            white-space: nowrap;
+          }
+          .retention-bar {
+            width:250px !important;
+            background: #F9F9F9 !important;
+            transition: none !important;
+          }
+          .retention-percent {
+            display: none !important;
+          }
+        }
         .retention-item {
+          min-width:367px;
           margin-bottom:18px;
           .clear();
           &:nth-of-type(2) {

@@ -1,7 +1,15 @@
 import { utls } from 'krData';
 import ProductDataService from './productData.service';
+import noDataFactory from '../../bower/highcharts/modules/no-data-to-display.src.js';
 export default class ProductVM {
   constructor(product) {
+    noDataFactory(Highcharts);
+    Highcharts.setOptions({
+      lang: {
+        thousandsSep: ',',
+        noData: '暂无数据',
+      },
+    });
     this.active = 'product';
     this.product = product;
     this.companyData = product.companyData;
@@ -55,12 +63,7 @@ export default class ProductVM {
     this.analyze = this.productDataService.getProduct();
     console.log(this.analyze);
     Object.keys(this.analyze).forEach(key => {
-        if (this.analyze.x.length || (this.analyze[key].data && this.analyze[key].data.length)) {
-          this.hasData = true;
-        }
-    });
-    Object.keys(this.analyze.seriesData).forEach(item => {
-      if (this.analyze.seriesData[item].length) {
+      if (this.analyze[key].x.length || (this.analyze[key].data && this.analyze[key].data.length)) {
         this.hasData = true;
       }
     });
@@ -71,7 +74,8 @@ export default class ProductVM {
     this.setInvestmentTrend(this.analyze);
     this.setDownloadTrend(this.analyze);
     this.setWebsiteTrend(this.analyze);
-    this.handleRetention(this.analyze.seriesData);
+    this.handleRetention(this.analyze);
+    this.handleData(this.analyze);
   }
 
   years = [];
@@ -130,13 +134,13 @@ export default class ProductVM {
     function handleDate(date) {
       return `${date.slice(0, 4)}-${date.slice(4, 6)}`;
     }
-    const arr = investmentTrend.x && investmentTrend.x.length
-      ? investmentTrend.x : investmentTrend.exposure.x;
+    const arr = investmentTrend.dau.x && investmentTrend.dau.x.length
+      ? investmentTrend.dau.x : investmentTrend.exposure.x;
     this.trendHg.xAxis.categories = arr.map(item => handleDate(item));
     this.trendHg.series = [{
       name: '用户量 / 人',
       color: '#88C4FF',
-      data: investmentTrend.seriesData.dau.map((item, i) => ({
+      data: investmentTrend.dau.data.map((item, i) => ({
         y: item,
         dau: item.toFixed(2),
         exposure: investmentTrend.exposure.data[i] || 0,
@@ -150,7 +154,7 @@ export default class ProductVM {
       name: '曝光量',
       data: investmentTrend.exposure.data.map((item, i) => ({
         y: Number(item) || 0,
-        dau: investmentTrend.seriesData.dau[i] ? investmentTrend.seriesData.dau[i].toFixed(2) : 0,
+        dau: investmentTrend.dau[i] ? investmentTrend.dau[i].toFixed(2) : 0,
         exposure: Number(item) || 0,
         year: this.year,
       })),
@@ -291,10 +295,11 @@ export default class ProductVM {
         text: '<h5 class="trend-title">用户量 / 曝光量</h5>',
       },
       xAxis: {
-        tickWidth: 0,
+        tickWidth: 1,
+        tickPosition: 'inside',
         lineColor: '#E7E7E7',
         gridLineWidth: 1,
-        gridLineColor: '#F2F4F5',
+        gridLineColor: 'transparent',
         gridLineDashStyle: 'longdash',
         crosshair: {
           width: 1,
@@ -412,10 +417,11 @@ export default class ProductVM {
         text: '<h5 class="trend-title">App排名 / 下载量</h5>',
       },
       xAxis: {
-        tickWidth: 0,
+        tickWidth: 1,
         lineColor: '#E7E7E7',
+        tickPosition: 'inside',
         gridLineWidth: 1,
-        gridLineColor: '#F2F4F5',
+        gridLineColor: 'transparent',
         gridLineDashStyle: 'longdash',
         crosshair: {
           width: 1,
@@ -517,11 +523,12 @@ export default class ProductVM {
       },
       xAxis: {
         tickWidth: 1,
+        tickHeight: 2,
         tickInterval: 5,
         tickPosition: 'inside',
         lineColor: '#E7E7E7',
         gridLineWidth: 1,
-        gridLineColor: '#F2F4F5',
+        gridLineColor: 'transparent',
         gridLineDashStyle: 'longdash',
         crosshair: {
           width: 1,
@@ -557,6 +564,7 @@ export default class ProductVM {
   }
 
   handleRetention(d) {
+    console.log(d);
     this.retentionList.forEach((item) => {
       const a = d[item.key];
       item.percent = a.length ? a[a.length - 1].toFixed(2) : 0;
@@ -575,6 +583,65 @@ export default class ProductVM {
         item.width = `${width * (item.percent / this.retentionList[index].percent)}px`;
       }
     });
+  }
+
+  handleData(d) {
+    const dict = [
+      {
+        name: ['dau', 'exposure'],
+        target: this.trendHg,
+        empty: true,
+      }, {
+        name: ['appRank', 'download'],
+        target: this.downloadHg,
+        empty: true,
+      }, {
+        name: ['websiteRank'],
+        target: this.websiteHg,
+        empty: true,
+      },
+    ];
+    dict.forEach(item => {
+      item.name.forEach(obj => {
+        if (d[obj].data.length) {
+          item.empty = false;
+        }
+      });
+      if (item.empty) {
+        this._setNoDataConfig(item.target);
+      }
+    });
+    if (!d.save.data.length && !d.save3.data.length &&
+      !d.save7.data.length && !d.save30.data.length) {
+      this.saveEmpty = true;
+    }
+
+  }
+
+  _setNoDataConfig(cfg) {
+    const x = cfg.xAxis;
+    const y = cfg.yAxis[1];
+
+    // 无数据时 强制X Y周
+    x.min = 0;
+    x.max = 11;
+    x.categories = [
+      '2015-12',
+      '2016-01',
+      '2016-02',
+      '2016-03',
+      '2016-04',
+      '2016-05',
+      '2016-06',
+      '2016-07',
+      '2016-08',
+      '2016-09',
+      '2016-10',
+      '2016-11',
+    ];
+    y.min = 0;
+    y.max = 100;
+    y.gridLineWidth = 0;
   }
 
 }
