@@ -241,10 +241,12 @@ export default class ProductVM {
           enabled: false,
         },
         noData: {
+          useHtml: true,
           style: {
             fontSize: '18px',
             color: '#ccc',
             fontWeight: 'normal',
+            zIndex: 99,
           },
         },
         plotOptions: {
@@ -303,6 +305,7 @@ export default class ProductVM {
       },
       xAxis: {
         tickWidth: 1,
+        tickLength: 4,
         tickPosition: 'inside',
         lineColor: '#E7E7E7',
         gridLineWidth: 1,
@@ -329,6 +332,7 @@ export default class ProductVM {
         lineWidth: 1,
         labels: {
           format: '{value}万',
+          maxStaggerLines: 10,
         },
         title: {
           enabled: false,
@@ -432,6 +436,7 @@ export default class ProductVM {
       },
       xAxis: {
         tickWidth: 1,
+        tickLength: 4,
         lineColor: '#E7E7E7',
         tickPosition: 'inside',
         gridLineWidth: 1,
@@ -544,7 +549,7 @@ export default class ProductVM {
       },
       xAxis: {
         tickWidth: 1,
-        tickHeight: 2,
+        tickLength: 4,
         tickInterval: 5,
         tickPosition: 'inside',
         lineColor: '#E7E7E7',
@@ -662,7 +667,6 @@ export default class ProductVM {
     ];
     y.min = 0;
     y.max = 100;
-    y.gridLineWidth = 0;
   }
 
 }
