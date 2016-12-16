@@ -1,66 +1,84 @@
-.invest-organization {
-  span {
-    line-height: 21px;
-  }
-  .split {
-    margin: 0 14px;
-    color: #cccccc;
-  }
-  .organization-content {
-    .industry {
-      margin-top: 20px;
-      .industryList {
-        position: relative;
-        width: 700px;
-        left: 80px;
-        bottom: 17px;
-      }
-      span {
-        margin-right: 14px;
-      }
+.invest-organization-wrapper {
+  .title {
+    padding: 13px 0;
+    border-bottom: 1px solid #f2f4f5;
+    .icon-similar-head {
+      margin: 0 6px 0 16px;
+      font-size: 20px;
+      position: relative;
+      top: 2px;
+      font-weight: none;
     }
-    .project {
-      .org{
-        &:hover{
-          text-decoration: underline;
-        }
-        .font(14,18);
-        color: #6BA2FC;
-      }
-    }
-    .bold {
+    .title-name {
+      font-size: 16px;
       font-weight: bold;
     }
   }
-  .org-brief{
-    display: inline-block;
-    max-height: 100px;
-    max-width: 815px;
-    vertical-align: top;
-    color: #5A626D;
-    letter-spacing: 0px;
-    .font(14,21);
-    a.toggle{
-      visibility: hidden;
+  .invest-organization {
+    padding: 20px 42px 30px;
+    span {
+      line-height: 21px;
     }
-  }
-  .org-brief.opened{
-    height: auto;
-    max-height: inherit;
-    a.toggle{
-      visibility: hidden;
+    .split {
+      margin: 0 14px;
+      color: #cccccc;
     }
-  }
-  .org-brief.is-truncated{
-    a.toggle{
-      visibility: inherit;
+    .organization-content {
+      .industry {
+        margin-top: 20px;
+        .industryList {
+          position: relative;
+          width: 700px;
+          left: 80px;
+          bottom: 17px;
+        }
+        span {
+          margin-right: 14px;
+        }
+      }
+      .project {
+        .org{
+          &:hover{
+            text-decoration: underline;
+          }
+          .font(14,18);
+          color: #6BA2FC;
+        }
+      }
+      .bold {
+        font-weight: bold;
+      }
     }
-  }
-  .org-brief.opened{
-    height: auto;
-    max-height: inherit;
-    a.toggle{
-      display: none;
+    .org-brief{
+      display: inline-block;
+      max-height: 100px;
+      max-width: 815px;
+      vertical-align: top;
+      color: #5A626D;
+      letter-spacing: 0px;
+      .font(14,21);
+      a.toggle{
+        visibility: hidden;
+      }
+    }
+    .org-brief.opened{
+      height: auto;
+      max-height: inherit;
+      a.toggle{
+        visibility: hidden;
+      }
+    }
+    .org-brief.is-truncated{
+      a.toggle{
+        visibility: inherit;
+      }
+    }
+    .org-brief.opened{
+      height: auto;
+      max-height: inherit;
+      a.toggle{
+        display: none;
+      }
     }
   }
 }

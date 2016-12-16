@@ -1,229 +1,247 @@
 @import "../../../common/styles/var.less";
 @import "../../../common/styles/function.less";
-.invest-case {
-  h4 {
-    a {
-      margin-left: 4px;
+.invest-case-wrapper {
+  .title {
+    padding: 13px 0;
+    border-bottom: 1px solid #f2f4f5;
+    .icon-finance-head {
+      margin: 0 6px 0 16px;
+      font-size: 20px;
+      position: relative;
+      top: 2px;
+      font-weight: none;
+    }
+    .title-name {
+      font-size: 16px;
+      font-weight: bold;
     }
   }
-  .case-content {
-    .tags {
-      padding-bottom: 16px;
-      margin-bottom: 6px;
-      &>li{
-        display: inline-block;
-        padding: 1px 6px;
-        margin-right: 10px;
-      }
-      .tag {
-        font-size: 12px;
-        line-height: 18px;
-        height: 20px;
-        background: rgba(107, 162, 252, 0.2);
-        letter-spacing: 0px;
-        padding: 1px 6px;
-        a {
-          color: #2868D1;
-        }
+  .invest-case {
+    padding: 20px 42px 30px;
+    h4 {
+      a {
+        margin-left: 4px;
       }
     }
-    .case-list{
-      overflow: hidden;
-      .case-left {
-        float: left;
-      }
-      .bold {
-        color: #222C38;
-        font-weight: bold;
-      }
-      .case-right {
-        float: right;
-      }
-      .case-info {
-        width: 390px;
-        min-height: 180px;
-        background: #FFFFFF;
-        border: 1px solid #F2F4F5;
-        box-shadow: 0px 0px 8px 0px #E7E7E7;
-        margin: 4px 4px 26px 4px;
-        .case-brief {
-          height: 83px;
-        }
-      }
-      .f-right {
-        float: right;
-      }
-      .case-logo-a {
-        display: inline-block;
-        float: left;
-      }
-      .case-logo {
-        float: left;
-        width: 60px;
-        height: 60px;
-        border: 1px solid #e7e7e7;
-        border-radius: 6px;
-        margin-left:24px;
-      }
-      .company-name {
-        display: block;
-        max-width: 270px;
-        margin-left: 100px;
-        margin-top: 25px;
+    .case-content {
+      .tags {
+        padding-bottom: 16px;
         margin-bottom: 6px;
+        &>li{
+          display: inline-block;
+          padding: 1px 6px;
+          margin-right: 10px;
+        }
+        .tag {
+          font-size: 12px;
+          line-height: 18px;
+          height: 20px;
+          background: rgba(107, 162, 252, 0.2);
+          letter-spacing: 0px;
+          padding: 1px 6px;
+          a {
+            color: #2868D1;
+          }
+        }
       }
-      .show {
-        // position: relative;
-        // float: right;
-        // right: 40px;
-        // top: 64px;
-        float: right;
-        font-size: 12px;
-        color: #6BA2FC;
-      }
-      .company-brief {
-        font-size: 14px;
-        color: #5A626D;
-        line-height: 21px;
-        width: 270px;
-        min-height: 42px;
-        margin-left: 100px;
-      }
-
-      .case-phase {
-        margin: 0 0 14px 24px;
-        position: relative;
-        .circular {
-          width:12px;
-          height:12px;
+      .case-list{
+        overflow: hidden;
+        .case-left {
+          float: left;
+        }
+        .bold {
+          color: #222C38;
+          font-weight: bold;
+        }
+        .case-right {
+          float: right;
+        }
+        .case-info {
+          width: 390px;
+          min-height: 180px;
           background: #FFFFFF;
-          border: 1px solid #CCCCCC;
-          border-radius: 100px;
-          padding: 2px;
-          display:inline-block;
-          position: absolute;
-          left: 63px;
-          // margin: 0 15px 0 21px;
-          .circular2 {
-            width:6px;
-            height:6px;
-            background: #CCCCCC;
+          border: 1px solid #F2F4F5;
+          box-shadow: 0px 0px 8px 0px #E7E7E7;
+          margin: 4px 4px 26px 4px;
+          .case-brief {
+            height: 83px;
+          }
+        }
+        .f-right {
+          float: right;
+        }
+        .case-logo-a {
+          display: inline-block;
+          float: left;
+        }
+        .case-logo {
+          float: left;
+          width: 60px;
+          height: 60px;
+          border: 1px solid #e7e7e7;
+          border-radius: 6px;
+          margin-left:24px;
+        }
+        .company-name {
+          display: block;
+          max-width: 270px;
+          margin-left: 100px;
+          margin-top: 25px;
+          margin-bottom: 6px;
+        }
+        .show {
+          // position: relative;
+          // float: right;
+          // right: 40px;
+          // top: 64px;
+          float: right;
+          font-size: 12px;
+          color: #6BA2FC;
+        }
+        .company-brief {
+          font-size: 14px;
+          color: #5A626D;
+          line-height: 21px;
+          width: 270px;
+          min-height: 42px;
+          margin-left: 100px;
+        }
+
+        .case-phase {
+          margin: 0 0 14px 24px;
+          position: relative;
+          .circular {
+            width:12px;
+            height:12px;
+            background: #FFFFFF;
+            border: 1px solid #CCCCCC;
             border-radius: 100px;
+            padding: 2px;
+            display:inline-block;
+            position: absolute;
+            left: 63px;
+            // margin: 0 15px 0 21px;
+            .circular2 {
+              width:6px;
+              height:6px;
+              background: #CCCCCC;
+              border-radius: 100px;
+            }
+            .line {
+              background: #F2F4F5;
+              height: 18px;
+              width: 2px;
+              position: relative;
+              left: 2px;
+              top: 3px;
+            }
           }
-          .line {
-            background: #F2F4F5;
-            height: 18px;
-            width: 2px;
-            position: relative;
-            left: 2px;
-            top: 3px;
+          .circular+span {
+            position: absolute;
+            left: 90px;
           }
         }
-        .circular+span {
-          position: absolute;
-          left: 90px;
+
+        .more-show {
+          display:block;
         }
-      }
+        .more-hide {
+          display:none;
+        }
+        .more-show-btn {
+          height: 13px;
+        }
+        .more-btn {
+          position: relative;
+          float: right;
+          right: 24px;
+          bottom: 15px;
+          font-size: 12px;
+          color: #6BA2FC;
+        }
 
-      .more-show {
-        display:block;
-      }
-      .more-hide {
-        display:none;
-      }
-      .more-show-btn {
-        height: 13px;
-      }
-      .more-btn {
-        position: relative;
-        float: right;
-        right: 24px;
-        bottom: 15px;
-        font-size: 12px;
-        color: #6BA2FC;
-      }
-
-      .m-bottom {
-        margin-bottom: 10px;
+        .m-bottom {
+          margin-bottom: 10px;
+        }
       }
     }
-  }
 
-  .show-more{
-    cursor: pointer;
-    .size(118,28);
-    margin: 0px auto;
-    .text-center();
-    vertical-align: middle;
-    .font(12,28);
-    border: 1px solid #BBB;
-    border-radius: 4px;
+    .show-more{
+      cursor: pointer;
+      .size(118,28);
+      margin: 0px auto;
+      .text-center();
+      vertical-align: middle;
+      .font(12,28);
+      border: 1px solid #BBB;
+      border-radius: 4px;
+    }
   }
-}
-.case-edit-wrapper {
-  input {
-    max-width: 520px;
-  }
-  select {
-    max-width: 140px;
-  }
-  form {
-    max-width: 520px;
-  }
-  .ac-container {
-    z-index: 11;
-  }
-  .mt16 {
-    margin-bottom: 16px;
-  }
-  .casePhase-group, .investDate-group {
-    margin-bottom: 16px;
-  }
-  .casePhase-group, .investDate-group {
+  .case-edit-wrapper {
+    input {
+      max-width: 520px;
+    }
     select {
-      margin-bottom: 4px;
+      max-width: 140px;
     }
-   .error-tip {
-      float: none;
+    form {
+      max-width: 520px;
     }
-  }
-
-  .error-color {
-    color: @error-color;
-  }
-  .investEntity-group {
-    input[type="text"] {
-      margin-bottom: 0px;
+    .ac-container {
+      z-index: 11;
     }
-
-    .invest-com {
+    .mt16 {
       margin-bottom: 16px;
     }
-
-  }
-  .new-com {
-    text-align: center;
-    color: @anchor-color;
-  }
-  .invest-entity {
-    margin-top: 15px;
-    input[type="radio"] {
-      margin-right: 10px;
-      &+span {
-        margin-right: 16px;
+    .casePhase-group, .investDate-group {
+      margin-bottom: 16px;
+    }
+    .casePhase-group, .investDate-group {
+      select {
+        margin-bottom: 4px;
+      }
+     .error-tip {
+        float: none;
       }
     }
-    .inline-control > * {
-      .dlk();
-      .vam();
+
+    .error-color {
+      color: @error-color;
     }
-    .invest-com,.invest-org {
-      margin-top: 21px;
-      height: 41px;
-      line-height: 41px;
+    .investEntity-group {
+      input[type="text"] {
+        margin-bottom: 0px;
+      }
+
+      .invest-com {
+        margin-bottom: 16px;
+      }
+
     }
-    .invest-com {
-      margin-top: 10px;
+    .new-com {
+      text-align: center;
+      color: @anchor-color;
+    }
+    .invest-entity {
+      margin-top: 15px;
+      input[type="radio"] {
+        margin-right: 10px;
+        &+span {
+          margin-right: 16px;
+        }
+      }
+      .inline-control > * {
+        .dlk();
+        .vam();
+      }
+      .invest-com,.invest-org {
+        margin-top: 21px;
+        height: 41px;
+        line-height: 41px;
+      }
+      .invest-com {
+        margin-top: 10px;
+      }
     }
   }
 }
