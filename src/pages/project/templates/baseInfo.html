@@ -2,7 +2,7 @@
   <div class="head">
     <span class="icon-introduction-head"></span>
     <span class="title">项目介绍</span>
-    <span class="icon-Edit"></span>
+    <span class="icon-Edit" ng-if="!vm.introductionVM.isEdit && vm.isEditMode"></span>
     <a class="edit-btn" href="javascript:void(0)" ng-click="vm.introductionVM.enterEditMode()"
         ng-if="!vm.introductionVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.baseIntro.edit">编辑</a>
   </div>
