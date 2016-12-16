@@ -33,7 +33,7 @@
         </span>
       </div>
     </div>
-    <div class="investor" ng-if="root.user.isInvestor()">
+    <div class="investor" ng-if="root.user.isInvestor() || vm.isEditMode">
       <div class="hg-btn-group" ng-hide="!productVM.hasData && !userPortraitsVm.hasData">
         <div>
           <a href="javascript:;"  ng-class="{active: productVM.active === 'product'}"
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div class="uninvestor" ng-show="!root.user.isInvestor()">
+    <div class="uninvestor" ng-show="!root.user.isInvestor() && !vm.isEditMode">
       <div class="index">
         <div class="certify">
           <a ng-show="root.user.isLogin === false" login-btn>立即登录</a>
