@@ -7,9 +7,13 @@ export default class ProjectRun {
     noDataFactory(Highcharts);
     Highcharts.setOptions({
       lang: {
-        thousandsSep: ',',
         noData: '暂无数据',
       },
     });
+    Highcharts.wrap(Highcharts.Tick.prototype, 'getMarkPath',
+     (prev, x, y, tickLength, tickWidth, horiz, renderer) => {
+       const path = renderer.path(['M', x, y, 'L', x, y - 5]).d;
+       return path;
+     });
   }
 }

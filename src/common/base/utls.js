@@ -272,4 +272,19 @@ export function getMonth(month) {
   return months;
 }
 
+export function range(low, high, suffix) {
+  if (low > high) {
+    throw new Error('low > hight');
+  }
+  let format = suffix;
+  const rangeArr = [];
+  if (angular.isString(suffix)) {
+    format = (value) => value + suffix;
+  }
+  do {
+    rangeArr.push(format(low));
+  } while (++low <= high);
+  return rangeArr;
+}
+
 export const slice = Array.prototype.slice;
