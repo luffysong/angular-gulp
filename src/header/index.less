@@ -168,10 +168,16 @@ nav.rz-sidebar-wrapper{
     &.find {
       padding-top: 18px;
     }
+    &.workstation {
+      &>dt:after {
+        left: 30px + 31px;
+      }
+    }
   }
 
   &>dl>dt {
     font-size: 11px;
+    color: @text-color;
     height: 18px;
     line-height: 18px;
     position: relative;
@@ -179,6 +185,7 @@ nav.rz-sidebar-wrapper{
     span {
       margin-right: 8px;
     }
+
     &:after {
       content:' ';
       display: block;
