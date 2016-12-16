@@ -55,7 +55,7 @@
 
         <div class="top-right">
           <div class="user">
-            <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" ng-click="productVM.active = 'product'"><span>用户量</span></a>
+            <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" ng-click="productVM.active = 'product'">DAU</a>
             <div class="number ">
               <div class="up-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.user_amount_var === 1"></div>
               <div class="down-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.user_amount_var === -1"></div>
@@ -66,7 +66,7 @@
             </div>
           </div>
           <div class="expose">
-            <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" ng-click="productVM.active = 'product'"><span>曝光量</span></a>
+            <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" ng-click="productVM.active = 'product'">曝光量</a>
             <div class="number">
               <div class="up-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.exposure_amount_var === 1"></div>
               <div class="down-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.exposure_amount_var === -1"></div>
@@ -79,14 +79,14 @@
           <div class="finance">
             <a kr-scroll-click href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeHistory}}"
               ng-class="{'active':!vm.baseInfoVM.advantage && !(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro) && !vm.fundsVM.funds}">
-              <span>融资体量</span>
+              最新融资额
             </a>
             <div class="number">
                <a kr-scroll-click href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeHistory}}"
                 ng-class="{'active':!vm.baseInfoVM.advantage && !(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro) && !vm.fundsVM.funds}">
                 <span class="finance-number" ng-show="vm.baseInfoVM.projectStatHeader.finance_amount">￥{{vm.baseInfoVM.projectStatHeader.finance_amount / 100000000}}亿</span>
+                <span class="no-number" ng-show="!vm.baseInfoVM.projectStatHeader.finance_amount">未披露</span>
               </a>
-              <span class="no-number" ng-show="!vm.baseInfoVM.projectStatHeader.finance_amount">—</span>
             </div>
           </div>
         </div>
