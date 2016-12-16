@@ -154,7 +154,7 @@ export default class ProductVM {
       name: '曝光量',
       data: investmentTrend.exposure.data.map((item, i) => ({
         y: Number(item) || 0,
-        dau: investmentTrend.dau[i] ? investmentTrend.dau[i].toFixed(2) : 0,
+        dau: investmentTrend.dau.data[i] ? investmentTrend.dau.data[i].toFixed(2) : 0,
         exposure: Number(item) || 0,
         year: this.year,
       })),
@@ -177,8 +177,8 @@ export default class ProductVM {
       color: '#9cd141',
       data: investmentTrend.appRank.data.map((item, i) => ({
         y: Number(item),
-        rank: item,
-        download: investmentTrend.download.data[i] || 0,
+        rank: (item && item !== 'null') ? item : 0,
+        download: investmentTrend.download.data[i] ? investmentTrend.download.data[i].toFixed(2) : 0,
         year: this.year,
       })),
       yAxis: 1,
@@ -189,8 +189,8 @@ export default class ProductVM {
       name: 'Android下载量 / 万次',
       data: investmentTrend.download.data.map((item, i) => ({
         y: Number(item),
-        rank: investmentTrend.appRank.data[i] || 0,
-        download: item || 0,
+        rank: investmentTrend.appRank.data[i] && investmentTrend.appRank.data[i] !== 'null' ? investmentTrend.appRank.data[i] : 0,
+        download: item ? item.toFixed(2) : 0,
         year: this.year,
       })),
       zIndex: 0,
