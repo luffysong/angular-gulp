@@ -566,7 +566,7 @@ export default class ProductVM {
   handleRetention(d) {
     console.log(d);
     this.retentionList.forEach((item) => {
-      const a = d[item.key];
+      const a = d[item.key].data;
       item.percent = a.length ? a[a.length - 1].toFixed(2) : 0;
     });
     let index = 0;
