@@ -159,7 +159,8 @@
   </section>
   <section  id="investments" ng-include="'/pages/investorInfo/templates/case.html'"
     class="investorInfo-module">  </section>
-  <section id="organization" ng-include="'/pages/investorInfo/templates/organization.html'" class="investorInfo-module">
+  <section id="organization" ng-include="'/pages/investorInfo/templates/organization.html'" class="investorInfo-module"
+   ng-show="investorInfoVm.basic.orgType !=='COMPANY_INVEST_DEPT'">
   </section>
 
 </div>

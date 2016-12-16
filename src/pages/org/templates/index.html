@@ -50,63 +50,68 @@
   </section>
 
   <section id="analysis" class="org-module analysis-module">
-    <h4>投资分析</h4>
-    <div class="conditions">
-      <div class="select-inline select-margin">
-        <select ng-options="item.value as item.desc for item in root.INDUSTRY_META"
-          class="form-control address-select" ng-model="vm.industry" ng-change="vm.changeCondition()"
-          message-id="messageAddress" >
-        <option value="">全部行业</option>
-        </select><select ng-options="item.value as item.desc for item in root.FINANCE_PHASE_META"
-          ng-model="vm.phase" ng-change="vm.changeCondition()"
-          class="form-control address-select"  >
-        <option value="">全部轮次</option>
-        </select><select ng-model="vm.year" ng-change="vm.changeCondition()"
-         ng-options="item for item in vm.years"
-          class="form-control address-select">
-        </select>
-      </div>
+    <div class="title">
+      <span class="icon-project-data-head"></span>
+      <span>投资分析</span>
     </div>
-    <highchart disable-data-watch="true" config="vm.trendHg"></highchart>
-    <div class="pie-chart-wrapper">
-      <div class="pie-chart">
-        <h5>投资行业分布</h5>
-        <highchart disable-data-watch="true" ng-if="vm.analyze.hasData" config="vm.industryHg"></highchart>
-        <div class="no-data-chart">
-          暂无数据
+    <div class="analysis-info">
+      <div class="conditions">
+        <div class="select-inline select-margin">
+          <select ng-options="item.value as item.desc for item in root.INDUSTRY_META"
+            class="form-control address-select" ng-model="vm.industry" ng-change="vm.changeCondition()"
+            message-id="messageAddress" >
+          <option value="">全部行业</option>
+          </select><select ng-options="item.value as item.desc for item in root.FINANCE_PHASE_META"
+            ng-model="vm.phase" ng-change="vm.changeCondition()"
+            class="form-control address-select"  >
+          <option value="">全部轮次</option>
+          </select><select ng-model="vm.year" ng-change="vm.changeCondition()"
+           ng-options="item for item in vm.years"
+            class="form-control address-select">
+          </select>
         </div>
       </div>
-      <div class="pie-chart">
-        <h5>投资轮次分布</h5>
-        <highchart disable-data-watch="true" ng-if="vm.analyze.hasData" config="vm.phaseHg"></highchart>
-        <div class="no-data-chart">
-          暂无数据
+      <highchart disable-data-watch="true" config="vm.trendHg"></highchart>
+      <div class="pie-chart-wrapper">
+        <div class="pie-chart">
+          <h5>投资行业分布</h5>
+          <highchart disable-data-watch="true" ng-if="vm.analyze.hasData" config="vm.industryHg"></highchart>
+          <div class="no-data-chart">
+            暂无数据
+          </div>
         </div>
-      </div>
-      <div class="invest-status">
-        <h5>投资现状</h5>
-        <table>
-          <thead>
-            <tr>
-              <td>{{vm.analyze.year + '年'}}</td>
-              <td>单笔投资金额平均数</td>
-              <td>单笔投资金额中位数</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>本机构</td>
-              <td>{{vm.analyze.investmentStatus.self.averageAmount}}</td>
-              <td>{{vm.analyze.investmentStatus.self.medianAmount}}</td>
-            </tr>
-            <tr>
-              <td>本行业</td>
-              <td>{{vm.analyze.investmentStatus.industry.averageAmount}}</td>
-              <td>{{vm.analyze.investmentStatus.industry.medianAmount}}</td>
-            </tr>
+        <div class="pie-chart">
+          <h5>投资轮次分布</h5>
+          <highchart disable-data-watch="true" ng-if="vm.analyze.hasData" config="vm.phaseHg"></highchart>
+          <div class="no-data-chart">
+            暂无数据
+          </div>
+        </div>
+        <div class="invest-status">
+          <h5>投资现状</h5>
+          <table>
+            <thead>
+              <tr>
+                <td>{{vm.analyze.year + '年'}}</td>
+                <td>单笔投资金额平均数</td>
+                <td>单笔投资金额中位数</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>本机构</td>
+                <td>{{vm.analyze.investmentStatus.self.averageAmount}}</td>
+                <td>{{vm.analyze.investmentStatus.self.medianAmount}}</td>
+              </tr>
+              <tr>
+                <td>本行业</td>
+                <td>{{vm.analyze.investmentStatus.industry.averageAmount}}</td>
+                <td>{{vm.analyze.investmentStatus.industry.medianAmount}}</td>
+              </tr>
 
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </section>

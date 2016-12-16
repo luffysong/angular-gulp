@@ -10,10 +10,12 @@ import krScrollClick from './krScrollClick.directive.js';
 import introFormat from './introFormat.filter';
 import ProductDataService from './productData.service';
 import enterFormat from './enterFormat.filter';
+import ProjectRun from './run.service';
 angular.module('@@pages.project', [])
   .controller('ProjectIndexController', ProjectIndexController)
   .controller('EditProjectController', EditProjectController)
   .service('projectService', ProjectService)
+  .service('projectRun', ProjectRun)
   .directive('textOverflow', textOverflowDirective)
   .directive('textMore', textMoreDirective)
   .directive('center', centerDirective)

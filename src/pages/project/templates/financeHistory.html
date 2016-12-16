@@ -2,7 +2,7 @@
   <div class="head">
     <span class="icon-finance-head"></span>
     <span class="title">融资经历</span>
-    <a class="edit-btn" href="javascript:void(0)" ng-click="vm.financeVM.enterEditMode()"
+    <a class="add-btn" href="javascript:void(0)" ng-click="vm.financeVM.enterEditMode()"
         ng-if="!vm.financeVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.financeHistory.add">添加+</a>
   </div>
   <div class="finance-history">
@@ -64,9 +64,9 @@
               <span class="info-lun">
                 <a ui-sref="list.result({phase: data.phase})" target="_blank" class="darkColor" ng-if="data.phase">{{data.phase | financePhase}}</a>
               </span>
-              <div class="split"></div>
+              <!-- <div class="split"></div> -->
               <div class="amount-participant">
-                <div class="amount">
+                <div class="amount" ng-class="{'right-split': data.newsUrl}">
                   <span class="amount-top label-name">融资金额</span>
                   <span ng-if="data.financeAmount!==''" class="amount-top info-level">{{data.financeAmount}} {{data.financeAmountUnit | currencyUnit}}
                   </span>
@@ -88,7 +88,6 @@
                 </div>
               </div>
               <div class="news" ng-show="data.newsUrl">
-                <div class="split2"></div>
                 <a ng-href="{{data.newsUrl}}" target="_blank" class="icon-news"></a>
               </div>
             </div>

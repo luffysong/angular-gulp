@@ -20,10 +20,6 @@ export default class ProductUserPortraits {
       chart.area = chart.area.map((tuple) => ([tuple[0], parseFloat(tuple[1]) * 100]));
     }
 
-    if (chart.freq) {
-      chart.freq.y = chart.freq.y.map(y => y / 10000);
-    }
-
     if (chart.sex) {
       chart.sex.female = parseFloat(chart.sex.female);
       chart.sex.male = parseFloat(chart.sex.male);

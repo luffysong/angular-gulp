@@ -1,55 +1,60 @@
 <div class="base-info-wrapper">
-  <h4>基本介绍</h4>
-  <div class="info">
-    <span id="node" text-overflow text="vm.orgData.basic.intro"></span>
+  <div class="title">
+    <span class="icon-introduction-head"></span>
+    <span>基本介绍</span>
   </div>
-  <div class="detail">
-    <div class="area" ng-if="vm.orgData.basic.investedIndustry.length">
-      <span class="label">已投行业</span>
-      <span class="inline-sub-label">
-        <span ng-repeat="item in vm.orgData.basic.investedIndustry">
-          <a class="sub-label" ui-sref="list.result({industry:item.id,columnId:0})" target="_blank"><span>{{item.name}}</span></a>
-        </span>
-      </span>
+  <div class="base-info">
+    <div class="info">
+      <span id="node" text-overflow text="vm.orgData.basic.intro"></span>
     </div>
-    <div class="prefer-industry" ng-if="vm.orgData.basic.preferIndustry.length">
-      <span class="label">偏好行业</span>
-      <span class="inline-sub-label">
-        <span ng-repeat="item in vm.orgData.basic.preferIndustry">
-          <a class="sub-label" ui-sref="list.result({industry:item.id,columnId:0})" target="_blank"><span>{{item.name}}</span></a>
-        </span>
-      </span>
-    </div>
-    <div class="prefer-phase" ng-if="vm.orgData.basic.investedPhase.length">
-      <span class="label">已投轮次</span>
-      <span class="inline-sub-label">
-        <span ng-repeat="item in vm.orgData.basic.investedPhase">
-          <a class="sub-label-phase" ui-sref="list.result({phase:item.id,columnId:0})" target="_blank"><span>{{item.name}}</span></a>
-        </span>
-      </span>
-    </div>
-    <div class="start-date" ng-show="vm.baseInfoVM.showMore && vm.orgData.basic.startDate">
-      <span class="label">成立时间</span
-      ><span>{{vm.orgData.basic.startDate | date:'yyyy'}}年</span>
-    </div>
-    <div class="addresses" ng-show="vm.baseInfoVM.showMore && vm.orgData.basic.addresses.length">
-      <span class="label contact">联系方式</span>
-      <div class="all-addr">
-        <span ng-repeat="item in vm.orgData.basic.addresses">
-          <div class="address"  ng-if="item.city !== '' && item.city">
-            <span class="city">{{item.city}}</span
-            ><span ng-if="item.address !== '' && item.address">{{item.address}}</span>
-          </div
-          ><div class="phone-email" ng-if="item.phone !== '' && item.phone">
-            <span class="phone">{{item.phone}}</span
-            ><span ng-if="item.email !== '' && item.email">{{item.email}}</span>
-          </div>
+    <div class="detail">
+      <div class="area" ng-if="vm.orgData.basic.investedIndustry.length">
+        <span class="label">已投行业</span>
+        <span class="inline-sub-label">
+          <span ng-repeat="item in vm.orgData.basic.investedIndustry">
+            <a class="sub-label" ui-sref="list.result({industry:item.id,columnId:0})" target="_blank"><span>{{item.name}}</span></a>
+          </span>
         </span>
       </div>
+      <div class="prefer-industry" ng-if="vm.orgData.basic.preferIndustry.length">
+        <span class="label">偏好行业</span>
+        <span class="inline-sub-label">
+          <span ng-repeat="item in vm.orgData.basic.preferIndustry">
+            <a class="sub-label" ui-sref="list.result({industry:item.id,columnId:0})" target="_blank"><span>{{item.name}}</span></a>
+          </span>
+        </span>
+      </div>
+      <div class="prefer-phase" ng-if="vm.orgData.basic.investedPhase.length">
+        <span class="label">已投轮次</span>
+        <span class="inline-sub-label">
+          <span ng-repeat="item in vm.orgData.basic.investedPhase">
+            <a class="sub-label-phase" ui-sref="list.result({phase:item.id,columnId:0})" target="_blank"><span>{{item.name}}</span></a>
+          </span>
+        </span>
+      </div>
+      <div class="start-date" ng-show="vm.baseInfoVM.showMore && vm.orgData.basic.startDate">
+        <span class="label">成立时间</span
+        ><span>{{vm.orgData.basic.startDate | date:'yyyy'}}年</span>
+      </div>
+      <div class="addresses" ng-show="vm.baseInfoVM.showMore && vm.orgData.basic.addresses.length">
+        <span class="label contact">联系方式</span>
+        <div class="all-addr">
+          <span ng-repeat="item in vm.orgData.basic.addresses">
+            <div class="address"  ng-if="item.city !== '' && item.city">
+              <span class="city">{{item.city}}</span
+              ><span ng-if="item.address !== '' && item.address">{{item.address}}</span>
+            </div
+            ><div class="phone-email" ng-if="item.phone !== '' && item.phone">
+              <span class="phone">{{item.phone}}</span
+              ><span ng-if="item.email !== '' && item.email">{{item.email}}</span>
+            </div>
+          </span>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="more" ng-show="!vm.baseInfoVM.showMore && (vm.orgData.basic.addresses.length || vm.orgData.basic.startDate)"
-       ng-click="vm.baseInfoVM.isMore()">
-       <p >查看更多</p>
+    <div class="more" ng-show="!vm.baseInfoVM.showMore && (vm.orgData.basic.addresses.length || vm.orgData.basic.startDate)"
+         ng-click="vm.baseInfoVM.isMore()">
+         <p >查看更多</p>
+    </div>
   </div>
 </div>
