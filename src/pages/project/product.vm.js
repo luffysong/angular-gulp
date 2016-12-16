@@ -92,7 +92,7 @@ export default class ProductVM {
       }
       return `<div class="chart-tooltip">
        <p>${handleDate(this.category)}</p>
-       <p>用户量：<span>${this.dau}万人</span></p>
+       <p>DAU：<span>${this.dau}万人</span></p>
        <p>曝光量：<span>${this.exposure}</span></p>
       </div>`;
     },
@@ -110,7 +110,7 @@ export default class ProductVM {
       return `<div class="chart-tooltip">
        <p>${handleDate(this.category)}</p>
        <p>App排名：<span>${this.rank} 名</span></p>
-       <p>下载量：<span>${this.download} 万次</span></p>
+       <p>Android下载量：<span>${this.download} 万次</span></p>
       </div>`;
     },
   };
@@ -126,7 +126,7 @@ export default class ProductVM {
       }
       return `<div class="chart-tooltip">
        <p>${handleDate(this.category)}</p>
-       <p>网站排名：<span>${this.item}名</span></p>
+       <p>网站Alexa排名：<span>${this.item}名</span></p>
       </div>`;
     },
   };
@@ -138,7 +138,7 @@ export default class ProductVM {
       ? investmentTrend.dau.x : investmentTrend.exposure.x;
     this.trendHg.xAxis.categories = arr.map(item => handleDate(item));
     this.trendHg.series = [{
-      name: '用户量 / 人',
+      name: 'DAU / 人',
       color: '#88C4FF',
       data: investmentTrend.dau.data.map((item, i) => ({
         y: item,
@@ -173,7 +173,7 @@ export default class ProductVM {
       ? investmentTrend.download.x : investmentTrend.appRank.x;
     this.downloadHg.xAxis.categories = arr.map(item => handleDate(item));
     this.downloadHg.series = [{
-      name: 'App排名 / 位',
+      name: 'AppStore排名 / 位',
       color: '#9cd141',
       data: investmentTrend.appRank.data.map((item, i) => ({
         y: Number(item),
@@ -186,7 +186,7 @@ export default class ProductVM {
       lineWidth: 1,
     }, {
       color: '#D9EDB4 ',
-      name: '下载量 / 万次',
+      name: 'Android下载量 / 万次',
       data: investmentTrend.download.data.map((item, i) => ({
         y: Number(item),
         rank: investmentTrend.appRank.data[i] || 0,
@@ -240,6 +240,13 @@ export default class ProductVM {
         credits: {
           enabled: false,
         },
+        noData: {
+          style: {
+            fontSize: '18px',
+            color: '#ccc',
+            fontWeight: 'normal',
+          },
+        },
         plotOptions: {
           line: {
             lineWidth: 1,
@@ -292,7 +299,7 @@ export default class ProductVM {
         useHTML: true,
         align: 'left',
         x: -10,
-        text: '<h5 class="trend-title">用户量 / 曝光量</h5>',
+        text: '<h5 class="trend-title">DAU / 曝光量</h5>',
       },
       xAxis: {
         tickWidth: 1,
@@ -362,6 +369,13 @@ export default class ProductVM {
         credits: {
           enabled: false,
         },
+        noData: {
+          style: {
+            fontSize: '18px',
+            color: '#ccc',
+            fontWeight: 'normal',
+          },
+        },
         plotOptions: {
           line: {
             lineWidth: 1,
@@ -414,7 +428,7 @@ export default class ProductVM {
         useHTML: true,
         align: 'left',
         x: -10,
-        text: '<h5 class="trend-title">App排名 / 下载量</h5>',
+        text: '<h5 class="trend-title">AppStore排名 / Android下载量</h5>',
       },
       xAxis: {
         tickWidth: 1,
@@ -474,6 +488,13 @@ export default class ProductVM {
         credits: {
           enabled: false,
         },
+        noData: {
+          style: {
+            fontSize: '18px',
+            color: '#ccc',
+            fontWeight: 'normal',
+          },
+        },
         plotOptions: {
           line: {
             lineWidth: 2,
@@ -519,7 +540,7 @@ export default class ProductVM {
         useHTML: true,
         align: 'left',
         x: -10,
-        text: '<h5 class="trend-title">网站排名</h5>',
+        text: '<h5 class="trend-title">网站Alexa排名</h5>',
       },
       xAxis: {
         tickWidth: 1,
