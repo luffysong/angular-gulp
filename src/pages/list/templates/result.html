@@ -9,9 +9,8 @@
         <td width="320">项目</td>
         <td>行业</td>
         <td>轮次</td>
-        <td width="150">投资方</td>
         <td>所在地</td>
-        <td>时间</td>
+        <td>成立时间</td>
         <td width="120">操作</td>
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
@@ -24,10 +23,10 @@
             <div class="project-intro" title="{{::obj.brief}}">
               {{::obj.brief}}
             </div>
-            <div class="project-tag" ng-if="obj.advantage">
+            <!-- <div class="project-tag" ng-if="obj.advantage">
               <i class="icon-listPoint"></i>
               <span>{{::obj.advantage}}</span>
-            </div>
+            </div> -->
           </div>
         </td>
         <td class="filter-item">
@@ -35,10 +34,6 @@
         </td>
         <td class="filter-item">
           <span ng-click="vm.clickFilter(obj.phase,'phase')" data-stat-click="phase.{{obj.phase}}" ng-class="{'disabled': obj.phase === 'NONE' || parentVm.getPermission()}">{{::obj.phase | companyFinancePhase}}</span>
-        </td>
-        <td class="org-col">
-          <span ng-if="!obj.investParts.length">未披露</span>
-          <section ng-if="obj.investParts.length" ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
         </td>
         <td class="filter-item">
           <span ng-click="vm.clickFilter(obj.city,'city')" ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>

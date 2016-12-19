@@ -1,10 +1,10 @@
 import organizationIndexController from './organization.controller';
 import organizationParentController from './organization.parent.controller';
-import introFormat from './introFormat.filter';
+import orgIntroFormat from './orgIntroFormat.filter';
 import organizationService from './organization.service.js';
 
 angular.module('@@pages.organization', [])
   .controller('organizationIndexController', organizationIndexController)
   .controller('organizationParentController', organizationParentController)
-  .filter('introFormat',introFormat)
+  .filter('orgIntroFormat',orgIntroFormat)
   .service('organizationService', organizationService);

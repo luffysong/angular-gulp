@@ -1,5 +1,5 @@
 
-function introFilter() {
+function orgIntroFilter() {
   return function (input) {
     if(!input)return '';
     if(input.length < 55){
@@ -11,6 +11,6 @@ function introFilter() {
 }
 angular
   .module('@@pages.organization', [])
-  .filter('introFilter', introFilter);
+  .filter('orgIntroFilter', orgIntroFilter);
 
-export default introFilter;
+export default orgIntroFilter;

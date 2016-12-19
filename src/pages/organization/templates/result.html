@@ -18,7 +18,7 @@
               <span class="company-name"><a ui-sref="org({id: obj.org.id})" ng-click="vm.seeDetail(obj.cid)" data-stat-click="company.{{obj.cid}}">{{obj.org.nameAbbr}}</a></span>
             </div>
             <div class="project-intro">
-              {{obj.org.intro | introFormat}}
+              {{obj.org.intro | orgIntroFormat}}
             </div>
           </div>
         </td>
