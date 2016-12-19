@@ -92,7 +92,7 @@ export default class ProductVM {
       }
       return `<div class="chart-tooltip">
        <p>${handleDate(this.category)}</p>
-       <p>DAU：<span>${this.dau}万人</span></p>
+       <p>DAU：<span>${this.dau}万</span></p>
        <p>曝光量：<span>${this.exposure}</span></p>
       </div>`;
     },
@@ -142,7 +142,7 @@ export default class ProductVM {
       color: '#88C4FF',
       data: investmentTrend.dau.data.map((item, i) => ({
         y: item,
-        dau: item.toFixed(2),
+        dau: item && item !== 0 ? item.toFixed(2) : 0,
         exposure: investmentTrend.exposure.data[i] || 0,
         year: this.year,
       })),
@@ -154,7 +154,8 @@ export default class ProductVM {
       name: '曝光量',
       data: investmentTrend.exposure.data.map((item, i) => ({
         y: Number(item) || 0,
-        dau: investmentTrend.dau.data[i] ? investmentTrend.dau.data[i].toFixed(2) : 0,
+        dau: investmentTrend.dau.data[i] && investmentTrend.dau.data[i] !== 0
+        ? investmentTrend.dau.data[i].toFixed(2) : 0,
         exposure: Number(item) || 0,
         year: this.year,
       })),
@@ -637,8 +638,10 @@ export default class ProductVM {
         this._setNoDataConfig(item.target);
       }
     });
-    if (!d.save.data.length && !d.save3.data.length &&
-      !d.save7.data.length && !d.save30.data.length) {
+    if ((!d.save.data.length || d.save.data[0] === 0) &&
+      (!d.save3.data.length || d.save3.data[0] === 0) &&
+      (!d.save7.data.length || d.save7.data[0] === 0) &&
+      (!d.save30.data.length || d.save30.data[0] === 0)) {
       this.saveEmpty = true;
     }
 
