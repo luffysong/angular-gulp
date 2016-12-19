@@ -4,16 +4,25 @@
   .icon-dialogClose {
     font-size: 16px;
     position: fixed;
-    top: 62px;
     z-index: 11;
     color:@text-color;
     &:hover {
       color: @anchor-color;
     }
     &.left {
-      left: 362px;
+      left: 350px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      top: 50px;
+      .text-center();
+      opacity: 0;
+      &:hover {
+        opacity: 1;
+      }
     }
     &.right {
+      top: 62px;
       right: 12px;
     }
   }
