@@ -21,6 +21,10 @@ export default class SearchIndexController {
     return this.$rootScope.root.toState.name === 'follow.result';
   }
 
+  getLabels() {
+    return this.columnOptions.tags.length ? this.columnOptions.tags : ['不限'];
+  }
+
   watchOutVm() {
     this.$scope.$watch('searchVm.columnOptions.context', nv => {
       if (nv) {
@@ -34,7 +38,7 @@ export default class SearchIndexController {
   }
 
   valLogin(e) {
-    if(!this.user.isLogin) {
+    if (!this.user.isLogin) {
       this.$scope.root.user.ensureLogin();
       e.preventDefault();
     }

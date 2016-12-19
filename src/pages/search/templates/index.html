@@ -1,8 +1,18 @@
 <div class="search-wrapper">
+  <a href="javascript:;" ng-click="searchVm.columnOptions.closeMe()" class="icon-dialogClose left" ></a>
+  <a href="javascript:;" ng-click="searchVm.columnOptions.closeMe()" class="icon-dialogClose right" ></a>
+  <div class="condition-wrapper">
+     <a href="javascript:;" ng-click="searchVm.columnOptions.closeMe()">
+       <span class="icon-fix"></span>
+       <span class="label-text ellipsis">{{::searchVm.getLabels().join('、')}}</span>
+     </a>
+     <a href="javascript:;" ng-click="searchVm.columnOptions.closeMe()" class="icon-nav"></a>
+  </div>
   <div
     id="column3Container" perfect-scrollbar
-    wheel-propagation="true" wheel-speed="5" min-scrollbar-length="15"
+    wheel-propagation="true" wheel-speed="5" min-scrollbar-length="15" wheel-speed="3"
     class="search-list-wrapper">
+
     <div
         infinite-scroll="searchVm.columnOptions.loadMore()"
         infinite-scroll-disabled="outVm.dataLoading"
@@ -10,41 +20,14 @@
         infinite-scrollUse-document-bottom="false"
         infinite-scroll-distance="3"
       >
-      <div class="condition-wrapper">
-        <div class="main-nav" ng-click="searchVm.openTab()" ng-if="searchVm.isFollow()">
-          {{searchVm.activeLabel}}
-          <i class="icon-label-open" ng-class="{'rotate': searchVm.showTab}"></i>
-          <div class="tag-container" ng-class="{'show':searchVm.showTab}">
-            <div class="tag-item" ng-repeat="item in searchVm.columnOptions.labels" ng-class="{'active':item.active}"
-              ng-click="searchVm.columnOptions.switchType($index);searchVm.closeTab($event)">
-              {{item.name}}
-            </div>
-          </div>
-        </div>
-        <div class="label-nav" ng-if="searchVm.columnOptions.labelName">
-          {{searchVm.columnOptions.labelName}}
-        </div>
-         <div class="label-container">
-           <div class="item-container">
-             <div class="label-item" ng-click="searchVm.columnOptions.closeMe()"
-               ng-repeat="item in searchVm.columnOptions.tags" ng-if="searchVm.columnOptions.tags.length"
-               ng-class="{'show-tag' : searchVm.columnOptions.tags.length > 9 && searchVm.showMoreTag}">{{item}}</div>
 
-             <div class="label-item" ng-click="searchVm.columnOptions.closeMe()"
-               ng-if="!searchVm.columnOptions.tags.length">不限</div>
-           </div>
-           <div class="toggle-btn icon-filter-open"
-             ng-if="searchVm.columnOptions.tags.length > 9 && !searchVm.showMoreTag" ng-click="searchVm.showMore()">
-           </div>
-           <span class="icon-open-nav" ng-click="searchVm.columnOptions.closeMe()"></span>
-        </div>
-      </div>
       <div
         class="search-project-list">
         <ul>
           <li
             kr-scroll-me="{isMe: item.id === searchVm.columnOptions.companyId, container: '#column3Container'}"
-            ng-click="searchVm.open(item.id)" data-stat-click="threeColumns.company.{{item.id}}" ng-repeat="item in searchVm.columnOptions.companies"
+            ng-click="searchVm.open(item.id)" data-stat-click="threeColumns.company.{{item.id}}"
+            ng-repeat="item in searchVm.columnOptions.companies"
             ng-class="{'active' : item.id === searchVm.columnOptions.companyId}">
             <img ng-click="searchVm.open(item.id)" width="42" height="42"
             ng-src="{{::item.logo || '/images/default-logo.png'}}" alt=""/>
