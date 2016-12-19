@@ -44,7 +44,7 @@
             <div class="up-angle-big left-angle" ></div>
             <div class="down-angle-big left-angle" ng-show="vm.baseInfoVM.projectStatHeader.tag1.rank_var === -1"></div>
           </div>
-          <div class="top2">
+          <div class="top2" ng-show="!vm.baseInfoVM.showTop2">
             <span>{{vm.baseInfoVM.projectStatHeader.tag2.tag_name}}</span>
             <span class="number">{{vm.baseInfoVM.projectStatHeader.tag2.tag_rank}}</span>名
             <div class="up-angle left-angle" ></div>

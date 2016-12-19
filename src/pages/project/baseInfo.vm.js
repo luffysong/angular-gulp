@@ -21,6 +21,7 @@ export default class BaseInfoVM extends krData.FormVM {
     this.mapProps(this.props, data, this);
     this.watch();
     this.showTop = krData.utls.isEmpty(data.projectStatHeader.tag1);
+    this.showTop2 = krData.utls.isEmpty(data.projectStatHeader.tag2);
   }
 
   setData(data) {
