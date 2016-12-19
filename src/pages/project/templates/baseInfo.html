@@ -2,7 +2,7 @@
   <div class="head">
     <span class="icon-introduction-head"></span>
     <span class="title">项目介绍</span>
-    <span class="icon-Edit"></span>
+    <span class="icon-Edit" ng-if="!vm.introductionVM.isEdit && vm.isEditMode"></span>
     <a class="edit-btn" href="javascript:void(0)" ng-click="vm.introductionVM.enterEditMode()"
         ng-if="!vm.introductionVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.baseIntro.edit">编辑</a>
   </div>
@@ -59,15 +59,15 @@
           <span class="sub-title">用户市场</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.userMarket | enterFormat"></span>
         </div>
-        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.businessMode && root.user.isInvestor()" >
+        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.businessMode && root.user.isInvestor() || vm.isEditMode" >
           <span class="sub-title">商业模式</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.businessMode | enterFormat"></span>
         </div>
-        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.operationData && root.user.isInvestor()">
+        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.operationData && root.user.isInvestor() || vm.isEditMode">
           <span class="sub-title">运营数据</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.operationData | enterFormat"></span>
         </div>
-        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.coreSource && root.user.isInvestor()" >
+        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.coreSource && root.user.isInvestor() || vm.isEditMode" >
           <span class="sub-title">核心资源</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.coreSource | enterFormat"></span>
         </div>
@@ -78,7 +78,7 @@
             <span>未收录相关信息</span>
           </span>
       </div>
-      <div class="part-hide" ng-if="vm.companyIntroduceVM.hasIntroduce && root.user.notInvestor()">
+      <div class="part-hide" ng-if="vm.companyIntroduceVM.hasIntroduce && root.user.notInvestor() && !vm.isEditMode">
         <a class="certify" ui-sref="investorValidate" href="javascript:void()"><p>认证投资人</p></a>
         <p class="complete">查看完整项目介绍</p>
       </div>

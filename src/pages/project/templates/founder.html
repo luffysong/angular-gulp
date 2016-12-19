@@ -2,7 +2,7 @@
   <div class="head">
     <span class="icon-team-head"></span>
     <span class="title">创始团队</span>
-    <span class="icon-Edit"></span>
+    <span class="icon-Edit" ng-if="!vm.memberVM.isEdit && vm.isEditMode"></span>
     <a class="edit-btn" href="javascript:void(0)" ng-click="vm.memberVM.enterEditMode()"
         ng-if="!vm.memberVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.founder.edit">编辑</a>
   </div>

@@ -165,6 +165,14 @@ export default class ProductUserPortraitsVM {
     this.setDomainHg(this.data.area);
   }
   setGender(sex) {
+    if (!sex) {
+      this.noGender = true;
+      this.male = {
+        percent: '0.00%',
+        width: '100%',
+      };
+      this.female = this.male;
+    }
     this.male = {
       percent: percent(sex.male),
       width: percent(sex.male / sex.max),

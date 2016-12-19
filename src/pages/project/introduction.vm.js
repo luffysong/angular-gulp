@@ -88,13 +88,13 @@ export default class IntroductionVM extends krData.FormVM {
         id: this.id,
       }, this.mapProps(this.props, this))
       .then(() => {
-        this.recovery();
-        krData.Alert.success('数据保存成功');
-        this.isEdit = !this.isEdit;
         this.projectService.editIntroduce({
           id: this.id,
         }, this.mapProps(this.props, this))
         .then(() => {
+          this.recovery();
+          krData.Alert.success('数据保存成功');
+          this.isEdit = !this.isEdit;
         });
       });
     });
