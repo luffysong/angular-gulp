@@ -15,7 +15,7 @@
             href="javascript:void(0)" data-stat-click="project.{{vm.id}}.baseInfo.edit">编辑</a>
         </h1>
         <h3>{{::vm.baseInfoVM.brief}}</h3>
-        <p class="highlights" ng-if="vm.baseInfoVM.advantage">
+        <p class="highlights" ng-if="vm.baseInfoVM.advantage && root.user.isInvestor() || (vm.isEditMode && vm.user != 'commen')">
           <span class="icon-highlights">
             <span>亮点</span>
           </span>
@@ -192,7 +192,7 @@
   <section ng-class="{small: searchVm.small, tinly: searchVm.tiny}" sticky offset="49" class="nav-wrapper">
     <nav>
       <ul class='navigate'>
-        <li ng-show="vm.baseInfoVM.investAdvantage">
+        <li ng-show="vm.baseInfoVM.investAdvantage && !vm.isEditMode">
           <a kr-scroll-click
             href="#light" du-smooth-scroll="" du-scrollspy=""  offset="{{vm.light}}" >
             投资亮点
@@ -255,7 +255,7 @@
   </section>
 </header>
   <section id="light" class="project-module light"
-  ng-if="vm.baseInfoVM.investAdvantage"
+  ng-if="vm.baseInfoVM.investAdvantage && !vm.isEditMode"
   ng-include="'/pages/project/templates/light.html'">
   </section>
 

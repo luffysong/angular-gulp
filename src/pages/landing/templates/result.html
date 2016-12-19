@@ -9,9 +9,8 @@
         <td width="320">项目</td>
         <td>行业</td>
         <td>轮次</td>
-        <td>投资方</td>
         <td>所在地</td>
-        <td>时间</td>
+        <td>成立时间</td>
         <td width="120">操作</td>
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
@@ -33,10 +32,6 @@
         <td>{{::obj.industryStr}}</td>
         <td class="org-col">
           {{::obj.phase | companyFinancePhase}}
-        </td>
-        <td class="org-col">
-          <span ng-if="!obj.investParts.length">未披露</span>
-          <section ng-if="obj.investParts.length" ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
         </td>
         <td>{{::obj.cityStr || '暂无'}}</td>
         <td>{{::obj.publishDate | listDateFilter}}</td>
