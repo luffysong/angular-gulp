@@ -2,13 +2,15 @@
   <div class="project-wrapper" ng-if="!parentVm.labelEmpty && parentVm.user.isLogin">
     <div ng-show="!parentVm.open.sideBar">
       <div class="filter-container">
-        <div class="col-handle">
-          <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="parentVm.spreadLabel()" ng-class="{'open': parentVm.isOpen}"></a>
-        </div>
+        <!-- <div class="col&#45;handle"> -->
+        <!--   <a href="javascript:void(0)" class="open&#45;btn icon&#45;label&#45;open" ng&#45;click="parentVm.spreadLabel()" ng&#45;class="{'open': parentVm.isOpen}"></a> -->
+        <!-- </div> -->
         <div class="search-outside-container" ng-class="{'height-auto':parentVm.isOpen}">
           <ul class="search-list my-follow" filter-col data="parentVm.followLabel" ng-if="parentVm.followLabel">
-            <a class="label-manage" href="javascript:void(0)" ng-click="parentVm.addLabel()" data-stat-click="label.manage">标签管理</a>
-            <li ng-repeat="item in parentVm.followLabel track by $index" ng-class="{'active':item.active}" ng-click="parentVm.switchType($index)" data-stat-click="label.{{item.id}}">
+            <a class="label-manage" href="javascript:void(0)" ng-click="parentVm.addLabel()"
+              data-stat-click="label.manage">标签管理</a>
+            <li ng-repeat="item in parentVm.followLabel track by $index" ng-class="{'active':item.active}"
+              ng-click="parentVm.switchType($index)" data-stat-click="label.{{item.id}}">
               {{item.name}}
             </li>
           </ul>
@@ -23,7 +25,7 @@
               {{parentVm.filterData.industry ? parentVm.filterData.industry : '不限'}}
             </div>
             <div class="col-default">
-              标签
+              子行业
             </div>
             <div class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
               {{parentVm.filterData.label ? parentVm.filterData.label : '不限'}}
@@ -40,18 +42,21 @@
             <div class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
               {{parentVm.filterData.city ? parentVm.filterData.city : '不限'}}
             </div>
-            <div class="col-default" ng-if="root.user.isInvestor()" ng-click="parentVm.open.filter = !parentVm.open.filter">
+            <div class="col-default" ng-if="root.user.isInvestor()"
+              ng-click="parentVm.open.filter = !parentVm.open.filter">
               融资需求
             </div>
             <div class="col-val" ng-if="root.user.isInvestor()" ng-click="parentVm.open.filter = !parentVm.open.filter">
               {{parentVm.filterData.isFundingLimit ? '融资中' : '不限'}}
             </div>
+            <div class="right-spread-button">
+              <a href="javascript:;" ng-click="parentVm.open.filter = !parentVm.open.filter" >
+                {{!parentVm.open.filter ? '展开全部筛选项' : '收起全部筛选项'}}
+              </a>
+            </div>
           </div>
         </div>
 
-
-        <div class="spread-btn icon-filter-open" ng-click="parentVm.open.filter = !parentVm.open.filter"
-          ng-class="{'icon-filter-close': parentVm.open.filter}"></div>
         <div>
           <div class="filter-list" ng-if="parentVm.open.filter">
             <div class="filter-col">
@@ -62,41 +67,55 @@
                 <div class="col-list-container">
                   <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.industry}">
                     <ul filter-cal open-filter="parentVm.open.industry" ng-if="parentVm.data.industry">
-                      <!--ng-if="$index < parentVm.open.maxNumber || ($index >= parentVm.open.maxNumber && parentVm.open.address)"-->
-                      <li class="col-item" ng-repeat="item in parentVm.data.industry" ng-class="{'active': item.active}"  ng-click="parentVm.selectIndustry($index,'industry')" data-stat-click="industry.{{item.value}}">
+                      <!--ng-if="$index < parentVm.open.maxNumber || ($index >= parentVm.open.maxNumber &&
+                      parentVm.open.address)"-->
+                      <li class="col-item" ng-repeat="item in parentVm.data.industry" ng-class="{'active': item.active}"
+                        ng-click="parentVm.selectIndustry($index,'industry')" data-stat-click="industry.{{item.value}}">
+                        <span>
                         {{item.desc}}
-                        <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
-                        <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.value !== 'unlimited'" ng-click="parentVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
+                        <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}"
+                          ng-if="item.value !== 'unlimited'"
+                          ng-click="parentVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
+                        </span>
+                        <!-- <span class="item&#45;cnt">({{item.cnt ? item.cnt : 0}})</span> -->
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
               <div class="col-handle">
-                <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="parentVm.spreadMore('industry')" ng-class="{'open': parentVm.open.industry}" data-stat-click="industry.zhankaianniu"></a>
+                <a href="javascript:void(0)" class="open-btn icon-open-select"
+                  ng-click="parentVm.spreadMore('industry')" ng-class="{'open': parentVm.open.industry}"
+                  data-stat-click="industry.zhankaianniu"></a>
               </div>
             </div>
           </div>
           <div class="filter-list" ng-if="parentVm.open.filter">
             <div class="filter-col">
               <div class="col-type">
-                标签
+                子行业
               </div>
               <div class="col-content">
                 <div class="col-list-container">
                   <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.label}">
                     <ul filter-cal open-filter="parentVm.open.label" ng-if="parentVm.data.label">
-                      <li class="col-item" ng-repeat="item in parentVm.data.label" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'label')" data-stat-click="label.{{item.id}}">
-                        {{item.name}}
-                        <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
-                        <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.value !== 'unlimited'" ng-click="parentVm.clearIndustry(item.id,'label');$event.stopPropagation();"></span>
+                      <li class="col-item" ng-repeat="item in parentVm.data.label" ng-class="{'active': item.active}"
+                        ng-click="parentVm.selectIndustry($index,'label')" data-stat-click="label.{{item.id}}">
+                        <span>
+                          {{item.name}}
+                          <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}"
+                            ng-if="item.value !== 'unlimited'"
+                            ng-click="parentVm.clearIndustry(item.id,'label');$event.stopPropagation();"></span>
+                        </span>
+                        <!-- <span class="item&#45;cnt">({{item.cnt ? item.cnt : 0}})</span> -->
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
               <div class="col-handle">
-                <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="parentVm.spreadMore('label')" ng-class="{'open': parentVm.open.label}" data-stat-click="label.zhankaianniu"></a>
+                <a href="javascript:void(0)" class="open-btn icon-open-select" ng-click="parentVm.spreadMore('label')"
+                  ng-class="{'open': parentVm.open.label}" data-stat-click="label.zhankaianniu"></a>
               </div>
             </div>
           </div>
@@ -109,17 +128,24 @@
                 <div class="col-list-container">
                   <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.phase}">
                     <ul filter-cal open-filter="parentVm.open.phase" ng-if="parentVm.data.phase">
-                      <li class="col-item" ng-repeat="item in parentVm.data.phase" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'phase')" data-stat-click="phase.{{item.value}}">
-                        {{item.desc}}
-                        <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
-                        <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.value !== 'unlimited'" ng-click="parentVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
+                      <li class="col-item" ng-repeat="item in parentVm.data.phase" ng-class="{'active': item.active}"
+                        ng-click="parentVm.selectIndustry($index,'phase')" data-stat-click="phase.{{item.value}}">
+                        <span>
+                          {{item.desc}}
+                          <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}"
+                            ng-if="item.value !== 'unlimited'"
+                            ng-click="parentVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
+                        </span>
+                        <!-- <span class="item&#45;cnt">({{item.cnt ? item.cnt : 0}})</span> -->
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
               <div class="col-handle">
-                <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="parentVm.spreadMore('phase')" ng-class="{'open': parentVm.open.phase}" data-stat-click="phase.zhankaianniu"></a>
+                <a href="javascript:void(0)" class="open-btn icon-open-select"
+                  ng-click="parentVm.spreadMore('phase')" ng-class="{'open': parentVm.open.phase}"
+                  data-stat-click="phase.zhankaianniu"></a>
               </div>
             </div>
           </div>
@@ -132,17 +158,24 @@
                 <div class="col-list-container">
                   <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.city}">
                     <ul filter-cal open-filter="parentVm.open.city" ng-if="parentVm.data.city">
-                      <li class="col-item" ng-repeat="item in parentVm.data.city" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'city')" data-stat-click="city.{{item.id}}">
-                        {{item.name}}
-                        <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
-                        <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.value !== 'unlimited'" ng-click="parentVm.clearIndustry(item.id,'city');$event.stopPropagation();"></span>
+                      <li class="col-item" ng-repeat="item in parentVm.data.city" ng-class="{'active': item.active}"
+                        ng-click="parentVm.selectIndustry($index,'city')" data-stat-click="city.{{item.id}}">
+                        <span>
+                          {{item.name}}
+                          <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}"
+                            ng-if="item.value !== 'unlimited'"
+                            ng-click="parentVm.clearIndustry(item.id,'city');$event.stopPropagation();"></span>
+                        </span>
+                        <!-- <span class="item&#45;cnt">({{item.cnt ? item.cnt : 0}})</span> -->
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
               <div class="col-handle">
-                <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="parentVm.spreadMore('city')" ng-class="{'open': parentVm.open.city}" data-stat-click="city.zhankaianniu"></a>
+                <a href="javascript:void(0)" class="open-btn icon-open-select"
+                  ng-click="parentVm.spreadMore('city')" ng-class="{'open': parentVm.open.city}"
+                  data-stat-click="city.zhankaianniu"></a>
               </div>
             </div>
           </div>
@@ -155,16 +188,27 @@
                 <div class="col-list-container">
                   <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.isFundingLimit}">
                     <ul filter-cal ng-if="parentVm.data.isFundingLimit">
-                      <li class="col-item" ng-repeat="item in parentVm.data.isFundingLimit" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'isFundingLimit')" data-stat-click="isFundingLimit.{{item.id}}">
-                        {{item.name}}
-                        <span class="item-cnt">({{item.cnt ? item.cnt : 0}})</span>
-                        <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.id !== 'unlimited'" ng-click="parentVm.clearIndustry(item.id,'isFundingLimit');$event.stopPropagation();"></span>
+                      <li class="col-item" ng-repeat="item in parentVm.data.isFundingLimit"
+                        ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'isFundingLimit')"
+                        data-stat-click="isFundingLimit.{{item.id}}">
+                        <span>
+                          {{item.name}}
+                          <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}"
+                            ng-if="item.id !== 'unlimited'"
+                            ng-click="parentVm.clearIndustry(item.id,'isFundingLimit');$event.stopPropagation();"></span>
+                        </span>
+                        <!-- <span class="item&#45;cnt">({{item.cnt ? item.cnt : 0}})</span> -->
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div ng-if="parentVm.open.filter" class="spread-row" >
+            <a href="javascript:;" ng-click="parentVm.open.filter = !parentVm.open.filter">
+              收起全部筛选项
+            </a>
           </div>
         </div>
       </div>
@@ -182,11 +226,15 @@
       <section class="tip-text">
         还未关注任何标签，暂时无法提供项目
       </section>
-      <a href="javascript:void(0)" class="add-btn" ng-click="parentVm.addLabel()" data-stat-click="label.add">添加关注标签</a>
+      <a href="javascript:void(0)" class="add-btn" ng-click="parentVm.addLabel()" data-stat-click="label.add">
+        添加关注标签
+      </a>
     </div>
     <div class="login-layer" ng-if="!parentVm.user.isLogin">
       <div class="login-tag"></div>
-      <a href="javascript:void(0)" class="add-btn" ng-click="parentVm.login()" data-stat-click="login">登录查看关注项目</a>
+      <a href="javascript:void(0)" class="add-btn" ng-click="parentVm.login()" data-stat-click="login">
+        登录查看关注项目
+      </a>
     </div>
   </div>
 
