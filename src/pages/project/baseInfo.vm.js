@@ -20,9 +20,15 @@ export default class BaseInfoVM extends krData.FormVM {
     angular.extend(this, data);
     this.mapProps(this.props, data, this);
     this.watch();
-    this.showTop = krData.utls.isEmpty(data.projectStatHeader.tag1);
-    this.showTop2 = krData.utls.isEmpty(data.projectStatHeader.tag2);
-    this.showFinanceAmount = krData.utls.isEmpty(data.projectStatHeader.finance_amount);
+    this.showTop = !krData.utls.isEmpty(data.projectStatHeader.tag1);
+    this.showTop2 = !krData.utls.isEmpty(data.projectStatHeader.tag2);
+    if(!krData.utls.isEmpty(data.projectStatHeader.finance_amount)){
+      this.showFinanceAmount = true;
+      const num = parseInt(data.projectStatHeader.finance_amount.val);
+      this.amountIsNumber = !angular.equals(NaN,num);
+    }else{
+      this.showFinanceAmount = false;
+    }
   }
 
   setData(data) {

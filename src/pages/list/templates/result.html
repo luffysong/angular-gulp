@@ -1,6 +1,10 @@
 <div class="result-container" ng-if="!parentVm.open.sideBar" data-stat-module="list">
   <div class="result-tip">
     共<b>{{vm.listData.totalCount}}</b>个结果
+    <div class="order-btns">
+      <div>收录时间</div>
+      <div>成立时间</div>
+    </div>
   </div>
   <div class="result-content">
     <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading || vm.noMore' infinite-scroll-distance='0'>

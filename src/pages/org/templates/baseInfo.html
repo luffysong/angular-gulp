@@ -8,7 +8,7 @@
       <span id="node" text-overflow text="vm.orgData.basic.intro"></span>
     </div>
     <div class="detail">
-      <div class="area" ng-if="vm.orgData.basic.investedIndustry.length">
+      <div class="area" ng-if="vm.orgData.basic.investedIndustry.length" ng-show="vm.isHide">
         <span class="label">已投行业</span>
         <span class="inline-sub-label">
           <span ng-repeat="item in vm.orgData.basic.investedIndustry">
@@ -24,7 +24,7 @@
           </span>
         </span>
       </div>
-      <div class="prefer-phase" ng-if="vm.orgData.basic.investedPhase.length">
+      <div class="prefer-phase" ng-if="vm.orgData.basic.investedPhase.length" ng-show="vm.isHide">
         <span class="label">已投轮次</span>
         <span class="inline-sub-label">
           <span ng-repeat="item in vm.orgData.basic.investedPhase">
