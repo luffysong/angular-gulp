@@ -1,12 +1,15 @@
-<div class="search-wrapper">
-  <a href="javascript:;" ng-click="searchVm.columnOptions.closeMe()" class="icon-dialogClose left" ></a>
-  <a href="javascript:;" ng-click="searchVm.columnOptions.closeMe()" class="icon-dialogClose right" ></a>
+<div class="search-wrapper" data-stat-module="column3">
+  <a href="javascript:;" data-stat-click="close.left"
+    ng-click="searchVm.columnOptions.closeMe()" class="icon-dialogClose left" ></a>
+  <a href="javascript:;" data-stat-click="close.right"
+    ng-click="searchVm.columnOptions.closeMe()" class="icon-dialogClose right" ></a>
   <div class="condition-wrapper">
-     <a href="javascript:;" ng-click="searchVm.columnOptions.closeMe()">
+     <a href="javascript:;" data-stat-click="close.tags" ng-click="searchVm.columnOptions.closeMe()">
        <span class="icon-fix"></span>
        <span class="label-text ellipsis">{{::searchVm.getLabels().join('、')}}</span>
      </a>
-     <a href="javascript:;" ng-click="searchVm.columnOptions.closeMe()" class="icon-nav"></a>
+     <a href="javascript:;" data-stat-click="close.nav" ng-click="searchVm.columnOptions.closeMe()" class="icon-nav">
+     </a>
   </div>
   <div
     id="column3Container" perfect-scrollbar
