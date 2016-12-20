@@ -41,14 +41,14 @@
           </div>
           <div class="top-number">
             <span class="number">{{vm.baseInfoVM.projectStatHeader.tag1.tag_rank}}</span>名
-            <div class="up-angle-big left-angle" ng-show="vm.baseInfoVM.projectStatHeader.tag1.rank_var === 1"></div>
-            <div class="down-angle-big left-angle" ng-show="vm.baseInfoVM.projectStatHeader.tag1.rank_var === -1"></div>
+            <div class="up-angle-big left-angle" ng-show="vm.baseInfoVM.projectStatHeader.tag1.rank_var > 0"></div>
+            <div class="down-angle-big left-angle" ng-show="vm.baseInfoVM.projectStatHeader.tag1.rank_var < 0"></div>
           </div>
           <div class="top2" ng-show="!vm.baseInfoVM.showTop2">
             <span>{{vm.baseInfoVM.projectStatHeader.tag2.tag_name}}</span>
             <span class="number">{{vm.baseInfoVM.projectStatHeader.tag2.tag_rank}}</span>名
-            <div class="up-angle left-angle" ng-show="vm.baseInfoVM.projectStatHeader.tag2.rank_var === 1"></div>
-            <div class="down-angle left-angle" ng-show="vm.baseInfoVM.projectStatHeader.tag2.rank_var === -1"></div>
+            <div class="up-angle left-angle" ng-show="vm.baseInfoVM.projectStatHeader.tag2.rank_var > 0"></div>
+            <div class="down-angle left-angle" ng-show="vm.baseInfoVM.projectStatHeader.tag2.rank_var < 0"></div>
           </div>
         </div>
         <div class="top-left" ng-show="vm.baseInfoVM.showTop"><div class="no-top-data no-top1">暂无</div></div>
@@ -67,29 +67,31 @@
             </a>
           </div>
           <div class="numbers">
-            <div class="number" ng-class="{'show-angle': vm.baseInfoVM.projectStatHeader.user_amount_var === 1 ||
-              vm.baseInfoVM.projectStatHeader.user_amount_var === -1}">
-              <div class="up-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.user_amount_var === 1"></div>
-              <div class="down-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.user_amount_var === -1"></div>
-              <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" ng-click="productVM.active = 'product'">
-                <span ng-show="vm.baseInfoVM.projectStatHeader.user_amount">{{vm.baseInfoVM.projectStatHeader.user_amount / 10000}}万</span>
+            <div class="number" ng-class="{'show-angle': vm.baseInfoVM.projectStatHeader.user_amount_var > 0 ||
+              vm.baseInfoVM.projectStatHeader.user_amount_var < 0}">
+              <div class="up-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.user_amount_var > 0"></div>
+              <div class="down-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.user_amount_var < 0"></div
+              ><a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" ng-click="productVM.active = 'product'"
+              ><span ng-show="vm.baseInfoVM.projectStatHeader.user_amount">{{vm.baseInfoVM.projectStatHeader.user_amount / 10000}}万</span>
               </a>
               <span class="no-number" ng-show="!vm.baseInfoVM.projectStatHeader.user_amount">暂无</span>
             </div>
-            <div class="number" ng-class="{'show-angle': vm.baseInfoVM.projectStatHeader.exposure_amount_var === 1 ||
-              vm.baseInfoVM.projectStatHeader.exposure_amount_var === -1}">
-              <div class="up-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.exposure_amount_var === 1"></div>
-              <div class="down-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.exposure_amount_var === -1"></div>
-              <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" ng-click="productVM.active = 'product'">
-                <span ng-show="vm.baseInfoVM.projectStatHeader.exposure_amount">{{vm.baseInfoVM.projectStatHeader.exposure_amount}}</span>
+            <div class="number" ng-class="{'show-angle': vm.baseInfoVM.projectStatHeader.exposure_amount_var > 0 ||
+              vm.baseInfoVM.projectStatHeader.exposure_amount_var < 0}">
+              <div class="up-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.exposure_amount_var > 0"></div>
+              <div class="down-angle right-angle" ng-show="vm.baseInfoVM.projectStatHeader.exposure_amount_var < 0"></div
+              ><a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" ng-click="productVM.active = 'product'"
+              ><span ng-show="vm.baseInfoVM.projectStatHeader.exposure_amount">{{vm.baseInfoVM.projectStatHeader.exposure_amount}}</span>
               </a>
               <span class="no-number" ng-show="!vm.baseInfoVM.projectStatHeader.exposure_amount">暂无</span>
             </div>
               <div class="number">
                <a kr-scroll-click href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeHistory}}"
                 ng-class="{'active':!vm.baseInfoVM.advantage && !(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro) && !vm.fundsVM.funds}">
-                <span class="finance-number" ng-show="vm.baseInfoVM.projectStatHeader.finance_amount">￥{{vm.baseInfoVM.projectStatHeader.finance_amount / 100000000}}亿</span>
-                <span class="no-number" ng-show="!vm.baseInfoVM.projectStatHeader.finance_amount">未披露</span>
+                <span class="finance-number" ng-show="!vm.baseInfoVM.showFinanceAmount">
+                {{vm.baseInfoVM.projectStatHeader.finance_amount.unit | unitFormat}}
+                {{vm.baseInfoVM.projectStatHeader.finance_amount.val}} 万</span>
+                <span class="no-number" ng-show="vm.baseInfoVM.showFinanceAmount">未披露</span>
               </a>
             </div>
           </div>

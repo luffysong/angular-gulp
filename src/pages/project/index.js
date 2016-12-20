@@ -10,6 +10,7 @@ import krScrollClick from './krScrollClick.directive.js';
 import introFormat from './introFormat.filter';
 import ProductDataService from './productData.service';
 import enterFormat from './enterFormat.filter';
+import unitFormat from './unitFormat.filter';
 import ProjectRun from './run.service';
 angular.module('@@pages.project', [])
   .controller('ProjectIndexController', ProjectIndexController)
@@ -25,4 +26,5 @@ angular.module('@@pages.project', [])
   .directive('moreShow', moreShowDirective)
   .service('productDataService', ProductDataService)
   .filter('enterFormat', enterFormat)
+  .filter('unitFormat', unitFormat)
   .directive('moreShow', moreShowDirective);

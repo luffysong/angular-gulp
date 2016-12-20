@@ -22,6 +22,7 @@ export default class BaseInfoVM extends krData.FormVM {
     this.watch();
     this.showTop = krData.utls.isEmpty(data.projectStatHeader.tag1);
     this.showTop2 = krData.utls.isEmpty(data.projectStatHeader.tag2);
+    this.showFinanceAmount = krData.utls.isEmpty(data.projectStatHeader.finance_amount);
   }
 
   setData(data) {
