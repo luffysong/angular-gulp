@@ -17,6 +17,10 @@ class ProjectNavController {
     this.loadColumns();
   }
 
+  getName(id) {
+    return ICON_CLASS[id].replace('icon-', '');
+  }
+
   loadColumns() {
     this.columnApi.query()
       .then(list => {
@@ -33,7 +37,8 @@ export default {
   <dd ng-repeat="item in projectNavVm.list"
     ng-if="projectNavVm.ICON_CLASS[item.id]"
     ng-class="{active: item.id+'' === root.toParams.columnId+''}" >
-    <a href="javascript:;" ui-sref-opts="{reload: true, inherit: false}"
+    <a data-stat-click="{{::projectNavVm.getName(item.id)}}"
+      href="javascript:;" ui-sref-opts="{reload: true, inherit: false}"
       ui-sref="list.result({columnId:item.id})">
       <span class="kr-icon {{::projectNavVm.ICON_CLASS[item.id]}}"></span
       ><span class="kr-tags">{{item.name}}</span>
