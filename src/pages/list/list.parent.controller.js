@@ -143,14 +143,15 @@ export default class listParentController {
           });
         });
       } else {
-        angular.forEach(this.data[key], (item, index) => {
-          if (item.value + '' === val + '' || item.id + '' === val + '') {
+        angular.forEach(this.data[key], (item) => {
+          if (item.value === val || item.id === parseInt(val, 10)) {
             item.active = true;
           }
         });
       }
     });
   }
+
 
   /* 筛选器选择行业*/
   selectIndustry(index, type) {
