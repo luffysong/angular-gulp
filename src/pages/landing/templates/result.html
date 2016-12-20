@@ -2,6 +2,17 @@
   <div class="result-tip">
     <span ng-if="vm.$stateParams.kw">找到关于 <b>“{{vm.$stateParams.kw}}”</b> 的</span>
     <span ng-if="!vm.$stateParams.kw">全部搜索</span>结果<b>{{vm.listData.totalCount}}</b>条
+    <div class="order-btns">
+      <div>
+        <a href="#" ng-click="parentVm.orderBySortField('MATCH_RATE')" ng-class="{'order-active': parentVm.isMatchRate}">匹配度</a>
+      </div>
+      <div>
+        <a href="#" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'order-active': parentVm.isStockAt}">收录时间</a>
+      </div>
+      <div>
+        <a href="#" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'order-active': parentVm.isStartDate}">成立时间</a>
+      </div>
+    </div>
   </div>
   <div class="result-content">
     <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading || vm.noMore || vm.needLogin' infinite-scroll-distance='0' ng-if="vm.$scope.parentVm.activeTab === 'company'">
@@ -26,6 +37,14 @@
             <div class="project-tag" ng-if="obj.advantage">
               <i class="icon-Hot"></i>
               <span>{{::obj.advantage}}</span>
+            </div>
+            <div class="project-tag">
+              <a ng-repeat="tag in obj.operationTag" ui-sref="label.result({labelId: obj.id})" target="_blank" ng-if="obj.operationTag">
+                <span>{{tag.name}}</span>
+              </a>
+              <a ng-repeat="tag in obj.industryTag" ui-sref="label.result({labelId: obj.id})" target="_blank" ng-if="obj.industryTag">
+                <span>{{tag.name}}</span>
+              </a>
             </div>
           </div>
         </td>

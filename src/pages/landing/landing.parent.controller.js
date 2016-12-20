@@ -347,6 +347,23 @@ export default class landingParentController {
     this.data.isFundingLimit = this.addItem(this.$scope.root.FINANCE_NEED_META);
   }*/
 
+  orderBySortField(sortField){
+    this.params['sortField'] = sortField;
+    if(sortField === 'STOCK_AT'){
+        this.isStockAt = true;
+        this.isStartDate = false;
+        this.isMatchRate = false;
+    }else if(sortField === 'START_DATE'){
+        this.isStockAt = false;
+        this.isStartDate = true;
+        this.isMatchRate = false;
+    } else if(sortField === 'MATCH_RATE'){
+        this.isStockAt = false;
+        this.isStartDate = false;
+        this.isMatchRate = true;
+    }
+    this.go();
+  }
 
 
 }

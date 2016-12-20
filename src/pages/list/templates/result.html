@@ -2,8 +2,15 @@
   <div class="result-tip">
     共<b>{{vm.listData.totalCount}}</b>个结果
     <div class="order-btns">
-      <div>收录时间</div>
-      <div>成立时间</div>
+      <div>
+        <a href="#" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'order-active': parentVm.isStockAt}" ng-hide="parentVm.params['columnId'] > 0">收录时间</a>
+      </div>
+      <div>
+        <a href="#" ng-click="parentVm.orderBySortField('ADD_COLUMN_LABEL')" ng-class="{'order-active': parentVm.isAddColumnLabel}" ng-show="parentVm.params['columnId'] > 0">推荐时间</a>
+      </div>
+      <div>
+        <a href="#" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'order-active': parentVm.isStartDate}">成立时间</a>
+      </div>
     </div>
   </div>
   <div class="result-content">
@@ -26,6 +33,14 @@
             </div>
             <div class="project-intro" title="{{::obj.brief}}">
               {{::obj.brief}}
+            </div>
+            <div class="project-tag">
+              <a ng-repeat="tag in obj.operationTag" ui-sref="label.result({labelId: obj.id})" target="_blank" ng-if="obj.operationTag">
+                <span>{{tag.name}}</span>
+              </a>
+              <a ng-repeat="tag in obj.industryTag" ui-sref="label.result({labelId: obj.id})" target="_blank" ng-if="obj.industryTag">
+                <span>{{tag.name}}</span>
+              </a>
             </div>
             <!-- <div class="project-tag" ng-if="obj.advantage">
               <i class="icon-listPoint"></i>
