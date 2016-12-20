@@ -1,5 +1,97 @@
 <div class="project-wrapper" ng-show="!parentVm.open.sideBar" data-stat-module="label">
-  <div class="label-converge">
+  <div class="label-wrapper" ng-hide="parentVm.labelLoading">
+    <div class="label-shade"></div>
+    <div class="see-all" ng-click="parentVm.seeAll = !parentVm.seeAll">
+        {{parentVm.seeAll ? '收起' : '查看完整数据分析'}}
+    </div>
+    <div class="label-outside">
+      <div class="label-top" ng-class="{show: parentVm.seeAll}">
+        <div class="top-container">
+          <div class="label-title">
+            <span ui-sref="list.result({columnId:0})" data-stat-click="goList">项目列表</span>
+            ＞ {{parentVm.labelDetail.name}}
+          </div>
+          <div>
+            <div class="clear-both">
+              <div class="left-content">
+                <span class="label-name">{{parentVm.labelDetail.name}}</span>
+                <a href="javascript:void(0)" class="follow-btn" ng-class="{followed: !parentVm.labelDetail.isFollowed}" ng-click="parentVm.followLabel()" data-stat-click="followLabel">
+                  <i class="icon-follow" ng-show="!parentVm.labelDetail.isFollowed"></i>
+                  <i class="icon-followed" ng-show="parentVm.labelDetail.isFollowed"></i>
+                  <span ng-if="parentVm.labelDetail.isFollowed">已</span>关注
+                </a>
+                <div class="label-info">
+                  <div class="left-info">
+                    <div class="info-item">
+                      <div class="info-title">项目总数</div>
+                      <div class="info-content">{{parentVm.labelStat.comTotal}}</div>
+                    </div>
+                    <div class="info-item">
+                      <div class="info-title">本月更新</div>
+                      <div class="info-content">{{parentVm.labelStat.comIncr}}</div>
+                    </div>
+                  </div>
+                  <div class="right-info">
+                    <div class="info-item">
+                      <div class="info-title">投资总数</div>
+                      <div class="info-content">{{parentVm.labelStat.investTotal}}</div>
+                    </div>
+                    <div class="info-item">
+                      <div class="info-title">本月更新</div>
+                      <div class="info-content">{{parentVm.labelStat.investIncr}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="center-content">
+                <h5 class="chart-title outside-title">近一年投资事件轮次分布</h5>
+                <highchart disable-data-watch="true" config="parentVm.investPhaseHg"></highchart>
+              </div>
+              <div class="right-content">
+                <h5 class="chart-title outside-title">项目轮次分布</h5>
+                <highchart disable-data-watch="true" config="parentVm.comPhaseHg"></highchart>
+              </div>
+            </div>
+            <div class="clear-both">
+              <div class="left-content">
+                <!--<h5 class="chart-title">项目年度趋势</h5>-->
+                <highchart disable-data-watch="true" config="parentVm.trendHg"></highchart>
+              </div>
+              <div class="center-content">
+                <!--<h5 class="chart-title">投资金额 / 投资事件年度趋势</h5>-->
+                <highchart disable-data-watch="true" config="parentVm.investHg"></highchart>
+              </div>
+              <div class="right-content project-age" ng-class="{'noData': parentVm.saveEmpty}">
+                <h5 class="chart-title">项目年龄时间分布</h5>
+                <div class="retention-container">
+                  <div class="retention-item" ng-repeat="item in parentVm.labelStat.comStartDateDis">
+                    <div class="retention-title">
+                      {{item.key}}
+                    </div>
+                    <div class="retention-bar" ng-style="{width: item.width}"></div>
+                    <div class="retention-percent">
+                      {{(item.value * 100).toFixed(2)}}%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="label-bottom" ng-if="parentVm.labelStat.relatedLabels.length">
+            <h4>相关标签</h4>
+            <div class="clear-both">
+              <div class="label-item" ng-repeat="item in parentVm.labelStat.relatedLabels track by $index" ui-sref="label.result({labelId:item.id})">
+                {{item.name}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div kr-loading loading="parentVm.labelLoading"></div>
+  <!--<div class="label-converge">
     <section class="title-info">
       <span class="project-list" ui-sref="list.result({columnId:0})" data-stat-click="goList">项目列表</span> ＞ {{parentVm.labelDetail.name}}
     </section>
@@ -8,7 +100,7 @@
     <a href="javascript:void(0)" class="follow-btn" ng-click="parentVm.followLabel()" data-stat-click="followLabel">
       <span ng-if="parentVm.labelDetail.isFollowed">已</span>关注
     </a>
-  </div>
+  </div>-->
   <div class="filter-container">
     <div class="filter-list" ng-show="!parentVm.open.filter">
       <div class="filter-col">

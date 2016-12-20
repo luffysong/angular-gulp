@@ -235,6 +235,14 @@ export default class ProjectService extends API {
     return new API('/label/:id').get(id);
   }
 
+  /* 标签头部数据 */
+  getLabelStat(obj) {
+    const id = {
+      id: obj.labelId,
+    };
+    return new API('/label/:id/stats').get(id);
+  }
+
   /* 标签下公司数据*/
   getLabelCompany(obj) {
     const id = {
