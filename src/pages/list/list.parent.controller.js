@@ -137,8 +137,8 @@ export default class listParentController {
     angular.forEach(this.params, (val, key) => {
       if (val && String(val).split(',').length > 1) {
         angular.forEach(String(val).split(','), (a) => {
-          angular.forEach(this.data[key], (item, index) => {
-            if (item.value + '' === a + '' || item.id + '' === a + '') {
+          angular.forEach(this.data[key], (item) => {
+            if (`${item.value}` === `${a}` || `${item.id}` === `${a}`) {
               item.active = true;
             }
           });
@@ -188,7 +188,7 @@ export default class listParentController {
   /* 取消选择行业*/
   clearIndustry(id, type) {
     const arr = this.params[type].split(',');
-    arr.splice(arr.indexOf(id + ''), 1);
+    arr.splice(arr.indexOf(`${id}`), 1);
     this.params[type] = arr.join(',');
     /* this.params[type] = null;*/
     this.go();
@@ -255,8 +255,8 @@ export default class listParentController {
 
   /* 融资中、优选、新品列表 未登录用户或已登录的非投资人用户禁用筛选器*/
   getPermission() {
-    const columnId = this.params.columnId + '';
-    if (columnId === '0' || columnId === '4' || columnId === 'undefined') {
+    const columnId = `${this.params.columnId}`;
+    if (columnId === '0' || columnId === '4' || angular.isUndefined(columnId)) {
       return false;
     } else if (!this.user.isLogin || !this.user.isInvestor()) {
       return true;
@@ -267,18 +267,18 @@ export default class listParentController {
     this.data.isFundingLimit = this.addItem(this.$scope.root.FINANCE_NEED_META);
   }*/
 
-  orderBySortField(sortField){
-    this.params['sortField'] = sortField;
-    if(sortField === 'STOCK_AT'){
-        this.isStockAt = true;
-        this.isStartDate = false;
-    }else if(sortField === 'START_DATE'){
-        this.isStockAt = false;
-        this.isStartDate = true;
-        this.isAddColumnLabel = false;
-    } else if(sortField === 'ADD_COLUMN_LABEL'){
-        this.isStartDate = false;
-        this.isAddColumnLabel = true;
+  orderBySortField(sortField) {
+    this.params.sortField = sortField;
+    if (sortField === 'STOCK_AT') {
+      this.isStockAt = true;
+      this.isStartDate = false;
+    } else if (sortField === 'START_DATE') {
+      this.isStockAt = false;
+      this.isStartDate = true;
+      this.isAddColumnLabel = false;
+    } else if (sortField === 'ADD_COLUMN_LABEL') {
+      this.isStartDate = false;
+      this.isAddColumnLabel = true;
     }
     this.go();
   }

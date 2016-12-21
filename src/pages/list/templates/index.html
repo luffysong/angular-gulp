@@ -1,5 +1,5 @@
 <div class="project-wrapper project-list-wrapper" ng-show="!parentVm.open.sideBar" data-stat-module="list">
-  <div class="recommend-container">
+  <div class="recommend-container" ng-if="parentVm.params.columnId">
     <h4 class="recommend-title">最新获投</h4>
     <div class="second-title">
       为您精选了 <span class="project-number">{{parentVm.totalCount}}</span> 个项目
