@@ -14,7 +14,7 @@ const labelView = {
 };
 
 const label = {
-  url: '/{labelId}?{city}&{phase}&{isFundingLimit}&{open}',
+  url: '/{labelId}?{city}&{phase}&{isFundingLimit}&{open}&{sortField}',
   templateUrl: '/pages/label/templates/result.html',
   controllerAs: 'vm',
   controller: 'labelIndexController',

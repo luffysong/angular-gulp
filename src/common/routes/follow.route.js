@@ -14,7 +14,7 @@ const followView = {
 };
 
 const follow = {
-  url: '/detail?{city}&{phase}&{industry}&{label}&{isFundingLimit}&{open}&{labelId}&{columnId}',
+  url: '/detail?{city}&{phase}&{industry}&{label}&{isFundingLimit}&{open}&{labelId}&{columnId}&{sortField}',
   templateUrl: '/pages/follow/templates/result.html',
   controllerAs: 'vm',
   controller: 'followIndexController',

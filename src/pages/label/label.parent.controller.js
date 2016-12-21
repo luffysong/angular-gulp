@@ -968,5 +968,41 @@ export default class listParentController {
     y.min = 0;
     y.max = 100;
   }
+
+  orderBySortField(sortField){
+    this.params['sortField'] = sortField;
+    if(sortField === 'STOCK_AT'){
+        this.isStockAt = true;
+        this.isTagsRank = false;
+        this.isDAU = false;
+        this.isExposureAmount = false;
+        this.isStartDate = false;
+    }else if(sortField === 'START_DATE'){
+        this.isStockAt = false;
+        this.isTagsRank = false;
+        this.isDAU = false;
+        this.isExposureAmount = false;
+        this.isStartDate = true;
+    }else if(sortField === 'TAGS_RANK'){
+        this.isStockAt = false;
+        this.isTagsRank = true;
+        this.isDAU = false;
+        this.isExposureAmount = false;
+        this.isStartDate = false;
+    }else if(sortField === 'DAU'){
+        this.isStockAt = false;
+        this.isTagsRank = false;
+        this.isDAU = true;
+        this.isExposureAmount = false;
+        this.isStartDate = false;
+    }else if(sortField === 'EXPOSURE_AMOUNT'){
+        this.isStockAt = false;
+        this.isTagsRank = false;
+        this.isDAU = false;
+        this.isExposureAmount = true;
+        this.isStartDate = false;
+    }
+    this.go();
+  }
 }
 
