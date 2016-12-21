@@ -65,6 +65,12 @@ export default class OrgController {
           tooltip: this.linecColumnTooltip,
         },
       },
+      title: {
+        useHTML: true,
+        align: 'left',
+        x: -10,
+        text: '<h5 class="trend-title">投资规模及案例数趋势</h5>',
+      },
       chart: {
         height: 270,
       },
@@ -75,12 +81,6 @@ export default class OrgController {
         borderWidth: 0,
         padding: 0,
       },
-    },
-    title: {
-      useHTML: true,
-      align: 'left',
-      x: -10,
-      text: '<h5 class="trend-title">投资规模及案例数趋势</h5>',
     },
     xAxis: {
       tickWidth: 0,

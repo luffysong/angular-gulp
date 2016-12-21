@@ -143,14 +143,15 @@ export default class listParentController {
           });
         });
       } else {
-        angular.forEach(this.data[key], (item, index) => {
-          if (item.value + '' === val + '' || item.id + '' === val + '') {
+        angular.forEach(this.data[key], (item) => {
+          if (item.value === val || item.id === parseInt(val, 10)) {
             item.active = true;
           }
         });
       }
     });
   }
+
 
   /* 筛选器选择行业*/
   selectIndustry(index, type) {
@@ -172,6 +173,10 @@ export default class listParentController {
       this.params[type] = this.data[type][index][attr];
     }
     this.go();
+  }
+
+  hasIndustry() {
+    return this.params.industry && this.params.industry !== 'unlimited';
   }
 
   /* 筛选器展开*/
@@ -261,6 +266,20 @@ export default class listParentController {
     this.data.isFundingLimit = this.addItem(this.$scope.root.FINANCE_NEED_META);
   }*/
 
-
+  orderBySortField(sortField){
+    this.params['sortField'] = sortField;
+    if(sortField === 'STOCK_AT'){
+        this.isStockAt = true;
+        this.isStartDate = false;
+    }else if(sortField === 'START_DATE'){
+        this.isStockAt = false;
+        this.isStartDate = true;
+        this.isAddColumnLabel = false;
+    } else if(sortField === 'ADD_COLUMN_LABEL'){
+        this.isStartDate = false;
+        this.isAddColumnLabel = true;
+    }
+    this.go();
+  }
 }
 

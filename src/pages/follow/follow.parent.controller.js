@@ -1,15 +1,72 @@
 import krData from 'krData';
 import ProjectService from '../project/project.service';
-
-class TestAPI extends krData.API {
+@Inject('vm')
+class labelController {
+  constructor() {
+    this.getLabel();
+    this.updateLabel();
+  }
+  getLabel() {
+    this.vm.projectService.getFollowList().then(data => {
+      if (!data.length) {
+        this.vm.labelEmpty = true;
+      } else {
+        this.vm.labelEmpty = false;
+      }
+      this.followLabelList = data;
+      this.updateLabel();
+    });
+  }
+  cancel() {
+    this.vm.labelDialog.close();
+    this.vm.$state.go('follow.result', {
+      columnId: 2,
+    }, {
+      reload: true,
+    });
+  }
+  followLabel(id) {
+    this.vm.projectService.followLabel({
+      id,
+    }).then(() => {
+      this.getLabel();
+    }).catch(err => {
+      krData.Alert.alert(`出错啦：${err.msg || '未知错误'}`);
+    });
+  }
+  goDetail(id) {
+    this.cancel();
+    this.vm.$state.go('label.result', {
+      labelId: id,
+    });
+  }
+  unFollowLabel(id, e) {
+    e.stopPropagation();
+    this.vm.projectService.unFollowLabel({
+      id,
+    }).then(() => {
+      this.getLabel();
+    });
+  }
+  /* 过滤已关注标签 */
+  updateLabel() {
+    this.allLabel = this.vm.allLabel.concat();
+    angular.forEach(this.followLabelList, item => {
+      angular.forEach(this.allLabel, (obj, index) => {
+        if (`${obj.id}` === `${item.id}`) {
+          this.allLabel.splice(index, 1);
+        }
+      });
+    });
+  }
 
 }
 
-@Inject('followIndexService', '$timeout', '$window','$stateParams','$state','$scope', 'user','ngDialog')
+@Inject('followIndexService', '$timeout', '$window', '$stateParams', '$state', '$scope',
+  'user', 'ngDialog')
 export default class followParentController {
 
   constructor() {
-    this.api = new TestAPI();
     this.init();
   }
 
@@ -57,16 +114,16 @@ export default class followParentController {
     };
 
     this.$scope.$on('get-change', (e, d) => {
-      angular.extend(this.params,d);
+      angular.extend(this.params, d);
 
       if (this.params.labelId) {
         const params = Object.assign({}, this.paramsFilter(this.params));
         this.projectService.getFollowCompany(params).then(data => {
           this.dataHandle(data);
         });
-
       } else {
-        const params = Object.assign({ columnId: this.params.columnId || 2 }, this.paramsFilter(this.params));
+        const params = Object.assign({ columnId: this.params.columnId || 2 },
+          this.paramsFilter(this.params));
         this.projectService.getColumn(params).then(data => {
           this.dataHandle(data);
         }).catch(data => {
@@ -98,72 +155,15 @@ export default class followParentController {
 
   addLabel() {
     const vm = this;
-    function labelController() {
-
-      this.getLabel = function () {
-        vm.projectService.getFollowList().then(data => {
-          if (!data.length) {
-            vm.labelEmpty = true;
-          } else {
-            vm.labelEmpty = false;
-          }
-          this.followLabelList = data;
-          this.updateLabel();
-        });
-      };
-      this.cancel = function () {
-        vm.labelDialog.close();
-        vm.$state.go('follow.result', {
-          columnId: 2,
-        }, {
-          reload: true,
-        });
-      };
-      this.followLabel = function (id) {
-        vm.projectService.followLabel({
-          id: id
-        }).then(() => {
-          this.getLabel();
-        }).catch(err => {
-          krData.Alert.alert(`出错啦：${err.msg || '未知错误'}`);
-        });
-      };
-      this.goDetail = function (id) {
-        this.cancel();
-        vm.$state.go('label.result', {
-          labelId: id
-        });
-      };
-      this.unFollowLabel = function (id, e) {
-        e.stopPropagation();
-        vm.projectService.unFollowLabel({
-          id: id
-        }).then(() => {
-          this.getLabel();
-        });
-      };
-      /* 过滤已关注标签 */
-      this.updateLabel = function () {
-        this.allLabel = vm.allLabel.concat();
-        angular.forEach(this.followLabelList, item => {
-          angular.forEach(this.allLabel, (obj, index) => {
-            if (`${obj.id}` === `${item.id}`) {
-              this.allLabel.splice(index, 1);
-            }
-          });
-        });
-      };
-
-      this.getLabel();
-      this.updateLabel();
-
-    }
-   vm.labelDialog = this.ngDialog.open({
+    vm.labelDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/follow/templates/labelModal.html\'"></div>',
       className: 'label-dialog',
+      resolve: {
+        vm: () => vm,
+      },
       plain: true,
       controller: labelController,
-      closeByDocument:false,
+      closeByDocument: false,
       controllerAs: 'vm',
     });
   }
@@ -206,7 +206,6 @@ export default class followParentController {
     this.data.label[0].value = 'unlimited';
     this.handleActive();
     this.updateData(data);
-
   }
 
   /* 创业项目、投资人、投资机构切换 */
@@ -244,12 +243,12 @@ export default class followParentController {
   updateData(d) {
     Object.keys(this.data).forEach(item => {
       if (item !== 'label') {
-        angular.forEach(this.data[item],obj => {
+        angular.forEach(this.data[item], obj => {
           obj.cnt = 0;
         });
       }
     });
-    angular.forEach(this.itemList,(item) => {
+    angular.forEach(this.itemList, (item) => {
       /* 筛选条件特殊处理 */
       if (item.name === 'isFundingLimit') {
         angular.forEach(d.funding, (c) => {
@@ -262,14 +261,15 @@ export default class followParentController {
         return;
       }
       if (!d[item.name] || !d[item.name].length) return;
-      angular.forEach(d[item.name],(obj) => {
+      angular.forEach(d[item.name], (obj) => {
         angular.forEach(this.data[item.name], (c) => {
-          if ((c[item.key] && c[item.key] === obj[item.key]) || (obj.name === '不限' && (c.name === '不限' || c.desc === '不限'))) {
+          if ((c[item.key] && c[item.key] === obj[item.key]) ||
+            (obj.name === '不限' && (c.name === '不限' || c.desc === '不限'))) {
             c.cnt = obj.cnt;
           }
         });
-      })
-    })
+      });
+    });
   }
 
   /* 根据路由参数处理激活 */
@@ -318,7 +318,7 @@ export default class followParentController {
       angular.forEach(this.data[key], item => {
         if (item.active && item.value !== 'unlimited' && item.id !== 'unlimited') {
           if (this.filterData[key]) {
-            this.filterData[key] += ','+item[temp[key]];
+            this.filterData[key] += `,${item[temp[key]]}`;
           } else {
             this.filterData[key] = item[temp[key]];
           }
@@ -351,6 +351,9 @@ export default class followParentController {
     this.go();
   }
 
+  hasIndustry() {
+    return this.params.industry && this.params.industry !== 'unlimited';
+  }
   /* 取消选择行业 */
   clearIndustry(id, type) {
     const arr = this.params[type].split(',');
@@ -370,7 +373,7 @@ export default class followParentController {
 
   /* 增加默认数据 */
   addItem(obj, type) {
-    if (!obj || !obj.concat) return;
+    if (!obj || !obj.concat) return undefined;
     const temp = obj.concat();
     const c = {
       active: false,
@@ -396,16 +399,15 @@ export default class followParentController {
         this.data[item][0].active = true;
       }
     });
-  };
+  }
 
   /* 获取静态城市数据 */
   getCity() {
     this.projectService.getArea(0)
       .then(data => {
-        this.data.city = this.addItem(data,'city');
+        this.data.city = this.addItem(data, 'city');
         this.handleActive();
       });
-
   }
 
   /* 获取静态行业数据 */
