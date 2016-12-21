@@ -61,6 +61,7 @@ export default class listParentController {
         this.paramsFilter(this.params));
       this.projectService.getColumn(params).then(data => {
         this.$scope.$broadcast('get-list', data.pageData);
+        this.totalCount = data.pageData.totalCount;
         this.data.label = data.label;
         this.data.label[0].value = 'unlimited';
         this.handleActive();

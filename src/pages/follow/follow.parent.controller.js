@@ -126,6 +126,7 @@ export default class followParentController {
           this.paramsFilter(this.params));
         this.projectService.getColumn(params).then(data => {
           this.dataHandle(data);
+          this.totalCount = data.pageData.totalCount;
         }).catch(data => {
           if (`${data.code}` === '200') {
             this.labelEmpty = true;
@@ -186,10 +187,10 @@ export default class followParentController {
     this.projectService.getFollowList().then(data => {
       if (!data || !data.length) return;
       this.manageLabel = data.concat();
-      data.unshift({
+      /*data.unshift({
         active: true,
         name: '综合',
-      });
+      });*/
       this.followLabel = data;
       this.handleActive();
     });

@@ -1,4 +1,10 @@
 <div class="project-wrapper project-list-wrapper" ng-show="!parentVm.open.sideBar" data-stat-module="list">
+  <div class="recommend-container">
+    <h4 class="recommend-title">最新获投</h4>
+    <div class="second-title">
+      为您精选了 <span class="project-number">{{parentVm.totalCount}}</span> 个项目
+    </div>
+  </div>
   <div class="filter-container" ng-class="{'filterDisabeld': parentVm.getPermission()}">
     <div class="filter-list" >
       <div class="filter-col">
