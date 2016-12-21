@@ -427,11 +427,11 @@ export default class followParentController {
 
   orderBySortField(sortField){
     this.params['sortField'] = sortField;
-    if(sortField === 'STOCK_AT'){
-        this.isStockAt = true;
+    if(sortField === 'ADD_COLUMN_LABEL'){
         this.isStartDate = false;
+        this.isAddColumnLabel = true;
     }else if(sortField === 'START_DATE'){
-        this.isStockAt = false;
+        this.isAddColumnLabel = false;
         this.isStartDate = true;
     }
     this.go();
