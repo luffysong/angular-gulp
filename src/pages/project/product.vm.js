@@ -1,6 +1,14 @@
 import { utls } from 'krData';
 import ProductDataService from './productData.service';
 import noDataFactory from '../../bower/highcharts/modules/no-data-to-display.src.js';
+function handleNumber(n) {
+  if (n) {
+    if (!n.toFixed) return n;
+    if (n < 1) { return n.toFixed(4); }
+    return n.toFixed(2);
+  }
+  return 0;
+}
 export default class ProductVM {
   constructor(product) {
     noDataFactory(Highcharts);
@@ -142,8 +150,8 @@ export default class ProductVM {
       color: '#88C4FF',
       data: investmentTrend.dau.data.map((item, i) => ({
         y: item,
-        dau: item && item !== 0 ? item.toFixed(2) : 0,
-        exposure: investmentTrend.exposure.data[i] || 0,
+        dau: handleNumber(item),
+        exposure: handleNumber(investmentTrend.exposure.data[i]),
         year: this.year,
       })),
       yAxis: 1,
@@ -154,9 +162,8 @@ export default class ProductVM {
       name: '曝光量',
       data: investmentTrend.exposure.data.map((item, i) => ({
         y: Number(item) || 0,
-        dau: investmentTrend.dau.data[i] && investmentTrend.dau.data[i] !== 0
-        ? investmentTrend.dau.data[i].toFixed(2) : 0,
-        exposure: Number(item) || 0,
+        dau: handleNumber(investmentTrend.dau.data[i]),
+        exposure: handleNumber(item),
         year: this.year,
       })),
       zIndex: 0,
@@ -179,7 +186,7 @@ export default class ProductVM {
       data: investmentTrend.appRank.data.map((item, i) => ({
         y: Number(item),
         rank: (item && item !== 'null') ? item : 0,
-        download: investmentTrend.download.data[i] ? investmentTrend.download.data[i].toFixed(2) : 0,
+        download: handleNumber(investmentTrend.download.data[i]),
         year: this.year,
       })),
       yAxis: 1,
@@ -191,7 +198,7 @@ export default class ProductVM {
       data: investmentTrend.download.data.map((item, i) => ({
         y: Number(item),
         rank: investmentTrend.appRank.data[i] && investmentTrend.appRank.data[i] !== 'null' ? investmentTrend.appRank.data[i] : 0,
-        download: item ? item.toFixed(2) : 0,
+        download: handleNumber(item),
         year: this.year,
       })),
       zIndex: 0,

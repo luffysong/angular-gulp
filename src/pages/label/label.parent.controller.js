@@ -707,6 +707,11 @@ export default class listParentController {
           },
           column: {
             stacking: 'normal',
+            states: {
+              hover: {
+                color: '#88c4ff',
+              },
+            },
           },
         },
         chart: {
@@ -905,6 +910,7 @@ export default class listParentController {
         stacking: 'percent',
         pointWidth: 8,
         showInLegend: false,
+        enableMouseTracking: false,
       },
     ];
     this.investHg.options.series = this.investHg.series;
