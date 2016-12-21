@@ -5,7 +5,8 @@ class TestAPI extends krData.API {
 
 }
 
-@Inject('listIndexService', '$timeout', '$window','$stateParams','$state','$scope', '$q', 'user', 'ngDialog')
+@Inject('listIndexService', '$timeout', '$window','$stateParams',
+  '$state','$scope', '$q', 'user', 'ngDialog', '$document')
 export default class listIndexController {
 
   constructor() {
@@ -32,6 +33,11 @@ export default class listIndexController {
 
     this.handleActive();
 
+  }
+
+  backTop(e) {
+    e.preventDefault();
+    this.$document.scrollTop(0, 300);
   }
 
   collect(i) {
