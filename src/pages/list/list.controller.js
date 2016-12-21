@@ -16,9 +16,8 @@ export default class listIndexController {
   projectService = new ProjectService();
 
   init() {
-
     this.listData = {
-      data: []
+      data: [],
     };
 
     this.paramsData = {};
@@ -26,7 +25,7 @@ export default class listIndexController {
     this.currentPage = 1;
     this.dataLoading = true;
 
-    this.$scope.$on('get-list',(e, d) => {
+    this.$scope.$on('get-list', (e, d) => {
       this.listData = d;
       this.dataLoading = false;
     });
@@ -44,12 +43,11 @@ export default class listIndexController {
       if (this.listData.data[i].followed) return;
       this.projectService.collectCompany({
         cid: this.cid,
-        groupId: 0
+        groupId: 0,
       })
       .then(() => {
         this.listData.data[i].followed = true;
-        this.projectService.collect(this.cid).then(
-          (data) => this.collections = data
+        this.projectService.collect(this.cid).then((data) => { this.collections = data; }
         );
       });
     }
@@ -83,7 +81,7 @@ export default class listIndexController {
 
   /* 过滤不限条件 */
   paramsFilter(target) {
-    var o = Object.assign({},target);
+    const o = Object.assign({}, target);
     Object.keys(o).forEach((item) => {
       if (o[item] === 'unlimited') {
         delete o[item];
@@ -109,7 +107,6 @@ export default class listIndexController {
     krData.utls.login();
   }
   loadMore() {
-
     if (this.dataLoading) return;
     if (this.needAuthorizeInvestor()) {
       this.dataLoading = false;
@@ -118,12 +115,13 @@ export default class listIndexController {
     this.dataLoading = true;
     this.currentPage++;
 
-    var params = Object.assign({columnId:this.$stateParams.columnId || 0,p:this.currentPage},this.paramsFilter(this.paramsData));
+    const params = Object.assign({ columnId: this.$stateParams.columnId || 0, p: this.currentPage },
+      this.paramsFilter(this.paramsData));
     this.projectService.getColumn(params).then(data => {
       this.isInvestorLimit = data.isInvestorLimit;
       this.userIsInvestor = data.userIsInvestor;
       this.isLogin = data.isLogin;
-      if(!data.pageData || !data.pageData.data){
+      if (!data.pageData || !data.pageData.data){
         this.noMore = true;
         return;
       }
@@ -138,7 +136,7 @@ export default class listIndexController {
         this.needLogin = true;
         this.noMore = true;
       }
-      if(data.pageData.page === this.currentPage) {
+      if (data.pageData.page === this.currentPage) {
         angular.forEach(data.pageData.data,(item) => {
           this.listData.data.push(item);
         });
@@ -161,7 +159,7 @@ export default class listIndexController {
         .then(() => {
           this.handleCollect();
           this.status = 'suc';
-          setTimeout(() => {
+          this.$timeout(() => {
             this.status = '';
           }, 2000);
           ++item.count;
@@ -171,7 +169,7 @@ export default class listIndexController {
         .then(() => {
           this.cancelCollect();
           this.status = 'cancel';
-          setTimeout(() => {
+          this.$timeout(() => {
             this.status = '';
           }, 2000);
           --item.count;
@@ -182,22 +180,22 @@ export default class listIndexController {
 
   handleCollect() {
     this.listData.data.forEach(obj => {
-      if(obj.id === this.cid) {
+      if (obj.id === this.cid) {
         obj.followed = true;
       }
     });
   }
 
   cancelCollect() {
-    var isEmpty = true;
+    let isEmpty = true;
     this.collections.forEach(item => {
-      if(item.followed) {
+      if (item.followed) {
         isEmpty = false;
       }
     });
-    if(isEmpty) {
+    if (isEmpty) {
       this.listData.data.forEach(obj => {
-        if(obj.id === this.cid) {
+        if (obj.id === this.cid) {
           obj.followed = false;
         }
       });
@@ -207,7 +205,7 @@ export default class listIndexController {
   create(i) {
     if (!this.collectionName) return;
     this.projectService.createCollect({
-      name:this.collectionName
+      name: this.collectionName,
     }).then(
       (data) => {
         this.createSuc = true;
@@ -220,11 +218,9 @@ export default class listIndexController {
           groupId: data.id,
         }).then(() => {
           this.listData.data[i].followed = true;
-          this.projectService.collect(this.cid).then(
-            (data) => this.collections = data
-          );
+          this.projectService.collect(this.cid).then((d) => { this.collections = d; });
         });
-      },(err) => {
+      }, (err) => {
         this.errMsg = err.msg;
         this.$timeout(() => {
           this.errMsg = '';
@@ -233,25 +229,27 @@ export default class listIndexController {
   }
 
   seeDetail(id) {
-    var labelArr = [];
+    const labelArr = [];
     Object.keys(this.$stateParams).forEach(key => {
-      if(this.$stateParams[key]) {
-        if(String(this.$stateParams[key]).split(',').length > 1) {
-          angular.forEach(this.$stateParams[key].split(','),item => {
+      if (this.$stateParams[key]) {
+        if (String(this.$stateParams[key]).split(',').length > 1) {
+          angular.forEach(this.$stateParams[key].split(','), item => {
             angular.forEach(this.$scope.parentVm.data[key], obj => {
-              if(obj.id+'' === item+'' && labelArr.indexOf(obj.name) < 0) {
+              if (`${obj.id}` === `${item}` && labelArr.indexOf(obj.name) < 0) {
                 labelArr.push(obj.name);
-              }else if(obj.value+'' === item+'' && labelArr.indexOf(obj.desc) < 0) {
+              } else if (`${obj.value}` === `${item}` && labelArr.indexOf(obj.desc) < 0) {
                 labelArr.push(obj.desc);
               }
             });
           });
-        }else {
+        } else {
           angular.forEach(this.$scope.parentVm.data[key], obj => {
-            if(obj.id !== 'unlimited' && obj.value !== 'unlimited') {
-              if(obj.id+'' === this.$stateParams[key] && labelArr.indexOf(obj.name) < 0) {
+            if (obj.id !== 'unlimited' && obj.value !== 'unlimited') {
+              if (`${obj.id}` === this.$stateParams[key] &&
+                labelArr.indexOf(obj.name) < 0) {
                 labelArr.push(obj.name);
-              }else if(obj.value+'' === this.$stateParams[key] && labelArr.indexOf(obj.desc) < 0){
+              } else if (`${obj.value}` === this.$stateParams[key] &&
+                labelArr.indexOf(obj.desc) < 0) {
                 labelArr.push(obj.desc);
               }
             }
@@ -259,33 +257,33 @@ export default class listIndexController {
         }
       }
     });
-    var columnOptions = {
+    const columnOptions = {
       context: this,
       companyId: id,
       loadMore: this.loadMore.bind(this),
       companies: this.listData.data,
       tags: labelArr,
-      closeMe: this.closeMe.bind(this)
+      closeMe: this.closeMe.bind(this),
     };
 
-    this.$scope.$emit('open-sideBar',columnOptions);
+    this.$scope.$emit('open-sideBar', columnOptions);
   }
 
   closeMe() {
     this.$scope.parentVm.open.sideBar = false;
   }
 
-  clickFilter(item,type) {
+  clickFilter(item, type) {
     angular.forEach(this.$scope.parentVm.itemList, o => {
       if (o.name === type) {
-        var key = o.key;
-        angular.forEach(this.$scope.parentVm.data[type],(obj,index) => {
+        const key = o.key;
+        angular.forEach(this.$scope.parentVm.data[type], (obj, index) => {
           if (obj[key] === item) {
-            this.$scope.parentVm.selectIndustry(index,type);
+            this.$scope.parentVm.selectIndustry(index, type);
           }
         });
       }
-    })
+    });
   }
 
   valLogin(e) {
