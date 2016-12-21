@@ -1,6 +1,6 @@
 <div class="result-container" ng-if="!parentVm.open.sideBar" data-stat-module="list">
   <div class="result-tip">
-    共<b>{{vm.listData.totalCount}}</b>个结果
+    <span>共 <b>{{vm.listData.totalCount}}</b> 个结果</span>
     <div class="order-btns">
       <div>
         <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': parentVm.isStockAt}" ng-hide="parentVm.params['columnId'] > 0">收录时间</a>
@@ -57,7 +57,7 @@
         <td class="filter-item">
           <span ng-click="vm.clickFilter(obj.city,'city')" ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
         </td>
-        <td class="date-time">{{::obj.publishDate | listDateFilter}}</td>
+        <td class="date-time">{{::obj.startDate | date:'yyyy.MM'}}</td>
         <td>
           <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position data-stat-click="collect.{{obj.id}}">
             <span ng-show="obj.followed">已</span>收藏

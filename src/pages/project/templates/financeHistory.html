@@ -6,8 +6,8 @@
         ng-if="!vm.financeVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.financeHistory.add">添加+</a>
   </div>
   <div class="finance-history">
-    <div class="finance-detail" ng-show="vm.fundsVM.funds && vm.fundsVM.fundsVo.fundsPhase && vm.fundsVM.financeAmountUnit"
-     ng-if="vm.fundsVM.funds && vm.fundsVM.fundsVo.fundsPhase && vm.fundsVM.financeAmountUnit && vm.isEditMode">
+    <div class="finance-detail" ng-show="vm.fundsVM.funds && vm.fundsVM.fundsVo.fundsPhase && vm.fundsVM.financeAmountUnit && root.user.isInvestor() ||
+    (vm.fundsVM.funds && vm.fundsVM.fundsVo.fundsPhase && vm.fundsVM.financeAmountUnit && vm.isEditMode)">
       <div class="point"></div>
       <div class="title">
         <span ng-if="vm.fundsVM.funds">融资中</span>

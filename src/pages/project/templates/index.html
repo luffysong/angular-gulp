@@ -15,8 +15,8 @@
             href="javascript:void(0)" data-stat-click="project.{{vm.id}}.baseInfo.edit">编辑</a>
         </h1>
         <h3>{{::vm.baseInfoVM.brief}}</h3>
-        <p class="highlights" ng-if="vm.baseInfoVM.advantage && root.user.isInvestor() || (vm.isEditMode && vm.user != 'commen')">
-          <span class="icon-highlights">
+        <p class="highlights" ng-if="vm.baseInfoVM.advantage && root.user.isInvestor() && !vm.isEditMode">
+          <span class="icon-highlights" ng-show="vm.baseInfoVM.advantage">
             <span>亮点</span>
           </span>
           <span class="highlight">{{vm.baseInfoVM.advantage}}</span>
@@ -186,7 +186,8 @@
         <p class="tip-text">注意：行业不开放编辑；所有更改内容均会提交审核，审核期间不可对此模块做任何的更改，
           通过后对所有用户公开</p>
         <div>
-          <a class="save" ng-click="vm.baseInfoVM.update()" href="javascript:;" data-stat-click="project.{{vm.id}}.baseInfo.edit.save">保存</a>
+          <a class="save" ng-click="vm.baseInfoVM.update()" href="javascript:;"
+            data-stat-click="project.{{vm.id}}.baseInfo.edit.save">保存</a>
           <a class="cancel" ng-click="vm.baseInfoVM.cancel()" href="javascript:;" data-stat-click="project.{{vm.id}}.baseInfo.edit.cancel">取消</a>
         </div>
       </div>
@@ -196,7 +197,7 @@
   <section ng-class="{small: searchVm.small, tinly: searchVm.tiny}" sticky offset="50" class="nav-wrapper">
     <nav>
       <ul class='navigate'>
-        <li ng-show="vm.baseInfoVM.investAdvantage && !vm.isEditMode">
+        <li ng-show="vm.baseInfoVM.investAdvantage && !vm.isEditMode && root.user.isInvestor()">
           <a kr-scroll-click
             href="#light" du-smooth-scroll="" du-scrollspy=""  offset="{{vm.light}}" >
             投资亮点
