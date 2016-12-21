@@ -422,16 +422,15 @@ export default class followParentController {
     this.data.phase = this.addItem(this.$scope.root.FUNDS_PHASE_ENUM_META);
   }
 
-  orderBySortField(sortField){
-    this.params['sortField'] = sortField;
-    console.log(this.params);
-    if(sortField === 'ADD_COLUMN_LABEL'){
-        this.isStartDate = false;
-        this.isAddColumnLabel = true;
-    }else if(sortField === 'START_DATE'){
-        this.isStockAt = false;
-        this.isStartDate = true;
-        this.isAddColumnLabel = false;
+  orderBySortField(sortField) {
+    this.params.sortField = sortField;
+    if (sortField === 'ADD_COLUMN_LABEL') {
+      this.isStartDate = false;
+      this.isAddColumnLabel = true;
+    } else if (sortField === 'START_DATE') {
+      this.isStockAt = false;
+      this.isStartDate = true;
+      this.isAddColumnLabel = false;
     }
     this.go();
   }
