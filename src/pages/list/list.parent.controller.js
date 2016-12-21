@@ -175,6 +175,10 @@ export default class listParentController {
     this.go();
   }
 
+  hasIndustry() {
+    return this.params.industry && this.params.industry !== 'unlimited';
+  }
+
   /* 筛选器展开*/
   spreadMore(type) {
     this.open[type] = !this.open[type];

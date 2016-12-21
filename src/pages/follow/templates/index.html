@@ -24,10 +24,10 @@
             <div class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
               {{parentVm.filterData.industry ? parentVm.filterData.industry : '不限'}}
             </div>
-            <div class="col-default">
+            <div ng-if="parentVm.hasIndustry()" class="col-default">
               子行业
             </div>
-            <div class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
+            <div ng-if="parentVm.hasIndustry()" class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
               {{parentVm.filterData.label ? parentVm.filterData.label : '不限'}}
             </div>
             <div class="col-default">
@@ -90,7 +90,7 @@
               </div>
             </div>
           </div>
-          <div class="filter-list" ng-if="parentVm.open.filter">
+          <div class="filter-list" ng-if="parentVm.open.filter && parentVm.hasIndustry()">
             <div class="filter-col">
               <div class="col-type">
                 子行业

@@ -351,6 +351,9 @@ export default class followParentController {
     this.go();
   }
 
+  hasIndustry() {
+    return this.params.industry && this.params.industry !== 'unlimited';
+  }
   /* 取消选择行业 */
   clearIndustry(id, type) {
     const arr = this.params[type].split(',');
