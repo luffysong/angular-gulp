@@ -6,7 +6,47 @@
     </div>
   </div>
   <div class="filter-container" ng-class="{'filterDisabeld': parentVm.getPermission()}">
-    <div class="filter-list" >
+    <div class="filter-list default-show my-follow" ng-if="!parentVm.open.filter && parentVm.params.columnId">
+      <div class="filter-col">
+        <div class="col-default">
+          行业
+        </div>
+        <div class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
+          {{parentVm.filterData.industry ? parentVm.filterData.industry : '不限'}}
+        </div>
+        <div ng-if="parentVm.hasIndustry()" class="col-default">
+          子行业
+        </div>
+        <div ng-if="parentVm.hasIndustry()" class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
+          {{parentVm.filterData.label ? parentVm.filterData.label : '不限'}}
+        </div>
+        <div class="col-default">
+          轮次
+        </div>
+        <div class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
+          {{parentVm.filterData.phase ? parentVm.filterData.phase : '不限'}}
+        </div>
+        <div class="col-default">
+          所在地
+        </div>
+        <div class="col-val" ng-click="parentVm.open.filter = !parentVm.open.filter">
+          {{parentVm.filterData.city ? parentVm.filterData.city : '不限'}}
+        </div>
+        <div class="col-default" ng-if="root.user.isInvestor()"
+          ng-click="parentVm.open.filter = !parentVm.open.filter">
+          融资需求
+        </div>
+        <div class="col-val" ng-if="root.user.isInvestor()" ng-click="parentVm.open.filter = !parentVm.open.filter">
+          {{parentVm.filterData.isFundingLimit ? '融资中' : '不限'}}
+        </div>
+        <div class="right-spread-button">
+          <a href="javascript:;" ng-click="parentVm.open.filter = !parentVm.open.filter" >
+            {{!parentVm.open.filter ? '展开全部筛选项' : '收起全部筛选项'}}
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="filter-list" ng-if="parentVm.open.filter || !parentVm.params.columnId" >
       <div class="filter-col">
         <div class="col-type">
           行业
@@ -36,7 +76,7 @@
         </div>
       </div>
     </div>
-    <div class="filter-list" ng-if="parentVm.hasIndustry()" >
+    <div class="filter-list" ng-if="parentVm.hasSubIndustry()" >
       <div class="filter-col">
         <div class="col-type">
           子行业
@@ -67,7 +107,7 @@
         </div>
       </div>
     </div>
-    <div class="filter-list">
+    <div class="filter-list" ng-if="parentVm.open.filter || !parentVm.params.columnId">
       <div class="filter-col">
         <div class="col-type">
           轮次
@@ -154,7 +194,7 @@
         </div>
       </div>
     </div>
-    <div class="spread-row" >
+    <div ng-if="parentVm.open.filter || !parentVm.params.columnId" class="spread-row" >
       <a href="javascript:;" ng-click="parentVm.open.filter = !parentVm.open.filter">
         {{!parentVm.open.filter ? '展开全部筛选项' : '收起全部筛选项'}}
       </a>

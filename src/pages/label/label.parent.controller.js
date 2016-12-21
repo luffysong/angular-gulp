@@ -200,7 +200,7 @@ export default class listParentController {
     });
   }
 
-  /*筛选器选择行业*/
+  /*筛选器选择*/
   selectIndustry (index,type) {
     /*筛选器选择不限*/
     if(this.data[type][index].name === '不限' || this.data[type][index].desc === '不限') {

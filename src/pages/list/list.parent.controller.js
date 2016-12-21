@@ -1,4 +1,3 @@
-import krData from 'krData';
 import ProjectService from '../project/project.service';
 
 @Inject('listIndexService', '$timeout', '$window', '$stateParams', '$state', '$scope', 'user')
@@ -151,11 +150,20 @@ export default class listParentController {
         });
       }
     });
+    this.handleLabel();
   }
 
 
-  /* 筛选器选择行业*/
+  /* 筛选器*/
   selectIndustry(index, type) {
+    // 行业选择
+    if (type === 'industry') {
+      this.params.industry = this.data.industry[index].value;
+      this.params.label = 'unlimited';
+      this.go();
+      return;
+    }
+
     /* 筛选器选择不限*/
     if (this.data[type][index].name === '不限' || this.data[type][index].desc === '不限') {
       this.params[type] = 'unlimited';
@@ -176,8 +184,38 @@ export default class listParentController {
     this.go();
   }
 
+  /* 收起筛选器展示已选择的标签 */
+  handleLabel() {
+    const temp = {
+      industry: 'desc',
+      label: 'name',
+      phase: 'desc',
+      city: 'name',
+      isFundingLimit: 'name',
+    };
+    this.filterData = {};
+    Object.keys(this.data).forEach(key => {
+      angular.forEach(this.data[key], item => {
+        if (item.active && item.value !== 'unlimited' && item.id !== 'unlimited') {
+          if (this.filterData[key]) {
+            this.filterData[key] += `,${item[temp[key]]}`;
+          } else {
+            this.filterData[key] = item[temp[key]];
+          }
+        }
+      });
+    });
+  }
+
   hasIndustry() {
     return this.params.industry && this.params.industry !== 'unlimited';
+  }
+
+  hasSubIndustry() {
+    if (!this.hasIndustry()) {
+      return false;
+    }
+    return (this.params.columnId && this.open.filter) || !this.params.columnId;
   }
 
   /* 筛选器展开*/

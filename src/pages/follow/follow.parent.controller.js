@@ -187,10 +187,6 @@ export default class followParentController {
     this.projectService.getFollowList().then(data => {
       if (!data || !data.length) return;
       this.manageLabel = data.concat();
-      /*data.unshift({
-        active: true,
-        name: '综合',
-      });*/
       this.followLabel = data;
       this.handleActive();
     });
@@ -328,8 +324,15 @@ export default class followParentController {
     });
   }
 
-  /* 筛选器选择行业 */
+  /* 筛选器选择 */
   selectIndustry(index, type) {
+    // 行业选择
+    if (type === 'industry') {
+      this.params.industry = this.data.industry[index].value;
+      this.params.label = 'unlimited';
+      this.go();
+      return;
+    }
     /* 筛选器选择不限 */
     if (this.data[type][index].name === '不限' || this.data[type][index].desc === '不限') {
       this.params[type] = 'unlimited';
