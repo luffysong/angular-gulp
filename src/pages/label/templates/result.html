@@ -25,13 +25,13 @@
         <td width="320">项目</td>
         <td>行业</td>
         <td>轮次</td>
-        <td>投资方</td>
         <td>所在地</td>
-        <td>时间</td>
+        <td>成立时间</td>
+        <td>DAU/曝光量</td>
         <td width="120">操作</td>
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
-        <td>
+        <td class="project-info">
           <img ng-src="{{::obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" data-stat-click="company.{{obj.id}}" class="project-logo" />
           <div class="project-info">
             <div class="project-name">
@@ -40,20 +40,26 @@
             <div class="project-intro">
               {{::obj.brief}}
             </div>
-            <div class="project-tag" ng-if="obj.advantage">
+            <div class="project-tag">
+              <a ng-repeat="tag in obj.operationTag" ui-sref="label.result({labelId: obj.id})" target="_blank" ng-if="obj.operationTag">
+                <span>{{tag.name}}</span>
+              </a>
+              <a ng-repeat="tag in obj.industryTag" ui-sref="label.result({labelId: obj.id})" target="_blank" ng-if="obj.industryTag">
+                <span>{{tag.name}}</span>
+              </a>
+            </div>
+            <!-- <div class="project-tag" ng-if="obj.advantage">
               <i class="icon-Hot"></i>
               <span>{{::obj.advantage}}</span>
-            </div>
+            </div> -->
           </div>
         </td>
         <td>{{::obj.industryStr}}</td>
         <td>{{::obj.phase | companyFinancePhase}}</td>
-        <td class="org-col">
-          <span ng-if="!obj.investParts.length">未披露</span>
-          <section ng-if="obj.investParts.length" ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
-        </td>
         <td>{{::obj.cityStr || '暂无'}}</td>
-        <td>{{::obj.publishDate | listDateFilter}}</td>
+        <td>{{::obj.startDate | date:'yyyy-MM'}}</td>
+        <td ng-if="obj.dau === 0 && obj.exposureAmount === 0">—</td>
+        <td ng-if="obj.dau !== 0 || obj.exposureAmount !== 0"><span class="dau-exposure" ng-click="vm.seeDetail(obj.id)">{{::obj.dau}}/{{::obj.exposureAmount}}</span></td>
         <td>
           <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position data-stat-click="collect.{{obj.id}}">
             <span ng-show="obj.followed">已</span>收藏

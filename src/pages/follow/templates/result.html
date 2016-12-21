@@ -4,7 +4,7 @@
     <span ng-if="vm.hasSelect">共<b>{{vm.listData.totalCount}}</b>个结果</span>
     <div class="order-btns">
       <div>
-        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('ADD_COLUMN_LABEL')" ng-class="{'btn-active': parentVm.isAddColumnLabel}">推荐时间</a>
+        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': parentVm.isStockAt}">收录时间</a>
       </div>
       <div>
         <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': parentVm.isStartDate}">成立时间</a>
@@ -17,10 +17,8 @@
         <td width="320">项目</td>
         <td>行业</td>
         <td>轮次</td>
-        <td>投资方</td>
         <td>所在地</td>
-        <td ng-if="!vm.$stateParams.labelId">来源</td>
-        <td>时间</td>
+        <td>成立时间</td>
         <td width="120">操作</td>
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
@@ -37,6 +35,14 @@
               <i class="icon-Hot"></i>
               <span>{{::obj.advantage}}</span>
             </div>
+            <div class="project-tag">
+              <a ng-repeat="tag in obj.operationTag" ui-sref="label.result({labelId: obj.id})" target="_blank" ng-if="obj.operationTag">
+                <span>{{tag.name}}</span>
+              </a>
+              <a ng-repeat="tag in obj.industryTag" ui-sref="label.result({labelId: obj.id})" target="_blank" ng-if="obj.industryTag">
+                <span>{{tag.name}}</span>
+              </a>
+            </div>
           </div>
         </td>
         <td class="filter-item">
@@ -45,19 +51,10 @@
         <td class="filter-item">
           <span ng-click="vm.clickFilter(obj.phase,'phase')" ng-class="{'disabled': obj.phase === 'NONE' || parentVm.getPermission()}">{{::obj.phase | companyFinancePhase}}</span>
         </td>
-        <td class="org-col">
-          <span ng-if="!obj.investParts.length">未披露</span>
-          <section ng-if="obj.investParts.length" ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
-        </td>
         <td class="filter-item">
           <span ng-click="vm.clickFilter(obj.city,'city')" ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
         </td>
-        <td class="filter-item org-col" ng-if="!vm.$stateParams.labelId">
-          <section ng-repeat="item in obj.labelSource | limitTo:3 track by $index">
-            <span class="label-item" ng-click="vm.clickLabel(item)">{{::item}}</span>
-          </section>
-        </td>
-        <td>{{::obj.publishDate | listDateFilter}}</td>
+        <td>{{::obj.startDate | date:'yyyy-MM'}}</td>
         <td>
           <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position data-stat-click="collect.{{obj.id}}">
             <span ng-show="obj.followed">已</span>收藏

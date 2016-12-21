@@ -53,7 +53,7 @@
           {{::obj.phase | companyFinancePhase}}
         </td>
         <td>{{::obj.cityStr || '暂无'}}</td>
-        <td>{{::obj.startDate | date:'yyyy.MM'}}</td>
+        <td>{{::obj.startDate | date:'yyyy-MM'}}</td>
         <td>
           <span ng-click="vm.collect($index)" data-stat-click="collect.{{obj.id}}" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
             <span ng-show="obj.followed">已</span>收藏
