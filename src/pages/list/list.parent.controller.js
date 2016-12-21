@@ -267,18 +267,19 @@ export default class listParentController {
     this.data.isFundingLimit = this.addItem(this.$scope.root.FINANCE_NEED_META);
   }*/
 
-  orderBySortField(sortField) {
-    this.params.sortField = sortField;
-    if (sortField === 'STOCK_AT') {
-      this.isStockAt = true;
-      this.isStartDate = false;
-    } else if (sortField === 'START_DATE') {
-      this.isStockAt = false;
-      this.isStartDate = true;
-      this.isAddColumnLabel = false;
-    } else if (sortField === 'ADD_COLUMN_LABEL') {
-      this.isStartDate = false;
-      this.isAddColumnLabel = true;
+
+  orderBySortField(sortField){
+    this.params['sortField'] = sortField;
+    if(sortField === 'STOCK_AT'){
+        this.isStockAt = true;
+        this.isStartDate = false;
+    }else if(sortField === 'START_DATE'){
+        this.isStockAt = false;
+        this.isStartDate = true;
+        this.isAddColumnLabel = false;
+    }else if(sortField === 'ADD_COLUMN_LABEL'){
+        this.isStartDate = false;
+        this.isAddColumnLabel = true;
     }
     this.go();
   }

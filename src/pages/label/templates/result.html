@@ -1,6 +1,23 @@
 <div class="result-container" data-stat-module="label">
   <div class="result-tip">
-    共<b>{{vm.listData.totalCount}}</b>个结果
+    <span>共<b>{{vm.listData.totalCount}}</b>个结果</span>
+    <div class="order-btns">
+      <div>
+        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('TAGS_RANK')" ng-class="{'btn-active': parentVm.isTagsRank}">排名</a>
+      </div>
+      <div>
+        <a href="#" class="center-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': parentVm.isStockAt}">收录时间</a>
+      </div>
+      <div>
+        <a href="#" class="center-btn" ng-click="parentVm.orderBySortField('USER_AMOUNT')" ng-class="{'btn-active': parentVm.isUserAmount}">DAU</a>
+      </div>
+      <div>
+        <a href="#" class="center-btn" ng-click="parentVm.orderBySortField('EXPOSURE_AMOUNT')" ng-class="{'btn-active': parentVm.isExposureAmount}">曝光量</a>
+      </div>
+      <div>
+        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': parentVm.isStartDate}">成立时间</a>
+      </div>
+    </div>
   </div>
   <div class="result-content">
     <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading' infinite-scroll-distance='0'>
