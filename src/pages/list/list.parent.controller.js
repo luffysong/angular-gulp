@@ -144,7 +144,7 @@ export default class listParentController {
         });
       } else {
         angular.forEach(this.data[key], (item) => {
-          if (item.value === val || item.id === parseInt(val, 10)) {
+          if (item.value === val || String(item.id) === String(val)) {
             item.active = true;
           }
         });
