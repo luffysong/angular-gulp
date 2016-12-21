@@ -1,12 +1,8 @@
 import { extractMeta } from '../base/utls';
 const OPERATION_STATUS_META = [{
-  desc: '3个月内上线',
+  desc: '未上线',
   id: -1,
-  value: 'ONLINE_IN_3MONTH',
-}, {
-  desc: '6个月内上线',
-  id: -5,
-  value: 'ONLINE_IN_6MONTH',
+  value: 'NOT_ONLINE',
 }, {
   desc: '运营中',
   id: 0,
