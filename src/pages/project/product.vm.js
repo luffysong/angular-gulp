@@ -69,7 +69,6 @@ export default class ProductVM {
 
   loadAnalyze() {
     this.analyze = this.productDataService.getProduct();
-    console.log(this.analyze);
     Object.keys(this.analyze).forEach(key => {
       if (this.analyze[key].x.length || (this.analyze[key].data && this.analyze[key].data.length)) {
         this.hasData = true;
@@ -586,6 +585,7 @@ export default class ProductVM {
         gridLineColor: '#F2F4F5',
         lineColor: '#E7E7E7',
         lineWidth: 1,
+        reversed: true,
         title: {
           enabled: false,
         },
@@ -598,7 +598,6 @@ export default class ProductVM {
   }
 
   handleRetention(d) {
-    console.log(d);
     this.retentionList.forEach((item) => {
       const a = d[item.key].data;
       item.percent = a.length ? a[a.length - 1].toFixed(2) : 0;
