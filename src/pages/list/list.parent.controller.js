@@ -110,9 +110,9 @@ export default class listParentController {
     angular.forEach(this.itemList, (item) => {
       /* 筛选条件特殊处理*/
       if (item.name === 'isFundingLimit') {
-        angular.forEach(d.funding, (c, index) => {
-          angular.forEach(this.data['isFundingLimit'], k => {
-            if (k.name === c.name || k.id + '' === c.id + '') {
+        angular.forEach(d.funding, (c) => {
+          angular.forEach(this.data.isFundingLimit, k => {
+            if (`${k.name}` === `${c.name}` || `${k.id}` === `${c.id}`) {
               k.cnt = c.cnt;
             }
           });
