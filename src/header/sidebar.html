@@ -32,7 +32,8 @@
     <dt><span>工作台</span></dt>
     <dd  ui-sref-active="active">
       <!-- 2是关注的栏目id -->
-      <a data-stat-click="follow" ui-sref="follow.result({columnid: 2})" href="javascript:;">
+      <a data-stat-click="follow" ui-sref-opts="{reload: true, inherit: true}"
+        ui-sref="follow.result({columnid: 2})" href="javascript:;">
         <span class="icon-focus kr-icon"></span><span class="kr-tags">关注领域</span>
       </a>
     </dd>
