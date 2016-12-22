@@ -197,7 +197,7 @@ export default class ProductUserPortraitsVM {
     this.age = age.x.map(x => ({ x }));
     this.age.forEach((v, i) => {
       v.percent = percent(age.y[i]);
-      v.width = percent(age.y[i] / age.max);
+      v.width = percent(Math.max(age.y[i] / age.max, 0.004));
     });
   }
 
