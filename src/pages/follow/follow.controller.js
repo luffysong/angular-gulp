@@ -102,6 +102,10 @@ export default class followIndexController {
     return o;
   }
 
+  backTop(e) {
+    e.preventDefault();
+    krData.utls.getService('$document').scrollTop(0, 300);
+  }
 
   triggerCollect (id) {
     if(this.cid === id || !this.user.isLogin)return;

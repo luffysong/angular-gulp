@@ -1,4 +1,7 @@
-<div class="result-container" ng-if="!parentVm.open.sideBar" data-stat-module="follow">
+<div class="result-container" id="projectListContainer" ng-if="!parentVm.open.sideBar" data-stat-module="follow">
+  <div class="back-top-wrapper">
+    <a du-scrollspy href="#projectListContainer" ng-click="vm.backTop($event)" class="icon-backtop"></a>
+  </div>
   <div class="result-tip">
     <span ng-if="!vm.hasSelect">已为您精选了<b>{{vm.listData.totalCount}}</b>个项目，更新了<b>{{vm.newCompanyCnt ? vm.newCompanyCnt : 0}}</b>个新项目</span>
     <span ng-if="vm.hasSelect">共<b>{{vm.listData.totalCount}}</b>个结果</span>

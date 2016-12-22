@@ -98,8 +98,6 @@ export default class landingParentController {
 
     this.getPhase();
 
-
-
   }
 
   handleSearchList(tab) {
@@ -110,6 +108,10 @@ export default class landingParentController {
         item.active = false;
       }
     });
+  }
+
+  hasIndustry() {
+    return this.params.industry && this.params.industry !== 'unlimited';
   }
 
   searchCompany(params) {

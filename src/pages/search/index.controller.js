@@ -55,6 +55,9 @@ export default class SearchIndexController {
     });
   }
 
+  backTop(e, id) {
+    angular.element(id).scrollTop(0, 300);
+  }
   closeTab(e) {
     this.getActiveLabel();
     this.showTab = false;
