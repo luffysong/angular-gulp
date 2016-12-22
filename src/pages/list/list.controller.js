@@ -35,11 +35,6 @@ export default class listIndexController {
 
   }
 
-  backTop(e) {
-    e.preventDefault();
-    this.$document.duScrollTop(0, 300);
-  }
-
   collect(i) {
     if (!this.user.isLogin) {
       this.$scope.root.user.ensureLogin();

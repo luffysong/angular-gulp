@@ -11,18 +11,20 @@ import filterCalDirective from './filterCal.directive';
 import { krLoadingDirective, Loading } from './krLoading.directive.js';
 import parallaxDirective from './parallax.directive';
 import msgPoint from './msgPoint.directive';
+import krBacktop from './krBacktop.directive';
 function makeDirective(directive) {
   return () => directive;
 }
 angular.module('@@app.components', [])
+  .value('THROTTLE_MILLISECONDS', 300)
   .directive('krValid', makeDirective(krValid))
   .directive('krSearch', makeDirective(krSearch))
-  .value('THROTTLE_MILLISECONDS', 300)
   .directive('krProjectNav', makeDirective(krProjectNav))
   .directive('krSlidePanel', makeDirective(krSlidePanel))
-  .directive('infiniteScroll', infiniteScrollDirective)
   .directive('krBindHtml', makeDirective(krBindHtml))
   .directive('krEleClampChecker', makeDirective(krEleClampChecker))
+  .directive('krBacktop', makeDirective(krBacktop))
+  .directive('infiniteScroll', infiniteScrollDirective)
   .directive('calPosition', calPositionDirective)
   .directive('krLoading', krLoadingDirective)
   .service('loading', Loading)

@@ -1,4 +1,5 @@
 <div class="search-wrapper" data-stat-module="column3">
+  <kr-backtop kr-scroll-container="column3Container" href="#cloumn3ProjectList"></kr-backtop>
   <a href="javascript:;" data-stat-click="close.left"
     ng-click="searchVm.columnOptions.closeMe()" class="icon-dialogClose left" ></a>
   <a href="javascript:;" data-stat-click="close.right"
@@ -15,10 +16,6 @@
     id="column3Container" perfect-scrollbar
     wheel-propagation="true" wheel-speed="5" min-scrollbar-length="15" wheel-speed="3"
     class="search-list-wrapper">
-    <div du-spy-context du-scroll-container="column3Container" class="back-top-wrapper">
-      <a  du-scrollspy href="#cloumn3ProjectList" offset="-20"
-        ng-click="searchVm.backTop($event, '#column3Container')" class="icon-backtop"></a>
-    </div>
     <div
         infinite-scroll="searchVm.columnOptions.loadMore()"
         infinite-scroll-disabled="outVm.dataLoading"

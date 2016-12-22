@@ -1,6 +1,7 @@
-<div id="projectDetailWrapper" ng-class="{small: searchVm.small || searchVm.tinly}" class="project-wrapper">
+<div id="projectDetailWrapper"  ng-class="{small: searchVm.small || searchVm.tinly}" class="project-wrapper">
+  <kr-backtop data-stat-module="project.{{vm.id}}" offset="20"></kr-backtop>
   <header>
-  <section class="base-info-wrapper">
+  <section id="projectHeader" class="base-info-wrapper">
     <div ng-if="!vm.baseInfoVM.isEdit" class="base-info-content">
       <div>
         <img ng-src="{{vm.baseInfoVM.logo || '/images/default-logo.png'}}" class="logo" alt="">
@@ -147,40 +148,37 @@
   </section>
   <section ng-class="{small: searchVm.small, tinly: searchVm.tiny}" sticky offset="50" class="nav-wrapper">
     <nav>
-      <ul class='navigate'>
+      <ul du-spy-context class='navigate'>
         <li ng-show="vm.baseInfoVM.investAdvantage && !vm.isEditMode && root.user.isInvestor()">
           <a kr-scroll-click
-            href="#light" du-smooth-scroll="" du-scrollspy=""  offset="{{vm.light}}" >
+            href="#light" du-smooth-scroll du-scrollspy  offset="{{vm.light}}" >
             投资亮点
           </a>
         </li>
         <li ng-hide="!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)">
-          <a kr-scroll-click href="#baseInfo" du-smooth-scroll="" du-scrollspy="" offset="{{vm.baseInfo}}" >
+          <a kr-scroll-click href="#baseInfo" du-smooth-scroll du-scrollspy offset="{{vm.baseInfo}}" >
             项目介绍
           </a>
         </li>
-        <!-- <li ng-show="(vm.fundsVM.fundsVo.scale || vm.fundsVM.fundsVo.dataLights || vm.fundsVM.fundsVo.competitor || vm.fundsVM.fundsVo.projectPlan) && (vm.user != 'commen' || vm.investorType)">
-          <a kr-scroll-click href="#financeDetail" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeDetail}}" ng-class="{'active':!(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro)}">
-            融资详情
-          </a>
-        </li> -->
         <li>
-          <a kr-scroll-click href="#financeHistory" du-smooth-scroll="" du-scrollspy="" offset="{{vm.financeHistory}}" ng-class="{'active':!vm.baseInfoVM.advantage && !(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro) && !vm.fundsVM.funds}">
+          <a kr-scroll-click href="#financeHistory" du-smooth-scroll du-scrollspy
+            offset="{{vm.financeHistory}}"
+            ng-class="{'active':!vm.baseInfoVM.advantage && !(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro) && !vm.fundsVM.funds}">
             融资经历
           </a>
         </li>
         <li>
-          <a kr-scroll-click href="#founder" du-smooth-scroll="" du-scrollspy="" offset="114" >
+          <a kr-scroll-click href="#founder" du-smooth-scroll du-scrollspy offset="114" >
             创始团队
           </a>
         </li>
         <li>
-          <a kr-scroll-click href="#product" du-smooth-scroll="" du-scrollspy="" offset="114" >
+          <a kr-scroll-click href="#product" du-smooth-scroll du-scrollspy offset="114" >
             项目数据
           </a>
         </li>
         <li>
-          <a href="#news" du-smooth-scroll="" du-scrollspy="" offset="110" >
+          <a href="#news" du-smooth-scroll="" du-scrollspy offset="110" >
            相关新闻
           </a>
         </li>
