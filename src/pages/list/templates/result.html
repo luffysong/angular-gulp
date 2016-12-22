@@ -2,8 +2,8 @@
   <kr-backtop href="#projectListContainer"></kr-backtop>
   <div class="result-tip">
     <span>共 <b>{{vm.listData.totalCount}}</b> 个结果</span>
-    <div class="labels">
-      <a>[ {{}} ]行业趋势</a>
+    <div class="labels" ng-if="parentVm.params['industry'] && parentVm.params['industry'] !=='unlimited'">
+      <a ui-sref="label.result({labelId: parentVm.label.id})" target="_blank">[ {{parentVm.label.desc}} ]行业趋势</a>
       <div class="up-angle"></div>
       <div class="down-angle"></div>
     </div>

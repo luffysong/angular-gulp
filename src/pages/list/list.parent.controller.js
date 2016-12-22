@@ -1,6 +1,6 @@
 import ProjectService from '../project/project.service';
 
-@Inject('listIndexService', '$timeout', '$window', '$stateParams', '$state', '$scope', 'user')
+@Inject('listIndexService', '$timeout', '$window', '$stateParams', '$state', '$scope', 'user', '$location')
 export default class listParentController {
 
   constructor() {
@@ -63,6 +63,7 @@ export default class listParentController {
         this.totalCount = data.pageData.totalCount;
         this.data.label = data.label;
         this.data.label[0].value = 'unlimited';
+        this.loopLabels(this.data.label);
         this.handleActive();
         this.updateData(data);
       });
@@ -81,7 +82,6 @@ export default class listParentController {
     this.getLabel();
 
     this.getPhase();
-
     // this.getisFundingLimit();
   }
 
@@ -181,6 +181,8 @@ export default class listParentController {
     } else {
       this.params[type] = this.data[type][index][attr];
     }
+
+    this.$timeout.cancel(this.timer);
     this.go();
   }
 
@@ -320,6 +322,45 @@ export default class listParentController {
         this.isAddColumnLabel = true;
     }
     this.go();
+  }
+
+  loopLabels(labels){
+    this.labels = [];
+    this.label = {};
+    var industryVal = this.$location.search().industry;
+    if(!industryVal){
+      return
+    }
+    var labelIds = this.$location.search().label.split(',');
+    angular.forEach(this.data.industry, (obj) => {
+      if(obj.value === industryVal){
+        this.labels.push(obj);
+        this.label = obj;
+      }
+    });
+
+    angular.forEach(labelIds, (id) => {
+      angular.forEach(labels, (obj) => {
+        if(obj.id === parseInt(id)){
+          obj.desc = obj.name;
+          this.labels.push(obj);
+        }
+      });
+    });
+
+    var i = 0;
+    var vm = this;
+    var loop = function(){
+     vm.timer = vm.$timeout(function(){
+        if(i >= vm.labels.length){
+          i = 0;
+        }
+        vm.label = vm.labels[i];
+        i++;
+        loop();
+      },5000)
+    };
+    loop();
   }
 }
 
