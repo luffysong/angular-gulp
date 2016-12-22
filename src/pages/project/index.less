@@ -176,118 +176,174 @@
         }
       }
       .top-info {
-        width: 350px;
-        height: 120px;
+        width: 249px;
+        height: 101px;
         display: inline-block;
         color: #969FA9;
+        border: 1px solid #E7E7E7;
+        border-radius: 4px;
+        float: right;
+        margin-right: 10px;
         .no-top-data {
           text-align: center;
           line-height: 120px;
         }
-        .no-top1 {
-          line-height: 90px;
-        }
-        .border1(@border-color);
-        .top-left {
-          float: left;
-          margin: 14px 0 0 20px;
-          width: 130px;
-          .top1{
+        .head {
+          height: 40px;
+          background-color: #f4f4f6;
+          position: relative;
+          .top-flag {
+            background: url('/images/top-flag.png');
+            width: 70px;
+            height: 26px;
+            position: absolute;
+            top: 8px;
+            left: -6px;
+            font-size: 12px;
+            color: #FFFFFF;
+            line-height: 18px;
+            span {
+              position: relative;
+              top: 1px;
+              left: 8px;
+            }
+          }
+          .top-title {
+            position: absolute;
             font-size: 14px;
             color: #5A626D;
             line-height: 21px;
+            left: 40%;
+            top: 8px;
             font-weight: bold;
           }
-          .top-number{
-            margin: 4px 0 8px 0 ;
-            line-height: 24px;
-            width: 156px;
-            .number {
-              font-size: 24px;
-              color: #5A626D;
-              margin-right: 4px;
-              font-weight: bold;
-            }
-          }
-          .top2{
-            border-top: 1px solid #E5EBF0;
-            width: 156px;
-            padding-top: 8px;
-            span {
-              color: #5A626D;
-              font-weight: bold;
-            }
-            .number {
-              margin: 0 4px;
-            }
-          }
         }
-
-        .top-right{
-          margin: 20px 10px 0 25px;
-          font-size: 12px;
-          width: 160px;
+        .content {
           position: relative;
-          left: 15px;
-          float: right;
-          a {
-            color: #969FA9;
-            span {
-              color: #222C38;
-            }
-          }
-          .numbers {
+          top: 10px;
+          color: #222C38;
+          text-align: center;
+          .phase {
             float: left;
-            position: relative;
-            bottom: 85px;
-            left: 75px;
-            width: 108px;
+            margin-left: 45px;
+            display: inline-block;
           }
-          .number{
-            color: #222C38;
-            line-height: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
+          .amount {
+            float: right;
+            margin-right: 45px;
+            display: inline-block;
           }
-          .show-angle {
-            left: -12px;
-            position: relative;
+          .type {
+            font-size: 12px;
+            color: #969FA9;
           }
-          .user, .expose, .finance {
-            margin-bottom: 8px;
-          }
-        }
-        .right-angle {
-          margin: 0 4px 2px 0;
-        }
-        .left-angle {
-          margin: 0 0 2px 6px;
-        }
-        .up-angle {
-          border-left: 4px solid transparent;
-          border-right: 4px solid transparent;
-          border-bottom: 6px solid #FBA1B2;
-          display: inline-block;
-        }
-        .down-angle {
-          border-left: 4px solid transparent;
-          border-right: 4px solid transparent;
-          border-top: 6px solid #B3DD6A;
-          display: inline-block;
-        }
-        .up-angle-big {
-          border-left: 5px solid transparent;
-          border-right: 5px solid transparent;
-          border-bottom: 8px solid #FBA1B2;
-          display: inline-block;
-        }
-        .down-angle-big {
-          border-left: 5px solid transparent;
-          border-right: 5px solid transparent;
-          border-top: 8px solid #B3DD6A;
-          display: inline-block;
         }
       }
+
+      //   .no-top1 {
+      //     line-height: 90px;
+      //   }
+      //   .border1(@border-color);
+      //   .top-left {
+      //     float: left;
+      //     margin: 14px 0 0 20px;
+      //     width: 130px;
+      //     .top1{
+      //       font-size: 14px;
+      //       color: #5A626D;
+      //       line-height: 21px;
+      //       font-weight: bold;
+      //     }
+      //     .top-number{
+      //       margin: 4px 0 8px 0 ;
+      //       line-height: 24px;
+      //       width: 156px;
+      //       .number {
+      //         font-size: 24px;
+      //         color: #5A626D;
+      //         margin-right: 4px;
+      //         font-weight: bold;
+      //       }
+      //     }
+      //     .top2{
+      //       border-top: 1px solid #E5EBF0;
+      //       width: 156px;
+      //       padding-top: 8px;
+      //       span {
+      //         color: #5A626D;
+      //         font-weight: bold;
+      //       }
+      //       .number {
+      //         margin: 0 4px;
+      //       }
+      //     }
+      //   }
+
+      //   .top-right{
+      //     margin: 20px 10px 0 25px;
+      //     font-size: 12px;
+      //     width: 160px;
+      //     position: relative;
+      //     left: 15px;
+      //     float: right;
+      //     a {
+      //       color: #969FA9;
+      //       span {
+      //         color: #222C38;
+      //       }
+      //     }
+      //     .numbers {
+      //       float: left;
+      //       position: relative;
+      //       bottom: 85px;
+      //       left: 75px;
+      //       width: 108px;
+      //     }
+      //     .number{
+      //       color: #222C38;
+      //       line-height: 18px;
+      //       font-weight: bold;
+      //       margin-bottom: 10px;
+      //     }
+      //     .show-angle {
+      //       left: -12px;
+      //       position: relative;
+      //     }
+      //     .user, .expose, .finance {
+      //       margin-bottom: 8px;
+      //     }
+      //   }
+      //   .right-angle {
+      //     margin: 0 4px 2px 0;
+      //   }
+      //   .left-angle {
+      //     margin: 0 0 2px 6px;
+      //   }
+      //   .up-angle {
+      //     border-left: 4px solid transparent;
+      //     border-right: 4px solid transparent;
+      //     border-bottom: 6px solid #FBA1B2;
+      //     display: inline-block;
+      //   }
+      //   .down-angle {
+      //     border-left: 4px solid transparent;
+      //     border-right: 4px solid transparent;
+      //     border-top: 6px solid #B3DD6A;
+      //     display: inline-block;
+      //   }
+      //   .up-angle-big {
+      //     border-left: 5px solid transparent;
+      //     border-right: 5px solid transparent;
+      //     border-bottom: 8px solid #FBA1B2;
+      //     display: inline-block;
+      //   }
+      //   .down-angle-big {
+      //     border-left: 5px solid transparent;
+      //     border-right: 5px solid transparent;
+      //     border-top: 8px solid #B3DD6A;
+      //     display: inline-block;
+      //   }
+      // }
     }
 
     .base-info-content-edit {
