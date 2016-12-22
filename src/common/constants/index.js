@@ -7,16 +7,20 @@ import { FINANCE_NEED_META, FINANCE_NEED } from './financeNeed.cs';
 import { PROJECT_TYPE_META, PROJECT_TYPE } from './projectType.cs';
 import { COMPANY_FINANCE_PHASE_META, COMPANY_FINANCE_PHASE } from './companyFinancePhase.cs';
 import { FUNDS_PHASE_ENUM_META, FUNDS_PHASE_ENUM } from './fundsPhase.cs';
-import { COMPANY_SEARCH_PHASE, COMPANY_SEARCH_PHASE_META} from './companySearchPhase.cs';
+import { COMPANY_SEARCH_PHASE, COMPANY_SEARCH_PHASE_META } from './companySearchPhase.cs';
 import {
   COMPANY_INDUSTRY,
   COMPANY_INDUSTRY_META,
 } from './companyIndustry.cs';
 import {
-  INVESTOR_ROLE, INVESTOR_ROLE_META
+  LIST_COMPANY_INDUSTRY,
+  LIST_COMPANY_INDUSTRY_META,
+} from './listCompanyIndustry.cs';
+import {
+  INVESTOR_ROLE, INVESTOR_ROLE_META,
 } from './investorRole.cs';
 import  {
-  FOLLOW_AREA, FOLLOW_AREA_META
+  FOLLOW_AREA, FOLLOW_AREA_META,
 } from './followArea.cs';
 export {
   FINANCE_PHASE_META, FINANCE_PHASE,
@@ -30,7 +34,9 @@ export {
   COMPANY_SEARCH_PHASE, COMPANY_SEARCH_PHASE_META,
   COMPANY_INDUSTRY, COMPANY_INDUSTRY_META,
   INVESTOR_ROLE, INVESTOR_ROLE_META,
-  FOLLOW_AREA, FOLLOW_AREA_META
+  FOLLOW_AREA, FOLLOW_AREA_META,
+  LIST_COMPANY_INDUSTRY,
+  LIST_COMPANY_INDUSTRY_META,
 };
 angular.module('@@app.constants', [])
   .constant('FINANCE_PHASE', FINANCE_PHASE)
@@ -57,5 +63,7 @@ angular.module('@@app.constants', [])
   .constant('INVESTOR_ROLE', INVESTOR_ROLE)
   .constant('INVESTOR_ROLE_META', INVESTOR_ROLE_META)
   .constant('FOLLOW_AREA', FOLLOW_AREA)
-  .constant('FOLLOW_AREA_META', FOLLOW_AREA_META);
+  .constant('FOLLOW_AREA_META', FOLLOW_AREA_META)
+  .constant('LIST_COMPANY_INDUSTRY', LIST_COMPANY_INDUSTRY)
+  .constant('LIST_COMPANY_INDUSTRY_META', LIST_COMPANY_INDUSTRY_META);
 

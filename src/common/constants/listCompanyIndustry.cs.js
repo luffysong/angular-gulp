@@ -1,5 +1,5 @@
 import { extractMeta } from '../base/utls';
-const COMPANY_INDUSTRY_META = [
+const LIST_COMPANY_INDUSTRY_META = [
   {
     "desc": "电商",
     "id": 1,
@@ -76,11 +76,6 @@ const COMPANY_INDUSTRY_META = [
     "value": "LOGISTICS"
   },
   {
-    "desc": "非TMT",
-    "id": 20,
-    "value": "NON_TMT"
-  },
-  {
     "desc": "农业",
     "id": 21,
     "value": "FARMING"
@@ -91,20 +86,70 @@ const COMPANY_INDUSTRY_META = [
     "value": "AR_VR"
   },
   {
-    "desc": "体育（包含户外）",
+    "desc": "体育",
     "id": 23,
     "value": "SPORTS"
+  },
+  {
+    "desc": "人工智能",
+    "id": 40,
+    "value": "AI"
+  },
+  {
+    "desc": "fintech",
+    "id": 41,
+    "value": "FINTECH"
+  },
+  {
+    "desc": "大数据",
+    "id": 42,
+    "value": "BIG_DATA"
+  },
+  {
+    "desc": "共享经济",
+    "id": 43,
+    "value": "SHARE_BUSINESS"
+  },
+  {
+    "desc": "IP",
+    "id": 44,
+    "value": "IP"
+  },
+  {
+    "desc": "出行",
+    "id": 45,
+    "value": "CHU_XING"
+  },
+  {
+    "desc": "出海",
+    "id": 46,
+    "value": "CHU_HAI"
+  },
+  {
+    "desc": "消费升级",
+    "id": 47,
+    "value": "CONSUME"
+  },
+  {
+    "desc": "区块链",
+    "id": 48,
+    "value": "BLOCK_LINK"
+  },
+  {
+    "desc": "保险",
+    "id": 49,
+    "value": "INSURANCE"
   },
   {
     "desc": "其他",
     "id": 0,
     "value": "OTHER"
-  },
+  }
 ];
 
-const COMPANY_INDUSTRY = extractMeta(COMPANY_INDUSTRY_META);
+const LIST_COMPANY_INDUSTRY = extractMeta(LIST_COMPANY_INDUSTRY_META);
 
 export {
-  COMPANY_INDUSTRY,
-  COMPANY_INDUSTRY_META,
+  LIST_COMPANY_INDUSTRY,
+  LIST_COMPANY_INDUSTRY_META,
 };

@@ -331,7 +331,7 @@ export default class landingParentController {
 
   /*获取静态行业数据*/
   getIndustry() {
-    this.data.industry = this.addItem(this.$scope.root.INDUSTRY_META);
+    this.data.industry = this.addItem(this.$scope.root.LIST_COMPANY_INDUSTRY_META);
   }
 
   /*获取静态标签数据*/
