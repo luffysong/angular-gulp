@@ -308,6 +308,7 @@ export default class ProductVM {
         useHTML: true,
         align: 'left',
         x: -10,
+        margin: 25,
         text: '<h5 class="trend-title">DAU / 曝光量</h5>',
       },
       xAxis: {
@@ -445,6 +446,7 @@ export default class ProductVM {
         useHTML: true,
         align: 'left',
         x: -10,
+        margin: 25,
         text: '<h5 class="trend-title">AppStore排名 / Android下载量</h5>',
       },
       xAxis: {
