@@ -4,6 +4,11 @@
   </div>
   <div class="result-tip">
     <span>共 <b>{{vm.listData.totalCount}}</b> 个结果</span>
+    <div class="labels">
+      <a>[ {{}} ]行业趋势</a>
+      <div class="up-angle"></div>
+      <div class="down-angle"></div>
+    </div>
     <div class="order-btns">
       <div>
         <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': parentVm.isStockAt}" ng-hide="parentVm.params['columnId'] > 0">收录时间</a>
@@ -38,16 +43,22 @@
               {{::obj.brief}}
             </div>
             <div class="project-tag">
-              <a ng-repeat="tag in obj.operationTag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag">
-                <span>{{tag.name}}</span>
-              </a>
-              <a ng-repeat="tag in obj.industryTag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag">
-                <span>{{tag.name}}</span>
-              </a>
+              <div class="highlights" ng-show="parentVm.params['columnId'] > 0">
+                <i class="icon-listPoint"></i>
+                <span>{{::obj.advantage}}</span>
+              </div>
+              <div class="labels" ng-hide="parentVm.params['columnId'] > 0">
+                <span class="icon-bookmark" ng-show="obj.operationTag.length || obj.industryTag.length"></span>
+                <a ng-repeat="tag in obj.operationTag" class="operation-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag.length">
+                  <span>{{tag.name}}</span>
+                </a>
+                <a ng-repeat="tag in obj.industryTag" class="industry-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag.length">
+                  <span>{{tag.name}}</span>
+                </a>
+              </div>
             </div>
             <!-- <div class="project-tag" ng-if="obj.advantage">
-              <i class="icon-listPoint"></i>
-              <span>{{::obj.advantage}}</span>
+
             </div> -->
           </div>
         </td>
@@ -60,7 +71,10 @@
         <td class="filter-item">
           <span ng-click="vm.clickFilter(obj.city,'city')" ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
         </td>
-        <td class="date-time">{{::obj.startDate | date:'yyyy-MM'}}</td>
+        <td class="date-time">
+          <span ng-show="obj.startDate">{{::obj.startDate | date:'yyyy-MM'}}</span>
+          <span ng-show="!obj.startDate">—</span>
+        </td>
         <td>
           <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position data-stat-click="collect.{{obj.id}}">
             <span ng-show="obj.followed">已</span>收藏

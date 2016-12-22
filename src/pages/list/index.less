@@ -467,6 +467,33 @@
     span {
       margin-left: 30px;
     }
+    .labels {
+      background: #F2F4F5;
+      border-radius: 20px;
+      display: inline;
+      padding: 6px 16px;
+      margin-left: 20px;
+      position: relative;
+      a {
+        margin-right: 20px;
+      }
+      .up-angle {
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-bottom: 5px solid #969FA9;
+        display: inline-block;
+        position: absolute;
+        top: 6px;
+      }
+      .down-angle {
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 5px solid #969FA9;
+        display: inline-block;
+        position: absolute;
+        top: 15px;
+      }
+    }
     .order-btns {
       float: right;
       div {
@@ -669,21 +696,40 @@
             }
             .project-tag {
               font-size: 12px;
-              color: #F8627E;
               letter-spacing: 0px;
               line-height: 18px;
               margin-top:4px;
+              max-width: 230px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              .icon-bookmark {
+                color: #969FA9;
+                font-size: 14px;
+                position: relative;
+                top: 2px;
+              }
+              .icon-listPoint {
+                color: #F8627E;
+              }
               a {
                 margin-right: 5px;
+                color: #5A626D;
+              }
+              .operation-tag:hover {
+                color: #FFA546;
+              }
+              .industry-tag:hover {
+                color: #6BA2FC;
               }
               >i {
                 font-size: 15px;
                 vertical-align: middle;
               }
-              >span {
-                margin-left:4px;
-                color: #5a626d;
-              }
+              // >span {
+              //   margin-left:4px;
+              //   color: #5a626d;
+              // }
               .advantage-tag {
                 display: inline-block;
                 width:30px;
