@@ -57,6 +57,15 @@ const trendHg = {
       align: 'right',
       verticalAlign: 'top',
       y: 5,
+      useHTML: true,
+      margin: 30,
+      itemDistance: 10,
+      labelFormatter: function labelFormatter() {
+        return `<span class="kr-legend-item">
+          <span style="background:${this.color}" class="kr-circle"></span
+          ><span class="ellipsis">${this.name}</span>
+          </span>`;
+      },
     },
     credits: {
       enabled: false,
@@ -85,10 +94,11 @@ const trendHg = {
           fillColor: '#fff',
           lineColor: '#88C4FF',
           lineWidth: 2,
+          radius: 3,
           symbol: 'circle',
           states: {
             hover: {
-              radius: 4,
+              fillColor: '#88C4FF',
               radiusPlus: 0,
               lineWidthPlus: 0,
             },
@@ -122,7 +132,7 @@ const trendHg = {
       tickWidth: 0,
       lineColor: '#E7E7E7',
       gridLineWidth: 1,
-      gridLineColor: '#F2F4F5',
+      gridLineColor: 'transparent',
       gridLineDashStyle: 'longdash',
       labels: {
         autoRotation: 0,
@@ -234,7 +244,6 @@ export default class ProductUserPortraitsVM {
     const domainCfg = this.domainCfg;
     const y = this.domainCfg.options.yAxis;
     const x = this.domainCfg.options.xAxis;
-    domainCfg.options.legend.enabled = false;
     domainCfg.options.title.text = '<div><h4>地域分布</h4></div>';
     y.min = 0;
     if (!domain) {
@@ -248,6 +257,7 @@ export default class ProductUserPortraitsVM {
       {
         data: domain.map(tuple => tuple[1]),
         type: 'column',
+        name: '所在地/百分比',
       },
     ];
   }

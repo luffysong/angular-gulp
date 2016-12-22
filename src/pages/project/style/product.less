@@ -222,6 +222,39 @@ div.product-data{
         float: left;
       }
     }
+    .use-period, .use-time-domain {
+      margin-top: 50px;
+      .highcharts-legend-item {
+        display:none;
+      }
+      div.highcharts-legend-item{
+        display: block;
+        &>span[style*="204, 204, 204"] {
+          .kr-circle {
+            background: rgb(204, 204, 204) !important;
+          }
+        }
+        span {
+          .dlk();
+          .vam();
+        }
+        .kr-legend-item {
+          .kr-circle{
+            width: 8px;
+            height: 8px;
+            margin-right: 6px;
+            border-radius: 50%;
+          }
+          > span:nth-child(2) {
+            max-width: 200px;
+          }
+          transform: translateX(10px);
+        }
+      }
+    }
+    .use-time-domain {
+      margin-top:35px;
+    }
     .gender {
       .gender-proportion {
         padding-left: 10px;
