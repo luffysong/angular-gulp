@@ -5,6 +5,44 @@
   }
   .chart-layer {
     margin-bottom:30px;
+    &.trend-hg {
+      .highcharts-legend-item {
+        &:last-of-type {
+          .kr-circle {
+            width: 10px !important;
+            height: 5px !important;
+            border-radius: 0 !important;
+          }
+        }
+      }
+     }
+    .highcharts-legend-item {
+      display:none;
+    }
+    div.highcharts-legend-item{
+      display: block;
+      &>span[style*="204, 204, 204"] {
+        .kr-circle {
+          background: rgb(204, 204, 204) !important;
+        }
+      }
+      span {
+        .dlk();
+        .vam();
+      }
+      .kr-legend-item {
+        .kr-circle{
+          width: 8px;
+          height: 8px;
+          margin-right: 6px;
+          border-radius: 50%;
+        }
+        > span:nth-child(2) {
+          max-width: 200px;
+        }
+        transform: translateX(10px);
+      }
+    }
   }
   .bottom-container {
     .clear();

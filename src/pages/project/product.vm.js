@@ -340,6 +340,9 @@ export default class ProductVM {
         labels: {
           format: '{value}万',
           maxStaggerLines: 10,
+          style: {
+
+          },
         },
         title: {
           enabled: false,
@@ -354,6 +357,9 @@ export default class ProductVM {
         },
         labels: {
           format: '{value}',
+          style: {
+
+          },
         },
         opposite: true,
       }],
@@ -470,6 +476,9 @@ export default class ProductVM {
         lineWidth: 1,
         labels: {
           format: '{value}',
+          style: {
+
+          },
         },
         title: {
           enabled: false,
@@ -485,6 +494,9 @@ export default class ProductVM {
         },
         labels: {
           format: '{value}',
+          style: {
+
+          },
         },
         opposite: false,
       }],
@@ -538,7 +550,7 @@ export default class ProductVM {
           },
         },
         chart: {
-          height: 270,
+          height: 250,
         },
         tooltip: {
           useHTML: true,
@@ -552,6 +564,7 @@ export default class ProductVM {
         useHTML: true,
         align: 'left',
         x: -10,
+        margin: 25,
         text: '<h5 class="trend-title">网站Alexa排名</h5>',
       },
       xAxis: {
@@ -563,6 +576,11 @@ export default class ProductVM {
         gridLineWidth: 1,
         gridLineColor: 'transparent',
         gridLineDashStyle: 'longdash',
+        labels: {
+          style: {
+
+          },
+        },
         crosshair: {
           width: 1,
           color: '#ddd',
@@ -576,6 +594,9 @@ export default class ProductVM {
         lineWidth: 1,
         labels: {
           format: '{value}',
+          style: {
+
+          },
         },
         title: {
           enabled: false,
@@ -591,6 +612,9 @@ export default class ProductVM {
         },
         labels: {
           format: '{value}',
+          style: {
+
+          },
         },
         opposite: false,
       }],
@@ -656,7 +680,9 @@ export default class ProductVM {
   _setNoDataConfig(cfg) {
     const x = cfg.xAxis;
     const y = cfg.yAxis[1];
-
+    x.labels.style.color = '#ccc';
+    cfg.options.legend.enabled = false;
+    y.labels.style.color = '#ccc';
     // 无数据时 强制X Y周
     x.min = 0;
     x.max = 11;
