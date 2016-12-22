@@ -258,6 +258,7 @@ export default class ProductUserPortraitsVM {
         data: domain.map(tuple => tuple[1]),
         type: 'column',
         name: '所在地/百分比',
+        maxPointWidth: 20,
       },
     ];
   }
