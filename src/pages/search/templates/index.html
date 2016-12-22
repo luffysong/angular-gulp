@@ -15,7 +15,10 @@
     id="column3Container" perfect-scrollbar
     wheel-propagation="true" wheel-speed="5" min-scrollbar-length="15" wheel-speed="3"
     class="search-list-wrapper">
-
+    <div du-spy-context du-scroll-container="column3Container" class="back-top-wrapper">
+      <a  du-scrollspy href="#cloumn3ProjectList" offset="-20"
+        ng-click="searchVm.backTop($event, '#column3Container')" class="icon-backtop"></a>
+    </div>
     <div
         infinite-scroll="searchVm.columnOptions.loadMore()"
         infinite-scroll-disabled="outVm.dataLoading"
@@ -25,6 +28,7 @@
       >
 
       <div
+        id="cloumn3ProjectList"
         class="search-project-list">
         <ul>
           <li

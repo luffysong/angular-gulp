@@ -37,7 +37,7 @@ export default class listIndexController {
 
   backTop(e) {
     e.preventDefault();
-    this.$document.scrollTop(0, 300);
+    this.$document.duScrollTop(0, 300);
   }
 
   collect(i) {

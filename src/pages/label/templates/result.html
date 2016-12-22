@@ -1,4 +1,7 @@
-<div class="result-container" data-stat-module="label">
+<div class="result-container" id="projectListContainer" data-stat-module="label">
+  <div class="back-top-wrapper">
+    <a du-scrollspy href="#projectListContainer" ng-click="vm.backTop($event)" class="icon-backtop"></a>
+  </div>
   <div class="result-tip">
     <span>共<b>{{vm.listData.totalCount}}</b>个结果</span>
     <div class="order-btns">
