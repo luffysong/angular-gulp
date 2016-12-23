@@ -494,6 +494,7 @@ export default class ProductVM {
         title: {
           enabled: false,
         },
+        reversed: true,
         labels: {
           format: '{value}',
           style: {
