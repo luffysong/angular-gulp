@@ -3,7 +3,7 @@
   <div class="result-tip">
     <span ng-if="vm.$stateParams.kw">找到关于 <b>“{{vm.$stateParams.kw}}”</b> 的</span>
     <span ng-if="!vm.$stateParams.kw">全部搜索</span>结果<b>{{vm.listData.totalCount}}</b>条
-    <div class="order-btns">
+    <div class="order-btns" ng-show="vm.$stateParams.type === 'company'">
       <div>
         <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('MATCH_RATE')" ng-class="{'btn-active': vm.isMatchRate}"
         data-stat-click="landing.matchRate">匹配度</a>

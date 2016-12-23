@@ -57,7 +57,10 @@
         <td class="filter-item">
           <span ng-click="vm.clickFilter(obj.city,'city')" ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
         </td>
-        <td>{{::obj.startDate | date:'yyyy-MM'}}</td>
+        <td>
+          <span ng-show="obj.startDate">{{::obj.startDate | date:'yyyy-MM'}}</span>
+          <span ng-show="!obj.startDate">—</span>
+        </td>
         <td>
           <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position data-stat-click="collect.{{obj.id}}">
             <span ng-show="obj.followed">已</span>收藏
