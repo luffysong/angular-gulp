@@ -59,7 +59,7 @@
                   ng-click="parentVm.selectIndustry($index,'industry')" data-stat-click="industry.{{item.value}}">
                   <span>
                     {{item.desc}}
-                    <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}"
+                    <span class="clear-btn icon-small-close" ng-class="{'hide':!item.active}"
                       ng-if="item.value !== 'unlimited'"
                       ng-click="parentVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
                   </span>
@@ -90,7 +90,7 @@
                   data-stat-click="label.{{item.id}}">
                   <span>
                     {{item.name}}
-                    <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}"
+                    <span class="clear-btn icon-small-close" ng-class="{'hide':!item.active}"
                       ng-if="item.value !== 'unlimited'"
                       ng-click="parentVm.clearIndustry(item.id,'label');$event.stopPropagation();"></span>
                   </span>
@@ -120,7 +120,7 @@
                   ng-click="parentVm.selectIndustry($index,'phase')" data-stat-click="phase.{{item.value}}">
                   <span>
                     {{item.desc}}
-                    <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}"
+                    <span class="clear-btn icon-small-close" ng-class="{'hide':!item.active}"
                       ng-show="item.value !== 'unlimited'"
                       ng-click="parentVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
                   </span>
@@ -150,7 +150,7 @@
                   ng-click="parentVm.selectIndustry($index,'city')" data-stat-click="city.{{item.id}}">
                   <span>
                     {{item.name}}
-                    <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}"
+                    <span class="clear-btn icon-small-close" ng-class="{'hide':!item.active}"
                       ng-if="item.value !== 'unlimited'"
                       ng-click="parentVm.clearIndustry(item.id,'city');$event.stopPropagation();"></span>
                   </span>
@@ -182,7 +182,7 @@
                   data-stat-click="isFundingLimit.{{item.id}}">
                   <span>
                     {{item.name}}
-                    <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}"
+                    <span class="clear-btn icon-small-close" ng-class="{'hide':!item.active}"
                       ng-if="item.id !== 'unlimited'"
                       ng-click="parentVm.clearIndustry(item.id,'isFundingLimit');$event.stopPropagation();"></span>
                   </span>
