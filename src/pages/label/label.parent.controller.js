@@ -379,6 +379,7 @@ export default class listParentController {
           itemStyle: {
             fontSize: '12px',
             color: '#fff',
+            fontWeight: 'normal',
           },
         },
         chart: {
@@ -459,6 +460,7 @@ export default class listParentController {
           itemStyle: {
             fontSize: '12px',
             color: '#fff',
+            fontWeight: 'normal',
           },
         },
         chart: {
@@ -526,12 +528,13 @@ export default class listParentController {
           y: 15,
           itemDistance: 10,
           itemStyle: {
+            color: '#ccc',
           },
           symbolWidth: 10,
           symbolHeight: 5,
           labelFormatter: function labelFormatter() {
             return `<span class="kr-legend-item cur-auto" onclick="return false;" click="$event.preventDefault();">
-            项目趋势 / ?
+            项目趋势 / 个
             </span>`;
           },
         },
@@ -876,7 +879,7 @@ export default class listParentController {
     this.investHg.xAxis.categories = arr.map(item => handleDate(item));
     this.investHg.series = [
       {
-        name: '投资事件 / ?',
+        name: '投资事件 / 个',
         color: '#b3dd6a',
         data: investmentTrend.investCaseIncrTrend.y.map((item, i) => ({
           y: Number(item),
