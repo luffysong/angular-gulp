@@ -31,18 +31,10 @@
             <div class="project-intro">
               {{::obj.brief}}
             </div>
-            <div class="project-tag">
-              <a ng-repeat="tag in obj.operationTag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag">
-                <span>{{tag.name}}</span>
-              </a>
-              <a ng-repeat="tag in obj.industryTag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag">
-                <span>{{tag.name}}</span>
-              </a>
-            </div>
-            <!-- <div class="project-tag" ng-if="obj.advantage">
-              <i class="icon-Hot"></i>
+            <div class="project-tag" ng-if="obj.advantage">
+              <i class="icon-listPoint"></i>
               <span>{{::obj.advantage}}</span>
-            </div> -->
+            </div>
           </div>
         </td>
         <td>{{::obj.industryStr}}</td>
