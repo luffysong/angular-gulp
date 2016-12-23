@@ -103,11 +103,19 @@
 
 .filter-container {
   &.filterDisabeld {
-    .col-item span {
-      color: #ccc !important;
+    .col-item {
       cursor: not-allowed;
       pointer-events: none;
+    }
+    .col-item span {
+      color: #ccc !important;
       background-color: #fff !important;
+      &:before {
+        display: none !important;
+      }
+      .clear-btn {
+        display: none;
+      }
       &.active {
         background-color: #f5f5f5 !important;
       }
