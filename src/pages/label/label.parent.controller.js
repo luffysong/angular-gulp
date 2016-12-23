@@ -31,8 +31,8 @@ export default class listParentController {
     this.open = {
       filter: false,
     };
-    this.seeAll = true;
-
+    this.seeAll = false;
+    this.hasRetention = false;
     this.itemList = [
       {
         name: 'phase',
@@ -286,6 +286,11 @@ export default class listParentController {
     this.data.phase = this.addItem(this.$scope.root.COMPANY_SEARCH_PHASE_META);
   }
 
+  openAll() {
+    this.seeAll = !this.seeAll;
+    if (!this.hasRetention) { this.$timeout(() => this.handleRetention(), 100); }
+  }
+
   getLabelStat(id) {
     this.projectService.getLabelStat({
       labelId: id,
@@ -297,7 +302,6 @@ export default class listParentController {
       this.setInvest(this.labelStat);
       this.handleData(this.labelStat);
       this.labelLoading = false;
-      this.$timeout(() => this.handleRetention(), 100);
     });
   }
 

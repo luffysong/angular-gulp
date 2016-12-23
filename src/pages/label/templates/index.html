@@ -1,7 +1,7 @@
 <div class="project-wrapper" ng-show="!parentVm.open.sideBar" data-stat-module="label">
   <div class="label-wrapper" ng-hide="parentVm.labelLoading">
     <div class="label-shade"></div>
-    <div class="see-all" ng-click="parentVm.seeAll = !parentVm.seeAll">
+    <div class="see-all" ng-click="parentVm.openAll()">
         {{parentVm.seeAll ? '收起' : '查看完整数据分析'}}
     </div>
     <div class="label-outside">
@@ -52,7 +52,7 @@
                 <highchart disable-data-watch="true" config="parentVm.comPhaseHg"></highchart>
               </div>
             </div>
-            <div class="clear-both">
+            <div class="clear-both" ng-if="parentVm.seeAll">
               <div class="left-content">
                 <!--<h5 class="chart-title">项目年度趋势</h5>-->
                 <highchart disable-data-watch="true" config="parentVm.trendHg"></highchart>
