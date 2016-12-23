@@ -39,7 +39,7 @@ export default {
     ng-class="{active: item.id+'' === root.toParams.columnId+''}" >
     <a data-stat-click="{{::projectNavVm.getName(item.id)}}"
       href="javascript:;" ui-sref-opts="{reload: true, inherit: false}"
-      ui-sref="list.result({columnId:item.id})">
+      ui-sref="list.result({columnId:item.id,sortField: 'ADD_COLUMN_LABEL'})">
       <span class="kr-icon {{::projectNavVm.ICON_CLASS[item.id]}}"></span
       ><span class="kr-tags">{{item.name}}</span>
     </a>

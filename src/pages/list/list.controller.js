@@ -20,7 +20,6 @@ export default class listIndexController {
     this.listData = {
       data: [],
     };
-
     this.paramsData = {};
 
     this.currentPage = 1;
@@ -32,11 +31,17 @@ export default class listIndexController {
     });
 
     this.handleActive();
+    this.params = this.$stateParams;
+    this.selectedOrder();
 
-    if(this.$stateParams['sortField'] === 'STOCK_AT'){
+  }
+
+  selectedOrder(){
+    if(this.params.sortField === 'STOCK_AT'){
       this.isStockAt = true;
+    }else if(this.params.sortField === 'ADD_COLUMN_LABEL'){
+      this.isAddColumnLabel = true;
     }
-
   }
 
   collect(i) {
