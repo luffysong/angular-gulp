@@ -106,16 +106,16 @@ div.product-data{
           visibility: hidden;
         }
         &.is-truncated, &.opened{
+          max-height: none;
           .toggle {
             visibility: visible;
           }
         }
         &.opened {
-          height: auto;
         }
         display: block;
         max-width: 584px;
-        height: 96px;
+        max-height: 96px;
         .font(14, 24);
         letter-spacing: .5px;
       }
