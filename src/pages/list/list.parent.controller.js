@@ -316,7 +316,6 @@ export default class listParentController {
 
 
   orderBySortField(sortField){
-    console.log(this.$stateParams);
     this.params.sortField = sortField;
     if(sortField === 'STOCK_AT'){
         this.isStockAt = true;

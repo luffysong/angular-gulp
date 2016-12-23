@@ -5,13 +5,16 @@
     <span ng-if="!vm.$stateParams.kw">全部搜索</span>结果<b>{{vm.listData.totalCount}}</b>条
     <div class="order-btns">
       <div>
-        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('MATCH_RATE')" ng-class="{'btn-active': vm.isMatchRate}">匹配度</a>
+        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('MATCH_RATE')" ng-class="{'btn-active': vm.isMatchRate}"
+        data-stat-click="landing.matchRate">匹配度</a>
       </div>
       <div>
-        <a href="#" class="center-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': vm.isStockAt}">收录时间</a>
+        <a href="#" class="center-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': vm.isStockAt}"
+        data-stat-click="landing.stockAt">收录时间</a>
       </div>
       <div>
-        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}">成立时间</a>
+        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}"
+        data-stat-click="landing.startDate">成立时间</a>
       </div>
     </div>
   </div>

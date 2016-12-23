@@ -11,14 +11,15 @@
     <div class="order-btns">
       <div>
         <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': vm.isStockAt}"
-         ng-hide="parentVm.params['columnId'] > 0">收录时间</a>
+        data-stat-click="list.stockAt" ng-hide="parentVm.params['columnId'] > 0">收录时间</a>
       </div>
       <div>
         <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('ADD_COLUMN_LABEL')" ng-class="{'btn-active': vm.isAddColumnLabel}"
-         ng-show="parentVm.params['columnId'] > 0">推荐时间</a>
+         data-stat-click="list.addColumnLabel" ng-show="parentVm.params['columnId'] > 0">推荐时间</a>
       </div>
       <div>
-        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}">成立时间</a>
+        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}"
+         data-stat-click="list.startDate">成立时间</a>
       </div>
     </div>
   </div>
