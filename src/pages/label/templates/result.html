@@ -4,19 +4,10 @@
     <span>共<b>{{vm.listData.totalCount}}</b>个结果</span>
     <div class="order-btns">
       <div>
-        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('TAGS_RANK')" ng-class="{'btn-active': parentVm.isTagsRank}">排名</a>
+        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': vm.isStockAt}">收录时间</a>
       </div>
       <div>
-        <a href="#" class="center-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': parentVm.isStockAt}">收录时间</a>
-      </div>
-      <div>
-        <a href="#" class="center-btn" ng-click="parentVm.orderBySortField('USER_AMOUNT')" ng-class="{'btn-active': parentVm.isUserAmount}">DAU</a>
-      </div>
-      <div>
-        <a href="#" class="center-btn" ng-click="parentVm.orderBySortField('EXPOSURE_AMOUNT')" ng-class="{'btn-active': parentVm.isExposureAmount}">曝光量</a>
-      </div>
-      <div>
-        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': parentVm.isStartDate}">成立时间</a>
+        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}">成立时间</a>
       </div>
     </div>
   </div>
@@ -28,7 +19,6 @@
         <td>轮次</td>
         <td>所在地</td>
         <td>成立时间</td>
-        <td>DAU/曝光量</td>
         <td width="120">操作</td>
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
@@ -59,8 +49,6 @@
         <td>{{::obj.phase | companyFinancePhase}}</td>
         <td>{{::obj.cityStr || '暂无'}}</td>
         <td>{{::obj.startDate | date:'yyyy-MM'}}</td>
-        <td ng-if="obj.dau === 0 && obj.exposureAmount === 0">—</td>
-        <td ng-if="obj.dau !== 0 || obj.exposureAmount !== 0"><span class="dau-exposure" ng-click="vm.seeDetail(obj.id)">{{::obj.dau}}/{{::obj.exposureAmount}}</span></td>
         <td>
           <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position data-stat-click="collect.{{obj.id}}">
             <span ng-show="obj.followed">已</span>收藏
