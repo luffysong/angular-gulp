@@ -15,6 +15,7 @@ const labelView = {
 
 const label = {
   url: '/{labelId}?{city}&{phase}&{isFundingLimit}&{open}&{sortField}',
+  params: { sortField: 'STOCK_AT' },
   templateUrl: '/pages/label/templates/result.html',
   controllerAs: 'vm',
   controller: 'labelIndexController',

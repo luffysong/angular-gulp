@@ -43,10 +43,10 @@
               <span>{{::obj.advantage}}</span>
             </div>
             <div class="project-tag">
-              <a ng-repeat="tag in obj.operationTag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag">
+              <a ng-repeat="tag in obj.operationTag" class="operation-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag">
                 <span>{{tag.name}}</span>
               </a>
-              <a ng-repeat="tag in obj.industryTag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag">
+              <a ng-repeat="tag in obj.industryTag" class="industry-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag">
                 <span>{{tag.name}}</span>
               </a>
             </div>

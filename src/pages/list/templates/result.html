@@ -54,10 +54,10 @@
               </div>
               <div class="labels" ng-hide="parentVm.params['columnId'] > 0">
                 <span class="icon-bookmark" ng-show="obj.operationTag.length || obj.industryTag.length"></span>
-                <a ng-repeat="tag in obj.operationTag" class="operation-tag" ui-sref="label.result({labelId: tag.id, sortField: 'STOCK_AT'})" target="_blank" ng-if="obj.operationTag.length">
+                <a ng-repeat="tag in obj.operationTag" class="operation-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag.length">
                   <span>{{tag.name}}</span>
                 </a>
-                <a ng-repeat="tag in obj.industryTag" class="industry-tag" ui-sref="label.result({labelId: tag.id, sortField: 'STOCK_AT'})" target="_blank" ng-if="obj.industryTag.length">
+                <a ng-repeat="tag in obj.industryTag" class="industry-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag.length">
                   <span>{{tag.name}}</span>
                 </a>
               </div>
