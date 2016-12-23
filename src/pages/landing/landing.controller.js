@@ -34,7 +34,18 @@ export default class landingIndexController {
 
     this.handleActive();
 
+    this.selectedOrder();
 
+  }
+
+  selectedOrder(){
+    if(this.$stateParams.sortField === 'MATCH_RATE'){
+      this.isMatchRate = true;
+    }else if(this.$stateParams.sortField === 'isStockAt'){
+      this.isStockAt = true;
+    }else if(this.$stateParams.sortField === 'START_DATE'){
+      this.isStartDate = true;
+    }
   }
 
   collect(i) {

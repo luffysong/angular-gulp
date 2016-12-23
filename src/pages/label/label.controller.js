@@ -34,6 +34,15 @@ export default class labelIndexController {
 
     this.handleActive();
 
+    this.selectedOrder();
+  }
+
+  selectedOrder(){
+    if(this.$stateParams.sortField === 'STOCK_AT'){
+      this.isStockAt = true;
+    }else if(this.$stateParams.sortField === 'START_DATE'){
+      this.isStartDate = true;
+    }
   }
 
   collect(i) {

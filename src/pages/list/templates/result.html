@@ -10,10 +10,12 @@
     </div>
     <div class="order-btns">
       <div>
-        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': vm.isStockAt}" ng-hide="parentVm.params['columnId'] > 0">收录时间</a>
+        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': vm.isStockAt}"
+         ng-hide="parentVm.params['columnId'] > 0">收录时间</a>
       </div>
       <div>
-        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('ADD_COLUMN_LABEL')" ng-class="{'btn-active': vm.isAddColumnLabel}" ng-show="parentVm.params['columnId'] > 0">推荐时间</a>
+        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('ADD_COLUMN_LABEL')" ng-class="{'btn-active': vm.isAddColumnLabel}"
+         ng-show="parentVm.params['columnId'] > 0">推荐时间</a>
       </div>
       <div>
         <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}">成立时间</a>
@@ -36,7 +38,10 @@
           <img ng-src="{{::obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" class="project-logo" data-stat-click="company.{{obj.id}}"  />
           <div class="project-info">
             <div class="project-name">
-              <span class="company-name" ng-click="vm.seeDetail(obj.id)" data-stat-click="company.{{obj.id}}">{{::obj.name}}</span><span class="icon-hot-tag" ng-if="obj.hot"></span><span class="icon-classicTag" ng-if="obj.classic"></span><span class="icon-funding" ng-if="obj.funding"></span>
+              <span class="company-name" ng-click="vm.seeDetail(obj.id)" data-stat-click="company.{{obj.id}}">{{::obj.name}}</span>
+              <span class="icon-hot-tag" ng-if="obj.hot"></span>
+              <span class="icon-classicTag" ng-if="obj.classic"></span>
+              <span class="icon-funding" ng-if="obj.funding"></span>
             </div>
             <div class="project-intro" title="{{::obj.brief}}">
               {{::obj.brief}}
@@ -48,10 +53,10 @@
               </div>
               <div class="labels" ng-hide="parentVm.params['columnId'] > 0">
                 <span class="icon-bookmark" ng-show="obj.operationTag.length || obj.industryTag.length"></span>
-                <a ng-repeat="tag in obj.operationTag" class="operation-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag.length">
+                <a ng-repeat="tag in obj.operationTag" class="operation-tag" ui-sref="label.result({labelId: tag.id, sortField: 'STOCK_AT'})" target="_blank" ng-if="obj.operationTag.length">
                   <span>{{tag.name}}</span>
                 </a>
-                <a ng-repeat="tag in obj.industryTag" class="industry-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag.length">
+                <a ng-repeat="tag in obj.industryTag" class="industry-tag" ui-sref="label.result({labelId: tag.id, sortField: 'STOCK_AT'})" target="_blank" ng-if="obj.industryTag.length">
                   <span>{{tag.name}}</span>
                 </a>
               </div>
@@ -62,10 +67,12 @@
           </div>
         </td>
         <td class="filter-item">
-          <span ng-click="vm.clickFilter(obj.industry,'industry')" data-stat-click="industry.{{obj.industry}}" ng-class="{'disabled': parentVm.getPermission()}">{{::obj.industryStr}}</span>
+          <span ng-click="vm.clickFilter(obj.industry,'industry')" data-stat-click="industry.{{obj.industry}}"
+           ng-class="{'disabled': parentVm.getPermission()}">{{::obj.industryStr}}</span>
         </td>
         <td class="filter-item">
-          <span ng-click="vm.clickFilter(obj.phase,'phase')" data-stat-click="phase.{{obj.phase}}" ng-class="{'disabled': obj.phase === 'NONE' || parentVm.getPermission()}">{{::obj.phase | companyFinancePhase}}</span>
+          <span ng-click="vm.clickFilter(obj.phase,'phase')" data-stat-click="phase.{{obj.phase}}"
+           ng-class="{'disabled': obj.phase === 'NONE' || parentVm.getPermission()}">{{::obj.phase | companyFinancePhase}}</span>
         </td>
         <td class="filter-item">
           <span ng-click="vm.clickFilter(obj.city,'city')" ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
@@ -75,7 +82,8 @@
           <span ng-show="!obj.startDate">—</span>
         </td>
         <td>
-          <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position data-stat-click="collect.{{obj.id}}">
+          <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)"
+           ng-class="{'collected':obj.followed}" cal-position data-stat-click="collect.{{obj.id}}">
             <span ng-show="obj.followed">已</span>收藏
             <div class="collect-modal" ng-hide="!vm.user.isLogin || !vm.user.isInvestor()" ng-if="obj.id === vm.cid" ng-click="$event.stopPropagation();">
               <section class="modal-title">选择收藏夹</section>

@@ -329,7 +329,6 @@ export default class listParentController {
         this.isStartDate = false;
         this.isAddColumnLabel = true;
     }
-    console.log(this.params);
     this.go();
   }
 
