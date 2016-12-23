@@ -176,7 +176,7 @@ export default class SearchService {
       getService('$state').go('investorInfo', { id: item.obj.id });
     } else if (angular.isString(item.obj)) {
       getService('$state').go('landing.result',
-        { kw: item.value, type: 'company' , sortField: 'MATCH_RATE'}, { inherit: false });
+        { kw: item.value, type: 'company', sortField: 'MATCH_RATE'}, { inherit: false });
     }
   }
 
@@ -215,7 +215,7 @@ export default class SearchService {
             kw: value,
           });
           getService('$state').go('landing.result',
-            { kw: value, type: 'company' }, { inherit: false });
+            { kw: value, type: 'company', sortField: 'MATCH_RATE' }, { inherit: false });
         }
       },
     };
