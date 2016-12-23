@@ -20,6 +20,12 @@ export default class listParentController {
     };
 
     this.$scope.company = {};
+    this.text = {
+      '1': '优选',
+      '3': '新品',
+      '4': '最新获投',
+      '5': '融资中',
+    };
 
 
     /* this.itemList = ['industry','phase','city'];*/
@@ -296,6 +302,7 @@ export default class listParentController {
   /* 融资中、优选、新品列表 未登录用户或已登录的非投资人用户禁用筛选器*/
   getPermission() {
     const columnId = `${this.params.columnId}`;
+    this.topTitle = this.text[columnId];
     if (columnId === '0' || columnId === '4' || angular.isUndefined(columnId)) {
       return false;
     } else if (!this.user.isLogin || !this.user.isInvestor()) {

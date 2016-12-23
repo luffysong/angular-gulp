@@ -21,7 +21,7 @@
       <td>{{item.financePhase}}</td>
       <td>{{item.city}}</td>
       <td ng-if="item.pastInvestor.length">
-        <div ng-repeat="inv in item.pastInvestor">
+        <div ng-repeat="inv in item.pastInvestor | limitTo:3">
           {{inv}}
         </div>
       </td>
