@@ -37,18 +37,21 @@
       </div>
       <div class="top-info" ng-show="vm.baseInfoVM.projectStatHeader">
         <div class="head">
-          <div class="top-flag" ng-show="vm.baseInfoVM.projectStatHeader.funding"><span>需要融资</span></div>
+          <div class="top-flag" ng-show="vm.baseInfoVM.projectStatHeader.funding && root.user.isInvestor()"><span>需要融资</span></div>
           <div class="top-title">上轮获投</div>
         </div>
         <div class="content">
-          <div class="phase">
+          <div class="phase" ng-show="vm.baseInfoVM.projectStatHeader.phase"
+           kr-scroll-click href="#financeHistory" du-smooth-scroll du-scrollspy offset="{{vm.financeHistory}}">
             <div><b>{{vm.baseInfoVM.projectStatHeader.phase}}</b></div>
             <div class="type"><span>轮次</span></div>
           </div>
-          <div class="amount">
+          <div class="amount" ng-show="vm.baseInfoVM.projectStatHeader.fundsAmount"
+           kr-scroll-click href="#financeHistory" du-smooth-scroll du-scrollspy offset="{{vm.financeHistory}}">
             <div><b>{{vm.baseInfoVM.projectStatHeader.fundsAmount}}</b></div>
             <div class="type"><span>金额</span></div>
           </div>
+          <div class="not-finance" ng-show="!vm.baseInfoVM.projectStatHeader.fundsAmount && !vm.baseInfoVM.projectStatHeader.phase">未收录</div>
         </div>
       </div>
       <div class="top-info" ng-show="!vm.baseInfoVM.projectStatHeader"><div class="no-top-data">暂无</div></div>
