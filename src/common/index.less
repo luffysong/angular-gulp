@@ -12,6 +12,29 @@ html {
   height: 100%;
   background: #fff;
 }
+html {
+  .progress-global-bar {
+    background: linear-gradient(45deg, #f33, #a33);
+    content: ' ';
+    position:fixed;
+    z-index: 9999;
+    height: 2px;
+    width:100%;
+    transform-origin: 0;
+    transform: scaleX(0);
+    &.progress-start {
+      transform: scaleX(0.6);
+      transition: 1000ms ease-in;
+    }
+    &.progress-end {
+      transform: scaleX(1);
+      transition: 400ms ease-in-out;
+    }
+  }
+
+
+
+}
 body {
   min-height: 100%;
   background: #F2F4F5;

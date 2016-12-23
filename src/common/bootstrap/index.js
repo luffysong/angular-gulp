@@ -118,13 +118,25 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       return moduleInstance;
     };
   })
-  .run(function run($rootScope, $location) {
-    /*全局PageView埋点统计事件触发*/
-    $rootScope.$on('$locationChangeStart', function () {
-      window.krtracker('trackPageView', $location.url());
+  .run(function run($rootScope, $location, $document, $window) {
+    /* 全局PageView埋点统计事件触发*/
+
+    const $progressbar = $document.find('.progress-global-bar');
+    $progressbar.on('transitionend', function ontransitionend() {
+      if ($(this).hasClass('progress-end')) {
+        this.classList.remove('progress-end');
+        this.classList.remove('progress-start');
+      }
+    });
+    $rootScope.$on('$locationChangeStart', () => {
+      $window.krtracker('trackPageView', $location.url());
+    });
+    $rootScope.$on('$stateChangeStart', () => {
+      $progressbar.addClass('progress-start');
     });
     $rootScope.$on('$stateChangeSuccess',
       function $stateChangeSuccess(event, toState, toParams, fromState, fromParams) {
+        $progressbar.addClass('progress-end');
         root.fromParams = fromParams;
         root.toParams = toParams;
         root.toState = toState;
@@ -134,7 +146,8 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
   .run(function run($rootScope, $location, $injector, user,
     OPERATION_STATUS_META, COMPANY_NEWS_META, FINANCE_PHASE_META,
     CURRENCY_UNIT_META, ROLE_META, FINANCE_NEED_META, PROJECT_TYPE_META, FUNDS_PHASE_ENUM_META,
-    COMPANY_SEARCH_PHASE_META, COMPANY_INDUSTRY_META, INVESTOR_ROLE_META, FOLLOW_AREA_META, LIST_COMPANY_INDUSTRY_META) {
+    COMPANY_SEARCH_PHASE_META, COMPANY_INDUSTRY_META, INVESTOR_ROLE_META, FOLLOW_AREA_META,
+    LIST_COMPANY_INDUSTRY_META) {
     getService.injector = $injector;
     root.fromYear2000 = fromYear(2000);
     root.getAllMonths = getMonth(12);
