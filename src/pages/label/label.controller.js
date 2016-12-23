@@ -94,12 +94,6 @@ export default class labelIndexController {
     return o;
   }
 
-  // 回到顶部
-  backTop(e) {
-    e.preventDefault();
-    krData.utls.getService('$document').scrollTop(0, 300);
-  }
-
   triggerCollect (id) {
     if(this.cid === id || !this.user.isLogin)return;
     this.cid = id;

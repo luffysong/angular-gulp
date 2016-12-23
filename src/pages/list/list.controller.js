@@ -20,7 +20,6 @@ export default class listIndexController {
     this.listData = {
       data: [],
     };
-
     this.paramsData = {};
 
     this.currentPage = 1;
@@ -32,12 +31,17 @@ export default class listIndexController {
     });
 
     this.handleActive();
+    this.params = this.$stateParams;
+    this.selectedOrder();
 
   }
 
-  backTop(e) {
-    e.preventDefault();
-    this.$document.duScrollTop(0, 300);
+  selectedOrder(){
+    if(this.params.sortField === 'STOCK_AT'){
+      this.isStockAt = true;
+    }else if(this.params.sortField === 'ADD_COLUMN_LABEL'){
+      this.isAddColumnLabel = true;
+    }
   }
 
   collect(i) {
@@ -297,6 +301,25 @@ export default class listIndexController {
       this.$scope.root.user.ensureLogin();
       e.preventDefault();
     }
+  }
+
+  orderBySortField(sortField){
+    console.log(sortField);
+    this.$stateParams['sortField'] = sortField;
+    console.log(this.$stateParams);
+    if(sortField === 'STOCK_AT'){
+        this.isStockAt = true;
+        this.isStartDate = false;
+        console.log(this.isStockAt);
+    }else if(sortField === 'START_DATE'){
+        this.isStockAt = false;
+        this.isStartDate = true;
+        this.isAddColumnLabel = false;
+    }else if(sortField === 'ADD_COLUMN_LABEL'){
+        this.isStartDate = false;
+        this.isAddColumnLabel = true;
+    }
+    this.$state.go('list.result', this.$stateParams);
   }
 
 }
