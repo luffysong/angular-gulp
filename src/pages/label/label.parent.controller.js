@@ -409,14 +409,7 @@ export default class listParentController {
             tooltip: {
               headerFormat: '',
               pointFormatter: function pointFormmater() {
-                if (this.name === '其他') {
-                  const otherList = this.item.list.map(item =>
-                    `<li>${item.name}：占${item.proportion}</li>`
-                  );
-                  const otherHtml = `<ul>${otherList.join('')}</ul>`;
-                  return `<div class="chart-tooltip"><p>其他</p>${otherHtml}</div>`;
-                }
-                return `<div class="chart-tooltip">${this.name}，占${this.percentage.toString().slice(0, 4)}%</div>`;
+                return `<div class="chart-tooltip"><div>${this.name}</div><div>共${this.cnt}个，占${this.percentage.toString().slice(0, 4)}%</div></div>`;
               },
             },
             showInLegend: true,
@@ -496,14 +489,7 @@ export default class listParentController {
             tooltip: {
               headerFormat: '',
               pointFormatter: function pointFormmater() {
-                if (this.name === '其他') {
-                  const otherList = this.item.list.map(item =>
-                    `<li>${item.name}：占${item.proportion}</li>`
-                  );
-                  const otherHtml = `<ul>${otherList.join('')}</ul>`;
-                  return `<div class="chart-tooltip"><p>其他</p>${otherHtml}</div>`;
-                }
-                return `<div class="chart-tooltip">${this.name}，占${this.percentage.toString().slice(0, 4)}%</div>`;
+                return `<div class="chart-tooltip"><div>${this.name}</div><div>共${this.cnt}个，占${this.percentage.toString().slice(0, 4)}%</div></div>`;
               },
             },
             showInLegend: true,
@@ -544,13 +530,20 @@ export default class listParentController {
           symbolWidth: 10,
           symbolHeight: 5,
           labelFormatter: function labelFormatter() {
-            return `<span class="kr-legend-item">
+            return `<span class="kr-legend-item cur-auto" onclick="return false;" click="$event.preventDefault();">
             项目趋势 / ?
             </span>`;
           },
         },
         credits: {
           enabled: false,
+        },
+        noData: {
+          style: {
+            fontSize: '18px',
+            color: '#ccc',
+            fontWeight: 'normal',
+          },
         },
         plotOptions: {
           line: {
@@ -579,6 +572,11 @@ export default class listParentController {
           },
           series: {
             tooltip: this.trendColumnTooltip,
+            events: {
+              legendItemClick: function () {
+                return false; // <== returning false will cancel the default action
+              },
+            },
           },
         },
         chart: {
@@ -669,10 +667,17 @@ export default class listParentController {
           symbolWidth: 10,
           symbolHeight: 5,
           labelFormatter: function labelFormatter() {
-            return `<span class="kr-legend-item">
+            return `<span class="kr-legend-item cur-auto">
           <span style="background:${this.color}" class="kr-circle"></span
           ><span class="ellipsis">${this.name}</span>
           </span>`;
+          },
+        },
+        noData: {
+          style: {
+            fontSize: '18px',
+            color: '#ccc',
+            fontWeight: 'normal',
           },
         },
         credits: {
@@ -706,6 +711,11 @@ export default class listParentController {
           },
           series: {
             tooltip: this.investColumnTooltip,
+            events: {
+              legendItemClick: function () {
+                return false; // <== returning false will cancel the default action
+              },
+            },
           },
           column: {
             stacking: 'normal',
@@ -813,6 +823,7 @@ export default class listParentController {
       data: this.labelStat.investPhaseDis.slice(0, 6).map(item => ({
         name: item.key,
         y: item.value,
+        cnt: item.cnt || 0,
         item,
       })),
       type: 'pie',
@@ -824,6 +835,7 @@ export default class listParentController {
       data: this.labelStat.comPhaseDis.slice(0, 6).map(item => ({
         name: item.key,
         y: item.value,
+        cnt: item.cnt || 0,
         item,
       })),
       type: 'pie',
