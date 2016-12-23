@@ -52,17 +52,28 @@
             </div>
           </div>
         </td>
-        <td>{{::obj.industryStr}}</td>
-        <td class="org-col">
-          {{::obj.phase | companyFinancePhase}}
+        <td class="filter-item">
+          <span ng-click="vm.clickFilter(obj.industry,'industry')" data-stat-click="list.industry.{{obj.industry}}"
+           >{{::obj.industryStr}}</span>
         </td>
-        <td>{{::obj.cityStr || '暂无'}}</td>
+        <td class="filter-item">
+          <span ng-click="vm.clickFilter(obj.phase,'phase')" data-stat-click="list.phase.{{obj.phase}}"
+           >{{::obj.phase | companyFinancePhase}}</span>
+        </td>
+        <td class="filter-item">
+          <span ng-click="vm.clickFilter(obj.city,'city')"
+            data-stat-click="list.city.{{::obj.cityStr}}"
+            >{{::obj.cityStr || '暂无'}}</span>
+        </td>
         <td>
           <span ng-show="obj.startDate">{{::obj.startDate | date:'yyyy-MM'}}</span>
           <span ng-show="!obj.startDate">—</span>
         </td>
         <td>
-          <span ng-click="vm.collect($index)" data-stat-click="collect.{{obj.id}}" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
+          <span ng-click="vm.collect($index)"
+            data-stat-hover="collect.{{obj.id}}"
+            data-stat-click="collect.{{obj.id}}"
+            class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
             <span ng-show="obj.followed">已</span>收藏
             <div class="collect-modal" ng-hide="!vm.user.isLogin || !vm.user.isInvestor()" ng-if="obj.id === vm.cid" ng-click="$event.stopPropagation();">
               <section class="modal-title">选择收藏夹</section>

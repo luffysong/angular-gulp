@@ -1,6 +1,7 @@
 import ProjectService from '../project/project.service';
 
-@Inject('listIndexService', '$timeout', '$window', '$stateParams', '$state', '$scope', 'user', '$location')
+@Inject('listIndexService', '$timeout', '$window', '$stateParams', '$state',
+  '$scope', 'user', '$location')
 export default class listParentController {
 
   constructor() {
@@ -21,10 +22,10 @@ export default class listParentController {
 
     this.$scope.company = {};
     this.text = {
-      '1': '优选',
-      '3': '新品',
-      '4': '最新获投',
-      '5': '融资中',
+      1: '优选',
+      3: '新品',
+      4: '最新获投',
+      5: '融资中',
     };
 
 
@@ -247,7 +248,7 @@ export default class listParentController {
 
   /* 增加默认数据*/
   addItem(obj, type) {
-    if (!obj || !obj.concat) return;
+    if (!obj || !obj.concat) return undefined;
     const temp = obj.concat();
     const c = {
       active: false,
@@ -303,11 +304,12 @@ export default class listParentController {
   getPermission() {
     const columnId = `${this.params.columnId}`;
     this.topTitle = this.text[columnId];
-    if (columnId === '0' || columnId === '4' || angular.isUndefined(columnId)) {
+    if (!parseInt(columnId, 10)) {
       return false;
-    } else if (!this.user.isLogin || !this.user.isInvestor()) {
+    } else if (!this.user.isInvestor()) {
       return true;
     }
+    return false;
   }
   /* 获取融资需求数据*/
   /* getisFundingLimit() {
@@ -315,33 +317,33 @@ export default class listParentController {
   }*/
 
 
-  orderBySortField(sortField){
+  orderBySortField(sortField) {
     this.params.sortField = sortField;
-    if(sortField === 'STOCK_AT'){
-        this.isStockAt = true;
-        this.isStartDate = false;
-    }else if(sortField === 'START_DATE'){
-        this.isStockAt = false;
-        this.isStartDate = true;
-        this.isAddColumnLabel = false;
-    }else if(sortField === 'ADD_COLUMN_LABEL'){
-        this.isStartDate = false;
-        this.isAddColumnLabel = true;
+    if (sortField === 'STOCK_AT') {
+      this.isStockAt = true;
+      this.isStartDate = false;
+    } else if (sortField === 'START_DATE') {
+      this.isStockAt = false;
+      this.isStartDate = true;
+      this.isAddColumnLabel = false;
+    } else if (sortField === 'ADD_COLUMN_LABEL') {
+      this.isStartDate = false;
+      this.isAddColumnLabel = true;
     }
     this.go();
   }
 
 
-  loopLabels(labels){
+  loopLabels(labels) {
     this.labels = [];
     this.label = {};
-    var industryVal = this.$location.search().industry;
-    if(!industryVal){
-      return
+    const industryVal = this.$location.search().industry;
+    if (!industryVal) {
+      return;
     }
-    var labelIds = this.$location.search().label.split(',');
+    const labelIds = this.$location.search().label.split(',');
     angular.forEach(this.data.industry, (obj) => {
-      if(obj.value === industryVal){
+      if (obj.value === industryVal) {
         this.labels.push(obj);
         this.label = obj;
       }
@@ -349,24 +351,24 @@ export default class listParentController {
 
     angular.forEach(labelIds, (id) => {
       angular.forEach(labels, (obj) => {
-        if(obj.id === parseInt(id)){
+        if (obj.id === parseInt(id)) {
           obj.desc = obj.name;
           this.labels.push(obj);
         }
       });
     });
 
-    var i = 0;
-    var vm = this;
-    var loop = function(){
-     vm.timer = vm.$timeout(function(){
-        if(i >= vm.labels.length){
+    let i = 0;
+    const vm = this;
+    const loop = function () {
+      vm.timer = vm.$timeout(function () {
+        if (i >= vm.labels.length) {
           i = 0;
         }
         vm.label = vm.labels[i];
         i++;
         loop();
-      },5000)
+      }, 5000);
     };
     loop();
   }

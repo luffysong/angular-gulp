@@ -1,4 +1,4 @@
-<div class="result-container" id="projectListContainer" data-stat-module="label">
+<div class="result-container" id="projectListContainer" data-stat-module="list">
   <kr-backtop href="#projectListContainer"></kr-backtop>
   <div class="result-tip">
     <span>共<b>{{vm.listData.totalCount}}</b>个结果</span>
@@ -39,12 +39,28 @@
             </div>
           </div>
         </td>
-        <td>{{::obj.industryStr}}</td>
-        <td>{{::obj.phase | companyFinancePhase}}</td>
-        <td>{{::obj.cityStr || '暂无'}}</td>
+        <td class="filter-item">
+          <span ng-click="vm.clickFilter(obj.industry,'industry')"
+            data-stat-click="industry.{{obj.industry}}"
+           ng-class="{'disabled': parentVm.getPermission()}">{{::obj.industryStr}}</span>
+        </td>
+        <td class="filter-item">
+          <span ng-click="vm.clickFilter(obj.phase,'phase')"
+            data-stat-click="phase.{{obj.phase}}"
+            ng-class="{'disabled': obj.phase === 'NONE' || parentVm.getPermission()}">
+            {{::obj.phase | companyFinancePhase}}</span>
+        </td>
+        <td class="filter-item">
+          <span ng-click="vm.clickFilter(obj.city,'city')"
+            data-stat-click="city.{{::obj.cityStr}}"
+            ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
+        </td>
         <td>{{::obj.startDate | date:'yyyy-MM'}}</td>
         <td>
-          <span ng-click="vm.collect($index)" class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position data-stat-click="collect.{{obj.id}}">
+          <span ng-click="vm.collect($index)" class="collect-btn"
+            data-stat-hover="collect.{{obj.id}}"
+            ng-mouseenter="vm.triggerCollect(obj.id)"
+            ng-class="{'collected':obj.followed}" cal-position data-stat-click="collect.{{obj.id}}">
             <span ng-show="obj.followed">已</span>收藏
             <div class="collect-modal" ng-if="vm.user.isLogin && vm.user.isInvestor()" ng-if="obj.id === vm.cid" ng-click="$event.stopPropagation();">
               <section class="modal-title">选择收藏夹</section>

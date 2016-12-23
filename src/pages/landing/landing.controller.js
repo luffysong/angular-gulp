@@ -84,6 +84,18 @@ export default class landingIndexController {
     });
   }
 
+  clickFilter(item, type) {
+    angular.forEach(this.$scope.parentVm.itemList, o => {
+      if (o.name === type) {
+        const key = o.key;
+        angular.forEach(this.$scope.parentVm.data[type], (obj, index) => {
+          if (obj[key] === item) {
+            this.$scope.parentVm.selectIndustry(index, type);
+          }
+        });
+      }
+    });
+  }
 
 
   /*根据路由参数激活*/

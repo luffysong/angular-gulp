@@ -45,6 +45,19 @@ export default class labelIndexController {
     }
   }
 
+  clickFilter(item, type) {
+    angular.forEach(this.$scope.parentVm.itemList, o => {
+      if (o.name === type) {
+        const key = o.key;
+        angular.forEach(this.$scope.parentVm.data[type], (obj, index) => {
+          if (obj[key] === item) {
+            this.$scope.parentVm.selectIndustry(index, type);
+          }
+        });
+      }
+    });
+  }
+
   collect(i) {
     if(!this.user.isLogin) {
       this.$scope.root.user.ensureLogin();
