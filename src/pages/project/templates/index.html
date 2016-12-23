@@ -51,6 +51,11 @@
             <div><b>{{vm.baseInfoVM.projectStatHeader.fundsAmount}}</b></div>
             <div class="type"><span>金额</span></div>
           </div>
+          <div class="amount" ng-show="vm.baseInfoVM.projectStatHeader.phase && !vm.baseInfoVM.projectStatHeader.fundsAmount"
+           kr-scroll-click href="#financeHistory" du-smooth-scroll du-scrollspy offset="{{vm.financeHistory}}">
+            <div><b>金额未披露</b></div>
+            <div class="type"><span>金额</span></div>
+          </div>
           <div class="not-finance" ng-show="!vm.baseInfoVM.projectStatHeader.fundsAmount && !vm.baseInfoVM.projectStatHeader.phase">未收录</div>
         </div>
       </div>
