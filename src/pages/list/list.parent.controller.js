@@ -308,21 +308,6 @@ export default class listParentController {
   }*/
 
 
-  orderBySortField(sortField){
-    this.params['sortField'] = sortField;
-    if(sortField === 'STOCK_AT'){
-        this.isStockAt = true;
-        this.isStartDate = false;
-    }else if(sortField === 'START_DATE'){
-        this.isStockAt = false;
-        this.isStartDate = true;
-        this.isAddColumnLabel = false;
-    }else if(sortField === 'ADD_COLUMN_LABEL'){
-        this.isStartDate = false;
-        this.isAddColumnLabel = true;
-    }
-    this.go();
-  }
 
   loopLabels(labels){
     this.labels = [];

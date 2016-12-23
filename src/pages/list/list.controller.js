@@ -33,6 +33,10 @@ export default class listIndexController {
 
     this.handleActive();
 
+    if(this.$stateParams['sortField'] === 'STOCK_AT'){
+      this.isStockAt = true;
+    }
+
   }
 
   collect(i) {
@@ -292,6 +296,25 @@ export default class listIndexController {
       this.$scope.root.user.ensureLogin();
       e.preventDefault();
     }
+  }
+
+  orderBySortField(sortField){
+    console.log(sortField);
+    this.$stateParams['sortField'] = sortField;
+    console.log(this.$stateParams);
+    if(sortField === 'STOCK_AT'){
+        this.isStockAt = true;
+        this.isStartDate = false;
+        console.log(this.isStockAt);
+    }else if(sortField === 'START_DATE'){
+        this.isStockAt = false;
+        this.isStartDate = true;
+        this.isAddColumnLabel = false;
+    }else if(sortField === 'ADD_COLUMN_LABEL'){
+        this.isStartDate = false;
+        this.isAddColumnLabel = true;
+    }
+    this.$state.go('list.result', this.$stateParams);
   }
 
 }
