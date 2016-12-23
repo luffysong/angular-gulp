@@ -356,6 +356,7 @@ export default class landingParentController {
     this.data.isFundingLimit = this.addItem(this.$scope.root.FINANCE_NEED_META);
   }*/
 
+
   orderBySortField(sortField){
     this.params['sortField'] = sortField;
     if(sortField === 'STOCK_AT'){
@@ -373,7 +374,6 @@ export default class landingParentController {
     }
     this.go();
   }
-
 
 }
 

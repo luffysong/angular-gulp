@@ -5,10 +5,10 @@
     <span ng-if="vm.hasSelect">共<b>{{vm.listData.totalCount}}</b>个结果</span>
     <div class="order-btns">
       <div>
-        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('ADD_COLUMN_LABEL')" ng-class="{'btn-active': parentVm.isAddColumnLabel}">推荐时间</a>
+        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('ADD_COLUMN_LABEL')" ng-class="{'btn-active': vm.isAddColumnLabel}">推荐时间</a>
       </div>
       <div>
-        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': parentVm.isStartDate}">成立时间</a>
+        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}">成立时间</a>
       </div>
     </div>
   </div>

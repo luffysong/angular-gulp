@@ -37,7 +37,15 @@ export default class followIndexController {
     });
 
     this.handleActive();
+    this.selectedOrder();
+  }
 
+  selectedOrder(){
+    if(this.$stateParams.sortField === 'ADD_COLUMN_LABEL'){
+      this.isAddColumnLabel = true;
+    } else if(this.$stateParams.sortField === 'START_DATE'){
+      this.isStartDate = true;
+    }
   }
 
   collect(i) {
