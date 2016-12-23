@@ -46,11 +46,11 @@
     </div>
   </div>
 
-  <div class="project-intro-wrapper">
+  <div class="project-intro-wrapper" ng-show="vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true">
     <div ng-if="!vm.introductionVM.isEdit">
       <h4>详细介绍</h4>
 
-      <div class="introduce-detail" ng-if="vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true" >
+      <div class="introduce-detail">
         <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.productService">
           <span class="sub-title">产品服务</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.productService | enterFormat"></span>

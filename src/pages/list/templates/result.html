@@ -2,7 +2,7 @@
   <kr-backtop href="#projectListContainer"></kr-backtop>
   <div class="result-tip">
     <span>共 <b>{{vm.listData.totalCount}}</b> 个结果</span>
-    <div class="labels" ng-if="parentVm.params['industry'] && parentVm.params['industry'] !=='unlimited'">
+    <div class="labels" ng-if="parentVm.params['industry'] && parentVm.params['industry'] !=='unlimited' && !parentVm.params['columnId']">
       <span class="icon-data-trends"></span>
       <a ui-sref="label.result({labelId: parentVm.label.id})" target="_blank"> [ {{parentVm.label.desc}} ] <span>行业趋势</span></a>
       <div class="up-angle"></div>
@@ -11,14 +11,15 @@
     <div class="order-btns">
       <div>
         <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': vm.isStockAt}"
-         ng-hide="parentVm.params['columnId'] > 0">收录时间</a>
+        data-stat-click="list.stockAt" ng-hide="parentVm.params['columnId'] > 0">收录时间</a>
       </div>
       <div>
         <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('ADD_COLUMN_LABEL')" ng-class="{'btn-active': vm.isAddColumnLabel}"
-         ng-show="parentVm.params['columnId'] > 0">推荐时间</a>
+         data-stat-click="list.addColumnLabel" ng-show="parentVm.params['columnId'] > 0">推荐时间</a>
       </div>
       <div>
-        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}">成立时间</a>
+        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}"
+         data-stat-click="list.startDate">成立时间</a>
       </div>
     </div>
   </div>
@@ -47,16 +48,16 @@
               {{::obj.brief}}
             </div>
             <div class="project-tag">
-              <div class="highlights" ng-show="parentVm.params['columnId'] > 0">
+              <div class="highlights" ng-show="parentVm.params['columnId'] > 0 && obj.advantage">
                 <i class="icon-listPoint"></i>
                 <span>{{::obj.advantage}}</span>
               </div>
               <div class="labels" ng-hide="parentVm.params['columnId'] > 0">
                 <span class="icon-bookmark" ng-show="obj.operationTag.length || obj.industryTag.length"></span>
-                <a ng-repeat="tag in obj.operationTag" class="operation-tag" ui-sref="label.result({labelId: tag.id, sortField: 'STOCK_AT'})" target="_blank" ng-if="obj.operationTag.length">
+                <a ng-repeat="tag in obj.operationTag" class="operation-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag.length">
                   <span>{{tag.name}}</span>
                 </a>
-                <a ng-repeat="tag in obj.industryTag" class="industry-tag" ui-sref="label.result({labelId: tag.id, sortField: 'STOCK_AT'})" target="_blank" ng-if="obj.industryTag.length">
+                <a ng-repeat="tag in obj.industryTag" class="industry-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag.length">
                   <span>{{tag.name}}</span>
                 </a>
               </div>

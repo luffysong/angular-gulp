@@ -3,15 +3,18 @@
   <div class="result-tip">
     <span ng-if="vm.$stateParams.kw">找到关于 <b>“{{vm.$stateParams.kw}}”</b> 的</span>
     <span ng-if="!vm.$stateParams.kw">全部搜索</span>结果<b>{{vm.listData.totalCount}}</b>条
-    <div class="order-btns">
+    <div class="order-btns" ng-show="vm.$stateParams.type === 'company'">
       <div>
-        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('MATCH_RATE')" ng-class="{'btn-active': vm.isMatchRate}">匹配度</a>
+        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('MATCH_RATE')" ng-class="{'btn-active': vm.isMatchRate}"
+        data-stat-click="landing.matchRate">匹配度</a>
       </div>
       <div>
-        <a href="#" class="center-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': vm.isStockAt}">收录时间</a>
+        <a href="#" class="center-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': vm.isStockAt}"
+        data-stat-click="landing.stockAt">收录时间</a>
       </div>
       <div>
-        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}">成立时间</a>
+        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}"
+        data-stat-click="landing.startDate">成立时间</a>
       </div>
     </div>
   </div>
@@ -40,10 +43,10 @@
               <span>{{::obj.advantage}}</span>
             </div>
             <div class="project-tag">
-              <a ng-repeat="tag in obj.operationTag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag">
+              <a ng-repeat="tag in obj.operationTag" class="operation-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag">
                 <span>{{tag.name}}</span>
               </a>
-              <a ng-repeat="tag in obj.industryTag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag">
+              <a ng-repeat="tag in obj.industryTag" class="industry-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag">
                 <span>{{tag.name}}</span>
               </a>
             </div>
