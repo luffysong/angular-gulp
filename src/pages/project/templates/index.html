@@ -17,9 +17,7 @@
         </h1>
         <h3>{{::vm.baseInfoVM.brief}}</h3>
         <p class="highlights" ng-if="vm.baseInfoVM.advantage && root.user.isInvestor() && !vm.isEditMode">
-          <span class="icon-highlights" ng-show="vm.baseInfoVM.advantage">
-            <span>亮点</span>
-          </span>
+          <span class="icon-listPoint" ng-show="vm.baseInfoVM.advantage"></span>
           <span class="highlight">{{vm.baseInfoVM.advantage}}</span>
         </p>
         <p class="icons">
