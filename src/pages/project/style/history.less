@@ -60,12 +60,13 @@
           float: right;
           top: 5px;
           position: relative;
+          font-weight: normal;
         }
       }
     }
     .detail-content {
       margin-bottom: 40px;
-      padding-bottom: 40px;
+      padding-bottom: 10px;
       border-bottom: 1px dashed #E7E7E7;
       margin-top: 24px;
       display: table;
@@ -159,6 +160,11 @@
           display: flex;
           justify-content:center;
           align-items:Center;
+          border-radius: 4px;
+          &:hover {
+            background: #FFFFFF;
+            box-shadow: 0px 0px 10px 0px #BDD0ED;
+          }
           .info-lun{
             font-size: 18px;
             font-weight: bold;
@@ -203,6 +209,7 @@
             padding-left: 30px;
             margin-left: 30px;
             display: inline-block;
+            margin-right: 24px;
             .label-name {
               font-size: 14px;
               color: #969FA9;
@@ -221,7 +228,6 @@
             }
             .participant-down {
               position: relative;
-              right: 6px;
             }
             .participants {
               .participant{
@@ -234,7 +240,7 @@
                 padding-bottom: 15px;
                 position: relative;
                 top: 10px;
-                margin-right: 16px;
+                right: 2px;
               }
             }
           }
@@ -301,7 +307,7 @@
       letter-spacing: 0px;
       line-height: 21px;
       .icon{
-        font-size: 16px;
+        font-size: 20px;
         vertical-align: sub;
       }
     }

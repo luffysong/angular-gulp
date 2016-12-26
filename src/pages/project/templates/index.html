@@ -15,7 +15,7 @@
             ng-click="vm.baseInfoVM.enterEditMode()"
             href="javascript:void(0)" data-stat-click="project.{{vm.id}}.baseInfo.edit">编辑</a>
         </h1>
-        <h3>{{::vm.baseInfoVM.brief}}</h3>
+        <h3 tooltips tooltip-template="{{vm.baseInfoVM.brief?vm.baseInfoVM.brief:'未填写'}}" tooltip-class="tooltip">{{::vm.baseInfoVM.brief}}</h3>
         <p class="highlights" ng-if="vm.baseInfoVM.advantage && root.user.isInvestor() && !vm.isEditMode">
           <span class="icon-listPoint" ng-show="vm.baseInfoVM.advantage"></span>
           <span class="highlight">{{vm.baseInfoVM.advantage}}</span>
@@ -29,8 +29,7 @@
           <a class="kr-icon icon-Wechat link-none" ng-class="{'icon-Wechat-active':vm.baseInfoVM.weixin}"
             tooltips tooltip-template="{{vm.baseInfoVM.weixin?vm.baseInfoVM.weixin:'未填写'}}" tooltip-class="tooltip">
           </a>
-          <a class="website ellipsis icon-website" target="_blank" ng-class="{'icon-website-active':vm.baseInfoVM.website}" ng-href="{{::vm.baseInfoVM.website}}">
-          </a>
+          <a class="kr-icon icon-officialsite" target="_blank" ng-class="{'icon-website-active':vm.baseInfoVM.website}" ng-href="{{::vm.baseInfoVM.website}}"></a>
         </p>
       </div>
       <div class="top-info" ng-show="vm.baseInfoVM.projectStatHeader">
