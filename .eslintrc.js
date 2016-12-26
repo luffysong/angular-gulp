@@ -41,7 +41,7 @@ module.exports = {
     'angular/di-order': [0, true],
     'angular/directive-name': 0,
     'angular/component-limit': [0, 1],
-    'angular/document-service': 2,
+    'angular/document-service': 0,
     'angular/empty-controller': 0,
     'angular/file-name': 0,
     'angular/filter-name': 0,
@@ -71,7 +71,7 @@ module.exports = {
     'angular/typecheck-object': 2,
     'angular/typecheck-string': 2,
     'angular/watchers-execution': [0, '$digest'],
-    'angular/window-service': 2,
+    'angular/window-service': 0,
   },
   globals: {
     Inject: true,
