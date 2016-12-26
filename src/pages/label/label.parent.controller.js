@@ -301,6 +301,9 @@ export default class listParentController {
       this.setTrend(this.labelStat.comIncrTrend);
       this.setInvest(this.labelStat);
       this.handleData(this.labelStat);
+      if (this.seeAll) {
+        this.handleRetention();
+      }
       this.labelLoading = false;
     });
   }
