@@ -4,6 +4,7 @@ import * as META from './constants/index';
 import FormVM from './base/FormVM';
 import Alert from './base/Alert';
 import User from './base/User';
+import phantom from './base/phantom';
 import { paddingContent } from './ui.js';
 /* eslint-disable */
 window.krData = {
@@ -14,5 +15,6 @@ window.krData = {
   META,
   User,
   paddingContent,
+  phantom,
 };
 import './bootstrap';

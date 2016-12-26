@@ -16,10 +16,10 @@
       <ul ng-if="vm.projectData.baseInfo.operationTag.length || vm.projectData.baseInfo.industryTag.length" class="tags">
         <li class="tag-icon"><span class="icon-Tags"></span></li>
         <li ng-if="tag" class="operation-tag" ng-repeat="tag in vm.projectData.baseInfo.operationTag">
-          <a ui-sref="list.result({label: tag.id, columnId: 0})" target="_blank">{{tag.name}}</a>
+          <a ui-sref="label.result({labelId: tag.id})" target="_blank">{{tag.name}}</a>
         </li>
         <li ng-if="tag" class="tag" ng-repeat="tag in vm.projectData.baseInfo.industryTag">
-          <a ui-sref="list.result({label: tag.id, columnId: 0})" target="_blank">{{tag.name}}</a>
+          <a ui-sref="label.result({labelId: tag.id})" target="_blank">{{tag.name}}</a>
         </li>
       </ul>
       <div ng-if="vm.projectData.baseInfo.intro" class="info">
