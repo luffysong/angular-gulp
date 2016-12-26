@@ -122,8 +122,9 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     /* 全局PageView埋点统计事件触发*/
 
     const $progressbar = $document.find('.progress-global-bar');
-    $progressbar.on('transitionend', function ontransitionend() {
-      if ($(this).hasClass('progress-end')) {
+    $progressbar.on('transitionend', function ontransitionend(e) {
+      const PROGRESS_END_ELAPSED = 0.4;
+      if (e.originalEvent.elapsedTime === PROGRESS_END_ELAPSED) {
         this.classList.remove('progress-end');
         this.classList.remove('progress-start');
       }
