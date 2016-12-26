@@ -1,7 +1,7 @@
 <div class="project-wrapper" ng-show="!parentVm.open.sideBar" data-stat-module="label">
   <div class="label-wrapper" ng-hide="parentVm.labelLoading">
     <div class="label-shade"></div>
-    <div class="see-all" ng-click="parentVm.openAll()">
+    <div class="see-all" ng-click="parentVm.openAll()" data-stat-click="showMore">
         {{parentVm.seeAll ? '收起' : '查看完整数据分析'}}
     </div>
     <div class="label-outside">
