@@ -716,8 +716,22 @@
         .search-result-wrapper {
           height: auto;
           width: 100%;
+          z-index: 11;
+          .ac-container {
+            background: #FFFFFF;
+            border: 1px solid #CBD2DD;
+            box-shadow: 0px 3px 10px 0px #969FA9;
+            ul li {
+              width: 488px;
+              text-align: left;
+            }
+          }
         }
         .input-icon {
+          &:focus {
+            outline: 0;
+          }
+          cursor: pointer;
           float: left;
           display: block;
           width:80px;
