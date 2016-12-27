@@ -1,15 +1,10 @@
 import krData from 'krData';
 import ProjectService from '../project/project.service';
 
-class TestAPI extends krData.API {
-
-}
-
 @Inject('landingIndexService', '$timeout', '$window','$stateParams','$state','$scope', '$q', 'user', 'ngDialog')
 export default class landingIndexController {
 
   constructor() {
-    this.api = new TestAPI();
     this.init();
   }
 

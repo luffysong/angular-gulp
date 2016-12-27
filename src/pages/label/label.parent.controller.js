@@ -1,9 +1,6 @@
 import krData from 'krData';
 import ProjectService from '../project/project.service';
 import noDataFactory from '../../bower/highcharts/modules/no-data-to-display.src.js';
-class TestAPI extends krData.API {
-
-}
 
 @Inject('labelIndexService', '$timeout', '$window', '$stateParams', '$state', '$scope', 'user')
 export default class listParentController {
@@ -16,7 +13,6 @@ export default class listParentController {
         noData: '暂无数据',
       },
     });
-    this.api = new TestAPI();
     this.init();
     this.initChart();
   }

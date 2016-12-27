@@ -1,9 +1,9 @@
-import UcService from './uc.service';
 import krData from 'krData';
+import UcService from './uc.service';
 
 const ucService = new UcService();
 
-@Inject('$rootScope','$window', '$validation', '$q')
+@Inject('$rootScope', '$window', '$validation', '$q')
 class UcPageController {
 
   constructor() {
@@ -22,8 +22,9 @@ class UcPageController {
     });
   }
 
+
   getBgImage(img) {
-    return `url('${img}')`;
+    return `url('${img || krData.utls.EMPTY_IMAGE}')`;
   }
 
   setContact(type) {
@@ -41,9 +42,8 @@ class UcPageController {
       return;
     }
 
-    this.$validation.validate(this.emailForm).catch(() => {
-      return this.$q.reject();
-    }).then(() => {
+    this.$validation.validate(this.emailForm).catch(() => this.$q.reject()
+    ).then(() => {
       ucService.addBPEmail(this.user.commonEmail);
       this.editEmail = false;
     });
@@ -53,12 +53,8 @@ class UcPageController {
     this.editEmail = true;
   }
 
-  loginOut(){
+  loginOut() {
     krData.utls.logout();
-    const vm = this;
-    setTimeout(function(){
-      vm.$window.location.reload();
-    },500);
   }
 
 }

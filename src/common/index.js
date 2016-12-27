@@ -17,4 +17,5 @@ window.krData = {
   paddingContent,
   phantom,
 };
-import './bootstrap';
+phantom.stopRender();
+require('./bootstrap');

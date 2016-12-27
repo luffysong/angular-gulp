@@ -7,15 +7,16 @@
         <img ng-src="{{vm.baseInfoVM.logo || '/images/default-logo.png'}}" class="logo" alt="">
       </div>
       <div>
-        <h1>
-          <div class="base-info-name" title="{{::vm.baseInfoVM.name}}">{{::vm.baseInfoVM.name}}</div>
+        <div class="h1">
+          <h1 class="base-info-name" title="{{::vm.baseInfoVM.name}}">{{::vm.baseInfoVM.name}}</h1>
           <span>{{vm.fundsVM.fundsVo.fundsPhase | financePhase}}</span><span ng-if="vm.fundsVM.funds"> · 融资中</span>
           <a class="btn-edit"
             ng-if="vm.isEditMode"
             ng-click="vm.baseInfoVM.enterEditMode()"
             href="javascript:void(0)" data-stat-click="project.{{vm.id}}.baseInfo.edit">编辑</a>
-        </h1>
-        <h3 tooltips tooltip-template="{{vm.baseInfoVM.brief?vm.baseInfoVM.brief:'未填写'}}" tooltip-class="tooltip">{{::vm.baseInfoVM.brief}}</h3>
+        </div>
+        <h3 tooltips tooltip-template="{{vm.baseInfoVM.brief?vm.baseInfoVM.brief:'未填写'}}"
+          tooltip-class="tooltip">{{::vm.baseInfoVM.brief}}</h3>
         <p class="highlights" ng-if="vm.baseInfoVM.advantage && root.user.isInvestor() && !vm.isEditMode">
           <span class="icon-listPoint" ng-show="vm.baseInfoVM.advantage"></span>
           <span class="highlight">{{vm.baseInfoVM.advantage}}</span>
@@ -29,7 +30,8 @@
           <a class="kr-icon icon-Wechat link-none" ng-class="{'icon-Wechat-active':vm.baseInfoVM.weixin}"
             tooltips tooltip-template="{{vm.baseInfoVM.weixin?vm.baseInfoVM.weixin:'未填写'}}" tooltip-class="tooltip">
           </a>
-          <a class="kr-icon icon-officialsite" target="_blank" ng-class="{'icon-website-active':vm.baseInfoVM.website}" ng-href="{{::vm.baseInfoVM.website}}"></a>
+          <a class="kr-icon icon-officialsite" target="_blank"
+            ng-class="{'icon-website-active':vm.baseInfoVM.website}" ng-href="{{::vm.baseInfoVM.website}}"></a>
         </p>
       </div>
       <div class="top-info" ng-show="vm.baseInfoVM.projectStatHeader">
@@ -51,12 +53,14 @@
             <div><b>{{vm.baseInfoVM.projectStatHeader.fundsAmount}}</b></div>
             <div class="type"><span>金额</span></div>
           </div>
-          <div class="amount" ng-show="vm.baseInfoVM.projectStatHeader.phase && !vm.baseInfoVM.projectStatHeader.fundsAmount"
+          <div class="amount"
+            ng-show="vm.baseInfoVM.projectStatHeader.phase && !vm.baseInfoVM.projectStatHeader.fundsAmount"
            kr-scroll-click href="#financeHistory" du-smooth-scroll du-scrollspy offset="{{vm.financeHistory}}">
             <div><b>金额未披露</b></div>
             <div class="type"><span>金额</span></div>
           </div>
-          <div class="not-finance" ng-show="!vm.baseInfoVM.projectStatHeader.fundsAmount && !vm.baseInfoVM.projectStatHeader.phase">未收录</div>
+          <div class="not-finance"
+            ng-show="!vm.baseInfoVM.projectStatHeader.fundsAmount && !vm.baseInfoVM.projectStatHeader.phase">未收录</div>
         </div>
       </div>
       <div class="top-info" ng-show="!vm.baseInfoVM.projectStatHeader"><div class="no-top-data">暂无</div></div>

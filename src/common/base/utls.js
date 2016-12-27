@@ -20,6 +20,8 @@ export const UPLOAD_TYPE = {
   FILE: 'file',
   PIC: 'pic',
 };
+
+export const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 export function getLoadBundle(page) {
   return function loadBundle($ocLazyLoad) {
     'ngInject';
@@ -116,8 +118,9 @@ export function login(url) {
 }
 
 export function logout() {
-  getService('$http').get('/n/api/user/logout', () => {
-    getService('$location').refresh();
+  getService('$http').get('/n/api/user/logout')
+  .then(() => {
+    window.location.reload();
   });
 }
 

@@ -11,15 +11,15 @@ export default {
     loadProjectBundle: getLoadBundle(assets.page.project),
     projectData: /* @ngInject */
     function loadProjectData(loadProjectBundle, projectService, $stateParams, resolveData,
-      projectRun) {
+      projectRun, seoService) {
       projectRun.run();
-      return projectService.allData({
+      const seoPromise = seoService.loadProject($stateParams.id);
+      const projectPromise = projectService.allData({
         id: $stateParams.id,
-      }).then(data => (resolveData.projectData = data))
-        .then(data => {
-          phantom.render();
-          return data;
-        });
+      }).then(data => (resolveData.projectData = data));
+
+      phantom.renderAsync([seoPromise, projectPromise]);
+      return projectPromise;
     },
   },
 };

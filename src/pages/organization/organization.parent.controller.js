@@ -1,15 +1,11 @@
 import krData from 'krData';
 import OrganizationService from '../organization/organization.service';
 
-class TestAPI extends krData.API {
-
-}
 
 @Inject('$timeout', '$window','$stateParams','$state','$scope')
 export default class organizationParentController {
 
   constructor() {
-    this.api = new TestAPI();
     this.init();
   }
 

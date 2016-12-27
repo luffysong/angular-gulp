@@ -1,16 +1,11 @@
 import krData from 'krData';
 import ProjectService from '../project/project.service';
 
-class TestAPI extends krData.API {
-
-}
-
 @Inject('listIndexService', '$timeout', '$window','$stateParams',
   '$state','$scope', '$q', 'user', 'ngDialog', '$document')
 export default class listIndexController {
 
   constructor() {
-    this.api = new TestAPI();
     this.init();
   }
 

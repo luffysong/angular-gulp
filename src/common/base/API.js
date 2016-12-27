@@ -84,14 +84,23 @@ export default class API {
       actions = getMethods;
       getMethods = [];
     }
+    if (/^https?:\/\//.test(url)) {
+      this.API_PATH = '';
+    }
     this.getMethods = getMethods || [];
     this.actions = actions || {};
     this.$q = getService('$q');
     resolveActions(this.actions);
     mergeActions(this.getMethods, this.actions);
-    this.request = getService('$resource')(
-      `${this.API_PATH}${url}/:action`,
-      null, this.actions);
+    if (url.indexOf(':action') > -1) {
+      this.request = getService('$resource')(
+        `${this.API_PATH}${url}`,
+        null, this.actions);
+    } else {
+      this.request = getService('$resource')(
+        `${this.API_PATH}${url}/:action`,
+        null, this.actions);
+    }
     this.copyMethod();
   }
 

@@ -1,15 +1,11 @@
 import krData from 'krData';
 import InvestmentService from '../investment/investment.service';
 
-class TestAPI extends krData.API {
-
-}
 
 @Inject('$timeout', '$window', '$stateParams', '$state', '$scope')
 export default class investmentParentController {
 
   constructor() {
-    this.api = new TestAPI();
     this.init();
   }
 
