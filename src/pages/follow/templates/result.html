@@ -35,17 +35,20 @@
             <div class="project-intro">
               {{::obj.brief}}
             </div>
-            <div class="project-tag" ng-if="obj.advantage">
-              <i class="icon-Hot"></i>
-              <span>{{::obj.advantage}}</span>
-            </div>
             <div class="project-tag">
-              <a ng-repeat="tag in obj.operationTag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag">
-                <span>{{tag.name}}</span>
-              </a>
-              <a ng-repeat="tag in obj.industryTag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag">
-                <span>{{tag.name}}</span>
-              </a>
+              <div class="highlights" ng-show="obj.advantage">
+                <i class="icon-listPoint"></i>
+                <span>{{::obj.advantage}}</span>
+              </div>
+              <div class="labels">
+                <span class="icon-bookmark" ng-show="obj.operationTag.length || obj.industryTag.length"></span>
+                <a ng-repeat="tag in obj.operationTag" class="operation-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag.length">
+                  <span>{{tag.name}}</span>
+                </a>
+                <a ng-repeat="tag in obj.industryTag" class="industry-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag.length">
+                  <span>{{tag.name}}</span>
+                </a>
+              </div>
             </div>
           </div>
         </td>
