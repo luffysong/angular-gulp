@@ -70,7 +70,10 @@ export default class listParentController {
         this.totalCount = data.pageData.totalCount;
         this.data.label = data.label;
         this.data.label[0].value = 'unlimited';
-        this.loopLabels(this.data.label);
+        this.$timeout.cancel(this.timer);
+        if(this.params.industry !== 'unlimited'){
+          this.loopLabels(this.data.label);
+        }
         this.handleActive();
         this.updateData(data);
       });
@@ -188,8 +191,6 @@ export default class listParentController {
     } else {
       this.params[type] = this.data[type][index][attr];
     }
-
-    this.$timeout.cancel(this.timer);
     this.go();
   }
 
@@ -341,22 +342,25 @@ export default class listParentController {
     if (!industryVal) {
       return;
     }
-    const labelIds = this.$location.search().label.split(',');
     angular.forEach(this.data.industry, (obj) => {
       if (obj.value === industryVal) {
         this.labels.push(obj);
         this.label = obj;
+        this.setLabelId(obj);
       }
     });
 
-    angular.forEach(labelIds, (id) => {
-      angular.forEach(labels, (obj) => {
-        if (obj.id === parseInt(id)) {
-          obj.desc = obj.name;
-          this.labels.push(obj);
-        }
+    if(this.$location.search().label){
+      const labelIds = this.$location.search().label.split(',');
+      angular.forEach(labelIds, (id) => {
+        angular.forEach(labels, (obj) => {
+          if (obj.id === parseInt(id)) {
+            obj.desc = obj.name;
+            this.labels.push(obj);
+          }
+        });
       });
-    });
+    }
 
     let i = 0;
     const vm = this;
@@ -369,8 +373,18 @@ export default class listParentController {
         i++;
         loop();
       }, 5000);
+      vm.$scope.$on('$destroy', () => {
+        vm.$timeout.cancel(vm.timer);
+      });
     };
     loop();
+  }
+
+  setLabelId(label){
+    this.projectService.getLabelId(label).then(data => {
+      this.label.id = data.labelId;
+    });
+
   }
 }
 
