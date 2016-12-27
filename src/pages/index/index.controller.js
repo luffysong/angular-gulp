@@ -21,6 +21,7 @@ export default class homeController {
     this.labelLoading = true;
     this.unableAnimate = true;
     this.currentIndex = 0;
+    this.page = 1;
 
     /*console.warn(this.parallaxHelper);
     this.background = this.parallaxHelper.createAnimator(-0.3);*/
@@ -40,8 +41,58 @@ export default class homeController {
     this.getColumn();
     this.getTag();
     this.getInvestor();
+
+    this.getProject();
+    this.getFundExpress();
+    this.getHot();
+    this.recommendPro();
   }
 
+  goPage(type) {
+    if (type === 'prev') {
+      if (this.page !== 1) {
+        this.getFundExpress(--this.page);
+      }
+    } else {
+      this.getFundExpress(++this.page);
+    }
+  }
+
+  recommendPro() {
+    this.projectService.indexRecommendPro().then(data => {
+      console.log(data);
+      this.recommendList = data;
+    }).catch(() => {
+    });
+  }
+
+  getProject() {
+    this.projectService.indexProject().then(data => {
+      console.log(data);
+      this.newProject = data;
+    }).catch(() => {
+    });
+  }
+
+  getFundExpress() {
+    const params = {
+      pageSize: 4,
+      page: this.page,
+    };
+    this.projectService.indexFundExpress(params).then(data => {
+      console.log(data);
+      this.fundExpress = data;
+    }).catch(() => {
+    });
+  }
+
+  getHot() {
+    this.projectService.getHotLabel().then(data => {
+      console.log(data);
+      this.hotLabel = data;
+    }).catch(() => {
+    });
+  }
 
   getColumn() {
     this.projectService.indexColumn().then(data => {

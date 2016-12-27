@@ -26,6 +26,25 @@ const indexApi = new API('/index', [], {
   investor: {
     action: 'investor',
   },
+  newProject: {
+    action: 'new-pro',
+    isArray: true,
+  },
+  fundExpress: {
+    action: 'fund-express',
+    isArray: true,
+  },
+  recommendPro: {
+    action: 'recommend-pro',
+    isArray: true,
+  },
+});
+
+const labelApi = new API('/label', [], {
+  hotLabel: {
+    action: 'hot',
+    isArray: true,
+  },
 });
 
 @Inject('$q','$state')
@@ -243,6 +262,9 @@ export default class ProjectService extends API {
     return new API('/label/:id/stats').get(id);
   }
 
+
+
+
   /* 标签下公司数据*/
   getLabelCompany(obj) {
     const id = {
@@ -348,9 +370,26 @@ export default class ProjectService extends API {
     return indexApi.label();
   }
 
+  indexProject() {
+    return indexApi.newProject();
+  }
+
+  indexFundExpress(obj) {
+    return indexApi.fundExpress(obj);
+  }
+
+  indexRecommendPro() {
+    return indexApi.recommendPro();
+  }
+
   /* 首页投资人接口*/
   indexInvestor() {
     return indexApi.investor();
+  }
+
+  // 热门标签
+  getHotLabel() {
+    return labelApi.hotLabel();
   }
 
   // FIXME: 此处因为服务端数据出错

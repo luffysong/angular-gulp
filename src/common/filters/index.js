@@ -9,6 +9,7 @@ import listDateFilter from './listDateFilter.filter';
 import followArea from './followArea.filter';
 import msgDateFilter from './msgDate.filter';
 import brLineFilterFactory from './brLine.filter';
+import companyIndustry from './companyIndustry.filter';
 
 angular.module('@@app.filters', [])
   .filter('financePhase', getConstantFilterFactory(META.FINANCE_PHASE_META))
@@ -25,4 +26,5 @@ angular.module('@@app.filters', [])
   .filter('listDateFilter', listDateFilter)
   .filter('followArea', followArea)
   .filter('brLine', brLineFilterFactory)
-  .filter('msgDate', msgDateFilter);
+  .filter('msgDate', msgDateFilter)
+  .filter('companyIndustry', companyIndustry);

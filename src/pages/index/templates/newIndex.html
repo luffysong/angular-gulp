@@ -1,0 +1,221 @@
+<div class="home-page" kr-parallax data-stat-module="home">
+  <ul class="logo-container">
+    <li class="layer" data-depth="0.05">
+      <img class="logo" src="/images/index/logo.png" alt="">
+    </li>
+  </ul>
+  <div class="home-banner">
+    <ul class="top-container" >
+      <li class="layer" data-depth="0.2">
+        <img class="left-logo" src="/images/index/left-logo.png" alt="">
+      </li>
+      <li class="layer" data-depth="0.2">
+        <img class="right-circle" src="/images/index/right-circle.png" alt="">
+      </li>
+      <li class="layer" data-depth="0.1">
+        <img class="right-logo" src="/images/index/right-logo.png" alt="">
+      </li>
+      <!-- <li class="layer" data-depth="0.40">
+         <img class="right-circle" data-depth="0.6" src="/images/index/right-circle.png" alt="">
+       </li>-->
+      <li class="layer" data-depth="0.1">
+        <img class="middle-circle"  src="/images/index/middle-circle.png" alt="">
+      </li>
+      <li class="layer" data-depth="0.2">
+        <img class="border-circle" src="/images/index/border-circle.png" alt="">
+      </li>
+      <li class="layer" data-depth="0.2">
+        <img class="bg-circle" src="/images/index/bg-circle.png" alt="">
+      </li>
+    </ul>
+    <div class="relative-container">
+      <!-- <img class="left-logo" data-depth="1.00" src="/images/index/left-logo.png" alt="">
+       <img class="right-circle" data-depth="0.6" src="/images/index/right-circle.png" alt="">-->
+      <h3 class="top-title">36氪创投助手</h3>
+      <section class="top-intro">让融资更高效</section>
+      <div class="brief-list">
+        <span class="top-brief">好项目一网打尽</span>
+        <span class="top-brief">投资人即刻对接</span>
+        <span class="top-brief">新/热/全行业订阅</span>
+      </div>
+    </div>
+  </div>
+  <div class="home-container">
+    <div class="adv-container">
+      <div class="banner-item" ng-repeat="item in vm.bannerList">
+        <img class="banner-info" ng-src="{{item.url}}" />
+        <section class="banner-title">{{item.title}}</section>
+      </div>
+    </div>
+
+    <div class="project-container">
+      <div>
+        <div class="project-title">
+          <div class="title-text">
+            精选全网 <a class="project-number" ui-sref="list.result({columnId:0})">{{vm.columnData.projectCnt}}</a> 家项目
+            <span class="login-tip">没有你找不到的优质项目</span>
+          </div>
+        </div>
+      </div>
+      <ul class="status-list">
+        <li ng-repeat="item in vm.columnData.columnList | limitTo:4" ng-class="{'active': item.active}" ng-mouseenter="vm.switchStatus($index,item.columnId)">
+          <span class="active-tag"></span>
+          {{item.columnName}}
+        </li>
+      </ul>
+      <div class="outside-wrapper">
+        <div kr-loading loading="vm.columnLoading"></div>
+        <div class="result-wrapper" ng-hide="vm.columnLoading">
+          <div class="wrapper-container" ng-repeat="obj in vm.columnData.columnList" ng-class="{enter: $index == vm.statusIndex,leave: $index != vm.statusIndex}">
+            <div class="result-list" ng-repeat="item in obj.companyVoList | limitTo:3">
+              <img ng-src="{{item.logo}}" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}" alt="">
+              <div class="item-info">
+                <div class="company-info">
+                  <span class="company-name" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}" title="{{item.name}}">{{item.name}}</span>
+                  <span class="company-industry">{{item.industryStr}}</span>
+                </div>
+                <div class="company-brief">
+                  {{item.brief}}
+                </div>
+                <div class="company-intro">
+                  <span class="company-phase">
+                    {{item.phase | companyFinancePhase}}
+                  </span>
+                  <span class="company-sp">|</span>
+                  <span class="company-address">
+                    <i class="icon-location" ng-if="item.cityStr"></i>
+                    {{item.cityStr ? item.cityStr : '暂无'}}
+                  </span>
+                </div>
+              </div>
+              <a class="handle-btn" href="" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}">联系创始人</a>
+            </div>
+          </div>
+        </div>
+        <div class="see-detail" ui-sref="list.result({columnId:vm.columnId})" data-stat-click="project.seeMore">查看更多项目</div>
+      </div>
+      <div class="bottom-line"></div>
+    </div>
+
+    <div class="project-container">
+      <div>
+        <div class="project-title">
+          <div class="title-text">
+            提供 <a class="project-number" ui-sref="follow.result">{{vm.labelData.projectCnt}}</a> 个标签订阅
+            <span class="login-tip">给你个性化的项目匹配</span>
+          </div>
+        </div>
+      </div>
+      <div class="tag-container">
+        <ul class="tag-list">
+          <li>
+            近期热门领域排行榜
+          </li>
+          <li ng-repeat="item in vm.labelData.columnList | limitTo:8" ng-class="{'active': item.active}" ng-mouseenter="vm.switchTag($index)">
+            <span class="column-name">
+               <span class="icon-tag"></span>
+              {{item.columnName}}
+            </span>
+          </li>
+        </ul>
+        <div class="result-wrapper tag-wrapper">
+          <div kr-loading loading="vm.labelLoading"></div>
+          <div ng-hide="vm.labelLoading">
+            <div class="result-list" ng-repeat="item in vm.labelCompany | limitTo:3">
+              <img ng-src="{{item.logo}}" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}" alt="">
+              <div class="item-info">
+                <div class="company-info">
+                  <span class="company-name" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}" title="{{item.name}}">{{item.name}}</span>
+                  <span class="company-industry">{{item.industryStr}}</span>
+                </div>
+                <div class="company-brief">
+                  {{item.brief}}
+                </div>
+                <div class="company-intro">
+                  <span class="company-phase">
+                    {{item.phase | companyFinancePhase}}
+                  </span>
+                  <span class="company-sp">|</span>
+                  <span class="company-address">
+                    <i class="icon-location"></i>
+                    {{item.cityStr}}
+                  </span>
+                </div>
+              </div>
+              <a class="handle-btn" href="" ui-sref="project({id:item.id})" data-stat-click="project.{{item.id}}">联系创始人</a>
+            </div>
+            <div class="see-detail" ui-sref="label.result({labelId:vm.labelId})">查看标签更多项目</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-line"></div>
+    </div>
+
+    <div class="project-container">
+      <div class="project-title">
+        <div class="title-text">
+          以大数据筛选配对
+          <a class="project-number" ui-sref="investorList.result">{{vm.investorData.investorCnt}}</a>
+          名投资人
+          平均每个项目获得
+          <a class="project-number" ui-sref="investorList.result">{{vm.investorData.contactCnt}}</a> 次有效对接
+        </div>
+      </div>
+      <a class="submit-btn" href="javascript:void(0)" ng-click="vm.createProject()" data-stat-click="project.create">我也要提交项目</a>
+      <div class="investor-container" ng-if="vm.investorData.columnList.length">
+        <span class="submit-left-arrow icon-left-arrow" ng-hide="vm.currentIndex+'' === '0'"></span>
+        <span class="submit-right-arrow icon-right-arrow" ng-hide="vm.currentIndex >= vm.investorData.columnList.length-4"></span>
+        <slick infinite="false" slides-to-show="4" prev-arrow=".submit-left-arrow" next-arrow=".submit-right-arrow" current-index="vm.currentIndex" ng-if="vm.investorData.columnList.length > 4">
+          <div class="user-container" ng-repeat="item in vm.investorData.columnList">
+            <div class="investor-item">
+              <a href="" ui-sref="investorInfo({id:item.id})" data-stat-click="investor.{{item.id}}" target="_blank">
+                <img ng-src="{{item.avatar || '/images/investor-logo.png'}}" alt="">
+              </a>
+              <a href="" ui-sref="investorInfo({id:item.id})" data-stat-click="investor.{{item.id}}" target="_blank">
+                <div class="item-name" title="{{item.name}}">{{item.name}}</div>
+              </a>
+              <div class="item-org">{{item.entityName}}</div>
+              <div class="item-position">{{item.position}}</div>
+            </div>
+          </div>
+        </slick>
+        <div class="user-container" ng-repeat="item in vm.investorData.columnList" ng-if="vm.investorData.columnList.length <= 4">
+          <div class="investor-item">
+            <a href="" ui-sref="investorInfo({id:item.id})" data-stat-click="investor.{{item.id}}" target="_blank">
+              <img ng-src="{{item.avatar || '/images/investor-logo.png'}}" alt="">
+            </a>
+            <a href="" ui-sref="investorInfo({id:item.id})" data-stat-click="investor.{{item.id}}" target="_blank">
+              <div class="item-name" title="{{item.name}}">{{item.name}}</div>
+            </a>
+            <div class="item-org">{{item.entityName}}</div>
+            <div class="item-position">{{item.position}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="home-footer">
+    <div class="footer-container">
+      <div class="left-footer">
+        <img ng-src="/images/rong-logo.png" alt="">
+        <div class="download-tip">
+          <div class="download-name">下载36氪创投助手</div>
+          <div class="download-intro">提供最好的投融资产品和服务</div>
+        </div>
+      </div>
+      <div class="right-footer">
+        <div class="qrcode-container">
+          <img ng-src="/images/index/qrcode.png" alt="">
+        </div>
+
+        <div class="download-tip">
+          <div class="download-address">iOS客户端下载</div>
+          <div class="download-address">Android客户端下载</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
