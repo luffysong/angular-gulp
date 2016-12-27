@@ -43,7 +43,7 @@
     background: @bg-color;
     .base-info-content{
       width: @content-width;
-      padding: 30px;
+      padding: 30px 30px 20px 30px;
       margin:0 auto;
       overflow: hidden;
       &>div{
@@ -139,7 +139,7 @@
         }
       }
       .icon-Wechat{
-        margin: 0 12px 0 11px;
+        margin: 0 8px 0 8px;
       }
       .icon-Wechat-active{
         color: rgb(61,190, 48);
@@ -480,14 +480,17 @@
   header+section:nth-child(2) {
     margin-top: 30px;
   }
+  #light {
+    margin-top: 16px;
+  }
   .project-module {
     background-color: #fff;
     width: @content-width;
     margin: 0 auto;
-    padding: 13px 0 40px;
+    padding: 13px 0 30px;
     box-shadow: 0px 0px 2px 0px rgba(0,0,0,.1);
     // min-height: 300px;
-    margin-top: @module-margin;
+    margin-top: 12px;
     .add-btn {
       float: right;
       margin-top: 5px;
@@ -514,11 +517,11 @@
       display: flex;
       align-items: center;
       &:before {
-        .before(4px, 18px, absolute);
+        .before(4px, 14px, absolute);
         background: @deep-text-color;
         left: -12px;
       }
-      margin: 0 0 24px;
+      margin: 0 0 20px;
     }
   }
   .nav-wrapper + .project-module {

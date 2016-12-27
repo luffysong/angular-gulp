@@ -47,7 +47,8 @@
         </span>
       </div>
       <div class="hidden-details">
-        <a href="#" ng-click="vm.fundsVM.hideFinanceDetail()">收起</a>
+        <a  kr-scroll-click href="#financeHistory" du-smooth-scroll du-scrollspy
+            offset="{{vm.financeHistory}}" ng-click="vm.fundsVM.hideFinanceDetail()" >收起</a>
       </div>
     </div>
     <div ng-show="vm.financeVM.financeList.length" ng-if="vm.userId" class='finance-content'>

@@ -1,5 +1,6 @@
 import assets from '../assets/script';
 import { getLoadBundle } from '../base/utls';
+import phantom from '../base/phantom';
 
 export default {
   url: '/project/{id:int}',
@@ -14,7 +15,11 @@ export default {
       projectRun.run();
       return projectService.allData({
         id: $stateParams.id,
-      }).then(data => (resolveData.projectData = data));
+      }).then(data => (resolveData.projectData = data))
+        .then(data => {
+          phantom.render();
+          return data;
+        });
     },
   },
 };

@@ -3,7 +3,11 @@ const EVENTS = {
   RENDER_END: 'RENDER_END',
 };
 function callPhantom(json) {
-  _callPhantom.call(window, json);
+  /* eslint-disable */
+  setTimeout(()=> {
+    _callPhantom.call(window, json);
+  }, 500);
+  /* eslint-enable */
 }
 export default class phantom {
   static render() {

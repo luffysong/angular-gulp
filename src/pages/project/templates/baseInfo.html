@@ -46,7 +46,7 @@
     </div>
   </div>
 
-  <div class="project-intro-wrapper" ng-show="vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true">
+  <div class="project-intro-wrapper" ng-show="vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true && !vm.isEditMode">
     <div ng-if="!vm.introductionVM.isEdit">
       <h4>详细介绍</h4>
 
@@ -72,12 +72,12 @@
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.coreSource | enterFormat"></span>
         </div>
       </div>
-      <div class="no-data" ng-if="!vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true">
+<!--       <div class="no-data" ng-if="!vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true">
         <span>
             <span class="icon-Company icon"></span>
             <span>未收录相关信息</span>
           </span>
-      </div>
+      </div> -->
       <div class="part-hide" ng-if="vm.companyIntroduceVM.hasIntroduce && root.user.notInvestor() && !vm.isEditMode">
         <a class="certify" ui-sref="investorValidate" href="javascript:void()"><p>认证投资人</p></a>
         <p class="complete">查看完整项目介绍</p>

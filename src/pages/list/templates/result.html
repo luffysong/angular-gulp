@@ -4,7 +4,8 @@
     <span>共 <b>{{vm.listData.totalCount}}</b> 个结果</span>
     <div class="labels" ng-if="parentVm.params['industry'] && parentVm.params['industry'] !=='unlimited' && !parentVm.params['columnId']">
       <span class="icon-data-trends"></span>
-      <a ui-sref="label.result({labelId: parentVm.label.id})" target="_blank"> [ {{parentVm.label.desc}} ] <span>行业趋势</span></a>
+      <a ui-sref="label.result({labelId: parentVm.label.id})" ng-if="parentVm.label.id !== 0" target="_blank"> [ {{parentVm.label.desc}} ] <span>行业趋势</span></a>
+      <a href="javascript:void(0);" ng-if="parentVm.label.id === 0" target="_blank"> [ {{parentVm.label.desc}} ] <span>行业趋势</span></a>
       <div class="up-angle"></div>
       <div class="down-angle"></div>
     </div>
@@ -31,7 +32,9 @@
         <td>行业</td>
         <td>轮次</td>
         <td>所在地</td>
-        <td>成立时间</td>
+        <td ng-show="parentVm.params['sortField'] === 'STOCK_AT'">收录时间</td>
+        <td ng-show="parentVm.params['sortField'] === 'ADD_COLUMN_LABEL'">推荐时间</td>
+        <td ng-show="parentVm.params['sortField'] === 'START_DATE'">成立时间</td>
         <td width="120">操作</td>
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
@@ -83,7 +86,15 @@
             data-stat-click="city.{{::obj.cityStr}}"
             ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
         </td>
-        <td class="date-time">
+        <td class="date-time" ng-show="parentVm.params['sortField'] === 'STOCK_AT'">
+          <span ng-show="obj.stockDate">{{::obj.stockDate | date:'yyyy-MM'}}</span>
+          <span ng-show="!obj.stockDate">—</span>
+        </td>
+        <td class="date-time" ng-show="parentVm.params['sortField'] === 'ADD_COLUMN_LABEL'">
+          <span ng-show="obj.publishDate">{{::obj.publishDate | date:'yyyy-MM'}}</span>
+          <span ng-show="!obj.publishDate">—</span>
+        </td>
+        <td class="date-time" ng-show="parentVm.params['sortField'] === 'START_DATE'">
           <span ng-show="obj.startDate">{{::obj.startDate | date:'yyyy-MM'}}</span>
           <span ng-show="!obj.startDate">—</span>
         </td>
