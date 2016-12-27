@@ -25,7 +25,8 @@
         <td>行业</td>
         <td>轮次</td>
         <td>所在地</td>
-        <td>成立时间</td>
+        <td ng-show="parentVm.params['sortField'] === 'STOCK_AT'">收录时间</td>
+        <td ng-show="parentVm.params['sortField'] === 'START_DATE' || parentVm.params['sortField'] === 'MATCH_RATE'">成立时间</td>
         <td width="120">操作</td>
       </tr>
       <tr ng-repeat="obj in vm.listData.data track by $index">
@@ -65,7 +66,11 @@
             data-stat-click="list.city.{{::obj.cityStr}}"
             >{{::obj.cityStr || '暂无'}}</span>
         </td>
-        <td>
+        <td class="date-time" ng-show="parentVm.params['sortField'] === 'STOCK_AT'">
+          <span ng-show="obj.stockDate">{{::obj.stockDate | date:'yyyy-MM'}}</span>
+          <span ng-show="!obj.stockDate">—</span>
+        </td>
+        <td class="date-time" ng-show="parentVm.params['sortField'] === 'START_DATE' || parentVm.params['sortField'] === 'MATCH_RATE'">
           <span ng-show="obj.startDate">{{::obj.startDate | date:'yyyy-MM'}}</span>
           <span ng-show="!obj.startDate">—</span>
         </td>
