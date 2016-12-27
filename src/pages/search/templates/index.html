@@ -48,9 +48,8 @@
                   </span>
               </p>
               <p class="brief" title="{{::item.brief}}">{{::item.brief}}</p>
-              <p ng-if="item.advantage"><span class="icon-listPoint"></span>{{::item.advantage}}</p>
               <p><span class="icon-listIndustry"></span><span>{{::item.industryStr}}</span></p>
-              <p ng-if="item.advantage && outVm.$stateParams.columnId" class="hot-wrapper" title="{{::item.advantage}}"
+              <p ng-if="item.advantage" class="hot-wrapper" title="{{::item.advantage}}"
                 ><span class="icon-listPoint"></span>{{::item.advantage}}
               </p>
             </div>
