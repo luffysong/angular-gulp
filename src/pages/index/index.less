@@ -1,3 +1,4 @@
+@import "../../common/styles/function.less";
 @keyframes indexEnter {
   0% {
     transform: translate(100%,0);
@@ -699,9 +700,9 @@
         margin-bottom: 27px;
         .search-input {
           float: left;
+          height: 50px;
           display: block;
           width:520px;
-          height:100%;
           background-color: #fff;
           font-size: 14px;
           color: #969FA9;
@@ -711,6 +712,10 @@
           outline:none;
           border-bottom-left-radius: 30px;
           border-top-left-radius: 30px;
+        }
+        .search-result-wrapper {
+          height: auto;
+          width: 100%;
         }
         .input-icon {
           float: left;

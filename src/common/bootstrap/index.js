@@ -7,6 +7,10 @@ import assets from '../assets/script.js';
 import { INDUSTRY_META } from '../filters/industry.filter';
 import commonInterceptor from '../base/commonInterceptor.service';
 import { getService, fromYear, getMonth } from '../base/utls';
+import phantom from '../base/phantom';
+
+// SEO 禁止phantom立即渲染，等待回调渲染
+phantom.stopRender();
 const root = {};
 /* eslint-disable no-param-reassign,no-use-before-define,angular/on-watch */
 angular.module('@@app', ['@@app.routes', '@@app.components',

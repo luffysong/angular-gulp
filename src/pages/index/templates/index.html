@@ -4,12 +4,24 @@
     <div class="top-intro">没有你找不到的项目</div>
     <div class="search-content">
       <div class="search-container">
-        <input type="text" class="search-input" placeholder="输入创业项目、投资人、投机构名称搜索">
-        <span class="input-icon icon-search-icon"></span>
+        <div kr-search>
+          <div mass-autocomplete="{debounce_blur:700,top:50,left:0.01,maxWidth:520,
+            debounce_attach: 100,
+            onClick: vm.onClick, notFocus: true,
+            position:'parent'}"
+            class="search-result-wrapper">
+              <input ng-trim="false" mass-autocomplete-item="vm.autocompleteOptions"
+                ng-model="vm.kw"
+                type="text" class="search-input" placeholder="输入创业项目、投资人、投资机构名称搜索">
+              <span tabindex="2" ng-click="vm.searchRecord(vm.kw)" class="input-icon icon-search-icon">
+              </span>
+          </div>
+        </div>
       </div>
       <div class="hot-label">
         <span class="label-title">热门标签:</span>
-        <a class="label-item" target="_blank" data-stat-click="hotLabel" ng-repeat="item in vm.hotLabel track by $index" ui-sref="label.result({labelId:item.id})">
+        <a class="label-item" target="_blank" data-stat-click="hotLabel"
+          ng-repeat="item in vm.hotLabel track by $index" ui-sref="label.result({labelId:item.id})">
           {{item.name}}
         </a>
       </div>
