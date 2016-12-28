@@ -29,7 +29,7 @@ export default class SeoService {
       }
     });
     const head = document.head;
-    head.innerHTML += seoData.meta;
+    $(head).append(seoData.meta);
     return seoData;
   }
 
