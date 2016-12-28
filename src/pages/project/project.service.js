@@ -258,7 +258,7 @@ export default class ProjectService extends API {
     const label = {
       industry: obj.value,
     };
-    this.labelId = new API(`/label/id?industry?${$.param(label)}`).get();
+    this.labelId = new API(`/label/id?${$.param(label)}`).get();
     return this.labelId;
   }
 
