@@ -13,7 +13,7 @@
               <input ng-trim="false" mass-autocomplete-item="vm.autocompleteOptions"
                 ng-model="vm.kw"
                 type="text" class="search-input" placeholder="输入创业项目、投资人、投资机构名称搜索">
-              <span tabindex="2" ng-click="vm.searchRecord(vm.kw)" class="input-icon icon-search-icon">
+              <span tabindex="2" ng-click="vm.searchRecord(vm.kw)" class="input-icon icon-search-icon" data-stat-click="search.{{vm.kw}}">
               </span>
           </div>
         </div>
@@ -56,11 +56,8 @@
     </div>
     <div class="page-item">
       <div class="item-top fund-express">
-        <i class="icon-fund-delivery" ui-sref="list.result({columnId:0})">
-          <span class="path1"></span>
-          <span class="path2"></span>
-          <span class="path3"></span>
-          <span class="path4"></span>
+        <i class="icon-fund-exp" ui-sref="list.result({columnId:0})">
+          <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
         </i>
         <b ui-sref="list.result({columnId:0})">融资速递</b>
         <a href="" class="more-link" ui-sref="list.result({columnId:0})">更多</a>
