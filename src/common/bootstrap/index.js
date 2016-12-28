@@ -126,6 +126,10 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     /* 全局PageView埋点统计事件触发*/
 
     const $progressbar = $document.find('.progress-global-bar');
+    // 如果在phantom中渲染
+    if (phantom.inPhantom) {
+      $progressbar.remove();
+    }
     $progressbar.on('transitionend', function ontransitionend(e) {
       const PROGRESS_END_ELAPSED = 0.4;
       if (e.originalEvent.elapsedTime === PROGRESS_END_ELAPSED) {

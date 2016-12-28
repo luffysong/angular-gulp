@@ -12,6 +12,8 @@ function callPhantom(json) {
   /* eslint-enable */
 }
 export default class phantom {
+
+  static inPhantom = !!window.callPhantom;
   static render() {
     callPhantom({
       name: EVENTS.RENDER_END,
