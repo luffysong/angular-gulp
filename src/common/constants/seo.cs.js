@@ -1,6 +1,6 @@
 const SEO_INFO_META = {
   meta: {
-    url: 'http://rongtest01.36kr.com/api/p/sm/seo/summary',
+    url: 'https://rongtest01.36kr.com/api/p/sm/seo/summary',
     filter_tag: ['title'],
     filter_name: ['keywords', 'description', 'author'],
     index: {
