@@ -136,7 +136,7 @@
         <td>{{::obj.investCnt}}</td>
         <td class="org-col">
           <section ng-if="!obj.investCaseList.length">暂无</section>
-          <section ng-repeat="org in obj.investCaseList | limitTo:3 track by $index" ng-bind="org.name"></section>
+          <a class="invest-case" ng-repeat="org in obj.investCaseList | limitTo:3 track by $index" ui-sref="project({id:org.id})" target="_blank">{{org.name}}<br/></a>
         </td>
         <td class="org-col">
           <section ng-if="!obj.city.length">暂无</section>
@@ -165,7 +165,7 @@
         </td>
         <td class="org-col">
           <section ng-if="!obj.investCaseList.length">暂无</section>
-          <section ng-repeat="org in obj.investCaseList | limitTo:3 track by $index" ng-if="obj.investCaseList.length" ng-bind="org.name"></section>
+          <a class="invest-case" ng-repeat="org in obj.investCaseList | limitTo:3 track by $index" ui-sref="project({id:org.id})" target="_blank">{{org.name}}<br/></a>
         </td>
         <td class="org-count">
           <a href="" ui-sref="org({id:obj.id})">{{::obj.investCnt}}</a>
