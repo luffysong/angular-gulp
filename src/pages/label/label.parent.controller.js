@@ -521,10 +521,12 @@ export default class listParentController {
     this.trendHg = {
       options: {
         legend: {
+          floating: true,
           align: 'right',
           verticalAlign: 'top',
           useHTML: true,
           y: 15,
+          x: 10,
           itemDistance: 10,
           itemStyle: {
             color: '#ccc',
@@ -559,9 +561,9 @@ export default class listParentController {
             },
             marker: {
               enabled: false,
-              fillColor: '#fff',
-              lineColor: '#cad1ff',
-              lineWidth: 2,
+              fillColor: null,
+              lineColor: null,
+              lineWidth: 4,
               symbol: 'circle',
               states: {
                 hover: {
@@ -698,8 +700,8 @@ export default class listParentController {
             },
             marker: {
               enabled: false,
-              fillColor: '#fff',
-              lineColor: '#cad1ff',
+              fillColor: null,
+              lineColor: null,
               lineWidth: 4,
               symbol: 'circle',
               states: {
