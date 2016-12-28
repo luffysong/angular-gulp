@@ -24,14 +24,18 @@ class SearchController {
 
 }
 
+function postLink(scope, element, attrs, ctrl, transclude) {
+  transclude(scope, (clone) => {
+    element.append(clone);
+  });
+}
 export default {
   restrict: 'AE',
-  transclude: {
-    body: 'div',
+  scope: {
+
   },
+  transclude: true,
   controllerAs: 'vm',
-  template: `
-    <div ng-transclude="body"> </div>
-  `,
+  link: postLink,
   controller: SearchController,
 };
