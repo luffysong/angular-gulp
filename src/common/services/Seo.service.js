@@ -7,11 +7,16 @@ export default class SeoService {
 
   constructor() {
     this.setSeo = this.setSeo.bind(this);
+    this._initMethod();
   }
   seoApi = new API(`${meta.url}/:action/:id`, {
     index: meta.index.tmlId,
     project: meta.project.tmlId,
     projectList: meta.projectList.tmlId,
+    org: meta.org.tmlId,
+    orgList: meta.orgList.tmlId,
+    investor: meta.investor.tmlId,
+    investorList: meta.investor.tmlId,
   });
 
   setSeo(seoData) {
@@ -29,15 +34,18 @@ export default class SeoService {
   }
 
   loadSeo(action, params) {
+    if (!angular.isObject(params)) {
+      params = { id: params };
+    }
     return this.seoApi[action](params).then(this.setSeo);
   }
 
-  loadIndex() {
-    return this.loadSeo('index');
-  }
-
-  loadProject(id) {
-    return this.loadSeo('project', { id });
+  _initMethod() {
+    ['index', 'project', 'org', 'investor',
+      'projectList', 'orgList', 'investorList',
+    ].forEach(methodName => {
+      this[`${methodName}Seo`] = (args) => this.loadSeo(methodName, args);
+    });
   }
 
 }

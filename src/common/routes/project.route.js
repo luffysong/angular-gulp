@@ -13,7 +13,7 @@ export default {
     function loadProjectData(loadProjectBundle, projectService, $stateParams, resolveData,
       projectRun, seoService) {
       projectRun.run();
-      const seoPromise = seoService.loadProject($stateParams.id);
+      const seoPromise = seoService.projectSeo($stateParams.id);
       const projectPromise = projectService.allData({
         id: $stateParams.id,
       }).then(data => (resolveData.projectData = data));

@@ -1,7 +1,7 @@
-import krData from 'krData';
+import { phantom } from 'krData';
 import ProjectService from '../project/project.service';
 
-@Inject('$timeout', '$window', '$stateParams', '$state', '$scope', '$q', 'user')
+@Inject('$timeout', '$window', '$stateParams', '$state', '$scope', '$q', 'user', 'seoService')
 export default class homeController {
 
   constructor() {
@@ -11,13 +11,14 @@ export default class homeController {
   projectService = new ProjectService();
 
   init() {
-
     this.page = 1;
-
-    this.getProject();
-    this.getFundExpress();
-    this.getHot();
-    this.recommendPro();
+    phantom.renderAsync([
+      this.getProject(),
+      this.getFundExpress(),
+      this.getHot(),
+      this.recommendPro(),
+      this.seoService.indexSeo(),
+    ]);
   }
 
   goPage(type) {
@@ -31,14 +32,14 @@ export default class homeController {
   }
 
   recommendPro() {
-    this.projectService.indexRecommendPro().then(data => {
+    return this.projectService.indexRecommendPro().then(data => {
       this.recommendList = data;
     }).catch(() => {
     });
   }
 
   getProject() {
-    this.projectService.indexProject().then(data => {
+    return this.projectService.indexProject().then(data => {
       this.newProject = data;
     }).catch(() => {
     });
@@ -49,20 +50,17 @@ export default class homeController {
       pageSize: 4,
       page: this.page,
     };
-    this.projectService.indexFundExpress(params).then(data => {
+    return this.projectService.indexFundExpress(params).then(data => {
       this.fundExpress = data;
     }).catch(() => {
     });
   }
 
   getHot() {
-    this.projectService.getHotLabel().then(data => {
+    return this.projectService.getHotLabel().then(data => {
       this.hotLabel = data;
     }).catch(() => {
     });
   }
 }
-
-
-
 
