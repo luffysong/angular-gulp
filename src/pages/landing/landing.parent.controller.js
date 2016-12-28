@@ -146,6 +146,9 @@ export default class landingParentController {
           }
         });
         this.params.type = item.value;
+        if(this.params.type === 'company'){
+          this.params.sortField = 'MATCH_RATE';
+        }
         this.go();
       }else {
         item.active = false;
