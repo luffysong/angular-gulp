@@ -1,4 +1,4 @@
-<div id="workstationDetailWrapper" class="workstation-wrapper" data-stat-module="workstation">
+<div id="workstationDetailWrapper" class="workstation-wrapper" data-stat-module="workstation" ng-if="parentVm.user.isLogin">
   <div class="head-bg">
     <div class="head">
       <div class="collect-count">
@@ -48,6 +48,19 @@
           <span class="new-btn">新建 +</span>
         </div>
       </a>
+    </div>
+  </div>
+</div>
+
+
+<div class="login-wrapper" ng-if="!parentVm.user.isLogin">
+  <div class="login-layer">
+    <img src="/images/guide_register.png" alt="">
+    <div class="message">
+      该功能需要登录才能查看
+    </div>
+    <div class="login-btn" ng-click="vm.toLogin()">
+      <span>登录</span>
     </div>
   </div>
 </div>

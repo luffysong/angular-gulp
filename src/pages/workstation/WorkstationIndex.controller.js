@@ -94,11 +94,11 @@ export default class WorkstationIndexController {
         this.$state.go('validate');
       }
     }).catch(err => {
-      if(err.code === 403) {
+      /*if(err.code === 403) {
         const okUrl = window.location.href;
         console.log(okUrl);
         this.$state.go('login',{okUrl: okUrl});
-      }
+      }*/
     });
   }
 }

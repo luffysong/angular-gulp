@@ -1,6 +1,6 @@
 <div class="home-page" data-stat-module="home">
   <div class="page-top">
-    <h2 class="top-title">36氪创投助手</h2>
+    <h1 class="top-title">36氪创投助手</h1>
     <div class="top-intro">没有你找不到的项目</div>
     <div class="search-content">
       <div class="search-container">
@@ -10,7 +10,7 @@
             onClick: vm.onClick, notFocus: true,
             position:'parent'}"
             class="search-result-wrapper">
-              <input ng-trim="false" mass-autocomplete-item="vm.autocompleteOptions"
+              <input ng-trim="false" mass-autocomplete-item="vm.autocompleteOptions" ng-keyup="cvm.watchEnter($event)"
                 ng-model="vm.kw"
                 type="text" class="search-input" placeholder="输入创业项目、投资人、投资机构名称搜索">
               <span tabindex="2" ng-click="vm.searchRecord(vm.kw)" class="input-icon icon-search-icon" data-stat-click="search.{{vm.kw}}">
@@ -21,7 +21,7 @@
       <div class="hot-label">
         <span class="label-title">热门标签:</span>
         <a class="label-item" target="_blank" data-stat-click="hotLabel"
-          ng-repeat="item in vm.hotLabel track by $index" ui-sref="label.result({labelId:item.id})">
+          ng-repeat="item in vm.hotLabel track by $index" ui-sref="label.result({labelId:item.id})" data-stat-click="hotLabel.{{item.id}}">
           {{item.name}}
         </a>
       </div>
@@ -37,9 +37,9 @@
       <div class="item-content">
         <div class="layer-container">
           <div class="item-layer" ng-repeat="item in vm.newProject">
-            <img ng-src="{{item.logo}}" alt="" ui-sref="project({id:item.id})">
+            <img ng-src="{{item.logo}}" alt="" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}">
             <div class="item-info">
-              <div class="company-name" ui-sref="project({id:item.id})">{{item.name}}</div>
+              <div class="company-name" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}">{{item.name}}</div>
               <div class="company-intro" title="{{item.brief}}">{{item.brief}}</div>
               <div class="company-detail">
                 <span>{{item.phase | companyFinancePhase}}</span>
@@ -56,17 +56,16 @@
     </div>
     <div class="page-item">
       <div class="item-top fund-express">
-        <i class="icon-fund-exp" ui-sref="list.result({columnId:0})">
+        <i class="icon-fund-exp">
           <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
         </i>
-        <b ui-sref="list.result({columnId:0})">融资速递</b>
-        <a href="" class="more-link" ui-sref="list.result({columnId:0})">更多</a>
+        <b>融资速递</b>
       </div>
       <div class="item-content">
         <div class="layer-container">
           <div class="item-fund" ng-repeat="item in vm.fundExpress">
             <div class="first-line">
-              <span class="fund-title">{{item.name}}</span>
+              <span class="fund-title" ui-sref="project({id:item.id})" data-stat-click="fundExpress.project.{{item.id}}">{{item.name}}</span>
               <span class="fund-type">{{item.industry | companyIndustry}}</span>
               <span class="fund-date">{{item.investDate | date:'MM-dd'}}</span>
             </div>
@@ -77,7 +76,7 @@
               投资方:
               <span ng-if="!item.investParts.length">暂无</span>
               <span class="invest-part" ng-repeat="obj in item.investParts" ng-if="item.investParts.length">
-                <span>{{obj}}</span>
+                <span ui-sref="org({id:obj.id})" data-stat-click="fundExpress.org.{{obj.id}}">{{obj}}</span>
                 <span class="dot">、</span>
               </span>
             </div>
@@ -101,9 +100,9 @@
       <div class="item-content">
         <div class="layer-container">
           <div class="item-layer" ng-repeat="item in vm.recommendList">
-            <img ng-src="{{item.logo}}" alt="" ui-sref="project({id:item.id})">
+            <img ng-src="{{item.logo}}" alt="" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}">
             <div class="item-info">
-              <div class="company-name" ui-sref="project({id:item.id})">{{item.name}}</div>
+              <div class="company-name" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}">{{item.name}}</div>
               <div class="company-intro" title="{{item.brief}}">{{item.brief}}</div>
               <div class="company-detail">
                 <span>{{item.phase | companyFinancePhase}}</span>
@@ -117,7 +116,7 @@
             </div>
           </div>
         </div>
-        <div class="layer-bottom" ui-sref="list.result({columnId:0})">
+        <div class="layer-bottom" ui-sref="list.result({columnId:0})" data-stat-click="youxuan.viewMore">
           查看更多新项目
         </div>
       </div>
