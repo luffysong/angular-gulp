@@ -10,8 +10,8 @@
             <span class="investor-name">{{investorInfoVm.basic.name}}</span>
             <span class="icon-Address" ng-if="investorInfoVm.basic.city.length">
               <span class="path1"></span>
-            </span>
-            <span ng-repeat="address in investorInfoVm.basic.city">{{address}}</span>
+            </span
+            ><span class="address" ng-repeat="address in investorInfoVm.basic.city">{{address}}</span>
           </h1>
           <p class="organization-name">
             <a ui-sref="org({id: investorInfoVm.basic.orgId})" ng-if="investorInfoVm.basic.orgType === 'ORG_INVESTOR'">
