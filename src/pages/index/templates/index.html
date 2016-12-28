@@ -36,7 +36,7 @@
       </div>
       <div class="item-content">
         <div class="layer-container">
-          <div class="item-layer" ng-repeat="item in vm.newProject">
+          <div class="item-layer" ng-repeat="item in vm.newProject | limitTo:5">
             <img ng-src="{{item.logo}}" alt="" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}">
             <div class="item-info">
               <div class="company-name" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}">{{item.name}}</div>
@@ -99,7 +99,7 @@
       </div>
       <div class="item-content">
         <div class="layer-container">
-          <div class="item-layer" ng-repeat="item in vm.recommendList">
+          <div class="item-layer" ng-repeat="item in vm.recommendList | limitTo:5">
             <img ng-src="{{item.logo}}" alt="" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}">
             <div class="item-info">
               <div class="company-name" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}">{{item.name}}</div>

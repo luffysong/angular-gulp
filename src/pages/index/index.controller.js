@@ -47,7 +47,7 @@ export default class homeController {
 
   getFundExpress() {
     const params = {
-      pageSize: 4,
+      pageSize: 5,
       page: this.page,
     };
     return this.projectService.indexFundExpress(params).then(data => {
