@@ -17,13 +17,15 @@
               <div class="label-container" label-cal ng-if="parentVm.followLabel.length">
                 <i class="icon-follow-label"></i>
                 <span class="open-label" ng-click="parentVm.openLabel = !parentVm.openLabel" ng-class="{show: parentVm.openLabel}">
-                  {{parentVm.openLabel ? '收起标签' : '展开全部标签'}}
                 </span>
                 <div class="follow-label" ng-repeat="item in parentVm.followLabel" ui-sref="label.result({labelId:item.id})">
                   {{item.name}}
                 </div>
               </div>
             </div>
+            <span class="open-label2" ng-click="parentVm.openLabel = !parentVm.openLabel" ng-class="{show: parentVm.openLabel}">
+              {{parentVm.openLabel ? '收起标签' : '展开全部标签'}}
+            </span>
           </div>
         </div>
       </div>
