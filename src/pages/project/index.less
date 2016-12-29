@@ -43,7 +43,7 @@
     background: @bg-color;
     .base-info-content{
       width: @content-width;
-      padding: 30px 30px 20px 30px;
+      padding: 30px 30px 14px 30px;
       margin:0 auto;
       overflow: hidden;
       &>div{
@@ -71,6 +71,27 @@
           text-overflow: ellipsis;
           margin-right:14px;
         }
+        .industry-tag {
+          font-size: 12px;
+          line-height: 20px;
+          height: 20px;
+          background: rgba(107, 162, 252, 0.2);
+          padding: 1px 6px;
+          position: relative;
+          top: 1px;
+        }
+        .icon-Address {
+          position: relative;
+          bottom: 3px;
+          left: 5px;
+          .path1 {
+            font-size: 20px;
+          }
+        }
+        .address {
+          color: #222C38;
+          font-size: 12px;
+        }
         span{
           display: inline-block;
           vertical-align: top;
@@ -89,7 +110,7 @@
         color: #969FA9;
         font-size: 14px;
         line-height: 19px;
-        margin: 6px 0 6px;
+        margin: 3px 0 6px;
         font-weight: normal;
         white-space: nowrap;
         overflow: hidden;
@@ -97,6 +118,8 @@
         width: 380px;
       }
       .highlights {
+        position: relative;
+        bottom: 6px;
         .icon-listPoint {
           color: #F8627E;
           font-size: 20px;
@@ -119,7 +142,7 @@
       }
 
       .icons {
-        margin-top: 10px;
+        margin-top: 3px;
       }
 
       .kr-icon {
@@ -483,19 +506,19 @@
     padding-top: 2px;
   }
   header {
-    margin-bottom: 16px;
+    // margin-bottom: 16px;
   }
   header+section:nth-child(2) {
-    margin-top: 16px;
+    margin-top: 12px;
   }
   #light {
-    margin-top: 16px;
+    margin-top: 12px;
   }
   .project-module {
     background-color: #fff;
     width: @content-width;
     margin: 0 auto;
-    padding: 13px 0 30px;
+    padding: 6px 0 20px;
     box-shadow: 0px 0px 2px 0px rgba(0,0,0,.1);
     // min-height: 300px;
     margin-top: 12px;
@@ -529,7 +552,7 @@
         background: @deep-text-color;
         left: -12px;
       }
-      margin: 0 0 20px;
+      margin: 0 0 10px;
     }
   }
   .nav-wrapper + .project-module {
