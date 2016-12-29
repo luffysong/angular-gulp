@@ -875,6 +875,9 @@
             line-height: 18px;
             margin:7px auto 4px;
             font-weight:600;
+            .middle-line {
+              margin:0 10px;
+            }
           }
           .third-line {
             font-size: 12px;
@@ -908,12 +911,15 @@
             margin-left:64px;
             .company-name {
               font-size: 14px;
-              font-weight:600;
+              font-weight: 600;
               color: #222C38;
               letter-spacing: 0px;
               line-height: 21px;
-              margin-bottom:2px;
+              margin-bottom: 2px;
               cursor: pointer;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
             .company-intro {
               font-size: 12px;
