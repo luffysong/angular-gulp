@@ -1,3 +1,4 @@
+import escapeHtml from 'escape-html';
 import API from '../base/API.js';
 import { getService } from '../base/utls.js';
 export const RESULT_TYPE = {
@@ -25,7 +26,7 @@ function makeCreateProjectHtml(name) {
     label: getService('$sce').trustAsHtml(`
       <p class="search-row search-no-result"
       data-stat-click="search.project.create"><span class="createProject">
-        无结果，创建 ”${name}“ 创业项目</span>
+        无结果，创建 ”${escapeHtml(name)}“ 创业项目</span>
       </p> `),
   };
 }
@@ -176,7 +177,7 @@ export default class SearchService {
       getService('$state').go('investorInfo', { id: item.obj.id });
     } else if (angular.isString(item.obj)) {
       getService('$state').go('landing.result',
-        { kw: item.value, type: 'company', sortField: 'MATCH_RATE'}, { inherit: false });
+        { kw: item.value, type: 'company', sortField: 'MATCH_RATE' }, { inherit: false });
     }
   }
 

@@ -1,3 +1,4 @@
+import escapeHtml from 'escape-html';
 import API from './base/API';
 import * as utls from './base/utls';
 import * as META from './constants/index';
@@ -16,5 +17,6 @@ window.krData = {
   User,
   paddingContent,
   phantom,
+  escapeHtml,
 };
 require('./bootstrap');
