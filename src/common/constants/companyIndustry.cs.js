@@ -86,7 +86,7 @@ const COMPANY_INDUSTRY_META = [
     "value": "FARMING"
   },
   {
-    "desc": "AR/VR",
+    "desc": "AR·VR",
     "id": 22,
     "value": "AR_VR"
   },
@@ -94,11 +94,6 @@ const COMPANY_INDUSTRY_META = [
     "desc": "体育（包含户外）",
     "id": 23,
     "value": "SPORTS"
-  },
-  {
-    "desc": "其他",
-    "id": 0,
-    "value": "OTHER"
   },
 ];
 
