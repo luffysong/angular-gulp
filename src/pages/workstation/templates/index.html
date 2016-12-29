@@ -1,4 +1,4 @@
-<div id="workstationDetailWrapper" class="workstation-wrapper" data-stat-module="workstation" ng-if="parentVm.user.isLogin">
+<div id="workstationDetailWrapper" class="workstation-wrapper" data-stat-module="workstation" ng-if="vm.user.isLogin">
   <div class="head-bg">
     <div class="head">
       <div class="collect-count">
@@ -53,7 +53,7 @@
 </div>
 
 
-<div class="login-wrapper" ng-if="!parentVm.user.isLogin">
+<div class="login-wrapper" ng-if="!vm.user.isLogin">
   <div class="login-layer">
     <img src="/images/guide_register.png" alt="">
     <div class="message">
