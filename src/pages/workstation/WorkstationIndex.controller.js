@@ -101,4 +101,8 @@ export default class WorkstationIndexController {
       }*/
     });
   }
+
+  toLogin(){
+    krData.utls.login();
+  }
 }
