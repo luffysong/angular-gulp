@@ -19,6 +19,7 @@
 }
 .home-page {
   position: relative;
+  padding-bottom: 41px;
   .logo-container {
     position: absolute;
     width: 860px;
@@ -820,8 +821,9 @@
       }
       .item-content {
         .layer-container {
+          position: relative;
           height:465px;
-          overflow: auto;
+          overflow: hidden;
         }
         .item-fund {
           padding:16px 20px;
@@ -831,11 +833,18 @@
           }
           .first-line {
             .fund-title {
+              display: inline-block;
+              max-width: 150px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              vertical-align: middle;
               font-size: 14px;
               color: #222C38;
               letter-spacing: 0px;
               line-height: 21px;
               margin-right:10px;
+              cursor: pointer;
             }
             .fund-type {
               width:auto;
@@ -846,6 +855,7 @@
               color: #4285F4;
               letter-spacing: 0px;
               background: #DFEBFE;
+              vertical-align: middle;
             }
             .fund-date {
               position: relative;
@@ -863,6 +873,7 @@
             letter-spacing: 0px;
             line-height: 18px;
             margin:7px auto 4px;
+            font-weight:600;
           }
           .third-line {
             font-size: 12px;

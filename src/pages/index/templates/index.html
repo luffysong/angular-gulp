@@ -10,9 +10,9 @@
             onClick: vm.onClick, notFocus: true,
             position:'parent'}"
             class="search-result-wrapper">
-              <input ng-trim="false" mass-autocomplete-item="vm.autocompleteOptions" ng-keyup="cvm.watchEnter($event)"
+              <input ng-trim="false" mass-autocomplete-item="vm.autocompleteOptions"
                 ng-model="vm.kw"
-                type="text" class="search-input" placeholder="输入创业项目、投资人、投资机构名称搜索">
+                type="text" class="search-input" placeholder="输入创业项目、投资人、投资机构名称搜索" search-enter />
               <span tabindex="2" ng-click="vm.searchRecord(vm.kw)" class="input-icon icon-search-icon" data-stat-click="search.{{vm.kw}}">
               </span>
           </div>
@@ -37,7 +37,7 @@
       <div class="item-content">
         <div class="layer-container">
           <div class="item-layer" ng-repeat="item in vm.newProject | limitTo:5">
-            <img ng-src="{{item.logo}}" alt="" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}">
+            <img ng-src="{{item.logo || '/images/default-logo.png'}}" alt="" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}">
             <div class="item-info">
               <div class="company-name" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}">{{item.name}}</div>
               <div class="company-intro" title="{{item.brief}}">{{item.brief}}</div>
@@ -62,15 +62,16 @@
         <b>融资速递</b>
       </div>
       <div class="item-content">
-        <div class="layer-container">
+        <div class="layer-container" perfect-scrollbar wheel-propagation="true" wheel-speed="5" min-scrollbar-length="15" wheel-speed="3">
           <div class="item-fund" ng-repeat="item in vm.fundExpress">
             <div class="first-line">
-              <span class="fund-title" ui-sref="project({id:item.id})" data-stat-click="fundExpress.project.{{item.id}}">{{item.name}}</span>
+              <span class="fund-title" ui-sref="project({id:item.id})" data-stat-click="fundExpress.project.{{item.id}}" title="{{item.name}}">{{item.name}}</span>
               <span class="fund-type">{{item.industry | companyIndustry}}</span>
               <span class="fund-date">{{item.investDate | date:'MM-dd'}}</span>
             </div>
             <div class="second-line">
-              {{item.phase | companyFinancePhase}} | {{item.investAmount}}
+              {{item.phase | companyFinancePhase}} |
+              <span>{{item.investAmount}}<span ng-if="item.investAmount !== '未披露'">{{item.investAmountUnit | amountUnit}}</span></span>
             </div>
             <div class="third-line">
               投资方:
@@ -92,15 +93,15 @@
     </div>
     <div class="page-item">
       <div class="item-top">
-        <i class="icon-youxuan" ui-sref="list.result({columnId:0})" data-stat-click="youxuan.icon">
+        <i class="icon-youxuan" ui-sref="list.result({columnId:1})" data-stat-click="youxuan.icon">
         </i>
-        <b ui-sref="list.result({columnId:0})" data-stat-click="youxuan.name">优选</b>
-        <a href="" class="more-link" ui-sref="list.result({columnId:0})" data-stat-click="youxuan.more">更多</a>
+        <b ui-sref="list.result({columnId:1})" data-stat-click="youxuan.name">优选</b>
+        <a href="" class="more-link" ui-sref="list.result({columnId:1})" data-stat-click="youxuan.more">更多</a>
       </div>
       <div class="item-content">
-        <div class="layer-container">
+        <div class="layer-container" perfect-scrollbar wheel-propagation="true" wheel-speed="5" min-scrollbar-length="15" wheel-speed="3">
           <div class="item-layer" ng-repeat="item in vm.recommendList | limitTo:5">
-            <img ng-src="{{item.logo}}" alt="" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}">
+            <img ng-src="{{item.logo || '/images/default-logo.png'}}" alt="" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}">
             <div class="item-info">
               <div class="company-name" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}">{{item.name}}</div>
               <div class="company-intro" title="{{item.brief}}">{{item.brief}}</div>
@@ -116,7 +117,7 @@
             </div>
           </div>
         </div>
-        <div class="layer-bottom" ui-sref="list.result({columnId:0})" data-stat-click="youxuan.viewMore">
+        <div class="layer-bottom" ui-sref="list.result({columnId:1})" data-stat-click="youxuan.viewMore">
           查看更多新项目
         </div>
       </div>
