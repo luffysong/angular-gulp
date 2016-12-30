@@ -81,7 +81,7 @@ const LIST_COMPANY_INDUSTRY_META = [
     "value": "FARMING"
   },
   {
-    "desc": "AR/VR",
+    "desc": "AR·VR",
     "id": 22,
     "value": "AR_VR"
   },
@@ -139,11 +139,6 @@ const LIST_COMPANY_INDUSTRY_META = [
     "desc": "保险",
     "id": 49,
     "value": "INSURANCE"
-  },
-  {
-    "desc": "其他",
-    "id": 0,
-    "value": "OTHER"
   }
 ];
 
