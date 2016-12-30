@@ -1,7 +1,7 @@
 import krData from 'krData';
 import CollectionVM from './collection.vm';
 import WorkstationIndexService from './WorkstationIndex.service';
-@Inject('$stateParams', 'resolveData','$validation', '$scope', '$sce', '$state', '$q', '$filter', 'ngDialog')
+@Inject('$stateParams', 'resolveData','$validation', '$scope', '$sce', '$state', '$q', '$filter', 'ngDialog','user')
 export default class WorkstationIndexController {
   constructor() {
     this.init();
@@ -100,5 +100,9 @@ export default class WorkstationIndexController {
         this.$state.go('login',{okUrl: okUrl});
       }*/
     });
+  }
+
+  toLogin(){
+    krData.utls.login();
   }
 }
