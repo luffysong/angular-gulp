@@ -62,7 +62,7 @@
         <b>融资速递</b>
       </div>
       <div class="item-content">
-        <div class="layer-container" perfect-scrollbar wheel-propagation="true" wheel-speed="5" min-scrollbar-length="15" wheel-speed="3">
+        <div class="layer-container" perfect-scrollbar wheel-propagation="true" wheel-speed="5" min-scrollbar-length="15" wheel-speed="3" init-top="vm.skipPage">
           <div class="item-fund" ng-repeat="item in vm.fundExpress">
             <div class="first-line">
               <span class="fund-title" ui-sref="project({id:item.id})" data-stat-click="fundExpress.project.{{item.id}}" title="{{item.name}}">{{item.name}}</span>

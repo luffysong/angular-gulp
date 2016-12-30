@@ -176,7 +176,7 @@
         <div class="col-content">
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.city}">
-              <ul filter-cal open-filter="parentVm.open.city" ng-if="parentVm.data.city">
+              <ul filter-cal open-filter="parentVm.open.city" ng-if="parentVm.data.city" data="parentVm.data.city">
                 <li class="col-item" ng-repeat="item in parentVm.data.city" ng-class="{'active': item.active}" ng-click="parentVm.selectIndustry($index,'city')" data-stat-click="city.{{item.id}}">
                   <span>
                     {{item.name}}

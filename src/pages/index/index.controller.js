@@ -46,12 +46,14 @@ export default class homeController {
   }
 
   getFundExpress() {
+    this.skipPage = true;
     const params = {
       pageSize: 5,
       page: this.page,
     };
     return this.projectService.indexFundExpress(params).then(data => {
       this.fundExpress = data;
+      this.skipPage = false;
     }).catch(() => {
     });
   }

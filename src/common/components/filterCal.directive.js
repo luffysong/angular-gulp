@@ -26,7 +26,7 @@ function filterCalDirective($timeout) {
       }
 
       if (scope.data) {
-        scope.$watch('data', () => calHeight());
+        scope.$watch('data', () => calHeight(), true);
       }
 
       calHeight();
