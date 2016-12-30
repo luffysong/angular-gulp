@@ -23,9 +23,12 @@
                 </div>
               </div>
             </div>
-            <span class="open-label2" ng-click="parentVm.openLabel = !parentVm.openLabel" ng-class="{show: parentVm.openLabel}">
-              {{parentVm.openLabel ? '收起标签' : '展开全部标签'}}
-            </span>
+            <div class="open-labels">
+              <span class="open-label2" ng-click="parentVm.openLabel = !parentVm.openLabel" ng-class="{show: parentVm.openLabel}">
+                {{parentVm.openLabel ? '收起标签' : '展开全部标签'}}
+              </span>
+            </div>
+
           </div>
         </div>
       </div>
