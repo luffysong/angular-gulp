@@ -81,9 +81,9 @@ const LIST_COMPANY_INDUSTRY_META = [
     "value": "FARMING"
   },
   {
-    "desc": "AR·VR",
+    "desc": "VR·AR",
     "id": 22,
-    "value": "AR_VR"
+    "value": "VR_AR"
   },
   {
     "desc": "体育",
