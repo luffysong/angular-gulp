@@ -7,7 +7,7 @@
         ng-if="!vm.introductionVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.baseIntro.edit">编辑</a>
   </div>
   <div class="base-info">
-    <h4>概述</h4>
+    <h4 ng-show="vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true">概述</h4>
     <section id="baseInfoEdit" ng-include="'/pages/project/templates/baseInfoEdit.html'"
       ng-if="vm.introductionVM.isEdit">
       基本介绍编辑
@@ -34,7 +34,7 @@
         <li ng-if="vm.projectData.baseInfo.startDate"
         >成立时间：{{::vm.projectData.baseInfo.startDateDesc}}年</li>
         <li class="more underline" ng-if="vm.projectData.baseInfo.businessInfoUrl">
-          <a ng-href="{{vm.projectData.baseInfo.businessInfoUrl}}" target="_blank">使用ASO100查看更更多</a></li>
+          <a ng-href="{{vm.projectData.baseInfo.businessInfoUrl}}" target="_blank">使用“启信宝”查看更多</a></li>
       </ul>
       <ul class="company-info">
         <!-- <li ng-if="vm.projectData.baseInfo.operationStatusEnum">
