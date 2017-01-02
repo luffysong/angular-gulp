@@ -50,7 +50,7 @@
         <td class="filter-item">
           <span ng-click="vm.clickFilter(obj.industry,'industry')"
             data-stat-click="industry.{{obj.industry}}"
-           ng-class="{'disabled': parentVm.getPermission()}">{{::obj.industryStr}}</span>
+           ng-class="{'disabled': parentVm.getPermission()}">{{::obj.industry | industry}}</span>
         </td>
         <td class="filter-item">
           <span ng-click="vm.clickFilter(obj.phase,'phase')"

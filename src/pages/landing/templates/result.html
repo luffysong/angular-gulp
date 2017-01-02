@@ -55,7 +55,7 @@
         </td>
         <td class="filter-item">
           <span ng-click="vm.clickFilter(obj.industry,'industry')" data-stat-click="list.industry.{{obj.industry}}"
-           >{{::obj.industryStr}}</span>
+           >{{::obj.industry | industry}}</span>
         </td>
         <td class="filter-item">
           <span ng-click="vm.clickFilter(obj.phase,'phase')" data-stat-click="list.phase.{{obj.phase}}"

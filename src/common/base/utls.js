@@ -47,13 +47,17 @@ export function extractMeta(from, to) {
   return to;
 }
 
-export function getConstantFilterFactory(meta) {
+export function getConstantFilterFactory(meta, defaultValue) {
   return function constantFilterFacotry() {
     return function constantFilter(input) {
       if (input) {
-        return meta.filter(item => item.value === input)[0].desc;
+        const cons = meta.filter(item => item.value === input)[0];
+        if (cons) {
+          return cons.desc;
+        }
+        return defaultValue;
       }
-      return undefined;
+      return defaultValue;
     };
   };
 }
