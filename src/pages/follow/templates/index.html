@@ -83,7 +83,7 @@
               <div class="col-content">
                 <div class="col-list-container">
                   <div class="filter-outside-container" ng-class="{'height-auto':parentVm.open.industry}">
-                    <ul filter-cal open-filter="parentVm.open.industry" ng-if="parentVm.data.industry">
+                    <ul filter-cal open-filter="parentVm.open.industry" ng-if="parentVm.data.industry"  data="parentVm.data.industry">
                       <!--ng-if="$index < parentVm.open.maxNumber || ($index >= parentVm.open.maxNumber &&
                       parentVm.open.address)"-->
                       <li class="col-item" ng-repeat="item in parentVm.data.industry" ng-class="{'active': item.active}"
