@@ -186,7 +186,7 @@ export default class SearchService {
   }
 
   action(item, kw) {
-    krtracker("trackEvent","hover",a);
+    krtracker("trackEvent","hover",kw);
     this.historyApi.save(null, {
       kw,
     });
