@@ -19,7 +19,9 @@ export default class listParentController {
       filter: false,
       sideBar: false,
     };
-
+    this.industryLabel = {
+      id: 0,
+    };
     this.$scope.company = {};
     this.text = {
       1: '优选',
@@ -71,7 +73,8 @@ export default class listParentController {
         this.data.label = data.label;
         this.data.label[0].value = 'unlimited';
         this.$timeout.cancel(this.timer);
-        if(this.params.industry !== 'unlimited'){
+        if (this.params.industry !== 'unlimited') {
+          this.industryLabel.id = 0;
           this.loopLabels(this.data.label);
         }
         this.handleActive();
@@ -166,6 +169,7 @@ export default class listParentController {
 
   /* 筛选器*/
   selectIndustry(index, type) {
+
     // 行业选择
     if (type === 'industry') {
       this.params.industry = this.data.industry[index].value;
@@ -380,9 +384,9 @@ export default class listParentController {
     loop();
   }
 
-  setLabelId(label){
+  setLabelId(label) {
     this.projectService.getLabelId(label).then(data => {
-      this.label.id = data.labelId;
+      this.industryLabel.id = data.labelId;
     });
 
   }

@@ -487,12 +487,15 @@
       margin-left: 30px;
     }
     .labels {
+      display: none;
       background: #F2F4F5;
       border-radius: 20px;
-      display: inline;
       padding: 6px 16px;
       margin-left: 20px;
       position: relative;
+      &.show {
+        display: inline;
+      }
       .icon-data-trends {
         font-size: 18px;
         color: #6BA2FC;
