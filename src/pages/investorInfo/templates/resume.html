@@ -10,7 +10,7 @@
   </div>
   <div class="invest-resume">
     <div class="resume-content" ng-if="investorInfoVm.basic.intro !== '' && !investorEditVM.editResume">
-      <span class="re-info" text-overflow text="investorInfoVm.basic.intro"></span>
+      <span class="re-info" text-overflow text="investorInfoVm.basic.intro | brLine"></span>
     </div>
     <div class="no-data" ng-if="investorInfoVm.basic.intro === '' && !investorEditVM.editResume">
       <span>
