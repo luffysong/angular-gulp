@@ -30,9 +30,9 @@
   <div class="page-content">
     <div class="page-item">
       <div class="item-top">
-        <i class="icon-find-new" ui-sref="list.result({columnId:0})" data-stat-click="findNew.icon"></i>
-        <b ui-sref="list.result({columnId:0})" data-stat-click="findNew.name">发现新项目</b>
-        <a href="" class="more-link" ui-sref="list.result({columnId:0})" data-stat-click="findNew.more">更多</a>
+        <i class="icon-find-new" ui-sref="list.result({columnId:0,sortField:'STOCK_AT'})" data-stat-click="findNew.icon"></i>
+        <b ui-sref="list.result({columnId:0,sortField:'STOCK_AT'})" data-stat-click="findNew.name">发现新项目</b>
+        <a href="" class="more-link" ui-sref="list.result({columnId:0,sortField:'STOCK_AT'})" data-stat-click="findNew.more">更多</a>
       </div>
       <div class="item-content">
         <div class="layer-container">
@@ -49,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div class="layer-bottom" ui-sref="list.result({columnId:0})" data-stat-click="findNew.seeMore">
+        <div class="layer-bottom" ui-sref="list.result({columnId:0,sortField:'STOCK_AT'})" data-stat-click="findNew.seeMore">
           查看更多新项目
         </div>
       </div>
@@ -92,10 +92,10 @@
     </div>
     <div class="page-item">
       <div class="item-top">
-        <i class="icon-youxuan" ui-sref="list.result({columnId:1})" data-stat-click="youxuan.icon">
+        <i class="icon-youxuan" ui-sref="list.result({columnId:1,sortField:'ADD_COLUMN_LABEL'})" data-stat-click="youxuan.icon">
         </i>
-        <b ui-sref="list.result({columnId:1})" data-stat-click="youxuan.name">优选</b>
-        <a href="" class="more-link" ui-sref="list.result({columnId:1})" data-stat-click="youxuan.more">更多</a>
+        <b ui-sref="list.result({columnId:1,sortField:'ADD_COLUMN_LABEL'})" data-stat-click="youxuan.name">优选</b>
+        <a href="" class="more-link" ui-sref="list.result({columnId:1,sortField:'ADD_COLUMN_LABEL'})" data-stat-click="youxuan.more">更多</a>
       </div>
       <div class="item-content">
         <div class="layer-container" perfect-scrollbar wheel-propagation="true" wheel-speed="5" min-scrollbar-length="15" wheel-speed="3">
@@ -116,7 +116,7 @@
             </div>
           </div>
         </div>
-        <div class="layer-bottom" ui-sref="list.result({columnId:1})" data-stat-click="youxuan.viewMore">
+        <div class="layer-bottom" ui-sref="list.result({columnId:1,sortField:'ADD_COLUMN_LABEL'})" data-stat-click="youxuan.viewMore">
           查看更多新项目
         </div>
       </div>
