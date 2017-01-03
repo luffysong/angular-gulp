@@ -1,7 +1,7 @@
 import krData from 'krData';
 import CollectionVM from './collection.vm';
 import WorkstationIndexService from './WorkstationIndex.service';
-@Inject('$stateParams', 'resolveData','$validation', '$scope', '$sce', '$state', '$q', '$filter', 'ngDialog','user')
+@Inject('$stateParams', 'resolveData', '$validation', '$scope', '$sce', '$state', '$q', '$filter', 'ngDialog', 'user', '$timeout')
 export default class WorkstationIndexController {
   constructor() {
     this.init();
@@ -25,17 +25,25 @@ export default class WorkstationIndexController {
     });
   }
 
-  showNewCollection(){
+  showNewCollection() {
     this.$scope.newCollection = true;
     this.$scope.isFocus = true;
   }
 
   createCollection(e) {
-    if (e.type == 'blur' || e.keyCode === 13) {
-      if(!this.collectionName){
-          this.$scope.newCollection = false;
-          this.$scope.isFocus = false;
-          return
+    if (e.type === 'blur' || e.keyCode === 13) {
+      if (this.createLoading) {
+        return;
+      }
+      this.createLoading = true;
+      // 解决keyup与blur同时触发造成重复请求
+      this.$timeout(() => {
+        this.createLoading = false;
+      }, 200);
+      if (!this.collectionName) {
+        this.$scope.newCollection = false;
+        this.$scope.isFocus = false;
+        return;
       }
       this.workstationService.createCollection(this.collectionName)
       .then(data => {
@@ -43,10 +51,10 @@ export default class WorkstationIndexController {
         this.$scope.newFocus = false;
         this.$scope.isFocus = false;
         const item = {
-            name: this.collectionName,
-            count: 0,
-            id: data.id,
-          }
+          name: this.collectionName,
+          count: 0,
+          id: data.id,
+        };
         this.$scope.collectionVM.dataList.groupList.unshift(item);
       }).catch(err => {
         krData.Alert.alert(err.msg);
