@@ -7,7 +7,8 @@
         ng-if="!vm.introductionVM.isEdit && vm.isEditMode" data-stat-click="project.{{vm.id}}.baseIntro.edit">编辑</a>
   </div>
   <div class="base-info">
-    <h4 ng-hide="!vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true">概述</h4>
+    <h4 ng-hide="(!vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true) && !vm.introductionVM.isEdit">
+      概述</h4>
     <section id="baseInfoEdit" ng-include="'/pages/project/templates/baseInfoEdit.html'"
       ng-if="vm.introductionVM.isEdit">
       基本介绍编辑
