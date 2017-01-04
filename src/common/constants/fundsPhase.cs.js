@@ -1,49 +1,64 @@
 import { extractMeta } from '../base/utls';
 const FUNDS_PHASE_ENUM_META = [
   {
-    desc: '天使轮',
-    id: 10,
-    value: 'ANGEL',
+    "desc": "种子轮",
+    "id": 5,
+    "value": "SEED"
   },
   {
-    desc: 'Pre-A轮',
-    id: 20,
-    value: 'PRE_A',
+    "desc": "天使轮",
+    "id": 10,
+    "value": "ANGEL"
   },
   {
-    desc: 'A轮',
-    id: 30,
-    value: 'A',
+    "desc": "Pre-A轮",
+    "id": 20,
+    "value": "PRE_A"
   },
   {
-    desc: 'A+轮',
-    id: 35,
-    value: 'A_PLUS',
+    "desc": "A轮",
+    "id": 30,
+    "value": "A"
   },
   {
-    desc: 'B轮',
-    id: 40,
-    value: 'B',
+    "desc": "A+轮",
+    "id": 35,
+    "value": "A_PLUS"
   },
   {
-    desc: 'B+轮',
-    id: 45,
-    value: 'B_PLUS',
+    "desc": "Pre-B轮",
+    "id": 37,
+    "value": "PRE_B"
   },
   {
-    desc: 'C轮',
-    id: 50,
-    value: 'C',
+    "desc": "B轮",
+    "id": 40,
+    "value": "B"
   },
   {
-    desc: 'D轮',
-    id: 60,
-    value: 'D',
+    "desc": "B+轮",
+    "id": 45,
+    "value": "B_PLUS"
   },
   {
-    desc: 'E轮及以后',
-    id: 70,
-    value: 'E',
+    "desc": "C轮",
+    "id": 50,
+    "value": "C"
+  },
+  {
+    "desc": "C+轮",
+    "id": 55,
+    "value": "C_PLUS"
+  },
+  {
+    "desc": "D轮",
+    "id": 60,
+    "value": "D"
+  },
+  {
+    "desc": "E轮及以后",
+    "id": 70,
+    "value": "E"
   },
 ];
 

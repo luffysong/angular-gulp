@@ -241,10 +241,13 @@
 
   <div class="login-wrapper" ng-if="parentVm.labelEmpty || !parentVm.user.isLogin">
     <div class="login-layer" ng-if="!parentVm.user.isLogin">
-      <div class="login-tag"></div>
-      <a href="javascript:void(0)" class="follow-add-btn" ng-click="parentVm.login()" data-stat-click="login">
-        登录查看关注项目
-      </a>
+      <img src="/images/guide_register.png" alt="">
+      <div class="message">
+        该功能需要登录才能查看
+      </div>
+      <div class="login-btn" ng-click="parentVm.toLogin()" data-stat-click="login">
+        <span>登录</span>
+      </div>
     </div>
     <div class="login-layer" ng-if="parentVm.labelEmpty && parentVm.user.isLogin">
       <div class="login-tip"></div>

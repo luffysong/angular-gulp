@@ -236,6 +236,18 @@
       font-size: 14px;
       color: #5A626D;
       cursor: pointer;
+      &:first-of-type {
+        &:before {
+          content: '';
+          display: inline-block;
+          position: absolute;
+          width:1px;
+          height:18px;
+          background: #E7E7E7;
+          top:7px;
+          left:0;
+        }
+      }
       .list-number {
         font-size:12px;
         color: #b4b3b0;
@@ -244,8 +256,8 @@
         background: #5A626D;
         border-radius: 3px;
         color: #fff;
-        &:after {
-          display: none;
+        &:after,&:before {
+          display: none !important;
         }
       }
       &:after {
@@ -586,7 +598,7 @@
   }
   .result-content {
     background: #FFFFFF;
-    box-shadow: 0px 2px 6px 0px #CCCCCC;
+    border-top: 1px solid #F2F4F5;
     table {
       width:100%;
       text-align: center;

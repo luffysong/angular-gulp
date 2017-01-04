@@ -1,6 +1,11 @@
 import { extractMeta } from '../base/utls';
 const COMPANY_SEARCH_PHASE_META = [
   {
+    "desc": "种子轮",
+    "id": 5,
+    "value": "SEED"
+  },
+  {
     "desc": "天使轮",
     "id": 10,
     "value": "ANGEL"
@@ -21,6 +26,11 @@ const COMPANY_SEARCH_PHASE_META = [
     "value": "A_PLUS"
   },
   {
+    "desc": "Pre-B轮",
+    "id": 37,
+    "value": "PRE_B"
+  },
+  {
     "desc": "B轮",
     "id": 40,
     "value": "B"
@@ -36,6 +46,11 @@ const COMPANY_SEARCH_PHASE_META = [
     "value": "C"
   },
   {
+    "desc": "C+轮",
+    "id": 55,
+    "value": "C_PLUS"
+  },
+  {
     "desc": "D轮",
     "id": 60,
     "value": "D"
@@ -44,7 +59,7 @@ const COMPANY_SEARCH_PHASE_META = [
     "desc": "E轮及以后",
     "id": 70,
     "value": "E"
-  }
+  },
 ];
 
 const COMPANY_SEARCH_PHASE = extractMeta(COMPANY_SEARCH_PHASE_META);
