@@ -309,7 +309,17 @@ export default class ProductVM {
         align: 'left',
         x: -10,
         margin: 25,
-        text: '<h5 class="trend-title">DAU / 曝光量</h5>',
+        text: '<h5 class="trend-title">' +
+        '<span>DAU / 曝光量</span>' +
+        '<i class="icon-dialogTags">' +
+          '<span class="tip">' +
+            '<span class="tip-title">DAU</span>' +
+            '<span>App客户端7日平均日活跃用户数（暂不包含PC、公众号等渠道）</span>' +
+            '<span class="tip-title mt">曝光量</span>' +
+            '<span>媒体报道、社交网络提及量的叠加值</span>' +
+          '</span>' +
+        '</i>' +
+        '</h5>',
       },
       xAxis: {
         tickWidth: 1,
@@ -447,7 +457,17 @@ export default class ProductVM {
         align: 'left',
         x: -10,
         margin: 25,
-        text: '<h5 class="trend-title">AppStore排名 / Android下载量</h5>',
+        text: '<h5 class="trend-title">' +
+        '<span>AppStore排名 / Android下载量</span>' +
+        '<i class="icon-dialogTags">' +
+        '<span class="tip">' +
+        '<span class="tip-title">AppStore排名</span>' +
+        '<span>AppStore分类排行榜单</span>' +
+        '<span class="tip-title mt">Android下载量</span>' +
+        '<span>应用商店每日新增下载量</span>' +
+        '</span>' +
+        '</i>' +
+        '</h5>',
       },
       xAxis: {
         tickWidth: 1,
@@ -568,7 +588,15 @@ export default class ProductVM {
         align: 'left',
         x: -10,
         margin: 25,
-        text: '<h5 class="trend-title">网站Alexa排名</h5>',
+        text: '<h5 class="trend-title">' +
+        '<span>网站Alexa排名</span>' +
+        '<i class="icon-dialogTags">' +
+          '<span class="tip">' +
+            '<span class="tip-title">网站Alexa排名</span>' +
+            '<span>中国区域Alexa每日流量排行榜单</span>' +
+          '</span>' +
+        '</i>' +
+        '</h5>',
       },
       xAxis: {
         tickWidth: 1,

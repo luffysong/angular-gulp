@@ -13,13 +13,21 @@
 
     </div>
     <div class="right-container">
-      <h5 class="trend-title">客户端留存率</h5>
-      <div class="retention-container" ng-class="{'noData': productVM.saveEmpty}">
+      <h5 class="trend-title">
+        <span>客户端留存率</span>
+        <i class="icon-dialogTags">
+          <span class="tip">
+            <span class="tip-title">客户端留存率</span>
+            <span>App客户端用户留存率</span>
+          </span>
+        </i>
+      </h5>
+      <div class="retention-container" ng-class="{noData: productVM.saveEmpty}">
         <div class="retention-item" ng-repeat="item in productVM.retentionList">
           <div class="retention-title">
             {{item.title}}
           </div>
-          <div class="retention-bar" ng-style="{width: item.width}" ng-class="{min: item.width === '0px'}"></div>
+          <div class="retention-bar" ng-style="{width: item.width}" ng-class="{min: item.width === 0px}"></div>
           <div class="retention-percent">
             {{item.percent}}%
           </div>
