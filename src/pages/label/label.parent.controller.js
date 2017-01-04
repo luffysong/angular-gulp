@@ -873,7 +873,7 @@ export default class listParentController {
   }
 
   setInvest(investmentTrend) {
-    console.log(investmentTrend);
+    if (!investmentTrend.investCaseIncrTrend || !investmentTrend.investCaseIncrTrend.x) return;
     function handleDate(date) {
       return `${date.slice(0, 4)}-${date.slice(4, 6)}`;
     }
@@ -951,7 +951,7 @@ export default class listParentController {
     ];
     dict.forEach(item => {
       item.name.forEach(obj => {
-        if (d[obj].y.length) {
+        if (d[obj] && d[obj].y && d[obj].y.length) {
           item.empty = false;
         }
       });
