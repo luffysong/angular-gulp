@@ -60,15 +60,15 @@
           <span class="sub-title">用户市场</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.userMarket | enterFormat"></span>
         </div>
-        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.businessMode && root.user.isInvestor() || vm.isEditMode" >
+        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.businessMode && (root.user.isInvestor() || vm.isEditMode)">
           <span class="sub-title">商业模式</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.businessMode | enterFormat"></span>
         </div>
-        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.operationData && root.user.isInvestor() || vm.isEditMode">
+        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.operationData && (root.user.isInvestor() || vm.isEditMode)">
           <span class="sub-title">运营数据</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.operationData | enterFormat"></span>
         </div>
-        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.coreSource && root.user.isInvestor() || vm.isEditMode" >
+        <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.coreSource && (root.user.isInvestor() || vm.isEditMode)">
           <span class="sub-title">核心资源</span>
           <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.coreSource | enterFormat"></span>
         </div>
