@@ -92,12 +92,12 @@
       </div>
       <div class="form-list form-group">
         <p>
-          <span class="require">*</span><span class="title">个人名片</span>
+          <span class="require">*</span><span class="title">认证资料</span>
         </p>
         <img ng-src="{{vm.background}}" alt="" class="upload-img">
         <span class="uploading" ngf-select="vm.uploadImage($files)"
-          ngf-accept="'image/*'">{{vm.suc?'点击更新图片':'点击上传名片'}}</span>
-          <span class="warn-img">建议上传尺寸：90mm*50mm</span>
+          ngf-accept="'image/*'">{{vm.suc?'点击更新':'点击上传'}}</span>
+          <span class="warn-img">建议上传名片尺寸：90mm*50mm</span>
 
       </div>
       <div ng-show="vm.isFunder()">
