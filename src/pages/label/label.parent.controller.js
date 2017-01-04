@@ -156,7 +156,7 @@ export default class listParentController {
   /* 根据路由参数处理激活 */
   handleActive() {
     this.dataInit();
-    angular.forEach(this.params,(val,key) => {
+    angular.forEach(this.params, (val, key) => {
       if (val && val.split(',').length > 1) {
         angular.forEach(val.split(','), (a) => {
           angular.forEach(this.data[key], (item) => {
@@ -222,7 +222,7 @@ export default class listParentController {
   /* 筛选器展开 */
   spreadMore(type) {
     this.open[type] = !this.open[type];
-  };
+  }
 
   /* 取消选择行业 */
   clearIndustry(id, type) {

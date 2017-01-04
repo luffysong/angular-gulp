@@ -19,6 +19,7 @@ export default class listParentController {
       filter: false,
       sideBar: false,
     };
+    this.triggerOpen = false;
     this.industryLabel = {
       id: 0,
     };
@@ -63,6 +64,10 @@ export default class listParentController {
     };
 
     this.$scope.$on('get-change', (e, d) => {
+      if (!d.columnId && !this.triggerOpen) {
+        this.open.industry = true;
+        this.triggerOpen = true;
+      }
       this.params = {};
       angular.extend(this.params, d);
       const params = Object.assign({ columnId: this.params.columnId || 0 },

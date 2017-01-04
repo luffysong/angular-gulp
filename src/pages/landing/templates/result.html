@@ -39,11 +39,12 @@
             <div class="project-intro">
               {{::obj.brief}}
             </div>
-            <div class="project-tag" ng-if="obj.advantage">
+            <!--<div class="project-tag" ng-if="obj.advantage">
               <i class="icon-Hot"></i>
               <span>{{::obj.advantage}}</span>
-            </div>
+            </div>-->
             <div class="project-tag">
+              <span class="icon-bookmark" ng-show="obj.operationTag.length || obj.industryTag.length"></span>
               <a ng-repeat="tag in obj.operationTag" class="operation-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag">
                 <span>{{tag.name}}</span>
               </a>
