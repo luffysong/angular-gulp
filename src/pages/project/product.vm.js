@@ -349,7 +349,7 @@ export default class ProductVM {
         gridLineDashStyle: 'longdash',
         lineWidth: 1,
         labels: {
-          format: '{value}万',
+          format: '{value}',
           maxStaggerLines: 10,
           style: {
 
@@ -358,6 +358,7 @@ export default class ProductVM {
         title: {
           enabled: false,
         },
+        opposite: true,
       }, {
         gridLineDashStyle: 'longdash',
         gridLineColor: '#F2F4F5',
@@ -367,12 +368,12 @@ export default class ProductVM {
           enabled: false,
         },
         labels: {
-          format: '{value}',
+          format: '{value}万',
           style: {
 
           },
         },
-        opposite: true,
+        opposite: false,
       }],
     };
   }
