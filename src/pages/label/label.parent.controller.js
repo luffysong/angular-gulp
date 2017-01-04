@@ -294,7 +294,9 @@ export default class listParentController {
       this.labelStat = data;
       this.setTitle();
       this.loadChart();
-      this.setTrend(this.labelStat.comIncrTrend);
+      if (this.labelStat.comIncrTrend) {
+        this.setTrend(this.labelStat.comIncrTrend);
+      }
       this.setInvest(this.labelStat);
       this.handleData(this.labelStat);
       if (this.seeAll) {
@@ -308,6 +310,7 @@ export default class listParentController {
     function handleDate(date) {
       return `${date.slice(0, 4)}.${date.slice(4, 6)}`;
     }
+    if (!this.labelStat.comIncrTrend) return;
     this.trendHg.title.text = `
     <h5 class="chart-title">项目年度趋势</h5>
     <h5 class="trend-title">
@@ -831,10 +834,10 @@ export default class listParentController {
         item,
       })),
       type: 'pie',
-      name: `共投资${5}个轮次`,
+      name: `共投资${this.labelStat.investPhaseDis.length}个轮次`,
       innerSize: '85%',
     }];
-    this.investPhaseHg.title.text = `共投资<br>${5}个轮次`;
+    this.investPhaseHg.title.text = `共投资<br>${this.labelStat.investPhaseDis.length}个轮次`;
     this.comPhaseHg.series = [{
       data: this.labelStat.comPhaseDis.slice(0, 6).map(item => ({
         name: item.key,
@@ -843,10 +846,10 @@ export default class listParentController {
         item,
       })),
       type: 'pie',
-      name: `共投资${5}个轮次`,
+      name: `共投资${this.labelStat.comPhaseDis.length}个轮次`,
       innerSize: '85%',
     }];
-    this.comPhaseHg.title.text = `共投资<br>${5}个轮次`;
+    this.comPhaseHg.title.text = `共投资<br>${this.labelStat.comPhaseDis.length}个轮次`;
   }
 
   setTrend(investmentTrend) {
