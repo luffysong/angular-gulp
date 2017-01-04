@@ -6,7 +6,7 @@ import InvestedCaseVM from './investedCase.vm';
 @Inject('$stateParams', '$timeout', 'orgService', 'resolveData')
 export default class OrgController {
   years = [];
-  year = new Date().getFullYear();
+  year = new Date().getFullYear() - 1;
   linecColumnTooltip = {
     headerFormat: '',
     pointFormatter: function pointFormatter() {
@@ -211,6 +211,11 @@ export default class OrgController {
     this.analyze = orgData.analyze;
     angular.extend(this, this.orgData);
     this.years = krData.utls.fromYear(this.orgData.analyze.initParam.earliestYear);
+    /* 因2017无数据,暂时删除2017 */
+    if (this.years.indexOf(2017) >= 0) {
+      this.years.splice(this.years.indexOf(2017), 1);
+    }
+    this.changeCondition();
     this.renderChart();
   }
 
