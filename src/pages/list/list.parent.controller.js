@@ -20,7 +20,7 @@ export default class listParentController {
       sideBar: false,
     };
     this.triggerOpen = false;
-    this.industryLabel = {
+    this.label = {
       id: 0,
     };
     this.$scope.company = {};
@@ -79,7 +79,7 @@ export default class listParentController {
         this.data.label[0].value = 'unlimited';
         this.$timeout.cancel(this.timer);
         if (this.params.industry !== 'unlimited') {
-          this.industryLabel.id = 0;
+          this.label.id = 0;
           this.loopLabels(this.data.label);
         }
         this.handleActive();
@@ -346,7 +346,6 @@ export default class listParentController {
 
   loopLabels(labels) {
     this.labels = [];
-    this.label = {};
     const industryVal = this.$location.search().industry;
     if (!industryVal) {
       return;
@@ -391,7 +390,7 @@ export default class listParentController {
 
   setLabelId(label) {
     this.projectService.getLabelId(label).then(data => {
-      this.industryLabel.id = data.labelId;
+      this.label.id = data.labelId;
     });
 
   }
