@@ -47,7 +47,7 @@
     </div>
   </div>
   <!--ng-show="vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true"-->
-  <div class="project-intro-wrapper" ng-if="vm.companyIntroduceVM.data.companyIntroduce.productService || vm.companyIntroduceVM.data.companyIntroduce.userMarket || vm.companyIntroduceVM.data.companyIntroduce.businessMode || vm.companyIntroduceVM.data.companyIntroduce.operationData || vm.companyIntroduceVM.data.companyIntroduce.coreSource">
+  <div class="project-intro-wrapper" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.productService || vm.companyIntroduceVM.data.companyIntroduce.userMarket || vm.companyIntroduceVM.data.companyIntroduce.businessMode || vm.companyIntroduceVM.data.companyIntroduce.operationData || vm.companyIntroduceVM.data.companyIntroduce.coreSource) || !root.user.isLogin">
     <div ng-if="!vm.introductionVM.isEdit">
       <h4>详细介绍</h4>
 
