@@ -19,7 +19,7 @@ class SearchController {
     this.historyApi.save(null, {
       kw,
     });
-    getService('$state').go('landing.result', { kw, type: 'company' }, { inherit: false, reload: true });
+    getService('$state').go('landing.result', { kw, type: 'company', sortField: 'MATCH_RATE'}, { inherit: false, reload: true });
   }
 
 }
