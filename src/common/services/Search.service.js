@@ -177,7 +177,7 @@ export default class SearchService {
       getService('$state').go('investorInfo', { id: item.obj.id });
     } else if (angular.isString(item.obj)) {
       getService('$state').go('landing.result',
-        { kw: item.value, type: 'company', sortField: 'MATCH_RATE' }, { inherit: false });
+        { kw: item.value, type: 'company', sortField: 'MATCH_RATE' }, { inherit: false, reload: true});
     }
   }
 
@@ -192,7 +192,7 @@ export default class SearchService {
     });
     if (this._isAction(item) && item.obj.type !== 'newCom') {
       getService('$state').go('landing.result', { kw, type: item.obj.type.toLowerCase() },
-        { inherit: false });
+        { inherit: false, reload: true });
     } else if (this._isAction(item) && item.obj.type === 'newCom') {
       getService('$state').go('createProject');
     } else if (item.obj.type === RESULT_TYPE.COMPANY) {
@@ -217,7 +217,7 @@ export default class SearchService {
             kw: value,
           });
           getService('$state').go('landing.result',
-            { kw: value, type: 'company', sortField: 'MATCH_RATE' }, { inherit: false });
+            { kw: value, type: 'company', sortField: 'MATCH_RATE' }, { inherit: false, reload: true });
         }
       },
     };
