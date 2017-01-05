@@ -69,6 +69,10 @@ export default class followIndexController {
       this.investorCancle = function investorCancle() {
         vm.investorDialog.close();
       };
+      this.goInvest = function () {
+        vm.investorDialog.close();
+        vm.$timeout(() => vm.$state.go('investorValidate'), 500);
+      };
     }
     vm.investorDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/project/templates/investorLink.html\'" center></div>',
