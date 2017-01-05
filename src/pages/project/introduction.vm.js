@@ -85,6 +85,9 @@ export default class IntroductionVM extends krData.FormVM {
   }
 
   save() {
+    if(!this.startDate){
+        this.startDate = "";
+    }
     this.validate2().then(() => {
       this.projectService.editBase({
         id: this.id,
