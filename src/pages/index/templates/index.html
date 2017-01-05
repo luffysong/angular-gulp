@@ -77,7 +77,7 @@
               </div>
               <div class="third-line">
                 投资方:
-                <span ng-if="!item.investParts.length">暂无</span>
+                <span ng-if="!item.investParts.length">未披露</span>
                 <span class="invest-part" ng-repeat="obj in item.investParts" ng-if="item.investParts.length">
                 <span ui-sref="org({id:obj.id})" data-stat-click="fundExpress.org.{{obj.id}}">{{obj}}</span>
                 <span class="dot">、</span>
