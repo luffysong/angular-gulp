@@ -21,7 +21,7 @@ const BP_PERMISSION = {
 
 const BP_PERMISSION_MORE_CODE = 100;
 @Inject('$stateParams', 'projectService', 'ngDialog', 'resolveData',
-  '$validation', '$scope', '$sce', '$state', '$q', '$filter')
+  '$validation', '$scope', '$sce', '$state', '$q', '$filter', '$timeout')
 export default class ProjectIndexController {
   constructor() {
     this.init();

@@ -1,4 +1,5 @@
 import krData from 'krData';
+@Inject('$timeout')
 export default class CollectionVM {
   constructor(fn, id, investor) {
     this.ngDialog = fn;
