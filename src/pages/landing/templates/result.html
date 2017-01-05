@@ -1,192 +1,194 @@
 <div ng-if="!parentVm.open.sideBar" class="result-container" data-stat-module="landing">
-  <kr-backtop href="#searchResult" ></kr-backtop>
-  <div class="result-tip">
-    <span ng-if="vm.$stateParams.kw">找到关于 <b>“{{vm.$stateParams.kw}}”</b> 的</span>
-    <span ng-if="!vm.$stateParams.kw">全部搜索</span>结果<b>{{vm.listData.totalCount}}</b>条
-    <div class="order-btns" ng-show="vm.$stateParams.type === 'company'">
-      <div>
-        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('MATCH_RATE')" ng-class="{'btn-active': vm.isMatchRate}"
-        data-stat-click="landing.matchRate">匹配度</a>
-      </div>
-      <div>
-        <a href="#" class="center-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': vm.isStockAt}"
-        data-stat-click="landing.stockAt">收录时间</a>
-      </div>
-      <div>
-        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}"
-        data-stat-click="landing.startDate">成立时间</a>
+  <div class="side-container">
+    <kr-backtop href="#searchResult" ></kr-backtop>
+    <div class="result-tip">
+      <span ng-if="vm.$stateParams.kw">找到关于 <b>“{{vm.$stateParams.kw}}”</b> 的</span>
+      <span ng-if="!vm.$stateParams.kw">全部搜索</span>结果<b>{{vm.listData.totalCount}}</b>条
+      <div class="order-btns" ng-show="vm.$stateParams.type === 'company'">
+        <div>
+          <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('MATCH_RATE')" ng-class="{'btn-active': vm.isMatchRate}"
+          data-stat-click="landing.matchRate">匹配度</a>
+        </div>
+        <div>
+          <a href="#" class="center-btn" ng-click="parentVm.orderBySortField('STOCK_AT')" ng-class="{'btn-active': vm.isStockAt}"
+          data-stat-click="landing.stockAt">收录时间</a>
+        </div>
+        <div>
+          <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}"
+          data-stat-click="landing.startDate">成立时间</a>
+        </div>
       </div>
     </div>
-  </div>
-  <div id="searchResult" class="result-content">
-    <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading || vm.noMore || vm.needLogin' infinite-scroll-distance='0' ng-if="vm.$scope.parentVm.activeTab === 'company'">
-      <tr>
-        <td width="320">项目</td>
-        <td>行业</td>
-        <td>轮次</td>
-        <td>所在地</td>
-       <!-- <td ng-show="parentVm.params['sortField'] === 'STOCK_AT'">收录时间</td>-->
-        <td>成立时间</td>
-        <td width="120">操作</td>
-      </tr>
-      <tr ng-repeat="obj in vm.listData.data track by $index">
-        <td>
-          <img ng-src="{{::obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" data-stat-click="company.{{obj.id}}" class="project-logo" />
-          <div class="project-info">
-            <div class="project-name">
-              <span class="company-name" ng-click="vm.seeDetail(obj.id)" data-stat-click="company.{{obj.id}}">{{::obj.name}}</span><span class="icon-hot-tag" ng-if="obj.hot"></span><span class="icon-classicTag" ng-if="obj.classic"></span><span class="icon-funding" ng-if="obj.funding"></span>
-            </div>
-            <div class="project-intro">
-              {{::obj.brief}}
-            </div>
-            <!--<div class="project-tag" ng-if="obj.advantage">
-              <i class="icon-Hot"></i>
-              <span>{{::obj.advantage}}</span>
-            </div>-->
-            <div class="project-tag">
-              <span class="icon-bookmark" ng-show="obj.operationTag.length || obj.industryTag.length"></span>
-              <a ng-repeat="tag in obj.operationTag" class="operation-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag">
-                <span>{{tag.name}}</span>
-              </a>
-              <a ng-repeat="tag in obj.industryTag" class="industry-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag">
-                <span>{{tag.name}}</span>
-              </a>
-            </div>
-          </div>
-        </td>
-        <td class="filter-item">
-          <span ng-click="vm.clickFilter(obj.industry,'industry')" data-stat-click="list.industry.{{obj.industry}}"
-           >{{::obj.industry | industry}}</span>
-        </td>
-        <td class="filter-item">
-          <span ng-click="vm.clickFilter(obj.phase,'phase')" data-stat-click="list.phase.{{obj.phase}}"
-           >{{::obj.phase | companyFinancePhase}}</span>
-        </td>
-        <td class="filter-item">
-          <span ng-click="vm.clickFilter(obj.city,'city')"
-            data-stat-click="list.city.{{::obj.cityStr}}"
-            >{{::obj.cityStr || '暂无'}}</span>
-        </td>
-        <!--<td class="date-time" ng-show="parentVm.params['sortField'] === 'STOCK_AT'">
-          <span ng-show="obj.stockDate">{{::obj.stockDate | date:'yyyy-MM'}}</span>
-          <span ng-show="!obj.stockDate">—</span>
-        </td>-->
-        <td class="date-time">
-          <span ng-show="obj.startDate">{{::obj.startDate | date:'yyyy-MM'}}</span>
-          <span ng-show="!obj.startDate">—</span>
-        </td>
-        <td>
-          <span ng-click="vm.collect($index)"
-            data-stat-hover="collect.{{obj.id}}"
-            data-stat-click="collect.{{obj.id}}"
-            class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
-            <span ng-show="obj.followed">已</span>收藏
-            <div class="collect-modal" ng-hide="!vm.user.isLogin || !vm.user.isInvestor()" ng-if="obj.id === vm.cid" ng-click="$event.stopPropagation();">
-              <section class="modal-title">选择收藏夹</section>
-              <ul>
-                 <li ng-repeat="item in vm.collections">
-                  <input type="checkbox" class="checkbox" name='collection' ng-model="item.followed" ng-change="vm.change(item,$index)" ng-checked="item.followed">
-                  <span class="favorite-name">{{::item.name}}</span>
-                  <span class="favorite-number">({{item.count}})</span>
-                  <span class="favorite-status" ng-class="{'hidden':vm.status === 'suc' && $index == vm.activeIndex}" ng-hide="vm.status === 'cancel'">已添加</span>
-                  <span class="favorite-status" ng-class="{'hidden':vm.status === 'cancel' && $index == vm.activeIndex}" ng-hide="vm.status === 'suc'">取消成功</span>
-                 </li>
-              </ul>
-              <div class="new-create">
-                <input type="text" name='createName' placeholder="创建新收藏夹" ng-model='vm.collectionName' maxlength="8">
-                <a href="javascript:void(0)" class="create-link" ng-click="vm.create()"  data-stat-click="collection.create">创建</a>
+    <div id="searchResult" class="result-content">
+      <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading || vm.noMore || vm.needLogin' infinite-scroll-distance='0' ng-if="vm.$scope.parentVm.activeTab === 'company'">
+        <tr>
+          <td width="320">项目</td>
+          <td>行业</td>
+          <td>轮次</td>
+          <td>所在地</td>
+         <!-- <td ng-show="parentVm.params['sortField'] === 'STOCK_AT'">收录时间</td>-->
+          <td>成立时间</td>
+          <td width="120">操作</td>
+        </tr>
+        <tr ng-repeat="obj in vm.listData.data track by $index">
+          <td>
+            <img ng-src="{{::obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" data-stat-click="company.{{obj.id}}" class="project-logo" />
+            <div class="project-info">
+              <div class="project-name">
+                <span class="company-name" ng-click="vm.seeDetail(obj.id)" data-stat-click="company.{{obj.id}}">{{::obj.name}}</span><span class="icon-hot-tag" ng-if="obj.hot"></span><span class="icon-classicTag" ng-if="obj.classic"></span><span class="icon-funding" ng-if="obj.funding"></span>
               </div>
-              <div class="create-suc" ng-show="vm.createSuc && !vm.errMsg">创建成功</div>
-              <div class="error-msg" ng-show="vm.errMsg && !vm.createSuc" ng-bind="vm.errMsg"></div>
+              <div class="project-intro">
+                {{::obj.brief}}
+              </div>
+              <!--<div class="project-tag" ng-if="obj.advantage">
+                <i class="icon-Hot"></i>
+                <span>{{::obj.advantage}}</span>
+              </div>-->
+              <div class="project-tag">
+                <span class="icon-bookmark" ng-show="obj.operationTag.length || obj.industryTag.length"></span>
+                <a ng-repeat="tag in obj.operationTag" class="operation-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.operationTag">
+                  <span>{{tag.name}}</span>
+                </a>
+                <a ng-repeat="tag in obj.industryTag" class="industry-tag" ui-sref="label.result({labelId: tag.id})" target="_blank" ng-if="obj.industryTag">
+                  <span>{{tag.name}}</span>
+                </a>
+              </div>
             </div>
-          </span>
-        </td>
-      </tr>
-    </table>
-    <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading' infinite-scroll-distance='0' ng-if="vm.$scope.parentVm.activeTab === 'user'">
-      <tr>
-        <td width="320">投资人</td>
-        <td>关注行业</td>
-        <td>偏好轮次</td>
-        <td>投资总数</td>
-        <td>最近投资</td>
-        <td>所在地</td>
-      </tr>
-      <tr ng-repeat="obj in vm.listData.data track by $index">
-        <td>
-          <img ui-sref="investorInfo({id:obj.id})" ng-src="{{::obj.logo || '/images/investor-logo.png'}}" class="investor-logo" />
-          <div class="project-info">
-            <div class="project-name">
-              <span class="company-name" ui-sref="investorInfo({id:obj.id})">{{::obj.name}}</span>
+          </td>
+          <td class="filter-item">
+            <span ng-click="vm.clickFilter(obj.industry,'industry')" data-stat-click="list.industry.{{obj.industry}}"
+             >{{::obj.industry | industry}}</span>
+          </td>
+          <td class="filter-item">
+            <span ng-click="vm.clickFilter(obj.phase,'phase')" data-stat-click="list.phase.{{obj.phase}}"
+             >{{::obj.phase | companyFinancePhase}}</span>
+          </td>
+          <td class="filter-item">
+            <span ng-click="vm.clickFilter(obj.city,'city')"
+              data-stat-click="list.city.{{::obj.cityStr}}"
+              >{{::obj.cityStr || '暂无'}}</span>
+          </td>
+          <!--<td class="date-time" ng-show="parentVm.params['sortField'] === 'STOCK_AT'">
+            <span ng-show="obj.stockDate">{{::obj.stockDate | date:'yyyy-MM'}}</span>
+            <span ng-show="!obj.stockDate">—</span>
+          </td>-->
+          <td class="date-time">
+            <span ng-show="obj.startDate">{{::obj.startDate | date:'yyyy-MM'}}</span>
+            <span ng-show="!obj.startDate">—</span>
+          </td>
+          <td>
+            <span ng-click="vm.collect($index)"
+              data-stat-hover="collect.{{obj.id}}"
+              data-stat-click="collect.{{obj.id}}"
+              class="collect-btn" ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position>
+              <span ng-show="obj.followed">已</span>收藏
+              <div class="collect-modal" ng-hide="!vm.user.isLogin || !vm.user.isInvestor()" ng-if="obj.id === vm.cid" ng-click="$event.stopPropagation();">
+                <section class="modal-title">选择收藏夹</section>
+                <ul>
+                   <li ng-repeat="item in vm.collections">
+                    <input type="checkbox" class="checkbox" name='collection' ng-model="item.followed" ng-change="vm.change(item,$index)" ng-checked="item.followed">
+                    <span class="favorite-name">{{::item.name}}</span>
+                    <span class="favorite-number">({{item.count}})</span>
+                    <span class="favorite-status" ng-class="{'hidden':vm.status === 'suc' && $index == vm.activeIndex}" ng-hide="vm.status === 'cancel'">已添加</span>
+                    <span class="favorite-status" ng-class="{'hidden':vm.status === 'cancel' && $index == vm.activeIndex}" ng-hide="vm.status === 'suc'">取消成功</span>
+                   </li>
+                </ul>
+                <div class="new-create">
+                  <input type="text" name='createName' placeholder="创建新收藏夹" ng-model='vm.collectionName' maxlength="8">
+                  <a href="javascript:void(0)" class="create-link" ng-click="vm.create()"  data-stat-click="collection.create">创建</a>
+                </div>
+                <div class="create-suc" ng-show="vm.createSuc && !vm.errMsg">创建成功</div>
+                <div class="error-msg" ng-show="vm.errMsg && !vm.createSuc" ng-bind="vm.errMsg"></div>
+              </div>
+            </span>
+          </td>
+        </tr>
+      </table>
+      <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading' infinite-scroll-distance='0' ng-if="vm.$scope.parentVm.activeTab === 'user'">
+        <tr>
+          <td width="320">投资人</td>
+          <td>关注行业</td>
+          <td>偏好轮次</td>
+          <td>投资总数</td>
+          <td>最近投资</td>
+          <td>所在地</td>
+        </tr>
+        <tr ng-repeat="obj in vm.listData.data track by $index">
+          <td>
+            <img ui-sref="investorInfo({id:obj.id})" ng-src="{{::obj.logo || '/images/investor-logo.png'}}" class="investor-logo" />
+            <div class="project-info">
+              <div class="project-name">
+                <span class="company-name" ui-sref="investorInfo({id:obj.id})">{{::obj.name}}</span>
+              </div>
+              <div class="project-intro">
+                <span class="user-brief">{{::obj.brief}}</span>
+                <span ng-if="obj.brief">|</span>
+                <span>{{::obj.position}}</span>
+              </div>
             </div>
-            <div class="project-intro">
-              <span class="user-brief">{{::obj.brief}}</span>
-              <span ng-if="obj.brief">|</span>
-              <span>{{::obj.position}}</span>
+          </td>
+          <td class="org-col">
+            <section ng-if="!obj.industry.length">暂无</section>
+            <section ng-repeat="c in obj.industry | limitTo:3 track by $index" ng-bind="c"></section>
+          </td>
+          <td class="org-col">
+            <section ng-if="!obj.phase.length">暂无</section>
+            <section ng-repeat="c in obj.phase | limitTo:3 track by $index" ng-bind="c"></section>
+          </td>
+          <td>{{::obj.investCnt}}</td>
+          <td class="org-col">
+            <section ng-if="!obj.investCaseList.length">暂无</section>
+            <a class="invest-case" ng-repeat="org in obj.investCaseList | limitTo:3 track by $index" ui-sref="project({id:org.id})" target="_blank">{{org.name}}<br/></a>
+          </td>
+          <td class="org-col">
+            <section ng-if="!obj.city.length">暂无</section>
+            <section ng-repeat="c in obj.city | limitTo:3 track by $index" ng-bind="c"></section>
+          </td>
+        </tr>
+      </table>
+      <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading' infinite-scroll-distance='0' ng-if="vm.$scope.parentVm.activeTab === 'org'">
+        <tr>
+          <td width="320">机构</td>
+          <td>最近投资</td>
+          <td>投资总数</td>
+          <td>成员</td>
+        </tr>
+        <tr ng-repeat="obj in vm.listData.data track by $index">
+          <td>
+            <img ui-sref="org({id:obj.id})" ng-src="{{::obj.logo || '/images/org-logo.png'}}" class="project-logo" />
+            <div class="project-info">
+              <div class="project-name">
+                <span class="company-name" ui-sref="org({id:obj.id})">{{::obj.name}}</span>
+              </div>
+              <div class="org-intro">
+                {{::obj.brief}}
+              </div>
             </div>
-          </div>
-        </td>
-        <td class="org-col">
-          <section ng-if="!obj.industry.length">暂无</section>
-          <section ng-repeat="c in obj.industry | limitTo:3 track by $index" ng-bind="c"></section>
-        </td>
-        <td class="org-col">
-          <section ng-if="!obj.phase.length">暂无</section>
-          <section ng-repeat="c in obj.phase | limitTo:3 track by $index" ng-bind="c"></section>
-        </td>
-        <td>{{::obj.investCnt}}</td>
-        <td class="org-col">
-          <section ng-if="!obj.investCaseList.length">暂无</section>
-          <a class="invest-case" ng-repeat="org in obj.investCaseList | limitTo:3 track by $index" ui-sref="project({id:org.id})" target="_blank">{{org.name}}<br/></a>
-        </td>
-        <td class="org-col">
-          <section ng-if="!obj.city.length">暂无</section>
-          <section ng-repeat="c in obj.city | limitTo:3 track by $index" ng-bind="c"></section>
-        </td>
-      </tr>
-    </table>
-    <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading' infinite-scroll-distance='0' ng-if="vm.$scope.parentVm.activeTab === 'org'">
-      <tr>
-        <td width="320">机构</td>
-        <td>最近投资</td>
-        <td>投资总数</td>
-        <td>成员</td>
-      </tr>
-      <tr ng-repeat="obj in vm.listData.data track by $index">
-        <td>
-          <img ui-sref="org({id:obj.id})" ng-src="{{::obj.logo || '/images/org-logo.png'}}" class="project-logo" />
-          <div class="project-info">
-            <div class="project-name">
-              <span class="company-name" ui-sref="org({id:obj.id})">{{::obj.name}}</span>
-            </div>
-            <div class="org-intro">
-              {{::obj.brief}}
-            </div>
-          </div>
-        </td>
-        <td class="org-col">
-          <section ng-if="!obj.investCaseList.length">暂无</section>
-          <a class="invest-case" ng-repeat="org in obj.investCaseList | limitTo:3 track by $index" ui-sref="project({id:org.id})" target="_blank">{{org.name}}<br/></a>
-        </td>
-        <td class="org-count">
-          <a href="" ui-sref="org({id:obj.id})">{{::obj.investCnt}}</a>
-        </td>
-        <td class="org-count">
-          <a href="" ui-sref="org({id:obj.id})">{{::obj.memberCnt}}</a>
-        </td>
+          </td>
+          <td class="org-col">
+            <section ng-if="!obj.investCaseList.length">暂无</section>
+            <a class="invest-case" ng-repeat="org in obj.investCaseList | limitTo:3 track by $index" ui-sref="project({id:org.id})" target="_blank">{{org.name}}<br/></a>
+          </td>
+          <td class="org-count">
+            <a href="" ui-sref="org({id:obj.id})">{{::obj.investCnt}}</a>
+          </td>
+          <td class="org-count">
+            <a href="" ui-sref="org({id:obj.id})">{{::obj.memberCnt}}</a>
+          </td>
 
-      </tr>
-    </table>
-    <div  ng-if="vm.needLogin" class="load-more">
-      <a  href="javascript:;" ng-click="vm.login()" data-stat-click="login">
-        登录查看更多
-      </a>
-    </div>
-    <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">
-      正在加载更多...
-    </div>
-    <div class="load-more" ng-if="vm.noMore && !vm.needLogin">
-      已无更多数据
+        </tr>
+      </table>
+      <div  ng-if="vm.needLogin" class="load-more">
+        <a  href="javascript:;" ng-click="vm.login()" data-stat-click="login">
+          登录查看更多
+        </a>
+      </div>
+      <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">
+        正在加载更多...
+      </div>
+      <div class="load-more" ng-if="vm.noMore && !vm.needLogin">
+        已无更多数据
+      </div>
     </div>
   </div>
 </div>

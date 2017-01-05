@@ -1,105 +1,107 @@
 <div class="result-container" id="projectListContainer" ng-if="!parentVm.open.sideBar" data-stat-module="list">
-  <kr-backtop href="#projectListContainer"></kr-backtop>
-  <div class="result-tip">
-    <span ng-if="!vm.hasSelect">已为您精选了<b>{{vm.listData.totalCount}}</b>个项目，更新了<b>{{vm.newCompanyCnt ? vm.newCompanyCnt : 0}}</b>个新项目</span>
-    <span ng-if="vm.hasSelect">共<b>{{vm.listData.totalCount}}</b>个结果</span>
-    <div class="order-btns">
-      <div>
-        <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('ADD_COLUMN_LABEL')" ng-class="{'btn-active': vm.isAddColumnLabel}"
-        data-stat-click="follow.addColumnLabel">推荐时间</a>
-      </div>
-      <div>
-        <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}"
-        data-stat-click="follow.startDate">成立时间</a>
+  <div class="side-container">
+    <kr-backtop href="#projectListContainer"></kr-backtop>
+    <div class="result-tip">
+      <span ng-if="!vm.hasSelect">已为您精选了<b>{{vm.listData.totalCount}}</b>个项目，更新了<b>{{vm.newCompanyCnt ? vm.newCompanyCnt : 0}}</b>个新项目</span>
+      <span ng-if="vm.hasSelect">共<b>{{vm.listData.totalCount}}</b>个结果</span>
+      <div class="order-btns">
+        <div>
+          <a href="#" class="left-btn" ng-click="parentVm.orderBySortField('ADD_COLUMN_LABEL')" ng-class="{'btn-active': vm.isAddColumnLabel}"
+          data-stat-click="follow.addColumnLabel">推荐时间</a>
+        </div>
+        <div>
+          <a href="#" class="right-btn" ng-click="parentVm.orderBySortField('START_DATE')" ng-class="{'btn-active': vm.isStartDate}"
+          data-stat-click="follow.startDate">成立时间</a>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="result-content">
-    <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading' infinite-scroll-distance='0'>
-      <tr>
-        <td width="320">项目</td>
-        <td>行业</td>
-        <td>轮次</td>
-        <td>所在地</td>
-        <!--<td ng-show="parentVm.params['sortField'] === 'ADD_COLUMN_LABEL'">推荐时间</td>-->
-        <td>成立时间</td>
-        <td width="120">操作</td>
-      </tr>
-      <tr ng-repeat="obj in vm.listData.data track by $index">
-        <td>
-          <img ng-src="{{::obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" class="project-logo" data-stat-click="company.{{obj.id}}" />
-          <div class="project-info">
-            <div class="project-name">
-              <span class="company-name" ng-click="vm.seeDetail(obj.id)" data-stat-click="company.{{obj.id}}">{{::obj.name}}</span><span class="icon-hot-tag" ng-if="obj.hot"></span><span class="icon-classicTag" ng-if="obj.classic"></span><span class="icon-funding" ng-if="obj.funding"></span>
-            </div>
-            <div class="project-intro">
-              {{::obj.brief}}
-            </div>
-            <div class="project-tag">
-              <div class="highlights" ng-show="obj.advantage">
-                <i class="icon-listPoint"></i>
-                <span>{{::obj.advantage}}</span>
+    <div class="result-content">
+      <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading' infinite-scroll-distance='0'>
+        <tr>
+          <td width="320">项目</td>
+          <td>行业</td>
+          <td>轮次</td>
+          <td>所在地</td>
+          <!--<td ng-show="parentVm.params['sortField'] === 'ADD_COLUMN_LABEL'">推荐时间</td>-->
+          <td>成立时间</td>
+          <td width="120">操作</td>
+        </tr>
+        <tr ng-repeat="obj in vm.listData.data track by $index">
+          <td>
+            <img ng-src="{{::obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" class="project-logo" data-stat-click="company.{{obj.id}}" />
+            <div class="project-info">
+              <div class="project-name">
+                <span class="company-name" ng-click="vm.seeDetail(obj.id)" data-stat-click="company.{{obj.id}}">{{::obj.name}}</span><span class="icon-hot-tag" ng-if="obj.hot"></span><span class="icon-classicTag" ng-if="obj.classic"></span><span class="icon-funding" ng-if="obj.funding"></span>
+              </div>
+              <div class="project-intro">
+                {{::obj.brief}}
+              </div>
+              <div class="project-tag">
+                <div class="highlights" ng-show="obj.advantage">
+                  <i class="icon-listPoint"></i>
+                  <span>{{::obj.advantage}}</span>
+                </div>
               </div>
             </div>
-          </div>
-        </td>
-        <td class="filter-item">
-          <span ng-click="vm.clickFilter(obj.industry,'industry')"
-            data-stat-click="industry.{{obj.industry}}"
-            ng-class="{'disabled': parentVm.getPermission()}">{{::obj.industry | industry}}</span>
-        </td>
-        <td class="filter-item">
-          <span ng-click="vm.clickFilter(obj.phase,'phase')"
-            data-stat-click="phase.{{obj.phase}}"
-            ng-class="{'disabled': obj.phase === 'NONE' || parentVm.getPermission()}">
-            {{::obj.phase | companyFinancePhase}}</span>
-        </td>
-        <td class="filter-item">
-          <span ng-click="vm.clickFilter(obj.city,'city')"
-            data-stat-click="city.{{::obj.cityStr}}"
-            ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
-        </td>
-        <!--<td class="date-time" ng-show="parentVm.params['sortField'] === 'ADD_COLUMN_LABEL'">
-          <span ng-show="obj.publishDate">{{::obj.publishDate | date:'yyyy-MM'}}</span>
-          <span ng-show="!obj.publishDate">—</span>
-        </td>-->
-        <td class="date-time">
-          <span ng-show="obj.startDate">{{::obj.startDate | date:'yyyy-MM'}}</span>
-          <span ng-show="!obj.startDate">—</span>
-        </td>
-        <td>
-          <span ng-click="vm.collect($index)" class="collect-btn"
-            data-stat-hover="collect.{{obj.id}}"
-            ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position
-            data-stat-click="collect.{{obj.id}}">
-            <span ng-show="obj.followed">已</span>收藏
-            <div class="collect-modal" ng-hide="!vm.user.isLogin || !vm.user.isInvestor()" ng-if="obj.id === vm.cid" ng-click="$event.stopPropagation();">
-              <section class="modal-title">选择收藏夹</section>
-              <ul>
-                 <li ng-repeat="item in vm.collections">
-                  <input type="checkbox" class="checkbox" name='collection' ng-model="item.followed" ng-change="vm.change(item,$index)" ng-checked="item.followed">
-                  <span class="favorite-name">{{::item.name}}</span>
-                  <span class="favorite-number">({{item.count}})</span>
-                  <span class="favorite-status" ng-class="{'hidden':vm.status === 'suc' && $index == vm.activeIndex}" ng-hide="vm.status === 'cancel'">已添加</span>
-                  <span class="favorite-status" ng-class="{'hidden':vm.status === 'cancel' && $index == vm.activeIndex}" ng-hide="vm.status === 'suc'">取消成功</span>
-                 </li>
-              </ul>
-              <div class="new-create">
-                <input type="text" name='createName' placeholder="创建新收藏夹" ng-model='vm.collectionName' maxlength="8">
-                <a href="javascript:void(0)" class="create-link" ng-click="vm.create()" data-stat-click="collection.create">创建</a>
+          </td>
+          <td class="filter-item">
+            <span ng-click="vm.clickFilter(obj.industry,'industry')"
+              data-stat-click="industry.{{obj.industry}}"
+              ng-class="{'disabled': parentVm.getPermission()}">{{::obj.industry | industry}}</span>
+          </td>
+          <td class="filter-item">
+            <span ng-click="vm.clickFilter(obj.phase,'phase')"
+              data-stat-click="phase.{{obj.phase}}"
+              ng-class="{'disabled': obj.phase === 'NONE' || parentVm.getPermission()}">
+              {{::obj.phase | companyFinancePhase}}</span>
+          </td>
+          <td class="filter-item">
+            <span ng-click="vm.clickFilter(obj.city,'city')"
+              data-stat-click="city.{{::obj.cityStr}}"
+              ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
+          </td>
+          <!--<td class="date-time" ng-show="parentVm.params['sortField'] === 'ADD_COLUMN_LABEL'">
+            <span ng-show="obj.publishDate">{{::obj.publishDate | date:'yyyy-MM'}}</span>
+            <span ng-show="!obj.publishDate">—</span>
+          </td>-->
+          <td class="date-time">
+            <span ng-show="obj.startDate">{{::obj.startDate | date:'yyyy-MM'}}</span>
+            <span ng-show="!obj.startDate">—</span>
+          </td>
+          <td>
+            <span ng-click="vm.collect($index)" class="collect-btn"
+              data-stat-hover="collect.{{obj.id}}"
+              ng-mouseenter="vm.triggerCollect(obj.id)" ng-class="{'collected':obj.followed}" cal-position
+              data-stat-click="collect.{{obj.id}}">
+              <span ng-show="obj.followed">已</span>收藏
+              <div class="collect-modal" ng-hide="!vm.user.isLogin || !vm.user.isInvestor()" ng-if="obj.id === vm.cid" ng-click="$event.stopPropagation();">
+                <section class="modal-title">选择收藏夹</section>
+                <ul>
+                   <li ng-repeat="item in vm.collections">
+                    <input type="checkbox" class="checkbox" name='collection' ng-model="item.followed" ng-change="vm.change(item,$index)" ng-checked="item.followed">
+                    <span class="favorite-name">{{::item.name}}</span>
+                    <span class="favorite-number">({{item.count}})</span>
+                    <span class="favorite-status" ng-class="{'hidden':vm.status === 'suc' && $index == vm.activeIndex}" ng-hide="vm.status === 'cancel'">已添加</span>
+                    <span class="favorite-status" ng-class="{'hidden':vm.status === 'cancel' && $index == vm.activeIndex}" ng-hide="vm.status === 'suc'">取消成功</span>
+                   </li>
+                </ul>
+                <div class="new-create">
+                  <input type="text" name='createName' placeholder="创建新收藏夹" ng-model='vm.collectionName' maxlength="8">
+                  <a href="javascript:void(0)" class="create-link" ng-click="vm.create()" data-stat-click="collection.create">创建</a>
+                </div>
+                <div class="create-suc" ng-show="vm.createSuc && !vm.errMsg">创建成功</div>
+                <div class="error-msg" ng-show="vm.errMsg && !vm.createSuc" ng-bind="vm.errMsg"></div>
               </div>
-              <div class="create-suc" ng-show="vm.createSuc && !vm.errMsg">创建成功</div>
-              <div class="error-msg" ng-show="vm.errMsg && !vm.createSuc" ng-bind="vm.errMsg"></div>
-            </div>
-          </span>
-        </td>
-      </tr>
-    </table>
-    <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">
-      正在加载更多...
-    </div>
-    <div class="load-more" ng-if="vm.noMore">
-      已无更多数据
+            </span>
+          </td>
+        </tr>
+      </table>
+      <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">
+        正在加载更多...
+      </div>
+      <div class="load-more" ng-if="vm.noMore">
+        已无更多数据
+      </div>
     </div>
   </div>
 </div>
