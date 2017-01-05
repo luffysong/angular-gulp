@@ -561,6 +561,7 @@ export default class listParentController {
             lineWidth: 2,
             states: {
               hover: {
+                lineWidth: 2,
                 halo: {
                   size: 0,
                 },
@@ -823,7 +824,7 @@ export default class listParentController {
       if (item.value === max) {
         item.width = width;
       } else {
-        item.width = `${width * (item.value / max)}px`;
+        item.width = `${Math.max(1, width * (item.value / max))}px`;
       }
     });
   }
