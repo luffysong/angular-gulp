@@ -1,6 +1,6 @@
 export const FID_KEY = {
   dau: 'md_0006',
-  download: 'md_0001',
+  dayDownload: 'md_0001',
   uninstall: 'md_0009',
   save: 'md_0022',
   save3: 'md_0024',
