@@ -669,7 +669,7 @@ export default class ProductVM {
       if (index === i && item.percent !== 0) {
         item.width = width;
       } else {
-        item.width = `${width * (item.percent / this.retentionList[index].percent)}px`;
+        item.width = `${Math.max(1, width * (item.percent / this.retentionList[index].percent))}px`;
       }
     });
   }

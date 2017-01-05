@@ -115,7 +115,7 @@ const LIST_COMPANY_INDUSTRY_META = [
     "id": 44,
     "value": "IP"
   },
-  {
+  /*{
     "desc": "出行",
     "id": 45,
     "value": "CHU_XING"
@@ -124,7 +124,7 @@ const LIST_COMPANY_INDUSTRY_META = [
     "desc": "出海",
     "id": 46,
     "value": "CHU_HAI"
-  },
+  },*/
   {
     "desc": "消费升级",
     "id": 47,

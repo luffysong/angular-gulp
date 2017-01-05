@@ -834,10 +834,11 @@ export default class listParentController {
         item,
       })),
       type: 'pie',
-      name: `共投资${this.labelStat.investPhaseDis.length}个轮次`,
+      name: this.labelStat.investPhaseDis.length ? `共投资${this.labelStat.investPhaseDis.length}个轮次` : '',
       innerSize: '85%',
     }];
-    this.investPhaseHg.title.text = `共投资<br>${this.labelStat.investPhaseDis.length}个轮次`;
+    this.investPhaseHg.title.text = this.labelStat.investPhaseDis.length ?
+      `共投资<br>${this.labelStat.investPhaseDis.length}个轮次` : '';
     this.comPhaseHg.series = [{
       data: this.labelStat.comPhaseDis.slice(0, 6).map(item => ({
         name: item.key,
@@ -846,10 +847,11 @@ export default class listParentController {
         item,
       })),
       type: 'pie',
-      name: `共投资${this.labelStat.comPhaseDis.length}个轮次`,
+      name: this.labelStat.comPhaseDis.length ? `共投资${this.labelStat.comPhaseDis.length}个轮次` : '',
       innerSize: '85%',
     }];
-    this.comPhaseHg.title.text = `共投资<br>${this.labelStat.comPhaseDis.length}个轮次`;
+    this.comPhaseHg.title.text = this.labelStat.comPhaseDis.length ?
+      `共投资<br>${this.labelStat.comPhaseDis.length}个轮次` : '';
   }
 
   setTrend(investmentTrend) {
