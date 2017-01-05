@@ -1,5 +1,5 @@
-import krData from 'krData';
-@Inject('$timeout')
+import krData, { utls } from 'krData';
+@Inject('$timeout', '$state')
 export default class CollectionVM {
   constructor(fn, id, investor) {
     this.ngDialog = fn;
@@ -14,6 +14,7 @@ export default class CollectionVM {
     } else {
       this.collection = this.getInvestor;
     }
+    console.log(this.$state);
   }
   getInvestor() {
     const vm = this;
@@ -23,7 +24,7 @@ export default class CollectionVM {
       };
       this.goInvest = function () {
         vm.investorDialog.close();
-        vm.$timeout(() => vm.$state.go('investorValidate'), 1000);
+        utls.getService('$timeout')(() => utls.getService('$state').go('investorValidate'), 1000);
       };
     }
     vm.investorDialog = this.ngDialog.open({
