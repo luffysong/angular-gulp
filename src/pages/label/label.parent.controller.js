@@ -89,6 +89,10 @@ export default class listParentController {
 
   /* 关注、取消关注标签 */
   followLabel() {
+    if (!this.user.isLogin) {
+      krData.utls.login();
+      return;
+    }
     if (this.labelDetail.isFollowed) {
       this.projectService.unFollowLabel({
         id: this.params.labelId,
