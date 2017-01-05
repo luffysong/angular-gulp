@@ -67,7 +67,7 @@ export default class listIndexController {
       };
       this.goInvest = function () {
         vm.investorDialog.close();
-        vm.$timeout(() => vm.$state.go('investorValidate'), 500);
+        vm.$timeout(() => vm.$state.go('investorValidate'), 1000);
       };
     }
     vm.investorDialog = this.ngDialog.open({
