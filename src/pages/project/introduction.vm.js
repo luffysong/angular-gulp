@@ -10,7 +10,7 @@ export default class IntroductionVM extends krData.FormVM {
 
   props = ['id', 'intro', 'fullName', 'scale',
     'operationStatus', 'address1', 'address2',
-    'startDate','productService', 'userMarket', 'businessMode', 'coreSource', 'operationData'];
+    'startDate', 'productService', 'userMarket', 'businessMode', 'coreSource', 'operationData'];
 
   initData(data) {
     this.mapProps(this.props, data, this);
@@ -24,6 +24,7 @@ export default class IntroductionVM extends krData.FormVM {
     this.origCompanyData = {};
     this.companyIntroduce = {};
     angular.copy(data, this.origCompanyData);
+    this.origCompanyData.operationStatus = this.operationStatus;
     this.data = data;
     this.companyIntroduce.id = data.id;
     if (data.companyIntroduce) {
@@ -52,6 +53,7 @@ export default class IntroductionVM extends krData.FormVM {
     angular.copy(this.origCompanyData, tempData);
     angular.extend(this, tempData.companyIntroduce);
     angular.extend(this.data, tempData);
+    this.operationStatus = tempData.operationStatus;
   }
 
   watch() {
