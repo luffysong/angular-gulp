@@ -32,6 +32,7 @@ export default class ProjectIndexController {
   init() {
     if (this.projectData) {
       this.id = this.projectData.baseInfo.id;
+      this.attachCid = this.projectData.baseInfo.attachCid;
       this.name = this.projectData.baseInfo.name;
       this.baseInfoVM = new BaseInfoVM(this.projectData.baseInfo, this.$scope);
       this.introductionVM = new IntroductionVM(this.projectData.baseInfo, this.$scope);
@@ -73,6 +74,7 @@ export default class ProjectIndexController {
     const vm = this;
     function talkController() {
       this.id = vm.id;
+      this.attachCid = vm.attachCid;
       this.talkCancle = function talkCancle() {
         vm.talkDialog.close();
       };
@@ -161,6 +163,7 @@ export default class ProjectIndexController {
     function BPController() {
       this.applyBpStatus = vm.applyBpStatus;
       this.id = vm.id;
+      this.attachCid = vm.attachCid;
       this.projectVm = vm;
       this.BPCancle = function BPCancle() {
         vm.bpDialog.close();
