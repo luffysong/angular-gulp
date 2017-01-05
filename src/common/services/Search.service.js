@@ -191,7 +191,7 @@ export default class SearchService {
       kw,
     });
     if (this._isAction(item) && item.obj.type !== 'newCom') {
-      getService('$state').go('landing.result', { kw, type: item.obj.type.toLowerCase() },
+      getService('$state').go('landing.result', { kw, type: item.obj.type.toLowerCase(), sortField: 'MATCH_RATE' },
         { inherit: false, reload: true });
     } else if (this._isAction(item) && item.obj.type === 'newCom') {
       getService('$state').go('createProject');
