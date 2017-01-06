@@ -144,8 +144,9 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       $progressbar.remove();
     }
     $progressbar.on('transitionend', function ontransitionend(e) {
-      const PROGRESS_END_ELAPSED = 0.4;
-      if (e.originalEvent.elapsedTime === PROGRESS_END_ELAPSED) {
+      // 兼容Edge浏览器，Edge浏览器下elapsedTime为一个浮点数
+      const PROGRESS_END_ELAPSEDX10 = 4;
+      if (parseInt(e.originalEvent.elapsedTime * 10, 10) === PROGRESS_END_ELAPSEDX10) {
         this.classList.remove('progress-end');
         this.classList.remove('progress-start');
       }
@@ -169,7 +170,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     OPERATION_STATUS_META, COMPANY_NEWS_META, FINANCE_PHASE_META,
     CURRENCY_UNIT_META, ROLE_META, FINANCE_NEED_META, PROJECT_TYPE_META, FUNDS_PHASE_ENUM_META,
     COMPANY_SEARCH_PHASE_META, COMPANY_INDUSTRY_META, INVESTOR_ROLE_META, FOLLOW_AREA_META,
-    LIST_COMPANY_INDUSTRY_META, ORG_INDUSTRY_META) {
+    LIST_COMPANY_INDUSTRY_META) {
     getService.injector = $injector;
     root.fromYear2000 = fromYear(2000);
     root.getAllMonths = getMonth(12);
@@ -194,7 +195,6 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     root.LIST_COMPANY_INDUSTRY_META = LIST_COMPANY_INDUSTRY_META;
     root.INVESTOR_ROLE_META = INVESTOR_ROLE_META;
     root.FOLLOW_AREA_META = FOLLOW_AREA_META;
-    root.ORG_INDUSTRY_META = ORG_INDUSTRY_META;
 
     // 全局共享assets
     root.assets = assets;
