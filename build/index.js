@@ -37,7 +37,7 @@ const proxyConfig = {
   proxy: [
     {
       path: '/n/api',
-      target: 'http://nrongtest03.36kr.com',
+      target: process.env.host || 'http://nrongtest03.36kr.com',
     },
   ],
 };
