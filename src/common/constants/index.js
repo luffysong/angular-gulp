@@ -9,6 +9,10 @@ import { COMPANY_FINANCE_PHASE_META, COMPANY_FINANCE_PHASE } from './companyFina
 import { FUNDS_PHASE_ENUM_META, FUNDS_PHASE_ENUM } from './fundsPhase.cs';
 import { COMPANY_SEARCH_PHASE, COMPANY_SEARCH_PHASE_META } from './companySearchPhase.cs';
 import {
+  ORG_INDUSTRY,
+  ORG_INDUSTRY_META,
+} from './orgIndustry.cs';
+import {
   COMPANY_INDUSTRY,
   COMPANY_INDUSTRY_META,
 } from './companyIndustry.cs';
@@ -37,6 +41,8 @@ export {
   FOLLOW_AREA, FOLLOW_AREA_META,
   LIST_COMPANY_INDUSTRY,
   LIST_COMPANY_INDUSTRY_META,
+  ORG_INDUSTRY,
+  ORG_INDUSTRY_META,
 };
 angular.module('@@app.constants', [])
   .constant('FINANCE_PHASE', FINANCE_PHASE)
@@ -65,5 +71,7 @@ angular.module('@@app.constants', [])
   .constant('FOLLOW_AREA', FOLLOW_AREA)
   .constant('FOLLOW_AREA_META', FOLLOW_AREA_META)
   .constant('LIST_COMPANY_INDUSTRY', LIST_COMPANY_INDUSTRY)
-  .constant('LIST_COMPANY_INDUSTRY_META', LIST_COMPANY_INDUSTRY_META);
+  .constant('LIST_COMPANY_INDUSTRY_META', LIST_COMPANY_INDUSTRY_META)
+  .constant('ORG_INDUSTRY', ORG_INDUSTRY)
+  .constant('ORG_INDUSTRY_META', ORG_INDUSTRY_META);
 
