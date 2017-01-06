@@ -1,3 +1,13 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://gitlab.corp.36kr.com/f2e/krData/compare/v1.3.1...v1.4.0) (2017-01-06)
+
+
+### Features
+
+* 字典修改 ([a190bf8](https://gitlab.corp.36kr.com/f2e/krData/commit/a190bf8))
+
+
+
 <a name="1.3.1"></a>
 ## [1.3.1](https://gitlab.corp.36kr.com/f2e/krData/compare/v1.3.0...v1.3.1) (2017-01-06)
 
