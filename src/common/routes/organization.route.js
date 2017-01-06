@@ -9,6 +9,9 @@ const organizationView = {
   abstract: true,
   resolve: {
     loadBundle: getLoadBundle(assets.page.organization),
+    loadSeo: function loadSeo($stateParams, seoService) {
+      seoService.orgListSeo();
+    },
   },
 };
 
@@ -22,6 +25,6 @@ const organization = {
 
 export {
   organizationView,
-  organization
+  organization,
 };
 

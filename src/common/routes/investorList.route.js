@@ -7,7 +7,10 @@ const investorListView = {
   controllerAs: 'investorListVm',
   controller: 'investorListParentController',
   resolve: {
-    loadBundle: getLoadBundle(assets.page.investorList)
+    loadBundle: getLoadBundle(assets.page.investorList),
+    loadSeo: function loadSeo($stateParams, seoService) {
+      seoService.investorListSeo();
+    },
   },
 };
 
@@ -21,5 +24,5 @@ const investorList = {
 
 export {
   investorListView,
-  investorList
+  investorList,
 };

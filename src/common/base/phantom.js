@@ -15,17 +15,23 @@ export default class phantom {
 
   static inPhantom = !!window.callPhantom;
   static render() {
-    callPhantom({
-      name: EVENTS.RENDER_END,
-    });
+    if (!window.PH_PAGE_NOT_COMPELET) {
+      callPhantom({
+        name: EVENTS.RENDER_END,
+      });
+    }
   }
 
   static renderAsync(promises) {
     return getService('$q').all(promises).then(() => phantom.render());
   }
 
-  static stopRender() {
+  static stopAutoRender() {
     window.PH_PAGE_NOT_COMPELET = true;
+  }
+
+  static startAutoRender() {
+    window.PH_PAGE_NOT_COMPELET = false;
   }
 
 }
