@@ -2,7 +2,7 @@
 
   <h4 ng-if="vm.isClaiming || vm.isFunder() || vm.isMaintainer()">认证信息</h4>
 
-  <div>
+  <div class="claim-container">
     <div ng-if="vm.claimer.hasManager" class="claim-message">
       <p >已有认领人<a href="javascript:;">{{vm.claimer.name}}</a>，若非真实可<a ng-click="vm.call110(!vm['110'])" href="javascript:;">
       举报更改</a></p>
