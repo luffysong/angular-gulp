@@ -20,10 +20,12 @@ class UcMessageController {
   }
 
   init() {
-    if(!this.user.isLogin)return;
-    this.loadMore();
-    this.getMsg();
-    this.getUnRead();
+    this.user.then(() => {
+      if (!this.user.isLogin) return;
+      this.loadMore();
+      this.getMsg();
+      this.getUnRead();
+    });
   }
 
   getUnRead() {
@@ -43,7 +45,7 @@ class UcMessageController {
 
   getMsg() {
     this.ucService.getMsg(this.params).then(data => {
-      if(data.totalCount === 0) {
+      if (data.totalCount === 0) {
         this.noData = true;
         return;
       }
