@@ -8,9 +8,10 @@ const investorListView = {
   controller: 'investorListParentController',
   resolve: {
     loadBundle: getLoadBundle(assets.page.investorList),
-    loadSeo: function loadSeo($stateParams, seoService) {
-      seoService.investorListSeo();
-    },
+    loadSeo: /* @ngInject */
+      function loadSeo($stateParams, seoService) {
+        seoService.investorListSeo();
+      },
   },
 };
 
