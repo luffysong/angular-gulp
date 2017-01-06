@@ -14,7 +14,7 @@ function filterCalDirective($timeout) {
 
       function calHeight() {
         $timeout(() => {
-          if (element.height() > 28) {
+          if (element.height() > 32) {
             element.parents('.filter-col').addClass('overflow');
             if (isShow()) {
               scope.open = true;

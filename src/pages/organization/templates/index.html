@@ -8,7 +8,7 @@
         <div class="col-content">
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':organizationVm.open.industry}">
-              <ul filter-cal ng-class="{'height-auto': organizationVm.open.industry}">
+              <ul filter-cal ng-class="{'height-auto': organizationVm.open.industry}" ng-if="organizationVm.data.industry">
                 <!--ng-if="$index < organizationVm.open.maxNumber || ($index >= organizationVm.open.maxNumber && organizationVm.open.address)"-->
                 <li class="col-item" ng-repeat="item in organizationVm.data.industry" ng-class="{'active': item.active}"  ng-click="organizationVm.selectIndustry($index,'industry')" data-stat-click="industry.{{item.value}}">
                   {{item.name}}
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="col-handle">
-          <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="organizationVm.spreadMore('industry')" ng-class="{'open': organizationVm.open.industry}" data-stat-click="industry.zhankaianniu"></a>
+          <a href="javascript:void(0)" class="open-btn icon-open-select" ng-click="organizationVm.spreadMore('industry')" ng-class="{'open': organizationVm.open.industry}" data-stat-click="industry.zhankaianniu"></a>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
         <div class="col-content">
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':organizationVm.open.phase}">
-              <ul filter-cal ng-class="{'height-auto':organizationVm.open.phase}">
+              <ul filter-cal ng-class="{'height-auto':organizationVm.open.phase}" ng-if="organizationVm.data.phase">
                 <li class="col-item" ng-repeat="item in organizationVm.data.phase" ng-class="{'active': item.active}" ng-click="organizationVm.selectIndustry($index,'phase')" data-stat-click="phase.{{item.value}}">
                   {{item.name}}
                   <span class="item-cnt">({{item.count ? item.count : 0}})</span>
@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="col-handle">
-          <a href="javascript:void(0)" class="open-btn icon-label-open" ng-click="organizationVm.spreadMore('phase')" ng-class="{'open': organizationVm.open.phase}" data-stat-click="phase.zhankaianniu"></a>
+          <a href="javascript:void(0)" class="open-btn icon-open-select" ng-click="organizationVm.spreadMore('phase')" ng-class="{'open': organizationVm.open.phase}" data-stat-click="phase.zhankaianniu"></a>
         </div>
       </div>
     </div>
