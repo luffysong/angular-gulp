@@ -80,16 +80,6 @@ const ORG_INDUSTRY_META = [
     "id": 20,
     "value": "NON_TMT"
   },
-  {
-    "desc": "农业",
-    "id": 21,
-    "value": "FARMING"
-  },
-  {
-    "desc": "体育（包含户外）",
-    "id": 23,
-    "value": "SPORTS"
-  },
 ];
 
 const ORG_INDUSTRY = extractMeta(ORG_INDUSTRY_META);
