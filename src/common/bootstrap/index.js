@@ -44,7 +44,7 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     };
 
     function tRes(data) {
-      return data.replace(httpImageReg, 'https://krplus-pic');
+      return data && data.replace(httpImageReg, 'https://krplus-pic');
     }
 
     function param(data) {

@@ -75,6 +75,7 @@
     "fs-extra": "^1.0.0"
   },
   "dependencies": {
-    "escape-html": "^1.0.3"
+    "escape-html": "^1.0.3",
+    "object-assign": "^4.1.0"
   }
 }
