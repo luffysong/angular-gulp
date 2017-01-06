@@ -1,3 +1,13 @@
+<a name="1.2.1"></a>
+## [1.2.1](https://gitlab.corp.36kr.com/f2e/krData/compare/v1.2.0...v1.2.1) (2017-01-06)
+
+
+### Bug Fixes
+
+* 系统消息fix ([2f46273](https://gitlab.corp.36kr.com/f2e/krData/commit/2f46273))
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://gitlab.corp.36kr.com/f2e/krData/compare/v1.1.0...v1.2.0) (2017-01-06)
 
