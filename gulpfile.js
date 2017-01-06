@@ -54,7 +54,7 @@ gulp.task('prod', function runSquence() {
   return runSequence('clean', 'copy:lib', ['scripts', 'buildTemplates', 'iconfont',
     'copy:images',
     'copy:jsplugins'],
-    'concatTemplate', 'hash-replace',
+    'concatTemplate', 'hash-replace', 'copy:robots',
     'prod:html', 'prod:clean-unused');
 });
 
@@ -72,6 +72,11 @@ gulp.task('copy:images', function copyImages() {
 });
 
 gulp.task('copy:lib', copyLib);
+
+gulp.task('copy:robots', function copyRobots() {
+  return gulp.src('src/robots.txt')
+    .pipe(gulp.dest('dist'));
+});
 
 gulp.task('server', server);
 
