@@ -10,11 +10,12 @@ const listView = {
     loadBundle: getLoadBundle(assets.page.list),
     loadProjectBundle: getLoadBundle(assets.page.project),
     loadSearchBundle: getLoadBundle(assets.page.search),
-    loadSeo: function loadSeo($stateParams, seoService) {
-      if (!$stateParams.columnId) {
-        seoService.projectListSeo();
-      }
-    },
+    loadSeo: /* @ngInject */
+      function loadSeo($stateParams, seoService) {
+        if (!$stateParams.columnId) {
+          seoService.projectListSeo();
+        }
+      },
   },
 };
 
