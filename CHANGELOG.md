@@ -1,3 +1,13 @@
+<a name="1.4.2"></a>
+## [1.4.2](f2e/krData/compare/v1.4.1...v1.4.2) (2017-01-06)
+
+
+### Bug Fixes
+
+* **assign:** polyfill Object.assign ([0b079c3](f2e/krData/commits/0b079c3))
+
+
+
 <a name="1.4.1"></a>
 ## [1.4.1](f2e/krData/compare/v1.4.0...v1.4.1) (2017-01-06)
 
