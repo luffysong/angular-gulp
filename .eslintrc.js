@@ -23,6 +23,10 @@ module.exports = {
     "prefer-arrow-callback": 0,
     "react/require-extension": 0,
     "import/prefer-default-export": 0,
+    "no-use-before-define": ["error", {
+      "functions": false,
+      "classes": false,
+    }],
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "arrow-body-style": ["error", "as-needed"],
     "import/no-unresolved": ["error", {

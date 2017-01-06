@@ -12,7 +12,7 @@ import phantom from '../base/phantom';
 // SEO 禁止phantom立即渲染，等待回调渲染
 phantom.stopAutoRender();
 const root = {};
-/* eslint-disable no-param-reassign,no-use-before-define,angular/on-watch */
+/* eslint-disable no-param-reassign,angular/on-watch */
 angular.module('@@app', ['@@app.routes', '@@app.components',
   'cgNotify', 'MassAutoComplete', 'ngSanitize', 'perfect_scrollbar',
   '@@app.constants', 'ngResource', '@@app.filters', '@app.services', 'dibari.angular-ellipsis',
@@ -23,6 +23,12 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     $httpProvider.interceptors.push('commonInterceptor');
     $httpProvider.defaults.withCredentials = true;
     $httpProvider.defaults.transformRequest = param;
+    const defaultTransformResponse = $httpProvider.defaults.transformResponse[0];
+    const httpImageReg = /http:\/\/krplus-pic/g;
+    $httpProvider.defaults.transformResponse = [
+      tRes,
+      defaultTransformResponse,
+    ];
     $httpProvider.useLegacyPromiseExtensions(true);
     $httpProvider.defaults.headers.post = {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -33,6 +39,10 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
     $httpProvider.defaults.headers.delete = {
       'Content-Type': 'application/x-www-form-urlencoded',
     };
+
+    function tRes(data) {
+      return data.replace(httpImageReg, 'https://krplus-pic');
+    }
 
     function param(data) {
       if (angular.isUndefined(data)) return data;
