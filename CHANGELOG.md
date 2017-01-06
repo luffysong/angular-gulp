@@ -1,3 +1,13 @@
+<a name="1.3.1"></a>
+## [1.3.1](https://gitlab.corp.36kr.com/f2e/krData/compare/v1.3.0...v1.3.1) (2017-01-06)
+
+
+### Bug Fixes
+
+* 工作台fix ([16a23de](https://gitlab.corp.36kr.com/f2e/krData/commit/16a23de))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://gitlab.corp.36kr.com/f2e/krData/compare/v1.2.2...v1.3.0) (2017-01-06)
 
