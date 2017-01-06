@@ -15,7 +15,7 @@ export default class CommonInterceptor {
     const code = response.data.code;
     if (code !== API_CODE.SUCCESS) {
       if (code === API_CODE.NOT_LOGIN) {
-        this.$log.info(`${response.config.url}错误信息：${response.data.msg}`);
+        this.$log.debug(`${response.config.url}错误信息：${response.data.msg}`);
       }
       return this.$q.reject(response.data);
     }

@@ -19,6 +19,9 @@ angular.module('@@app', ['@@app.routes', '@@app.components',
   'validation', 'validation.rule',
 ]);
 angular.module('@@app').service('commonInterceptor', commonInterceptor)
+  .config(function debugMode($logProvider) {
+    $logProvider.debugEnabled(window.KR_ENV.debug);
+  })
   .config(function configHttp($httpProvider) {
     $httpProvider.interceptors.push('commonInterceptor');
     $httpProvider.defaults.withCredentials = true;
