@@ -6,30 +6,34 @@ export default class WorkstationListController {
     this.init();
     this.isCompare = false;
     this.isChecked = false;
+    this.listData = [];
     this.checkedCids = [];
+    this.currentPage = 1;
   }
 
   init() {
     this.setListData();
   }
   setListData() {
-    service.getList(this.$stateParams.id)
+    service.getList({
+      id: this.$stateParams.id,
+      pageSize: 20,
+      page: this.currentPage,
+    })
       .then(listData => {
         this.listData = listData;
       });
   }
 
-  cancelCollection(item){
+  cancelCollection(item, i) {
     service.cancelCollect(item.cid,item.groupId)
     .then(data => {
-        console.log(item);
         const index = this.checkedCids.indexOf(item.cid.toString());
-        console.log(this.checkedCids);
         if (index > -1) {
           this.checkedCids.splice(index, 1);
           console.log(this.checkedCids);
         }
-        this.setListData();
+      this.listData.data.splice(i, 1);
     });
   }
 
@@ -46,9 +50,32 @@ export default class WorkstationListController {
     }
     if(action == 'remove' && this.checkedCids.indexOf(id)!=-1){
       const idx =this.checkedCids.indexOf(id);
-      this.checkedCids.splice(idx,1);
+      this.checkedCids.splice(idx, 1);
     }
     this.$stateParams.cids = this.checkedCids;
+  }
+
+  loadMore() {
+    if (this.dataLoading) return;
+    this.dataLoading = true;
+    this.currentPage++;
+
+    const params = {
+      id: this.$stateParams.id,
+      pageSize: 20,
+      page: this.currentPage,
+    };
+    service.getList(params).then(data => {
+      this.dataLoading = false;
+      if (!data.data || !data.data.length) {
+        this.noMore = true;
+        return;
+      }
+      angular.forEach(data.data, (item) => {
+        this.listData.data.push(item);
+      });
+    });
+
   }
 
 }

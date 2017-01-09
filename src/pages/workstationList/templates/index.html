@@ -43,7 +43,7 @@
           </div>
         </a>
       </div>-->
-      <table >
+      <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading || vm.noMore' infinite-scroll-distance='0' ng-if="vm.listData.data.length">
         <tr>
           <td width="70"></td>
           <td width="320">项目</td>
@@ -72,7 +72,7 @@
                 </a>
               </div>
               <div class="project-intro" title="{{obj.brief}}">
-                {{obj.brief}}
+                {{::obj.brief}}
               </div>
             </div>
           </td>
@@ -99,13 +99,18 @@
             <span ng-if="!obj.followDate">暂无</span>
           </td>
           <td>
-            <span class="collect-btn" ng-click="vm.cancelCollection(obj)" data-stat-click="cancelCollection">
+            <span class="collect-btn" ng-click="vm.cancelCollection(obj,$index)" data-stat-click="cancelCollection">
               <span>取消收藏</span>
             </span>
           </td>
         </tr>
       </table>
-
+      <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">
+        正在加载更多...
+      </div>
+      <div class="load-more" ng-show="vm.noMore && !vm.dataLoading">
+        已无更多数据
+      </div>
     </div>
   </section>
 </div>

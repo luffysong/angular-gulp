@@ -81,19 +81,9 @@ const COMPANY_INDUSTRY_META = [
     "value": "NON_TMT"
   },
   {
-    "desc": "农业",
-    "id": 21,
-    "value": "FARMING"
-  },
-  {
-    "desc": "AR·VR",
-    "id": 22,
-    "value": "AR_VR"
-  },
-  {
-    "desc": "体育（包含户外）",
-    "id": 23,
-    "value": "SPORTS"
+    "desc": "其他",
+    "id": 0,
+    "value": "OTHER"
   },
 ];
 
