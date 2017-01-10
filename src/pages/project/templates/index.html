@@ -13,7 +13,7 @@
           <span class="icon-Address" ng-if="vm.baseInfoVM.address1Desc">
               <span class="path1"></span>
             </span
-          ><span class="address">{{vm.baseInfoVM.address1Desc}}</span>
+          ><span class="address"><a href="" ui-sref="list.result({columnId:0,city: vm.baseInfoVM.address1})" target="_blank">{{vm.baseInfoVM.address1Desc}}</a></span>
           <a class="btn-edit"
             ng-if="vm.isEditMode"
             ng-click="vm.baseInfoVM.enterEditMode()"

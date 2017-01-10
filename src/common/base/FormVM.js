@@ -37,8 +37,8 @@ export default class FormVM {
 
   validate2() {
     return this.$validation.validate(this.form)
-      .catch(() => {
-        /* Alert.alert('表单不合法，请更正红色表示部分'); */
+      .catch((d,a,c) => {
+        Alert.alert('表单不合法，请更正红色表示部分');
         return this.$q.reject();
       });
   }

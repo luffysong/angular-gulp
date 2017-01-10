@@ -5,7 +5,7 @@
     <span class="add-btn grey" ng-show="vm.isEditMode">该模块不开放编辑</span>
   </div>
   <div class="similar-item">
-    <div class="header">
+    <div class="header" ng-if="vm.similarVM.list.length > 1">
       <ul class='h-title'>
         <li ng-class="{'active':vm.similarVM.tagName == item.tagName}" ng-click="vm.similarVM.changeType(item.tagName)" ng-repeat="item in vm.similarVM.list | limitTo:5">{{item.tagName}}</li>
       </ul>
