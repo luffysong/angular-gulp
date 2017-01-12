@@ -10,6 +10,7 @@ import ClaimVM from './claim.vm';
 import CollectionVM from './collection.vm';
 import ProductVM from './product.vm.js';
 import CompanyIntroduceVM from './companyIntroduce.vm';
+import ExposureVM from './exposure.vm.js';
 import NewsVM from './news.vm';
 const FINANCE_ALLOW = '1';
 const FINANCE_AUDITING = '2';
@@ -57,6 +58,7 @@ export default class ProjectIndexController {
     const data = this.projectData;
     $scope.userPortraitsVm = new ProductUserPortraitsVM(data.product.userPortraits);
     $scope.productVM = new ProductVM(data.product);
+    $scope.exposureVM = new ExposureVM(data.product);
   }
   getfundsState(cid) {
     const id = {

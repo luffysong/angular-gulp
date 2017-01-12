@@ -97,7 +97,7 @@
         </li>
 
       </ul>
-      <div class="more" ng-click="vm.financeVM.more()" ng-show="vm.financeVM.showMore()">展开全部</div>
+
 
     </div>
     <div ng-show="!vm.financeVM.financeList.length && !vm.fundsVM.funds" class="none" ng-if='vm.userId && !vm.financeVM.isEdit'>
@@ -112,4 +112,5 @@
       <div class="intro1">查看融资经历</div>
     </div>
   </div>
+  <div class="more" ng-click="vm.financeVM.more()" ng-show="vm.financeVM.showMore()">展开全部</div>
 </div>

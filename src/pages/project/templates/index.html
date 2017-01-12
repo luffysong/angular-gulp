@@ -10,10 +10,12 @@
         <div class="h1">
           <h1 class="base-info-name" title="{{::vm.baseInfoVM.name}}">{{::vm.baseInfoVM.name}}</h1>
           <span class="industry-tag">{{vm.baseInfoVM.industryEnum | industry}}</span>
-          <span class="icon-Address" ng-if="vm.baseInfoVM.address1Desc">
-              <span class="path1"></span>
-            </span
-          ><span class="address"><a href="" ui-sref="list.result({columnId:0,city: vm.baseInfoVM.address1})" target="_blank">{{vm.baseInfoVM.address1Desc}}</a></span>
+          <span class="address">
+            <a href="" ui-sref="list.result({columnId:0,city: vm.baseInfoVM.address1})" target="_blank">{{vm.baseInfoVM.address1Desc}}</a>
+          </span>
+          <span class="fund-date">
+            {{::vm.projectData.baseInfo.startDateDesc}}年
+          </span>
           <a class="btn-edit"
             ng-if="vm.isEditMode"
             ng-click="vm.baseInfoVM.enterEditMode()"
@@ -22,11 +24,18 @@
         <h3 tooltips tooltip-template="{{vm.baseInfoVM.brief?vm.baseInfoVM.brief:'未填写'}}" ng-if="vm.baseInfoVM.brief.length > 27"
           tooltip-class="tooltip">{{::vm.baseInfoVM.brief}}</h3>
         <h3 ng-if="vm.baseInfoVM.brief.length < 28">{{::vm.baseInfoVM.brief}}</h3>
+        <ul ng-if="vm.projectData.baseInfo.operationTag.length || vm.projectData.baseInfo.industryTag.length" class="tags">
+          <li ng-if="tag" class="operation-tag" ng-repeat="tag in vm.projectData.baseInfo.operationTag">
+            <a ui-sref="label.result({labelId: tag.id})" target="_blank">{{tag.name}}</a>
+          </li><li ng-if="tag" class="tag" ng-repeat="tag in vm.projectData.baseInfo.industryTag">
+            <a ui-sref="label.result({labelId: tag.id})" target="_blank">{{tag.name}}</a>
+          </li>
+        </ul>
         <p class="highlights" ng-if="vm.baseInfoVM.advantage && root.user.isInvestor() && !vm.isEditMode">
-          <span class="icon-listPoint" ng-show="vm.baseInfoVM.advantage"></span>
+          <span class="icon-light-point" ng-show="vm.baseInfoVM.advantage"></span>
           <span class="highlight">{{vm.baseInfoVM.advantage}}</span>
         </p>
-        <p class="icons">
+        <!--<p class="icons">
           <a ng-if="vm.baseInfoVM.weibo"
           class="kr-icon icon-Weibo link-none" href="" ng-class="{'icon-Weibo-active':vm.baseInfoVM.weibo}"
           ng-href="{{::vm.baseInfoVM.weibo}}" target="_blank"></a>
@@ -37,7 +46,7 @@
           </a>
           <a class="kr-icon icon-officialsite" target="_blank"
             ng-class="{'icon-website-active':vm.baseInfoVM.website}" ng-href="{{::vm.baseInfoVM.website}}"></a>
-        </p>
+        </p>-->
       </div>
       <div class="top-info" ng-show="vm.baseInfoVM.projectStatHeader">
         <div class="head">

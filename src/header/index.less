@@ -137,10 +137,28 @@ nav.rz-sidebar-wrapper{
     bottom: 20px;
     left: 20px;
     z-index: 1;
-    padding-top: 6px;
-    border-top: 1px solid #3E444E;
-    a {
+    .service-mail {
       color: @text-color;
+      font-size: 12px;
+      margin-bottom:5px;
+    }
+    .mail-address {
+      width:101px;
+      height:9px;
+      color: @text-color;
+      font-size: 12px;
+      margin-bottom:10px;
+      background: url('/images/service-mail.png') no-repeat center;
+      cursor: pointer;
+      &:hover {
+        background-image: url("/images/service-mail-white.png");
+      }
+    }
+    .kr-link {
+      display: block;
+      color: @text-color;
+      padding-top: 6px;
+      border-top: 1px solid #3E444E;
       &:hover {
         color: white;
       }

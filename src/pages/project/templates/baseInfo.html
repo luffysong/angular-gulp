@@ -14,7 +14,7 @@
       基本介绍编辑
     </section>
     <div ng-if="!vm.introductionVM.isEdit && !vm.introductionVM.isEmpty">
-      <ul ng-if="vm.projectData.baseInfo.operationTag.length || vm.projectData.baseInfo.industryTag.length" class="tags">
+      <!--<ul ng-if="vm.projectData.baseInfo.operationTag.length || vm.projectData.baseInfo.industryTag.length" class="tags">
         <li class="tag-icon"><span class="icon-Tags"></span></li>
         <li ng-if="tag" class="operation-tag" ng-repeat="tag in vm.projectData.baseInfo.operationTag">
           <a ui-sref="label.result({labelId: tag.id})" target="_blank">{{tag.name}}</a>
@@ -22,7 +22,7 @@
         <li ng-if="tag" class="tag" ng-repeat="tag in vm.projectData.baseInfo.industryTag">
           <a ui-sref="label.result({labelId: tag.id})" target="_blank">{{tag.name}}</a>
         </li>
-      </ul>
+      </ul>-->
       <div ng-if="vm.projectData.baseInfo.intro" class="info">
         <span id="node" text-overflow text="vm.projectData.baseInfo.intro | enterFormat" >
         </span>

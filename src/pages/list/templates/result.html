@@ -42,7 +42,7 @@
         </tr>
         <tr ng-repeat="obj in vm.listData.data track by $index">
           <td>
-            <img ng-src="{{::obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)" class="project-logo" data-stat-click="company.{{obj.id}}"  />
+            <a style="background-image: url({{::obj.logo || '/images/default-logo.png'}})" ng-click="vm.seeDetail(obj.id)" class="project-logo" data-stat-click="company.{{obj.id}}"></a>
             <div class="project-info">
               <div class="project-name">
                 <span class="company-name" ng-click="vm.seeDetail(obj.id)" data-stat-click="company.{{obj.id}}">{{::obj.name}}</span>
@@ -55,7 +55,7 @@
               </div>
               <div class="project-tag">
                 <div class="highlights" ng-show="parentVm.params['columnId'] > 0 && obj.advantage">
-                  <i class="icon-listPoint"></i>
+                  <i class="icon-light-point"></i>
                   <span>{{::obj.advantage}}</span>
                 </div>
                 <div class="labels" ng-hide="parentVm.params['columnId'] > 0">

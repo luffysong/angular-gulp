@@ -51,7 +51,36 @@
       }
       &>div:nth-child(2){
         margin-left: 18px;
-        width: 380px;
+        width: 435px;
+      }
+      .tags{
+        padding-bottom: 4px;
+        &>li{
+          display: inline-block;
+          padding: 1px 6px;
+        }
+        li{
+          margin:0 6px 6px 0;
+        }
+        .type{
+          .font(12,20);
+          color: #FF5B00;
+          letter-spacing: 0px;
+          height: 20px;
+          background: rgba(245, 166, 35, 0.2);
+        }
+        .tag,.operation-tag{
+          .font(12,20);
+          height: 20px;
+          background: rgba(107, 162, 252, 0.2);
+          padding: 0 6px;
+        }
+        .operation-tag{
+          background: rgba(245,166,35, 0.2);
+          a {
+            color: #FF5B00;
+          }
+        }
       }
       .h1 {
         font-size: 20px;
@@ -62,6 +91,7 @@
           font-weight: normal;
           color: #222C38;
           line-height: 24px;
+          vertical-align: middle;
         }
         .base-info-name {
           display: inline-block;
@@ -71,41 +101,35 @@
           text-overflow: ellipsis;
           margin-right:14px;
         }
-        .industry-tag {
-          font-size: 12px;
-          line-height: 20px;
-          height: 20px;
-          background: rgba(107, 162, 252, 0.2);
-          padding: 1px 6px;
-          position: relative;
-          top: 1px;
-        }
-        .icon-Address {
-          position: relative;
-          bottom: 3px;
-          .path1 {
-            font-size: 20px;
+        .address {
+          a {
+            color: #5A626D;
+            &:hover {
+              color: #6BA2FC;
+            }
           }
         }
-        .address {
-          color: #222C38;
-          font-size: 12px;
-          position: relative;
-          right: 5px;
-          cursor: pointer;
-          a {
-            color: #222C38;
+        .fund-date {
+          &:after {
+            display: none;
           }
         }
         span{
+          position: relative;
           display: inline-block;
-          vertical-align: top;
-          line-height: 21px;
-          padding: 2px 0;
+          font-size: 15px;
+          color: #5A626D;
+          letter-spacing: 0px;
+          line-height: 24px;
           border-radius: 1px;
-          margin-right: 5px;
-          font-size: 14px;
-          color: #6BA2FC;
+          margin-right: 13px;
+          &:after {
+            content: '·';
+            position: absolute;
+            display: inline-block;
+            top:0;
+            right:-14px;
+          }
         }
         span:last-child {
           margin-right: 0px;
@@ -115,7 +139,7 @@
         color: #969FA9;
         font-size: 14px;
         line-height: 19px;
-        margin: 3px 0 6px;
+        margin: 13px 0 10px;
         font-weight: normal;
         white-space: nowrap;
         overflow: hidden;
@@ -124,7 +148,6 @@
       }
       .highlights {
         position: relative;
-        bottom: 6px;
         .icon-listPoint {
           color: #F8627E;
           font-size: 20px;
@@ -167,7 +190,7 @@
         box-shadow: 0px 0px 4px 0px #969FA9;
         border-radius: 0px 0px 0px 4px 4px 4px 4px;
         min-width: 80px;
-        tip-arrow{
+        .tip-arrow{
           border-top:6px solid rgba(90,98,109,1);
         }
       }
@@ -223,7 +246,7 @@
       }
       .top-info {
         width: 249px;
-        height: 101px;
+        height: 90px;
         display: inline-block;
         color: #969FA9;
         border: 1px solid #E7E7E7;
@@ -235,7 +258,7 @@
           line-height: 120px;
         }
         .head {
-          height: 40px;
+          height: 34px;
           background-color: #f4f4f6;
           position: relative;
           .top-flag {
@@ -257,28 +280,28 @@
           }
           .top-title {
             position: absolute;
-            font-size: 14px;
+            font-size: 12px;
             color: #5A626D;
             line-height: 21px;
             left: 40%;
-            top: 8px;
+            top: 6px;
             font-weight: bold;
           }
         }
         .content {
           position: relative;
-          top: 10px;
+          top: 7px;
           color: #222C38;
           text-align: center;
           .phase {
             float: left;
-            margin-left: 40px;
+            margin-left: 30px;
             display: inline-block;
             cursor: pointer;
           }
           .amount {
             float: right;
-            margin-right: 40px;
+            margin-right: 30px;
             display: inline-block;
             cursor: pointer;
           }
