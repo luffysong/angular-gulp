@@ -14,7 +14,6 @@ export default class CollectionVM {
     } else {
       this.collection = this.getInvestor;
     }
-    console.log(this.$state);
   }
   getInvestor() {
     const vm = this;

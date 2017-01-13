@@ -331,6 +331,22 @@ export default class ExposureVM {
           enabled: false,
         },
         opposite: false,
+      }, {
+        lineColor: '#E7E7E7',
+        gridLineColor: '#F2F4F5',
+        gridLineDashStyle: 'longdash',
+        lineWidth: 1,
+        labels: {
+          format: '{value}',
+          maxStaggerLines: 10,
+          style: {
+
+          },
+        },
+        title: {
+          enabled: false,
+        },
+        opposite: false,
       }],
     };
   }
@@ -597,6 +613,22 @@ export default class ExposureVM {
         },
       },
       yAxis: [{
+        lineColor: '#E7E7E7',
+        gridLineColor: '#F2F4F5',
+        gridLineDashStyle: 'longdash',
+        lineWidth: 1,
+        labels: {
+          format: '{value}',
+          maxStaggerLines: 10,
+          style: {
+
+          },
+        },
+        title: {
+          enabled: false,
+        },
+        opposite: false,
+      }, {
         lineColor: '#E7E7E7',
         gridLineColor: '#F2F4F5',
         gridLineDashStyle: 'longdash',
