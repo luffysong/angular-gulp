@@ -103,7 +103,6 @@ const INDUSTRY_META =[
     "value": "OTHER"
   },
 ];
-
 export  {
   INDUSTRY_META
 }
