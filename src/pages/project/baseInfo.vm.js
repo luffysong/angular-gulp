@@ -1,8 +1,9 @@
 import krData from 'krData';
 export default class BaseInfoVM extends krData.FormVM {
-  constructor(data, $scope) {
+  constructor(fn, data, $scope) {
     super(data);
     this.$scope = $scope;
+    this.ngDialog = fn;
     this.initData(data);
     this.projectService = krData.utls.getService('projectService');
   }
@@ -63,17 +64,37 @@ export default class BaseInfoVM extends krData.FormVM {
   }
 
   update() {
+    const vm = this;
     this.validate2().then(() => {
-      this.projectService.editHeader({
-        id: this.id,
-      }, this.mapProps(this.props, this))
-        .then(() => {
-          this.recovery();
-          krData.Alert.success('数据保存成功');
-          this.ok();
-        }, (data) => {
-          krData.Alert.alert(data.msg);
-        });
+      vm.investorDialog = this.ngDialog.open({
+        template: '<div ng-include="\'/pages/project/templates/ensureSave.html\'" center></div>',
+        plain: true,
+        appendTo: '#projectDetailWrapper',
+        className: 'ensureSave-dialog',
+        controller: saveController,
+        controllerAs: 'vm',
+      });
+    }).catch(() => {
+      krData.Alert.alert('表单不合法,请更正红色表示部分');
     });
+
+    function saveController() {
+      this.cancel = () => {
+        vm.investorDialog.close();
+      };
+      this.ensure = () => {
+        vm.projectService.editHeader({
+          id: vm.id,
+        }, vm.mapProps(vm.props, vm))
+          .then(() => {
+            vm.recovery();
+            krData.Alert.success('数据保存成功');
+            vm.ok();
+            vm.investorDialog.close();
+          }, (data) => {
+            krData.Alert.alert(data.msg);
+          });
+      };
+    }
   }
 }

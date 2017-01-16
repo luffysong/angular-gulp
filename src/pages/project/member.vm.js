@@ -1,10 +1,11 @@
 import krData from 'krData';
 export default class MemberVM extends krData.FormVM {
-  constructor(data, id) {
+  constructor(fn, data, id) {
     super(data);
     this.members = this.members || [];
     this.data = data;
     this.id = id;
+    this.ngDialog = fn;
     this.init();
     this.teamTags = this.data.teamTags || [];
     this.story = this.data.story || '';
@@ -76,16 +77,38 @@ export default class MemberVM extends krData.FormVM {
   }
 
   save() {
+    const vm = this;
     const form = {
       story: this.story,
       teamTags: this.teamTags.toString(),
     };
-    this.projectService.editmember({
-      id: this.id,
-    }, form)
-      .then(() => {
-        this.recovery();
-        this.ok();
-      });
+    vm.investorDialog = this.ngDialog.open({
+      template: '<div ng-include="\'/pages/project/templates/ensureSave.html\'" center></div>',
+      plain: true,
+      appendTo: '#projectDetailWrapper',
+      className: 'ensureSave-dialog',
+      controller: saveController,
+      controllerAs: 'vm',
+    });
+
+
+    function saveController() {
+      this.cancel = () => {
+        vm.investorDialog.close();
+      };
+      this.ensure = () => {
+        vm.projectService.editmember({
+          id: vm.id,
+        }, form)
+          .then(() => {
+            vm.recovery();
+            vm.ok();
+            krData.Alert.success('数据保存成功');
+            vm.investorDialog.close();
+          });
+      };
+    }
+
+
   }
 }

@@ -2,9 +2,10 @@ import krData from 'krData';
 export default class IntroductionVM extends krData.FormVM {
   projectService = krData.utls.getService('projectService');
   isEmpty = false;
-  constructor(data, $scope) {
+  constructor(fn, data, $scope) {
     super(data);
     this.$scope = $scope;
+    this.ngDialog = fn;
     this.initData(data);
   }
 
@@ -85,25 +86,46 @@ export default class IntroductionVM extends krData.FormVM {
   }
 
   save() {
-    if(!this.startDate){
-        this.startDate = "";
+    const vm = this;
+    if (!this.startDate) {
+      this.startDate = '';
     }
     this.validate2().then(() => {
-      this.projectService.editBase({
-        id: this.id,
-      }, this.mapProps(this.props, this))
-      .then(() => {
-        this.projectService.editIntroduce({
-          id: this.id,
-        }, this.mapProps(this.props, this))
-        .then(() => {
-          this.recovery();
-          krData.Alert.success('数据保存成功');
-          this.isEdit = !this.isEdit;
-        });
+      vm.investorDialog = this.ngDialog.open({
+        template: '<div ng-include="\'/pages/project/templates/ensureSave.html\'" center></div>',
+        plain: true,
+        appendTo: '#projectDetailWrapper',
+        className: 'ensureSave-dialog',
+        controller: saveController,
+        controllerAs: 'vm',
       });
+    }).catch(() => {
+      krData.Alert.alert('表单不合法,请更正红色表示部分');
     });
+
+    function saveController() {
+      this.cancel = () => {
+        vm.investorDialog.close();
+      };
+      this.ensure = () => {
+        vm.projectService.editBase({
+          id: vm.id,
+        }, vm.mapProps(vm.props, vm))
+          .then(() => {
+            vm.projectService.editIntroduce({
+              id: vm.id,
+            }, vm.mapProps(vm.props, vm))
+              .then(() => {
+                vm.recovery();
+                krData.Alert.success('数据保存成功');
+                vm.isEdit = !vm.isEdit;
+                vm.investorDialog.close();
+              });
+          });
+      };
+    }
   }
+
 
   isUndefined(obj) {
     return angular.isUndefined(obj);

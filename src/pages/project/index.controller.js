@@ -34,12 +34,12 @@ export default class ProjectIndexController {
       this.id = this.projectData.baseInfo.id;
       this.attachCid = this.projectData.baseInfo.attachCid;
       this.name = this.projectData.baseInfo.name;
-      this.baseInfoVM = new BaseInfoVM(this.projectData.baseInfo, this.$scope);
-      this.introductionVM = new IntroductionVM(this.projectData.baseInfo, this.$scope);
+      this.baseInfoVM = new BaseInfoVM(this.ngDialog, this.projectData.baseInfo, this.$scope);
+      this.introductionVM = new IntroductionVM(this.ngDialog, this.projectData.baseInfo, this.$scope);
       this.fundsVM = new FundsVM(this.projectData.funds);
-      this.financeVM = new FinanceVM(this.projectData.finance, this.$scope, this.id,
+      this.financeVM = new FinanceVM(this.ngDialog, this.projectData.finance, this.$scope, this.id,
         this.$sce, this.$q);
-      this.memberVM = new MemberVM(this.projectData.member, this.id);
+      this.memberVM = new MemberVM(this.ngDialog, this.projectData.member, this.id);
       this.similarVM = new SimilarVM(this.projectData.similar);
       this.companyIntroduceVM = new CompanyIntroduceVM(this.projectData.baseInfo, this.id);
       this.setVM();

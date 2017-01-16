@@ -1,11 +1,12 @@
 import krData from 'krData';
 export default class FinanceVM extends krData.FormVM {
-  constructor(data, $scope, id, $sce, $q) {
+  constructor(fn, data, $scope, id, $sce, $q) {
     super(data);
     this.$scope = $scope;
     this.$sce = $sce;
     this.$q = $q;
     this.id = id;
+    this.ngDialog = fn;
     this.initData(data);
     this.init(data);
     this.projectService = krData.utls.getService('projectService');
@@ -53,23 +54,38 @@ export default class FinanceVM extends krData.FormVM {
   }
 
   update() {
+    const vm = this;
     if (!this.validate()) return;
     this.financeDate = `${this.financeDateYear}-${this.financeDateMonth}-01`;
-    // this.investorList.map((val) => {
-    //   delete (val.label);
-    //   delete (val.value);
-    // });
+    vm.investorDialog = this.ngDialog.open({
+      template: '<div ng-include="\'/pages/project/templates/ensureSave.html\'" center></div>',
+      plain: true,
+      appendTo: '#projectDetailWrapper',
+      className: 'ensureSave-dialog',
+      controller: saveController,
+      controllerAs: 'vm',
+    });
 
-    this.projectService.addfinance({
-      id: this.id,
-    }, this.mapProps(this.props, this))
-      .then(() => {
-        krData.utls.deleteProps(this.props.concat(['financeDateYear', 'financeDateMonth']), this);
-        this.investorList = [];
-        this.financeAmountUnit = krData.META.CURRENCY_UNIT.CNY;
-        krData.Alert.success('数据保存成功');
-        this.isEdit = false;
-      });
+
+    function saveController() {
+      this.cancel = () => {
+        vm.investorDialog.close();
+      };
+      this.ensure = () => {
+        vm.projectService.addfinance({
+          id: vm.id,
+        }, vm.mapProps(vm.props, vm))
+          .then(() => {
+            krData.utls.deleteProps(vm.props.concat(['financeDateYear', 'financeDateMonth']), vm);
+            vm.investorList = [];
+            vm.financeAmountUnit = krData.META.CURRENCY_UNIT.CNY;
+            krData.Alert.success('数据保存成功');
+            vm.isEdit = false;
+            vm.investorDialog.close();
+          });
+      };
+    }
+
   }
 
 
