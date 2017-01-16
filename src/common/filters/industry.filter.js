@@ -2,6 +2,7 @@
 import { getConstantFilterFactory } from '../base/utls';
 
 const INDUSTRY_META =[
+  const COMPANY_INDUSTRY_META = [
   {
     "desc":"电商",
     "id":1,
