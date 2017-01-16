@@ -28,10 +28,15 @@
         </tr>
         <tr ng-repeat="obj in vm.listData.data track by $index">
           <td>
+            <img src="/images/icon-funding.png" class="funding-tag" ng-if="obj.funding" />
             <a style="background-image: url({{::obj.logo || '/images/default-logo.png'}})" ng-click="vm.seeDetail(obj.id)" class="project-logo" data-stat-click="company.{{obj.id}}"></a>
             <div class="project-info">
               <div class="project-name">
-                <span class="company-name" ng-click="vm.seeDetail(obj.id)" data-stat-click="company.{{obj.id}}">{{::obj.name}}</span><span class="icon-hot-tag" ng-if="obj.hot"></span><span class="icon-classicTag" ng-if="obj.classic"></span><span class="icon-funding" ng-if="obj.funding"></span>
+                <span class="company-name" ng-click="vm.seeDetail(obj.id)" data-stat-click="company.{{obj.id}}">{{::obj.name}}</span>
+                <span class="icon-list-hot" ng-if="obj.hot">
+                  <span class="path1"></span><span class="path2"></span>
+                </span>
+                <span class="icon-list-classic" ng-if="obj.classic"></span>
               </div>
               <div class="project-intro">
                 {{::obj.brief}}
@@ -58,13 +63,13 @@
           <td class="filter-item">
             <span ng-click="vm.clickFilter(obj.city,'city')"
               data-stat-click="city.{{::obj.cityStr}}"
-              ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '暂无'}}</span>
+              ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '-'}}</span>
           </td>
           <!--<td class="date-time" ng-show="parentVm.params['sortField'] === 'ADD_COLUMN_LABEL'">
             <span ng-show="obj.publishDate">{{::obj.publishDate | date:'yyyy-MM'}}</span>
             <span ng-show="!obj.publishDate">—</span>
           </td>-->
-          <td class="date-time">
+          <td>
             <span ng-show="obj.startDate">{{::obj.startDate | date:'yyyy-MM'}}</span>
             <span ng-show="!obj.startDate">—</span>
           </td>

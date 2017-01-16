@@ -253,6 +253,7 @@ export default class OrgController {
       year: this.year,
     }).then(data => {
       this.analyze = data;
+      console.log(data);
       this.renderChart();
     });
   }
@@ -289,7 +290,6 @@ export default class OrgController {
       other.other.list = other.otherList;
       industry5.push(other.other);
     }
-
     this.industryHg.series = [{
       data: industry5.map(item => ({
         name: item.name,

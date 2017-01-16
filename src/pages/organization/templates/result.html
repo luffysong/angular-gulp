@@ -24,7 +24,7 @@
           </div>
         </td>
         <td class="org-col">
-          <section ng-if="!obj.latestInvest.length">暂无</section>
+          <section ng-if="!obj.latestInvest.length">-</section>
           <a class="invest-case" ng-repeat="invest in obj.latestInvest | limitTo:3 track by $index" ui-sref="project({id:invest.cid})" target="_blank">{{invest.companyName}}<br/></a>
         </td>
         <td ><a  ui-sref="org({id: obj.org.id})">{{obj.totalCount}}</a></td>

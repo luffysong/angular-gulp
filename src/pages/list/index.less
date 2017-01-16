@@ -617,6 +617,7 @@
           background-color: #F2F4F5;
         }
         td {
+          position: relative;
           border-bottom:1px solid #F2F4F5;
           padding:14px 0;
           &.org-count {
@@ -659,6 +660,14 @@
             }
           }
 
+          .funding-tag {
+            position: absolute;
+            display: block;
+            width:40px;
+            left:-5px;
+            top:7px;
+          }
+
           .invest-case {
             cursor: pointer;
             color: #5A626D;
@@ -697,46 +706,35 @@
             margin-left:58px;
             .project-name {
               height:21px;
-              font-size: 14px;
+              font-size: 15px;
               color: #222C38;
               letter-spacing: 0px;
               line-height: 21px;
               white-space: nowrap;
+              margin-bottom:4px;
               .company-name {
                 display: inline-block;
                 height:20px;
                 margin-right: 10px;
                 cursor: pointer;
-                max-width: 165px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 vertical-align: top;
+                font-weight:600;
+                max-width:320px;
               }
               .project-industry {
                 margin-left: 10px;
                 font-size: 12px;
                 color: #5A626D;
               }
-              .icon-hot-tag,.icon-classicTag,.icon-funding {
-                position: relative;
-                color: #F8627E;
-                font-size:20px;
-                vertical-align: top;
-              }
-              .icon-funding {
-                color: #6BA2FC;
-                vertical-align: top;
-              }
-              .icon-classicTag {
-                display: inline-block;
-                width:20px;
-                height:20px;
+              .icon-list-classic {
                 color: #FFA546;
-                background: url('/images/classicTag.svg') no-repeat center;
-                vertical-align: top;
               }
-
+              .icon-list-hot {
+                color: #f28a9e;
+              }
               .fund-state {
                 /*.hot-tag;*/
                 background: #6BA2FC;
@@ -744,14 +742,14 @@
               }
             }
             .project-intro {
-              max-width: 230px;
+              max-width: 380px;
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
-              font-size: 12px;
-              color: #969fa9;
+              font-size: 13px;
+              color: #222C38;
               letter-spacing: 0px;
-              line-height: 18px;
+              line-height: 20px;
               .user-brief {
                 display: inline-block;
                 max-width: 160px;
@@ -776,8 +774,7 @@
               font-size: 12px;
               letter-spacing: 0px;
               line-height: 18px;
-              margin-top:4px;
-              max-width: 250px;
+              margin-top:5px;
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
@@ -785,24 +782,42 @@
                 font-size: 12px;
                 letter-spacing: 0px;
                 line-height: 18px;
-                margin-top: 4px;
-                max-width: 250px;
+                max-width: 380px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                >a {
+                  position: relative;
+                  margin-right: 15px;
+                  font-size:13px;
+                  color: #5A626D;
+                  &:last-of-type {
+                    &:after {
+                      display: none;
+                    }
+                  }
+                  &:after {
+                    content: '·';
+                    position: absolute;
+                    top:0;
+                    right:-8px;
+
+                  }
+                }
               }
               .icon-bookmark {
                 color: #969FA9;
-                font-size: 14px;
+                font-size: 15px;
                 position: relative;
                 top: 2px;
               }
               .highlights {
                 position: relative;
                 display: block;
-                max-width:230px;
+                max-width:380px;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                margin-bottom:4px;
                 i,span {
                   vertical-align: middle;
                 }
@@ -811,10 +826,7 @@
                 color: #F8627E;
                 font-size: 20px;
               }
-              a {
-                margin-right: 5px;
-                color: #5A626D;
-              }
+
               .operation-tag:hover {
                 color: #FFA546;
               }
