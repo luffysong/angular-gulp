@@ -314,19 +314,27 @@ export default class listParentController {
     function handleDate(date) {
       return `${date.slice(0, 4)}.${date.slice(4, 6)}`;
     }
-    if (!this.labelStat.comIncrTrend) return;
-    this.trendHg.title.text = `
-    <h5 class="chart-title">项目年度趋势</h5>
-    <h5 class="trend-title">
-      ${handleDate(this.labelStat.comIncrTrend.x[0])} -
-      ${handleDate(this.labelStat.comIncrTrend.x[this.labelStat.comIncrTrend.x.length - 1])}
-    </h5>`;
-    this.investHg.title.text = `
-    <h5 class="chart-title">投资金额 / 投资事件年度趋势</h5>
-    <h5 class="trend-title">
-      ${handleDate(this.labelStat.investFundIncrTrend.x[0])} -
-      ${handleDate(this.labelStat.comIncrTrend.x[this.labelStat.investFundIncrTrend.x.length - 1])}
-    </h5>`;
+
+
+    if (this.labelStat.comIncrTrend && this.labelStat.comIncrTrend.x) {
+      this.trendHg.title.text = `
+      <h5 class="chart-title">项目年度趋势</h5>
+      <h5 class="trend-title">
+        ${handleDate(this.labelStat.comIncrTrend.x[0])} -
+        ${handleDate(this.labelStat.comIncrTrend.x[this.labelStat.comIncrTrend.x.length - 1])}
+      </h5>`;
+    }
+
+    if (this.labelStat.investFundIncrTrend && this.labelStat.investFundIncrTrend.x) {
+      this.investHg.title.text = `
+      <h5 class="chart-title">投资金额 / 投资事件年度趋势</h5>
+      <h5 class="trend-title">
+        ${handleDate(this.labelStat.investFundIncrTrend.x[0])} -
+        ${handleDate(this.labelStat.investFundIncrTrend.x[this.labelStat.investFundIncrTrend.x.length - 1])}
+      </h5>`;
+    }
+
+
   }
 
   initChart() {
@@ -830,7 +838,6 @@ export default class listParentController {
   }
 
   loadChart() {
-    console.log(this.labelStat.investPhaseDis);
     this.investPhaseHg.series = [{
       data: this.labelStat.investPhaseDis.slice(0, 6).map(item => ({
         name: item.key,
@@ -966,7 +973,7 @@ export default class listParentController {
         this._setNoDataConfig(item.target);
       }
     });
-    if (!d.comStartDateDis.length) {
+    if (!d.comStartDateDis || !d.comStartDateDis.length) {
       this.saveEmpty = true;
     }
 
