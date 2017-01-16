@@ -45,7 +45,7 @@
       </div>-->
       <table infinite-scroll="vm.loadMore()" infinite-scroll-disabled='vm.dataLoading || vm.noMore' infinite-scroll-distance='0' ng-if="vm.listData.data.length">
         <tr>
-          <td width="70"></td>
+          <!--<td width="70"></td>-->
           <td width="320">项目</td>
           <td>行业</td>
           <td>轮次</td>
@@ -55,11 +55,11 @@
           <td width="120">操作</td>
         </tr>
         <tr ng-repeat="obj in vm.listData.data track by $index">
-          <td>
+          <!--<td>
             <input name="selectedCompare" type="checkbox" value="" ng-checked="vm.checkedCids.indexOf(obj.cid.toString()) !== -1"
             ng-disabled="vm.checkedCids.length > 4 && vm.checkedCids.indexOf(obj.cid.toString()) == -1"
             ng-show="vm.isCompare" id="{{obj.cid}}" ng-click="vm.checkboxSelected($event)"/>
-          </td>
+          </td>-->
           <td>
             <a href="#" ui-sref="project({id: obj.cid})" target="_blank">
               <img ng-src="{{obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)"
@@ -78,12 +78,12 @@
           </td>
           <td class="filter-item">
             <a ui-sref="list.result({industry: obj.industryEnum,columnId: 0})" target="_blank">{{::obj.industryStr}}</a>
-            <span ng-if="!obj.industryStr.length">暂无</span>
+            <span ng-if="!obj.industryStr.length">-</span>
 
           </td>
           <td class="filter-item">
             <a ui-sref="list.result({phase: obj.phaseEnum,columnId: 0})" target="_blank">{{::obj.phaseEnum | companyFinancePhase}}</a>
-            <span ng-if="!obj.phaseEnum">暂无</span>
+            <span ng-if="!obj.phaseEnum">-</span>
           </td>
           <td class="org-col">
             <span ng-if="!obj.investParts.length">未披露</span>
@@ -92,11 +92,11 @@
           </td>
           <td class="filter-item">
             <a ui-sref="list.result({city: obj.city,columnId: 0})" target="_blank" ng-if="obj.cityStr">{{::obj.cityStr}}</a>
-            <span ng-class="{'disabled': parentVm.getPermission()}" ng-if="!obj.cityStr">暂无</span>
+            <span ng-class="{'disabled': parentVm.getPermission()}" ng-if="!obj.cityStr">-</span>
           </td>
-          <td class="date-time">
+          <td>
             {{::obj.followDate | listDateFilter}}
-            <span ng-if="!obj.followDate">暂无</span>
+            <span ng-if="!obj.followDate">-</span>
           </td>
           <td>
             <span class="collect-btn" ng-click="vm.cancelCollection(obj,$index)" data-stat-click="cancelCollection">
