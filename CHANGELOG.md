@@ -1,3 +1,13 @@
+<a name="1.5.3"></a>
+## [1.5.3](f2e/krData/compare/v1.5.2...v1.5.3) (2017-01-16)
+
+
+### Bug Fixes
+
+* 从新发布tag ([7858f67](f2e/krData/commits/7858f67))
+
+
+
 <a name="1.5.2"></a>
 ## [1.5.2](f2e/krData/compare/v1.5.1...v1.5.2) (2017-01-16)
 
