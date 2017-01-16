@@ -1,3 +1,13 @@
+<a name="1.5.2"></a>
+## [1.5.2](f2e/krData/compare/v1.5.1...v1.5.2) (2017-01-16)
+
+
+### Bug Fixes
+
+* 解决编译问题 ([b48c1e2](f2e/krData/commits/b48c1e2))
+
+
+
 <a name="1.5.1"></a>
 ## [1.5.1](f2e/krData/compare/v1.5.0...v1.5.1) (2017-01-16)
 
