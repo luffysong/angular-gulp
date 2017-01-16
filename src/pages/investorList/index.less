@@ -23,7 +23,7 @@
     left: -12px;
   }
   position: relative;
-  padding: 8px 60px;
+  padding: 0 60px;
   background: #FFFFFF;
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
   .navigation {
@@ -52,6 +52,9 @@
   }
   .filter-list {
     border-bottom: 1px dashed #F2F4F5;
+    &:first-child {
+      padding-top: 28px;
+    }
     &.my-follow {
       padding-left:24px;
     }
@@ -61,7 +64,7 @@
     .filter-col {
       position: relative;
       height:auto;
-      line-height:53px;
+      line-height:51px;
       .clear-both();
       .col-default {
         float: left;
@@ -91,25 +94,29 @@
       }
       .col-type {
         float: left;
-        width:49px;
+        min-width:48px;
         vertical-align: middle;
-        text-align: right;
+        text-align: left;
         font-size: 12px;
         color: #5A626D;
         letter-spacing: 0px;
         font-weight:600;
+        line-height: 24px;
+        white-space: nowrap;
       }
       .col-content {
         height: auto;
         margin-left:72px;
         padding-right:30px;
         overflow: hidden;
+        border-bottom: 1px dashed #E5EBF0;
+        margin-bottom: 16px;
+        padding-bottom: 14px;
         .col-list-container {
-          padding:12px 0 6px;
           overflow: hidden;
         }
         .filter-outside-container {
-          height:32px;
+          height:24px;
           overflow: hidden;
           &.height-auto {
             height:auto !important;
@@ -120,44 +127,75 @@
         }
         ul {
           float: left;
+          padding-left: 66px;
           overflow: hidden;
           position: relative;
-          min-height:32px;
-          &.height-auto {
-            height:auto !important;
-          }
+          min-height:24px;
           li {
             float: left;
-            margin-right: 28px;
-            padding: 0px 6px;
-            font-size: 12px;
-            letter-spacing: 0px;
-            line-height: 28px;
-            height: 28px;
+            font-size: 13px;
             color: #222C38;
             cursor: pointer;
-            margin-bottom:6px;
-            .clear-btn {
+            width: 100px;
+            height: 24px;
+            line-height: 24px;
+            margin-bottom:4px;
+            margin-right: 5px;
+            overflow: hidden;
+            &:first-child {
+              position: absolute;
+              left:0;
+              & > span:first-child {
+                &:before{
+                  display: none;
+                }
+              }
+            }
+            & > span:first-child {
+              padding: 0 10px;
+              line-height: 24px;
               position: relative;
-              top: 1px;
-              vertical-align: middle;
+              overflow: hidden;
+              .rd(2px);
+              .dlk();
+            }
+            .item-cnt {
+              opacity: .5;
+            }
+            .clear-btn {
+              position: absolute;
+              top: 0px;
+              font-size: 14px;
+              right: 0px;
+              color: #fff;
               visibility: visible;
               &.hide {
                 visibility: hidden;
               }
             }
-            &.active {
+            &.active > span {
+              &:before {
+                content: ' ';
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0;
+                border-width: 14px  0 0 14px;
+                border-color: #6BA2FC  transparent;
+                border-style: solid;
+              }
               color: #2868D1;
               background: rgba(107,162,252,.2);
             }
           }
         }
-        .col-item {
+        /*.col-item {
           display: inline-block;
-          padding: 8px 6px;
+          height: 26px;
+          padding: 4px 6px;
           font-size: 12px;
           letter-spacing: 0px;
-          line-height: 12px;
+          line-height: 18px;
           margin-right: 10px;
           color: #222C38;
           cursor: pointer;
@@ -175,22 +213,19 @@
             color: #2868D1;
             background: rgba(107,162,252,.2);
           }
-        }
+        }*/
       }
       .col-handle {
         position: absolute;
         right:0;
-        top:15px;
+        top:0;
+        line-height: 24px;
         .open-btn {
           display: none;
-          width: 20px;
-          height: 20px;
-          background-color: #fff;
-          line-height: 18px;
+          vertical-align: middle;
           font-size: 20px;
           color: #ccc;
           transition: transform .4s;
-          text-align: center;
           &.open {
             transform: rotate(180deg);
           }

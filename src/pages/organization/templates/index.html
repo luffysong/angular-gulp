@@ -8,15 +8,28 @@
         <div class="col-content">
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':organizationVm.open.industry}">
-              <ul filter-cal ng-class="{'height-auto': organizationVm.open.industry}" ng-if="organizationVm.data.industry">
-                <!--ng-if="$index < organizationVm.open.maxNumber || ($index >= organizationVm.open.maxNumber && organizationVm.open.address)"-->
-                <li class="col-item" ng-repeat="item in organizationVm.data.industry" ng-class="{'active': item.active}"  ng-click="organizationVm.selectIndustry($index,'industry')" data-stat-click="industry.{{item.value}}">
-                  {{item.name}}
-                  <span class="item-cnt">({{item.count ? item.count : 0}})</span>
-                  <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.name === '不限'"></span>
-                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.name !== '不限'" ng-click="organizationVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
+              <ul filter-cal open-filter="organizationVm.open.industry" ng-if="organizationVm.data.industry" data="organizationVm.data.industry">
+                <li class="col-item" ng-repeat="item in organizationVm.data.industry" ng-class="{'active': item.active}"
+                    ng-click="organizationVm.selectIndustry($index,'industry')" data-stat-click="industry.{{item.value}}">
+                  <span>
+                    {{item.name}}
+                    <span class="clear-btn icon-small-close" ng-class="{'hide':!item.active}"
+                          ng-if="item.value !== 'unlimited'"
+                          ng-click="organizationVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
+                  </span>
+                  <!-- <span class="item&#45;cnt">({{item.cnt ? item.cnt : 0}})</span> -->
                 </li>
               </ul>
+
+              <!--<ul filter-cal ng-class="{'height-auto': organizationVm.open.industry}" ng-if="organizationVm.data.industry">
+                &lt;!&ndash;ng-if="$index < organizationVm.open.maxNumber || ($index >= organizationVm.open.maxNumber && organizationVm.open.address)"&ndash;&gt;
+                <li class="col-item" ng-repeat="item in organizationVm.data.industry" ng-class="{'active': item.active}"  ng-click="organizationVm.selectIndustry($index,'industry')" data-stat-click="industry.{{item.value}}">
+                  {{item.name}}
+                  &lt;!&ndash;<span class="item-cnt">({{item.count ? item.count : 0}})</span>&ndash;&gt;
+                  <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.name === '不限'"></span>
+                  <span class="clear-btn icon-small-close" ng-class="{'hide':!item.active}" ng-if="item.name !== '不限'" ng-click="organizationVm.clearIndustry(item.value,'industry');$event.stopPropagation();"></span>
+                </li>
+              </ul>-->
             </div>
           </div>
         </div>
@@ -34,12 +47,13 @@
         <div class="col-content">
           <div class="col-list-container">
             <div class="filter-outside-container" ng-class="{'height-auto':organizationVm.open.phase}">
-              <ul filter-cal ng-class="{'height-auto':organizationVm.open.phase}" ng-if="organizationVm.data.phase">
+              <ul filter-cal open-filter="organizationVm.open.phase" ng-if="organizationVm.data.phase" data="organizationVm.data.phase">
                 <li class="col-item" ng-repeat="item in organizationVm.data.phase" ng-class="{'active': item.active}" ng-click="organizationVm.selectIndustry($index,'phase')" data-stat-click="phase.{{item.value}}">
-                  {{item.name}}
-                  <span class="item-cnt">({{item.count ? item.count : 0}})</span>
-                  <span class="clear-btn" ng-class="{'hide':!item.active}" ng-if="item.name === '不限'"></span>
-                  <span class="clear-btn icon-dialogClose" ng-class="{'hide':!item.active}" ng-if="item.name !== '不限'"  ng-click="organizationVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
+                  <span>
+                    {{item.name}}
+                    <!--<span class="item-cnt">({{item.count ? item.count : 0}})</span>-->
+                    <span class="clear-btn icon-small-close" ng-class="{'hide':!item.active}" ng-if="item.name !== '不限'"  ng-click="organizationVm.clearIndustry(item.value,'phase');$event.stopPropagation();"></span>
+                  </span>
                 </li>
               </ul>
             </div>
