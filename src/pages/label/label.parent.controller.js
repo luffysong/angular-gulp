@@ -830,7 +830,6 @@ export default class listParentController {
   }
 
   loadChart() {
-    console.log(this.labelStat.investPhaseDis);
     this.investPhaseHg.series = [{
       data: this.labelStat.investPhaseDis.slice(0, 6).map(item => ({
         name: item.key,
@@ -966,7 +965,7 @@ export default class listParentController {
         this._setNoDataConfig(item.target);
       }
     });
-    if (!d.comStartDateDis.length) {
+    if (!d.comStartDateDis || !d.comStartDateDis.length) {
       this.saveEmpty = true;
     }
 
