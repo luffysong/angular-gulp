@@ -618,7 +618,7 @@ export default class listParentController {
         margin: 35,
         text:
           `<h5 class="chart-title">项目年度趋势</h5>
-          <h5 class="trend-title">${this.trendPeriod}</h5>`,
+          <h5 class="trend-title">${this.trendPeriod || ''}</h5>`,
       },
       xAxis: {
         tickWidth: 0,
@@ -764,7 +764,7 @@ export default class listParentController {
         align: 'left',
         margin: 35,
         text: `<h5 class="chart-title">投资金额 / 投资事件年度趋势</h5>
-               <h5 class="trend-title">${this.investPeriod}</h5>`,
+               <h5 class="trend-title">${this.investPeriod || ''}</h5>`,
       },
       xAxis: {
         tickWidth: 0,
@@ -825,6 +825,7 @@ export default class listParentController {
   }
 
   handleRetention() {
+    if (!this.labelStat.comStartDateDis) return;
     const arr = this.labelStat.comStartDateDis.map(item => item.value);
     const max = Math.max(...arr);
     const width = 140;
@@ -838,7 +839,11 @@ export default class listParentController {
   }
 
   loadChart() {
-    if (!this.labelStat.investPhaseDis || !this.labelStat.investPhaseDis.length) return;
+    if (!this.labelStat.investPhaseDis || !this.labelStat.investPhaseDis.length) {
+      this.investPhaseHg.title.text = '';
+      this.comPhaseHg.title.text = '';
+      return;
+    }
     this.investPhaseHg.series = [{
       data: this.labelStat.investPhaseDis.slice(0, 6).map(item => ({
         name: item.key,
@@ -852,7 +857,10 @@ export default class listParentController {
     }];
     this.investPhaseHg.title.text = this.labelStat.investPhaseDis.length ?
       `共投资<br>${this.labelStat.investPhaseDis.length}个轮次` : '';
-    if (!this.labelStat.comPhaseDis || !this.labelStat.comPhaseDis.length) return;
+
+    if (!this.labelStat.comPhaseDis || !this.labelStat.comPhaseDis.length) {
+      return;
+    }
     this.comPhaseHg.series = [{
       data: this.labelStat.comPhaseDis.slice(0, 6).map(item => ({
         name: item.key,
