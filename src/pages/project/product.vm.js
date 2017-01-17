@@ -296,7 +296,7 @@ export default class ProductVM {
         x: -10,
         margin: 25,
         text: '<h5 class="trend-title">' +
-        '<span>DAU / 曝光量</span>' +
+        '<span>DAU</span>' +
         '<i class="icon-dialogTags">' +
           '<span class="tip">' +
             '<span class="tip-title">DAU</span>' +

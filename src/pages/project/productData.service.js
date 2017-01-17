@@ -43,10 +43,12 @@ export default class ProductDataService {
 
   _convertDiagram(diagram, target) {
     Object.keys(FID_KEY).forEach((key) => {
-      /*target[key] = {
-        data: [],
-        x: [],
-      };*/
+      if (!target[key]) {
+        target[key] = {
+          data: [],
+          x: [],
+        };
+      }
       diagram.forEach(companyData => {
         if (FID_KEY[key] === companyData.fid) {
           target[key] = {
