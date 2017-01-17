@@ -838,6 +838,7 @@ export default class listParentController {
   }
 
   loadChart() {
+    if (!this.labelStat.investPhaseDis || this.labelStat.investPhaseDis.length) return;
     this.investPhaseHg.series = [{
       data: this.labelStat.investPhaseDis.slice(0, 6).map(item => ({
         name: item.key,
@@ -851,6 +852,7 @@ export default class listParentController {
     }];
     this.investPhaseHg.title.text = this.labelStat.investPhaseDis.length ?
       `共投资<br>${this.labelStat.investPhaseDis.length}个轮次` : '';
+    if (!this.labelStat.comPhaseDis || this.labelStat.comPhaseDis.length) return;
     this.comPhaseHg.series = [{
       data: this.labelStat.comPhaseDis.slice(0, 6).map(item => ({
         name: item.key,
