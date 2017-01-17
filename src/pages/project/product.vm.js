@@ -100,7 +100,6 @@ export default class ProductVM {
       return `<div class="chart-tooltip">
        <p>${handleDate(this.category)}</p>
        <p>DAU：<span>${this.dau}万</span></p>
-       <p>曝光量：<span>${this.exposure}</span></p>
       </div>`;
     },
   };
@@ -142,7 +141,7 @@ export default class ProductVM {
       return `${date.slice(0, 4)}-${date.slice(4, 6)}`;
     }
     const arr = investmentTrend.dau.x && investmentTrend.dau.x.length
-      ? investmentTrend.dau.x : investmentTrend.exposure.x;
+      ? investmentTrend.dau.x : [];
     this.trendHg.xAxis.categories = arr.map(item => handleDate(item));
     this.trendHg.series = [{
       name: 'DAU / 人',
@@ -150,24 +149,11 @@ export default class ProductVM {
       data: investmentTrend.dau.data.map((item, i) => ({
         y: item,
         dau: handleNumber(item),
-        exposure: handleNumber(investmentTrend.exposure.data[i]),
         year: this.year,
       })),
       yAxis: 1,
       zIndex: 1,
       lineWidth: 1,
-    }, {
-      color: '#DDF1FF',
-      name: '曝光量',
-      data: investmentTrend.exposure.data.map((item, i) => ({
-        y: Number(item) || 0,
-        dau: handleNumber(investmentTrend.dau.data[i]),
-        exposure: handleNumber(item),
-        year: this.year,
-      })),
-      zIndex: 0,
-      yAxis: 0,
-      type: 'column',
     }];
     this.trendHg.options.series = this.trendHg.series;
   }
@@ -677,7 +663,7 @@ export default class ProductVM {
   handleData(d) {
     const dict = [
       {
-        name: ['dau', 'exposure'],
+        name: ['dau'],
         target: this.trendHg,
         empty: true,
       }, {

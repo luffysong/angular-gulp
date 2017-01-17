@@ -6,6 +6,9 @@ export const FID_KEY = {
   save3: 'md_0024',
   save7: 'md_0025',
   save30: 'md_0027',
+  report: 'em_0001',
+  search: 'em_0002',
+  weibo: 'em_0003',
 };
 export default class ProductDataService {
 
@@ -20,13 +23,14 @@ export default class ProductDataService {
   getProduct() {
     const companyData = this.companyData;
     const obj = {
-      exposure: this._convertObj(companyData.exposure_stat),
       appRank: this._convertObj(companyData.ios_rank),
       download: this._convertObj(companyData.android_download),
       websiteRank: this._convertObj(companyData.website_rank),
     };
     const arr = companyData.user_stat.y_list || [];
     this._convertDiagram(arr, obj);
+    const exposureArr = companyData.exposure_stat.y_list || [];
+    this._convertDiagram(exposureArr, obj);
     return obj;
   }
 
@@ -39,10 +43,10 @@ export default class ProductDataService {
 
   _convertDiagram(diagram, target) {
     Object.keys(FID_KEY).forEach((key) => {
-      target[key] = {
+      /*target[key] = {
         data: [],
         x: [],
-      };
+      };*/
       diagram.forEach(companyData => {
         if (FID_KEY[key] === companyData.fid) {
           target[key] = {

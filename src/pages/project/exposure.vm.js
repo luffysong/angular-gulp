@@ -5,7 +5,7 @@ function handleNumber(n) {
   if (n) {
     if (!n.toFixed) return n;
     if (n < 1) { return n.toFixed(4); }
-    return n.toFixed(2);
+    return n.toFixed(0);
   }
   return 0;
 }
@@ -34,25 +34,6 @@ export default class ExposureVM {
     this.setTrend();
     this.setDownload();
     this.setWebsite();
-    this.retentionList = [
-      {
-        title: '一天后',
-        percent: 0,
-        key: 'save',
-      }, {
-        title: '三天后',
-        percent: 0,
-        key: 'save3',
-      }, {
-        title: '七天后',
-        percent: 0,
-        key: 'save7',
-      }, {
-        title: '三十天后',
-        percent: 0,
-        key: 'save30',
-      },
-    ];
     this.productDataService = new ProductDataService(this.companyData);
     this.loadAnalyze();
   }
@@ -69,6 +50,7 @@ export default class ExposureVM {
 
   loadAnalyze() {
     this.analyze = this.productDataService.getProduct();
+    console.log(this.analyze);
     Object.keys(this.analyze).forEach(key => {
       if (this.analyze[key].x.length || (this.analyze[key].data && this.analyze[key].data.length)) {
         this.hasData = true;
@@ -81,7 +63,6 @@ export default class ExposureVM {
     this.setInvestmentTrend(this.analyze);
     this.setDownloadTrend(this.analyze);
     this.setWebsiteTrend(this.analyze);
-    this.handleRetention(this.analyze);
     this.handleData(this.analyze);
   }
 
@@ -99,7 +80,7 @@ export default class ExposureVM {
       }
       return `<div class="chart-tooltip">
        <p>${handleDate(this.category)}</p>
-       <p>报道数：<span>${this.exposure}</span></p>
+       <p>报道数：<span>${this.report}</span></p>
       </div>`;
     },
   };
@@ -115,7 +96,7 @@ export default class ExposureVM {
       }
       return `<div class="chart-tooltip">
        <p>${handleDate(this.category)}</p>
-       <p>搜索热度：<span>${this.rank}</span></p>
+       <p>搜索热度：<span>${this.search}</span></p>
       </div>`;
     },
   };
@@ -131,7 +112,7 @@ export default class ExposureVM {
       }
       return `<div class="chart-tooltip">
        <p>${handleDate(this.category)}</p>
-       <p>提及数：<span>${this.item}名</span></p>
+       <p>提及数：<span>${this.item}</span></p>
       </div>`;
     },
   };
@@ -139,16 +120,15 @@ export default class ExposureVM {
     function handleDate(date) {
       return `${date.slice(0, 4)}-${date.slice(4, 6)}`;
     }
-    const arr = investmentTrend.dau.x && investmentTrend.dau.x.length
-      ? investmentTrend.dau.x : investmentTrend.exposure.x;
+    const arr = investmentTrend.report.x && investmentTrend.report.x.length
+      ? investmentTrend.report.x : [];
     this.trendHg.xAxis.categories = arr.map(item => handleDate(item));
     this.trendHg.series = [{
       color: '#DDF1FF',
       name: '报道数 / 个',
-      data: investmentTrend.exposure.data.map((item, i) => ({
+      data: investmentTrend.report.data.map((item) => ({
         y: Number(item) || 0,
-        dau: handleNumber(investmentTrend.dau.data[i]),
-        exposure: handleNumber(item),
+        report: handleNumber(item),
         year: this.year,
       })),
       zIndex: 0,
@@ -163,16 +143,15 @@ export default class ExposureVM {
     function handleDate(date) {
       return `${date.slice(0, 4)}-${date.slice(4, 6)}`;
     }
-    const arr = investmentTrend.download.x && investmentTrend.download.x.length
-      ? investmentTrend.download.x : investmentTrend.appRank.x;
+    const arr = investmentTrend.search.x && investmentTrend.search.x.length
+      ? investmentTrend.search.x : [];
     this.downloadHg.xAxis.categories = arr.map(item => handleDate(item));
     this.downloadHg.series = [{
       name: '搜索热度',
       color: '#FBA1B2',
-      data: investmentTrend.appRank.data.map((item, i) => ({
+      data: investmentTrend.search.data.map((item) => ({
         y: Number(item),
-        rank: (item && item !== 'null') ? item : 0,
-        download: handleNumber(investmentTrend.download.data[i]),
+        search: handleNumber(item),
         year: this.year,
       })),
       yAxis: 1,
@@ -186,11 +165,11 @@ export default class ExposureVM {
     function handleDate(date) {
       return `${date.slice(0, 4)}-${date.slice(4, 6)}`;
     }
-    this.websiteHg.xAxis.categories = investmentTrend.websiteRank.x.map(item => handleDate(item));
+    this.websiteHg.xAxis.categories = investmentTrend.weibo.x.map(item => handleDate(item));
     this.websiteHg.series = [{
       name: '微博提及数',
       color: '#FFEFCB',
-      data: investmentTrend.websiteRank.data.map((item) => ({
+      data: investmentTrend.weibo.data.map((item) => ({
         y: Number(item),
         item,
         year: this.year,
@@ -316,22 +295,6 @@ export default class ExposureVM {
         },
       },
       yAxis: [{
-        lineColor: '#E7E7E7',
-        gridLineColor: '#F2F4F5',
-        gridLineDashStyle: 'longdash',
-        lineWidth: 1,
-        labels: {
-          format: '{value}',
-          maxStaggerLines: 10,
-          style: {
-
-          },
-        },
-        title: {
-          enabled: false,
-        },
-        opposite: false,
-      }, {
         lineColor: '#E7E7E7',
         gridLineColor: '#F2F4F5',
         gridLineDashStyle: 'longdash',
@@ -628,59 +591,23 @@ export default class ExposureVM {
           enabled: false,
         },
         opposite: false,
-      }, {
-        lineColor: '#E7E7E7',
-        gridLineColor: '#F2F4F5',
-        gridLineDashStyle: 'longdash',
-        lineWidth: 1,
-        labels: {
-          format: '{value}',
-          maxStaggerLines: 10,
-          style: {
-
-          },
-        },
-        title: {
-          enabled: false,
-        },
-        opposite: false,
       }],
     };
   }
 
-  handleRetention(d) {
-    this.retentionList.forEach((item) => {
-      const a = d[item.key].data;
-      item.percent = a.length ? a[a.length - 1].toFixed(2) : 0;
-    });
-    let index = 0;
-    const width = 250;
-    this.retentionList.forEach((item, i) => {
-      if (this.retentionList[i].percent - this.retentionList[index].percent > 0) {
-        index = i;
-      }
-    });
-    this.retentionList.forEach((item, i) => {
-      if (index === i && item.percent !== 0) {
-        item.width = width;
-      } else {
-        item.width = `${Math.max(1, width * (item.percent / this.retentionList[index].percent))}px`;
-      }
-    });
-  }
 
   handleData(d) {
     const dict = [
       {
-        name: ['dau', 'exposure'],
+        name: ['report'],
         target: this.trendHg,
         empty: true,
       }, {
-        name: ['appRank', 'download'],
+        name: ['search'],
         target: this.downloadHg,
         empty: true,
       }, {
-        name: ['websiteRank'],
+        name: ['weibo'],
         target: this.websiteHg,
         empty: true,
       },
@@ -695,18 +622,11 @@ export default class ExposureVM {
         this._setNoDataConfig(item.target);
       }
     });
-    if ((!d.save.data.length || d.save.data[0] === 0) &&
-      (!d.save3.data.length || d.save3.data[0] === 0) &&
-      (!d.save7.data.length || d.save7.data[0] === 0) &&
-      (!d.save30.data.length || d.save30.data[0] === 0)) {
-      this.saveEmpty = true;
-    }
-
   }
 
   _setNoDataConfig(cfg) {
     const x = cfg.xAxis;
-    const y = cfg.yAxis[1];
+    const y = cfg.yAxis[0];
     x.labels.style.color = '#ccc';
     cfg.options.legend.enabled = false;
     y.labels.style.color = '#ccc';
