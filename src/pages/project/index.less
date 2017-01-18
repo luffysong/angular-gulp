@@ -101,38 +101,40 @@
           text-overflow: ellipsis;
           margin-right:14px;
         }
-        .address,.industry-tag {
-          a {
-            color: #5A626D;
-            &:hover {
-              color: #6BA2FC;
+        .top-info-list {
+          .address,.industry-tag {
+            a {
+              color: #5A626D;
+              &:hover {
+                color: #6BA2FC;
+              }
             }
           }
-        }
-        .fund-date {
-          &:after {
-            display: none;
-          }
-        }
-        span{
-          position: relative;
-          display: inline-block;
-          font-size: 15px;
-          color: #5A626D;
-          letter-spacing: 0px;
-          line-height: 24px;
-          border-radius: 1px;
-          margin-right: 13px;
-          &:after {
-            content: '·';
-            position: absolute;
+          span{
+            position: relative;
             display: inline-block;
-            top:0;
-            right:-14px;
+            font-size: 15px;
+            color: #5A626D;
+            letter-spacing: 0px;
+            line-height: 24px;
+            border-radius: 1px;
+            margin-right: 13px;
+            &:first-of-type {
+              &:after {
+                display: none;
+              }
+            }
+            &:after {
+              content: '·';
+              position: absolute;
+              display: inline-block;
+              top:0;
+              left:-14px;
+            }
           }
-        }
-        span:last-child {
-          margin-right: 0px;
+          span:last-child {
+            margin-right: 0px;
+          }
         }
       }
       h3{
@@ -458,8 +460,12 @@
       }
     }
     .logo {
+      display: block;
       .square(90);
       border-radius: 14px;
+      border: 1px solid #ebebeb;
+      background: #fff no-repeat 50%;
+      background-size: contain;
       .border1(#E7E7E7);
     }
   }

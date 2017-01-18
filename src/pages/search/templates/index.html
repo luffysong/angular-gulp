@@ -33,8 +33,7 @@
             ng-click="searchVm.open(item.id)" data-stat-click="threeColumns.company.{{item.id}}"
             ng-repeat="item in searchVm.columnOptions.companies"
             ng-class="{'active' : item.id === searchVm.columnOptions.companyId}">
-            <img ng-click="searchVm.open(item.id)" width="42" height="42"
-            ng-src="{{::item.logo || '/images/default-logo.png'}}" alt=""/>
+            <a style="background-image: url({{::item.logo || '/images/default-logo.png'}})" ng-click="searchVm.open(item.id)" class="project-logo"></a>
             <div class="text-info-wrapper">
               <p class="clear company-info-container">
                   <span ng-click="searchVm.open(item.id)" class="name mr10" title="{{::item.name}}">{{::item.name}}</span>

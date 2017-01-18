@@ -4,19 +4,21 @@
   <section id="projectHeader" class="base-info-wrapper">
     <div ng-if="!vm.baseInfoVM.isEdit" class="base-info-content">
       <div>
-        <img ng-src="{{vm.baseInfoVM.logo || '/images/default-logo.png'}}" class="logo" alt="">
+        <a style="background-image: url({{::vm.baseInfoVM.logo || '/images/default-logo.png'}})" class="logo"></a>
       </div>
       <div>
         <div class="h1">
           <h1 class="base-info-name" title="{{::vm.baseInfoVM.name}}">{{::vm.baseInfoVM.name}}</h1>
-          <span class="industry-tag">
-            <a href="" ui-sref="label.result({labelId:vm.baseInfoVM.industryEnumLabelId})">{{vm.baseInfoVM.industryEnum | industry}}</a>
-          </span>
-          <span class="address">
-            <a href="" ui-sref="list.result({columnId:0,city: vm.baseInfoVM.address1})" target="_blank">{{vm.baseInfoVM.address1Desc}}</a>
-          </span>
-          <span class="fund-date">
-            {{::vm.projectData.baseInfo.startDateDesc}}年
+          <span class="top-info-list">
+            <span class="industry-tag">
+              <a href="" ui-sref="label.result({labelId:vm.baseInfoVM.industryEnumLabelId})">{{vm.baseInfoVM.industryEnum | industry}}</a>
+            </span>
+            <span class="address" ng-if="vm.baseInfoVM.address1Desc">
+              <a href="" ui-sref="list.result({columnId:0,city: vm.baseInfoVM.address1})" target="_blank">{{vm.baseInfoVM.address1Desc}}</a>
+            </span>
+            <span class="fund-date" ng-if="vm.projectData.baseInfo.startDateDesc">
+              {{::vm.projectData.baseInfo.startDateDesc}}年
+            </span>
           </span>
           <a class="btn-edit"
             ng-if="vm.isEditMode"
@@ -83,7 +85,7 @@
     </div>
     <div ng-if="vm.baseInfoVM.isEdit" class="base-info-content-edit">
       <div class="upload-logo">
-        <img ng-src="{{vm.baseInfoVM.logo || '/images/default-logo.png'}}" class="logo" alt="">
+        <a style="background-image: url({{::vm.baseInfoVM.logo || '/images/default-logo.png'}})" class="logo"></a>
         <a ngf-select="vm.baseInfoVM.uploadImage($files)"
           ngf-accept="'image/*'"
           class="btn-upload-logo" href="javascript:;"></a>
