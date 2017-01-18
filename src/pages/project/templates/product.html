@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="investor" ng-if="root.user.isInvestor() || vm.isEditMode">
-      <div class="hg-btn-group" ng-hide="!productVM.hasData && !userPortraitsVm.hasData">
+      <div class="hg-btn-group" ng-hide="!productVM.hasData && !userPortraitsVm.hasData && !exposureVM.hasData">
         <div>
           <a href="javascript:;"  ng-class="{active: productVM.active === 'product'}"
             ng-click="productVM.active = 'product'">产品数据</a
@@ -46,9 +46,9 @@
       </div>
       <div ng-if="exposureVM.showed" ng-show="productVM.active === 'exposure'">
         <div ng-if="exposureVM.hasData" ng-include="'/pages/project/templates/exposureData.html'"></div>
-        <!--<div ng-if="!productVM.hasData" class="no-data">
+        <div ng-if="!exposureVM.hasData" class="no-data">
           <p><span class="icon-chart"></span>项目数据内测中，仅部分项目展示</p>
-        </div>-->
+        </div>
       </div>
       <div ng-show="productVM.active === 'product'">
         <div ng-if="productVM.hasData" ng-include="'/pages/project/templates/projectData.html'"></div>

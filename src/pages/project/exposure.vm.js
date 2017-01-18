@@ -50,8 +50,9 @@ export default class ExposureVM {
 
   loadAnalyze() {
     this.analyze = this.productDataService.getProduct();
+    const attr = ['report', 'search', 'weibo'];
     console.log(this.analyze);
-    Object.keys(this.analyze).forEach(key => {
+    attr.forEach(key => {
       if (this.analyze[key].x.length || (this.analyze[key].data && this.analyze[key].data.length)) {
         this.hasData = true;
       }
