@@ -62,31 +62,33 @@ export default class WorkstationIndexController {
     }
   }
 
-  updateCollection(e,id,name) {
-    if(this.name === ''){
-        return
+  updateCollection(e, id, name) {
+    if (this.name === '') {
+      return;
     }
-    if (e.type == 'blur' || e.keyCode === 13) {
+    if (e.type === 'blur' || e.keyCode === 13) {
       this.workstationService.updateCollection(id,name)
-      .then(data => {
+      .then(() => {
         this.$scope.newCollection = false;
         this.$scope.isFocus = false;
         this.getCollectionList();
+      }).catch(err => {
+        krData.Alert.alert(err.msg);
       });
     }
   }
 
-  showDelete(id,state){
+  showDelete(id, state) {
     this.$scope.collectionVM.dataList.groupList.forEach((item) => {
-      if(item.id === id){
+      if (item.id === id) {
         item.isDelete = state;
       }
     });
   }
 
-  editCollection(id){
+  editCollection(id) {
     this.$scope.collectionVM.dataList.groupList.forEach((item) => {
-      if(item.id === id){
+      if (item.id === id) {
         item.isEdit = !item.isEdit;
         this.$scope.editId = id;
         this.$scope.isEdit = item.isEdit;
@@ -98,7 +100,7 @@ export default class WorkstationIndexController {
   getUser() {
     krData.User.getUserInfo().then(data => {
       this.userData = data;
-      if(data.investorType > 90){
+      if (data.investorType > 90) {
         this.$state.go('validate');
       }
     }).catch(err => {
@@ -110,7 +112,7 @@ export default class WorkstationIndexController {
     });
   }
 
-  toLogin(){
+  toLogin() {
     krData.utls.login();
   }
 }
