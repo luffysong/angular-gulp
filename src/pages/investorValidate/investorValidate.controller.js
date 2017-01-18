@@ -147,7 +147,7 @@ export default class investorValidateController {
     this.baseInfo.relatedPosition = '';
     this.baseInfo.singleInvestMin = '';
     this.baseInfo.singleInvestMax = '';
-    this.baseInfo.singleInvestUnit = '';
+    this.baseInfo.singleInvestUnit = 'CNY';
   }
 
   getUser() {
