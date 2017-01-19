@@ -54,24 +54,24 @@
 
       <div class="introduce-detail">
         <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.productService">
-          <span class="sub-title">产品服务</span>
-          <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.productService | enterFormat"></span>
+          <div class="sub-title">产品服务</div>
+          <div class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.productService | enterFormat"></div>
         </div>
         <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.userMarket">
-          <span class="sub-title">用户市场</span>
-          <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.userMarket | enterFormat"></span>
+          <div class="sub-title">用户市场</div>
+          <div class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.userMarket | enterFormat"></div>
         </div>
         <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.businessMode && (root.user.isInvestor() || vm.isEditMode)">
-          <span class="sub-title">商业模式</span>
-          <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.businessMode | enterFormat"></span>
+          <div class="sub-title">商业模式</div>
+          <div class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.businessMode | enterFormat"></div>
         </div>
         <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.operationData && (root.user.isInvestor() || vm.isEditMode)">
-          <span class="sub-title">运营数据</span>
-          <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.operationData | enterFormat"></span>
+          <div class="sub-title">运营数据</div>
+          <div class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.operationData | enterFormat"></div>
         </div>
         <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.coreSource && (root.user.isInvestor() || vm.isEditMode)">
-          <span class="sub-title">核心资源</span>
-          <span class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.coreSource | enterFormat"></span>
+          <div class="sub-title">核心资源</div>
+          <div class="intro" ng-bind-html="vm.companyIntroduceVM.data.companyIntroduce.coreSource | enterFormat"></div>
         </div>
       </div>
 <!--       <div class="no-data" ng-if="!vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true">

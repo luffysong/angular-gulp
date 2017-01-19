@@ -62,13 +62,13 @@
       width: 400px;
       height: 28px;
       padding: 4px 18px;
-      border:1px solid #e7e7e7;
+      border: 1px solid #D9E2EB;
       border-radius: 15px;
       color:#5A626d;
       vertical-align: middle;
     }
     .search::placeholder {
-      color: #e7e7e7;
+      color: #CBD2DD;
     }
     .input-search{
       position: absolute;
@@ -137,6 +137,13 @@ nav.rz-sidebar-wrapper{
     bottom: 20px;
     left: 20px;
     z-index: 1;
+    >a {
+      &:hover {
+        .service-mail,.mail-link {
+          color: #fff;
+        }
+      }
+    }
     .service-mail {
       font-size: 12px;
       color: #969FA9;
@@ -149,9 +156,6 @@ nav.rz-sidebar-wrapper{
       color: #969FA9;
       letter-spacing: 0.5px;
       margin-bottom:10px;
-      &:hover {
-        color: #fff;
-      }
     }
     .kr-link {
       display: block;

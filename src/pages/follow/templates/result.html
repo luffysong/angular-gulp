@@ -63,7 +63,7 @@
           <td class="filter-item">
             <span ng-click="vm.clickFilter(obj.city,'city')"
               data-stat-click="city.{{::obj.cityStr}}"
-              ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '-'}}</span>
+              ng-class="{'disabled': parentVm.getPermission()}">{{::obj.cityStr || '—'}}</span>
           </td>
           <!--<td class="date-time" ng-show="parentVm.params['sortField'] === 'ADD_COLUMN_LABEL'">
             <span ng-show="obj.publishDate">{{::obj.publishDate | date:'yyyy-MM'}}</span>

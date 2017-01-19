@@ -8,24 +8,24 @@
   <div ng-if="!vm.companyIntroduceVM.isEdit">
     <div class="introduce-detail" ng-if="vm.companyIntroduceVM.hasIntroduce" >
       <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.productService">
-        <span class="sub-title">产品服务</span>
-        <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.productService}}</span>
+        <div class="sub-title">产品服务</div>
+        <div class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.productService}}</div>
       </div>
       <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.userMarket">
-        <span class="sub-title">用户市场</span>
-        <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.userMarket}}</span>
+        <div class="sub-title">用户市场</div>
+        <div class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.userMarket}}</div>
       </div>
       <div class="item" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.businessMode)" >
-        <span class="sub-title">商业模式</span>
-        <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.businessMode}}</span>
+        <div class="sub-title">商业模式</div>
+        <div class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.businessMode}}</div>
       </div>
       <div class="item" ng-if="(vm.companyIntroduceVM.data.companyIntroduce.operationData)">
-        <span class="sub-title">运营数据</span>
-        <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.operationData}}</span>
+        <div class="sub-title">运营数据</div>
+        <div class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.operationData}}</div>
       </div>
       <div class="item" ng-if="vm.companyIntroduceVM.data.companyIntroduce.coreSource" >
-        <span class="sub-title">核心资源</span>
-        <span class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.coreSource}}</span>
+        <div class="sub-title">核心资源</div>
+        <div class="intro">{{vm.companyIntroduceVM.data.companyIntroduce.coreSource}}</div>
       </div>
     </div>
     <div class="no-data" ng-if="!vm.companyIntroduceVM.hasIntroduce && root.user.isLogin === true">

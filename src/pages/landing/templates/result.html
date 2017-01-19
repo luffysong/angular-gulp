@@ -73,7 +73,7 @@
           <td class="filter-item">
             <span ng-click="vm.clickFilter(obj.city,'city')"
               data-stat-click="list.city.{{::obj.cityStr}}"
-              >{{::obj.cityStr || '-'}}</span>
+              >{{::obj.cityStr || '—'}}</span>
           </td>
           <!--<td class="date-time" ng-show="parentVm.params['sortField'] === 'STOCK_AT'">
             <span ng-show="obj.stockDate">{{::obj.stockDate | date:'yyyy-MM'}}</span>
@@ -148,7 +148,7 @@
             <a class="invest-case" ng-repeat="org in obj.investCaseList | limitTo:3 track by $index" ui-sref="project({id:org.id})" target="_blank">{{org.name}}<br/></a>
           </td>
           <td class="org-col">
-            <section ng-if="!obj.city.length">-</section>
+            <section ng-if="!obj.city.length">—</section>
             <section ng-repeat="c in obj.city | limitTo:3 track by $index" ng-bind="c"></section>
           </td>
         </tr>

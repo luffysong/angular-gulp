@@ -281,11 +281,6 @@ export default class ExposureVM {
         gridLineWidth: 1,
         gridLineColor: 'transparent',
         gridLineDashStyle: 'longdash',
-        crosshair: {
-          width: 1,
-          color: '#ddd',
-          dashStyle: 'LongDash',
-        },
         categories: [],
         labels: {
           autoRotation: 0,
@@ -562,11 +557,6 @@ export default class ExposureVM {
         gridLineWidth: 1,
         gridLineColor: 'transparent',
         gridLineDashStyle: 'longdash',
-        crosshair: {
-          width: 1,
-          color: '#ddd',
-          dashStyle: 'LongDash',
-        },
         categories: [],
         labels: {
           autoRotation: 0,
