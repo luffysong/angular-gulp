@@ -473,18 +473,27 @@
     letter-spacing: 0px;
     background-color: #fff;
     margin-top: 10px;
-    span {
-      margin-left: 30px;
+    >span {
+      &:first-of-type {
+        margin-left: 30px;
+      }
     }
     .labels {
       display: none;
       background: #F2F4F5;
       border-radius: 20px;
-      padding: 6px 16px;
+      padding: 0 16px;
       margin-left: 20px;
       position: relative;
+      min-width:150px;
+      vertical-align: middle;
       &.show {
-        display: inline;
+        display: inline-block;
+      }
+      .scroll-container {
+        height:29px;
+        line-height:29px;
+        overflow: hidden;
       }
       .icon-data-trends {
         font-size: 18px;
@@ -494,7 +503,7 @@
         top: 4px;
       }
       a {
-        margin-right: 20px;
+        display: block;
         span {
           margin-left: 5px;
         }
@@ -529,6 +538,7 @@
         display: inline-block;
         position: absolute;
         top: 6px;
+        right:10px;
       }
       .down-angle {
         border-left: 3px solid transparent;
@@ -537,6 +547,7 @@
         display: inline-block;
         position: absolute;
         top: 15px;
+        right:10px;
       }
     }
     .order-btns {

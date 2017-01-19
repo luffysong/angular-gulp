@@ -12,6 +12,7 @@ import { krLoadingDirective, Loading } from './krLoading.directive.js';
 import parallaxDirective from './parallax.directive';
 import msgPoint from './msgPoint.directive';
 import krBacktop from './krBacktop.directive';
+import labelScrollDirective from './labelScroll.directive';
 function makeDirective(directive) {
   return () => directive;
 }
@@ -31,4 +32,5 @@ angular.module('@@app.components', [])
   .directive('filterCal', filterCalDirective)
   .directive('msgPoint', msgPoint)
   .directive('krParallax', parallaxDirective)
-  .directive('rongTrack', rongTrack);
+  .directive('rongTrack', rongTrack)
+  .directive('labelScroll', labelScrollDirective);

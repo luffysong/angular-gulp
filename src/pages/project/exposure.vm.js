@@ -268,7 +268,7 @@ export default class ExposureVM {
         '<i class="icon-dialogTags">' +
           '<span class="tip">' +
             '<span class="tip-title">每个月报道数</span>' +
-            '<span>媒体报道、社交网络提及量的叠加值</span>' +
+            '<span>相关媒体新闻报道数量</span>' +
           '</span>' +
         '</i>' +
         '</h5>',
@@ -395,7 +395,7 @@ export default class ExposureVM {
         '<i class="icon-dialogTags">' +
         '<span class="tip">' +
         '<span class="tip-title">搜索热度</span>' +
-        '<span>AppStore分类排行榜单</span>' +
+        '<span>搜索引擎用户查询提交量</span>' +
         '</span>' +
         '</i>' +
         '</h5>',
@@ -544,7 +544,7 @@ export default class ExposureVM {
         '<i class="icon-dialogTags">' +
         '<span class="tip">' +
         '<span class="tip-title">微博提及数</span>' +
-        '<span>媒体报道、社交网络提及量的叠加值</span>' +
+        '<span>微博话题提及量</span>' +
         '</span>' +
         '</i>' +
         '</h5>',

@@ -370,7 +370,7 @@ export default class listParentController {
       });
     }
 
-    let i = 0;
+    /*let i = 0;
     const vm = this;
     const loop = function () {
       vm.timer = vm.$timeout(function () {
@@ -385,7 +385,7 @@ export default class listParentController {
         vm.$timeout.cancel(vm.timer);
       });
     };
-    loop();
+    loop();*/
   }
 
   setLabelId(label) {
