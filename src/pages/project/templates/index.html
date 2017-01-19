@@ -11,7 +11,7 @@
           <h1 class="base-info-name" title="{{::vm.baseInfoVM.name}}">{{::vm.baseInfoVM.name}}</h1>
           <span class="top-info-list">
             <span class="industry-tag">
-              <a href="" ui-sref="label.result({labelId:vm.baseInfoVM.industryEnumLabelId})">{{vm.baseInfoVM.industryEnum | industry}}</a>
+              <a href="" ui-sref="label.result({labelId:vm.baseInfoVM.industryEnumLabelId})" ng-class="{disabled: !vm.baseInfoVM.industryEnumLabelId}">{{vm.baseInfoVM.industryEnum | industry}}</a>
             </span>
             <span class="address" ng-if="vm.baseInfoVM.address1Desc">
               <a href="" ui-sref="list.result({columnId:0,city: vm.baseInfoVM.address1})" target="_blank">{{vm.baseInfoVM.address1Desc}}</a>

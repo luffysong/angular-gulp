@@ -105,6 +105,12 @@
           .address,.industry-tag {
             a {
               color: #5A626D;
+              &.disabled {
+                pointer-events: none;
+                &:hover {
+                  color: #5A626D;
+                }
+              }
               &:hover {
                 color: #6BA2FC;
               }
