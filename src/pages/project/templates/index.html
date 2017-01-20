@@ -12,11 +12,9 @@
           <span class="top-info-list">
             <span class="industry-tag">
               <a href="" ui-sref="label.result({labelId:vm.baseInfoVM.industryEnumLabelId})" ng-class="{disabled: !vm.baseInfoVM.industryEnumLabelId}">{{vm.baseInfoVM.industryEnum | industry}}</a>
-            </span>
-            <span class="address" ng-if="vm.baseInfoVM.address1Desc">
+            </span><span class="address" ng-if="vm.baseInfoVM.address1Desc">
               <a href="" ui-sref="list.result({columnId:0,city: vm.baseInfoVM.address1})" target="_blank">{{vm.baseInfoVM.address1Desc}}</a>
-            </span>
-            <span class="fund-date" ng-if="vm.projectData.baseInfo.startDateDesc">
+            </span><span class="fund-date" ng-if="vm.projectData.baseInfo.startDateDesc">
               {{::vm.projectData.baseInfo.startDateDesc}}年
             </span>
           </span>
