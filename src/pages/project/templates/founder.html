@@ -66,5 +66,5 @@
       <div class="intro">查看创始团队</div>
     </div>
   </div>
-  <div class="get-more" ng-show="vm.memberVM.showMore()" ng-click="vm.memberVM.more()" >查看更多</div>
+  <div class="get-more" ng-show="vm.memberVM.showMore() && vm.userId" ng-click="vm.memberVM.more()" >查看更多</div>
 </div>
