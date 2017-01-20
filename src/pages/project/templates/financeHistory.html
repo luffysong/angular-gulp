@@ -77,9 +77,9 @@
                     </div>
                     <div class="tags">
                       <span class="info-company" ng-if="data.participantVos" >
-                        <a ui-sref="investorInfo({id: entity.entityId})" ng-if="entity.entityType === 1" target="_blank" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
-                        <a ui-sref="org({id: entity.entityId})" ng-if="entity.entityType === 2" target="_blank" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
-                        <a ui-sref="project({id: entity.entityId})" ng-if="entity.entityType === 3" target="_blank" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
+                        <a ui-sref="investorInfo({id: entity.entityId})" ng-class="{disabled: !entity.entityId}" ng-if="entity.entityType === 1" target="_blank" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
+                        <a ui-sref="org({id: entity.entityId})" ng-class="{disabled: !entity.entityId}" ng-if="entity.entityType === 2" target="_blank" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
+                        <a ui-sref="project({id: entity.entityId})" ng-class="{disabled: !entity.entityId}" ng-if="entity.entityType === 3" target="_blank" ng-repeat="entity in data.participantVos" class="darkColor">{{entity.entityName}}</a>
                       </span>
                       <span ng-if="vm.financeVM.isUndefined(data.participantVos)" class="participant-down info-company">
                         暂无

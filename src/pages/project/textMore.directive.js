@@ -6,9 +6,9 @@ function textMoreDirective() {
       text: '=',
     },
     link(scope, element) {
-      const more = $('<div class="more">查看更多</div>');
+      const more = $('<div class="get-more">查看更多</div>');
       element.html(scope.text);
-      element.parent().append(more);
+      element.parents('.project-light-wrapper').append(more);
       function createDots() {
         element.dotdotdot({
           wrap: 'letter',

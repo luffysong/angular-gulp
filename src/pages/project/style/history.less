@@ -218,12 +218,13 @@
               font-size: 14px;
               color: #969FA9;
               line-height: 21px;
+              font-weight:normal;
             }
             .amount-top {
               position:relative;
               top: 5px;
               margin-right: 12px;
-              font-weight: bold;
+              font-weight: 600;
             }
             .participant-down-label {
               position: relative;
@@ -262,6 +263,11 @@
           .info-company{
             color: #6BA2FC;
             padding-right: 5px;
+            >a.disabled {
+              color: #5A626D;
+              cursor: auto;
+              pointer-events: none;
+            }
             a+a{
               margin-left: 15px;
             }
