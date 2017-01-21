@@ -77,7 +77,9 @@ angular.module('@@app').service('commonInterceptor', commonInterceptor)
       email: function emialValidator(value) {
         // return value ? /^http[s]?:\/\/[^/]+/.test(value) : true;
         /* eslint-disable */
-        return value ? /^([a-zA-Z0-9]+[_|_|\.|\+]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/.test(value) : true;
+        return value ?
+          /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) :
+          true;
         /* eslint-enable */
       },
       integer: value => (value ? /^(?:[1-9]\d*|0)$/.test(value) : true),
