@@ -80,7 +80,7 @@ export default class ExposureVM {
       }
       return `<div class="chart-tooltip">
        <p>${handleDate(this.category)}</p>
-       <p>报道数：<span>${this.report}</span></p>
+       <p>报道数量：<span>${this.report}</span></p>
       </div>`;
     },
   };
@@ -112,7 +112,7 @@ export default class ExposureVM {
       }
       return `<div class="chart-tooltip">
        <p>${handleDate(this.category)}</p>
-       <p>提及数：<span>${this.item}</span></p>
+       <p>微博热度：<span>${this.item}</span></p>
       </div>`;
     },
   };
@@ -125,7 +125,7 @@ export default class ExposureVM {
     this.trendHg.xAxis.categories = arr.map(item => handleDate(item));
     this.trendHg.series = [{
       color: '#DDF1FF',
-      name: '报道数 / 个',
+      name: '报道数量 / 个',
       data: investmentTrend.report.data.map((item) => ({
         y: Number(item) || 0,
         report: handleNumber(item),
@@ -167,7 +167,7 @@ export default class ExposureVM {
     }
     this.websiteHg.xAxis.categories = investmentTrend.weibo.x.map(item => handleDate(item));
     this.websiteHg.series = [{
-      name: '微博提及数',
+      name: '微博热度',
       color: '#FFEFCB',
       data: investmentTrend.weibo.data.map((item) => ({
         y: Number(item),
@@ -263,10 +263,10 @@ export default class ExposureVM {
         x: -10,
         margin: 25,
         text: '<h5 class="trend-title">' +
-        '<span>每个月报道数</span>' +
+        '<span>报道数量</span>' +
         '<i class="icon-dialogTags">' +
           '<span class="tip">' +
-            '<span class="tip-title">每个月报道数</span>' +
+            '<span class="tip-title">报道数量</span>' +
             '<span>相关媒体新闻报道数量</span>' +
           '</span>' +
         '</i>' +
@@ -539,10 +539,10 @@ export default class ExposureVM {
         x: -10,
         margin: 25,
         text: '<h5 class="trend-title">' +
-        '<span>微博提及数</span>' +
+        '<span>微博热度</span>' +
         '<i class="icon-dialogTags">' +
         '<span class="tip">' +
-        '<span class="tip-title">微博提及数</span>' +
+        '<span class="tip-title">微博热度</span>' +
         '<span>微博话题提及量</span>' +
         '</span>' +
         '</i>' +
