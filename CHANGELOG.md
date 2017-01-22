@@ -1,3 +1,13 @@
+<a name="1.7.2"></a>
+## [1.7.2](https://gitlab.corp.36kr.com/f2e/krData/compare/v1.7.1...v1.7.2) (2017-01-22)
+
+
+### Bug Fixes
+
+* 文案修改 ([74b6aca](https://gitlab.corp.36kr.com/f2e/krData/commit/74b6aca))
+
+
+
 <a name="1.7.1"></a>
 ## [1.7.1](https://gitlab.corp.36kr.com/f2e/krData/compare/v1.7.0...v1.7.1) (2017-01-22)
 
