@@ -27,9 +27,10 @@ export default class ProductDataService {
       download: this._convertObj(companyData.android_download),
       websiteRank: this._convertObj(companyData.website_rank),
     };
-    const arr = companyData.user_stat.y_list || [];
+    const arr = companyData.user_stat && companyData.user_stat.y_list ? companyData.user_stat.y_list : [];
     this._convertDiagram(arr, obj);
-    const exposureArr = companyData.exposure_stat.y_list || [];
+    const exposureArr = companyData.exposure_stat && companyData.exposure_stat.y_list ?
+      companyData.exposure_stat.y_list : [];
     this._convertDiagram(exposureArr, obj);
     return obj;
   }
