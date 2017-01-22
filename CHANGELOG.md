@@ -1,3 +1,13 @@
+<a name="1.7.3"></a>
+## [1.7.3](https://gitlab.corp.36kr.com/f2e/krData/compare/v1.7.2...v1.7.3) (2017-01-22)
+
+
+### Bug Fixes
+
+* 曝光数据图表修复、去除成立时间 ([69f41b3](https://gitlab.corp.36kr.com/f2e/krData/commit/69f41b3))
+
+
+
 <a name="1.7.2"></a>
 ## [1.7.2](https://gitlab.corp.36kr.com/f2e/krData/compare/v1.7.1...v1.7.2) (2017-01-22)
 
