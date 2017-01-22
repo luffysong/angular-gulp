@@ -38,7 +38,7 @@
         <div class="layer-container">
           <div class="padding-container">
             <div class="item-layer" ng-repeat="item in vm.newProject | limitTo:5">
-              <img ng-src="{{item.logo || '/images/default-logo.png'}}" alt="" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}">
+              <a style="background-image: url({{item.logo || '/images/default-logo.png'}})" class="project-logo" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}"></a>
               <div class="item-info">
                 <div class="company-name" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}" title="{{item.name}}">{{item.name}}</div>
                 <div class="company-intro" title="{{item.brief}}">{{item.brief}}</div>
@@ -105,7 +105,7 @@
         <div class="layer-container" perfect-scrollbar wheel-propagation="true" wheel-speed="5" min-scrollbar-length="15" wheel-speed="3">
           <div class="padding-container">
             <div class="item-layer" ng-repeat="item in vm.recommendList | limitTo:5">
-              <img ng-src="{{item.logo || '/images/default-logo.png'}}" alt="" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}">
+              <a style="background-image: url({{item.logo || '/images/default-logo.png'}})" class="project-logo" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}"></a>
               <div class="item-info">
                 <div class="company-name" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}" title="{{item.name}}">{{item.name}}</div>
                 <div class="company-intro" title="{{item.brief}}">{{item.brief}}</div>
