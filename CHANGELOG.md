@@ -1,10 +1,40 @@
+<a name="1.7.0"></a>
+# [1.7.0](f2e/krData/compare/v1.6.3...v1.7.0) (2017-01-22)
+
+
+### Bug Fixes
+
+* 曝光空数据报错fix ([c59df1b](f2e/krData/commits/c59df1b))
+* 行业标签新窗口打开 ([1cc16f6](f2e/krData/commits/1cc16f6))
+
+
+
 <a name="1.6.3"></a>
 ## [1.6.3](f2e/krData/compare/v1.6.2...v1.6.3) (2017-01-21)
 
 
 ### Bug Fixes
 
+* point不居中fix ([f1123a5](f2e/krData/commits/f1123a5))
+* ui走查 ([051df7e](f2e/krData/commits/051df7e))
+* 收藏夹报错fix ([4f7fa0d](f2e/krData/commits/4f7fa0d))
+* 日期格式修改 ([a887dfa](f2e/krData/commits/a887dfa))
+* 时间字段修改 ([8b47b9f](f2e/krData/commits/8b47b9f))
+* 曝光数据展示逻辑修改 ([8be77a8](f2e/krData/commits/8be77a8))
+* 没有id禁止点击 ([cf68be9](f2e/krData/commits/cf68be9))
+* 详情页fix ([24069cf](f2e/krData/commits/24069cf))
+* 详情页产品数据修改 ([353ee3c](f2e/krData/commits/353ee3c))
+* 详情页头部fix ([a6a5673](f2e/krData/commits/a6a5673))
+* 跟投人认证fix ([a8e6002](f2e/krData/commits/a8e6002))
+* 邮箱修改 ([18e9a69](f2e/krData/commits/18e9a69))
 * 邮箱格式验证 ([5ef9a14](f2e/krData/commits/5ef9a14))
+
+
+### Features
+
+* sidebar邮箱修改 ([ba6aa7d](f2e/krData/commits/ba6aa7d))
+* 头部标签id替换 ([57e114c](f2e/krData/commits/57e114c))
+* 无缝滚动功能开发、曝光数据图表title文案修改 ([43b643e](f2e/krData/commits/43b643e))
 
 
 
@@ -19,6 +49,12 @@
 * 空数据样式优化 ([5fa4248](f2e/krData/commits/5fa4248))
 
 
+### Features
+
+* sidebar客服邮箱图片替换，链接修改 ([191a6b6](f2e/krData/commits/191a6b6))
+* 详情页曝光数据开发 ([4993bde](f2e/krData/commits/4993bde))
+
+
 
 <a name="1.6.1"></a>
 ## [1.6.1](f2e/krData/compare/v1.6.0...v1.6.1) (2017-01-17)
@@ -27,6 +63,13 @@
 ### Bug Fixes
 
 * 修改字典 ([33f1653](f2e/krData/commits/33f1653))
+* 列表页修复 ([7999091](f2e/krData/commits/7999091))
+
+
+### Features
+
+* 工作台样式优化 ([fda77ea](f2e/krData/commits/fda77ea))
+* 投资人、投资机构列表筛选样式统一 ([8755754](f2e/krData/commits/8755754))
 
 
 
@@ -66,6 +109,11 @@
 * 从新发布tag ([7858f67](f2e/krData/commits/7858f67))
 
 
+### Features
+
+* 各列表页样式优化 ([fefe8fd](f2e/krData/commits/fefe8fd))
+
+
 
 <a name="1.5.2"></a>
 ## [1.5.2](f2e/krData/compare/v1.5.1...v1.5.2) (2017-01-16)
@@ -74,6 +122,7 @@
 ### Bug Fixes
 
 * 解决编译问题 ([b48c1e2](f2e/krData/commits/b48c1e2))
+* 解决编译问题 ([e355adb](f2e/krData/commits/e355adb))
 
 
 
@@ -83,7 +132,16 @@
 
 ### Bug Fixes
 
+* 修复报错 ([bab6d32](f2e/krData/commits/bab6d32))
+* 修改列表行业字典 ([5b2d0cf](f2e/krData/commits/5b2d0cf))
+* 修改字典 ([e9c3302](f2e/krData/commits/e9c3302))
 * 修改字典表 ([02bf88d](f2e/krData/commits/02bf88d))
+* 详情页修复 ([d3bb46e](f2e/krData/commits/d3bb46e))
+
+
+### Features
+
+* 详情页优化、首页优化开发 ([4ab8ed2](f2e/krData/commits/4ab8ed2))
 
 
 
