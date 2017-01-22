@@ -444,7 +444,6 @@ export default class ExposureVM {
         title: {
           enabled: false,
         },
-        reversed: true,
         labels: {
           format: '{value}',
           style: {
