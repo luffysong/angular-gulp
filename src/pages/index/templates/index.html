@@ -69,7 +69,7 @@
             <div class="item-fund" ng-repeat="item in vm.fundExpress">
               <div class="first-line">
                 <span class="fund-title" ui-sref="project({id:item.id})" data-stat-click="fundExpress.project.{{item.id}}" title="{{item.name}}">{{item.name}}</span>
-                <span class="fund-type" ng-if="item.industry">{{item.industry | companyIndustry}}</span>
+                <span class="fund-type" ng-if="item.industry">{{item.industry | industry}}</span>
                 <span class="fund-date">{{item.investDate | date:'MM-dd'}}</span>
               </div>
               <div class="second-line">
