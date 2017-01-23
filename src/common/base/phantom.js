@@ -15,10 +15,12 @@ export default class phantom {
 
   static inPhantom = !!window.callPhantom;
   static render() {
-    if (!window.PH_PAGE_NOT_COMPELET) {
+    if (window.PH_PAGE_NOT_COMPELET) {
       callPhantom({
         name: EVENTS.RENDER_END,
       });
+    } else {
+      throw new Error('phantom自动渲染已开启');
     }
   }
 
