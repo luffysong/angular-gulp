@@ -18,6 +18,7 @@ import { workstationIndex, workstationList, workstationCompare } from './worksta
 import indexView from './index.route';
 import { loginView, validateView } from './login.route';
 import announcement from './announcement.route';
+import commercial from './commercial.route';
 
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
@@ -70,6 +71,8 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
 
   //公告页
   $stateProvider.state('announcement', announcement);
+  //工商信息页
+  $stateProvider.state('commercial', commercial);
 
   /* 404页面*/
   $stateProvider.state('fail', failView);
