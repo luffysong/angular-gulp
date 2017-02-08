@@ -3,5 +3,5 @@ export default {
   url: '/commercial/{id:int}',
   templateUrl: '/pages/commercial/templates/index.html',
   controllerAs: 'vm',
-  controller: 'CommercialController',
+  controller: 'commercialController',
 };
