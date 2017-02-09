@@ -50,6 +50,44 @@
   })(window, document, 'script', '//36kr.com/global/stat.js', 'krtracker');
 </script>
 
+
+<!--接入美洽客服系统-->
+<script type='text/javascript'>
+    (function(m, ei, q, i, a, j, s) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = '//static.meiqia.com/dist/meiqia.js';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 48706);
+
+    // 传递客户信息
+    setTimeout(function() {
+      var promise = window.krData.User.getUserInfo();
+      setTimeout(function(){
+        var user = promise.$$state.value;
+        var isInvestor = '否';
+        if(user.investorType < 100){
+          isInvestor = '是'
+        }
+        _MEIQIA('metadata', {
+          name: user.name, // 美洽默认字段
+          '昵称': user.nickName, // 自定义字段
+          'UID': user.id, // 自定义字段
+          '是否是投资人': isInvestor
+          // '是否是认领人/维护者': '否'
+        });
+      },1000)
+  }, 1000);
+
+
+</script>
+
 <!-- build:js /lib/jq.js -->
 <script type="text/javascript" src="/bower/jquery/dist/jquery.min.js" charset="utf-8"></script>
 <!-- endbuild -->
