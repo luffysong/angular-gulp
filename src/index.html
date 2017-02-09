@@ -21,16 +21,24 @@
   <span class="progress-global-bar"></span>
   @@include('./header/top.html')
   @@include('./header/sidebar.html')
+  <div class="announcement">
+    <span>36氪创投助手网页改版啦~</span>
+    <div class="announcement-more"><a announcement href="#">查看更多改版内容</a></div>
+    <div class="announcement-close">x</div>
+  </div>
   <div class="content-wrapper" ui-view>
     <div kr-loading="global" loading="true"></div>
   </div>
+
 </body>
 
 
 <!-- build:css /styles/index.css -->
 <link rel="stylesheet" href="/bower/perfect-scrollbar/min/perfect-scrollbar.min.css" />
 <link rel="stylesheet" href="/bower/angular-notify/dist/angular-notify.min.css"  type="text/css">
-<link rel="stylesheet" href="/styles/index.css"  type="text/css">
+<link rel="stylesheet" href="/bower/ng-dialog/css/ngDialog.min.css"  type="text/css">
+<link rel="stylesheet" href="/bower/ng-dialog/css/ngDialog-theme-default.min.css"  type="text/css">
+<link rel="stylesheet" href="/styles/index.css" type="text/css">
 <!-- endbuild -->
 <script>
   window.KR_ENV = @@KR_ENV;
@@ -105,6 +113,8 @@
 <script type="text/javascript" src="/bower/angular-sanitize/angular-sanitize.min.js" charset="utf-8"> </script>
 <script type="text/javascript" src="/bower/angular-validation/dist/angular-validation-rule.min.js" charset="utf-8">
 </script>
+<script type="text/javascript" src="/bower/ng-dialog/js/ngDialog.min.js" charset="utf-8"> </script>
+
 <script type="text/javascript" src="/local_lib/angular-mass-autocomplete/massautocomplete.js" charset="utf-8">
 </script>
 

@@ -17,6 +17,7 @@ import { failView, fail } from './fail.route';
 import { workstationIndex, workstationList, workstationCompare } from './workstation.route';
 import indexView from './index.route';
 import { loginView, validateView } from './login.route';
+import announcement from './announcement.route';
 
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
@@ -66,6 +67,9 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider.state('workstationCompare', workstationCompare);
   $stateProvider.state('workstationList', workstationList);
   $stateProvider.state('workstationIndex', workstationIndex);
+
+  //公告页
+  $stateProvider.state('announcement', announcement);
 
   /* 404页面*/
   $stateProvider.state('fail', failView);

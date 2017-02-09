@@ -44,7 +44,7 @@ export {
   ORG_INDUSTRY,
   ORG_INDUSTRY_META,
 };
-angular.module('@@app.constants', [])
+angular.module('@@app.constants', ['ngDialog'])
   .constant('FINANCE_PHASE', FINANCE_PHASE)
   .constant('FINANCE_PHASE_META', FINANCE_PHASE_META)
   .constant('CURRENCY_UNIT', CURRENCY_UNIT)
