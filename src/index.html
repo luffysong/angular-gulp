@@ -90,8 +90,17 @@
           '是否是投资人': isInvestor
           // '是否是认领人/维护者': '否'
         });
-      },1000)
-  }, 1000);
+      },1000);
+    }, 1000);
+
+    //设置埋点
+    setTimeout(function(){
+      $('#MEIQIA-BTN-HOLDER')[0].setAttribute("data-stat-click","meiqia");
+
+      $('.announcement-close').click(function (){
+        $('.announcement').hide();
+      });
+    },3000);
 
 
 </script>
