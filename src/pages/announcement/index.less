@@ -1,3 +1,6 @@
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+  background: #fff;
+}
 .announcement {
   height: 50px;
   position: fixed;
@@ -7,7 +10,7 @@
   background: #6BA2FC;
   padding: 0 26px;
   z-index: 8999;
-  span {
+  .text {
     margin-left: 50px;
     font-size: 14px;
     color: #FFFFFF;
@@ -32,5 +35,149 @@
     top: 14px;
     color: #FFFFFF;
     cursor: pointer;
+  }
+}
+
+.announcement-wrapper {
+  width: 1140px;
+  height: 120px;
+  background: url('/images/announcement/head-bg.png');
+  background-size: cover;
+  position: relative;
+  right: 18px;
+  bottom: 18px;
+  .start {
+    text-align: center;
+    h1 {
+      font-size: 26px;
+      color: #222C38;
+      line-height: 120px;
+      margin: 0 auto;
+    }
+  }
+
+  .content {
+    color: #5A626D;
+    padding-top: 60px;
+    .blod {
+      font-weight: bold;
+    }
+    .lh {
+      line-height: 33px;
+    }
+    .item {
+      margin-bottom: 30px;
+    }
+    .mt {
+      margin-top: 20px;
+    }
+    .hello {
+      margin-left: 120px;
+      font-size: 15px;
+      color: #5A626D;
+      line-height: 26px;
+      div {
+        margin-bottom: 20px;
+      }
+    }
+
+    .one {
+      background: url('/images/announcement/bg1.png');
+      background-size: cover;
+      height: 400px;
+      position: relative;
+      .one-title {
+        position: absolute;
+        left: 160px;
+        top: 169px;
+        font-size: 18px;
+        color: #6BA2FC;
+        line-height: 24px;
+        font-weight: bold;
+      }
+      .group-one {
+        position: absolute;
+        overflow: hidden;
+        width: 520px;
+        font-size: 14px;
+        color: #5A626D;
+        line-height: 24px;
+        right: 180px;
+        top: 90px;
+      }
+    }
+
+    .two {
+      background: url('/images/announcement/bg2.png');
+      background-size: cover;
+      height: 400px;
+      position: relative;
+      top: 190px;
+      .two-title {
+        position: absolute;
+        right: 164px;
+        top: 232px;
+        font-size: 18px;
+        color: #6BA2FC;
+        line-height: 24px;
+        font-weight: bold;
+      }
+      .group-two {
+        position: absolute;
+        overflow: hidden;
+        width: 520px;
+        font-size: 14px;
+        color: #5A626D;
+        line-height: 24px;
+        left: 160px;
+        top: 90px;
+      }
+    }
+
+    .three {
+      background: url('/images/announcement/bg3.png');
+      background-size: cover;
+      height: 360px;
+      position: relative;
+      top: 310px;
+      .three-title {
+        position: absolute;
+        left: 203px;
+        top: 186px;
+        font-size: 18px;
+        color: #6BA2FC;
+        line-height: 24px;
+        font-weight: bold;
+      }
+      .group-three {
+        position: absolute;
+        overflow: hidden;
+        width: 470px;
+        font-size: 14px;
+        color: #5A626D;
+        line-height: 24px;
+        right: 180px;
+        top: 140px;
+      }
+    }
+  }
+
+  .end {
+    position: relative;
+    top: 272px;
+    font-size: 15px;
+    color: #5A626D;
+    line-height: 26px;
+    margin-left: 120px;
+    .item2 {
+      margin-top: 50px;
+    }
+  }
+  .end-bg {
+    position: relative;
+    background: #F8FBFF;
+    height: 40px;
+    top: 315px;
+    border-radius: 5px;
   }
 }
