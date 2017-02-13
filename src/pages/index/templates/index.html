@@ -70,7 +70,7 @@
               <div class="first-line">
                 <span class="fund-title" ui-sref="project({id:item.id})" data-stat-click="fundExpress.project.{{item.id}}" title="{{item.name}}">{{item.name}}</span>
                 <span class="fund-type" ng-if="item.industry">{{item.industry | industry}}</span>
-                <span class="fund-date">{{item.investDate | date:'MM-dd'}}</span>
+                <span class="fund-date">{{item.exposeDate | date:'MM-dd'}}</span>
               </div>
               <div class="second-line">
                 {{item.phase | companyFinancePhase}}<span class="middle-line">|</span><span>{{item.investAmount}}<span ng-if="item.investAmount !== '未披露'">{{item.investAmountUnit | amountUnit}}</span></span>
