@@ -49,9 +49,8 @@
           <td width="320">项目</td>
           <td>行业</td>
           <td>轮次</td>
-          <td width="150">投资方</td>
           <td>所在地</td>
-          <td width="150">时间</td>
+          <td width="150">成立时间</td>
           <td width="120">操作</td>
         </tr>
         <tr ng-repeat="obj in vm.listData.data track by $index">
@@ -84,11 +83,6 @@
           <td class="filter-item">
             <a ui-sref="list.result({phase: obj.phaseEnum,columnId: 0})" target="_blank">{{::obj.phaseEnum | companyFinancePhase}}</a>
             <span ng-if="!obj.phaseEnum">—</span>
-          </td>
-          <td class="org-col">
-            <span ng-if="!obj.investParts.length">未披露</span>
-            <section ng-if="obj.investParts.length"
-              ng-repeat="org in obj.investParts | limitTo:3 track by $index" ng-bind="org"></section>
           </td>
           <td class="filter-item">
             <a ui-sref="list.result({city: obj.city,columnId: 0})" target="_blank" ng-if="obj.cityStr">{{::obj.cityStr}}</a>
