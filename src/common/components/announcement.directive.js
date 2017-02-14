@@ -11,8 +11,7 @@ function announcementDirective(ngDialog) {
           };
         }
         vm.infoDialog = ngDialog.open({
-          template: '<div ng-include="\'/pages/announcement/templates/index.html\'" center>/div>',
-          background: '#fff',
+          template: '<div ng-include="\'announcementTemplate.html\'" center>/div>',
           width: 1140,
           height: 2063,
           plain: true,
