@@ -111,5 +111,8 @@ export default {
     login: [
       '/pages/login/index.js',
     ],
+    announcement: [
+      '/pages/announcement/index.js',
+    ],
   },
 };
