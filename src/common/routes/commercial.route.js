@@ -1,7 +1,16 @@
 import assets from '../assets/script';
-export default {
+import { getLoadBundle } from '../base/utls';
+
+const commercialIndex = {
   url: '/commercial/{id:int}',
   templateUrl: '/pages/commercial/templates/index.html',
   controllerAs: 'vm',
-  controller: 'commercialController',
+  controller: 'commercialIndexController',
+  resolve: {
+    loadBundle: getLoadBundle(assets.page.commercial),
+  },
+};
+
+export {
+  commercialIndex,
 };

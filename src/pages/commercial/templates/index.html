@@ -16,93 +16,63 @@
           <span>公司全称</span>
         </div>
         <div class="content">
-          <span>北京协力筑成金融信息服务股份有限公司</span>
+          <span>{{vm.data.basicInfo.name}}</span>
         </div>
       </div>
       <div class="group">
         <div class="describe">
-          <span>公司全称</span>
+          <span>注册资本</span>
         </div>
         <div class="content">
-          <span>北京协力筑成金融信息服务股份有限公司</span>
+          <span>{{vm.data.basicInfo.registCapi}}</span>
         </div>
       </div>
       <div class="group">
         <div class="describe">
-          <span>公司全称</span>
+          <span>法人代表</span>
         </div>
         <div class="content">
-          <span>北京协力筑成金融信息服务股份有限公司</span>
+          <span>{{vm.data.basicInfo.operName}}</span>
         </div>
       </div>
       <div class="group">
         <div class="describe">
-          <span>公司全称</span>
+          <span>注册时间</span>
         </div>
         <div class="content">
-          <span>北京协力筑成金融信息服务股份有限公司</span>
+          <span>{{vm.data.basicInfo.startDate}}</span>
         </div>
       </div>
-
+    </div>
+    <div class="partner-info">
       <div class="head">
         <span class="icon-shareholder-head"></span>
         <span class="title">股东信息</span>
       </div>
-      <div class="group">
+      <div class="group" ng-repeat="partner in vm.data.partners">
         <div class="describe">
-          <span>法人股东</span>
+          <span>{{partner.stockType}}</span>
         </div>
         <div class="content">
-          <span>上海云鑫创业投资有限公司</span>
+          <span>{{partner.name}}</span>
         </div>
       </div>
-      <div class="group">
-        <div class="describe">
-          <span>法人股东</span>
-        </div>
-        <div class="content">
-          <span>上海云鑫创业投资有限公司</span>
-        </div>
-      </div>
-      <div class="group">
-        <div class="describe">
-          <span>法人股东</span>
-        </div>
-        <div class="content">
-          <span>上海云鑫创业投资有限公司</span>
-        </div>
-      </div>
-      <div class="group">
-        <div class="describe">
-          <span>法人股东</span>
-        </div>
-        <div class="content">
-          <span>上海云鑫创业投资有限公司</span>
-        </div>
-      </div>
-
+    </div>
+    <div class="employ-info">
       <div class="head">
         <span class="icon-team-head"></span>
         <span class="title">任职人员</span>
       </div>
-      <div class="group">
+      <div class="group" ng-repeat="employ in vm.data.employees">
         <div class="describe">
-          <span>董事长</span>
+          <span>{{employ.jobTitle}}</span>
         </div>
         <div class="content">
-          <span>刘成城</span>
+          <span>{{employ.name}}</span>
         </div>
       </div>
-      <div class="group">
-        <div class="describe">
-          <span>董事</span>
-        </div>
-        <div class="content">
-          <span>冯大刚</span>
-        </div>
-      </div>
-
-
+    </div>
+    <div class="record-info">
       <div class="head">
         <span class="icon-change-head"></span>
         <span class="title">工商信息变更</span>
@@ -114,17 +84,11 @@
           <td width="310px">变更前</td>
           <td>变更后</td>
         </tr>
-        <tr>
-          <td><span class="time">2016-10-31</span></td>
-          <td><span class="mg">投资人(股权)变更</span></td>
-          <td><div class="mg">金浩;齐俊元;戈壁盈智（上海）创业投资合伙企业（有限合伙）</div></td>
-          <td><div class="mg">戈壁盈智（上海）创业投资合伙企业（有限合伙）;金浩;齐俊元;牛奎光;许萍;霍尔果斯锋华股权投资管理合伙企业（有限合伙）;林芝利创信息技术有限公司</div></td>
-        </tr>
-        <tr>
-          <td><span class="time">2016-10-31</span></td>
-          <td><span class="mg">投资人(股权)变更</span></td>
-          <td><div class="mg">金浩;齐俊元;戈壁盈智（上海）创业投资合伙企业（有限合伙）</div></td>
-          <td><div class="mg">戈壁盈智（上海）创业投资合伙企业（有限合伙）;金浩;齐俊元;牛奎光;许萍;霍尔果斯锋华股权投资管理合伙企业（有限合伙）;林芝利创信息技术有限公司</div></td>
+        <tr ng-repeat="record in vm.data.changeRecords">
+          <td><span class="time">{{record.changeDate}}</span></td>
+          <td><div class="mg">{{record.changeItem}}</div></td>
+          <td><div class="mg">{{record.beforeContent}}</div></td>
+          <td><div class="mg">{{record.afterContent}}</div></td>
         </tr>
       </table>
     </div>

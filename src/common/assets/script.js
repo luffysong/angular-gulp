@@ -114,5 +114,8 @@ export default {
     announcement: [
       '/pages/announcement/index.js',
     ],
+    commercial: [
+      '/pages/commercial/index.js',
+    ],
   },
 };
