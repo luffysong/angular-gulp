@@ -1,7 +1,7 @@
 import commercialIndexController from './commercialIndex.controller';
-import commercialService from './commercial.service';
+import CommercialService from './Commercial.service';
 
 angular.module('@@pages.commercialIndex', [])
   .controller('commercialIndexController', commercialIndexController)
-  .service('commercialService', commercialService);
+  .service('CommercialService', CommercialService);
 
