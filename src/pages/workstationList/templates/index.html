@@ -60,10 +60,8 @@
             ng-show="vm.isCompare" id="{{obj.cid}}" ng-click="vm.checkboxSelected($event)"/>
           </td>-->
           <td>
-            <a href="#" ui-sref="project({id: obj.cid})" target="_blank">
-              <img ng-src="{{obj.logo || '/images/default-logo.png'}}" ng-click="vm.seeDetail(obj.id)"
-              class="project-logo"/>
-            </a>
+            <a ui-sref="project({id: obj.cid})" style="background-image: url({{obj.logo || '/images/default-logo.png'}})"
+               ng-click="vm.seeDetail(obj.id)"  target="_blank" class="project-logo"></a>
             <div class="project-info">
               <div class="project-name">
                 <a href="#" ui-sref="project({id: obj.cid})" target="_blank">

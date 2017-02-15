@@ -23,8 +23,8 @@
         <tbody class='content-body'>
           <tr ng-repeat="item in vm.similarVM.companyList">
             <td class='item-info'>
-              <a ui-sref="project({id: item.id})" data-stat-click="project.{{vm.id}}.similarItem.goDetail" target="_blank"><img ng-src="{{item.logo || '/images/default-logo.png'}}" alt=""></a>
-
+              <a ui-sref="project({id: item.id})" style="background-image: url({{item.logo || '/images/default-logo.png'}})"
+               ng-click="vm.seeDetail(obj.id)"  target="_blank" class="project-logo" data-stat-click="project.{{vm.id}}.similarItem.goDetail"></a>
               <div class="info">
                 <a class='i-name darkColor' ui-sref="project({id: item.id})" data-stat-click="project.{{vm.id}}.similarItem.goDetail" ng-bind="item.name" target="_blank" ></a>
                 <span class='i-industry' ng-bind="item.industry"></span>
