@@ -48,9 +48,8 @@
             <td>
               <div>
                 <div class="logo">
-                  <a ui-sref="project({id: item.project.cid})" target="_blank">
-                    <img ng-src="{{item.project.logo || '/images/default-logo.png'}}">
-                  </a>
+                  <a ui-sref="project({id: item.project.cid})" target="_blank" class="project-logo"
+                   style="background-image: url({{item.project.logo || '/images/default-logo.png'}})"></a>
                 </div>
                 <div class="project">
                   <div class="company-name">

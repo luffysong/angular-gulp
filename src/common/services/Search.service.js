@@ -33,7 +33,7 @@ function makeCreateProjectHtml(name) {
 function makeProjectHtml() {
   return `
   <div  class="search-row" data-stat-click="search.project.goDetail">
-    <img src="{{::result.obj.logo || '/images/default-logo.png'}}" >
+    <a class="project-logo" style="background-image: url({{::result.obj.logo || '/images/default-logo.png'}})"></a>
     <div class="search-entity-text">
       <p>
         <span>{{result.obj.name}}</span>
