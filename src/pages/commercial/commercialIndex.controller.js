@@ -4,6 +4,8 @@ import CommercialService from './Commercial.service';
  '$state', '$q', '$filter', 'ngDialog', 'user')
 export default class commercialIndexController {
   constructor() {
+    this.projectId = $stateParams.id;
+    this.projectName = $stateParams.name;
     this.init();
   }
 
@@ -12,7 +14,6 @@ export default class commercialIndexController {
   init() {
 
     this.commercialService.getInfo(this.$stateParams.id).then(data => {
-        console.log(data);
         this.data = data;
       });
 

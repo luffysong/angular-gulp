@@ -35,7 +35,7 @@
         <!--<li ng-if="vm.projectData.baseInfo.startDate"
         >成立时间：{{::vm.projectData.baseInfo.startDateDesc}}年</li>-->
         <li class="more underline">
-          <a ui-sref="commercialIndex({id: vm.id})" target="_blank">查看工商信息</a></li>
+          <a ui-sref="commercialIndex({id: vm.id, name: vm.baseInfoVM.name})" target="_blank">查看工商信息</a></li>
       </ul>
       <ul class="company-info">
         <!-- <li ng-if="vm.projectData.baseInfo.operationStatusEnum">
