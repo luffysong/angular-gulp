@@ -38,6 +38,31 @@
       </div>
 
       <div class="form-group">
+        <label for="">邮箱</label>
+        <input  ng-model="vm.baseInfo.email"
+                placeholder="输入邮箱"
+                message-id="messageEmail"
+                no-validation-message="true"
+                maxlength="30"
+                ng-trim="false"
+                validator="required"
+                type="text" name="email" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="">微信</label>
+        <input  ng-model="vm.baseInfo.weixin"
+                placeholder="输入微信号"
+                message-id="messageWeixin"
+                no-validation-message="true"
+                maxlength="30"
+                ng-trim="false"
+                validator="required"
+                type="text" name="weixin" class="form-control" />
+      </div>
+
+
+      <div class="form-group">
         <label for="">投资身份</label>
         <select  ng-model="vm.baseInfo.investorRoleEnum"
                  ng-options="item.value as item.desc for item in vm.investorRole"
