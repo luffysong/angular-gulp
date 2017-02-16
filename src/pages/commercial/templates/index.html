@@ -16,7 +16,8 @@
           <span>公司全称</span>
         </div>
         <div class="content">
-          <span>{{vm.data.basicInfo.name}}</span>
+          <span ng-show="vm.data.basicInfo.name">{{vm.data.basicInfo.name}}</span>
+          <span ng-show="!vm.data.basicInfo.name">—</span>
         </div>
       </div>
       <div class="group">
@@ -24,7 +25,8 @@
           <span>注册资本</span>
         </div>
         <div class="content">
-          <span>{{vm.data.basicInfo.registCapi}}</span>
+          <span ng-show="vm.data.basicInfo.registCapi">{{vm.data.basicInfo.registCapi}}</span>
+          <span ng-show="!vm.data.basicInfo.name">—</span>
         </div>
       </div>
       <div class="group">
@@ -32,7 +34,8 @@
           <span>法人代表</span>
         </div>
         <div class="content">
-          <span>{{vm.data.basicInfo.operName}}</span>
+          <span ng-show="vm.data.basicInfo.operName">{{vm.data.basicInfo.operName}}</span>
+          <span ng-show="!vm.data.basicInfo.name">—</span>
         </div>
       </div>
       <div class="group">
@@ -40,7 +43,8 @@
           <span>注册时间</span>
         </div>
         <div class="content">
-          <span>{{vm.data.basicInfo.startDate}}</span>
+          <span ng-show="vm.data.basicInfo.startDate">{{vm.data.basicInfo.startDate}}</span>
+          <span ng-show="!vm.data.basicInfo.name">—</span>
         </div>
       </div>
     </div>
@@ -49,7 +53,7 @@
         <span class="icon-shareholder-head"></span>
         <span class="title">股东信息</span>
       </div>
-      <div class="group" ng-repeat="partner in vm.data.partners">
+      <div class="group" ng-show="vm.data.partners" ng-repeat="partner in vm.data.partners">
         <div class="describe">
           <span>{{partner.stockType}}</span>
         </div>
@@ -57,13 +61,14 @@
           <span>{{partner.name}}</span>
         </div>
       </div>
+      <div class="no-data" ng-show="!vm.data.partners"><span class="icon-Company"></span><span>暂无信息</span></div>
     </div>
     <div class="employ-info">
       <div class="head">
         <span class="icon-team-head"></span>
         <span class="title">任职人员</span>
       </div>
-      <div class="group" ng-repeat="employ in vm.data.employees">
+      <div class="group" ng-show="vm.data.employees" ng-repeat="employ in vm.data.employees">
         <div class="describe">
           <span>{{employ.jobTitle}}</span>
         </div>
@@ -71,6 +76,7 @@
           <span>{{employ.name}}</span>
         </div>
       </div>
+      <div class="no-data" ng-show="!vm.data.employees"><span class="icon-Company"></span><span>暂无信息</span></div>
     </div>
     <div class="record-info">
       <div class="head">
@@ -85,10 +91,30 @@
           <td>变更后</td>
         </tr>
         <tr ng-repeat="record in vm.data.changeRecords">
-          <td><span class="time">{{record.changeDate}}</span></td>
-          <td><div class="mg">{{record.changeItem}}</div></td>
-          <td><div class="mg">{{record.beforeContent}}</div></td>
-          <td><div class="mg">{{record.afterContent}}</div></td>
+          <td ng-show="record.changeDate != '-'">
+            <span class="time">{{record.changeDate}}</span>
+          </td>
+          <td class="text-center" ng-show="record.changeDate == '-'">
+            <span>—</span>
+          </td>
+          <td ng-show="record.changeItem != '-'">
+            <div class="mg">{{record.changeItem}}</div>
+          </td>
+          <td class="text-center" ng-show="record.changeItem == '-'">
+            <span>—</span>
+          </td>
+          <td ng-show="record.beforeContent != '-'">
+            <div class="mg">{{record.beforeContent}}</div>
+          </td>
+          <td class="text-center" ng-show="record.beforeContent == '-'">
+            <span>—</span>
+          </td>
+          <td ng-show="record.afterContent != '-'">
+            <div class="mg">{{record.afterContent}}</div>
+          </td>
+          <td class="text-center" ng-show="record.afterContent == '-'">
+            <span>—</span>
+          </td>
         </tr>
       </table>
     </div>
