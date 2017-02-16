@@ -55,12 +55,17 @@
       display: inline-block;
       margin: -2px 0;
       .describe {
-        width: 135px;
+        width: 130px;
         height: 45px;
         background: #E5EBF0;
         border: 1px solid #D9E2EB;
         float: left;
         overflow: hidden;
+        max-width: 130px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 0 5px;
         span {
           font-size: 14px;
           color: #5A626D;
