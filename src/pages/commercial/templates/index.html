@@ -83,7 +83,7 @@
         <span class="icon-change-head"></span>
         <span class="title">工商信息变更</span>
       </div>
-      <table rules="none">
+      <table rules="none" ng-show="vm.data.changeRecords">
         <tr>
           <td width="100px">变更时间</td>
           <td width="166px">变更类型</td>
@@ -117,6 +117,7 @@
           </td>
         </tr>
       </table>
+      <div class="no-data" ng-show="!vm.data.changeRecords"><span class="icon-Company"></span><span>暂无信息</span></div>
     </div>
   </div>
 </div>
