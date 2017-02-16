@@ -1,3 +1,37 @@
+<a name="1.8.0"></a>
+# [1.8.0](https://gitlab.corp.36kr.com/f2e/krData/compare/v1.7.5...v1.8.0) (2017-02-16)
+
+
+### Bug Fixes
+
+* 优化公司logo样式 ([59aa72d](https://gitlab.corp.36kr.com/f2e/krData/commit/59aa72d))
+* 优化搜索及投资机构logo样式 ([dc5ccff](https://gitlab.corp.36kr.com/f2e/krData/commit/dc5ccff))
+* 修复线上公告不显示问题 ([0e27f53](https://gitlab.corp.36kr.com/f2e/krData/commit/0e27f53))
+* 修改service名称 ([ba1469f](https://gitlab.corp.36kr.com/f2e/krData/commit/ba1469f))
+* 修改工商信息配置页 ([5e0391f](https://gitlab.corp.36kr.com/f2e/krData/commit/5e0391f))
+* 公告添加关闭按钮 ([e80c16a](https://gitlab.corp.36kr.com/f2e/krData/commit/e80c16a))
+* 工商信息页导航添加跳转 ([90fc982](https://gitlab.corp.36kr.com/f2e/krData/commit/90fc982))
+* 投资人认证表单添加验证 ([801f5e0](https://gitlab.corp.36kr.com/f2e/krData/commit/801f5e0))
+* 添加公告的js引用 ([cc40992](https://gitlab.corp.36kr.com/f2e/krData/commit/cc40992))
+* 清除公告页自动添加的多余样式 ([5352744](https://gitlab.corp.36kr.com/f2e/krData/commit/5352744))
+* 融资速递时间改为曝光时间 ([5bf3840](https://gitlab.corp.36kr.com/f2e/krData/commit/5bf3840))
+* 解决搜索结果被公告遮挡问题 ([fa1814d](https://gitlab.corp.36kr.com/f2e/krData/commit/fa1814d))
+* 调整工商信息页样式 ([24d126b](https://gitlab.corp.36kr.com/f2e/krData/commit/24d126b))
+* 调整收藏列表显示字段 ([f85823a](https://gitlab.corp.36kr.com/f2e/krData/commit/f85823a))
+
+
+### Features
+
+* 全局顶部添加公告栏 ([8ccb703](https://gitlab.corp.36kr.com/f2e/krData/commit/8ccb703))
+* 工商信息页接入数据 ([a12672f](https://gitlab.corp.36kr.com/f2e/krData/commit/a12672f))
+* 新增svg文件 ([e2a166f](https://gitlab.corp.36kr.com/f2e/krData/commit/e2a166f))
+* 新增工商信息页 ([78fb33f](https://gitlab.corp.36kr.com/f2e/krData/commit/78fb33f))
+* 新增改版公告页 ([f0f2259](https://gitlab.corp.36kr.com/f2e/krData/commit/f0f2259))
+* 添加关闭公告栏功能并修改样式 ([a7a6028](https://gitlab.corp.36kr.com/f2e/krData/commit/a7a6028))
+* 认证投资人添加邮箱和微信字段 ([aff10f5](https://gitlab.corp.36kr.com/f2e/krData/commit/aff10f5))
+
+
+
 <a name="1.7.5"></a>
 ## [1.7.5](https://gitlab.corp.36kr.com/f2e/krData/compare/v1.7.4...v1.7.5) (2017-02-10)
 
@@ -5,6 +39,12 @@
 ### Bug Fixes
 
 * 修复phantom seo ([f460518](https://gitlab.corp.36kr.com/f2e/krData/commit/f460518))
+
+
+### Features
+
+* 去掉url里面的/n ([6b639eb](https://gitlab.corp.36kr.com/f2e/krData/commit/6b639eb))
+* 接入美洽系统 ([8b4ddb1](https://gitlab.corp.36kr.com/f2e/krData/commit/8b4ddb1))
 
 
 
