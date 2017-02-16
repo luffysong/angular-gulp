@@ -21,7 +21,7 @@
   <span class="progress-global-bar"></span>
   @@include('./header/top.html')
   @@include('./header/sidebar.html')
-  <div class="announcement">
+  <div class="announcement" id="announcement">
     <span class="text">36氪创投助手网页改版啦~</span>
     <div class="announcement-more"><a announcement href="#">查看更多改版内容</a></div>
     <div class="announcement-close">x</div>
@@ -103,6 +103,17 @@
     },3000);
 
 
+</script>
+
+<script>
+  window.onscroll = function(){
+    var scrollTop = document.body.scrollTop;
+    if(scrollTop >= 1){
+      document.getElementById('announcement').style.position = 'fixed';
+    }else if (scrollTop <= 1){
+      document.getElementById('announcement').style.position = 'relative';
+    }
+}
 </script>
 
 <script type="text/ng-template" id="announcementTemplate.html">
