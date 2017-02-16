@@ -39,25 +39,25 @@
 
       <div class="form-group">
         <label for="">邮箱</label>
+        <span class="error-tip" id="messageEmail">
+          请输入正确的邮箱格式</span>
         <input  ng-model="vm.baseInfo.email"
                 placeholder="输入邮箱"
                 message-id="messageEmail"
-                no-validation-message="true"
                 maxlength="30"
-                ng-trim="false"
-                validator="required"
+                validator="required,email"
                 type="text" name="email" class="form-control" />
       </div>
 
       <div class="form-group">
         <label for="">微信</label>
+        <span class="error-tip" id="messageWeixin"></span>
         <input  ng-model="vm.baseInfo.weixin"
                 placeholder="输入微信号"
                 message-id="messageWeixin"
-                no-validation-message="true"
-                maxlength="30"
-                ng-trim="false"
-                validator="required"
+                minlength-error-message="微信号最小长度为6位"
+                validator="required,minlength=6,maxlength=16"
+                maxlength="16"
                 type="text" name="weixin" class="form-control" />
       </div>
 
