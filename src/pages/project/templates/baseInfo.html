@@ -34,7 +34,7 @@
         >地点：{{::vm.projectData.baseInfo.address1Desc}}</li> -->
         <!--<li ng-if="vm.projectData.baseInfo.startDate"
         >成立时间：{{::vm.projectData.baseInfo.startDateDesc}}年</li>-->
-        <li class="more underline">
+        <li class="more underline" ng-show="vm.projectData.baseInfo.hasBussinessInfo">
           <a ui-sref="commercialIndex({id: vm.id, name: vm.baseInfoVM.name})" target="_blank">查看工商信息</a></li>
       </ul>
       <ul class="company-info">

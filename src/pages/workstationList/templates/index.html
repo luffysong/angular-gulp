@@ -88,8 +88,8 @@
             <span ng-class="{'disabled': parentVm.getPermission()}" ng-if="!obj.cityStr">—</span>
           </td>
           <td>
-            {{::obj.followDate | date:'yyyy-MM'}}
-            <span ng-if="!obj.followDate">—</span>
+            {{::obj.startDate | date:'yyyy-MM'}}
+            <span ng-if="!obj.startDate">—</span>
           </td>
           <td>
             <span class="collect-btn" ng-click="vm.cancelCollection(obj,$index)" data-stat-click="cancelCollection">
