@@ -11,6 +11,7 @@ export default class listParentController {
   projectService = new ProjectService();
 
   init() {
+    this.closeAnnouncement = window.closeAnnouncement;
     this.params = {
 
     };

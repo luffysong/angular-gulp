@@ -14,6 +14,7 @@ export default class investorListParentController {
   projectService = new ProjectService();
 
   init() {
+    this.closeAnnouncement = window.closeAnnouncement;
     this.params = {
 
     };

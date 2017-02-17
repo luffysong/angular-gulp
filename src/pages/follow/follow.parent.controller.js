@@ -74,6 +74,7 @@ export default class followParentController {
   projectService = new ProjectService();
 
   init() {
+    this.closeAnnouncement = window.closeAnnouncement;
     this.params = {
 
     };

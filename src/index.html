@@ -114,7 +114,13 @@
       $('.announcement-more').css('right','78px');
       $('.announcement-close').css('right','14px');
     }
-}
+  }
+  setTimeout(function(){
+    window.closeAnnouncement = false;
+    $('.announcement-close').click(function(){
+      window.closeAnnouncement = true;
+    })
+  },1000);
 </script>
 
 <script type="text/ng-template" id="announcementTemplate.html">

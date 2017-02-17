@@ -11,6 +11,7 @@ export default class homeController {
   projectService = new ProjectService();
 
   init() {
+    this.closeAnnouncement = window.closeAnnouncement;
     this.page = 1;
     phantom.renderAsync([
       this.getProject(),

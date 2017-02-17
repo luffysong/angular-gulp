@@ -12,6 +12,7 @@ export default class organizationParentController {
   organizationService = new OrganizationService();
 
   init() {
+    this.closeAnnouncement = window.closeAnnouncement;
 
     this.params = {
 

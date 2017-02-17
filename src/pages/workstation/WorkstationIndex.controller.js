@@ -10,6 +10,7 @@ export default class WorkstationIndexController {
   workstationService = new WorkstationIndexService();
 
   init() {
+    this.closeAnnouncement = window.closeAnnouncement;
     this.$scope.collectionVM = new CollectionVM(this.ngDialog, this.id, this.$scope);
     this.getCollectionList();
     this.$scope.newCollection = false;

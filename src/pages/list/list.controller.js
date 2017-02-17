@@ -27,7 +27,6 @@ export default class listIndexController {
 
     this.handleActive();
     this.selectedOrder();
-
   }
 
   selectedOrder(){
