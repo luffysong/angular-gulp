@@ -69,8 +69,8 @@
               <div class="amount-participant">
                 <div class="amount" ng-class="{'right-split': data.newsUrl}">
                   <span class="amount-top label-name">融资金额</span>
-                  <span ng-if="data.financeAmount!==''" class="amount-top info-level">{{data.financeAmount}} {{data.financeAmountUnit | currencyUnit}}
-                  </span>
+                  <span ng-if="data.financeAmount!=='保密'" class="amount-top info-level">{{data.financeAmount}} {{data.financeAmountUnit | currencyUnit}}</span>
+                  <span ng-if="data.financeAmount=='保密'" class="amount-top info-level">{{data.financeAmount}}</span>
                   <div class="participants">
                     <div class="participant">
                       <span class="participant-down-label label-name">投资方</span>
