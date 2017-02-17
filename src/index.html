@@ -21,11 +21,7 @@
   <span class="progress-global-bar"></span>
   @@include('./header/top.html')
   @@include('./header/sidebar.html')
-  <div class="announcement" id="announcement">
-    <span class="text">36氪创投助手网页改版啦~</span>
-    <div class="announcement-more"><a announcement href="#">查看更多改版内容</a></div>
-    <div class="announcement-close">x</div>
-  </div>
+
   <div class="content-wrapper" ui-view>
     <div kr-loading="global" loading="true"></div>
   </div>
@@ -109,9 +105,14 @@
   window.onscroll = function(){
     var scrollTop = document.body.scrollTop;
     if(scrollTop >= 1){
-      document.getElementById('announcement').style.position = 'fixed';
+      $('#announcement').css('position','fixed');
+      // document.getElementById('announcement').style.position = 'fixed';
+      $('.announcement-more').css('right','218px');
+      $('.announcement-close').css('right','154px');
     }else if (scrollTop <= 1){
-      document.getElementById('announcement').style.position = 'relative';
+      $('#announcement').css('position','relative');
+      $('.announcement-more').css('right','78px');
+      $('.announcement-close').css('right','14px');
     }
 }
 </script>
