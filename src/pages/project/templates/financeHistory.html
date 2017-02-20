@@ -13,8 +13,8 @@
         <span ng-if="vm.fundsVM.funds">融资中</span>
         <span>{{vm.fundsVM.fundsVo.fundsPhase | financePhase}}</span>
         <span>
-           <small ng-show="vm.fundsVM.financeAmountUnit =='USD'">$</small
-           ><small ng-show="vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}
+           <small ng-show="vm.fundsVM.financeAmountUnit && vm.fundsVM.financeAmountUnit =='USD'">$</small
+           ><small ng-show="vm.fundsVM.financeAmountUnit && vm.fundsVM.financeAmountUnit !='USD'">￥</small>{{vm.fundsVM.financeAmount}}
         </span>
         <a href="#" class="" ng-click="vm.fundsVM.showFinanceDetail()" ng-hide="!vm.fundsVM.hideDetail || (!vm.fundsVM.fundsVo.scale && !vm.fundsVM.fundsVo.dataLights && !vm.fundsVM.fundsVo.competitor &&
         !vm.fundsVM.fundsVo.projectPlan)">查看融资详情</a>
@@ -69,8 +69,8 @@
               <div class="amount-participant">
                 <div class="amount" ng-class="{'right-split': data.newsUrl}">
                   <span class="amount-top label-name">融资金额</span>
-                  <span ng-if="data.financeAmount!=='保密'" class="amount-top info-level">{{data.financeAmount}} {{data.financeAmountUnit | currencyUnit}}</span>
-                  <span ng-if="data.financeAmount=='保密'" class="amount-top info-level">{{data.financeAmount}}</span>
+                  <span ng-if="data.financeAmountUnit" class="amount-top info-level">{{data.financeAmount}} {{data.financeAmountUnit | currencyUnit}}</span>
+                  <span ng-if="!data.financeAmountUnit" class="amount-top info-level">{{data.financeAmount}}</span>
                   <div class="participants">
                     <div class="participant">
                       <span class="participant-down-label label-name">投资方</span>
