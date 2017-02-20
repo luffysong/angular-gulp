@@ -93,15 +93,13 @@
     setTimeout(function(){
       $('#MEIQIA-BTN-HOLDER')[0].setAttribute("data-stat-click","meiqia");
 
-      $('.announcement-close').click(function (){
-        $('.announcement').hide();
-      });
     },3000);
 
 
 </script>
 
 <script>
+  window.closeAnnouncement = false;
   window.onscroll = function(){
     var scrollTop = document.body.scrollTop;
     if(scrollTop >= 1){
@@ -115,12 +113,14 @@
       $('.announcement-close').css('right','14px');
     }
   }
-  setTimeout(function(){
-    window.closeAnnouncement = false;
-    $('.announcement-close').click(function(){
-      window.closeAnnouncement = true;
-    })
-  },1000);
+
+  // setTimeout(function(){
+  //   $('.announcement-close').unbind('click');
+  //   $('.announcement-close').bind('click',function (){
+  //       window.closeAnnouncement = true;
+  //       $('.announcement').hide();
+  //   });
+  // },2000);
 </script>
 
 <script type="text/ng-template" id="announcementTemplate.html">

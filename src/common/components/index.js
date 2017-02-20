@@ -14,6 +14,7 @@ import msgPoint from './msgPoint.directive';
 import krBacktop from './krBacktop.directive';
 import labelScrollDirective from './labelScroll.directive';
 import announcementDirective from './announcement.directive';
+import closeAnnouncementDirective from './closeAnnouncement.directive';
 function makeDirective(directive) {
   return () => directive;
 }
@@ -35,4 +36,5 @@ angular.module('@@app.components', [])
   .directive('krParallax', parallaxDirective)
   .directive('rongTrack', rongTrack)
   .directive('labelScroll', labelScrollDirective)
-  .directive('announcement', announcementDirective);
+  .directive('announcement', announcementDirective)
+  .directive('closeannouncement', closeAnnouncementDirective);
