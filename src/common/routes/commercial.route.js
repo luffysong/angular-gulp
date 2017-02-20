@@ -2,7 +2,7 @@ import assets from '../assets/script';
 import { getLoadBundle } from '../base/utls';
 
 const commercialIndex = {
-  url: '/commercial/{id:int}?name',
+  url: '/commercial/{id:int}',
   templateUrl: '/pages/commercial/templates/index.html',
   controllerAs: 'vm',
   controller: 'commercialIndexController',

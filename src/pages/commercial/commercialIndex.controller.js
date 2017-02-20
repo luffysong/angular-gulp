@@ -5,7 +5,6 @@ import CommercialService from './Commercial.service';
 export default class commercialIndexController {
   constructor() {
     this.projectId = $stateParams.id;
-    this.projectName = $stateParams.name;
     this.init();
   }
 
@@ -16,6 +15,10 @@ export default class commercialIndexController {
     this.commercialService.getInfo(this.$stateParams.id).then(data => {
         this.data = data;
       });
+
+    this.commercialService.getBaseInfo(this.$stateParams.id).then(data => {
+        this.baseInfo = data;
+    })
 
   }
 }

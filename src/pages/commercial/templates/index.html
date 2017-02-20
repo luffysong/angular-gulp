@@ -1,6 +1,6 @@
 <div class="commercial-message-wrapper">
   <div class="navigation">
-    <a ui-sref="project({id: vm.projectId})" href="#">{{vm.projectName}}</a>
+    <a ui-sref="project({id: vm.projectId})" href="#">{{vm.baseInfo.name}}</a>
     <span class="arrow"> > </span>
     <span>工商信息</span>
   </div>
@@ -9,7 +9,7 @@
       <div class="head">
         <span class="icon-introduction-head"></span>
         <span class="title">基本工商信息</span>
-        <span class="qxb">由"启信宝"提供</span>
+        <a class="qxb" ng-href="{{vm.baseInfo.businessInfoUrl}}" target="_blank">由"启信宝"提供</a>
       </div>
       <div class="group">
         <div class="describe">
