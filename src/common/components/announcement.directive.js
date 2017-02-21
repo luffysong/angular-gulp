@@ -23,4 +23,5 @@ function announcementDirective(ngDialog) {
     }
   };
 }
+announcementDirective.$inject = ['ngDialog'];
 export default announcementDirective;
