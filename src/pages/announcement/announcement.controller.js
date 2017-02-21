@@ -5,7 +5,6 @@ export default class announcementController {
     this.init();
   }
   init() {
-
   }
 
 }

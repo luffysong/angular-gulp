@@ -12,6 +12,7 @@ export default class listParentController {
 
   init() {
     this.closeAnnouncement = window.closeAnnouncement;
+    console.log(this.closeAnnouncement);
     this.params = {
 
     };

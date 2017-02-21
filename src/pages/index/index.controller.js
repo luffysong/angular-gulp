@@ -12,6 +12,7 @@ export default class homeController {
 
   init() {
     this.closeAnnouncement = window.closeAnnouncement;
+    console.log(this.closeAnnouncement);
     this.page = 1;
     phantom.renderAsync([
       this.getProject(),
