@@ -1,3 +1,13 @@
+<a name="1.9.6"></a>
+## [1.9.6](f2e/krData/compare/v1.9.5...v1.9.6) (2017-02-21)
+
+
+### Bug Fixes
+
+* 融资速递融资单位添加判断 ([f3840e2](f2e/krData/commits/f3840e2))
+
+
+
 <a name="1.9.5"></a>
 ## [1.9.5](f2e/krData/compare/v1.9.4...v1.9.5) (2017-02-21)
 
