@@ -1,3 +1,13 @@
+<a name="1.9.5"></a>
+## [1.9.5](f2e/krData/compare/v1.9.4...v1.9.5) (2017-02-21)
+
+
+### Bug Fixes
+
+* 修复公告栏不能全部关闭问题 ([481a9fa](f2e/krData/commits/481a9fa))
+
+
+
 <a name="1.9.4"></a>
 ## [1.9.4](f2e/krData/compare/v1.9.3...v1.9.4) (2017-02-21)
 
