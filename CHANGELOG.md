@@ -1,3 +1,13 @@
+<a name="1.9.3"></a>
+## [1.9.3](f2e/krData/compare/v1.9.2...v1.9.3) (2017-02-21)
+
+
+### Bug Fixes
+
+* 添加ngDialog依赖 ([602b290](f2e/krData/commits/602b290))
+
+
+
 <a name="1.9.2"></a>
 ## [1.9.2](f2e/krData/compare/v1.9.1...v1.9.2) (2017-02-21)
 
