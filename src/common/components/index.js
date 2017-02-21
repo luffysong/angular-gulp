@@ -18,7 +18,7 @@ import closeAnnouncementDirective from './closeAnnouncement.directive';
 function makeDirective(directive) {
   return () => directive;
 }
-angular.module('@@app.components', ['ngDialog'])
+angular.module('@@app.components', [])
   .value('THROTTLE_MILLISECONDS', 300)
   .directive('krValid', makeDirective(krValid))
   .directive('krSearch', makeDirective(krSearch))
