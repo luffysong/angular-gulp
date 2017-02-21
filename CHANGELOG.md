@@ -1,3 +1,13 @@
+<a name="1.9.1"></a>
+## [1.9.1](f2e/krData/compare/v1.9.0...v1.9.1) (2017-02-21)
+
+
+### Bug Fixes
+
+* 公告directive添加依赖注入 ([2ec1f4f](f2e/krData/commits/2ec1f4f))
+
+
+
 <a name="1.9.0"></a>
 # [1.9.0](f2e/krData/compare/v1.8.0...v1.9.0) (2017-02-21)
 
