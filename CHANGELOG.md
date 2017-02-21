@@ -1,3 +1,13 @@
+<a name="1.9.8"></a>
+## [1.9.8](f2e/krData/compare/v1.9.7...v1.9.8) (2017-02-21)
+
+
+### Bug Fixes
+
+* 修改公告文案 ([6e8b485](f2e/krData/commits/6e8b485))
+
+
+
 <a name="1.9.7"></a>
 ## [1.9.7](f2e/krData/compare/v1.9.6...v1.9.7) (2017-02-21)
 
