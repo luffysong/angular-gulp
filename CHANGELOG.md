@@ -1,3 +1,13 @@
+<a name="1.9.4"></a>
+## [1.9.4](f2e/krData/compare/v1.9.3...v1.9.4) (2017-02-21)
+
+
+### Bug Fixes
+
+* 修改angular版本配置文件 ([8cafe15](f2e/krData/commits/8cafe15))
+
+
+
 <a name="1.9.3"></a>
 ## [1.9.3](f2e/krData/compare/v1.9.2...v1.9.3) (2017-02-21)
 
