@@ -1,3 +1,13 @@
+<a name="1.9.2"></a>
+## [1.9.2](f2e/krData/compare/v1.9.1...v1.9.2) (2017-02-21)
+
+
+### Bug Fixes
+
+* 去掉多余的依赖 ([106aeef](f2e/krData/commits/106aeef))
+
+
+
 <a name="1.9.1"></a>
 ## [1.9.1](f2e/krData/compare/v1.9.0...v1.9.1) (2017-02-21)
 
