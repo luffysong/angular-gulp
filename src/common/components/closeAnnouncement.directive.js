@@ -1,5 +1,5 @@
 /* @ngInject */
-function closeAnnouncementDirective(ngDialog) {
+function closeAnnouncementDirective() {
   return {
     restrict: 'AE',
     link($scope, element, attr) {
