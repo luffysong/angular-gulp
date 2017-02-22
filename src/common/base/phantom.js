@@ -28,8 +28,13 @@ export default class phantom {
     return getService('$q').all(promises).then(() => phantom.render());
   }
 
-  static stopAutoRender() {
-    window.PH_PAGE_NOT_COMPELET = true;
+  static stopAutoRender(arr) {
+    for (let index = 0; index < arr.length; index++) {
+      if (arr[index].test(location.pathname)) {
+        window.PH_PAGE_NOT_COMPELET = true;
+        return;
+      }
+    }
   }
 
   static startAutoRender() {
