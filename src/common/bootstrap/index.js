@@ -10,7 +10,15 @@ import { getService, fromYear, getMonth } from '../base/utls';
 import phantom from '../base/phantom';
 
 // SEO 禁止phantom立即渲染，等待回调渲染
-phantom.stopAutoRender();
+phantom.stopAutoRender([
+  /^$|^\/$/,
+  /^\/project\/\d+/,
+  /^\/list\/detail/,
+  /^\/org\/list/,
+  /^\/org\/\d+/,
+  /^\/investor\/list/,
+  /^\/investor\/\d+/,
+]);
 const root = {};
 /* eslint-disable no-param-reassign,angular/on-watch */
 angular.module('@@app', ['@@app.routes', '@@app.components',
