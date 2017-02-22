@@ -16,7 +16,8 @@
               <a href="" ui-sref="list.result({columnId:0,city: vm.baseInfoVM.address1})" target="_blank">{{vm.baseInfoVM.address1Desc}}</a>
             </span><span class="fund-date" ng-if="vm.projectData.baseInfo.startDateDesc">
               {{::vm.projectData.baseInfo.startDateDesc}}年
-            </span>
+            </span><a href="{{vm.projectData.baseInfo.website}}" target="_blank" class="website icon-website"
+             ng-if="vm.projectData.baseInfo.website"></a>
           </span>
           <a class="btn-edit"
             ng-if="vm.isEditMode"
@@ -249,16 +250,19 @@
     ng-show="(vm.fundsVM.fundsVo.scale || vm.fundsVM.fundsVo.dataLights || vm.fundsVM.fundsVo.competitor || vm.fundsVM.fundsVo.projectPlan) && (vm.user != 'commen' || vm.investorType)">
     融资详情
   </section> -->
-  <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module">
+  <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module"
+    ng-show="vm.financeVM.financeList.length || vm.fundsVM.funds">
     融资经历
   </section>
-  <section id="founder" ng-include="'/pages/project/templates/founder.html'" class="project-module">
+  <section id="founder" ng-include="'/pages/project/templates/founder.html'" class="project-module"
+    ng-show="vm.memberVM.data.members.length || vm.memberVM.data.teamTags.length">
     创始团队
   </section>
   <section id="product" ng-include="'/pages/project/templates/product.html'" class="project-module">
     产品及数据
   </section>
-  <section id="news" class="project-module" ng-include="'/pages/project/templates/new.html'">
+  <section id="news" class="project-module" ng-include="'/pages/project/templates/new.html'"
+    ng-show="vm.newsVM.newsList.length">
     相关新闻
   </section>
 
@@ -266,7 +270,8 @@
   <section id="relativeUser" ng-if="vm.isEditMode" class="project-module"
     ng-include="'/pages/project/templates/relatedUser.html'"></section>
 
-  <section id="similarItem" class="project-module" ng-include="'/pages/project/templates/similarItem.html'">
+  <section id="similarItem" class="project-module" ng-include="'/pages/project/templates/similarItem.html'"
+    ng-show="vm.similarVM.list.length && vm.similarVM.companyList.length">
   </section>
   <section ng-if="!vm.isEditMode" ng-include="'/pages/project/templates/footer.html'" >
 
