@@ -117,9 +117,15 @@ export default class ProjectIndexController {
         // 判断认领人
         if (this.baseInfoVM.managerUid === data.id) {
           this.user = 'admin';
+          this.$state.go('project.edit', {
+            id: this.id,
+          });
         } else if (this.baseInfoVM.member) {
           // 维护者身份
           this.user = 'assert';
+          this.$state.go('project.edit', {
+            id: this.id,
+          });
         } else {
           // 普通用户
           this.user = 'commen';
