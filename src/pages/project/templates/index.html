@@ -189,14 +189,14 @@
             项目介绍
           </a>
         </li>
-        <li>
+        <li ng-if="vm.financeVM.financeList.length || vm.fundsVM.funds">
           <a kr-scroll-click href="#financeHistory" du-smooth-scroll du-scrollspy
             offset="{{vm.financeHistory}}"
             ng-class="{'active':!vm.baseInfoVM.advantage && !(vm.baseInfoVM.industryTag || vm.baseInfoVM.intro) && !vm.fundsVM.funds}">
             融资经历
           </a>
         </li>
-        <li>
+        <li ng-if="vm.memberVM.data.members.length || vm.memberVM.data.teamTags.length">
           <a kr-scroll-click href="#founder" du-smooth-scroll du-scrollspy offset="114" >
             创始团队
           </a>
@@ -206,7 +206,7 @@
             项目数据
           </a>
         </li>
-        <li>
+        <li ng-if="vm.newsVM.newsList.length">
           <a href="#news" kr-scroll-click du-smooth-scroll="" du-scrollspy offset="110" >
            相关新闻
           </a>
@@ -216,7 +216,7 @@
             相关用户
           </a>
         </li>
-        <li>
+        <li ng-show="vm.similarVM.list.length && vm.similarVM.companyList.length">
           <a  kr-scroll-click
             href="#similarItem" du-smooth-scroll="" du-scrollspy="" offset="114" >
             相似项目
@@ -251,18 +251,18 @@
     融资详情
   </section> -->
   <section id="financeHistory" ng-include="'/pages/project/templates/financeHistory.html'" class="project-module"
-    ng-show="vm.financeVM.financeList.length || vm.fundsVM.funds">
+    ng-if="vm.financeVM.financeList.length || vm.fundsVM.funds">
     融资经历
   </section>
   <section id="founder" ng-include="'/pages/project/templates/founder.html'" class="project-module"
-    ng-show="vm.memberVM.data.members.length || vm.memberVM.data.teamTags.length">
+    ng-if="vm.memberVM.data.members.length || vm.memberVM.data.teamTags.length">
     创始团队
   </section>
   <section id="product" ng-include="'/pages/project/templates/product.html'" class="project-module">
     产品及数据
   </section>
   <section id="news" class="project-module" ng-include="'/pages/project/templates/new.html'"
-    ng-show="vm.newsVM.newsList.length">
+    ng-if="vm.newsVM.newsList.length">
     相关新闻
   </section>
 
