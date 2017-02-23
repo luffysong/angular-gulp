@@ -504,7 +504,8 @@ export default class InvestorEditVM {
         obj: org,
         label: utls.getService('$sce').trustAsHtml(
         '<div><img ng-src="{{result.obj.logo || ' +
-        '\'/images/org-logo.png\'}}">{{result.obj.name}}</div>'),
+        '\'/images/org-logo.png\'}}">{{result.obj.name}}' +
+        ' | {{result.obj.entityType == "ORG_INVESTOR" ? "机构" : "公司"}}</div>'),
       }));
     });
   }
