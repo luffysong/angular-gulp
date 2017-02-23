@@ -10,18 +10,17 @@
             <a ng-href="{{productVM.website}}" ng-if="productVM.website" target="_blank">
               <span class="kr-icon icon-officialsite">
               </span>
-            </a><a ng-if="productVM.weixin"
-              tooltips
-              tooltip-smart="true"
-              tooltip-template="{{productVM.weixin}}"
-              tooltip-class="tooltip"
-              ><span class="kr-icon icon-Wechat"></span>
             </a><a ng-if="productVM.ios"
               ng-href="{{productVM.ios}}" target="_blank"><span class="kr-icon icon-Apple"></span>
             </a><a ng-if="productVM.android"
               ng-href="{{productVM.android}}" target="_blank">
               <span class="kr-icon icon-Andriod"></span>
-            </a>
+            </a><span class="kr-icon icon-Wechat" showwechat ng-show="productVM.weixin"></span>
+            <div class="wechat-code">
+              <div class="triangle"></div>
+              <img src="http://open.weixin.qq.com/qr/code/?username={{productVM.weixin}}">
+              <span>微信扫一扫关注</span>
+            </div>
           </div>
           <div ng-if="productVM.aso" class="aso">
             <a ng-href="{{productVM.aso}}" class="aso" target="_blank">使用ASO100查看更多</a>

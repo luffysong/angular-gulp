@@ -75,6 +75,7 @@ div.product-data{
             }
             .icon-Wechat{
               color: #34C600;
+              cursor: pointer;
             }
             .icon-Apple{
               color: #484F5B;
@@ -86,6 +87,36 @@ div.product-data{
               color: #969FA9;
               &:hover {
                 color: @anchor-color;
+              }
+            }
+            .wechat-code {
+              display: none;
+              width: 160px;
+              height: 164px;
+              background: #FFFFFF;
+              box-shadow: 0px 2px 15px 0px #B2BDCD;
+              border-radius: 4px;
+              position: absolute;
+              text-align: center;
+              top: 10px;
+              left: 135px;
+              img {
+                width: 120px;
+                height: 120px;
+                margin: 10px 20px 0 20px;
+              }
+              .triangle {
+                display: none;
+                position:absolute;
+                top: 23px;
+                left: -7px;
+                overflow:hidden;
+                width:15px;
+                height:15px;
+                background: #FFFFFF;
+                border-left: 1px solid #e9f0f5;
+                border-bottom: 1px solid #e9f0f5;
+                transform: rotate(45deg);
               }
             }
           }

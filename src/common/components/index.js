@@ -15,6 +15,7 @@ import krBacktop from './krBacktop.directive';
 import labelScrollDirective from './labelScroll.directive';
 import announcementDirective from './announcement.directive';
 import closeAnnouncementDirective from './closeAnnouncement.directive';
+import showWechatDirective from './showWechat.directive';
 function makeDirective(directive) {
   return () => directive;
 }
@@ -37,4 +38,5 @@ angular.module('@@app.components', [])
   .directive('rongTrack', rongTrack)
   .directive('labelScroll', labelScrollDirective)
   .directive('announcement', announcementDirective)
-  .directive('closeannouncement', closeAnnouncementDirective);
+  .directive('closeannouncement', closeAnnouncementDirective)
+  .directive('showwechat', showWechatDirective);
