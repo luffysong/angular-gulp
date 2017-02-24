@@ -1,3 +1,13 @@
+<a name="1.9.10"></a>
+## [1.9.10](f2e/krData/compare/v1.9.9...v1.9.10) (2017-02-24)
+
+
+### Bug Fixes
+
+* 修复大屏首页抖动问题 ([e629fa9](f2e/krData/commits/e629fa9))
+
+
+
 <a name="1.9.9"></a>
 ## [1.9.9](f2e/krData/compare/v1.9.8...v1.9.9) (2017-02-22)
 
@@ -89,47 +99,60 @@
 
 
 <a name="1.9.0"></a>
-# [1.9.0](f2e/krData/compare/v1.7.5...v1.9.0) (2017-02-21)
+# [1.9.0](f2e/krData/compare/v1.8.0...v1.9.0) (2017-02-21)
 
 
 ### Bug Fixes
 
-* 优化公司logo样式 ([59aa72d](f2e/krData/commits/59aa72d))
 * 优化工商信息页样式 ([1da9991](f2e/krData/commits/1da9991))
-* 优化搜索及投资机构logo样式 ([dc5ccff](f2e/krData/commits/dc5ccff))
-* 修复线上公告不显示问题 ([0e27f53](f2e/krData/commits/0e27f53))
-* 修改service名称 ([ba1469f](f2e/krData/commits/ba1469f))
-* 修改公告文案 ([e352940](f2e/krData/commits/e352940))
 * 修改公告文案 ([8be5b40](f2e/krData/commits/8be5b40))
-* 修改工商信息配置页 ([5e0391f](f2e/krData/commits/5e0391f))
+* 修改公告文案 ([e352940](f2e/krData/commits/e352940))
 * 修改融资经历条件判断 ([f4b781d](f2e/krData/commits/f4b781d))
 * 修改金额单位判断逻辑 ([4e495ed](f2e/krData/commits/4e495ed))
 * 修改项目列表页返回顶部按钮样式 ([d68ffd5](f2e/krData/commits/d68ffd5))
 * 公告栏关闭后其他页面也不展示 ([baf67a8](f2e/krData/commits/baf67a8))
-* 公告添加关闭按钮 ([e80c16a](f2e/krData/commits/e80c16a))
 * 只在一级导航的页面中展示公告栏 ([d93155f](f2e/krData/commits/d93155f))
 * 工商信息入口添加判断收藏夹列表添加成立时间字段 ([305699c](f2e/krData/commits/305699c))
-* 工商信息页导航添加跳转 ([90fc982](f2e/krData/commits/90fc982))
 * 工商信息页添加变更信息空数据样式 ([051de17](f2e/krData/commits/051de17))
 * 工商信息页添加启信宝链接 ([bd96bf2](f2e/krData/commits/bd96bf2))
-* 投资人认证表单添加验证 ([801f5e0](f2e/krData/commits/801f5e0))
-* 添加公告的js引用 ([cc40992](f2e/krData/commits/cc40992))
-* 清除公告页自动添加的多余样式 ([5352744](f2e/krData/commits/5352744))
-* 融资速递时间改为曝光时间 ([5bf3840](f2e/krData/commits/5bf3840))
 * 解决公告栏遮挡问题 ([7cbc13f](f2e/krData/commits/7cbc13f))
-* 解决搜索结果被公告遮挡问题 ([fa1814d](f2e/krData/commits/fa1814d))
 * 解决页面跳转返回后无法关闭公告栏问题 ([868ef65](f2e/krData/commits/868ef65))
-* 调整工商信息页样式 ([24d126b](f2e/krData/commits/24d126b))
-* 调整收藏列表显示字段 ([f85823a](f2e/krData/commits/f85823a))
 * 调整项目详情页置顶按钮样式 ([80af4de](f2e/krData/commits/80af4de))
 * 项目详情页融资金额为保密时不显示金额单位 ([c7461ae](f2e/krData/commits/c7461ae))
 
 
 ### Features
 
+* 工商信息页添加空数据样式 ([4077c15](f2e/krData/commits/4077c15))
+
+
+
+<a name="1.8.0"></a>
+# [1.8.0](f2e/krData/compare/v1.7.5...v1.8.0) (2017-02-16)
+
+
+### Bug Fixes
+
+* 优化公司logo样式 ([59aa72d](f2e/krData/commits/59aa72d))
+* 优化搜索及投资机构logo样式 ([dc5ccff](f2e/krData/commits/dc5ccff))
+* 修复线上公告不显示问题 ([0e27f53](f2e/krData/commits/0e27f53))
+* 修改service名称 ([ba1469f](f2e/krData/commits/ba1469f))
+* 修改工商信息配置页 ([5e0391f](f2e/krData/commits/5e0391f))
+* 公告添加关闭按钮 ([e80c16a](f2e/krData/commits/e80c16a))
+* 工商信息页导航添加跳转 ([90fc982](f2e/krData/commits/90fc982))
+* 投资人认证表单添加验证 ([801f5e0](f2e/krData/commits/801f5e0))
+* 添加公告的js引用 ([cc40992](f2e/krData/commits/cc40992))
+* 清除公告页自动添加的多余样式 ([5352744](f2e/krData/commits/5352744))
+* 融资速递时间改为曝光时间 ([5bf3840](f2e/krData/commits/5bf3840))
+* 解决搜索结果被公告遮挡问题 ([fa1814d](f2e/krData/commits/fa1814d))
+* 调整工商信息页样式 ([24d126b](f2e/krData/commits/24d126b))
+* 调整收藏列表显示字段 ([f85823a](f2e/krData/commits/f85823a))
+
+
+### Features
+
 * 全局顶部添加公告栏 ([8ccb703](f2e/krData/commits/8ccb703))
 * 工商信息页接入数据 ([a12672f](f2e/krData/commits/a12672f))
-* 工商信息页添加空数据样式 ([4077c15](f2e/krData/commits/4077c15))
 * 新增svg文件 ([e2a166f](f2e/krData/commits/e2a166f))
 * 新增工商信息页 ([78fb33f](f2e/krData/commits/78fb33f))
 * 新增改版公告页 ([f0f2259](f2e/krData/commits/f0f2259))
@@ -139,17 +162,7 @@
 
 
 <a name="1.7.5"></a>
-## [1.7.5](f2e/krData/compare/v1.8.0...v1.7.5) (2017-02-10)
-
-
-### Features
-
-* 接入美洽系统 ([8b4ddb1](f2e/krData/commits/8b4ddb1))
-
-
-
-<a name="1.8.0"></a>
-# [1.8.0](f2e/krData/compare/v1.7.4...v1.8.0) (2017-02-08)
+## [1.7.5](f2e/krData/compare/v1.7.4...v1.7.5) (2017-02-10)
 
 
 ### Bug Fixes
@@ -160,6 +173,7 @@
 ### Features
 
 * 去掉url里面的/n ([6b639eb](f2e/krData/commits/6b639eb))
+* 接入美洽系统 ([8b4ddb1](f2e/krData/commits/8b4ddb1))
 
 
 
