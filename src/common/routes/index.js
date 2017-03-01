@@ -19,7 +19,7 @@ import indexView from './index.route';
 import { loginView, validateView } from './login.route';
 import announcement from './announcement.route';
 import { commercialIndex } from './commercial.route';
-
+import { thirdpartyIndex } from './thirdparty.route';
 
 function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode(true);
@@ -68,6 +68,9 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider.state('workstationCompare', workstationCompare);
   $stateProvider.state('workstationList', workstationList);
   $stateProvider.state('workstationIndex', workstationIndex);
+
+  //第三方机构
+  $stateProvider.state('thirdparty', thirdpartyIndex);
 
   //公告页
   $stateProvider.state('announcement', announcement);

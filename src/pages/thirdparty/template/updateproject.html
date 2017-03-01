@@ -1,0 +1,117 @@
+<div class="dialog-thirdparty">
+  <div class="thirdparty-header">
+    <p>提交项目</p>
+  </div>
+
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;项目名称
+        </div>
+        <div class="span-input">
+           <input type="text" class="content form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength ng-valid-real-name" name="realName" placeholder="输入中文真实姓名" ng-model="vm.claimform.userName" message-id="claimFullName" maxlength="16" required-error-message="输入中文真实姓名" validator="required">
+        </div>
+  </div>
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;相关链接
+        </div>
+        <div class="span-input">
+          <input type="text" class="content form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength ng-valid-real-name" name="realName" placeholder="输入中文真实姓名" ng-model="vm.claimform.userName" message-id="claimFullName" maxlength="16" required-error-message="输入中文真实姓名" validator="required">
+        </div>
+  </div>
+
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;融资需求
+        </div>
+        <div class="span-input">
+          <select name="position" class="form-control ng-pristine ng-pending ng-empty ng-touched" ng-model="vm.claimform.privilegeEnum" validator="required" message-id="claimPosition" number-error-message="请选择融资需求">
+            <option value="">请选择</option>
+            <option value="MEMBER">寻求融资</option>
+            <option value="START_UP_MEMBER">创始成员</option>
+          </select>
+        </div>
+  </div>
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;融资轮次
+        </div>
+        <div class="span-input">
+          <select name="position" class="form-control ng-pristine ng-pending ng-empty ng-touched" ng-model="vm.claimform.privilegeEnum" validator="required" message-id="claimPosition" number-error-message="请选择融资需求">
+            <option value="">请选择</option>
+            <option value="MEMBER">寻求融资</option>
+            <option value="START_UP_MEMBER">创始成员</option>
+          </select>
+        </div>
+  </div>
+
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;计划金额
+        </div>
+        <div class="span-input">
+              <input  type="number"/>&nbsp;万&nbsp;
+              <select name="position" class="form-control ng-pristine ng-pending ng-empty ng-touched" ng-model="vm.claimform.privilegeEnum" validator="required" message-id="claimPosition" number-error-message="请选择融资需求">
+                <option value="">请选择</option>
+                <option value="MEMBER">人民币</option>
+                <option value="START_UP_MEMBER">美元</option>
+              </select>
+        </div>
+  </div>
+
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;商业计划书
+        </div>
+        <div class="span-input">
+           <input type="text" class="content form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength ng-valid-real-name" name="realName" placeholder="输入真实姓名" ng-model="vm.claimform.userName" message-id="claimFullName" maxlength="16" required-error-message="输入中文真实姓名" validator="required">
+        </div>
+  </div>
+
+  <div class="form">
+        <div class="title">
+          &nbsp;BP查看设置
+        </div>
+        <div class="span-input">
+           <input type="checkbox" checked="checked">需要投资人申请查看BP
+        </div>
+  </div>
+
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;创始人姓名
+        </div>
+        <div class="span-input">
+           <input type="text" class="content form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength ng-valid-real-name" name="realName" placeholder="输入真实姓名" ng-model="vm.claimform.userName" message-id="claimFullName" maxlength="16" required-error-message="输入中文真实姓名" validator="required">
+        </div>
+  </div>
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;职位
+        </div>
+        <div class="span-input">
+           <input type="text" class="content form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength ng-valid-real-name" name="realName" placeholder="输入职位" ng-model="vm.claimform.userName" message-id="claimFullName" maxlength="16" required-error-message="输入中文真实姓名" validator="required">
+        </div>
+  </div>
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;创始人联系方式
+        </div>
+        <div class="span-input">
+          <select name="position" class="form-control ng-pristine ng-pending ng-empty ng-touched" ng-model="vm.claimform.privilegeEnum" validator="required" message-id="claimPosition" number-error-message="请选择融资需求">
+            <option value="">请选择</option>
+            <option value="MEMBER">人民币</option>
+            <option value="START_UP_MEMBER">美元</option>
+          </select>
+            &nbsp;&nbsp;
+          <input  type="text" style="width:240px"/>
+        </div>
+  </div>
+
+
+  <div class="thirdparty-bottom">
+    <div>* 若该项目没有认领人则投资人会直接联系您</div>
+    <input type="button" value="提交" class="save" ng-click="vm.save(vm.claim.form)" data-stat-click="project.{{vm.claimform.id}}.claim.save">
+  </div>
+  <span class="icon-dialogClose" ng-click="vm.updateCancle()"></span>
+</div>

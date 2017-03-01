@@ -108,6 +108,12 @@ export default {
       '/bower/highcharts-ng/dist/highcharts-ng.min.js',
       '/pages/workstationCompare/index.js',
     ],
+    thirdparty: [
+      '/pages/thirdparty/index.js',
+      '/bower/ng-dialog/js/ngDialog.min.js',
+      '/bower/ng-dialog/css/ngDialog.min.css',
+      '/bower/ng-dialog/css/ngDialog-theme-default.min.css',
+    ],
     login: [
       '/pages/login/index.js',
     ],
