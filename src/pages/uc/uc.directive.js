@@ -16,6 +16,8 @@ class UcPageController {
   initData() {
     ucService.getUser().then((data) => {
       this.user = data;
+      this.queryInsititute();
+
     });
     ucService.getCompany().then((data) => {
       this.companies = data;
@@ -55,6 +57,14 @@ class UcPageController {
 
   loginOut() {
     krData.utls.logout();
+  }
+
+  queryInsititute(){
+    ucService.getInstitute().then((data) => {
+      if (data.length) {
+          this.institute = data;
+      }
+    });
   }
 
 }

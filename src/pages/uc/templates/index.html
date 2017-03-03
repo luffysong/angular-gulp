@@ -26,8 +26,8 @@
       <!-- 机构---->
       <div class="section">
         <h3>机构</h3>
-        <div class="buttons">
-          <a ui-sref="thirdparty" class="btn">查看36氪主页</a>
+        <div class="buttons" ng-repeat="item in vm.institute">
+          <a ui-sref="thirdparty({id:item.id})" class="btn">查看{{item.name}}主页</a>
         </div>
       </div>
       <!--投资人-->

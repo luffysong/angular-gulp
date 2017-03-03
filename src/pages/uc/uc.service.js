@@ -17,6 +17,14 @@ const setMsg = new krData.API('/msg/actions',[], {
   }
 });
 
+const institutes = new krData.API('',[], {
+  queryInstitute: {
+    action: 'third-entity',
+    method: 'get',
+    isArray: true
+  }
+});
+
 @Inject('$q', '$http')
 export default class UcService extends API {
 
@@ -79,5 +87,9 @@ export default class UcService extends API {
     }).catch(function (err) {
       error && error(err);
     });
+  }
+
+  getInstitute(){
+    return institutes.queryInstitute();
   }
 }

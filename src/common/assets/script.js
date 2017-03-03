@@ -113,6 +113,7 @@ export default {
       '/bower/ng-dialog/js/ngDialog.min.js',
       '/bower/ng-dialog/css/ngDialog.min.css',
       '/bower/ng-dialog/css/ngDialog-theme-default.min.css',
+        ...PROJECT_ORG,
     ],
     login: [
       '/pages/login/index.js',

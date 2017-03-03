@@ -3,30 +3,32 @@
       <div class="content">
           <ul>
             <li>
-                <a style="background-image: url(https://krplus-pic.b0.upaiyun.com/com_logo_v3/logo_off_128024.jpg)" class="logo"></a>
+                <a style="background-image: url({{vm.institue.logo}})" class="logo"></a>
             </li>
             <li>
               <div>
-                <h1>今日头条</h1>
+                <h1>{{vm.institue.name}}</h1>
               </div>
               <div><p class="en-name">BBBBBBBBBBBBBBBBBBBB</p></div>
               <div>
                 <p>
+                  <a ng-href="vm.institue.website" target="_blank" >
                   <span class="kr-icon icon-officialsite" >
                     <span class="path1"></span>
                     </span>
-                  &nbsp;&nbsp;
-                  <span tooltip-class="tooltip"
-                    class="kr-icon icon-Wechat" ></span
-                  >
-                  &nbsp;&nbsp;
-                  <a ng-href="" target="_blank">www.baidu.com</a>
+                    </a>
+                  <a href="javascript:">
+                  <span tooltips tooltip-template="{{vm.institue.weixin}}"  tooltip-class="tooltip"
+                    class="kr-icon icon-Wechat" ng-if="vm.institue.weixin"></span
+                  ></a>
+                  &nbsp;
+                  <a href="javascript:" target="_blank" ng-bind="vm.institue.email"></a>
                 </p>
               </div>
             </li>
             <li>
                 <div class="sub-btn">
-                    <a ng-click="vm.createProjectVM.thirdparty()" href="#">提交项目</a>
+                    <a ng-click="vm.thirdpartyOpenWin()" href="#">提交项目</a>
                 </div>
             </li>
           </ul>
@@ -39,20 +41,19 @@
               <span>基本介绍</span>
           </div>
           <div class="text">
-              <p>
-                “今日头条”是一款基于数据挖掘的推荐引擎产品，是国内移动互联网领域成长最快的产品服务之一。
-                “今日头条”第一个版本于2012年8月上线，截至2016年4月，“今日头条”已经在为超过4.8亿的忠诚用户服务，每天有超过4700万的用户在头条上找到让他们了解世界、启发思考、开怀一笑的信息，并活跃地参与互动。
+              <p ng-bind="vm.institue.intro">
               </p>
-              <div class="title">
+              <div class="title" >
                   联系方式
               </div>
               <div class="address">
                   <ul>
                     <li>
-                        <span>北京市</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>朝阳区东三环北路38号院1号楼泰康金融大厦2601室</span>
+                        <span>北京市</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span ng-bind="vm.institue.address">朝阳区东三环北路38号院1号楼泰康金融大厦2601室</span>
                     </li>
                     <li>
-                      <span class="num">010-62357890</span>
+                      <span class="num" ng-bind="vm.institue.phone">010-62357890</span>
                     </li>
                   </ul>
               </div>
@@ -69,13 +70,13 @@
         <div class="projectlist">
             <table class="pro-table">
               <thead>
-                  <th width="50%">
+                  <th width="60%">
                     项目
                   </th>
                   <th width="10%">
                     行业
                   </th >
-                  <th width="20%">
+                  <th width="10%">
                     公司所在轮次
                   </th>
                   <th width="10%">
@@ -86,40 +87,39 @@
                   </th>
               </thead>
               <tbody>
-                <tr>
+                <tr ng-if="vm.companys" ng-repeat="item in vm.companys.data">
                   <td>
                       <div class="en-logo">
-                        <a style="background-image: url(https://krplus-pic.b0.upaiyun.com/201612/13/e3a67e3e0a09e4694b9b226e91cee478.png)" class="logo"></a>
+                        <a style="background-image: url({{item.logo}})" class="logo"></a>
                       </div>
                       <div class="text">
                           <ul>
                             <li>
-                                手工客
-                                <span class="icon-funding"></span>
+                                {{item.name}}
+                                <span class="icon-funding" ng-if="item.funding"></span>
                             </li>
                             <li>
-                              为创业者提供最好的产品和服务
+                              {{item.brief}}
                             </li>
                           </ul>
 
                       </div>
                   </td>
                   <td>
-                      企业服务
+                      {{::item.industry | industry}}
                   </td>
                   <td>
-                      A轮
+                      {{::item.phase | companyFinancePhase}}
                   </td>
                   <td>
-                      北京市
+                      {{item.cityStr}}
                   </td>
-                  <td>
-                    2015
+                  <td ng-bind="item.startDate | date:'yyyy-MM'">
                   </td>
                 </tr>
-                <tr class="multi">
+                <tr class="multi" ng-if="vm.hasMore">
                   <td colspan="5">
-                      <span class="more">查看更多</span>
+                      <span class="more" ng-click="vm.loadMore()">查看更多</span>
                   </td>
                 </tr>
               </tbody>

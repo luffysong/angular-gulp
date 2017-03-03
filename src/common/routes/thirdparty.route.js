@@ -2,7 +2,7 @@ import assets from '../assets/script';
 import { getLoadBundle } from '../base/utls';
 
 const thirdpartyIndex = {
-  url: '/thirdparty',
+  url: '/thirdparty/{id}',
   templateUrl: '/pages/thirdparty/template/index.html',
   controllerAs: 'vm',
   controller: 'ThirdpartyIndexController',

@@ -20,10 +20,31 @@
     margin-top:10px;
     height: 37px;
     line-height: 37px;
-    div{
-      float:left;
+
+    .span-input-import{
+        margin-left: 140px;
+      .suggest-project-text {
+        float: right;
+        width: 320px;
+        span {
+          .font(14, 21);
+        }
+        span:first-child {
+          border-right: 1px solid #ccc;
+          padding-right: 12px;
+        }
+        span:last-child{
+          padding-left: 12px;
+        }
+        .brief {
+          .font(12,18);
+          margin-top: 4px;
+          color: @tip-color;
+        }
+      }
     }
     .title{
+      float:left;
       font-family: PingFangSC-Regular;
       font-size: 14px;
       letter-spacing: 0px;
@@ -36,9 +57,10 @@
     }
     .span-input{
       margin-left:20px;
+      float:left;
+      text-align: left;
         input{
           font-size: 14px;
-          color: #ddd;
           line-height: 21px;
           padding: 7px 10px;
           background: #fff;
@@ -46,7 +68,7 @@
           margin-bottom: 6px;
           display: inline-block;
           border: 1px solid #ddd;
-          width:400px;
+          width:445px;
           cursor: text;
         }
         input[type='number']{
@@ -72,7 +94,30 @@
           background-color: #fff;
           display: inline-block;
         }
+        a.btn-bp{
+          display: inline-block;
+          border-radius: 4px;
+          border: 1px solid #6BA2FC;
+          border-radius: 4px;
+          width:100px;
+          text-align: center;
+        }
+        .bp-message{
+          font-family: PingFangSC-Regular;
+          font-size: 13px;
+          color: #969FA9;
+          letter-spacing: 0px;
+          line-height: 21px;
+          margin-left:10px;
+        }
+        .suc-name{
+          display: block;
+          text-align: left;
+        }
     }
+  }
+  .bpform{
+    height:67px;
   }
 
   .thirdparty-bottom{
