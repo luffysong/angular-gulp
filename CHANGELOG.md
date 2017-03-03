@@ -1,3 +1,23 @@
+<a name="1.9.12"></a>
+## [1.9.12](f2e/krData/compare/v1.9.11...v1.9.12) (2017-03-03)
+
+
+### Bug Fixes
+
+* 修复投资案例筛选器展示不全问题 ([6ccd6c7](f2e/krData/commits/6ccd6c7))
+
+
+
+<a name="1.9.11"></a>
+## [1.9.11](f2e/krData/compare/v1.9.10...v1.9.11) (2017-02-24)
+
+
+### Bug Fixes
+
+* 修改公告文案 ([bb16d58](f2e/krData/commits/bb16d58))
+
+
+
 <a name="1.9.10"></a>
 ## [1.9.10](f2e/krData/compare/v1.9.9...v1.9.10) (2017-02-24)
 
