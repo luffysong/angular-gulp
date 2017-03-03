@@ -18,7 +18,8 @@ export default class ThirdpartyIndexController {
   projectService = this.createProjectService;
   project;
   id;
-
+  privilegeAddPro = false;
+  Uid;
 
   init() {
     this.thirdpartyOpenWin = this.openSubProject;
@@ -64,6 +65,9 @@ export default class ThirdpartyIndexController {
     service.queryInstituteDetail(id)
     .then(data => {
       this.institue = data;
+      if (data.attachUid == this.user.data.id) {
+          this.privilegeAddPro = true;
+      }
     });
   }
 
