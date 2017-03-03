@@ -1,6 +1,8 @@
 <div  class="step-two-wrapper">
-
   <h4 ng-if="vm.isClaiming || vm.isFunder() || vm.isMaintainer()">认证信息</h4>
+  <div class="title-border">
+    <div class="bold-border"></div>
+  </div>
 
   <div class="claim-container">
     <div ng-if="vm.claimer.hasManager" class="claim-message">
@@ -23,22 +25,19 @@
 
         <div class="form-group">
           <label for=""><span class="required">*</span> 职位</label>
-          <div>
-            <select ng-options="item.value as item.desc for item in vm.CLAIM_ROLE"
-              ng-if="!vm.baseInfo.companyRole || vm.isClaiming"
-              ng-model="vm.user.companyRole"
-              placeholder="输入"
-              message-id="messageFullName"
-              not-equal-error-message="请不要再次填写项目名称"
-              type="text" name="userCompanyRole" class="form-control"
-            >
-              <option value="">选择角色</option>
-            </select><input ng-model="vm.user.userPosition"
-              placeholder="输入职位" maxlength="20"
-              validator="required,maxlength=20"
-              type="text" name="userPosition" class="form-control position-name"  />
-          </div>
-
+          <select ng-options="item.value as item.desc for item in vm.CLAIM_ROLE"
+            ng-if="!vm.baseInfo.companyRole || vm.isClaiming"
+            ng-model="vm.user.companyRole"
+            placeholder="输入"
+            message-id="messageFullName"
+            not-equal-error-message="请不要再次填写项目名称"
+            type="text" name="userCompanyRole" class="form-control"
+          >
+            <option value="">选择角色</option>
+          </select><input ng-model="vm.user.userPosition"
+            placeholder="输入职位" maxlength="20"
+            validator="required,maxlength=20"
+            type="text" name="userPosition" class="form-control position-name"  />
         </div>
 
         <div class="form-group">
@@ -82,62 +81,57 @@
             required-error-message="请上传名片" message-id="messageCard"
             type="hidden" name="userBusinessCard" >
           <label for=""><span class="required">*</span> 认证资料</label>
-          <span class="inline-error-tip" id="messageCard"></span>
-          <img ng-src="{{vm.user.userBusinessCard || '/images/cardBackground.png'}}" alt="" class="upload-img">
-          <span class="btn-id-card uploading" >{{vm.suc?'点击更新':'点击上传'}}
-            <input ngf-select="vm.uploadIdCard($files)" ngf-accept="'image/*'" type="file">
-          </span>
-          <span class="warn-img">建议上传名片尺寸：90mm*50mm</span>
+          <div class="card-file">
+            <img ng-src="{{vm.user.userBusinessCard || '/images/cardBackground.png'}}" alt="" class="upload-img">
+            <span class="btn-id-card uploading" >{{vm.suc?'点击更新':'点击上传'}}
+              <input ngf-select="vm.uploadIdCard($files)" ngf-accept="'image/*'" type="file">
+            </span>
+            <span class="warn-img">建议上传名片尺寸：90mm*50mm</span>
+          </div>
         </div>
       </div>
 
-      <div ng-if="!vm.isFunder() || vm.isClaimingMember()">
-        <div class="form-group creator-title">
-          <label class="mr10">创始人联系方式</label><span  class="form-tip" >便于更好完善该项目信息</span>
-        </div>
+      <div class="founder-contact">
+        <span class="contact">创始人联系方式</span><br/>
+        <span class="form-tip" >便于更好完善该项目信息</span>
+      </div>
 
-        <div class="form-group">
-          <label for="">真实姓名</label>
-          <input kr-valid ng-model="vm.user.starterName"
-            placeholder="输入中文真实姓名"
-            maxlength="16" validator="maxlength=16"
-            type="text" name="starterName" class="form-control" />
-        </div>
+      <div class="form-group">
+        <label for="">姓名</label>
+        <input kr-valid ng-model="vm.user.starterName"
+          placeholder="输入中文真实姓名"
+          maxlength="16" validator="maxlength=16"
+          type="text" name="starterName" class="form-control" />
+      </div>
 
-        <div class="form-group">
-          <label for="">职位</label>
-          <div>
-            <input kr-valid ng-model="vm.user.starterPosition"
-              placeholder="输入职位" validator="maxlength=20" maxlength="20"
-            type="text" name="starterPosition" class="form-control position-name"  />
-          </div>
+      <div class="form-group">
+        <label for="">职位</label>
+        <input kr-valid ng-model="vm.user.starterPosition"
+          placeholder="输入职位" validator="maxlength=20" maxlength="20"
+        type="text" name="starterPosition" class="form-control position-name"  />
+      </div>
 
-        </div>
-
-        <div class="form-group">
-          <label for="">手机号码</label>
-          <span class="error-tip" ng-if="vm.user.form.starterPhone.$invalid === true">
-          请输入真实的手机号码</span>
-          <input kr-valid  ng-model="vm.user.starterPhone" validator="integer,maxlength=13"
-          maxlength="13" no-validation-message
-          placeholder="输入真实手机号"
-          type="text" name="starterPhone" class="form-control" />
-        </div>
+      <div class="form-group">
+        <label for="">手机号码</label>
+        <span class="error-tip" ng-if="vm.user.form.starterPhone.$invalid === true">
+        请输入真实的手机号码</span>
+        <input kr-valid  ng-model="vm.user.starterPhone" validator="integer,maxlength=13"
+        maxlength="13" no-validation-message
+        placeholder="输入真实手机号"
+        type="text" name="starterPhone" class="form-control" />
       </div>
     </form>
+  </div>
+  <div class="form-bottom">
+    <p class="splitter"> </p>
+    <p class="tip-text">请上传真实有效的个人名片，名片上的公司名称应该与所认领的公司名称保持一致；请确保你是该公司的创始人或者其他相关在职成员；请勿上传其他不相关的证件，以免影响审核通过率；上传图片支持2M以内的PNG、JPG、GIF格式。</p>
   </div>
   <div class="form-group text-center">
     <a class="prev" ng-click="vm.prev()" href="javascript:;">上一步</a
     ><a ng-class="{active: vm.isInvestorOrUser() || vm.user.form.$valid === true}"
       class="next" ng-click="vm.next(vm.user.form)" href="javascript:;" data-stat-click="{{vm.needFinance() ? '' : 'createProject.submit'}}">
-          {{vm.needFinance() ? '下一步' : '提交'}}
+      提交
     </a>
   </div>
-  <div class="form-bottom">
-    <p class="splitter"> </p>
-    <pre class="tip-text">请您提交公司的营业执照或微信管理后台截图或网站域名注册或您的名片(名片上的公司名称应该与所认领的公司名称保持一致)；
-请确保你是该公司的创始人或者其他相关在职成员；
-请勿上传其他不相关的证件，以免影响审核通过率；
-上传图片支持2M以内的PNG、JPG、GIF格式。</pre>
-  </div>
+
 </div>

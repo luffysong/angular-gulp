@@ -16,6 +16,7 @@ import labelScrollDirective from './labelScroll.directive';
 import announcementDirective from './announcement.directive';
 import closeAnnouncementDirective from './closeAnnouncement.directive';
 import showWechatDirective from './showWechat.directive';
+import showTipMessageDirective from './showTipMessage.directive';
 function makeDirective(directive) {
   return () => directive;
 }
@@ -39,4 +40,5 @@ angular.module('@@app.components', [])
   .directive('labelScroll', labelScrollDirective)
   .directive('announcement', announcementDirective)
   .directive('closeannouncement', closeAnnouncementDirective)
-  .directive('showwechat', showWechatDirective);
+  .directive('showwechat', showWechatDirective)
+  .directive('showtipmessage', showTipMessageDirective);
