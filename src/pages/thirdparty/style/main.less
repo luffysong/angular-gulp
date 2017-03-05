@@ -122,7 +122,7 @@
           font-size: 15px;
           color: #FFFFFF;
           letter-spacing: 0px;
-          line-height: 24px;
+          line-height: 28px;
           margin-left: 20px;
         }
         .text{
@@ -155,12 +155,23 @@
       }
       .serve{
         height:auto;
+        .filter,.pro-status{
+            display: inline-block;
+            height:32px;
+            margin-left: 150px;
+            position: absolute;
+            margin-top: 20px;
+            font-family: PingFangSC-Regular;
+            font-size: 15px;
+            color: #5A626D;
+        }
         .filter{
           width:96px;
           height:30px;
           background: rgba(245,249,251,1);
           border-radius: 4px;
-          float:right;
+          //float:right;
+          display: none;
           margin-right:50px;
           font-family: PingFangSC-Regular;
           font-size: 13px;
@@ -179,7 +190,7 @@
           font-size: 15px;
           color: #FFFFFF;
           letter-spacing: 0px;
-          line-height: 24px;
+          line-height: 28px;
           margin-left: 20px;
         }
         .projectlist{
@@ -276,6 +287,9 @@
                 td:first-child{
                   text-align: left;
                 }
+            }
+            tr.multi{
+              border-bottom: none;
             }
             tr.multi td{
               text-align: center;

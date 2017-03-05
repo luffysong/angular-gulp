@@ -26,6 +26,12 @@
               基本介绍
             </a>
           </li>
+          <li ng-if="vm.servePros.totalCount > 0">
+            <a kr-scroll-click
+              href="#servePro" du-smooth-scroll="" du-scrollspy=""  offset="114" >
+              服务项目
+            </a>
+          </li>
           <li>
             <a kr-scroll-click href="#analysis" du-smooth-scroll="" du-scrollspy="" offset="114" >
               投资分析
@@ -48,6 +54,11 @@
   <section class="org-module" id="baseInfo" ng-include="'/pages/org/templates/baseInfo.html'">
   基本介绍
   </section>
+
+  <section class="org-module" id="servePro" ng-include="'/pages/org/templates/servePros.html'" ng-if="vm.servePros.totalCount > 0">
+  服务项目
+  </section>
+
 
   <section id="analysis" class="org-module analysis-module">
     <div class="title">

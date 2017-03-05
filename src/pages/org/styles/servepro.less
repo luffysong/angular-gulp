@@ -1,0 +1,132 @@
+@import "../../../common/styles/function";
+@import "../../../common/styles/var";
+.servepro-wrapper{
+  .title {
+    padding: 13px 0;
+    border-bottom: 1px solid #f2f4f5;
+    font-size: 16px;
+    font-weight: bold;
+    color: #222C38;
+    .icon-finance-head {
+      margin: 0 6px 0 16px;
+      font-size: 20px;
+      position: relative;
+      top: 2px;
+      font-weight: none;
+      color: #5a626d;
+    }
+  }
+
+  .number{
+    margin-left: 6px;
+    .font(14,21);
+    color: rgba(106,161,251,0.6);
+  }
+
+  .servepro-info{
+    padding: 20px 42px 30px;
+      .pro-table{
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        color: #5a626d;
+        border-collapse: collapse;
+        thead{
+          font-family: PingFangSC-Semibold;
+          font-size: 12px;
+          color: #5A626D;
+          letter-spacing: 0px;
+          line-height: 18px;
+          background: #F5F9FB;
+          height: 42px;
+          line-height: 42px;
+        }
+        tr{
+          height:60px;
+          border-bottom: 1px solid #f2f4f5;
+          .more{
+            cursor: pointer;
+            .size(118,28);
+            margin: 4px auto 0px;
+            border: 1px solid #BBBBBB;
+            border-radius: 4px;
+            .font(12,28);
+            .text-center();
+            vertical-align: middle;
+          }
+            td{
+              .en-logo,.text{
+                height:100%;
+                display: inline-block;
+              }
+              .en-logo{
+                width:42px;
+                height:60px;
+                vertical-align: middle;
+                .logo{
+                  display: block;
+                  width: 42px;
+                  height: 42px;
+                  border-radius: 4px;
+                  background: #fff no-repeat 50%;
+                  background-size: contain;
+                  border: 1px solid #e7e7e7;
+                }
+              }
+              .text{
+                text-align: left;
+                font-family: PingFangSC-Regular;
+                font-size: 13px;
+                color: #5A626D;
+                letter-spacing: 0px;
+                line-height: 18px;
+                ul {
+                  margin: 0;
+                  padding: 0;
+                  list-style-type: none;
+                  height: 60px;
+                  margin-left:10px;
+                  li{
+                    margin: 0;
+                    padding: 0;
+                    list-style-type: none;
+                    height:20px;
+                    margin-top:5px;
+                    .icon-funding{
+                      color: #6ba2fc;
+                      margin-right: 10px;
+                      font-size: 18px;
+                    }
+                  }
+                  li:first-child{
+                    font-family: FZLTZHK--GBK1-0;
+                    font-size: 14px;
+                    color: #222C38;
+                    letter-spacing: 0px;
+                    line-height: 21px;
+                  }
+                  li:nth-child(2){
+                    font-family: PingFangSC-Regular;
+                    font-size: 13px;
+                    color: #5A626D;
+                    letter-spacing: 0px;
+                    line-height: 18px;
+                  }
+                }
+              }
+            }
+            td:first-child{
+              text-align: left;
+            }
+        }
+        tr.multi{
+          border-bottom: none;
+        }
+        tr.multi td{
+          text-align: center;
+        }
+      }
+  }
+
+}

@@ -3,7 +3,7 @@ import BaseInfoVM from './baseInfo.vm';
 import MemberVM from './member.vm';
 import InvestedCaseVM from './investedCase.vm';
 
-@Inject('$stateParams', '$timeout', 'orgService', 'resolveData')
+@Inject('$stateParams', '$timeout', 'orgService','thirdpartyIndexService', 'resolveData')
 export default class OrgController {
   years = [];
   year = new Date().getFullYear() - 1;
@@ -229,6 +229,8 @@ export default class OrgController {
       this.baseInfoVM = new BaseInfoVM(this.orgData);
       this.memberVM = new MemberVM(this.orgData);
       this.investedCaseVM = new InvestedCaseVM();
+      //查询服务项目
+      this.queryServePros();
     }
     angular.copy(this.industryHg, this.phaseHg);
   }
@@ -354,5 +356,25 @@ export default class OrgController {
     },
     ];
     this.trendHg.options.series = this.trendHg.series;
+  }
+
+  queryServePros(id,page, size){
+    let params = {
+      id:id || this.$stateParams.id,
+      page:page || 1,
+      pageSize: size || 5,
+    }
+    this.thirdpartyIndexService.queryCompanys(params).then((data) =>{
+      this.servePros = data;
+      if (data.page * data.pageSize < data.totalCount) {
+          this.hasMoreServedPros = true;
+      } else {
+        this.hasMoreServedPros = false;
+      }
+    });
+  }
+
+  loadMoreServedPros(){
+    this.queryServePros(this.servePros.id,null,1000);
   }
 }

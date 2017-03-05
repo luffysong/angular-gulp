@@ -1,0 +1,68 @@
+<div class="servepro-wrapper">
+  <div class="title">
+    <span class="icon-finance-head"></span>
+    <span>服务项目</span>
+    <span ui-sref="investment.result({id: vm.orgData.basic.id})"
+      class="number pointer">({{vm.servePros.totalCount}})</span>
+  </div>
+  <div class="servepro-info">
+    <table class="pro-table">
+      <thead>
+          <th width="60%">
+            项目
+          </th>
+          <th width="10%">
+            行业
+          </th >
+          <th width="10%">
+            公司所在轮次
+          </th>
+          <th width="10%">
+            所在地
+          </th>
+          <th width="10%">
+            成立时间
+          </th>
+      </thead>
+      <tbody>
+        <tr ng-if="vm.servePros" ng-repeat="item in vm.servePros.data">
+          <td>
+              <div class="en-logo">
+                <a style="background-image: url({{item.logo}})" class="logo"></a>
+              </div>
+              <div class="text">
+                  <ul>
+                    <li>
+                        {{item.name}}
+                        <span class="icon-funding" ng-if="item.funding"></span>
+                    </li>
+                    <li>
+                      {{item.brief}}
+                    </li>
+                  </ul>
+
+              </div>
+          </td>
+          <td>
+              {{::item.industry | industry}}
+          </td>
+          <td>
+              {{::item.phase | companyFinancePhase}}
+          </td>
+          <td>
+              {{item.cityStr}}
+          </td>
+          <td ng-bind="item.startDate | date:'yyyy-MM'">
+          </td>
+        </tr>
+        <tr class="multi" ng-if="vm.hasMoreServedPros">
+          <td colspan="5">
+            <div class="more"  ng-click="vm.loadMoreServedPros()">
+                 <p>查看更多</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

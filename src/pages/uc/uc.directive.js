@@ -63,7 +63,6 @@ class UcPageController {
     ucService.getInstitute().then((data) => {
       if (data.length) {
           this.institute = data;
-          console.log(this.institute);
       }
     });
   }
