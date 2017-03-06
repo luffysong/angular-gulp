@@ -20,6 +20,7 @@
     border-radius: 6px;
     .border1(#E7E7E7);
     display: block;
+    bottom: 0;
   }
 
   // & > div:nth-child(3) {
@@ -30,7 +31,7 @@
   // }
   .upload-logo {
     display: inline-block;
-    .text-center();
+    // .text-center();
     .font(12, 18);
     color: @tip-color;
     &>p:last-child {
@@ -73,7 +74,7 @@
     .btn-upload-logo();
     padding: 8px 33px;
     margin: 5px 0 7px 30px;
-    cursor: pointer;
+    // cursor: pointer;
     width: 141px;
     height: 37px;
     border: 1px solid #6BA2FC;
@@ -90,9 +91,9 @@
 
   .btn-upload-logo2 {
     .btn-upload-logo();
+    overflow: visible;
     padding: 8px 33px;
     margin: 5px 0 7px 30px;
-    cursor: pointer;
     width: 72px;
     height: 72px;
     border: 0;
@@ -103,10 +104,31 @@
     background: #fff;
     z-index: 1;
     &:before {
-      content: "";
+      content: none;
     }
     input[type="file"] {
-      top: 70px;
+      top: 40px;
+      left: -95px;
+      height: 30px;
+      width: 140px;
+      z-index: 1;
+      font-size: 12px;
+    }
+    .update-img {
+      background: rgba(0,0,0,.4);
+      color: #fff;
+      font-size: 12px;
+      display: inline-block;
+      width: 70px;
+      height: 30px;
+      line-height: 30px;
+      cursor: pointer;
+      text-align: center;
+      position: absolute;
+      border-radius: 0 0 6px 6px;
+      overflow: hidden;
+      right: 2px;
+      bottom: 0px;
     }
   }
 

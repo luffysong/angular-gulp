@@ -58,6 +58,9 @@
       margin-left: 30px;
     }
   }
+  .form-group {
+    width: 888px;
+  }
   .form-bottom {
     clear: both;
   }
@@ -142,6 +145,40 @@
       left: 20px;
       top: 85%;
     }
+  }
+
+  .error-tip-message {
+    background: #ee6781;
+    border-radius: 4px;
+    height: 42px;
+    font-size: 13px;
+    color: #FFFFFF;
+    padding: 14px 20px;
+    position: absolute;
+    left: 186px;
+    bottom: 62px;
+    max-width: 400px;
+    float: left;
+    z-index: 10;
+    .close {
+      position: absolute;
+      top: 5px;
+      right: 6px;
+      cursor: pointer;
+    }
+    .angle {
+      width: 12px;
+      height: 12px;
+      background: #ee6781;
+      transform: rotate(45deg);
+      position: absolute;
+      left: 20px;
+      top: 85%;
+    }
+  }
+  .error-tip {
+    display: inline-block;
+    float: none;
   }
   .closeTip {
     display: none !important;
