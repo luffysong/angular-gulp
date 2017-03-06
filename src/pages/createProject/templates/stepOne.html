@@ -446,11 +446,10 @@
 
         <div class="bg-grey more-show" ng-if="vm.moreInfo">
           <div class="form-group">
-            <label for=""><span class="required">*</span> 媒体报道</label>
+            <label for=""> 媒体报道</label>
             <input  ng-model="vm.baseInfo.mediaReport"
               placeholder="输入主流媒体报道链接"
               ng-blur="vm.searchClaimList()"
-              validator="required"
               type="text" name="mediaReport" class="form-control" />
 
             <label for="" class="more-lable"> 产品服务</label>
