@@ -29,6 +29,7 @@ export default class ThirdpartyIndexController {
     }else {
       this.queryInstituteDetail(this.id);
       this.queryCompanys(this.id);
+      this.getCompanyStas();
     }
   }
 
@@ -68,6 +69,13 @@ export default class ThirdpartyIndexController {
       if (data.attachUid == this.user.data.id) {
           this.privilegeAddPro = true;
       }
+    });
+  }
+
+  getCompanyStas() {
+    service.getCompanyStas()
+    .then(data => {
+      this.companyStats = data;
     });
   }
 
@@ -133,6 +141,7 @@ export default class ThirdpartyIndexController {
           this.project.website =item.obj.website;
           this.project.cid = item.obj.id;
           this.selectPro = true;
+          //angular.extend(this.project, obj);
             //this.project.website =item.obj.website;
         },
         on_leaveSelect: word => {

@@ -27,12 +27,13 @@
           <span class="require">*</span>&nbsp;相关链接
         </div>
         <div class="span-input">
-          <input type="text" class="content form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength ng-valid-real-name"
+          <input type="text"
+          class="content form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength ng-valid-real-name"
           name="website"
           placeholder="输入官网/下载链接等有效项目链接"
           ng-model="vm.project.website"
-          message-id="claimFullName"
-          maxlength="16"
+          message-id="website"
+          maxlength="30"
           ng-disabled="vm.selectPro"
           required-error-message="输入官网/下载链接等有效项目链接"
           validator="required">

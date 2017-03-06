@@ -2,7 +2,7 @@ import assets from '../assets/script';
 import { getLoadBundle } from '../base/utls';
 import phantom from '../base/phantom';
 export default {
-  url: '/org/{id:int}',
+  url: '/org/{id:int}?{eid}',
   templateUrl: '/pages/org/templates/index.html',
   controllerAs: 'vm',
   controller: 'OrgController',

@@ -27,7 +27,7 @@
       <div class="section">
         <h3>机构</h3>
         <div class="buttons" ng-repeat="item in vm.institute">
-          <a ui-sref="org({id:item.id})" class="btn" ng-if="item.type =='ORGANIZATION' ">查看{{item.name}}主页</a>
+          <a ui-sref="org({id:item.eid,eid:item.id})" class="btn" ng-if="item.type =='ORGANIZATION' ">查看{{item.name}}主页</a>
           <a ui-sref="thirdparty({id:item.id})" class="btn" ng-if="item.type =='ORGANIZATION' ">查看{{item.name}}主页</a>
         </div>
       </div>

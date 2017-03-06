@@ -255,7 +255,7 @@ export default class OrgController {
       year: this.year,
     }).then(data => {
       this.analyze = data;
-      console.log(data);
+      //console.log(data);
       this.renderChart();
     });
   }
@@ -359,19 +359,22 @@ export default class OrgController {
   }
 
   queryServePros(id,page, size){
-    let params = {
-      id:id || this.$stateParams.id,
-      page:page || 1,
-      pageSize: size || 5,
-    }
-    this.thirdpartyIndexService.queryCompanys(params).then((data) =>{
-      this.servePros = data;
-      if (data.page * data.pageSize < data.totalCount) {
-          this.hasMoreServedPros = true;
-      } else {
-        this.hasMoreServedPros = false;
+    if (this.$stateParams.eid) {
+      let params = {
+        id:id || this.$stateParams.eid,
+        page:page || 1,
+        pageSize: size || 5,
       }
-    });
+      this.thirdpartyIndexService.queryCompanys(params).then((data) =>{
+        this.servePros = data;
+        if (data.page * data.pageSize < data.totalCount) {
+            this.hasMoreServedPros = true;
+        } else {
+          this.hasMoreServedPros = false;
+        }
+      });
+    }
+
   }
 
   loadMoreServedPros(){
