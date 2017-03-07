@@ -24,6 +24,7 @@ export default class CreateProjectController {
       this.baseInfo.companyRole = null;
       this.baseInfo.financingNeed = this.FINANCE_NEED.UNKNOWN;
       angular.extend(this.baseInfo, obj);
+      this.baseInfo.logoState = true;
     },
     on_leaveSelect: word => {
       if (this.selectProject) {
@@ -69,6 +70,7 @@ export default class CreateProjectController {
     this['110'] = false;
     this.baseInfo.logoState = false;
     this.moreInfo = false;
+    console.log(this.$scope.root.FINANCE_NEED_META);
   }
 
   ensureLogin() {

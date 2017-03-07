@@ -56,11 +56,11 @@
         <input validator="required" type="hidden" name="logo" ng-model="vm.baseInfo.logo">
         <label for=""><span class="required">*</span> 项目LOGO</label>
         <span ng-disabled="vm.selectProject" ng-show="vm.baseInfo.logoState"
-          class="btn-upload-logo2" href="javascript:;">
+          class="btn-upload-logo2" href="javascript:;" ng-class="{notallow: vm.selectProject}">
           <img ng-class="{showLogo: vm.baseInfo.logoState}"
             ng-src="{{vm.baseInfo.logo || '/images/default-logo.png'}}" class="logo" alt="">
           <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/jpg,image/jpeg,image/png,image/gif'"
-          type="file" ng-disabled="vm.selectProject" />
+          type="file" ng-disabled="vm.selectProject" ng-class="{notallow: vm.selectProject}" />
           <span class="update-img">点击更新</span>
         </span>
         <a ng-disabled="vm.selectProject" ng-show="!vm.baseInfo.logoState"
