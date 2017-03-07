@@ -1,25 +1,73 @@
 @import "../../../common/styles/function";
 @import "../../../common/styles/var";
-.step-one-wrapper,  .step-two-wrapper, .finance-apply-wrapper, .similar-item-wrapper {
+.create-project-wrapper .step-one-wrapper, .create-project-wrapper .step-two-wrapper, .finance-apply-wrapper, .create-project-wrapper .similar-item-wrapper {
   .border1(transparent);
-  padding:0 41px 20px;
+  margin: 0 auto;
+  width: 1140px;
+  padding:0 154px 20px;
   background: #fff;
-  h4{
-    color: @title-color;
-    margin: 20px 0 30px;
-    font-weight: normal;
+  h4 {
+    margin: 30px 0 30px;
+    font-weight: bold;
     position: relative;
     display: flex;
-    align-items: center;
-    .font(16, 24);
+    font-size: 16px;
+    color: #222C38;
+    line-height: 24px;
     &:before {
       .before(4px, 18px, absolute);
-      background: @title-color;
+      background: #fff;
       left: -12px;
     }
   }
+  .title-border {
+    position: relative;
+    width: 830px;
+    border-top: 1px solid #DDDDDD;
+    bottom: 20px;
+    .bold-border {
+      position: relative;
+      bottom: 5px;
+      width: 64px;
+      border-top: 4px solid #5A626D;
+    }
+  }
   form {
-    width: @input-base-width;
+    width: 100%;
+    label {
+      display: inline-block;
+      width: 152px;
+      text-align: right;
+      font-size: 14px;
+      line-height: 21px;
+      color: #222C38;
+    }
+    input,.textarea-control {
+      display: inline-block;
+      width: 460px;
+      margin-left: 30px;
+      margin-top: 4px;
+      margin-bottom: 16px;
+      .tip-message {
+        left: 0;
+        bottom: 120px;
+      }
+    }
+    input[type='checkbox'] {
+      width: auto;
+    }
+    select {
+      display: inline-block;
+      width: 140px;
+      margin-left: 30px;
+    }
+    .short {
+      width: 290px;
+    }
+  }
+  .form-group {
+    // width: 888px;
+    position: relative;
   }
   .form-bottom {
     clear: both;
@@ -67,4 +115,128 @@
     color: #969FA9;
     margin-left: 10px;
   }
+
+  .bg-grey {
+    background: #F5F9FB;
+    border: 1px dashed #E5EBF0;
+    border-radius: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .tip-message {
+    background: #858a91;
+    border-radius: 4px;
+    height: auto;
+    font-size: 13px;
+    color: #FFFFFF;
+    padding: 14px 20px;
+    position: absolute;
+    left: 186px;
+    bottom: 62px;
+    display: none;
+    max-width: 400px;
+    float: left;
+    z-index: 10;
+    .close {
+      position: absolute;
+      top: 5px;
+      right: 6px;
+      cursor: pointer;
+    }
+    .angle {
+      width: 12px;
+      height: 12px;
+      background: #858a91;
+      transform: rotate(45deg);
+      position: absolute;
+      left: 20px;
+      top: 85%;
+    }
+  }
+
+  .error-tip-message {
+    background: #ee6781;
+    border-radius: 4px;
+    height: 42px;
+    font-size: 13px;
+    color: #FFFFFF;
+    padding: 14px 20px;
+    position: absolute;
+    left: 186px;
+    bottom: 62px;
+    max-width: 400px;
+    float: left;
+    z-index: 10;
+    .close {
+      position: absolute;
+      top: 5px;
+      right: 6px;
+      cursor: pointer;
+    }
+    .angle {
+      width: 12px;
+      height: 12px;
+      background: #ee6781;
+      transform: rotate(45deg);
+      position: absolute;
+      left: 20px;
+      top: 85%;
+    }
+  }
+  .error-tip {
+    display: inline-block;
+    float: none;
+  }
+  .closeTip {
+    display: none !important;
+  }
+  .name-message {
+    width: 313px;
+  }
+  .full-name-message {
+  }
+
+  .card-file {
+    padding-top: 20px;
+    position: relative;
+    left: 185px;
+    top: -40px;
+    .upload-img {
+      // margin-top: 20px;
+    }
+    #messageCard {
+      float: right;
+    }
+    .btn-id-card input[type="file"] {
+      top: 30px;
+    }
+  }
+  .creator-title {
+    margin-top: 20px;
+  }
+
+  .founder-contact {
+    margin-bottom: 12px
+  }
+  .contact {
+    position: relative;
+    left: 185px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    color: #222C38;
+    line-height: 21px;
+    font-weight: bold;
+  }
+  .form-tip {
+    position: relative;
+    left: 185px;
+    top: 4px;
+    font-size: 12px;
+    color: #969FA9;
+    letter-spacing: 0px;
+    line-height: 18px;
+  }
+
+
 }

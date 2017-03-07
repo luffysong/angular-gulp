@@ -21,9 +21,14 @@ const PROJECT_TYPE_META = [
     value: 'WECHAT',
   },
   {
-    desc: 'idea阶段',
-    id: 5,
-    value: 'IDEA',
+    desc: "硬件及其他",
+    id: 6,
+    value: "HARDWARE_OTHER",
+  },
+  {
+    desc: "产品未上线",
+    id: 7,
+    value: "NOT_ONLINE",
   },
 ];
 const PROJECT_TYPE = extractMeta(PROJECT_TYPE_META);

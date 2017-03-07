@@ -1,26 +1,17 @@
 <div  class="step-one-wrapper">
   <h4>基本信息</h4>
-  <div class="upload-logo form-group">
-    <label for=""><span class="required">*</span> 项目LOGO</label>
-    <img ng-src="{{vm.baseInfo.logo || '/images/default-logo.png'}}" class="logo" alt="">
-    <a       ng-disabled="vm.selectProject"
-      class="btn-upload-logo" href="javascript:;">
-      <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/*'"
-      type="file" />
-    </a>
-    <div ng-if="vm.baseInfo.form.logo.$invalid !== true">
-      <p>建议上传大小</p>
-      <p>90*90px</p>
-    </div>
-    <p ng-if="vm.baseInfo.form.logo.$invalid === true" class="logo-msg">请上传LOGO</p>
+  <div class="title-border">
+    <div class="bold-border"></div>
   </div>
-  <div>
-    <form name="vm.baseInfo.form">
 
-      <input validator="required"
-      type="hidden" name="logo" ng-model="vm.baseInfo.logo">
-      <div mass-autocomplete="{debounce_blur:700,top:65,left:0.01,maxWidth:518, position:'parent'}"
+  <div class="base-info">
+    <form name="vm.baseInfo.form">
+      <div mass-autocomplete="{debounce_blur:700,top:40,left:186,maxWidth:460, position:'parent'}"
         class="form-group prlt">
+        <div class="tip-message name-message" ng-class="{closeTip: vm.isClose}">大众熟知的名称、主产品名或公司全称的一部分
+          <div class="close" ng-click="vm.closeMessage()">x</div>
+          <div class="angle"></div>
+        </div>
         <label for=""><span class="required">*</span> 项目名称</label>
         <input  ng-model="vm.baseInfo.name"
           placeholder="输入项目名称"
@@ -30,15 +21,23 @@
           ng-trim="false"
           validator="required"
           mass-autocomplete-item="vm.autocompleteOptions"
-          type="text" name="cname" class="form-control" />
-          <div class="name-tool-tip tool-tip">
-            注意：为保证审核效率，请仔细查看建议结果中是否有需要添加的项目，若有直接认领</div>
+          type="text" name="cname" class="form-control" showTipMessage/>
+          <!-- <div class="name-tool-tip tool-tip">
+            注意：为保证审核效率，请仔细查看建议结果中是否有需要添加的项目，若有直接认领</div> -->
       </div>
 
       <div class="form-group">
+        <div class="tip-message full-name-message"
+          ng-hide="vm.baseInfo.form.fullName.$invalid === true">工商局注册的公司全称
+          <div class="close">x</div>
+          <div class="angle"></div>
+        </div>
+        <div class="error-tip-message full-name-message"
+          ng-show="vm.baseInfo.form.fullName.$invalid === true">请不要再次填写项目名称
+          <div class="close">x</div>
+          <div class="angle"></div>
+        </div>
         <label for="">工商注册公司全称</label>
-        <span id="messageFullName"
-          class="error-tip"></span>
         <input  ng-model="vm.baseInfo.fullName"
           maxlength="50"
           kr-valid
@@ -49,19 +48,55 @@
           ng-blur="vm.searchClaimList()"
           message-id="messageFullName"
           ng-disabled="vm.selectProject"
-          type="text" name="fullName" class="form-control" />
+          type="text" name="fullName" class="form-control" showTipMessage/>
+          <!-- <span id="messageFullName" class="error-tip"></span> -->
+      </div>
+
+      <input validator="required" type="hidden" name="logo" ng-model="vm.baseInfo.logo">
+      <div class="form-group upload-logo">
+        <label for=""><span class="required">*</span> 项目LOGO</label>
+        <span ng-disabled="vm.selectProject" ng-show="vm.baseInfo.logoState"
+          class="btn-upload-logo2" href="javascript:;">
+          <img ng-class="{showLogo: vm.baseInfo.logoState}"
+            ng-src="{{vm.baseInfo.logo || '/images/default-logo.png'}}" class="logo" alt="">
+          <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/*'"
+          type="file" />
+          <span class="update-img">点击更新</span>
+        </span>
+        <a ng-disabled="vm.selectProject" ng-show="!vm.baseInfo.logoState"
+          class="btn-upload-logo" href="javascript:;">
+          <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/*'"
+          type="file" />
+        </a>
+        <span class="logo-brief" ng-class="{hideBrief: vm.baseInfo.logoState}">图片清晰完整，与公司简称保持一致</span>
+        <!-- <div ng-if="vm.baseInfo.form.logo.$invalid !== true">
+          <p>建议上传大小</p>
+          <p>90*90px</p>
+        </div> -->
+        <!-- <p ng-if="vm.baseInfo.form.logo.$invalid === true" class="logo-msg">请上传LOGO</p>
+        <span class="error-tip" id="messageLogo"></span> -->
       </div>
 
       <div class="form-group">
+        <div class="tip-message full-name-message"
+          ng-hide="vm.baseInfo.form.brief.$invalid === true">30字以内，介绍项目业务/定位，请勿含有公司名、标点符号
+          <div class="close">x</div>
+          <div class="angle"></div>
+        </div>
+        <div class="error-tip-message"
+          ng-show="vm.baseInfo.form.brief.$invalid === true">可以描述的更加详细一些（不得少于5个字）
+          <div class="close">x</div>
+          <div class="angle"></div>
+        </div>
         <label for=""><span class="required">*</span> 一句话简介</label>
-        <span class="error-tip" id="messageBrief"></span>
         <input  ng-model="vm.baseInfo.brief"
         validator="required,minlength=5" message-id="messageBrief"
         minlength-error-message="可以描述的更加详细一些（不得少于5个字）"
         maxlength="30"
         ng-disabled="vm.selectProject"
         placeholder="一句话概括产品与服务，30字内"
-        type="text" name="brief" class="form-control" />
+        type="text" name="brief" class="form-control" showTipMessage/>
+        <!-- <span class="error-tip" id="messageBrief"></span> -->
       </div>
       <div class="form-group">
         <label for=""><span class="required">*</span> 所属领域</label>
@@ -86,62 +121,80 @@
           </select>
         </div>
 
-        <div ng-if="vm.isWeb() || vm.isWebApp()" class="form-group">
-          <label for=""><span class="required">*</span> 公司官网</label>
-          <span id="messageWebsite" class="error-tip" ></span>
-          <input  ng-model="vm.baseInfo.website"
-            placeholder="请填写公司的官网，请以http(s)://开头"
-            ng-blur="vm.searchClaimList()"
-            validator="required,http" message-id="messageWebsite"
-            type="text" name="website" class="form-control" />
+        <div ng-if="vm.isWeb()" class="form-group">
+          <div class="bg-grey">
+            <div class="error-tip-message">请填写公司的官网，请以http(s)://开头
+              <div class="close">x</div>
+              <div class="angle"></div>
+            </div>
+            <label for=""><span class="required">*</span> 公司官网</label>
+            <input  ng-model="vm.baseInfo.website"
+              placeholder="请填写公司的官网，请以http(s)://开头"
+              ng-blur="vm.searchClaimList()"
+              validator="required,http" message-id="messageWebsite"
+              type="text" name="website" class="form-control" />
+            <!-- <span id="messageWebsite" class="error-tip" ></span> -->
           </div>
+        </div>
 
         <div ng-if="vm.isApp()" class="form-group">
+          <div class="error-tip-message full-name-message"
+            ng-show="vm.baseInfo.form.website.$invalid === true">请填写公司的官网，请以http(s)://开头
+            <div class="close">x</div>
+            <div class="angle"></div>
+          </div>
           <label for="">公司官网</label>
-          <span id="messageWebsite" class="error-tip" ></span>
           <input  ng-model="vm.baseInfo.website"
             placeholder="请填写公司的官网，请以http(s)://开头"
             ng-blur="vm.searchClaimList()"
             kr-valid
             validator="http" message-id="messageWebsite"
             type="text" name="website" class="form-control" />
+          <!-- <span id="messageWebsite" class="error-tip" ></span> -->
         </div>
 
         <div ng-if="vm.isWebApp() || vm.isApp()"  class="form-group">
+          <label for=""><span class="required">*</span> 公司官网</label>
+          <input  ng-model="vm.baseInfo.website"
+            placeholder="请填写公司的官网，请以http(s)://开头"
+            ng-blur="vm.searchClaimList()"
+            validator="required,http" message-id="messageWebsite"
+            type="text" name="website" class="form-control" />
+          <span id="messageWebsite" class="error-tip" ></span><br/>
           <label for="">iOS下载地址</label>
-          <span ng-if="vm.baseInfo.form.ioslink.$invalid !== true" class="form-tip" >
+          <span ng-if="vm.baseInfo.form.ioslink.$invalid !== true && vm.baseInfo.form.androidlink.$invalid !== true"
+            class="web-app-tip" >
             iOS与Android下载链接至少填写一个</span>
-          <span id="messageIoslink" class="error-tip" ></span>
           <input  ng-model="vm.baseInfo.iosLink"
             validator="applink,http" message-id="messageIoslink"
             ng-blur="vm.searchClaimList()"
-            applink-error-message="iOS与Android下载链接至少填写一个"
             placeholder="请填写产品iOS下载地址"
             type="text" name="ioslink" class="form-control" />
+          <span id="messageIoslink" class="error-tip" ></span>
         </div>
+
         <div ng-if="vm.isWebApp() || vm.isApp()"  class="form-group">
           <label for="">Android下载地址</label>
-          <span ng-if="vm.baseInfo.form.androidlink.$invalid !== true" class="form-tip" >
-            iOS与Android下载链接至少填写一个</span>
-          <span id="messageAndroidlink" class="error-tip" ></span>
           <input  ng-model="vm.baseInfo.androidLink"
             placeholder="请填写产品的Android下载地址"
             ng-blur="vm.searchClaimList()"
             validator="applink,http" message-id="messageAndroidlink"
-            applink-error-message="iOS与Android下载链接至少填写一个"
             type="text" name="androidlink" class="form-control" />
+          <span id="messageAndroidlink" class="error-tip" ></span>
         </div>
+
         <div ng-if="vm.isWeixin()" class="form-group">
           <label for=""><span class="required">*</span>微信公众号</label>
-          <span ng-if="vm.baseInfo.form.weixin.$invalid === true" class="error-tip" >
-            微信号最小长度为6位</span>
           <input  ng-model="vm.baseInfo.weixin"
             placeholder="请填写微信公众号"
             ng-blur="vm.searchClaimList()"
             validator="required,minlength=6,maxlength=16"
             maxlength="16"
             type="text" name="weixin" class="form-control" />
+            <span ng-if="vm.baseInfo.form.weixin.$invalid === true" class="error-tip" >
+            微信号最小长度为6位</span>
         </div>
+
         <div ng-if="vm.isIdea()" class="form-group">
           <label for=""><span class="required">*</span> 产品介绍</label>
           <div class="textarea-control">
@@ -155,6 +208,7 @@
             <span class="text-length">{{vm.baseInfo.intro.length || 0}}/100</span>
           </div>
         </div>
+
         <div class="form-group">
           <label for=""><span class="required">*</span> 你的角色</label>
           <select  ng-model="vm.baseInfo.companyRole"
@@ -165,6 +219,7 @@
             <option value="">选择角色</option>
           </select>
         </div>
+
         <div class="form-group">
           <label for=""><span class="required">*</span> 融资需求</label>
           <select  ng-model="vm.baseInfo.financingNeed"
@@ -187,71 +242,142 @@
           </select>
         </div>
 
-        <div ng-if="vm.isWeb() || vm.isWebApp()" class="form-group">
-          <label for=""><span class="required">*</span> 公司官网</label>
-          <span id="messageWebsite" class="error-tip" ></span>
-          <input  ng-model="vm.baseInfo.website"
-            placeholder="请填写公司的官网，请以http(s)://开头"
-            ng-blur="vm.searchClaimList()"
-            validator="required,http" message-id="messageWebsite"
-            type="text" name="website" class="form-control" />
+        <div ng-if="vm.isWeb()" class="form-group">
+          <div class="bg-grey">
+            <label for=""><span class="required">*</span> 公司官网</label>
+            <input  ng-model="vm.baseInfo.website"
+              placeholder="请填写公司的官网，请以http(s)://开头"
+              ng-blur="vm.searchClaimList()"
+              validator="required,http" message-id="messageWebsite"
+              type="text" name="website" class="form-control" />
+            <span id="messageWebsite" class="error-tip" ></span>
+          </div>
         </div>
 
         <div ng-if="vm.isApp()" class="form-group">
-          <label for="">公司官网</label>
-          <span id="messageWebsite" class="error-tip" ></span>
-          <input  ng-model="vm.baseInfo.website"
-            placeholder="请填写公司的官网，请以http(s)://开头"
-            ng-blur="vm.searchClaimList()"
-            kr-valid
-            validator="http" message-id="messageWebsite"
-            type="text" name="website" class="form-control" />
+          <div class="bg-grey">
+            <label for="">公司官网</label>
+            <input  ng-model="vm.baseInfo.website"
+              placeholder="请填写公司的官网，请以http(s)://开头"
+              ng-blur="vm.searchClaimList()"
+              kr-valid
+              validator="http" message-id="messageWebsite"
+              type="text" name="website" class="form-control" />
+            <span id="messageWebsite" class="error-tip" ></span>
+            <br/>
+            <span ng-if="vm.baseInfo.form.ioslink.$invalid !== true && vm.baseInfo.form.androidlink.$invalid !== true"
+              class="web-app-tip" >iOS与Android下载链接至少填写一个</span><br/>
+            <label for="">iOS下载地址</label>
+            <input  ng-model="vm.baseInfo.iosLink"
+              validator="applink,http" message-id="messageIoslink"
+              ng-blur="vm.searchClaimList()"
+              placeholder="请填写产品iOS下载地址"
+              type="text" name="ioslink" class="form-control" />
+            <span id="messageIoslink" class="error-tip" ></span>
+            <br/>
+            <label for="">Android下载地址</label>
+            <input  ng-model="vm.baseInfo.androidLink"
+              placeholder="请填写产品的Android下载地址"
+              ng-blur="vm.searchClaimList()"
+              validator="applink,http" message-id="messageAndroidlink"
+              type="text" name="androidlink" class="form-control" />
+            <span id="messageAndroidlink" class="error-tip" ></span>
+          </div>
         </div>
 
-        <div ng-if="vm.isWebApp() || vm.isApp()"  class="form-group">
-          <label for="">iOS下载地址</label>
-          <span ng-if="vm.baseInfo.form.ioslink.$invalid !== true" class="form-tip" >
-            iOS与Android下载链接至少填写一个</span>
-          <span id="messageIoslink" class="error-tip" ></span>
-          <input  ng-model="vm.baseInfo.iosLink"
-            validator="applink,http" message-id="messageIoslink"
-            ng-blur="vm.searchClaimList()"
-            applink-error-message="iOS与Android下载链接至少填写一个"
-            placeholder="请填写产品iOS下载地址"
-            type="text" name="ioslink" class="form-control" />
-        </div>
-        <div ng-if="vm.isWebApp() || vm.isApp()"  class="form-group">
-          <label for="">Android下载地址</label>
-          <span ng-if="vm.baseInfo.form.androidlink.$invalid !== true" class="form-tip" >
-            iOS与Android下载链接至少填写一个</span>
-          <span id="messageAndroidlink" class="error-tip" ></span>
-          <input  ng-model="vm.baseInfo.androidLink"
-            placeholder="请填写产品的Android下载地址"
-            ng-blur="vm.searchClaimList()"
-            validator="applink,http" message-id="messageAndroidlink"
-            applink-error-message="iOS与Android下载链接至少填写一个"
-            type="text" name="androidlink" class="form-control" />
+        <div ng-if="vm.isWebApp()"  class="form-group">
+          <div class="bg-grey">
+            <label for=""><span class="required">*</span> 公司官网</label>
+            <input  ng-model="vm.baseInfo.website"
+              placeholder="请填写公司的官网，请以http(s)://开头"
+              ng-blur="vm.searchClaimList()"
+              validator="required,http" message-id="messageWebsite"
+              type="text" name="website" class="form-control" />
+            <span id="messageWebsite" class="error-tip" ></span>
+            <br/>
+            <span ng-if="vm.baseInfo.form.ioslink.$invalid !== true && vm.baseInfo.form.androidlink.$invalid !== true"
+              class="web-app-tip" >iOS与Android下载链接至少填写一个</span><br/>
+            <label for="">iOS下载地址</label>
+            <input  ng-model="vm.baseInfo.iosLink"
+              validator="applink,http" message-id="messageIoslink"
+              ng-blur="vm.searchClaimList()"
+              placeholder="请填写产品iOS下载地址"
+              type="text" name="ioslink" class="form-control" />
+            <span id="messageIoslink" class="error-tip" ></span>
+            <br/>
+            <label for="">Android下载地址</label>
+            <input  ng-model="vm.baseInfo.androidLink"
+              placeholder="请填写产品的Android下载地址"
+              ng-blur="vm.searchClaimList()"
+              validator="applink,http" message-id="messageAndroidlink"
+              type="text" name="androidlink" class="form-control" />
+            <span id="messageAndroidlink" class="error-tip" ></span>
+          </div>
         </div>
         <div ng-if="vm.isWeixin()" class="form-group">
-          <label for=""><span class="required">*</span>微信公众号</label>
-          <span ng-if="vm.baseInfo.form.weixin.$invalid === true" class="error-tip" >
-            微信号最小长度为6位</span>
-          <input  ng-model="vm.baseInfo.weixin"
-            placeholder="请填写微信公众号"
-            ng-blur="vm.searchClaimList()"
-            validator="required,minlength=6,maxlength=16"
-            maxlength="16"
-            type="text" name="weixin" class="form-control" />
+          <div class="bg-grey">
+            <label for=""><span class="required">*</span> 微信公众号</label>
+            <input  ng-model="vm.baseInfo.weixin"
+              placeholder="请填写微信公众号"
+              ng-blur="vm.searchClaimList()"
+              validator="required,minlength=6,maxlength=16"
+              maxlength="16"
+              type="text" name="weixin" class="form-control" />
+            <span ng-if="vm.baseInfo.form.weixin.$invalid === true" class="error-tip" >
+              微信号最小长度为6位</span>
+          </div>
         </div>
-        <div ng-if="vm.isIdea()" class="form-group">
-          <label for=""><span class="required">*</span> 产品介绍</label>
+        <div ng-if="vm.isHardware()" class="form-group">
+          <div class="bg-grey">
+            <label for=""> 相关链接</label>
+              <input  ng-model="vm.baseInfo.website"
+                placeholder="请填写相关链接，请以http(s)://开头"
+                ng-blur="vm.searchClaimList()"
+                validator="http" message-id="messageWebsite"
+                type="text" name="website" class="form-control" />
+              <span id="messageWebsite" class="error-tip" ></span>
+              <br/>
+            <label for="" class="intro-label"><span class="required">*</span> 项目概述</label>
+            <div class="textarea-control">
+              <textarea  ng-model="vm.baseInfo.intro"
+                placeholder="可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字"
+                maxlength="100"
+                validator="required"
+                message-id="none"
+                type="text" name="intro" class="form-control" ></textarea>
+              <div class="textarea-border"></div>
+              <span class="text-length">{{vm.baseInfo.intro.length || 0}}/100</span>
+            </div>
+          </div>
+        </div>
+        <div ng-if="vm.isNotOnline()" class="form-group">
+          <div class="bg-grey">
+            <label for="" class="intro-label"><span class="required">*</span> 项目概述</label>
+            <div class="textarea-control">
+              <textarea  ng-model="vm.baseInfo.intro"
+                placeholder="可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字"
+                maxlength="100"
+                validator="required"
+                message-id="none"
+                type="text" name="intro" class="form-control" ></textarea>
+              <div class="textarea-border"></div>
+              <span class="text-length">{{vm.baseInfo.intro.length || 0}}/100</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" ng-hide="vm.isHardware() || vm.isNotOnline()">
+          <label for="" class="intro-label">项目概述</label>
           <div class="textarea-control">
-            <textarea  ng-model="vm.baseInfo.intro"
-              placeholder="输入产品介绍"
+            <div class="tip-message full-name-message">客观阐述公司主营业务、目标市场、主要产品等，请勿出现违反广告法的词语
+              <div class="close">x</div>
+              <div class="angle"></div>
+            </div>
+            <textarea  ng-model="vm.baseInfo.intro" showTipMessage
+              placeholder="可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字"
               maxlength="100"
-              validator="required"
               message-id="none"
-              type="text" name="intro" class="form-control" ></textarea>
+              type="text" name="intro" class="form-control"></textarea>
             <div class="textarea-border"></div>
             <span class="text-length">{{vm.baseInfo.intro.length || 0}}/100</span>
           </div>
@@ -267,16 +393,176 @@
             <option value="">选择角色</option>
           </select>
         </div>
+
         <div class="form-group">
           <label for=""><span class="required">*</span> 融资需求</label>
           <select  ng-model="vm.baseInfo.financingNeed"
             ng-options="item.value as item.desc for item in root.FINANCE_NEED_META"
             validator="required"
             ng-disabled="vm.selectProject"
-            type="text" name="financingNeed" class="form-control" > </select>
+            type="text" name="financingNeed" class="form-control" >
+            <option value="">选择融资需求</option>
+          </select>
+        </div>
+        <div ng-if="vm.isFinance()" class="form-group">
+          <div class="bg-grey">
+            <label for=""><span class="required">*</span> 融资需求</label>
+            <select  ng-model="vm.baseInfo.financePhase"
+              validator="required" message-id="financeRound" type="text" name="financePhase" class="form-control"
+              ng-options="item.value as item.desc for item in root.FUNDS_PHASE_ENUM_META">
+              <option value="">选择轮次</option>
+            </select>
+            <span id="financeRound" class="error-tip"></span>
+            <br/>
+
+            <label for=""><span class="required">*</span> 计划金额</label>
+            <input
+              type="text" name="investAmountMin"
+                class="form-control money" ng-model="vm.baseInfo.investAmountMin"
+                validator="required, number"
+                placeholder="输入具体金额" /> <span> 万</span>
+            <select ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
+                 ng-init="vm.baseInfo.financeAmountUnit='CNY'" ng-model="vm.baseInfo.financeAmountUnit"
+            type="text" name="fundValueUnit" class="form-control unit" > </select><br/>
+            <input
+              validator="required" required-error-message="请上传BP" message-id="bp"
+              type="hidden" ng-model="vm.baseInfo.bp" name="bp">
+            <label for=""><span class="required">*</span> 商业计划书</label>
+            <a
+              class="btn-bp" href="javascript:;" ngf-select="vm.uploadBp($files)"
+              ngf-accept="'application/pdf'" style="display: inline-block;">
+              <span class="icon-BP"></span><span class="btn-text">上传文件</span></a>
+              <span class="bp-message">请上传小于7.5M的PDF文件</span>
+            <div class="bp-file">
+              <span ng-if="vm.bpUploading" width="100%" class="progress-bar">
+              <span>BP上传中</span
+              ><span class="bar"><span ng-style="{width: vm.bpProgress}" class="progress"></span></span>
+              </span>
+              <span class="suc-name" ng-if='vm.bpName'><span>{{vm.bpName}}</span>
+              <span class="icon-dialogClose" ng-click='vm.deletebp()'></span></span>
+            </div>
+            <label for=""> BP查看设置</label>
+            <input type="checkbox" ng-model='vm.baseInfo.privileges' ng-change="vm.privilege()"/>
+            <span class="bp-setting">需要投资人申请查看BP</span><br/>
+            <label for=""></label>
+            <input type="checkbox" validator="required" ng-model='vm.readed'/>
+            <span class="bp-setting">已阅读<a href="https://www.36jr.com/protocol" target="_blank">《融资申请协议》</a></span>
+          </div>
+        </div>
+
+        <div class="form-group" ng-hide="vm.isFinance()">
+          <input required-error-message="请上传BP" message-id="bp"
+          type="hidden" ng-model="vm.baseInfo.bp" name="bp">
+          <label for=""> 商业计划书</label>
+          <a
+            class="btn-bp" href="javascript:;" ngf-select="vm.uploadBp($files)"
+            ngf-accept="'application/pdf'" style="display: inline-block;">
+            <span class="icon-BP"></span><span class="btn-text">上传文件</span></a>
+            <span class="bp-message">请上传小于7.5M的PDF文件</span>
+          <div class="bp-file">
+            <span ng-if="vm.bpUploading" width="100%" class="progress-bar">
+            <span>BP上传中</span
+            ><span class="bar"><span ng-style="{width: vm.bpProgress}" class="progress"></span></span>
+            </span>
+            <span class="suc-name" ng-if='vm.bpName'><span>{{vm.financeVM.bpName}}</span>
+            <span class="icon-dialogClose" ng-click='vm.deletebp()'></span></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <span class="more-info" ng-click="vm.showMore()">填写具体的媒体报道、产品描述、核心竞争力等，让投资人更了解你</span>
+        </div>
+
+        <div class="bg-grey more-show" ng-if="vm.moreInfo">
+          <div class="form-group">
+            <label for=""> 媒体报道</label>
+            <input  ng-model="vm.baseInfo.mediaReport"
+              placeholder="输入主流媒体报道链接"
+              ng-blur="vm.searchClaimList()"
+              type="text" name="mediaReport" class="form-control" />
+
+            <label for="" class="more-lable"> 产品服务</label>
+            <div class="textarea-control">
+              <textarea  ng-model="vm.baseInfo.productService"
+                placeholder="描述公司所提供的产品和服务是什么、是如何解决痛点和需求的、其它附加的产品和服务是什么"
+                message-id="scale"
+                no-validation-message="true"
+                maxlength="1000"
+                type="text" name="scale" class="form-control" ></textarea>
+              <div class="textarea-border">
+              </div>
+              <span class="text-length">{{vm.baseInfo.productService.length || 0}}/1000</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="" class="more-lable"> 市场用户</label>
+            <div class="textarea-control">
+              <textarea  ng-model="vm.baseInfo.userMarket"
+                placeholder="描述公司所针对的细分市场是什么、市场规模及增速如何、目标用户的画像、用户或者行业的痛点和需求"
+                message-id="dataLights"
+                no-validation-message="true"
+                maxlength="1000"
+                type="text" name="dataLights" class="form-control" ></textarea>
+
+              <div class="textarea-border">
+              </div>
+              <span class="text-length">{{vm.baseInfo.userMarket.length || 0}}/1000</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="" class="more-lable"> 商业模式</label>
+            <div class="textarea-control">
+              <textarea  ng-model="vm.baseInfo.businessMode"
+                placeholder="描述公司的商业逻辑、如何盈利、主要的收入来源、以及未来的盈利能力"
+                message-id="projectAdvantage"
+                no-validation-message="true"
+                maxlength="1000"
+                type="text" name="projectAdvantage" class="form-control" ></textarea>
+              <div class="textarea-border">
+              </div>
+              <span class="text-length">{{vm.baseInfo.businessMode.length || 0}}/1000</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="" class="more-lable"> 运营数据</label>
+            <div class="textarea-control">
+              <textarea  ng-model="vm.baseInfo.operationData"
+                placeholder="描述公司取得的业务进展或增速、用户量/收入/利润等关键业务指标"
+                message-id="competitor"
+                no-validation-message="true"
+                maxlength="1000"
+                type="text" name="competitor" class="form-control" ></textarea>
+              <div class="textarea-border">
+              </div>
+              <span class="text-length">{{vm.baseInfo.operationData.length || 0}}/1000</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="" class="more-lable"> 核心资源</label>
+            <div class="textarea-control">
+              <textarea  ng-model="vm.baseInfo.coreSource"
+                placeholder="描述公司相较于竞争对手所具有的优势、对于公司发展有重要意义的资源或亮点"
+                message-id="projectPlan"
+                no-validation-message="true"
+                maxlength="1000"
+                type="text" name="projectPlan" class="form-control" ></textarea>
+              <div class="textarea-border">
+              </div>
+              <span class="text-length">{{vm.baseInfo.coreSource.length || 0}}/1000</span>
+            </div>
+          </div>
+          <span class="close-more" ng-click="vm.showMore()">收起</span>
         </div>
       </div>
 
+      <div class="form-bottom">
+        <p class="splitter"></p>
+        <p class="tip-text">注意：为保证审核效率，请仔细查看建议结果中是否有需要添加的项目，若有直接认领</p>
+      </div>
       <div class="form-group text-center">
         <a
           ng-if="!vm.selectProject"
@@ -295,11 +581,35 @@
 
     </form>
   </div>
-  <div class="form-bottom">
-    <p class="splitter"> </p>
-    <p class="tip-text">注意：为保证审核效率，请仔细查看建议结果中是否有需要添加的项目，若有直接认领</p>
-  </div>
 
+  <div ng-if="vm.claimList.length && !vm.selectProject" class="suggest-result-module">
+    <div class="suggest-result-wrapper">
+      <h4>建议结果</h4>
+      <div class="title-border">
+        <div class="bold-border"></div>
+      </div>
+      <ul class="project-list">
+        <li ng-repeat="item in vm.claimList">
+          <div class="claim-project"><a ng-click="vm.claim(item)" href="javascript:;">认领该项目</a></div>
+          <div class="result-project">
+            <a class="project-logo" style="background-image: url({{::item.logo || '/images/default-logo.png'}})"
+              ui-sref="project({id: item.id})" target="_blank"></a>
+            <div class="result-project-text">
+              <div>
+                <a class="project-name" target="_blank" ui-sref="project({id: item.id})">{{item.name}}</a>
+                <div class="split"></div>
+                <span class="project-industry">{{item.industry | industry}}</span>
+                <a target="_blank" ng-href="{{item.website}}">{{item.website}}</a>
+              </div>
+              <div class="project-brief">{{item.brief}}</div>
+            </div>
+            <!-- <div ng-if="item.website" class="website">
+            </div> -->
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 

@@ -33,6 +33,7 @@ export default class CreateProjectController {
         this.baseInfo.brief = '';
         this.baseInfo.industry = '';
         this.baseInfo.logo = '';
+        this.baseInfo.logoState = true;
       }
     },
   };
@@ -66,6 +67,8 @@ export default class CreateProjectController {
     this.watchName();
     this.initView();
     this['110'] = false;
+    this.baseInfo.logoState = false;
+    this.moreInfo = false;
   }
 
   ensureLogin() {
@@ -124,6 +127,18 @@ export default class CreateProjectController {
 
   isIdea() {
     return this.baseInfo.companyType === PROJECT_TYPE.IDEA;
+  }
+
+  isHardware() {
+    return this.baseInfo.companyType === PROJECT_TYPE.HARDWARE_OTHER;
+  }
+
+  isNotOnline() {
+    return this.baseInfo.companyType === PROJECT_TYPE.NOT_ONLINE;
+  }
+
+  isFinance() {
+    return this.baseInfo.financingNeed === this.FINANCE_NEED.FINANCING;
   }
 
   hasRole() {
@@ -239,6 +254,7 @@ export default class CreateProjectController {
       krData.utls.uploadImage($files[0])
         .then(data => {
           this.baseInfo.logo = data.src;
+          this.baseInfo.logoState = true;
         }).catch((err) => krData.Alert.alert(err.msg));
     }
   }
@@ -250,6 +266,57 @@ export default class CreateProjectController {
           this.user.userBusinessCard = data.src;
         }).catch((err) => krData.Alert.alert(err.msg));
     }
+  }
+
+  uploadBp($files) {
+    const name = this.baseInfo.name || this.name;
+    let validObj = null;
+    if ($files.length) {
+      validObj = krData.utls.validateBP($files[0]);
+      if (!validObj.valid) {
+        krData.Alert.alert(validObj.msg);
+        return;
+      }
+      krData.utls.uploadBp(name, $files[0])
+        .then(data => {
+          this.baseInfo.bp = data.src;
+          this.bpName = `[${name}]商业计划书.pdf`;
+        }, err => {
+          this.bpUploading = false;
+          krData.Alert.alert(`上传BP失败:${err.msg}`);
+        }).then(null, null, (progress) => {
+          if (progress.type === 'load') {
+            this.bpProgress = '100%';
+            this.bpUploading = false;
+          } else if (progress.type === 'progress') {
+            this.bpProgress = `${(progress.loaded * 100) / progress.total}%`;
+            this.bpUploading = true;
+          }
+        });
+    }
+  }
+
+  deletebp() {
+    this.baseInfo.bp = '';
+    this.bpName = '';
+    krData.utls.getService('$timeout')(() => {
+      $validation.validate(this.baseInfo.form.bp);
+    });
+  }
+
+  privilege() {
+    if (this.privileges) {
+      this.baseInfo.privilege = 'MUST_APPLY';
+    } else {
+      this.baseInfo.privilege = 'INVESTOR';
+    }
+  }
+
+  isActive() {
+    if ($validation.checkValid(this.form) && this.readed) {
+      return true;
+    }
+    return false;
   }
 
   setProjectTypeValidator() {
@@ -314,6 +381,7 @@ export default class CreateProjectController {
       })
       .catch((err) => {
         krData.Alert.alert(`认领公司失败:${err.msg}`);
+          this.step = 4;
       });
   }
   call110(param) {
@@ -337,8 +405,10 @@ export default class CreateProjectController {
   }
 
   createRemote(projectInfo) {
+    console.log(projectInfo);
     this.project.create(projectInfo)
       .then(() => {
+        console.log('创建成功');
         this.step = 4;
         this.loadSimilarProjects(this.baseInfo.industry);
       })
@@ -381,31 +451,44 @@ export default class CreateProjectController {
     switch (this.step) {
       case 1:
         this.resetClaim();
+        console.log(form);
         this.go(2, form);
         break;
       case 2:
+        console.log(22222);
         if (!this.validate(this.user.form)) return;
-        if (this.isFunder() && this.needFinance()) {
-          this.go(3, form);
-        } else if (!this.isClaiming) {
+        if (!this.isClaiming) {
+            console.log('isClaiming');
           this.saveBaseInfo(form);
         } else {
+            console.log('claimRemote');
           this.claimRemote();
         }
+
+        // if (this.isFunder() && this.needFinance()) {
+        //   this.go(3, form);
+        // } else if (!this.isClaiming) {
+        //   this.saveBaseInfo(form);
+        // } else {
+        //   this.claimRemote();
+        // }
         break;
-      case 3:
-        if (!this.validate(form) && this.financeVM.readed) {
-          break;
-        } else {
-          this.saveFinance(form);
-        }
-        break;
+      // case 3:
+      //   if (!this.validate(form) && this.financeVM.readed) {
+      //     break;
+      //   } else {
+      //     this.saveFinance(form);
+      //   }
+      //   console.log(333333);
+      //   break;
       default: return;
     }
   }
   validate(form) {
+    console.log(form);
     if (!$validation.checkValid(form)) {
       validate(form);
+        console.log('validate false');
       krData.Alert.alert('表单不合法，请更正红色表示部分');
       return false;
     }
@@ -464,6 +547,10 @@ export default class CreateProjectController {
     });
 
     return deferred.promise;
+  }
+
+  showMore(){
+    this.moreInfo = !this.moreInfo;
   }
 
 }

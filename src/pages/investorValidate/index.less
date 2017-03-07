@@ -17,8 +17,14 @@
     margin: 30px auto 0px;
     box-shadow: 0px 0px 8px 0px #E7E7E7;
     .form-group {
+      position: relative;
       &.upload-card {
         margin-bottom:0 !important;
+        width: 730px;
+        .tip-message {
+          left: 440px;
+          bottom: 35px;
+        }
         .bp-message {
           margin-left:12px;
         }
@@ -39,6 +45,7 @@
           border: 1px solid #CCCCCC;
           border-radius: 6px;
           background-color: #ccc;
+          margin-top: 10px;
           img {
             width:120px;
             height:67px;
@@ -65,6 +72,39 @@
             transform: translateY(100%);
           }
         }
+      }
+      .tip-message {
+        background: #858a91;
+        border-radius: 4px;
+        height: auto;
+        font-size: 13px;
+        color: #FFFFFF;
+        padding: 14px 20px;
+        position: absolute;
+        right: -195px;
+        bottom: -10px;
+        display: none;
+        max-width: 187px;
+        float: left;
+        z-index: 10;
+        .close {
+          position: absolute;
+          top: 5px;
+          right: 6px;
+          cursor: pointer;
+        }
+        .angle {
+          width: 12px;
+          height: 12px;
+          background: #858a91;
+          transform: rotate(45deg);
+          position: absolute;
+          left: -5px;
+          top: 40%;
+        }
+      }
+      .card-tip-message {
+        display: block;
       }
     }
     .top-content {
@@ -400,7 +440,9 @@
       .investor-validate-form {
         .form-group {
           margin-bottom:40px;
+          position: relative;
           .invest-area {
+            width: 730px;
             margin-top:5px;
             &:before,&:after {
               display: table;
@@ -446,7 +488,8 @@
           color: #5A626D;
           letter-spacing: 0px;
           line-height: 21px;
-          margin-bottom: 60px;
+          width: 520px;
+          margin: 0 auto 60px;
         }
         .see-project {
           display: block;
@@ -473,6 +516,9 @@
   }
   form {
     width: 100%;
+    input {
+      margin-left: 0;
+    }
   }
   .money-tip {
     float: none;
@@ -528,6 +574,7 @@
     letter-spacing: 0px;
     line-height: 21px;
     white-space: nowrap;
+    margin-top: 10px;
     .amount-min {
       display: inline-block;
       position: relative;

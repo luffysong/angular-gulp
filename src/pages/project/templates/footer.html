@@ -11,13 +11,13 @@
     class="bp"
     ng-click="vm.checkBp($event)"
     target="{{vm.hasPermission ? '_blank' : '' }}"
-    ng-if='vm.fundsVM.funds && vm.user=="commen"' data-stat-click="project.{{vm.id}}.checkBp">
+    ng-if='vm.fundsVM.fundsVo && vm.fundsVM.fundsVo.bpUrl && vm.user=="commen"' data-stat-click="project.{{vm.id}}.checkBp">
     <span>
       <span class="icon-BP footer-icon"></span>
       <span>查看BP</span>
     </span>
   </a>
-  <span ng-click="vm.sendbp()" class="bp" ng-if='vm.fundsVM.funds && vm.user=="commen"' data-stat-click="project.{{vm.id}}.sendBp">
+  <span ng-click="vm.sendbp()" class="bp" ng-if='vm.fundsVM.fundsVo && vm.fundsVM.fundsVo.bpUrl && vm.user=="commen"' data-stat-click="project.{{vm.id}}.sendBp">
     <span class="icon-BP footer-icon"></span>
     <span>发送BP至邮箱</span>
   </span>

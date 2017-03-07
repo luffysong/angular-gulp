@@ -131,20 +131,17 @@
             <span id="singleInvestMin" class="error-tip bp-error"></span>
           </div>
           <span>万</span>
-          <span class="to">至</span>
-          <div class="amount-min">
-            <input kr-valid type="text" name="investAmountMax" class="form-control money" ng-model="vm.baseInfo.singleInvestMax" number-error-message="必须输入整数" bigger-error-message="最大投资金额必须大于最小投资金额" message-id="singleInvestMax" validator="number, bigger" placeholder="输入具体金额" />
-            <span id="singleInvestMax" class="error-tip bp-error"></span>
-          </div>
-          <span>万</span>
           <select  ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
                   ng-model="vm.baseInfo.singleInvestUnit"
                   type="text" name="fundValueUnit" class="form-control unit" > </select>
-          <span class="form-tip money-tip">若非区间则仅填写前输入框即可</span>
         </div>
       </div>
 
       <div class="form-group upload-card">
+        <div class="tip-message card-tip-message">
+          请上传真实有效的名片，可以加快您的身份审核
+          <div class="angle"></div>
+        </div>
         <input
           validator="required" required-error-message="请上传名片" message-id="businessCard"
           type="hidden" ng-model="vm.baseInfo.businessCard" name="businessCard">

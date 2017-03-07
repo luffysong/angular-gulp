@@ -219,6 +219,7 @@
         width: 90px;
         height: 90px;
         .rd(50%);
+        margin-left: 10px;
         display: block;
       }
       & > div:first-child {
@@ -339,6 +340,36 @@
         width: 100%;
         background: @anchor-color;
       }
+    }
+  }
+  .tip-message {
+    background: #858a91;
+    border-radius: 4px;
+    height: auto;
+    font-size: 13px;
+    color: #FFFFFF;
+    padding: 14px 20px;
+    position: absolute;
+    right: -195px;
+    bottom: 25px;
+    display: none;
+    max-width: 187px;
+    float: left;
+    z-index: 10;
+    .close {
+      position: absolute;
+      top: 5px;
+      right: 6px;
+      cursor: pointer;
+    }
+    .angle {
+      width: 12px;
+      height: 12px;
+      background: #858a91;
+      transform: rotate(45deg);
+      position: absolute;
+      left: -5px;
+      top: 40%;
     }
   }
 
