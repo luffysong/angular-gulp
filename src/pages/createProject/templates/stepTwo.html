@@ -6,7 +6,7 @@
 
   <div class="claim-container">
     <div ng-if="vm.claimer.hasManager" class="claim-message">
-      <p >已有认领人<a href="javascript:;">{{vm.claimer.name}}</a>，若非真实可<a ng-click="vm.call110(!vm['110'])" href="javascript:;">
+      <p >已有认领人<a>{{vm.claimer.name}}</a>，若非真实可<a ng-click="vm.call110(!vm['110'])" href="javascript:;">
       举报更改</a></p>
       <p ng-if="vm['110']" class="small-ft">请将举报材料（个人名片、公司营业执照等可证明对公司有实际控制权的证明材料）
 提交至“融资小秘书：service_chuangtou@36kr.com”，
@@ -88,7 +88,7 @@
           <input ng-model="vm.user.userBusinessCard" validator="required"
             required-error-message="请上传名片" message-id="messageCard"
             type="hidden" name="userBusinessCard" >
-          <label for=""><span class="required">*</span> 认证资料</label>
+          <label for=""><span class="required">*</span> 个人名片</label>
           <div class="card-file">
             <img ng-src="{{vm.user.userBusinessCard || '/images/cardBackground.png'}}" alt="" class="upload-img">
             <span class="btn-id-card uploading" >{{vm.suc?'点击更新':'点击上传'}}

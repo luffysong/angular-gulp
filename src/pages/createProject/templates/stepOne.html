@@ -52,20 +52,20 @@
           <!-- <span id="messageFullName" class="error-tip"></span> -->
       </div>
 
-      <input validator="required" type="hidden" name="logo" ng-model="vm.baseInfo.logo">
       <div class="form-group upload-logo">
+        <input validator="required" type="hidden" name="logo" ng-model="vm.baseInfo.logo">
         <label for=""><span class="required">*</span> 项目LOGO</label>
         <span ng-disabled="vm.selectProject" ng-show="vm.baseInfo.logoState"
           class="btn-upload-logo2" href="javascript:;">
           <img ng-class="{showLogo: vm.baseInfo.logoState}"
             ng-src="{{vm.baseInfo.logo || '/images/default-logo.png'}}" class="logo" alt="">
-          <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/*'"
-          type="file" />
+          <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/jpg,image/jpeg,image/png'"
+          type="file" ng-disabled="vm.selectProject" />
           <span class="update-img">点击更新</span>
         </span>
         <a ng-disabled="vm.selectProject" ng-show="!vm.baseInfo.logoState"
           class="btn-upload-logo" href="javascript:;">
-          <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/*'"
+          <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/jpg,image/jpeg,image/png'"
           type="file" />
         </a>
         <span class="logo-brief" ng-class="{hideBrief: vm.baseInfo.logoState}">图片清晰完整，与公司简称保持一致</span>
@@ -406,7 +406,7 @@
         </div>
         <div ng-if="vm.isFinance()" class="form-group">
           <div class="bg-grey">
-            <label for=""><span class="required">*</span> 融资需求</label>
+            <label for=""><span class="required">*</span> 融资轮次</label>
             <select  ng-model="vm.baseInfo.financePhase"
               validator="required" message-id="financeRound" type="text" name="financePhase" class="form-control"
               ng-options="item.value as item.desc for item in root.FUNDS_PHASE_ENUM_META">
