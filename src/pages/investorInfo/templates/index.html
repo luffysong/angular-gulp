@@ -41,6 +41,11 @@
             <input type="hidden"
             name="avatar" ng-model="investorEditVM.baseData.avatar" >
             <div class="form-group">
+            <div class="tip-message full-name-message"
+              ng-hide="vm.baseInfo.form.fullName.$invalid === true">工商局注册的公司全称
+              <div class="close">x</div>
+              <div class="angle"></div>
+            </div>
               <label for=""><span class="required">*</span>姓名</label>
               <input  ng-model="investorEditVM.baseData.name"
                 placeholder="请填写真实姓名"

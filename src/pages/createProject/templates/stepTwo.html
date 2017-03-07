@@ -28,52 +28,60 @@
           <select ng-options="item.value as item.desc for item in vm.CLAIM_ROLE"
             ng-if="!vm.baseInfo.companyRole || vm.isClaiming"
             ng-model="vm.user.companyRole"
-            placeholder="输入"
-            message-id="messageFullName"
-            not-equal-error-message="请不要再次填写项目名称"
+            placeholder="选择角色"
+            validator="required"
+            message-id="companyRole"
             type="text" name="userCompanyRole" class="form-control"
           >
             <option value="">选择角色</option>
           </select><input ng-model="vm.user.userPosition"
             placeholder="输入职位" maxlength="20"
             validator="required,maxlength=20"
-            type="text" name="userPosition" class="form-control position-name"  />
+            type="text" name="userPosition" class="form-control position-name" ng-class="{short: vm.isClaiming}" />
         </div>
 
         <div class="form-group">
+          <div class="error-tip-message"
+            ng-show="vm.user.form.userPhone.$invalid === true">请输入真实的手机号码
+            <div class="close">x</div>
+            <div class="angle"></div>
+          </div>
           <label for=""><span class="required">*</span> 手机号码</label>
-          <span class="error-tip" ng-if="vm.user.form.userPhone.$invalid === true">
-          请输入真实的手机号码</span>
           <input  ng-model="vm.user.userPhone"
             validator="required,maxlength=13,number"
             no-validation-message="true"
             maxlength="13"
             error-message="输入真实手机号"
             placeholder="输入真实手机号"
-            type="text" name="userPhone" class="form-control" />
+            type="text" name="userPhone" class="form-control" showTipMessage />
         </div>
         <div class="form-group">
+          <div class="error-tip-message"
+            ng-show="vm.user.form.userEmail.$invalid === true">请输入正确的邮箱格式
+            <div class="close">x</div>
+            <div class="angle"></div>
+          </div>
           <label for=""><span class="required">*</span> 公司邮箱</label>
-          <span class="error-tip" ng-if="vm.user.form.userEmail.$invalid === true">
-          请输入正确的邮箱格式</span>
           <input  ng-model="vm.user.userEmail"
             validator="required,email"
             no-validation-message="true"
             maxlength="30"
             placeholder="输入公司邮箱，便于审核"
-            type="text" name="userEmail" class="form-control" />
+            type="text" name="userEmail" class="form-control" showTipMessage/>
         </div>
         <div class="form-group">
+          <div class="error-tip-message"
+            ng-show="vm.user.form.userWeiXin.$invalid === true">微信号最小长度为6位
+            <div class="close">x</div>
+            <div class="angle"></div>
+          </div>
           <label for=""><span class="required">*</span> 个人微信</label>
-          <span class="error-tip" ng-if="vm.user.form.userWeiXin.$invalid === true">
-            微信号最小长度为6位
-          </span>
           <input  ng-model="vm.user.userWeiXin"
             validator="required,maxlength=20,minlength=6"
             no-validation-message="true"
             maxlength="20" minlength="6"
             placeholder="输入个人微信号，方便联系"
-            type="text" name="userWeiXin" class="form-control" />
+            type="text" name="userWeiXin" class="form-control" showTipMessage/>
         </div>
 
         <div class="form-group">
