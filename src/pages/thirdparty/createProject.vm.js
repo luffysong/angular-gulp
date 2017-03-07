@@ -185,7 +185,7 @@ project;
       }
     }
     vm.thirdpartyDialog = this.ngDialog.open({
-      template: '<div ng-include="\'/pages/thirdparty/template/updateproject.html\'" center></div>',
+      template: '<div ng-include="\'/pages/thirdparty/templates/updateproject.html\'" center></div>',
       plain: true,
       appendTo: '.org-wrapper',
       controller: saveController,

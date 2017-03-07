@@ -3,7 +3,7 @@ import { getLoadBundle } from '../base/utls';
 
 const thirdpartyIndex = {
   url: '/thirdparty/{id}',
-  templateUrl: '/pages/thirdparty/template/index.html',
+  templateUrl: '/pages/thirdparty/templates/index.html',
   controllerAs: 'vm',
   controller: 'ThirdpartyIndexController',
   resolve: {
