@@ -14,7 +14,7 @@
               </div>
               <div>
                 <p>
-                  <a ng-href="vm.institue.website" target="_blank" >
+                  <a href="{{vm.institue.website}}" target="_blank" >
                   <span class="kr-icon icon-officialsite" >
                     <span class="path1"></span>
                     </span>
@@ -65,7 +65,7 @@
         <div class="btn btn-serve">
               <span>服务项目</span>
         </div>
-        <div class="pro-status" ng-if="vm.companyStats.pendingList && vm.companyStats.passList">
+        <div class="pro-status" ng-if=" vm.privilegeAddPro && vm.companyStats.pendingList && vm.companyStats.passList">
             <span ng-if="vm.companyStats.pendingList">已提交未处理{{vm.companyStats.pendingList.length}}个</span>
             &nbsp;&nbsp;<span ng-if="vm.companyStats.passList">已公开{{vm.companyStats.passList.length}}个</span>（仅您可见）
         </div>

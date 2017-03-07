@@ -1,7 +1,6 @@
 let service = null;
 import krData from 'krData';
-//import CreateProjectVM from './createProject.vm';
-//import ThirdpartyIndexService from './ThirdpartyIndexService.service';
+
 function validate(ctl) {
   $validation.validate(ctl);
 }
@@ -66,7 +65,8 @@ export default class ThirdpartyIndexController {
     service.queryInstituteDetail(id)
     .then(data => {
       this.institue = data;
-      if (data.attachUid == this.user.data.id) {
+      if (this.user.data.id != 0
+            && (data.attachUid == this.user.data.id)) {
           this.privilegeAddPro = true;
       }
     });
@@ -204,6 +204,7 @@ export default class ThirdpartyIndexController {
           vm.thirdpartyDialog.close();
         }).catch((err) => {
           krData.Alert.alert(`创建公司失败:${err.msg}`);
+          vm.thirdpartyDialog.close();
         });
       }
 
@@ -232,7 +233,7 @@ export default class ThirdpartyIndexController {
             return;
           }
           if(fileSize>7680){
-            krData.Alert.alert('请上传小于7.5m的pdf文件！');
+            krData.Alert.alert('请上传小于7.5M的pdf文件！');
             return;
           }
           krData.utls.uploadBp(name, $files[0])

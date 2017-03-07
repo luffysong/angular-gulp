@@ -2,11 +2,15 @@
   <div class="title">
     <span class="icon-servePro"></span>
     <span>服务项目</span>
-    <span ui-sref="investment.result({id: vm.orgData.basic.id})"
+    <span ng-if="vm.servePros.totalCount"
       class="number pointer">({{vm.servePros.totalCount}})</span>
+      <div class="pro-status" ng-if="vm.editPrivilege && vm.companyStats.pendingList && vm.companyStats.passList">
+          <span ng-if="vm.companyStats.pendingList">已提交未处理{{vm.companyStats.pendingList.length}}个</span>
+          &nbsp;&nbsp;<span ng-if="vm.companyStats.passList">已公开{{vm.companyStats.passList.length}}个</span>（仅您可见）
+      </div>
   </div>
   <div class="servepro-info">
-    <table class="pro-table">
+    <table class="pro-table" ng-if="vm.servePros.totalCount">
       <thead>
           <th width="60%">
             项目
@@ -64,5 +68,11 @@
         </tr>
       </tbody>
     </table>
+    <div class="no-data" ng-if="!vm.servePros.totalCount">
+      <span>
+          <span class="icon-Company icon"></span>
+          <span>未收录相关信息</span>
+        </span>
+    </div>
   </div>
 </div>

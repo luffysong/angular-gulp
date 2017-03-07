@@ -16,6 +16,10 @@
             ng-if="vm.orgData.basic.website">{{vm.orgData.basic.website}}</a>
         </p>
       </div>
+      <!--管理员提交项目--->
+      <div class="sub-btn" ng-if="vm.editPrivilege">
+          <a ng-click="vm.thirdpartyOpenWin()" href="#" >提交项目</a>
+      </div>
     </section>
     <div sticky offset="49" class="nav-wrapper">
       <nav>
@@ -26,7 +30,7 @@
               基本介绍
             </a>
           </li>
-          <li ng-if="vm.servePros.totalCount > 0">
+          <li>
             <a kr-scroll-click
               href="#servePro" du-smooth-scroll="" du-scrollspy=""  offset="114" >
               服务项目
@@ -55,7 +59,7 @@
   基本介绍
   </section>
 
-  <section class="org-module" id="servePro" ng-include="'/pages/org/templates/servePros.html'" ng-if="vm.servePros.totalCount > 0">
+  <section class="org-module" id="servePro" ng-include="'/pages/org/templates/servePros.html'">
   服务项目
   </section>
 

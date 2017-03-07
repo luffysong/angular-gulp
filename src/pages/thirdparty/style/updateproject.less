@@ -12,22 +12,26 @@
   .thirdparty-header{
     text-align: center;
     height:50px;
+    p{
+      font-size: 16px;
+    }
   }
   .form{
     text-align: center;
     width:90%;
     margin: 0 auto;
     margin-top:10px;
-    height: 37px;
-    line-height: 37px;
-
+    height: 47px;
+    line-height: 47px;
+    clear:left;
     .span-input-import{
         margin-left: 140px;
       .suggest-project-text {
         float: right;
         width: 320px;
         span {
-          .font(14, 21);
+          //.font(14, 21);
+          font-size: 14px;
         }
         span:first-child {
           border-right: 1px solid #ccc;
@@ -48,9 +52,11 @@
       font-family: PingFangSC-Regular;
       font-size: 14px;
       letter-spacing: 0px;
-      line-height: 37px;
+      line-height: 27px;
       width: 120px;
       overflow: hidden;
+      border: none;
+      font-weight: normal;
       .require{
         color: #ff4343;
       }
@@ -59,6 +65,7 @@
       margin-left:20px;
       float:left;
       text-align: left;
+      font-size: 14px;
         input{
           font-size: 14px;
           line-height: 21px;
@@ -68,7 +75,7 @@
           margin-bottom: 6px;
           display: inline-block;
           border: 1px solid #ddd;
-          width:445px;
+          width:440px;
           cursor: text;
         }
         input[type='number']{
@@ -94,8 +101,12 @@
           background-color: #fff;
           display: inline-block;
         }
-        a.btn-bp{
+        a{
           display: inline-block;
+          height: 40px;
+          line-height: 40px;
+        }
+        a.btn-bp{
           border-radius: 4px;
           border: 1px solid #6BA2FC;
           border-radius: 4px;
@@ -114,10 +125,13 @@
           display: block;
           text-align: left;
         }
+        span{
+          font-size: 14px;
+        }
     }
   }
   .bpform{
-    height:67px;
+    height:87px;
   }
 
   .thirdparty-bottom{
