@@ -92,7 +92,7 @@
           <div class="card-file">
             <img ng-src="{{vm.user.userBusinessCard || '/images/cardBackground.png'}}" alt="" class="upload-img">
             <span class="btn-id-card uploading" >{{vm.suc?'点击更新':'点击上传'}}
-              <input ngf-select="vm.uploadIdCard($files)" ngf-accept="'image/*'" type="file">
+              <input ngf-select="vm.uploadIdCard($files)" ngf-accept="'image/jpg,image/jpeg,image/png,image/gif'" type="file">
             </span>
             <span class="warn-img">建议上传名片尺寸：90mm*50mm</span>
           </div>

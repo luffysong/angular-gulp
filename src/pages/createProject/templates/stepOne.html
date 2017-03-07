@@ -59,13 +59,13 @@
           class="btn-upload-logo2" href="javascript:;">
           <img ng-class="{showLogo: vm.baseInfo.logoState}"
             ng-src="{{vm.baseInfo.logo || '/images/default-logo.png'}}" class="logo" alt="">
-          <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/jpg,image/jpeg,image/png'"
+          <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/jpg,image/jpeg,image/png,image/gif'"
           type="file" ng-disabled="vm.selectProject" />
           <span class="update-img">点击更新</span>
         </span>
         <a ng-disabled="vm.selectProject" ng-show="!vm.baseInfo.logoState"
           class="btn-upload-logo" href="javascript:;">
-          <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/jpg,image/jpeg,image/png'"
+          <input ngf-select="vm.uploadImage($files)" ngf-accept="'image/jpg,image/jpeg,image/png,image/gif'"
           type="file" />
         </a>
         <span class="logo-brief" ng-class="{hideBrief: vm.baseInfo.logoState}">图片清晰完整，与公司简称保持一致</span>
