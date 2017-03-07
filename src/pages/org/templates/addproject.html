@@ -1,0 +1,185 @@
+<div class="dialog-thirdparty">
+  <div class="thirdparty-header">
+    <p>提交项目</p>
+  </div>
+
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;项目名称
+        </div>
+<form name="vm.thirdparty.form">
+        <div class="span-input-import">
+            <div mass-autocomplete="{debounce_blur:700,top:45,left:0.01,maxWidth:518, position:'parent'}"
+              class="form-group prlt">
+                 <input type="text" class="content form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength ng-valid-real-name"
+                 name="proName" placeholder="输入项目名称"
+                 ng-model="vm.project.name"
+                 message-id="proName"
+                 maxlength="30"
+                 required-error-message="输入项目名称"
+                 mass-autocomplete-item="vm.autocompleteOptions"
+                 validator="required">
+          </div>
+        </div>
+  </div>
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;相关链接
+        </div>
+        <div class="span-input">
+          <input type="text"
+          class="content form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength ng-valid-real-name"
+          name="website"
+          placeholder="输入官网/下载链接等有效项目链接"
+          ng-model="vm.project.website"
+          message-id="website"
+          maxlength="30"
+          ng-disabled="vm.selectPro"
+          required-error-message="输入官网/下载链接等有效项目链接"
+          validator="required">
+        </div>
+  </div>
+
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;融资需求
+        </div>
+        <div class="span-input">
+          <!--//ng-options="item.value as item.desc for item in root.FINANCE_NEED_META"--->
+          <select  ng-model="vm.project.financingNeedEnum"
+            validator="required"
+            type="text" name="financingNeedEnum" class="form-control"
+            ng-change="vm.changeRongzi()">
+            <option value="">选择融资需求</option>
+            <option value="FINANCING">寻求融资</option>
+            <option value="NO_NEED">暂无需求</option>
+          </select>
+        </div>
+  </div>
+  <div class="form" ng-if="vm.isRongzi">
+        <div class="title">
+          <span class="require">*</span>&nbsp;融资轮次
+        </div>
+        <div class="span-input">
+          <select  ng-model="vm.project.phase"
+            validator="required" message-id="phase" type="text" name="phase" class="form-control"
+            ng-options="item.value as item.desc for item in root.FUNDS_PHASE_ENUM_META">
+            <option value="">选择轮次</option>
+            </select>
+        </div>
+  </div>
+
+  <div class="form" ng-if="vm.isRongzi">
+        <div class="title">
+          <span class="require">*</span>&nbsp;计划金额
+        </div>
+        <div class="span-input">
+              <input  type="number" min="0" ng-model="vm.project.financeAmount"/>&nbsp;万&nbsp;
+              <select
+                ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
+                ng-model="vm.project.financeAmountUnit"
+                type="text" name="financeAmountUnit" class="form-control unit" > </select
+            >
+        </div>
+  </div>
+
+  <div class="form bpform">
+        <div class="title">
+          <span class="require">*</span>&nbsp;商业计划书
+        </div>
+        <div class="span-input">
+          <input
+          validator="required" required-error-message="请上传BP" message-id="bp"
+          type="hidden" ng-model="vm.project.bp" name="bp">
+
+          <span id="bp" class="error-tip bp-error" style="display: block;"></span>
+          <span ng-if="vm.bpUploading" width="100%"
+            class="progress-bar">
+            <span>BP上传中</span
+            ><span class="bar"><span ng-style="{width: vm.bpProgress}" class="progress"></span></span>
+          </span>
+
+          <span class="suc-name" ng-show='vm.bpName'>
+            <span>{{vm.bpName}}</span>
+            &nbsp;&nbsp;&nbsp;
+            <span class="icon-dialogClose" ng-click='vm.deletebp()'></span>
+          </span>
+          <a
+            class="btn-bp" href="javascript:;" ngf-select="vm.uploadBp($files)"
+            ngf-accept="'application/pdf'" style="display: inline-block;">
+            <span class="icon-BP"></span><span>{{vm.bpName?'更新BP ':'上传BP'}}</span></a>
+            <span class="bp-message">请上传小于7.5M的PDF文件</span>
+        </div>
+  </div>
+
+  <div class="form bpform" ng-if="vm.isRongzi">
+        <div class="title">
+          &nbsp;BP查看设置
+        </div>
+        <div class="span-input">
+          <!--ng-click="vm.privilegeFun($event)"-->
+             <input type="checkbox" ng-checked="true" ng-model="vm.project.applySee" >
+             <span>需要投资人申请查看BP</span>
+             <br />
+             <input type="checkbox"   ng-model='vm.project.readed'/>
+             <span>已阅读<a href="https://www.36jr.com/protocol" target="_blank">《融资申请协议》</a></span>
+        </div>
+
+  </div>
+
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;创始人姓名
+        </div>
+        <div class="span-input">
+           <input type="text" class="content form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength ng-valid-real-name"
+           name="starterName"
+           placeholder="输入真实姓名"
+           ng-model="vm.project.starterName"
+           message-id="starterName"
+           maxlength="30"
+           required-error-message="输入中文真实姓名" validator="required">
+        </div>
+  </div>
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;职位
+        </div>
+        <div class="span-input">
+           <input type="text"
+           class="content form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength ng-valid-real-name"
+           name="starterPosition"
+           placeholder="输入职位"
+           ng-model="vm.project.starterPosition"
+           message-id="starterPosition"
+           maxlength="30"
+           required-error-message="输入职位" validator="required">
+        </div>
+  </div>
+  <div class="form">
+        <div class="title">
+          <span class="require">*</span>&nbsp;创始人联系方式
+        </div>
+        <div class="span-input">
+          <select name="lxfs"
+          class="form-control ng-pristine ng-pending ng-empty ng-touched"
+            ng-model="vm.project.lxfs"
+            validator="required"
+            message-id="lxfs"
+            number-error-message="创始人联系方式">
+            <option value="">请选择</option>
+            <option value="1">微信</option>
+            <option value="2">电话</option>
+          </select>
+            &nbsp;&nbsp;
+          <input ng-model="vm.project.lxfsNum"  type="text" style="width:240px" placeholder="输入个人微信号，方便联系"/>
+        </div>
+  </div>
+</form>
+
+  <div class="thirdparty-bottom">
+    <div>* 若该项目没有认领人则投资人会直接联系您</div>
+    <input type="button" value="提交" class="save" ng-click="vm.save()" data-stat-click="project.{{vm.claimform.id}}.claim.save">
+  </div>
+  <span class="icon-dialogClose" ng-click="vm.updateCancle()"></span>
+</div>
