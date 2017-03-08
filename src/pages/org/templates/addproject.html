@@ -78,6 +78,7 @@
               <select
                 ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
                 ng-model="vm.project.financeAmountUnit"
+                 ng-init="vm.project.financeAmountUnit='CNY'"
                 type="text" name="financeAmountUnit" class="form-control unit" > </select
             >
         </div>
@@ -118,7 +119,7 @@
         </div>
         <div class="span-input">
           <!--ng-click="vm.privilegeFun($event)"-->
-             <input type="checkbox" ng-checked="true" ng-model="vm.project.applySee" >
+             <input type="checkbox"  ng-model="vm.project.applySee" >
              <span>需要投资人申请查看BP</span>
              <br />
              <input type="checkbox"   ng-model='vm.project.readed'/>
@@ -172,14 +173,14 @@
             <option value="2">电话</option>
           </select>
             &nbsp;&nbsp;
-          <input ng-model="vm.project.lxfsNum"  type="text" style="width:240px" placeholder="输入个人微信号，方便联系"/>
+          <input ng-model="vm.project.lxfsNum"  type="text" style="width:240px" placeholder="输入个人微信号或电话，方便联系"/>
         </div>
   </div>
 </form>
 
   <div class="thirdparty-bottom">
     <div>* 若该项目没有认领人则投资人会直接联系您</div>
-    <input type="button" value="提交" class="save" ng-click="vm.save()" data-stat-click="project.{{vm.claimform.id}}.claim.save">
+    <input type="button" ng-disabled="vm.isValidate" value="提交" class="save" ng-click="vm.save()" data-stat-click="project.{{vm.claimform.id}}.claim.save">
   </div>
   <span class="icon-dialogClose" ng-click="vm.updateCancle()"></span>
 </div>

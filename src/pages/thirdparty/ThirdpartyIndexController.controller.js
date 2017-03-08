@@ -19,10 +19,12 @@ export default class ThirdpartyIndexController {
   id;
   privilegeAddPro = false;
   Uid;
+  //project.financeAmountUnit = 'CNY';
 
   init() {
     this.thirdpartyOpenWin = this.openSubProject;
     this.id = this.$stateParams.id;
+
     if(!this.user.isLogin) {
       this.$scope.root.user.ensureLogin();
     }else {
@@ -98,8 +100,10 @@ export default class ThirdpartyIndexController {
 
       this.isRongzi = false;
       this.selectPro = false;
+      this.isValidate = false;
       this.privilege;
       this.service = vm.thirdpartyIndexService;
+
 
       this.getIndustry = function(industry) {
         return vm.$filter('industry')(industry);
@@ -160,7 +164,12 @@ export default class ThirdpartyIndexController {
       };
 
       this.save = function () {
-          console.log(this.project);
+          //console.log(this.project);
+          if (!this.project){
+            krData.Alert.alert('请检查form表单，有必填项未填！');
+            this.isValidate = true;
+            return false;
+          }
 
           if (this.project.lxfs == 1) {
             this.project.starterWeixin = this.project.lxfsNum;
@@ -173,16 +182,19 @@ export default class ThirdpartyIndexController {
           || !this.project.financingNeedEnum
           || !this.project.lxfsNum) {
           krData.Alert.alert('请检查form表单，有必填项未填！');
+          this.isValidate = true;
           return false;
         }
         if(this.isRongzi && (!this.project.phase || !this.project.financeAmount
           || !this.project.financeAmountUnit)) {
             krData.Alert.alert('请检查form表单，有必填项未填！');
+            this.isValidate = true;
             return false;
         }
 
         if(this.isRongzi && !this.project.readed) {
           krData.Alert.alert("请先阅读《融资申请协议》");
+          this.isValidate = true;
           return false;
         }
 
@@ -190,9 +202,9 @@ export default class ThirdpartyIndexController {
           this.project.id = vm.institue.id;
         }
 
-        this.project.privilege = 'MUST_APPLY';
+        this.project.privilege = 'INVESTOR';
         if (!this.project.applySee) {
-          this.project.privilege ='INVESTOR';
+          this.project.privilege ='MUST_APPLY';
         }
 
         delete this.project.lxfsNum;
