@@ -414,7 +414,7 @@
             <option value="">选择融资需求</option>
           </select>
         </div>
-        <div ng-if="vm.isFinance()" class="form-group">
+        <div ng-if="vm.isFinance() && vm.baseInfo.companyRole === 'START_UP_MEMBER'" class="form-group">
           <div class="bg-grey">
             <label for=""><span class="required">*</span> 融资轮次</label>
             <select  ng-model="vm.baseInfo.financePhase"
@@ -481,6 +481,8 @@
 
         <div class="form-group">
           <span class="more-info" ng-click="vm.showMore()">填写具体的媒体报道、产品描述、核心竞争力等，让投资人更了解你</span>
+          <span class="icon-open-form" ng-if="!vm.moreInfo"></span>
+          <span class="icon-close-form" ng-if="vm.moreInfo"></span>
         </div>
 
         <div class="bg-grey more-show" ng-if="vm.moreInfo">
