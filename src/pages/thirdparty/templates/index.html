@@ -10,11 +10,11 @@
                 <h1>{{vm.institue.name}}</h1>
               </div>
               <div>
-                <p class="en-name" ng-bind="vm.institue.enName"></p>
+                <p class="en-name" ng-if="vm.institue.enName" ng-bind="vm.institue.enName"></p>
               </div>
               <div>
                 <p>
-                  <a href="{{vm.institue.website}}" target="_blank" >
+                  <a href="{{vm.institue.website}}" ng-if="vm.institue.website" target="_blank" >
                   <span class="kr-icon icon-officialsite" >
                     <span class="path1"></span>
                     </span>
@@ -24,7 +24,7 @@
                     class="kr-icon icon-Wechat" ng-if="vm.institue.weixin"></span
                   ></a>
                   &nbsp;
-                  <a href="javascript:" target="_blank" ng-bind="vm.institue.email"></a>
+                  <span class="email" ng-bind="vm.institue.email" ng-if="vm.institue.email"></span>
                 </p>
               </div>
             </li>
@@ -45,17 +45,16 @@
           <div class="text">
               <p ng-bind="vm.institue.intro">
               </p>
-              <div class="title" >
+              <div class="title" ng-if="vm.institue.phone || vm.institue.address">
                   联系方式
               </div>
-              <div class="address">
+              <div class="address" ng-if="vm.institue.phone || vm.institue.address">
                   <ul>
                     <li>
-                        <!--<span>北京市</span>&nbsp;&nbsp;&nbsp;&nbsp;-->
-                      <span >地址：{{vm.institue.address}}</span>
+                      <span ng-if="vm.institue.address">地址：{{vm.institue.address}}</span>
                     </li>
                     <li>
-                      <span class="num">电话：{{vm.institue.phone}}</span>
+                      <span class="num" ng-if="vm.institue.phone">电话：{{vm.institue.phone}}</span>
                     </li>
                   </ul>
               </div>
@@ -76,21 +75,21 @@
         <div class="projectlist">
             <table class="pro-table">
               <thead>
-                  <th width="60%">
-                    项目
-                  </th>
-                  <th width="10%">
-                    行业
-                  </th >
-                  <th width="10%">
-                    公司所在轮次
-                  </th>
-                  <th width="10%">
-                    所在地
-                  </th>
-                  <th width="10%">
-                    成立时间
-                  </th>
+                <th width="45%">
+                  项目
+                </th>
+                <th width="10%">
+                  行业
+                </th >
+                <th width="20%">
+                  公司所处轮次
+                </th>
+                <th width="10%">
+                  所在地
+                </th>
+                <th width="15%">
+                  成立时间
+                </th>
               </thead>
               <tbody>
                 <tr ng-if="vm.companys" ng-repeat="item in vm.companys.data">
