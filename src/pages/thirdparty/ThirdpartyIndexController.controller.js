@@ -23,6 +23,7 @@ export default class ThirdpartyIndexController {
 
   init() {
     this.thirdpartyOpenWin = this.openSubProject;
+  //  this.saveHintOpenWin = this.openHint;
     this.id = this.$stateParams.id;
 
     if(!this.user.isLogin) {
@@ -103,7 +104,6 @@ export default class ThirdpartyIndexController {
       this.isValidate = false;
       this.privilege;
       this.service = vm.thirdpartyIndexService;
-
 
       this.getIndustry = function(industry) {
         return vm.$filter('industry')(industry);
@@ -216,6 +216,7 @@ export default class ThirdpartyIndexController {
         .then(data => {
           krData.Alert.success('数据保存成功');
           vm.thirdpartyDialog.close();
+          this.saveHintOpenWin();
         }).catch((err) => {
           krData.Alert.alert(`创建公司失败:${err.msg}`);
           vm.thirdpartyDialog.close();
@@ -227,7 +228,6 @@ export default class ThirdpartyIndexController {
         const searchObj = {
           name: baseInfo.name
         };
-        console.log(searchObj);
         vm.projectService.suggestClaim(searchObj)
           .then(list => {
             if (list.length < 1) {
@@ -288,6 +288,23 @@ export default class ThirdpartyIndexController {
             this.isRongzi = false;
         }
       }
+
+      this.saveHintOpenWin = function(){
+        var vvm = this;
+        function hintController(){
+          this.updateCancleHint = function () {
+            vvm.saveHintDialog.close();
+          };
+        }
+
+        vvm.saveHintDialog = vm.ngDialog.open({
+          template: '<div ng-include="\'/pages/thirdparty/templates/hint.html\'" center></div>',
+          plain: true,
+          appendTo: '#thirdpartyWrapper',
+          controller: hintController,
+          controllerAs: 'vm',
+        });
+      }
     }
     vm.thirdpartyDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/thirdparty/templates/updateproject.html\'" center></div>',
@@ -297,6 +314,8 @@ export default class ThirdpartyIndexController {
       controllerAs: 'vm',
     });
   }
+
+
 
 
 }

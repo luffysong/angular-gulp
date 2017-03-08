@@ -528,6 +528,7 @@ export default class OrgController {
         .then(data => {
           krData.Alert.success('数据保存成功');
           vm.thirdpartyDialog.close();
+          this.saveHintOpenWin();
         }).catch((err) => {
           krData.Alert.alert(`创建公司失败:${err.msg}`);
           vm.thirdpartyDialog.close();
@@ -599,6 +600,25 @@ export default class OrgController {
             this.isRongzi = false;
         }
       }
+
+      this.saveHintOpenWin = function(){
+        var vvm = this;
+
+        function hintController(){
+          this.updateCancleHint = function () {
+            vvm.saveHintDialog.close();
+          };
+        }
+
+        vvm.saveHintDialog = vm.ngDialog.open({
+          template: '<div ng-include="\'/pages/org/templates/hint.html\'" center></div>',
+          plain: true,
+          appendTo: '.org-wrapper',
+          controller: hintController,
+          controllerAs: 'vm',
+        });
+      }
+
     }
     vm.thirdpartyDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/org/templates/addproject.html\'" center></div>',
