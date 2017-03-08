@@ -484,14 +484,13 @@ export default class CreateProjectController {
         //   this.claimRemote();
         // }
         break;
-      // case 3:
-      //   if (!this.validate(form) && this.financeVM.readed) {
-      //     break;
-      //   } else {
-      //     this.saveFinance(form);
-      //   }
-      //   console.log(333333);
-      //   break;
+      case 3:
+        if (!this.validate(form) && this.financeVM.readed) {
+          break;
+        } else {
+          this.saveFinance(form);
+        }
+        break;
       default: return;
     }
   }

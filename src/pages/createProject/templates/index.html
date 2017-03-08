@@ -9,7 +9,7 @@
     </div>
     <div ng-show="vm.step === 1" ng-include="'/pages/createProject/templates/stepOne.html'"> </div>
     <div ng-show="vm.step === 2" ng-include="'/pages/createProject/templates/stepTwo.html'"> </div>
-    <!-- <div ng-show="vm.step === 3" ng-include="'/pages/createProject/templates/finance-apply.html'"> </div> -->
+    <div ng-show="vm.step === 3" ng-include="'/pages/createProject/templates/finance-apply.html'"> </div>
     <div ng-if="vm.step === 4 && vm.type === 'finance'" ng-include="'/pages/createProject/templates/financeAudit.html'"> </div>
     <div ng-if="vm.step === 4 && vm.type !== 'finance'" ng-include="'/pages/createProject/templates/stepFour.html'"></div>
 
