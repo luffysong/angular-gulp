@@ -32,12 +32,15 @@
         <tr ng-if="vm.servePros" ng-repeat="item in vm.servePros.data">
           <td>
               <div class="en-logo">
-                <a style="background-image: url({{item.logo}})" class="logo"></a>
+                <a  ui-sref="project({id: item.id})"
+                target="_blank" style="background-image: url({{item.logo}})" class="logo"></a>
               </div>
               <div class="text">
                   <ul>
                     <li>
-                        {{item.name}}
+                      <a  ui-sref="project({id: item.id})"
+                      target="_blank" >
+                        {{item.name}}</a>
                         <span class="icon-funding" ng-if="item.funding"></span>
                     </li>
                     <li>
