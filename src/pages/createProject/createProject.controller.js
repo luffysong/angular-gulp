@@ -41,6 +41,19 @@ export default class CreateProjectController {
 
   CLAIM_ROLE = [ROLE_META[0], ROLE_META[1]];
 
+  NOT_FOUNDER_FINANCE_NEED = [
+    {
+      desc:"暂无需求",
+      id:4,
+      value:"NO_NEED"
+    },
+    {
+      desc:"寻求收购",
+      id: 3,
+      value: "ACQUISITION"
+    }
+  ];
+
   project = this.createProjectService;
   baseInfo = {};
   user = {};
@@ -70,7 +83,6 @@ export default class CreateProjectController {
     this['110'] = false;
     this.baseInfo.logoState = false;
     this.moreInfo = false;
-    console.log(this.$scope.root.FINANCE_NEED_META);
   }
 
   ensureLogin() {
@@ -457,13 +469,10 @@ export default class CreateProjectController {
         this.go(2, form);
         break;
       case 2:
-        console.log(22222);
         if (!this.validate(this.user.form)) return;
         if (!this.isClaiming) {
-            console.log('isClaiming');
           this.saveBaseInfo(form);
         } else {
-            console.log('claimRemote');
           this.claimRemote();
         }
 

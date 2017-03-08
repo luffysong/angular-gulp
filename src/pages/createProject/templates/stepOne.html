@@ -394,10 +394,20 @@
           </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" ng-if="vm.baseInfo.companyRole === 'START_UP_MEMBER'">
           <label for=""><span class="required">*</span> 融资需求</label>
           <select  ng-model="vm.baseInfo.financingNeed"
             ng-options="item.value as item.desc for item in root.FINANCE_NEED_META"
+            validator="required"
+            ng-disabled="vm.selectProject"
+            type="text" name="financingNeed" class="form-control" >
+            <option value="">选择融资需求</option>
+          </select>
+        </div>
+        <div class="form-group" ng-if="vm.baseInfo.companyRole !== 'START_UP_MEMBER'">
+          <label for=""><span class="required">*</span> 融资需求</label>
+          <select  ng-model="vm.baseInfo.financingNeed"
+            ng-options="item.value as item.desc for item in vm.NOT_FOUNDER_FINANCE_NEED"
             validator="required"
             ng-disabled="vm.selectProject"
             type="text" name="financingNeed" class="form-control" >
