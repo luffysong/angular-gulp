@@ -30,7 +30,7 @@
               基本介绍
             </a>
           </li>
-          <li>
+          <li ng-if="vm.servePros">
             <a kr-scroll-click
               href="#servePro" du-smooth-scroll="" du-scrollspy=""  offset="114" >
               服务项目
@@ -59,7 +59,7 @@
   基本介绍
   </section>
 
-  <section class="org-module" id="servePro" ng-include="'/pages/org/templates/servePros.html'">
+  <section class="org-module" id="servePro" ng-if="vm.servePros" ng-include="'/pages/org/templates/servePros.html'">
   服务项目
   </section>
 
