@@ -460,7 +460,7 @@
           </div>
         </div>
 
-        <div class="form-group" ng-hide="vm.isFinance()">
+        <div class="form-group" ng-hide="vm.isFinance()" ng-show="!vm.isFinance()">
           <input required-error-message="请上传BP" message-id="bp"
           type="hidden" ng-model="vm.baseInfo.bp" name="bp">
           <label for=""> 商业计划书</label>
@@ -474,7 +474,7 @@
             <span>BP上传中</span
             ><span class="bar"><span ng-style="{width: vm.bpProgress}" class="progress"></span></span>
             </span>
-            <span class="suc-name" ng-if='vm.bpName'><span>{{vm.financeVM.bpName}}</span>
+            <span class="suc-name" ng-if='vm.bpName'><span>{{vm.bpName}}</span>
             <span class="icon-dialogClose" ng-click='vm.deletebp()'></span></span>
           </div>
         </div>

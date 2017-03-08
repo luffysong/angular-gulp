@@ -518,7 +518,7 @@ export default class CreateProjectController {
     return list.map(function mapList(com) {
       return {
         label: `<div>
-          <img src='${com.logo}' />
+          <div class="suggest-logo"><img src='${com.logo}' /></div>
           <div class="suggest-project-text">
             <p><span>${com.name}</span><span>${that.getIndustry(com.industry)}</span></p>
             <p class="brief">${com.brief}</p>
