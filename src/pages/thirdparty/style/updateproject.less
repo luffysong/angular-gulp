@@ -26,9 +26,12 @@
     clear:left;
     .span-input-import{
         margin-left: 140px;
+
       .suggest-project-text {
         float: right;
         width: 320px;
+        text-align: left;
+        height:40px;
         span {
           //.font(14, 21);
           font-size: 14px;
@@ -40,9 +43,12 @@
         span:last-child{
           padding-left: 12px;
         }
+        p:first-child{
+          margin-top: -10px;
+        }
         .brief {
           .font(12,18);
-          margin-top: 4px;
+          margin-top: -10px;
           color: @tip-color;
         }
       }
@@ -77,6 +83,12 @@
           border: 1px solid #ddd;
           width:440px;
           cursor: text;
+        }
+        input[type="text"]:disabled
+        {
+          cursor: not-allowed;
+          background-color: #f9f9f9;
+          opacity: 1;
         }
         input[type='number']{
           width: 100px;

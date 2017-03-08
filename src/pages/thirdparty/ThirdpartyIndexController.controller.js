@@ -138,9 +138,11 @@ export default class ThirdpartyIndexController {
         on_select: item => {
           const obj = item.obj;
           this.selectProject = obj;
-          this.project.website =item.obj.website;
           this.project.cid = item.obj.id;
-          this.selectPro = true;
+          if (item.obj.website) {
+            this.selectPro = true;
+            this.project.website =item.obj.website;
+          }
           //angular.extend(this.project, obj);
             //this.project.website =item.obj.website;
         },
@@ -209,7 +211,19 @@ export default class ThirdpartyIndexController {
       }
 
       this.setValue = function (){
-        //console.log('========');
+        const baseInfo = this.project;
+        const searchObj = {
+          name: baseInfo.name
+        };
+        console.log(searchObj);
+        vm.projectService.suggestClaim(searchObj)
+          .then(list => {
+            if (list.length < 1) {
+              this.project.website ='';
+              delete this.project.cid;
+              this.selectPro = false;
+            }
+          });
       }
 
       this.privilegeFun = function($event) {
