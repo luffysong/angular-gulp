@@ -44,7 +44,9 @@
               <span>基本介绍</span>
           </div>
           <div class="text">
-              <p ng-bind="vm.institue.intro">
+              <p ng-if="vm.institue.intro" class="info">
+                <span id="node" text-overflow text="vm.institue.intro" >
+                </span>
               </p>
               <div class="title" ng-if="vm.institue.phone || vm.institue.address">
                   联系方式
@@ -65,7 +67,8 @@
         <div class="btn btn-serve">
               <span>服务项目</span>
         </div>
-        <div class="pro-status" ng-if=" vm.privilegeAddPro && vm.companyStats.pendingList && vm.companyStats.passList">
+        <div class="pro-status"
+        ng-if="vm.companys.totalCount > 0 &&  vm.privilegeAddPro && vm.companyStats.pendingList && vm.companyStats.passList">
             <span ng-if="vm.companyStats.pendingList">已提交未处理{{vm.companyStats.pendingList.length}}个</span>
             &nbsp;&nbsp;<span ng-if="vm.companyStats.passList">已公开{{vm.companyStats.passList.length}}个</span>（仅您可见）
         </div>
@@ -73,7 +76,7 @@
           <span class="icon-fix"></span>
           <span>项目筛选</span>
         </div>
-        <div class="projectlist">
+        <div class="projectlist" ng-if="vm.companys.totalCount && vm.companys.totalCount > 0">
             <table class="pro-table">
               <thead>
                 <th width="45%">
@@ -93,7 +96,7 @@
                 </th>
               </thead>
               <tbody>
-                <tr ng-if="vm.companys" ng-repeat="item in vm.companys.data">
+                <tr  ng-repeat="item in vm.companys.data">
                   <td>
                       <div class="en-logo">
                         <a ui-sref="project({id: item.id})"
@@ -133,6 +136,12 @@
                 </tr>
               </tbody>
             </table>
+        </div>
+        <div class="no-data"  ng-if="!vm.companys.totalCount || vm.companys.totalCount <= 0">
+          <span>
+              <span class="icon-Company icon"></span>
+              <span>未收录相关信息</span>
+            </span>
         </div>
       </div>
 
