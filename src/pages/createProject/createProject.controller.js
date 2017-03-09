@@ -179,7 +179,7 @@ export default class CreateProjectController {
           this.user.userPhone = user.phone;
           this.user.userName = user.name;
           this.user.userEmail = user.email;
-          this.user.userWeiXin = user.weixin;
+          this.user.userWeiXin = user.weixin ? user.weixin : '';
         });
     }
   }
