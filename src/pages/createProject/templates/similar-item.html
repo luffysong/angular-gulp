@@ -15,7 +15,8 @@
     <tbody>
       <tr ng-repeat="item in vm.similarProjects">
       <td>
-        <a target="_blank" ui-sref="project({id:item.id})"><img ng-src="{{item.logo}}" class="item-logo"></a>
+        <a ui-sref="project({id:item.id})" style="background-image: url({{item.logo || '/images/default-logo.png'}})"
+          target="_blank" class="item-logo"></a>
         <span class="item-info">
           <a target="_blank" ui-sref="project({id:item.id})"><div class="item-name">{{item.name}}</div></a>
           <div class="item-breif" title="{{item.brief}}">{{item.brief}}</div>
