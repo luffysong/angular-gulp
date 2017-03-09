@@ -29,14 +29,9 @@ class UcPageController {
     return `url('${img || krData.utls.EMPTY_IMAGE}')`;
   }
 
-  setContact(type) {
-    const { autoReplyByWeiXin, autoReplyByPhone } = this.user;
-    if (type === 'weixin') {
-      ucService.setAutoreply(type, autoReplyByWeiXin);
-    }
-    if (type === 'phone') {
-      ucService.setAutoreply(type, autoReplyByPhone);
-    }
+  setContact() {
+    const autoReply = this.user.autoReply;
+    ucService.setAutoreply(autoReply);
   }
 
   setBpEmail() {

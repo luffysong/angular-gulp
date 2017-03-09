@@ -72,6 +72,9 @@
           <div class="section-inside">
             <h5>项目设置</h5>
             <div class="form-group">
+              <div class="col-checkbox">
+                <input type="checkbox" ng-model="vm.user.autoReply" ng-click="vm.setContact()" data-stat-click="setContact.autoreply">
+              </div>
               <label>联系方式自动回复
                 <i class="icon-dialogTags">
                   <span class="tip">
@@ -79,14 +82,6 @@
                   </span>
                 </i>
               </label>
-              <div class="col-checkbox">
-                <label>
-                  <input type="checkbox" ng-model="vm.user.autoReplyByWeiXin" ng-click="vm.setContact('weixin')" data-stat-click="setContact.weixin"> 微信
-                </label>
-                <label>
-                  <input type="checkbox" ng-model="vm.user.autoReplyByPhone" ng-click="vm.setContact('phone')" data-stat-click="setContact.phone"> 电话
-                </label>
-              </div>
             </div>
           </div>
           <div class="section-inside">
