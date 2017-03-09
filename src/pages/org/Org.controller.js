@@ -479,7 +479,7 @@ export default class OrgController {
           console.log(this.project);
           if (!this.project){
             krData.Alert.alert('请检查form表单，有必填项未填！');
-            this.isValidate = true;
+            //this.isValidate = true;
             return false;
           }
 
@@ -494,19 +494,19 @@ export default class OrgController {
           || !this.project.financingNeedEnum
           || !this.project.lxfsNum) {
           krData.Alert.alert('请检查form表单，有必填项未填！');
-          this.isValidate = true;
+          //this.isValidate = true;
           return false;
         }
         if(this.isRongzi && (!this.project.phase || !this.project.financeAmount
           || !this.project.financeAmountUnit)) {
             krData.Alert.alert('请检查form表单，有必填项未填！');
-            this.isValidate = true;
+            //this.isValidate = true;
             return false;
         }
 
         if(this.isRongzi && !this.project.readed) {
           krData.Alert.alert("请先阅读《融资申请协议》");
-          this.isValidate = true;
+          //this.isValidate = true;
           return false;
         }
 
@@ -533,6 +533,14 @@ export default class OrgController {
           krData.Alert.alert(`创建公司失败:${err.msg}`);
           vm.thirdpartyDialog.close();
         });
+      }
+
+      this.isValidAfterSelect = function() {
+        return this.project && this.project.name
+                && this.project.website && this.project.bp
+                && this.project.starterName && this.project.starterPosition
+                && this.project.financingNeedEnum
+                && this.project.lxfsNum
       }
 
       this.setValue = function (){

@@ -182,19 +182,19 @@ export default class ThirdpartyIndexController {
           || !this.project.financingNeedEnum
           || !this.project.lxfsNum) {
           krData.Alert.alert('请检查form表单，有必填项未填！');
-          this.isValidate = true;
+          //this.isValidate = true;
           return false;
         }
         if(this.isRongzi && (!this.project.phase || !this.project.financeAmount
           || !this.project.financeAmountUnit)) {
             krData.Alert.alert('请检查form表单，有必填项未填！');
-            this.isValidate = true;
+            //this.isValidate = true;
             return false;
         }
 
         if(this.isRongzi && !this.project.readed) {
           krData.Alert.alert("请先阅读《融资申请协议》");
-          this.isValidate = true;
+          //this.isValidate = true;
           return false;
         }
 

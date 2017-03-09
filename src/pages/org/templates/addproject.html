@@ -182,7 +182,9 @@
 
   <div class="thirdparty-bottom">
     <div>* 若该项目没有认领人则投资人会直接联系您</div>
-    <input type="button" ng-disabled="vm.isValidate" value="提交" class="save" ng-click="vm.save()" data-stat-click="project.{{vm.claimform.id}}.claim.save">
+    <!--ng-disabled="vm.isValidate" ng-class="{active:vm.isValidAfterSelect()}"-->
+    <input type="button"
+      value="提交" class="save" ng-disabled="vm.isValidate" ng-click="vm.save()" data-stat-click="project.{{vm.claimform.id}}.claim.save">
   </div>
   <span class="icon-dialogClose" ng-click="vm.updateCancle()"></span>
 </div>
