@@ -54,10 +54,11 @@ export default class investorValidateController {
   makeSuggestResult(kw, list) {
     const that = this;
     return list.map(function makeLabel(val) {
+      var entityType = val.entityType === 'COMPANY_INVEST_DEPT' ? '公司':'机构'
       return {
         label: that.$sce.trustAsHtml(
           `<div class="suggest-label suggest-label-investment">
-            <span>${val.name}</span>
+            <span>${val.name} | ${entityType}</span>
           </div>`
         ),
         value: val.name,
