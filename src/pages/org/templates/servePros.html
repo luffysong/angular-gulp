@@ -38,28 +38,32 @@
               <div class="text">
                   <ul>
                     <li>
-                      <a  ui-sref="project({id: item.id})"
-                      target="_blank" >
+                      <a  ui-sref="project({id: item.id})" title="{{item.name}}" target="_blank" >
                         {{item.name}}</a>
                         <span class="icon-funding" ng-if="item.funding"></span>
                     </li>
                     <li>
-                      {{item.brief}}
+                      <span title="{{item.brief}}">{{item.brief}}</span>
                     </li>
                   </ul>
 
               </div>
           </td>
           <td>
-              {{::item.industry | industry}}
+            <span ng-if="item.industry">{{::item.industry | industry}}</span>
+            <span ng-if="!item.industry">—</span>
           </td>
           <td>
-              {{::item.phase | companyFinancePhase}}
+            <span ng-if="item.phase">{{::item.phase | companyFinancePhase}}</span>
+            <span ng-if="!item.phase">—</span>
           </td>
           <td>
-              {{item.cityStr}}
+            <span ng-if="item.cityStr">{{item.cityStr}}</span>
+            <span ng-if="!item.cityStr">—</span>
           </td>
-          <td ng-bind="item.startDate | date:'yyyy-MM'">
+          <td >
+            <span ng-if="item.startDate" ng-bind="item.startDate | date:'yyyy-MM'"></span>
+            <span ng-if="!item.startDate">—</span>
           </td>
         </tr>
         <tr class="multi" ng-if="vm.hasMoreServedPros">
