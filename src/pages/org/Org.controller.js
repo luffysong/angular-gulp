@@ -547,7 +547,7 @@ export default class OrgController {
         const projectInfo = angular.extend({}, this.project);
         this.service.saveCompany(this.project.id, projectInfo)
         .then(data => {
-          krData.Alert.success('数据保存成功');
+          //krData.Alert.success('数据保存成功');
           vm.thirdpartyDialog.close();
           this.saveHintOpenWin();
         }).catch((err) => {

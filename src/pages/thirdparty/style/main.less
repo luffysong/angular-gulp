@@ -133,13 +133,40 @@
         .text{
           margin: 0 auto;
           padding: 60px;
-          p{
+          div{
             font-family: PingFangSC-Regular;
             font-size: 14px;
             color: #5A626D;
             letter-spacing: 0px;
             line-height: 24px;
+            overflow: hidden;
+            &>span{
+              word-break: break-all;
+              line-height: 24px;
+              max-height: 100px;
+              display: inline-block;
+              a.toggle{
+                visibility: hidden;
+                span{
+                  font-size: 12px;
+                }
+              }
+            }
+
+            &>span.is-truncated{
+              a.toggle{
+                visibility: inherit;
+              }
+            }
+            &>span.opened{
+              height: auto;
+              max-height: inherit;
+              a.toggle{
+                visibility: hidden;
+              }
+            }
           }
+
           .title{
             font-family: PingFangSC-Semibold;
             font-size: 14px;
