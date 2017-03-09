@@ -80,7 +80,7 @@
               <select
                 ng-options="item.value as item.desc for item in root.CURRENCY_UNIT_META"
                 ng-model="vm.project.financeAmountUnit"
-                 ng-init="vm.project.financeAmountUnit='CNY'"
+                ng-init="vm.project.financeAmountUnit='CNY'"
                 type="text" name="financeAmountUnit" class="form-control unit" > </select
             >
         </div>
@@ -167,7 +167,6 @@
           <select name="lxfs"
           class="form-control ng-pristine ng-pending ng-empty ng-touched"
             ng-model="vm.project.lxfs"
-            validator="required"
             message-id="lxfs"
             number-error-message="创始人联系方式">
             <option value="">请选择</option>
@@ -175,7 +174,9 @@
             <option value="2">电话</option>
           </select>
             &nbsp;&nbsp;
-          <input ng-model="vm.project.lxfsNum"  type="text" style="width:240px" placeholder="输入个人微信号或电话，方便联系"/>
+          <input ng-model="vm.project.lxfsNum"
+          type="text" style="width:240px"
+          placeholder="输入个人微信号或电话，方便联系"/>
         </div>
   </div>
 </form>
@@ -184,7 +185,7 @@
     <div>* 若该项目没有认领人则投资人会直接联系您</div>
     <!--ng-disabled="vm.isValidate" ng-class="{active:vm.isValidAfterSelect()}"-->
     <input type="button"
-      value="提交" class="save" ng-disabled="vm.isValidate" ng-click="vm.save()" data-stat-click="project.{{vm.claimform.id}}.claim.save">
+      value="提交" class="next" ng-class="{active:vm.ableSubBtn()}" ng-click="vm.save()" data-stat-click="project.{{vm.claimform.id}}.claim.save">
   </div>
   <span class="icon-dialogClose" ng-click="vm.updateCancle()"></span>
 </div>

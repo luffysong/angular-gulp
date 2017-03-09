@@ -413,7 +413,7 @@ export default class OrgController {
 
       this.isRongzi = false;
       this.selectPro = false;
-      this.isValidate = false;
+      //this.isValidate = false;
       this.privilege;
       this.service = vm.thirdpartyIndexService;
 
@@ -475,6 +475,27 @@ export default class OrgController {
         vm.thirdpartyDialog.close();
       };
 
+      this.ableSubBtn = function(){
+        var flag = false;
+        if(this.project && this.project.name
+            && this.project.website && this.project.bp
+            && this.project.starterName && this.project.starterPosition
+            && this.project.financingNeedEnum
+            && this.project.lxfsNum && !this.isRongzi){
+             flag = true;
+            }
+            if (this.isRongzi && this.project.phase
+                  && this.project.financeAmount
+                  && this.project.name
+                  && this.project.website && this.project.bp
+                  && this.project.starterName && this.project.starterPosition
+                  && this.project.financingNeedEnum
+                  && this.project.lxfsNum && this.project.readed){
+                    flag = true;
+                  }
+        return flag;
+      }
+
       this.save = function () {
           console.log(this.project);
           if (!this.project){
@@ -519,9 +540,9 @@ export default class OrgController {
           this.project.privilege ='MUST_APPLY';
         }
 
-        delete this.project.lxfsNum;
-        delete this.project.lxfs;
-        delete this.project.applySee;
+        //delete this.project.lxfsNum;
+        //delete this.project.lxfs;
+        //delete this.project.applySee;
 
         const projectInfo = angular.extend({}, this.project);
         this.service.saveCompany(this.project.id, projectInfo)
@@ -533,14 +554,6 @@ export default class OrgController {
           krData.Alert.alert(`创建公司失败:${err.msg}`);
           vm.thirdpartyDialog.close();
         });
-      }
-
-      this.isValidAfterSelect = function() {
-        return this.project && this.project.name
-                && this.project.website && this.project.bp
-                && this.project.starterName && this.project.starterPosition
-                && this.project.financingNeedEnum
-                && this.project.lxfsNum
       }
 
       this.setValue = function (){

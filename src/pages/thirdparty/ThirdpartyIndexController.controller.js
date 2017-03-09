@@ -101,7 +101,7 @@ export default class ThirdpartyIndexController {
 
       this.isRongzi = false;
       this.selectPro = false;
-      this.isValidate = false;
+      //this.isValidate = true;
       this.privilege;
       this.service = vm.thirdpartyIndexService;
 
@@ -163,11 +163,32 @@ export default class ThirdpartyIndexController {
         vm.thirdpartyDialog.close();
       };
 
+      this.ableSubBtn = function(){
+        var flag = false;
+        if(this.project && this.project.name
+            && this.project.website && this.project.bp
+            && this.project.starterName && this.project.starterPosition
+            && this.project.financingNeedEnum
+            && this.project.lxfsNum && !this.isRongzi){
+             flag = true;
+            }
+            if (this.isRongzi && this.project.phase
+                  && this.project.financeAmount
+                  && this.project.name
+                  && this.project.website && this.project.bp
+                  && this.project.starterName && this.project.starterPosition
+                  && this.project.financingNeedEnum
+                  && this.project.lxfsNum && this.project.readed){
+                    flag = true;
+                  }
+        return flag;
+      }
+
       this.save = function () {
           //console.log(this.project);
           if (!this.project){
             krData.Alert.alert('请检查form表单，有必填项未填！');
-            this.isValidate = true;
+            //this.isValidate = true;
             return false;
           }
 
@@ -207,9 +228,9 @@ export default class ThirdpartyIndexController {
           this.project.privilege ='MUST_APPLY';
         }
 
-        delete this.project.lxfsNum;
-        delete this.project.lxfs;
-        delete this.project.applySee;
+        //delete this.project.lxfsNum;
+        //delete this.project.lxfs;
+        //delete this.project.applySee;
 
         const projectInfo = angular.extend({}, this.project);
         this.service.saveCompany(this.project.id, projectInfo)
