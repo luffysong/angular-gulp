@@ -165,6 +165,10 @@ export default class ThirdpartyIndexController {
 
       this.ableSubBtn = function(){
         var flag = false;
+        if (this.bp && this.project){
+            this.project.bp = this.bp;
+        }
+
         if(this.project && this.project.name
             && this.project.website && this.project.bp
             && this.project.starterName && this.project.starterPosition
@@ -185,7 +189,7 @@ export default class ThirdpartyIndexController {
       }
 
       this.save = function () {
-          //console.log(this.project);
+          console.log(this.project);
           if (!this.project){
             krData.Alert.alert('请检查form表单，有必填项未填！');
             //this.isValidate = true;
@@ -196,6 +200,9 @@ export default class ThirdpartyIndexController {
             this.project.starterWeixin = this.project.lxfsNum;
           } else if(this.project.lxfs == 2) {
             this.project.starterPhone =  this.project.lxfsNum;
+          }
+          if (this.bp){
+              this.project.bp = this.bp;
           }
 
         if (!this.project || !this.project.name || !this.project.website || !this.project.bp
@@ -228,9 +235,9 @@ export default class ThirdpartyIndexController {
           this.project.privilege ='MUST_APPLY';
         }
 
-        //delete this.project.lxfsNum;
-        //delete this.project.lxfs;
-        //delete this.project.applySee;
+        delete this.project.lxfsNum;
+        delete this.project.lxfs;
+        delete this.project.applySee;
 
         const projectInfo = angular.extend({}, this.project);
         this.service.saveCompany(this.project.id, projectInfo)
@@ -269,7 +276,7 @@ export default class ThirdpartyIndexController {
       }
 
       this.uploadBp = function ($files) {
-        const name = this.project.name || this.institue.name;
+        const name = this.project ? this.project.name : vm.institue.name;
         let validObj = null;
         if ($files.length) {
 
@@ -285,7 +292,11 @@ export default class ThirdpartyIndexController {
           }
           krData.utls.uploadBp(name, $files[0])
             .then(data => {
-              this.project.bp = data.src;
+              if (this.project) {
+                this.project.bp = data.src;
+              } else {
+                this.bp = data.src;
+              }
               this.bpName = `[${name}]商业计划书.pdf`;
             }, err => {
               this.bpUploading = false;

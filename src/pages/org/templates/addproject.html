@@ -35,7 +35,7 @@
           placeholder="输入官网/下载链接等有效项目链接"
           ng-model="vm.project.website"
           message-id="website"
-          maxlength="30"
+          maxlength="100"
           ng-disabled="vm.selectPro"
           required-error-message="输入官网/下载链接等有效项目链接"
           validator="required">
@@ -176,6 +176,7 @@
             &nbsp;&nbsp;
           <input ng-model="vm.project.lxfsNum"
           type="text" style="width:240px"
+          maxlength="30"
           placeholder="输入个人微信号或电话，方便联系"/>
         </div>
   </div>
