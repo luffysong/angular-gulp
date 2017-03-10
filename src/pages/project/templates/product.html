@@ -15,11 +15,15 @@
             </a><a ng-if="productVM.android"
               ng-href="{{productVM.android}}" target="_blank">
               <span class="kr-icon icon-Andriod"></span>
-            </a><span class="kr-icon icon-Wechat" showwechat ng-show="productVM.weixin"></span>
-            <div class="wechat-code">
-              <div class="triangle"></div>
-              <img src="http://open.weixin.qq.com/qr/code/?username={{productVM.weixin}}">
-              <span>微信扫一扫关注</span>
+            </a>
+            <div class="wechat">
+              <span class="kr-icon icon-Wechat" showwechat ng-show="productVM.weixin"></span>
+              <div class="wechat-code">
+                <div class="triangle"></div>
+                <img src="http://open.weixin.qq.com/qr/code/?username={{productVM.weixin}}"
+                onerror="$('.wechat').hide();">
+                <span>微信扫一扫关注</span>
+            </div>
             </div>
           </div>
           <div ng-if="productVM.aso" class="aso">
