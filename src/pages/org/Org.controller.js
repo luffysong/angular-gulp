@@ -377,7 +377,7 @@ export default class OrgController {
   }
 
   queryServePros(id,page, size){
-    if (this.orgData.basic.thirdEntityId) {
+    if (this.orgData.basic.thirdEntityId && this.orgData.basic.thirdEntityId !== 0) {
       let params = {
         id:id || this.orgData.basic.thirdEntityId,
         page:page || 1,
