@@ -15,8 +15,8 @@
     <form name="vm.user.form">
       <div ng-if="vm.isClaiming || vm.isFunder() || vm.isMaintainer()">
         <div class="form-group">
-          <label for=""><span class="required">*</span> 真实姓名</label>
-          <input  ng-model="vm.user.userName"
+          <label for=""><span class="required">*</span> 真实姓名</label
+          ><input  ng-model="vm.user.userName"
             placeholder="输入中文真实姓名"
             maxlength="16"
             validator="required,maxlength=16"
@@ -24,8 +24,8 @@
         </div>
 
         <div class="form-group">
-          <label for=""><span class="required">*</span> 职位</label>
-          <select ng-options="item.value as item.desc for item in vm.CLAIM_ROLE"
+          <label for=""><span class="required">*</span> 职位</label
+          ><select ng-options="item.value as item.desc for item in vm.CLAIM_ROLE"
             ng-if="!vm.baseInfo.companyRole || vm.isClaiming"
             ng-model="vm.user.companyRole"
             placeholder="选择角色"
@@ -46,8 +46,8 @@
             <div class="close">x</div>
             <div class="angle"></div>
           </div>
-          <label for=""><span class="required">*</span> 手机号码</label>
-          <input  ng-model="vm.user.userPhone"
+          <label for=""><span class="required">*</span> 手机号码</label
+          ><input  ng-model="vm.user.userPhone"
             validator="required,maxlength=13,number"
             no-validation-message="true"
             maxlength="13"
@@ -61,8 +61,8 @@
             <div class="close">x</div>
             <div class="angle"></div>
           </div>
-          <label for=""><span class="required">*</span> 公司邮箱</label>
-          <input  ng-model="vm.user.userEmail"
+          <label for=""><span class="required">*</span> 公司邮箱</label
+          ><input  ng-model="vm.user.userEmail"
             validator="required,email"
             no-validation-message="true"
             maxlength="30"
@@ -75,8 +75,8 @@
             <div class="close">x</div>
             <div class="angle"></div>
           </div>
-          <label for=""><span class="required">*</span> 个人微信</label>
-          <input  ng-model="vm.user.userWeiXin"
+          <label for=""><span class="required">*</span> 个人微信</label
+          ><input  ng-model="vm.user.userWeiXin"
             validator="required,maxlength=20,minlength=6"
             no-validation-message="true"
             maxlength="20" minlength="6"
@@ -88,8 +88,8 @@
           <input ng-model="vm.user.userBusinessCard" validator="required"
             required-error-message="请上传名片" message-id="messageCard"
             type="hidden" name="userBusinessCard" >
-          <label for=""><span class="required">*</span> 个人名片</label>
-          <div class="card-file">
+          <label for=""><span class="required">*</span> 个人名片</label
+          ><div class="card-file">
             <img ng-src="{{vm.user.userBusinessCard || '/images/cardBackground.png'}}" alt="" class="upload-img">
             <span class="btn-id-card uploading" >{{vm.suc?'点击更新':'点击上传'}}
               <input ngf-select="vm.uploadIdCard($files)" ngf-accept="'image/jpg,image/jpeg,image/png,image/gif'" type="file">
@@ -106,23 +106,23 @@
         </div>
 
         <div class="form-group">
-          <label for="">姓名</label>
-          <input kr-valid ng-model="vm.user.starterName"
+          <label for="">姓名</label
+          ><input kr-valid ng-model="vm.user.starterName"
             placeholder="输入中文真实姓名"
             maxlength="16" validator="maxlength=16"
             type="text" name="starterName" class="form-control" />
         </div>
 
         <div class="form-group">
-          <label for="">职位</label>
-          <input kr-valid ng-model="vm.user.starterPosition"
+          <label for="">职位</label
+          ><input kr-valid ng-model="vm.user.starterPosition"
             placeholder="输入职位" validator="maxlength=20" maxlength="20"
           type="text" name="starterPosition" class="form-control position-name"  />
         </div>
 
         <div class="form-group">
-          <label for="">手机号码</label>
-          <span class="error-tip" ng-if="vm.user.form.starterPhone.$invalid === true">
+          <label for="">手机号码</label
+          ><span class="error-tip" ng-if="vm.user.form.starterPhone.$invalid === true">
           请输入真实的手机号码</span
           ><input kr-valid  ng-model="vm.user.starterPhone" validator="integer,maxlength=13"
           maxlength="13" no-validation-message
