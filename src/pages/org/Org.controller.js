@@ -240,7 +240,6 @@ export default class OrgController {
       this.thirdpartyOpenWin = this.openSubProject;
       this.queryServePros();
       this.managePrivilege();
-      this.getCompanyStas();
     }
     angular.copy(this.industryHg, this.phaseHg);
   }
@@ -373,6 +372,9 @@ export default class OrgController {
     if(this.orgData.basic.managerId != 0
       && (this.user.data.id == this.orgData.basic.managerId)){
           this.editPrivilege = true;
+           //当用户是管理员自己的时候，才进行查询；
+            //console.log('==',this.orgData.basic.thirdEntityId);
+            this.getCompanyStas(this.orgData.basic.thirdEntityId);
     }
   }
 
@@ -399,9 +401,10 @@ export default class OrgController {
   }
 
   //服务项目状态统计
-  getCompanyStas() {
-    this.thirdpartyIndexService.getCompanyStas()
+  getCompanyStas(id) {
+    this.thirdpartyIndexService.getCompanyStas(id)
     .then(data => {
+      console.log('==',data);
       this.companyStats = data;
     });
   }

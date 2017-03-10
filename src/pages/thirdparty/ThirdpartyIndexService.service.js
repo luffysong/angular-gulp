@@ -24,7 +24,7 @@ const ThirdpartyApi = new krData.API('', [
 
     getCompanyStas: {
       method: 'get',
-      url: '/n/api/user/manage-com',
+      url: '/n/api/third-entity/:id/manage-com',
     },
 
   });
@@ -46,8 +46,8 @@ export default class ThirdpartyIndexService {
     return ThirdpartyApi.queryInstitutes();
   }
 
-  getCompanyStas() {
-    return ThirdpartyApi.getCompanyStas();
+  getCompanyStas(id) {
+    return ThirdpartyApi.getCompanyStas({ id });
   }
 
 }

@@ -31,7 +31,7 @@ export default class ThirdpartyIndexController {
     }else {
       this.queryInstituteDetail(this.id);
       this.queryCompanys(this.id);
-      this.getCompanyStas();
+
     }
   }
 
@@ -71,12 +71,14 @@ export default class ThirdpartyIndexController {
       if (this.user.data.id != 0
             && (data.attachUid == this.user.data.id)) {
           this.privilegeAddPro = true;
+          //如果是管理员自己，查看数据情况
+          this.getCompanyStas(id);
       }
     });
   }
 
-  getCompanyStas() {
-    service.getCompanyStas()
+  getCompanyStas(id) {
+    service.getCompanyStas(id)
     .then(data => {
       this.companyStats = data;
     });
