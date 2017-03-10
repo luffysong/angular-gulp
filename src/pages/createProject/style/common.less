@@ -42,18 +42,23 @@
       line-height: 21px;
       color: #222C38;
     }
+    .project-textarea .textarea-control {
+      margin-bottom: 8px;
+    }
     input,.textarea-control {
       display: inline-block;
       width: 460px;
       margin-left: 30px;
-      margin-top: 4px;
-      margin-bottom: 10px;
+      margin-top: 0;
+      margin-bottom: 12px;
       .tip-message {
         left: 0;
         bottom: 120px;
       }
       .text-length {
         position: relative;
+        margin-top: 0;
+        bottom: 10px;
       }
     }
     input[type='checkbox'] {
@@ -74,9 +79,14 @@
   .form-group {
     // width: 888px;
     position: relative;
+    .form-control {
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
   }
   .form-bottom {
     clear: both;
+    margin-top: 12px;
   }
   .splitter{
     .splitter();
@@ -92,7 +102,7 @@
     pointer-events: none;
     color: #fff;
     background: #ccc;
-    margin: 40px auto 30px;
+    margin: 20px auto 30px;
   }
   .prev {
     .border1(@anchor-color);
@@ -128,6 +138,9 @@
     border-radius: 10px;
     padding-top: 10px;
     margin-bottom: 10px;
+    .btn-bp {
+      margin-left: 26px;
+    }
   }
 
   .tip-message {

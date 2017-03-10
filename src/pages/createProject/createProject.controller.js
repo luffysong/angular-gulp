@@ -519,7 +519,7 @@ export default class CreateProjectController {
         label: `<div>
           <div class="suggest-logo"><img src='${com.logo}' /></div>
           <div class="suggest-project-text">
-            <p><span>${com.name}</span><span>${that.getIndustry(com.industry)}</span></p>
+            <p><span class="suggest-name">${com.name}</span><span class="suggest-industry">${that.getIndustry(com.industry)}</span></p>
             <p class="brief">${com.brief}</p>
           </div>
           </div> `,

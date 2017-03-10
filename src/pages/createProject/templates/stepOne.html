@@ -6,7 +6,7 @@
 
   <div class="base-info">
     <form name="vm.baseInfo.form">
-      <div mass-autocomplete="{debounce_blur:700,top:40,left:186,maxWidth:460, position:'parent'}"
+      <div mass-autocomplete="{debounce_blur:700,top:37,left:182,maxWidth:460, position:'parent'}"
         class="form-group prlt">
         <div class="tip-message name-message" ng-class="{closeTip: vm.isClose}">大众熟知的名称、主产品名或公司全称的一部分
           <div class="close" ng-click="vm.closeMessage()">x</div>
@@ -160,12 +160,13 @@
             ng-blur="vm.searchClaimList()"
             validator="required,http" message-id="messageWebsite"
             type="text" name="website" class="form-control" />
-          <span id="messageWebsite" class="error-tip" ></span><br/>
+          <span id="messageWebsite" class="error-tip" ></span>
           <label for="">iOS下载地址</label
-          ><span ng-if="vm.baseInfo.form.ioslink.$invalid !== true && vm.baseInfo.form.androidlink.$invalid !== true"
-            class="web-app-tip" >
-            iOS与Android下载链接至少填写一个</span
-            ><input  ng-model="vm.baseInfo.iosLink"
+          ><div class="app-tip">
+            <span ng-if="vm.baseInfo.form.ioslink.$invalid !== true && vm.baseInfo.form.androidlink.$invalid !== true"
+            class="web-app-tip" >iOS与Android下载链接至少填写一个</span>
+          </div
+          ><input  ng-model="vm.baseInfo.iosLink"
             validator="applink,http" message-id="messageIoslink"
             ng-blur="vm.searchClaimList()"
             placeholder="请填写产品iOS下载地址"
@@ -263,12 +264,13 @@
               kr-valid
               validator="http" message-id="messageWebsite"
               type="text" name="website" class="form-control" />
-            <span id="messageWebsite" class="error-tip" ></span>
-            <br/>
-            <span ng-if="vm.baseInfo.form.ioslink.$invalid !== true && vm.baseInfo.form.androidlink.$invalid !== true"
-              class="web-app-tip" >iOS与Android下载链接至少填写一个</span><br/>
-            <label for="">iOS下载地址</label
-            ><input  ng-model="vm.baseInfo.iosLink"
+            <span id="messageWebsite" class="error-tip" ></span
+            ><div class="app-tip">
+              <span ng-if="vm.baseInfo.form.ioslink.$invalid !== true && vm.baseInfo.form.androidlink.$invalid !== true"
+              class="web-app-tip" >iOS与Android下载链接至少填写一个</span>
+            </div
+            ><label for="">iOS下载地址</label>
+            <input  ng-model="vm.baseInfo.iosLink"
               validator="applink,http" message-id="messageIoslink"
               ng-blur="vm.searchClaimList()"
               placeholder="请填写产品iOS下载地址"
@@ -293,11 +295,12 @@
               ng-blur="vm.searchClaimList()"
               validator="required,http" message-id="messageWebsite"
               type="text" name="website" class="form-control" />
-            <span id="messageWebsite" class="error-tip" ></span>
-            <br/>
-            <span ng-if="vm.baseInfo.form.ioslink.$invalid !== true && vm.baseInfo.form.androidlink.$invalid !== true"
-              class="web-app-tip" >iOS与Android下载链接至少填写一个</span><br/>
-            <label for="">iOS下载地址</label
+            <span id="messageWebsite" class="error-tip" ></span
+            ><div class="app-tip">
+              <span ng-if="vm.baseInfo.form.ioslink.$invalid !== true && vm.baseInfo.form.androidlink.$invalid !== true"
+              class="web-app-tip" >iOS与Android下载链接至少填写一个</span>
+            </div
+            ><label for="">iOS下载地址</label
             ><input  ng-model="vm.baseInfo.iosLink"
               validator="applink,http" message-id="messageIoslink"
               ng-blur="vm.searchClaimList()"
@@ -366,7 +369,7 @@
           </div>
         </div>
 
-        <div class="form-group" ng-hide="vm.isHardware() || vm.isNotOnline()">
+        <div class="form-group project-textarea" ng-hide="vm.isHardware() || vm.isNotOnline()">
           <label for="" class="intro-label">项目概述</label
           ><div class="textarea-control">
             <div class="tip-message">客观阐述公司主营业务、目标市场、主要产品等，请勿出现违反广告法的词语
@@ -457,8 +460,9 @@
             <label for=""></label
             ><input type="checkbox" validator="required" ng-model='vm.readed'/>
             <span class="bp-setting">已阅读<a href="https://www.36jr.com/protocol" target="_blank">《融资申请协议》</a></span>
-            <div class="name-tool-tip tool-tip ng-scope">
+            <div class="tip-message bp-tip-message">
               请下载创投助手App处理投资人的申请
+              <div class="angle"></div>
             </div>
           </div>
         </div>
@@ -490,7 +494,7 @@
         </div>
 
         <div class="bg-grey more-show" ng-if="vm.moreInfo">
-          <div class="form-group">
+          <div class="form-group project-textarea">
             <label for=""> 媒体报道</label
             ><input  ng-model="vm.baseInfo.mediaReport"
               placeholder="输入主流媒体报道链接"
@@ -511,7 +515,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group project-textarea">
             <label for="" class="more-lable"> 市场用户</label
             ><div class="textarea-control">
               <textarea  ng-model="vm.baseInfo.userMarket"
@@ -527,7 +531,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group project-textarea">
             <label for="" class="more-lable"> 商业模式</label
             ><div class="textarea-control">
               <textarea  ng-model="vm.baseInfo.businessMode"
@@ -542,7 +546,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group project-textarea">
             <label for="" class="more-lable"> 运营数据</label
             ><div class="textarea-control">
               <textarea  ng-model="vm.baseInfo.operationData"
@@ -557,7 +561,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group project-textarea">
             <label for="" class="more-lable"> 核心资源</label
             ><div class="textarea-control">
               <textarea  ng-model="vm.baseInfo.coreSource"
