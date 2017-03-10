@@ -235,9 +235,9 @@ export default class ThirdpartyIndexController {
           this.project.privilege ='MUST_APPLY';
         }
 
-        delete this.project.lxfsNum;
-        delete this.project.lxfs;
-        delete this.project.applySee;
+        //delete this.project.lxfsNum;
+        //delete this.project.lxfs;
+        //delete this.project.applySee;
 
         const projectInfo = angular.extend({}, this.project);
         this.service.saveCompany(this.project.id, projectInfo)
