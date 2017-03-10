@@ -3,7 +3,8 @@
       <div class="content">
           <ul>
             <li>
-                <a style="background-image: url({{vm.institue.logo}})" class="logo"></a>
+                <a ng-if="vm.institue.logo" style="background-image: url({{vm.institue.logo}})" class="logo"></a>
+                <a ng-if="!vm.institue.logo" style="background-image: url(/images/default-logo.png)" class="logo"></a>
             </li>
             <li>
               <div>
@@ -99,8 +100,11 @@
                 <tr  ng-repeat="item in vm.companys.data">
                   <td>
                       <div class="en-logo">
-                        <a ui-sref="project({id: item.id})"
+                        <a ng-if="item.logo" ui-sref="project({id: item.id})"
                         target="_blank" style="background-image: url({{item.logo}})" class="logo"></a>
+
+                        <a ng-if="!item.logo" ui-sref="project({id: item.id})"
+                        target="_blank" style="background-image: url(/images/default-logo.png)" class="logo"></a>
                       </div>
                       <div class="text">
                           <ul>
