@@ -52,8 +52,8 @@ export default class UcService extends API {
         }
       });
   }
-  setAutoreply(type, val) {
-    return new API(`/user/autoreply/${type}`).update(null, {
+  setAutoreply(val) {
+    return new API('/user/autoreply/').update(null, {
       flag: val
     });
   }
