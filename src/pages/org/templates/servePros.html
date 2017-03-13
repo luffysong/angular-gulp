@@ -7,7 +7,9 @@
       class="number pointer">({{vm.servePros.totalCount}})</span>
     -->
       <div class="pro-status" ng-if=" vm.editPrivilege && vm.companyStats.unProcessedCnt >=0 && vm.companyStats.openedCnt >=0">
-          <span ng-if="vm.companyStats.unProcessedCnt">已提交未处理{{vm.companyStats.unProcessedCnt <= 0? 0 : vm.companyStats.unProcessedCnt}}个</span>
+        <!--vm.companyStats.unProcessedCnt <= 0? 0 : -->
+          <span ng-if="vm.companyStats.unProcessedCnt >= 0">已提交未处理
+            {{vm.companyStats.unProcessedCnt}}个</span>
           <span>&nbsp;|&nbsp;</span>
           <span ng-if="vm.companyStats.openedCnt">已公开{{vm.companyStats.openedCnt}}个</span>
           <span class="onu">（仅您可见）</span>

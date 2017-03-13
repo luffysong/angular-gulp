@@ -71,8 +71,9 @@
               <span>服务项目</span>
         </div>
         <div class="pro-status"
-        ng-if="vm.companys.totalCount > 0 &&  vm.privilegeAddPro && vm.companyStats.openedCnt && vm.companyStats.unProcessedCnt">
-            <span ng-if="vm.companyStats.unProcessedCnt">已提交未处理{{vm.companyStats.unProcessedCnt<=0 ? 0 : vm.companyStats.unProcessedCnt}}个</span>
+        ng-if="vm.companys.totalCount > 0 &&  vm.privilegeAddPro">
+        <!--vm.companyStats.unProcessedCnt <= 0 ? 0 : -->
+            <span ng-if="vm.companyStats.unProcessedCnt >= 0">已提交未处理{{vm.companyStats.unProcessedCnt}}个</span>
             <span>&nbsp;|&nbsp;</span>
             <span ng-if="vm.companyStats.openedCnt">已公开{{vm.companyStats.openedCnt}}个</span>
             <span class="onu">（仅您可见）</span>
