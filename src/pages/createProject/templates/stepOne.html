@@ -342,6 +342,11 @@
               <br/>
             <label for="" class="intro-label"><span class="required">*</span> 项目概述</label
             ><div class="textarea-control">
+              <div class="error-tip-message intro-error-message"
+                ng-show="vm.baseInfo.form.intro.$invalid === true">产品描述应大于80字，不超过1000字
+                <div class="close">x</div>
+                <div class="angle"></div>
+              </div>
               <textarea  ng-model="vm.baseInfo.intro"
                 placeholder="可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字"
                 maxlength="1000"
@@ -357,6 +362,11 @@
           <div class="bg-grey">
             <label for="" class="intro-label"><span class="required">*</span> 项目概述</label
             ><div class="textarea-control">
+              <div class="error-tip-message intro-error-message"
+                ng-show="vm.baseInfo.form.intro.$invalid === true">产品描述应大于80字，不超过1000字
+                <div class="close">x</div>
+                <div class="angle"></div>
+              </div>
               <textarea  ng-model="vm.baseInfo.intro"
                 placeholder="可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字"
                 maxlength="1000"
