@@ -83,6 +83,7 @@ export default class CreateProjectController {
     this['110'] = false;
     this.baseInfo.logoState = false;
     this.moreInfo = false;
+    this.getPrivileges();
   }
 
   ensureLogin() {
@@ -101,6 +102,11 @@ export default class CreateProjectController {
     if (this.$stateParams.id) {
       this.project.loadFinance(this.$stateParams.id, 'auditing')
         .then((financeData) => { this.financeInfo = financeData; });
+
+      this.project.getFinanceInfo(this.$stateParams.id)
+      .then((financeData) => {
+        this.financeVM.finance = financeData;
+      });
     }
     if (this.type === FINANCE) {
       this.title = '融资申请';
@@ -114,6 +120,14 @@ export default class CreateProjectController {
         this.financeState !== this.project.FINANCE_PASS) {
         krData.Alert.alert(`出错啦：${this.financeState.msg || '未知错误'}`);
       }
+    }
+  }
+
+  getPrivileges() {
+    if (this.financeVM.finance.privilege === 'MUST_APPLY') {
+      this.financeVM.privileges = true;
+    } else {
+      this.financeVM.privileges = false;
     }
   }
 
@@ -419,10 +433,8 @@ export default class CreateProjectController {
   }
 
   createRemote(projectInfo) {
-    console.log(projectInfo);
     this.project.create(projectInfo)
       .then(() => {
-        console.log('创建成功');
         this.step = 4;
         this.loadSimilarProjects(this.baseInfo.industry);
       })
@@ -465,7 +477,6 @@ export default class CreateProjectController {
     switch (this.step) {
       case 1:
         this.resetClaim();
-        console.log(form);
         this.go(2, form);
         break;
       case 2:
@@ -495,10 +506,8 @@ export default class CreateProjectController {
     }
   }
   validate(form) {
-    console.log(form);
     if (!$validation.checkValid(form)) {
       validate(form);
-        console.log('validate false');
       krData.Alert.alert('表单不合法，请更正红色表示部分');
       return false;
     }

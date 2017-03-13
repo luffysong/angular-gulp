@@ -7,13 +7,14 @@ const projectApi = new krData.API('/company/:id', [
   'addPrivilege',
   'privilege',
   'addFunds',
-  'funds'
+  'funds',
 ], {
   fundState: 'funds-state',
   similarProject: {
     action: 'same-industry',
     isArray: true,
   },
+  thirdFundsInfo: 'third-funds-info'
 });
 const suggestApi = new krData.API('/suggest', [
   'company',
@@ -103,6 +104,12 @@ export default class CreateProject {
   loadFinance(id,status){
     return projectApi.funds({
       id,status
+    });
+  }
+
+  getFinanceInfo(id) {
+    return projectApi.thirdFundsInfo({
+      id,
     });
   }
 }

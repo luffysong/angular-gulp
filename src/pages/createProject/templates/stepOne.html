@@ -201,12 +201,12 @@
           ><div class="textarea-control">
             <textarea  ng-model="vm.baseInfo.intro"
               placeholder="输入产品介绍"
-              maxlength="100"
-              validator="required"
+              maxlength="1000"
+              validator="required,minlength=80"
               message-id="none"
               type="text" name="intro" class="form-control" ></textarea>
             <div class="textarea-border"></div>
-            <span class="text-length">{{vm.baseInfo.intro.length || 0}}/100</span>
+            <span class="text-length">{{vm.baseInfo.intro.length || 0}}/1000</span>
           </div>
         </div>
 
@@ -344,12 +344,12 @@
             ><div class="textarea-control">
               <textarea  ng-model="vm.baseInfo.intro"
                 placeholder="可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字"
-                maxlength="100"
-                validator="required"
+                maxlength="1000"
+                validator="required,minlength=80"
                 message-id="none"
                 type="text" name="intro" class="form-control" ></textarea>
               <div class="textarea-border"></div>
-              <span class="text-length">{{vm.baseInfo.intro.length || 0}}/100</span>
+              <span class="text-length">{{vm.baseInfo.intro.length || 0}}/1000</span>
             </div>
           </div>
         </div>
@@ -359,12 +359,12 @@
             ><div class="textarea-control">
               <textarea  ng-model="vm.baseInfo.intro"
                 placeholder="可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字"
-                maxlength="100"
-                validator="required"
+                maxlength="1000"
+                validator="required,minlength=80"
                 message-id="none"
                 type="text" name="intro" class="form-control" ></textarea>
               <div class="textarea-border"></div>
-              <span class="text-length">{{vm.baseInfo.intro.length || 0}}/100</span>
+              <span class="text-length">{{vm.baseInfo.intro.length || 0}}/1000</span>
             </div>
           </div>
         </div>
@@ -378,11 +378,11 @@
             </div>
             <textarea  ng-model="vm.baseInfo.intro" showTipMessage
               placeholder="可拆分为产品描述、用户群体、项目愿景、竞争对手等方面详细描述，不超过1000字"
-              maxlength="100"
+              maxlength="1000"
               message-id="none"
               type="text" name="intro" class="form-control"></textarea>
             <div class="textarea-border"></div>
-            <span class="text-length">{{vm.baseInfo.intro.length || 0}}/100</span>
+            <span class="text-length">{{vm.baseInfo.intro.length || 0}}/1000</span>
           </div>
         </div>
         <div class="form-group">

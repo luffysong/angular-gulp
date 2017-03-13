@@ -9,7 +9,7 @@ export default class financeVM {
   }
 
   finance = {
-    privilege: 'INVESTOR',
+    privilege: 'MUST_APPLY',
     financeAmountUnit: 'CNY',
   };
 
