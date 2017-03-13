@@ -46,9 +46,22 @@
               <span>基本介绍</span>
           </div>
           <div class="text">
+            <div class="no-data"  ng-if="!vm.institue.phone && vm.institue.address && vm.institue.intro">
+              <span>
+                  <span class="icon-Company icon"></span>
+                  <span>未收录相关信息</span>
+                </span>
+            </div>
+
               <div ng-if="vm.institue.intro" class="info">
                 <span id="node" text-overflow text="vm.institue.intro" >
                 </span>
+              </div>
+              <div class="no-data"  ng-if="!vm.institue.intro">
+                <span>
+                    <span class="icon-Company icon"></span>
+                    <span>未收录相关信息</span>
+                  </span>
               </div>
               <div class="title" ng-if="vm.institue.phone || vm.institue.address">
                   联系方式
@@ -64,12 +77,7 @@
                   </ul>
               </div>
           </div>
-          <div class="no-data"  ng-if="!vm.institue.intro">
-            <span>
-                <span class="icon-Company icon"></span>
-                <span>未收录相关信息</span>
-              </span>
-          </div>
+
       </div>
       <div class="content serve">
         <div class="btn btn-serve">

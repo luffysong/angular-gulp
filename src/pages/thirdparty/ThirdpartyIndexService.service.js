@@ -16,6 +16,11 @@ const ThirdpartyApi = new krData.API('', [
       url: '/n/api/third-entity/:id/company',
     },
 
+    getThirdFundsInfo: {
+      method: 'get',
+      url: ' /n/api/company/:id/third-funds-info',
+    },
+
     queryInstitutes: {
       method: 'get',
       url: '/n/api/third-entity',
@@ -48,6 +53,10 @@ export default class ThirdpartyIndexService {
 
   getCompanyStas(id) {
     return ThirdpartyApi.getCompanyStas({ id });
+  }
+
+  getThirdFundsInfo(id) {
+    return ThirdpartyApi.getThirdFundsInfo({ id });
   }
 
 }
