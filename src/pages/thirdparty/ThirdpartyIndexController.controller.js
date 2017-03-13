@@ -240,7 +240,7 @@ export default class ThirdpartyIndexController {
         }
 
         this.project.privilege = 'INVESTOR';
-        if (!this.project.applySee) {
+        if (this.project.applySee) {
           this.project.privilege ='MUST_APPLY';
         }
 
