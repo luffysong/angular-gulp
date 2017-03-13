@@ -14,7 +14,6 @@
               投资人
             </span>
           </span>
-
         </div>
         <div class="buttons">
           <a ui-sref="investorInfo({id: vm.user.profileId})" class="btn" ng-if="vm.user.investor && vm.user.profileId !== 0">我的主页</a>
@@ -27,7 +26,9 @@
         <h3>机构</h3>
         <div class="buttons" ng-repeat="item in vm.institute">
           <a ui-sref="org({id:item.eid,eid:item.id})" class="btn" ng-if="item.type =='ORGANIZATION' && item.id && item.eid ">查看{{item.name}}主页</a>
+            <!--
           <a ui-sref="thirdparty({id:item.id})" class="btn" ng-if="item.type =='ORGANIZATION' && item.id ">查看{{item.name}}主页</a>
+        -->
           <a ui-sref="thirdparty({id:item.id})" class="btn" ng-if="item.type =='COMPANY' && item.id ">查看{{item.name}}主页</a>
         </div>
       </div>
