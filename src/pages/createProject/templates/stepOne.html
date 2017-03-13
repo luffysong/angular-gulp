@@ -342,8 +342,12 @@
               <br/>
             <label for="" class="intro-label"><span class="required">*</span> 项目概述</label
             ><div class="textarea-control">
+              <!-- <div class="tip-message">客观阐述公司主营业务、目标市场、主要产品等，请勿出现违反广告法的词语
+                <div class="close">x</div>
+                <div class="angle"></div>
+              </div> -->
               <div class="error-tip-message intro-error-message"
-                ng-show="vm.baseInfo.form.intro.$invalid === true">产品描述应大于80字，不超过1000字
+                ng-show="vm.baseInfo.form.intro.$invalid === true">项目概述应大于80字，不超过1000字
                 <div class="close">x</div>
                 <div class="angle"></div>
               </div>
@@ -352,7 +356,7 @@
                 maxlength="1000"
                 validator="required,minlength=80"
                 message-id="none"
-                type="text" name="intro" class="form-control" ></textarea>
+                type="text" name="intro" class="form-control" showTipMessage></textarea>
               <div class="textarea-border"></div>
               <span class="text-length">{{vm.baseInfo.intro.length || 0}}/1000</span>
             </div>
@@ -362,8 +366,12 @@
           <div class="bg-grey">
             <label for="" class="intro-label"><span class="required">*</span> 项目概述</label
             ><div class="textarea-control">
+              <!-- <div class="tip-message">客观阐述公司主营业务、目标市场、主要产品等，请勿出现违反广告法的词语
+                <div class="close">x</div>
+                <div class="angle"></div>
+              </div> -->
               <div class="error-tip-message intro-error-message"
-                ng-show="vm.baseInfo.form.intro.$invalid === true">产品描述应大于80字，不超过1000字
+                ng-show="vm.baseInfo.form.intro.$invalid === true">项目概述应大于80字，不超过1000字
                 <div class="close">x</div>
                 <div class="angle"></div>
               </div>
@@ -372,7 +380,7 @@
                 maxlength="1000"
                 validator="required,minlength=80"
                 message-id="none"
-                type="text" name="intro" class="form-control" ></textarea>
+                type="text" name="intro" class="form-control" showTipMessage></textarea>
               <div class="textarea-border"></div>
               <span class="text-length">{{vm.baseInfo.intro.length || 0}}/1000</span>
             </div>
