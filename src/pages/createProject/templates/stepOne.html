@@ -336,7 +336,7 @@
             ><input  ng-model="vm.baseInfo.website"
                 placeholder="请填写相关链接，请以http(s)://开头"
                 ng-blur="vm.searchClaimList()"
-                validator="http" message-id="messageWebsite"
+                message-id="messageWebsite"
                 type="text" name="website" class="form-control" />
               <span id="messageWebsite" class="error-tip" ></span>
               <br/>
@@ -407,7 +407,7 @@
             <option value="">选择融资需求</option>
           </select>
         </div>
-        <div class="form-group" ng-if="vm.baseInfo.companyRole !== 'START_UP_MEMBER'">
+        <!-- <div class="form-group" ng-if="vm.baseInfo.companyRole !== 'START_UP_MEMBER'">
           <label for=""><span class="required">*</span> 融资需求</label
           ><select  ng-model="vm.baseInfo.financingNeed"
             ng-options="item.value as item.desc for item in vm.NOT_FOUNDER_FINANCE_NEED"
@@ -416,7 +416,7 @@
             type="text" name="financingNeed" class="form-control" >
             <option value="">选择融资需求</option>
           </select>
-        </div>
+        </div> -->
         <div ng-if="vm.isFinance() && vm.baseInfo.companyRole === 'START_UP_MEMBER'" class="form-group">
           <div class="bg-grey">
             <label for=""><span class="required">*</span> 融资轮次</label
