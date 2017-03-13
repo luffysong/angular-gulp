@@ -80,7 +80,7 @@ export default class ThirdpartyIndexController {
   getCompanyStas(id) {
     service.getCompanyStas(id)
     .then(data => {
-      console.log(data);
+      //console.log(data);
       if(data.unProcessedCnt < 0){
           data.unProcessedCnt =0;
       }
