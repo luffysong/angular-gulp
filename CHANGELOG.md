@@ -1,3 +1,51 @@
+<a name="1.10.0"></a>
+# [1.10.0](f2e/krData/compare/v1.9.12...v1.10.0) (2017-03-14)
+
+
+### Bug Fixes
+
+* 修复文本框计数器不显示问题 ([60138a5](f2e/krData/commits/60138a5))
+* 修改UI走查 ([6c97967](f2e/krData/commits/6c97967))
+* 修改UI走查问题 ([246a8f1](f2e/krData/commits/246a8f1))
+* 修改错误提示文案 ([be93bac](f2e/krData/commits/be93bac))
+* 创始成员不显示创始人联系方式 ([350182b](f2e/krData/commits/350182b))
+* 创始成员联系方式添加展示逻辑 ([6cf4558](f2e/krData/commits/6cf4558))
+* 创建项目必填的项目概述添加错误提示 ([e307ae6](f2e/krData/commits/e307ae6))
+* 取消创建项目中非必填项的验证 ([655a69d](f2e/krData/commits/655a69d))
+* 对联想项目logo做禁止上传效果处理 ([69cf026](f2e/krData/commits/69cf026))
+* 弹出框样式 ([df8b5ac](f2e/krData/commits/df8b5ac))
+* 没有服务项目就不显示 ([fabffc5](f2e/krData/commits/fabffc5))
+* 添加展示更多剪头icon ([5cc15f3](f2e/krData/commits/5cc15f3))
+* 用户中心项目列表logo样式调整 ([4b8c158](f2e/krData/commits/4b8c158))
+* 申请投资人添加引导文案 ([cf6764f](f2e/krData/commits/cf6764f))
+* 申请融资页面调整 ([92fe097](f2e/krData/commits/92fe097))
+* 规范命名 ([3cea692](f2e/krData/commits/3cea692))
+* 解决图片上传选择器弹出慢问题 ([384139f](f2e/krData/commits/384139f))
+* 解决新用户微信没有错误提示问题 ([2f542eb](f2e/krData/commits/2f542eb))
+* 调整文案提示样式 ([ea4b11c](f2e/krData/commits/ea4b11c))
+* 调整新建项目中类似项目logo样式 ([d126902](f2e/krData/commits/d126902))
+* 调整申请融资样式 ([08c7eb8](f2e/krData/commits/08c7eb8))
+* 调整联想项目logo样式 ([5ec6b7e](f2e/krData/commits/5ec6b7e))
+* 隐藏提示信息 ([4b7bc7f](f2e/krData/commits/4b7bc7f))
+* 需求融资添加提示文案 ([e46200d](f2e/krData/commits/e46200d))
+* 非创始成员不显示融资需求 ([5a430d7](f2e/krData/commits/5a430d7))
+* 非创始成员无法选择寻求融资 ([1619514](f2e/krData/commits/1619514))
+* 项目数据没有获取到微信二维码则不展示微信图标 ([f94128d](f2e/krData/commits/f94128d))
+
+
+### Features
+
+* 机构页面添加服务项目 ([bde2386](f2e/krData/commits/bde2386))
+* 添加错误提示样式 ([1b5aed6](f2e/krData/commits/1b5aed6))
+* 第三方机构 ([e8925db](f2e/krData/commits/e8925db))
+* 第三方机构权限 ([11ece7d](f2e/krData/commits/11ece7d))
+* 联系方式自动回复不区分类别 ([730d4b1](f2e/krData/commits/730d4b1))
+* 融资申请添加数据回显 ([f8b0a63](f2e/krData/commits/f8b0a63))
+* 认证投资人联想项目添加类型标识 ([180fd83](f2e/krData/commits/180fd83))
+* 重构创建公司流程及样式 ([606858f](f2e/krData/commits/606858f))
+
+
+
 <a name="1.9.12"></a>
 ## [1.9.12](f2e/krData/compare/v1.9.11...v1.9.12) (2017-03-03)
 
@@ -15,6 +63,7 @@
 ### Bug Fixes
 
 * 修改公告文案 ([bb16d58](f2e/krData/commits/bb16d58))
+* 修改公告文案 ([d6e1eb6](f2e/krData/commits/d6e1eb6))
 
 
 
@@ -25,6 +74,14 @@
 ### Bug Fixes
 
 * 修复大屏首页抖动问题 ([e629fa9](f2e/krData/commits/e629fa9))
+* 项目详情认领人或维护者直接进入编辑页 ([79bc221](f2e/krData/commits/79bc221))
+* 项目详情页隐藏没有数据的相关导航栏 ([085df9b](f2e/krData/commits/085df9b))
+
+
+### Features
+
+* 投资人详情页所属机构添加类型标识 ([feaaaee](f2e/krData/commits/feaaaee))
+* 项目详情添加展示微信二维码 ([f2d0e78](f2e/krData/commits/f2d0e78))
 
 
 
@@ -35,6 +92,7 @@
 ### Bug Fixes
 
 * SEO优化 ([cc494c8](f2e/krData/commits/cc494c8))
+* 项目详情页隐藏没有数据模块并修改提交确认文案 ([fa9ed53](f2e/krData/commits/fa9ed53))
 
 
 
