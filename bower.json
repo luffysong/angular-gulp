@@ -41,7 +41,8 @@
     "angular-perfect-scrollbar": "^0.0.4",
     "angular-ellipsis": "^0.1.7",
     "checklist-model": "^0.10.0",
-    "ng-parallax": "^0.1.8"
+    "ng-parallax": "^0.1.8",
+    "angular-swiper":"^0.4.0"
   },
   "resolutions": {
     "angular": "1.5.8"

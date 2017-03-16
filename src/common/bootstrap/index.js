@@ -24,7 +24,7 @@ const root = {};
 angular.module('@@app', ['@@app.routes', '@@app.components',
   'cgNotify', 'MassAutoComplete', 'ngSanitize', 'perfect_scrollbar',
   '@@app.constants', 'ngResource', '@@app.filters', '@app.services', 'dibari.angular-ellipsis',
-  'validation', 'validation.rule',
+  'validation', 'validation.rule', 'ksSwiper',
 ]);
 angular.module('@@app').service('commonInterceptor', commonInterceptor)
   .config(function debugMode($logProvider) {

@@ -10,10 +10,15 @@ const PROJECT_ORG = [
   '/bower/angular-tooltips/dist/angular-tooltips.css',
   '/bower/qrcode-generator/js/qrcode.js',
   '/bower/angular-qrcode/angular-qrcode.js',
+  '/bower/angular-swiper/dist/angular-swiper.js',
+  '/bower/swiper/dist/js/swiper.js',
 ];
 export default {
   page: {
     home: [
+      '/bower/angular-swiper/dist/angular-swiper.js',
+      '/bower/swiper/dist/js/swiper.js',
+      '/bower/swiper/dist/css/swiper.min.css',
       '/pages/home/index.js',
     ],
     list: [

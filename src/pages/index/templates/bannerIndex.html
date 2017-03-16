@@ -1,0 +1,177 @@
+<div class="announcement" id="announcement" ng-hide="vm.closeAnnouncement">
+  <span class="text">36氪创投助手更新公告</span>
+  <div class="announcement-more"><a announcement href="#">点击查看</a></div>
+  <div class="announcement-close" closeannouncement>x</div>
+</div>
+<div class="home-page" data-stat-module="home">
+
+  <div class="page-top">
+    <ks-swiper-container initial-slide="3"
+        loop="false"
+        autoplay="5000"
+        show-nav-buttons="false"
+        slides-per-view="1"
+        space-between="1"
+        pagination-is-active="true"
+        pagination-clickable="false">
+      <ks-swiper-slide class="swiper-slide" ng-repeat="s in [1,2,3,4]">
+        <div class="swiper-{{s}}">
+        </div>
+      </ks-swiper-slide>
+  </ks-swiper-container>
+      <!--
+    <h1 class="top-title">36氪创投助手</h1>
+    <div class="top-intro">没有你找不到的项目</div>
+    <div class="search-content">
+      <div class="search-container">
+        <div kr-search>
+          <div mass-autocomplete="{debounce_blur:700,top:48,left:30,maxWidth:488,
+            debounce_attach: 100,
+            onClick: vm.onClick, notFocus: true,
+            position:'parent'}"
+            class="search-result-wrapper">
+              <input ng-trim="false" mass-autocomplete-item="vm.autocompleteOptions"
+                ng-model="vm.kw"
+                type="text" class="search-input" placeholder="输入创业项目、投资人、投资机构名称搜索" search-enter />
+              <span tabindex="2" ng-click="vm.searchRecord(vm.kw)" class="input-icon icon-search-icon" data-stat-click="search.{{vm.kw}}">
+              </span>
+          </div>
+        </div>
+      </div>
+      <div class="hot-label">
+        <span class="label-title">热门标签:</span>
+        <a class="label-item" target="_blank" data-stat-click="hotLabel"
+          ng-repeat="item in vm.hotLabel track by $index" ui-sref="label.result({labelId:item.id})" data-stat-click="hotLabel.{{item.id}}">
+          {{item.name}}
+        </a>
+      </div>
+    </div>
+    -->
+  </div>
+
+  <div class="page-content">
+
+    <div class="pro-findNew">
+      <div class="pro-top">
+        <span class="blue-bar"></span>
+        <span class="title">发现新项目</span>
+        <span class="more">查看更多</span>
+      </div>
+      <div class="pro-content">
+          <ul>
+            <li ng-repeat="item in vm.newProject | limitTo:5">
+                  <a href="">
+                    {{item.name}}
+                  </a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="pro-funding">
+    </div>
+    <div class="pro-good">
+    </div>
+
+    <!--
+    <div class="page-item">
+      <div class="item-top">
+        <i class="icon-find-new" ui-sref="list.result({columnId:0,sortField:'STOCK_AT'})" data-stat-click="findNew.icon"></i>
+        <b ui-sref="list.result({columnId:0,sortField:'STOCK_AT'})" data-stat-click="findNew.name">发现新项目</b>
+        <a href="" class="more-link" ui-sref="list.result({columnId:0,sortField:'STOCK_AT'})" data-stat-click="findNew.more">更多</a>
+      </div>
+      <div class="item-content">
+        <div class="layer-container">
+          <div class="padding-container">
+            <div class="item-layer" ng-repeat="item in vm.newProject | limitTo:5">
+              <a style="background-image: url({{item.logo || '/images/default-logo.png'}})" class="project-logo" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}"></a>
+              <div class="item-info">
+                <div class="company-name" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}" title="{{item.name}}">{{item.name}}</div>
+                <div class="company-intro" title="{{item.brief}}">{{item.brief}}</div>
+                <div class="company-detail">
+                  <span>{{item.phase | companyFinancePhase}}</span>
+                  <span class="middle-point"></span>
+                  <span>{{item.industry | industry}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layer-bottom" ui-sref="list.result({columnId:0,sortField:'STOCK_AT'})" data-stat-click="findNew.seeMore">
+          查看更多新项目
+        </div>
+      </div>
+    </div>
+    <div class="page-item">
+      <div class="item-top fund-express">
+        <i class="icon-fund-exp">
+          <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+        </i>
+        <b>融资速递</b>
+      </div>
+      <div class="item-content">
+        <div class="layer-container" perfect-scrollbar wheel-propagation="true" wheel-speed="5" min-scrollbar-length="15" wheel-speed="3" init-top="vm.skipPage">
+          <div class="padding-container">
+            <div class="item-fund" ng-repeat="item in vm.fundExpress">
+              <div class="first-line">
+                <span class="fund-title" ui-sref="project({id:item.id})" data-stat-click="fundExpress.project.{{item.id}}" title="{{item.name}}">{{item.name}}</span>
+                <span class="fund-type" ng-if="item.industry">{{item.industry | industry}}</span>
+                <span class="fund-date">{{item.exposeDate | date:'MM-dd'}}</span>
+              </div>
+              <div class="second-line">
+                {{item.phase | companyFinancePhase}}<span class="middle-line">|</span><span>{{item.investAmount}}<span ng-if="item.investAmount !== '未披露' && item.investAmount !== '保密'">{{item.investAmountUnit | amountUnit}}</span></span>
+              </div>
+              <div class="third-line">
+                投资方:
+                <span ng-if="!item.investParts.length">未披露</span>
+                <span class="invest-part" ng-repeat="obj in item.investParts" ng-if="item.investParts.length">
+                <span ui-sref="org({id:obj.id})" data-stat-click="fundExpress.org.{{obj.id}}">{{obj}}</span>
+                <span class="dot">、</span>
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layer-bottom fund-express">
+          <div class="page-tool">
+            <span class="page-btn prev-btn" ng-click="vm.goPage('prev')" ng-class="{disabled: vm.page === 1}">上一页</span>
+            <span class="page-btn" ng-click="vm.goPage('next')">下一页</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-item">
+      <div class="item-top">
+        <i class="icon-youxuan" ui-sref="list.result({columnId:1,sortField:'ADD_COLUMN_LABEL'})" data-stat-click="youxuan.icon">
+        </i>
+        <b ui-sref="list.result({columnId:1,sortField:'ADD_COLUMN_LABEL'})" data-stat-click="youxuan.name">优选</b>
+        <a href="" class="more-link" ui-sref="list.result({columnId:1,sortField:'ADD_COLUMN_LABEL'})" data-stat-click="youxuan.more">更多</a>
+      </div>
+      <div class="item-content">
+        <div class="layer-container" perfect-scrollbar wheel-propagation="true" wheel-speed="5" min-scrollbar-length="15" wheel-speed="3">
+          <div class="padding-container">
+            <div class="item-layer" ng-repeat="item in vm.recommendList | limitTo:5">
+              <a style="background-image: url({{item.logo || '/images/default-logo.png'}})" class="project-logo" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}"></a>
+              <div class="item-info">
+                <div class="company-name" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}" title="{{item.name}}">{{item.name}}</div>
+                <div class="company-intro" title="{{item.brief}}">{{item.brief}}</div>
+                <div class="company-detail">
+                  <span>{{item.phase | companyFinancePhase}}</span>
+                  <span class="middle-point"></span>
+                  <span>{{item.industry | companyIndustry}}</span>
+                </div>
+                <div class="high-point" ng-if="item.advantage">
+                  <i class="icon-light-point"></i>
+                  <span title="{{item.advantage}}">{{item.advantage}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layer-bottom" ui-sref="list.result({columnId:1,sortField:'ADD_COLUMN_LABEL'})" data-stat-click="youxuan.viewMore">
+          查看更多优选项目
+        </div>
+      </div>
+    </div>
+  -->
+  </div>
+</div>

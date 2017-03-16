@@ -674,10 +674,68 @@
   .page-top {
     width:100%;
     height:300px;
-    background: url('/images/index/top-bg.png') no-repeat center;
+    //background: url('/images/index/top-bg.png') no-repeat center;
     background-size: cover;
-    padding-top:60px;
+    //padding-top:60px;
     text-align: center;
+    overflow: hidden;
+ .swiper-container {
+     width: 100%;
+     height: 300px;
+
+   .swiper-slide{
+      text-align: center;
+      font-size: 18px;
+      /* Center slide text vertically */
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+
+     .swiper-1{
+       width: 100%;
+       height: 300px;
+       background-color: black;
+     }
+     .swiper-2{
+       width: 100%;
+       height: 300px;
+       background-color: yellow;
+     }
+     .swiper-3{
+       width: 100%;
+       height: 300px;
+       background-color: blue;
+     }
+     .swiper-4{
+       width: 100%;
+       height: 300px;
+       background-color: pink;
+     }
+   }
+   .swiper-pagination {
+      left: 45%;
+    }
+    .swiper-pagination-bullet {
+    }
+    .swiper-pagination-bullet-active {
+        background: #FFFFFF;
+    }
+ }
+    ul,li{
+      margin: 0;
+      padding: 0;
+      height: 300px;
+      width: 100%;
+    }
+    ul li{
+      display:inline-block;
+    }
+
     .top-title {
       font-size: 36px;
       color: #FFFFFF;
@@ -780,10 +838,79 @@
     }
   }
   .page-content {
-    width:940px;
-    margin:auto;
+    width:95%;
+    height: auto;
+    margin:0 auto;
     padding-top:37px;
     .clear();
+
+    .pro-findNew,.pro-funding{
+      height: 490px;
+      float: left;
+      margin: 0 20px ;
+      background-color: rgba(107,162,252,0.04);
+    }
+
+    .blue-bar{
+      width:5px;
+      height: 20px;
+      background: #4285F4;
+      line-height: 30px;
+    }
+    .title{
+      font-family: PingFangSC-Semibold;
+      font-size: 20px;
+      color: #222C38;
+      letter-spacing: 0px;
+      line-height: 30px;
+      margin-left:15px;
+    }
+    .more{
+      font-family: PingFangSC-Regular;
+      font-size: 14px;
+      color: #4285F4;
+      letter-spacing: 0px;
+      line-height: 30px;
+      margin-left:15px;
+    }
+
+    .pro-findNew{
+      width: 65%;
+      .pro-top{
+        width:100%;
+        height:30px;
+        overflow: hidden;
+        span{
+          display: block;
+          float: left;
+        }
+      }
+      .pro-content{
+        ul{
+          margin: 0 auto;
+          padding: 0;
+          list-style-type: none;
+          li{
+              padding:40px;
+              list-style-type: none;
+              height: 60px;
+          }
+        }
+      }
+    }
+    .pro-funding{
+      width: 30%;
+    }
+    .pro-good{
+      width:98%;
+      height:200px;
+      margin: 10px 20px;
+      border:1px solid blue;
+      bottom: 0px;
+      float: left;
+    }
+
+
     .page-item {
       float: left;
       width:300px;

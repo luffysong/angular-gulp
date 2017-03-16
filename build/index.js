@@ -30,7 +30,10 @@ const jsplugins = [
   '/local_lib/angular-slick/dist/slick.js',
   '/bower/checklist-model/checklist-model.js',
   /*'/bower/ng-parallax/angular-parallax.min.js',*/
-  '/local_lib/parallax/parallax.min.js'
+  '/local_lib/parallax/parallax.min.js',
+  '/bower/angular-swiper/dist/angular-swiper.js',
+  '/bower/swiper/dist/js/swiper.js',
+  '/bower/swiper/dist/css/swiper.min.css',
 ];
 
 const proxyConfig = {

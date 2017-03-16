@@ -7,4 +7,3 @@ angular.module('@@pages.home', [])
   .directive('searchEnter', searchEnterDirective)
   .directive('initTop', initTopDirective)
   .value('duScrollEasing', 1);
-
