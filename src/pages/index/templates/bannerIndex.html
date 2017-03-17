@@ -55,21 +55,82 @@
       <div class="pro-top">
         <span class="blue-bar"></span>
         <span class="title">发现新项目</span>
-        <span class="more">查看更多</span>
+        <span class="more" ui-sref="list.result({columnId:0,sortField:'STOCK_AT'})" data-stat-click="findNew.seeMore">查看更多</span>
+        <span class="icon-blue-arrow arrow" ui-sref="list.result({columnId:0,sortField:'STOCK_AT'})" data-stat-click="findNew.seeMore"></span>
       </div>
-      <div class="pro-content">
+      <div class="pj-content">
           <ul>
             <li ng-repeat="item in vm.newProject | limitTo:5">
-                  <a href="">
-                    {{item.name}}
-                  </a>
+                <a style="background-image: url({{item.logo || '/images/default-logo.png'}})" class="project-logo" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}"></a>
+                <div class="pj-info">
+                    <div class="company-name" ui-sref="project({id:item.id})" data-stat-click="findNew.project.{{item.id}}" title="{{item.name}}">{{item.name}}</div>
+                    <div class="company-intro" title="{{item.brief}}">{{item.brief}}</div>
+                </div>
+                <div class="company-detail">
+                  <span>{{item.phase | companyFinancePhase}}</span>
+                  <span class="middle-point"></span>
+                  <span>{{item.industry | industry}}</span>
+                </div>
             </li>
           </ul>
       </div>
     </div>
+
     <div class="pro-funding">
+      <div class="pro-top">
+        <span class="blue-bar"></span>
+        <span class="title">融资速递</span>
+        <span class="more">一键提交新项目</span>
+        <span class="icon-blue-arrow arrow"></span>
+      </div>
+      <div class="pj-content">
+          <ul>
+            <li ng-repeat="item in vm.fundExpress | limitTo:5">
+              <div class="fund-title" ui-sref="project({id:item.id})"
+                data-stat-click="fundExpress.project.{{item.id}}" title="{{item.name}}">{{item.name}}</div>
+                <div class="fund-money">
+                  {{item.phase | companyFinancePhase}}
+                  <span class="middle-line">/</span>
+                  <span>{{item.investAmount}}<span ng-if="item.investAmount !== '未披露' && item.investAmount !== '保密'">{{item.investAmountUnit | amountUnit}}</span></span>
+                </div>
+                <div class="fund-investor">
+                  投资方:
+                  <span ng-if="!item.investParts.length">未披露</span>
+                  <span class="invest-part" ng-repeat="obj in item.investParts" ng-if="item.investParts.length">
+                  <span ui-sref="org({id:obj.id})" data-stat-click="fundExpress.org.{{obj.id}}">{{obj}}</span>
+                  <span class="dot">、</span>
+                </span>
+                </div>
+                <div class="fund-in">
+                      <span class="fund-type" ng-if="item.industry">{{item.industry | industry}}</span>
+                      <span class="fund-date">{{item.exposeDate | date:'MM-dd'}}</span>
+                </div>
+            </li>
+          </ul>
+      </div>
     </div>
     <div class="pro-good">
+      <div class="pro-top">
+        <span class="blue-bar"></span>
+        <span class="title">优选项目</span>
+        <span class="more" ui-sref="list.result({columnId:1,sortField:'ADD_COLUMN_LABEL'})" data-stat-click="youxuan.viewMore">查看更多</span>
+        <span class="icon-blue-arrow arrow" ui-sref="list.result({columnId:1,sortField:'ADD_COLUMN_LABEL'})" data-stat-click="youxuan.viewMore"></span>
+      </div>
+      <div class="pjj-content">
+        <ul>
+          <li ng-repeat="item in vm.recommendList | limitTo:4">
+            <a style="background-image: url({{item.logo || '/images/default-logo.png'}})" class="project-logo" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}"></a>
+
+            <div class="company-name" ui-sref="project({id:item.id})" data-stat-click="youxuan.project.{{item.id}}" title="{{item.name}}">{{item.name}}</div>
+            <div class="company-intro" title="{{item.brief}}">{{item.brief}}</div>
+            <div class="company-detail">
+              <span>{{item.phase | companyFinancePhase}}</span>
+              <span class="middle-point"></span>
+              <span>{{item.industry | companyIndustry}}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!--

@@ -50,7 +50,7 @@ export default class homeController {
   getFundExpress() {
     this.skipPage = true;
     const params = {
-      pageSize: 5,
+      pageSize: 10,
       page: this.page,
     };
     return this.projectService.indexFundExpress(params).then(data => {
@@ -67,4 +67,3 @@ export default class homeController {
     });
   }
 }
-

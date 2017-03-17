@@ -20,6 +20,7 @@
 .home-page {
   position: relative;
   padding-bottom: 41px;
+  background-color: white;
   .logo-container {
     position: absolute;
     width: 860px;
@@ -695,6 +696,7 @@
       -ms-flex-align: center;
       -webkit-align-items: center;
       align-items: center;
+      cursor: pointer;
 
      .swiper-1{
        width: 100%;
@@ -837,45 +839,53 @@
       }
     }
   }
+
   .page-content {
-    width:95%;
+    width:1038px;
     height: auto;
     margin:0 auto;
     padding-top:37px;
+
     .clear();
-
-    .pro-findNew,.pro-funding{
-      height: 490px;
+    .pro-findNew,.pro-funding,.pro-good{
       float: left;
-      margin: 0 20px ;
-      background-color: rgba(107,162,252,0.04);
-    }
+      margin: 0 5px ;
 
-    .blue-bar{
-      width:5px;
-      height: 20px;
-      background: #4285F4;
-      line-height: 30px;
-    }
-    .title{
-      font-family: PingFangSC-Semibold;
-      font-size: 20px;
-      color: #222C38;
-      letter-spacing: 0px;
-      line-height: 30px;
-      margin-left:15px;
-    }
-    .more{
-      font-family: PingFangSC-Regular;
-      font-size: 14px;
-      color: #4285F4;
-      letter-spacing: 0px;
-      line-height: 30px;
-      margin-left:15px;
-    }
+      .blue-bar{
+        width:5px;
+        height: 20px;
+        background: #4285F4;
+        line-height: 30px;
+        margin-top: 5px;
+      }
 
-    .pro-findNew{
-      width: 65%;
+      .title{
+        font-family: PingFangSC-Semibold;
+        font-size: 20px;
+        color: #222C38;
+        letter-spacing: 0px;
+        line-height: 30px;
+        margin-left:15px;
+      }
+      .more{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #4285F4;
+        letter-spacing: 0px;
+        line-height: 30px;
+        margin-left:15px;
+        cursor: pointer;
+      }
+      .arrow{
+        font-size: 10px;
+        color: #4285F4;
+        width: 5px;
+        height: 8px;
+        margin-top: 4px;
+        line-height: 20px;
+        margin-left: 5px;
+        cursor: pointer;
+      }
       .pro-top{
         width:100%;
         height:30px;
@@ -885,7 +895,10 @@
           float: left;
         }
       }
-      .pro-content{
+      .pj-content{
+        margin-top:10px;
+        height: 490px;
+        background-color: rgba(107,162,252,0.04);
         ul{
           margin: 0 auto;
           padding: 0;
@@ -898,16 +911,214 @@
         }
       }
     }
-    .pro-funding{
-      width: 30%;
+
+    .pro-findNew{
+      width: 664px;
+      .pj-content ul li{
+        margin-top:10px;
+
+        .project-logo{
+          float: left;
+          width:50px;
+          height:50px;
+          border: 1px solid #E7E7E7;
+          border-radius: 4px;
+          cursor: pointer;
+          background: #fff no-repeat 50%;
+          background-size: contain;
+        }
+
+        .pj-info{
+          width:35%;
+          float: left;
+          margin-left:20px;
+
+          .company-name{
+            font-size: 18px;
+            color: #222C38;
+            letter-spacing: 0px;
+            margin-top: 2px;
+            cursor: pointer;
+
+            width:150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .company-intro{
+            font-size: 14px;
+            color: #5A626D;
+            letter-spacing: 0px;
+            margin-top: 10px;
+            width:180px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+        .company-detail{
+          width:40%;
+          float: left;
+          font-size: 14px;
+          color: #5A626D;
+          letter-spacing: 0px;
+          margin-top: 30px;
+          .middle-point {
+            display: inline-block;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background: #5A626D;
+            vertical-align: middle;
+          }
+        }
+      }
     }
+
+    .pro-funding{
+      width: 354px;
+      overflow: hidden;
+      .pj-content{
+        //overflow-y: scroll;
+        ul{
+          padding-top: 20px;
+        li{
+          margin: 0 auto;
+          width:90%;
+          overflow: hidden;
+          height: 90px;
+          border-bottom: 2px dotted #e5ebf0;
+          .fund-title,.fund-money,.fund-investor{
+            //padding-top:10px;
+          }
+          .fund-title{
+            font-size: 14px;
+            color: #222C38;
+            letter-spacing: 0px;
+            height: 20px;
+            //margin-top: -30px;
+            margin-top: -45px;
+            cursor: pointer;
+            display: inline-block;
+            width: 140px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+          }
+          .fund-money{
+            font-size: 14px;
+            color: #222C38;
+            letter-spacing: 0px;
+            margin-top: -15px;
+          }
+          .fund-investor{
+            font-size: 12px;
+            color: #969FA9;
+            letter-spacing: 0px;
+            margin-top: 10px;
+            .invest-part {
+              &:last-of-type {
+                .dot {
+                  display: none;
+                }
+              }
+            }
+          }
+          .fund-in{
+            float:right;
+            margin-top: -60px;
+            color: #969FA9;
+            letter-spacing: 0px;
+            text-align: center;
+            .fund-type{
+              font-size: 12px;
+              display: inline-block;
+              border: 1px solid #969fa9;
+              height: 18px;
+              padding: 2px;
+            }
+            .fund-date{
+              display:block;
+              font-size: 14px;
+              padding-top:4px;
+            }
+          }
+        }
+        }
+        }
+      }
+
     .pro-good{
       width:98%;
       height:200px;
-      margin: 10px 20px;
-      border:1px solid blue;
+      margin-top:20px;
       bottom: 0px;
       float: left;
+      .pjj-content{
+        margin-top: 24px;
+        ul{
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          li{
+            float:left;
+            height: 126px;
+            width: 228px;
+            background-color: rgba(107,162,252,0.04);
+            margin-left: 26px;
+            .project-logo{
+              float: left;
+              width:50px;
+              height:50px;
+              border: 1px solid #E7E7E7;
+              border-radius: 4px;
+              cursor: pointer;
+              background: #fff no-repeat 50%;
+              background-size: contain;
+              margin-left: -15px;
+              margin-top: 25px;
+            }
+            .company-name,
+            .company-intro,
+            .company-detail{
+              margin-left:50px;
+            }
+            .company-name{
+              font-size: 18px;
+              color: #222C38;
+              margin-top: 30px;
+              width: 160px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              cursor: pointer;
+            }
+            .company-intro{
+              font-size: 14px;
+              color: #969FA9;
+              margin-top: 8px;
+              width: 112px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+            .company-detail{
+              font-size: 14px;
+              color: #5A626D;
+              margin-top: 8px;
+              .middle-point {
+                display: inline-block;
+                width: 2px;
+                height: 2px;
+                border-radius: 50%;
+                background: #5A626D;
+                vertical-align: middle;
+              }
+            }
+          }
+        }
+      }
     }
 
 
