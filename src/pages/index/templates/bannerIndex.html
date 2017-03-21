@@ -6,18 +6,23 @@
 <div class="home-page" data-stat-module="home">
 
   <div class="page-top">
-    <ks-swiper-container initial-slide="3"
+    <ks-swiper-container initial-slide="1"
         loop="false"
         autoplay="5000"
         show-nav-buttons="false"
         slides-per-view="1"
         space-between="1"
         pagination-is-active="true"
+        watch-slides-progress="true"
+        observer="true"
+        observeParents ="true"
+        override-parameters="{ 'observer': true, 'observe-parents': true}"
         pagination-clickable="false">
-      <ks-swiper-slide class="swiper-slide" ng-repeat="s in [1,2,3,4]">
-        <div class="swiper-{{s}}">
-        </div>
+      <ks-swiper-slide class="swiper-slide" ng-repeat="s in vm.bannerList">
+          <img
+          ng-src="{{s.coverUrl}}" ng-click="vm.openLink({s})"/>
       </ks-swiper-slide>
+
   </ks-swiper-container>
       <!--
     <h1 class="top-title">36氪创投助手</h1>
@@ -67,9 +72,9 @@
                     <div class="company-intro" title="{{item.brief}}">{{item.brief}}</div>
                 </div>
                 <div class="company-detail">
-                  <span>{{item.phase | companyFinancePhase}}</span>
-                  <span class="middle-point"></span>
                   <span>{{item.industry | industry}}</span>
+                  <span class="middle-point"></span>
+                  <span>{{item.phase | companyFinancePhase}}</span>
                 </div>
             </li>
           </ul>

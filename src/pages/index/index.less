@@ -698,34 +698,29 @@
       align-items: center;
       cursor: pointer;
 
-     .swiper-1{
-       width: 100%;
-       height: 300px;
-       background-color: black;
-     }
-     .swiper-2{
-       width: 100%;
-       height: 300px;
-       background-color: yellow;
-     }
-     .swiper-3{
-       width: 100%;
-       height: 300px;
-       background-color: blue;
-     }
-     .swiper-4{
-       width: 100%;
-       height: 300px;
-       background-color: pink;
-     }
+      div[class*="swiper"]{
+        width: 100%;
+        height: 300px;
+      }
+      img{
+        height: 300px;
+      }
    }
    .swiper-pagination {
       left: 45%;
     }
     .swiper-pagination-bullet {
     }
+    .swiper-pagination-bullet {
+      width: 8px;
+      height: 8px;
+      display: inline-block;
+      border-radius: 100%;
+      background: #4285f4;
+      opacity: 0.3;
+    }
     .swiper-pagination-bullet-active {
-        background: #FFFFFF;
+        background: red;
     }
  }
     ul,li{
@@ -1057,6 +1052,7 @@
       float: left;
       .pjj-content{
         margin-top: 24px;
+        margin-left:-13px;
         ul{
           list-style-type: none;
           margin: 0;
@@ -1064,9 +1060,9 @@
           li{
             float:left;
             height: 126px;
-            width: 228px;
+            width: 230px;
             background-color: rgba(107,162,252,0.04);
-            margin-left: 26px;
+            margin-left: 27px;
             .project-logo{
               float: left;
               width:50px;

@@ -400,6 +400,11 @@ export default class ProjectService extends API {
     return labelApi.hotLabel();
   }
 
+  //首页banner列表
+  getBannerList(request) {
+    return new API('/banner').get(request).then(data => data.data);
+  }
+
   // FIXME: 此处因为服务端数据出错
   // 临时处理错误数据为空数据
   // 2016-10-23 11:27

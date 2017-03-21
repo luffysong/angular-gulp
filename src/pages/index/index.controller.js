@@ -12,9 +12,9 @@ export default class homeController {
 
   init() {
     this.closeAnnouncement = window.closeAnnouncement;
-    console.log(this.closeAnnouncement);
     this.page = 1;
     phantom.renderAsync([
+      this.getBannerList(),
       this.getProject(),
       this.getFundExpress(),
       this.getHot(),
@@ -36,6 +36,14 @@ export default class homeController {
   recommendPro() {
     return this.projectService.indexRecommendPro().then(data => {
       this.recommendList = data;
+    }).catch(() => {
+    });
+  }
+
+  getBannerList() {
+    return this.projectService.getBannerList().then(data => {
+      console.log(data);
+      this.bannerList = data;
     }).catch(() => {
     });
   }
@@ -66,4 +74,15 @@ export default class homeController {
     }).catch(() => {
     });
   }
+
+  openLink(q){
+    if (q.s){
+        if (q.s.openWay == 1){
+          window.location.href= q.s.url;
+        }else {
+          window.open(q.s.url);
+        }
+    }
+  }
+
 }
