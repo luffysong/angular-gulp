@@ -6,7 +6,7 @@
 <div class="home-page" data-stat-module="home">
 
   <div class="page-top">
-    <ks-swiper-container initial-slide="1"
+    <ks-swiper-container initial-slide="0"
         loop="false"
         autoplay="5000"
         show-nav-buttons="false"
@@ -17,14 +17,18 @@
         observer="true"
         observeParents ="true"
         override-parameters="{ 'observer': true, 'observe-parents': true}"
-        pagination-clickable="false">
+        pagination-clickable="false" ng-if="vm.bannerList">
       <ks-swiper-slide class="swiper-slide" ng-repeat="s in vm.bannerList">
           <img
           ng-src="{{s.coverUrl}}" ng-click="vm.openLink({s})"/>
       </ks-swiper-slide>
-
   </ks-swiper-container>
-      <!--
+
+  <div ng-if="!vm.bannerList" class="no-banner">
+
+  </div>
+      <!--K
+    <div ng-if="vm.bannerList">
     <h1 class="top-title">36氪创投助手</h1>
     <div class="top-intro">没有你找不到的项目</div>
     <div class="search-content">
@@ -61,7 +65,7 @@
         <span class="blue-bar"></span>
         <span class="title">发现新项目</span>
         <span class="more" ui-sref="list.result({columnId:0,sortField:'STOCK_AT'})" data-stat-click="findNew.seeMore">查看更多</span>
-        <span class="icon-blue-arrow arrow" ui-sref="list.result({columnId:0,sortField:'STOCK_AT'})" data-stat-click="findNew.seeMore"></span>
+        <span class="icon-arrow arrow" ui-sref="list.result({columnId:0,sortField:'STOCK_AT'})" data-stat-click="findNew.seeMore"></span>
       </div>
       <div class="pj-content">
           <ul>
@@ -85,12 +89,13 @@
       <div class="pro-top">
         <span class="blue-bar"></span>
         <span class="title">融资速递</span>
-        <span class="more">一键提交新项目</span>
-        <span class="icon-blue-arrow arrow"></span>
+        <span class="more" ui-sref="createProject()" >一键提交新项目</span>
+        <span class="icon-arrow arrow"></span>
       </div>
-      <div class="pj-content">
+      <div class="layer-container" perfect-scrollbar wheel-propagation="true" wheel-speed="5" min-scrollbar-length="15" wheel-speed="3" init-top="vm.skipPage">
+      <div class="pj-content" id ="pro-funding">
           <ul>
-            <li ng-repeat="item in vm.fundExpress | limitTo:5">
+            <li ng-repeat="item in vm.fundExpress">
               <div class="fund-title" ui-sref="project({id:item.id})"
                 data-stat-click="fundExpress.project.{{item.id}}" title="{{item.name}}">{{item.name}}</div>
                 <div class="fund-money">
@@ -113,13 +118,16 @@
             </li>
           </ul>
       </div>
+      </div>
+      <div class="pro-shadow" ng-show="vm.moreData">
+      </div>
     </div>
     <div class="pro-good">
       <div class="pro-top">
         <span class="blue-bar"></span>
         <span class="title">优选项目</span>
         <span class="more" ui-sref="list.result({columnId:1,sortField:'ADD_COLUMN_LABEL'})" data-stat-click="youxuan.viewMore">查看更多</span>
-        <span class="icon-blue-arrow arrow" ui-sref="list.result({columnId:1,sortField:'ADD_COLUMN_LABEL'})" data-stat-click="youxuan.viewMore"></span>
+        <span class="icon-arrow arrow" ui-sref="list.result({columnId:1,sortField:'ADD_COLUMN_LABEL'})" data-stat-click="youxuan.viewMore"></span>
       </div>
       <div class="pjj-content">
         <ul>

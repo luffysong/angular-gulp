@@ -680,6 +680,13 @@
     //padding-top:60px;
     text-align: center;
     overflow: hidden;
+    .no-banner{
+      background: url('/images/index/top-bg.png') no-repeat center;
+      background-size: cover;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+    }
  .swiper-container {
      width: 100%;
      height: 300px;
@@ -697,13 +704,13 @@
       -webkit-align-items: center;
       align-items: center;
       cursor: pointer;
-
       div[class*="swiper"]{
-        width: 100%;
         height: 300px;
       }
       img{
-        height: 300px;
+        width: 100%;
+        min-height: 300px;
+        max-height: 640px;
       }
    }
    .swiper-pagination {
@@ -891,7 +898,7 @@
         }
       }
       .pj-content{
-        margin-top:10px;
+
         height: 490px;
         background-color: rgba(107,162,252,0.04);
         ul{
@@ -909,9 +916,11 @@
 
     .pro-findNew{
       width: 664px;
+      .pj-content{
+        margin-top:10px;
+      }
       .pj-content ul li{
         margin-top:10px;
-
         .project-logo{
           float: left;
           width:50px;
@@ -973,32 +982,43 @@
     .pro-funding{
       width: 354px;
       overflow: hidden;
+      position: relative;
+      .layer-container {
+        position: relative;
+        height:500px;
+        overflow: hidden;
+        margin-top: 10px;
+        .padding-container {
+          padding:0 0;
+        }
+      }
       .pj-content{
-        //overflow-y: scroll;
+        height: auto;
         ul{
           padding-top: 20px;
         li{
           margin: 0 auto;
           width:90%;
           overflow: hidden;
-          height: 90px;
+          height: 94px;
           border-bottom: 2px dotted #e5ebf0;
           .fund-title,.fund-money,.fund-investor{
             //padding-top:10px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
           }
           .fund-title{
             font-size: 14px;
             color: #222C38;
             letter-spacing: 0px;
             height: 20px;
+            width: 140px;
             //margin-top: -30px;
             margin-top: -45px;
             cursor: pointer;
             display: inline-block;
             width: 140px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
             vertical-align: middle;
           }
           .fund-money{
@@ -1012,6 +1032,7 @@
             color: #969FA9;
             letter-spacing: 0px;
             margin-top: 10px;
+            width: 160px;
             .invest-part {
               &:last-of-type {
                 .dot {
@@ -1041,6 +1062,17 @@
           }
         }
         }
+        }
+        .pro-shadow{
+          height:90px;
+          width:100%;
+          position: absolute;
+          bottom:0;
+          margin-bottom:0px;
+          background: white;
+          background: -moz-linear-gradient(bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(bottom, rgba(255,255,255,0.1) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         }
       }
 
@@ -1073,7 +1105,7 @@
               background: #fff no-repeat 50%;
               background-size: contain;
               margin-left: -15px;
-              margin-top: 25px;
+              margin-top: 29px;
             }
             .company-name,
             .company-intro,
