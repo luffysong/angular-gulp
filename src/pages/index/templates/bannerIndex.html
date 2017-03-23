@@ -17,10 +17,10 @@
         observer="true"
         observeParents ="true"
         override-parameters="{ 'observer': true, 'observe-parents': true}"
-        pagination-clickable="false" ng-if="vm.bannerList">
+        pagination-clickable="false" ng-if="vm.bannerList" >
       <ks-swiper-slide class="swiper-slide" ng-repeat="s in vm.bannerList">
           <img
-          ng-src="{{s.coverUrl}}" ng-click="vm.openLink({s})"/>
+          ng-src="{{s.coverUrl}}" ng-click="vm.openLink({s})" data-stat-click="rong.banner"/>
       </ks-swiper-slide>
   </ks-swiper-container>
 
@@ -79,6 +79,10 @@
                   <span>{{item.industry | industry}}</span>
                   <span class="middle-point"></span>
                   <span>{{item.phase | companyFinancePhase}}</span>
+                </div>
+                <div class="company-location">
+                    <span ng-if="item.cityStr">{{item.cityStr}}</span>
+                    <span ng-if="!item.cityStr">—</span>
                 </div>
             </li>
           </ul>
@@ -140,6 +144,8 @@
               <span>{{item.phase | companyFinancePhase}}</span>
               <span class="middle-point"></span>
               <span>{{item.industry | companyIndustry}}</span>
+              <span ng-if="item.cityStr" class="middle-point"></span>
+              <span ng-if="item.cityStr">{{item.cityStr}}</span>
             </div>
           </li>
         </ul>
