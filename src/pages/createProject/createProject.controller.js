@@ -9,7 +9,7 @@ function validate(ctl) {
   $validation.validate(ctl);
 }
 @Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', 'step', 'financeState', 'type', '$window',
-  '$scope', '$q', '$filter', '$stateParams', '$state', 'createProjectService')
+  '$scope', '$q', '$filter', '$stateParams', '$state', 'createProjectService','ngDialog')
 export default class CreateProjectController {
 
   autocompleteOptions = {
@@ -84,6 +84,7 @@ export default class CreateProjectController {
     this.baseInfo.logoState = false;
     this.moreInfo = false;
     this.getPrivileges();
+    this.announcement();
   }
 
   ensureLogin() {
@@ -570,6 +571,30 @@ export default class CreateProjectController {
 
   showMore(){
     this.moreInfo = !this.moreInfo;
+  }
+
+  announcement() {
+    const vm = this;
+    this.announcementDialog = this.ngDialog.open({
+      template: '<div ng-include="\'/pages/createProject/templates/announcement.html\'" center>/div>',
+      plain: true,
+      closeByDocument:false,
+      closeByEscape: false,
+      width: 727,
+      height: 605,
+      appendTo: '#createProjectWrapper',
+      controller: announcementController,
+      controllerAs: 'vm',
+    });
+
+    function announcementController() {
+      this.read = false;
+      this.close = () => {
+        if (this.read) {
+          vm.announcementDialog.close();
+        }
+      };
+    }
   }
 
 }

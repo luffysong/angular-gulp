@@ -2,7 +2,7 @@ import krData from 'krData';
 import ProjectService from '../project/project.service';
 
 @Inject('listIndexService', '$timeout', '$window','$stateParams',
-  '$state','$scope', '$q', 'user', 'ngDialog', '$document')
+  '$state','$scope', '$q', 'user', 'ngDialog', '$document','$location')
 export default class listIndexController {
 
   constructor() {
@@ -27,6 +27,9 @@ export default class listIndexController {
 
     this.handleActive();
     this.selectedOrder();
+    this.$state.go('list.result.page', {
+            id: this.id,
+          });
   }
 
   selectedOrder(){
@@ -122,9 +125,13 @@ export default class listIndexController {
       return;
     }
     this.dataLoading = true;
-    this.currentPage++;
-
-    const params = Object.assign({ columnId: this.$stateParams.columnId || 0, p: this.currentPage },
+    // this.currentPage++;
+    this.$stateParams.p++;
+    // this.$scope.page = this.$stateParams.p;
+    console.log(this.$scope);
+    this.$scope.$emit('change-page', this.$stateParams.p);
+    this.paramsData['p'] = this.$stateParams.p;
+    const params = Object.assign({ columnId: this.$stateParams.columnId || 0 },
       this.paramsFilter(this.paramsData));
     this.projectService.getColumn(params).then(data => {
       this.isInvestorLimit = data.isInvestorLimit;
@@ -145,12 +152,14 @@ export default class listIndexController {
         this.needLogin = true;
         this.noMore = true;
       }
-      if (data.pageData.page === this.currentPage) {
+      // console.log(data.pageData.page);
+      // console.log(this.$stateParams.p);
+      if (data.pageData.page === this.$stateParams.p) {
         angular.forEach(data.pageData.data,(item) => {
           this.listData.data.push(item);
         });
       } else {
-        this.currentPage = data.pageData.page;
+        this.$stateParams.p = data.pageData.page;
       }
     });
 
@@ -303,4 +312,3 @@ export default class listIndexController {
   }
 
 }
-
