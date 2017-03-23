@@ -21,7 +21,7 @@ const listView = {
 
 const list = {
   url: '/detail?{city}&{phase}&{industry}&{label}' +
-    '&{isFundingLimit}&{open}&{columnId:int}&{sortField}&{p}',
+    '&{isFundingLimit}&{open}&{columnId:int}&{sortField}',
   templateUrl: '/pages/list/templates/result.html',
   controllerAs: 'vm',
   controller: 'listIndexController',
@@ -31,7 +31,7 @@ const list = {
 };
 
 const listPage = {
-  url: '',
+  url: '&{p}',
   views: {
     NULL: {
       template: '',

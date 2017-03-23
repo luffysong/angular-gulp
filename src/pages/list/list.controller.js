@@ -17,7 +17,7 @@ export default class listIndexController {
     };
     this.paramsData = {};
 
-    this.currentPage = 1;
+    this.currentPage = this.$location.search().p || 1;
     this.dataLoading = true;
 
     this.$scope.$on('get-list', (e, d) => {
@@ -27,9 +27,8 @@ export default class listIndexController {
 
     this.handleActive();
     this.selectedOrder();
-    this.$state.go('list.result.page', {
-            id: this.id,
-          });
+
+    this.$state.go('list.result.page');
   }
 
   selectedOrder(){
@@ -125,12 +124,10 @@ export default class listIndexController {
       return;
     }
     this.dataLoading = true;
-    // this.currentPage++;
-    this.$stateParams.p++;
-    // this.$scope.page = this.$stateParams.p;
-    console.log(this.$scope);
-    this.$scope.$emit('change-page', this.$stateParams.p);
-    this.paramsData['p'] = this.$stateParams.p;
+    this.currentPage++;
+    console.log(this.currentPage);
+    this.$scope.$broadcast('change-page', this.currentPage);
+    this.paramsData['p'] = this.currentPage;
     const params = Object.assign({ columnId: this.$stateParams.columnId || 0 },
       this.paramsFilter(this.paramsData));
     this.projectService.getColumn(params).then(data => {
@@ -154,12 +151,12 @@ export default class listIndexController {
       }
       // console.log(data.pageData.page);
       // console.log(this.$stateParams.p);
-      if (data.pageData.page === this.$stateParams.p) {
+      if (data.pageData.page === this.currentPage) {
         angular.forEach(data.pageData.data,(item) => {
           this.listData.data.push(item);
         });
       } else {
-        this.$stateParams.p = data.pageData.page;
+        this.currentPage = data.pageData.page;
       }
     });
 
