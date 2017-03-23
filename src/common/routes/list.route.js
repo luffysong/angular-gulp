@@ -21,7 +21,7 @@ const listView = {
 
 const list = {
   url: '/detail?{city}&{phase}&{industry}&{label}' +
-    '&{isFundingLimit}&{open}&{columnId:int}&{sortField}',
+    '&{isFundingLimit}&{open}&{columnId:int}&{sortField}&{p}',
   templateUrl: '/pages/list/templates/result.html',
   controllerAs: 'vm',
   controller: 'listIndexController',
@@ -30,8 +30,20 @@ const list = {
   },
 };
 
+const listPage = {
+  url: '',
+  views: {
+    NULL: {
+      template: '',
+      controllerAs: 'pageVM',
+      controller: 'ListPageController',
+    },
+  },
+};
+
 
 export {
   listView,
   list,
+  listPage
 };

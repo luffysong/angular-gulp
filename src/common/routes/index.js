@@ -3,7 +3,7 @@ import home from './home.route';
 import project, { editProject } from './project.route';
 import createProject, { financeRoute } from './createProject.route';
 import { search } from './search.route';
-import { listView, list } from './list.route';
+import { listView, list, listPage } from './list.route';
 import { organizationView, organization } from './organization.route';
 import { investmentView, investment } from './investment.route';
 import { investorInfoView, investorInfoEdit } from './investorInfo.route';
@@ -32,6 +32,7 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   /* 项目列表页*/
   $stateProvider.state('list', listView);
   $stateProvider.state('list.result', list);
+  $stateProvider.state('list.result.page', listPage);
   /* 标签聚合页*/
   $stateProvider.state('label', labelView);
   $stateProvider.state('label.result', label);

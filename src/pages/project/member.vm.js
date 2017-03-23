@@ -96,6 +96,9 @@ export default class MemberVM extends krData.FormVM {
       this.cancel = () => {
         vm.investorDialog.close();
       };
+      this.remindCancel = () => {
+        vm.remindDialog.close();
+      };
       this.ensure = () => {
         vm.projectService.editmember({
           id: vm.id,
@@ -105,6 +108,20 @@ export default class MemberVM extends krData.FormVM {
             vm.ok();
             krData.Alert.success('数据保存成功');
             vm.investorDialog.close();
+          }, (data) => {
+            if (data.code === 1) {
+              vm.investorDialog.close();
+              vm.remindDialog = vm.ngDialog.open({
+                template: '<div ng-include="\'/pages/project/templates/remind.html\'" center></div>',
+                plain: true,
+                appendTo: '#projectDetailWrapper',
+                className: 'remind-dialog',
+                controller: saveController,
+                controllerAs: 'vm',
+              });
+            } else {
+              krData.Alert.alert(data.msg);
+            }
           });
       };
     }

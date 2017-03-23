@@ -102,6 +102,8 @@ export default class CollectionVM {
     this.collectDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/project/templates/collection.html\'" center>/div>',
       plain: true,
+      closeByDocument:false,
+      closeByEscape: false,
       appendTo: '#projectDetailWrapper',
       controller: collectController,
       controllerAs: 'vm',

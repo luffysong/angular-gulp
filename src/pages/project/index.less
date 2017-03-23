@@ -20,6 +20,8 @@
 @import "./style/productData";
 @import "./style/founder";
 @import "./style/user";
+@import "./style/announcement";
+@import "./style/remind";
 
 .project-wrapper {
   .project-var();
@@ -683,6 +685,83 @@
         border-radius: 4px;
         font-size: 14px;
         color: #969FA9;
+      }
+    }
+  }
+
+  .remind-dialog {
+    text-align: center;
+    padding-top: 60px;
+    z-index: 8000 !important;
+    .ngdialog-overlay {
+      z-index:-1;
+    }
+    .ngdialog-content {
+      padding:0 !important;
+      margin:auto;
+    }
+    .dialog-content {
+      position: relative;
+      width: 532px;
+      height: 267px;
+      padding: 60px 25px 0;
+      .success-tip{
+        height: 30px;
+        text-align: center;
+        .remind{
+          vertical-align: middle;
+          width: 30px;
+        }
+        span{
+          vertical-align: middle;
+          .font(20,30);
+          color: #FFA546;
+          letter-spacing: 0px;
+          margin-left: 12px;
+        }
+      }
+      .content{
+        text-align: left;
+        margin-top: 19px;
+        .font(14,24);
+        letter-spacing: 0px;
+        color: #5A626D;
+        p{
+          line-height: 1.5;
+          white-space: nowrap;
+        }
+        ul {
+          width: 335px;
+          margin: 0 auto;
+        }
+        li {
+          // list-style: initial;
+        }
+        .bold {
+          font-weight: bold;
+        }
+      }
+      .icon-dialogClose {
+        position: absolute;
+        top:20px;
+        right:20px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+      .remind-btn {
+        margin-top: 30px;
+        .btn {
+          display: inline-block;
+          width:118px;
+          height:37px;
+          line-height: 21px;
+          font-size: 14px;
+          color: #FFFFFF;
+          letter-spacing: 0px;
+          background: #6BA2FC;
+          border-radius: 4px;
+          padding-top: 8px;
+        }
       }
     }
   }
