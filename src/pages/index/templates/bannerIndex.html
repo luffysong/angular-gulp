@@ -20,7 +20,7 @@
         pagination-clickable="false" ng-if="vm.bannerList" >
       <ks-swiper-slide class="swiper-slide" ng-repeat="s in vm.bannerList">
           <img
-          ng-src="{{s.coverUrl}}" ng-click="vm.openLink({s})" data-stat-click="rong.banner"/>
+          ng-src="{{s.coverUrl}}" ng-click="vm.openLink({s})" data-stat-click="rong.banner.{{s.id}}"/>
       </ks-swiper-slide>
   </ks-swiper-container>
 
@@ -118,6 +118,9 @@
                 <div class="fund-in">
                       <span class="fund-type" ng-if="item.industry">{{item.industry | industry}}</span>
                       <span class="fund-date">{{item.exposeDate | date:'MM-dd'}}</span>
+                </div>
+                <div class="dot-line">
+
                 </div>
             </li>
           </ul>
