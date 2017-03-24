@@ -9,7 +9,7 @@ function validate(ctl) {
   $validation.validate(ctl);
 }
 @Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', 'step', 'financeState', 'type', '$window',
-  '$scope', '$q', '$filter', '$stateParams', '$state', 'createProjectService','ngDialog')
+  '$scope', '$q', '$filter', '$stateParams', '$state', 'createProjectService','ngDialog','$timeout')
 export default class CreateProjectController {
 
   autocompleteOptions = {
@@ -57,7 +57,7 @@ export default class CreateProjectController {
   project = this.createProjectService;
   baseInfo = {};
   user = {};
-
+  createPermission = false;
   financeVM = new FinanceVM(this.$scope, this.$stateParams.name);
 
 
@@ -74,6 +74,7 @@ export default class CreateProjectController {
   }
 
   init() {
+    this.getCreatePermission();
     this.ensureLogin();
     this.initBaseInfo();
     this.watchCompanyType();
@@ -84,7 +85,19 @@ export default class CreateProjectController {
     this.baseInfo.logoState = false;
     this.moreInfo = false;
     this.getPrivileges();
-    this.announcement();
+    if (this.createPermission) {
+      this.announcement();
+    }
+  }
+
+  getCreatePermission() {
+    this.project.getCreatePermission()
+      .then(data => {
+        this.createPermission = true;
+    }).catch((err) => {
+      console.log(err);
+      this.loadSimilarProjects(err.data.industry);
+    });
   }
 
   ensureLogin() {

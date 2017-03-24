@@ -112,4 +112,10 @@ export default class CreateProject {
       id,
     });
   }
+
+  // 获取创建公司次数权限
+  getCreatePermission() {
+    this.permission = new krData.API('/company/action/create-time').get();
+    return this.permission;
+  }
 }

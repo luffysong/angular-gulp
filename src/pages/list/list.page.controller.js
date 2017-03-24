@@ -6,5 +6,9 @@ export default class ListPageController {
         this.$location.search('p', d);
       }, 2000);
     });
+
+    this.$scope.$on('change-url', (e, d) => {
+      this.$location.url('/project/' + d);
+    });
   }
 }
