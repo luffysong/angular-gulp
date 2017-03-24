@@ -12,10 +12,10 @@ export default class listParentController {
 
   init() {
     this.closeAnnouncement = window.closeAnnouncement;
-    console.log(this.closeAnnouncement);
     this.params = {
 
     };
+    this.currentPage = this.$location.search().p || 1;
     /* 筛选器展开*/
     this.open = {
       filter: false,
@@ -72,6 +72,7 @@ export default class listParentController {
       }
       this.params = {};
       angular.extend(this.params, d);
+      this.params['p'] = this.currentPage;
       const params = Object.assign({ columnId: this.params.columnId || 0 },
         this.paramsFilter(this.params));
       this.projectService.getColumn(params).then(data => {
