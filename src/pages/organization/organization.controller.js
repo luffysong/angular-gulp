@@ -16,7 +16,7 @@ export default class organizationIndexController {
       data: []
     };
 
-    this.currentPage = this.$location.search().p || 1;
+    this.currentPage = this.$location.search().page || 1;
 
     this.dataLoading = false;
 
