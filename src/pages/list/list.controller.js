@@ -280,8 +280,8 @@ export default class listIndexController {
       tags: labelArr,
       closeMe: this.closeMe.bind(this),
     };
-
     this.$scope.$emit('open-sideBar', columnOptions);
+    // this.$scope.$broadcast('change-url', id);
   }
 
   closeMe() {

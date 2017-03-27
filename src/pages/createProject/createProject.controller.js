@@ -9,7 +9,7 @@ function validate(ctl) {
   $validation.validate(ctl);
 }
 @Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', 'step', 'financeState', 'type', '$window',
-  '$scope', '$q', '$filter', '$stateParams', '$state', 'createProjectService','ngDialog')
+  '$scope', '$q', '$filter', '$stateParams', '$state', 'createProjectService','ngDialog','$timeout')
 export default class CreateProjectController {
 
   autocompleteOptions = {
@@ -57,7 +57,7 @@ export default class CreateProjectController {
   project = this.createProjectService;
   baseInfo = {};
   user = {};
-
+  createPermission = false;
   financeVM = new FinanceVM(this.$scope, this.$stateParams.name);
 
 
@@ -74,6 +74,7 @@ export default class CreateProjectController {
   }
 
   init() {
+    this.getCreatePermission();
     this.ensureLogin();
     this.initBaseInfo();
     this.watchCompanyType();
@@ -84,7 +85,16 @@ export default class CreateProjectController {
     this.baseInfo.logoState = false;
     this.moreInfo = false;
     this.getPrivileges();
-    this.announcement();
+  }
+
+  getCreatePermission() {
+    this.project.getCreateNumberPermission()
+      .then(data => {
+        this.createPermission = true;
+        this.announcement();
+    }).catch((err) => {
+      this.loadSimilarProjects(err.data.industry);
+    });
   }
 
   ensureLogin() {
@@ -576,7 +586,7 @@ export default class CreateProjectController {
   announcement() {
     const vm = this;
     this.announcementDialog = this.ngDialog.open({
-      template: '<div ng-include="\'/pages/createProject/templates/announcement.html\'" center>/div>',
+      template: '<div ng-include="\'/pages/createProject/templates/announcement.html\'">/div>',
       plain: true,
       closeByDocument:false,
       closeByEscape: false,

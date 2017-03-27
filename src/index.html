@@ -100,28 +100,19 @@
 </script>
 
 <script>
-  window.closeAnnouncement = false;
-  window.onscroll = function(){
-    var scrollTop = document.body.scrollTop;
-    if(scrollTop >= 50){
-      $('#announcement').css('position','fixed');
-      // document.getElementById('announcement').style.position = 'fixed';
-      $('.announcement-more').css('right','218px');
-      $('.announcement-close').css('right','154px');
-    }else if (scrollTop <= 1){
-      $('#announcement').css('position','relative');
-      $('.announcement-more').css('right','78px');
-      $('.announcement-close').css('right','14px');
-    }
-  }
-
-  // setTimeout(function(){
-  //   $('.announcement-close').unbind('click');
-  //   $('.announcement-close').bind('click',function (){
-  //       window.closeAnnouncement = true;
-  //       $('.announcement').hide();
-  //   });
-  // },2000);
+  // window.closeAnnouncement = false;
+  // window.onscroll = function(){
+  //   var scrollTop = document.body.scrollTop;
+  //   if(scrollTop >= 50){
+  //     $('#announcement').css('position','fixed');
+  //     $('.announcement-more').css('right','218px');
+  //     $('.announcement-close').css('right','154px');
+  //   }else if (scrollTop <= 1){
+  //     $('#announcement').css('position','relative');
+  //     $('.announcement-more').css('right','78px');
+  //     $('.announcement-close').css('right','14px');
+  //   }
+  // }
 </script>
 
 <script type="text/ng-template" id="announcementTemplate.html">

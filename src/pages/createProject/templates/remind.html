@@ -1,22 +1,20 @@
-<div class="remind-wrapper">
+<div class="create-remind-wrapper">
   <div class="success-tip">
-    <img src="/images/icon_remind.png" class="complete" alt="icon-complete">
+    <img src="/images/icon_remind.png" class="remind" alt="icon-complete">
     <span>每天仅可以提交一个项目，请明天继续提交！</span>
   </div>
   <div class="content">
-    <div class="center">
-      <ul>
-        <li>
-          <p>将在3个工作日内被审核，请勿重复提交</p>
-        </li>
-        <li>
-          <p>项目审核的结果会通过邮件、系统通知、App进行告知</p>
-        </li>
-      </ul>
-    </div>
+    <ul>
+      <li>
+        <p>将在3个工作日内被审核，请勿重复提交</p>
+      </li>
+      <li>
+        <p>项目审核的结果会通过邮件、系统通知、App进行告知</p>
+      </li>
+    </ul>
   </div>
   <div class="view">
-    <a ng-if="vm.isFunder() || vm.isMaintainer() || vm.financeVM.id" class="investor" ui-sref="investorList.result" target="_blank">
+    <a class="investor" ui-sref="investorList.result" target="_blank">
       浏览投资人</a>
   </div>
 </div>
