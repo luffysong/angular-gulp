@@ -114,7 +114,7 @@ export default class CreateProject {
   }
 
   // 获取创建公司次数权限
-  getCreatePermission() {
+  getCreateNumberPermission() {
     this.permission = new krData.API('/company/action/create-time').get();
     return this.permission;
   }

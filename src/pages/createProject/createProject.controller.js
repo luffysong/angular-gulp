@@ -85,17 +85,14 @@ export default class CreateProjectController {
     this.baseInfo.logoState = false;
     this.moreInfo = false;
     this.getPrivileges();
-    if (this.createPermission) {
-      this.announcement();
-    }
   }
 
   getCreatePermission() {
-    this.project.getCreatePermission()
+    this.project.getCreateNumberPermission()
       .then(data => {
         this.createPermission = true;
+        this.announcement();
     }).catch((err) => {
-      console.log(err);
       this.loadSimilarProjects(err.data.industry);
     });
   }
