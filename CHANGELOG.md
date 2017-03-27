@@ -1,3 +1,13 @@
+<a name="1.11.1"></a>
+## [1.11.1](f2e/krData/compare/v1.11.0...v1.11.1) (2017-03-27)
+
+
+### Bug Fixes
+
+* 列表页记录页数 ([8db859d](f2e/krData/commits/8db859d))
+
+
+
 <a name="1.11.0"></a>
 # [1.11.0](f2e/krData/compare/v1.10.1...v1.11.0) (2017-03-27)
 
