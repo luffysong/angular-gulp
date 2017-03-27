@@ -23,9 +23,21 @@ const organization = {
   controller: 'organizationIndexController',
 };
 
+const organizationPage = {
+  url: '&{page}',
+  views: {
+    NULL: {
+      template: '',
+      controllerAs: 'pageVM',
+      controller: 'organizationPageController',
+    },
+  },
+};
+
 
 export {
   organizationView,
   organization,
+  organizationPage
 };
 

@@ -4,13 +4,13 @@ import project, { editProject } from './project.route';
 import createProject, { financeRoute } from './createProject.route';
 import { search } from './search.route';
 import { listView, list, listPage } from './list.route';
-import { organizationView, organization } from './organization.route';
+import { organizationView, organization, organizationPage } from './organization.route';
 import { investmentView, investment } from './investment.route';
 import { investorInfoView, investorInfoEdit } from './investorInfo.route';
-import { investorListView, investorList } from './investorList.route';
+import { investorListView, investorList, investorPage } from './investorList.route';
 import { labelView, label } from './label.route';
 import { landingView, landing } from './landing.route';
-import { followView, follow } from './follow.route';
+import { followView, follow, followPage } from './follow.route';
 import org from './org.route.js';
 import investorValidate from './investorValidate.route';
 import { failView, fail } from './fail.route';
@@ -42,6 +42,7 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   /* 我的关注*/
   $stateProvider.state('follow', followView);
   $stateProvider.state('follow.result', follow);
+  $stateProvider.state('follow.result.page', followPage);
 
 
   $urlRouterProvider.when('^/list', '^/list/result');
@@ -49,6 +50,7 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   /* 投资机构列表页*/
   $stateProvider.state('organization', organizationView);
   $stateProvider.state('organization.result', organization);
+  $stateProvider.state('organization.result.page', organizationPage);
   /* 投资案例列表页*/
   $stateProvider.state('investment', investmentView);
   $stateProvider.state('investment.result', investment);
@@ -64,6 +66,7 @@ function configRoute($stateProvider, $locationProvider, $urlRouterProvider) {
   /* 投资人筛选页*/
   $stateProvider.state('investorList', investorListView);
   $stateProvider.state('investorList.result', investorList);
+  $stateProvider.state('investorList.result.page', investorPage);
 
   // 工作台
   $stateProvider.state('workstationCompare', workstationCompare);

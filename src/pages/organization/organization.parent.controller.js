@@ -2,7 +2,7 @@ import krData from 'krData';
 import OrganizationService from '../organization/organization.service';
 
 
-@Inject('$timeout', '$window','$stateParams','$state','$scope')
+@Inject('$timeout', '$window','$stateParams','$state','$scope','$location')
 export default class organizationParentController {
 
   constructor() {
@@ -17,6 +17,8 @@ export default class organizationParentController {
     this.params = {
 
     };
+    this.currentPage = this.$location.search().page || 1;
+
     /*筛选器展开*/
     this.open = {
       filter: false,
@@ -39,6 +41,7 @@ export default class organizationParentController {
     this.$scope.$on('get-change',(e,d) => {
       this.params = {};
       angular.extend(this.params,d);
+      this.params['page'] = this.currentPage;
       var params = Object.assign(this.paramsFilter(this.params));
       this.organizationService.getList(params).then(data => {
         this.$scope.$broadcast('get-list',data.org);

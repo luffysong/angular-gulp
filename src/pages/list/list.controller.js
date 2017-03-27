@@ -125,7 +125,6 @@ export default class listIndexController {
     }
     this.dataLoading = true;
     this.currentPage++;
-    console.log(this.currentPage);
     this.$scope.$broadcast('change-page', this.currentPage);
     this.paramsData['p'] = this.currentPage;
     const params = Object.assign({ columnId: this.$stateParams.columnId || 0 },

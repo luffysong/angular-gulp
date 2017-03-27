@@ -63,7 +63,7 @@ class labelController {
 }
 
 @Inject('followIndexService', '$timeout', '$window', '$stateParams', '$state', '$scope',
-  'user', 'ngDialog')
+  'user', 'ngDialog','$location')
 export default class followParentController {
 
   constructor() {
@@ -78,6 +78,8 @@ export default class followParentController {
     this.params = {
 
     };
+    this.currentPage = this.$location.search().p || 1;
+
     /* 筛选器展开 */
     this.open = {
       filter: false,
@@ -116,7 +118,7 @@ export default class followParentController {
 
     this.$scope.$on('get-change', (e, d) => {
       angular.extend(this.params, d);
-
+      this.params['p'] = this.currentPage;
       if (this.params.labelId) {
         const params = Object.assign({}, this.paramsFilter(this.params));
         this.projectService.getFollowCompany(params).then(data => {

@@ -3,7 +3,7 @@ import InvestorService from '../investorList/investorList.service';
 import ProjectService from '../project/project.service';
 
 
-@Inject('$timeout', '$window', '$stateParams', '$state', '$scope')
+@Inject('$timeout', '$window', '$stateParams', '$state', '$scope','$location')
 export default class investorListParentController {
 
   constructor() {
@@ -18,6 +18,8 @@ export default class investorListParentController {
     this.params = {
 
     };
+    this.currentPage = this.$location.search().p || 1;
+
     /* 筛选器展开*/
     this.open = {
       filter: false,
@@ -42,6 +44,7 @@ export default class investorListParentController {
     this.$scope.$on('get-change', (e, d) => {
       this.params = {};
       angular.extend(this.params, d);
+      this.params['p'] = this.currentPage;
       const params = Object.assign(this.paramsFilter(this.params));
       this.investorService.getList(params).then(data => {
         this.$scope.$broadcast('get-list', data);

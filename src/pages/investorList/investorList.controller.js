@@ -1,7 +1,7 @@
 import krData from 'krData';
 import InvestorService from '../investorList/investorList.service';
 
-@Inject('$timeout', '$window','$stateParams','$state','$scope', '$q')
+@Inject('$timeout', '$window','$stateParams','$state','$scope', '$q','$location')
 export default class investorListIndexController {
 
   constructor() {
@@ -16,11 +16,11 @@ export default class investorListIndexController {
       data: []
     };
 
+    this.currentPage = this.$location.search().p || 1;
+
     this.dataLoading = false;
 
     this.paramsData = {};
-
-    this.currentPage = 1;
 
     this.$scope.$on('get-list',(e,d) => {
       this.listData = d.pageData;
@@ -28,6 +28,7 @@ export default class investorListIndexController {
     });
 
     this.handleActive();
+    this.$state.go('investorList.result.page');
   }
 
   /*根据路由参数激活*/
@@ -57,6 +58,8 @@ export default class investorListIndexController {
     this.dataLoading = true;
 
     this.currentPage++;
+    this.$scope.$broadcast('change-page', this.currentPage);
+    this.paramsData['p'] = this.currentPage;
     var params = Object.assign({p:this.currentPage},this.paramsFilter(this.paramsData));
     this.investorService.getList(params).then(data => {
       if(!data.pageData || !data.pageData.data){

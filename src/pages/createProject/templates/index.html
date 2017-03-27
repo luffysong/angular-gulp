@@ -7,12 +7,12 @@
       <h1>{{ vm.title || '添加创业项目' }}</h1>
       <span>让投资人更全面的了解</span>
     </div>
-    <div ng-if="!vm.createPermission" ng-include="'/pages/createProject/templates/remind.html'"></div>
     <div ng-show="vm.step === 1 && vm.createPermission" ng-include="'/pages/createProject/templates/stepOne.html'"> </div>
     <div ng-show="vm.step === 2" ng-include="'/pages/createProject/templates/stepTwo.html'"> </div>
     <div ng-show="vm.step === 3" ng-include="'/pages/createProject/templates/finance-apply.html'"> </div>
     <div ng-if="vm.step === 4 && vm.type === 'finance'" ng-include="'/pages/createProject/templates/financeAudit.html'"> </div>
     <div ng-if="vm.step === 4 && vm.type !== 'finance'" ng-include="'/pages/createProject/templates/stepFour.html'"></div>
+    <div ng-if="!vm.createPermission" ng-include="'/pages/createProject/templates/remind.html'"></div>
 
   </div>
   <div ng-if="(vm.step === 4 || !vm.createPermission) && vm.similarProjects.length" class="create-project-module smilar-project-module">

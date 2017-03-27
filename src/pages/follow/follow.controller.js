@@ -1,7 +1,7 @@
 import krData from 'krData';
 import ProjectService from '../project/project.service';
 
-@Inject('followIndexService', '$timeout', '$window','$stateParams','$state','$scope', '$q', 'user', 'ngDialog')
+@Inject('followIndexService', '$timeout', '$window','$stateParams','$state','$scope', '$q', 'user', 'ngDialog','$location')
 export default class followIndexController {
 
   constructor() {
@@ -23,7 +23,7 @@ export default class followIndexController {
 
     this.paramsData = {};
 
-    this.currentPage = 1;
+    this.currentPage = this.$location.search().p || 1;
 
 
     this.$scope.$on('get-list',(e,d) => {
@@ -33,6 +33,7 @@ export default class followIndexController {
 
     this.handleActive();
     this.selectedOrder();
+    this.$state.go('follow.result.page');
   }
 
   selectedOrder(){
@@ -124,7 +125,8 @@ export default class followIndexController {
     this.dataLoading = true;
 
     this.currentPage++;
-
+    this.$scope.$broadcast('change-page', this.currentPage);
+    this.paramsData['p'] = this.currentPage;
     if(!this.$stateParams.labelId){
       var params = Object.assign({columnId:this.$stateParams.columnId || 2,p:this.currentPage},this.paramsFilter(this.paramsData));
       this.projectService.getColumn(params).then(data => {

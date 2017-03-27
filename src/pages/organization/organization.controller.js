@@ -1,7 +1,7 @@
 import krData from 'krData';
 import OrganizationService from '../organization/organization.service';
 
-@Inject('$timeout', '$window','$stateParams','$state','$scope', '$q')
+@Inject('$timeout', '$window','$stateParams','$state','$scope', '$q','$location')
 export default class organizationIndexController {
 
   constructor() {
@@ -16,6 +16,8 @@ export default class organizationIndexController {
       data: []
     };
 
+    this.currentPage = this.$location.search().p || 1;
+
     this.dataLoading = false;
 
     this.paramsData = {};
@@ -28,6 +30,7 @@ export default class organizationIndexController {
     });
 
     this.handleActive();
+    this.$state.go('organization.result.page');
   }
 
   /*根据路由参数激活*/
@@ -57,6 +60,8 @@ export default class organizationIndexController {
     this.dataLoading = true;
 
     this.currentPage++;
+    this.$scope.$broadcast('change-page', this.currentPage);
+    this.paramsData['page'] = this.currentPage;
     var params = Object.assign({page:this.currentPage},this.paramsFilter(this.paramsData));
     this.organizationService.getList(params).then(data => {
       if(!data.org || !data.org.data){

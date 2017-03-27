@@ -23,7 +23,19 @@ const investorList = {
   controller: 'investorListIndexController',
 };
 
+const investorPage = {
+  url: '&{p}',
+  views: {
+    NULL: {
+      template: '',
+      controllerAs: 'pageVM',
+      controller: 'investorPageController',
+    },
+  },
+};
+
 export {
   investorListView,
   investorList,
+  investorPage
 };

@@ -57,7 +57,7 @@ export default class CreateProjectController {
   project = this.createProjectService;
   baseInfo = {};
   user = {};
-  createPermission = false;
+  createPermission = true;
   financeVM = new FinanceVM(this.$scope, this.$stateParams.name);
 
 
@@ -90,9 +90,9 @@ export default class CreateProjectController {
   getCreatePermission() {
     this.project.getCreateNumberPermission()
       .then(data => {
-        this.createPermission = true;
         this.announcement();
     }).catch((err) => {
+      this.createPermission = false;
       this.loadSimilarProjects(err.data.industry);
     });
   }

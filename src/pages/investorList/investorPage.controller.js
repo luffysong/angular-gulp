@@ -1,5 +1,5 @@
 @Inject('$scope', '$stateParams', '$state', '$timeout', '$location')
-export default class ListPageController {
+export default class InvestorPageController {
   constructor() {
     this.$scope.$on('change-page', (e, d) => {
       this.$timeout(() => {

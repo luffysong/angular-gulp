@@ -23,8 +23,19 @@ const follow = {
   },
 };
 
+const followPage = {
+  url: '&{p}',
+  views: {
+    NULL: {
+      template: '',
+      controllerAs: 'pageVM',
+      controller: 'followPageController',
+    },
+  },
+};
 
 export {
   followView,
   follow,
+  followPage
 };
