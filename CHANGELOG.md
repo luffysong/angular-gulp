@@ -1,3 +1,24 @@
+<a name="1.11.0"></a>
+# [1.11.0](f2e/krData/compare/v1.10.1...v1.11.0) (2017-03-27)
+
+
+### Bug Fixes
+
+* bug修复 ([3f5d593](f2e/krData/commits/3f5d593))
+* 修复创建项目用户须知没有弹出问题 ([3b8bdf7](f2e/krData/commits/3b8bdf7))
+* 修改更新项目提示文案 ([bfde032](f2e/krData/commits/bfde032))
+* 修改项目审核提示文案 ([8735e56](f2e/krData/commits/8735e56))
+* 列表页记录数据页数 ([278ccc6](f2e/krData/commits/278ccc6))
+* 取消公告栏 ([bbeb810](f2e/krData/commits/bbeb810))
+
+
+### Features
+
+* 新增每天添加或编辑项目次数限制 ([7999326](f2e/krData/commits/7999326))
+* 首页改版 ([e94cfd7](f2e/krData/commits/e94cfd7))
+
+
+
 <a name="1.10.1"></a>
 ## [1.10.1](f2e/krData/compare/v1.10.0...v1.10.1) (2017-03-14)
 
@@ -5,6 +26,7 @@
 ### Bug Fixes
 
 * 调整弹出层样式 ([dc50001](f2e/krData/commits/dc50001))
+* 调整弹出层样式 ([414a71a](f2e/krData/commits/414a71a))
 
 
 
