@@ -1,3 +1,13 @@
+<a name="1.11.2"></a>
+## [1.11.2](f2e/krData/compare/v1.11.1...v1.11.2) (2017-03-27)
+
+
+### Bug Fixes
+
+* 修改机构列表分页 ([03be285](f2e/krData/commits/03be285))
+
+
+
 <a name="1.11.1"></a>
 ## [1.11.1](f2e/krData/compare/v1.11.0...v1.11.1) (2017-03-27)
 
