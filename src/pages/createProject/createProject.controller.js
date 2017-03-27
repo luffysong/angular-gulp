@@ -586,7 +586,7 @@ export default class CreateProjectController {
   announcement() {
     const vm = this;
     this.announcementDialog = this.ngDialog.open({
-      template: '<div ng-include="\'/pages/createProject/templates/announcement.html\'" center>/div>',
+      template: '<div ng-include="\'/pages/createProject/templates/announcement.html\'">/div>',
       plain: true,
       closeByDocument:false,
       closeByEscape: false,
