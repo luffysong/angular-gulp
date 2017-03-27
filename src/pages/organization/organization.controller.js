@@ -22,8 +22,6 @@ export default class organizationIndexController {
 
     this.paramsData = {};
 
-    this.currentPage = 1;
-
     this.$scope.$on('get-list',(e,d) => {
       this.listData = d;
       this.dataLoading = false;
