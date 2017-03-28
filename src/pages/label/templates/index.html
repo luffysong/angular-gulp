@@ -90,7 +90,7 @@
     </div>
 
   </div>
-  <div kr-loading loading="parentVm.labelLoading"></div>
+  <div kr-loading loading="parentVm.labelLoading" ng-hide="!krData.utls.isEmpty(parentVm.labelDetail)"></div>
   <!--<div class="label-converge">
     <section class="title-info">
       <span class="project-list" ui-sref="list.result({columnId:0})" data-stat-click="goList">项目列表</span> ＞ {{parentVm.labelDetail.name}}

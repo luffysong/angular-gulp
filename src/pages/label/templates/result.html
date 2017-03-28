@@ -105,7 +105,7 @@
           </td>
         </tr>
       </table>
-      <div class="load-more" ng-show="vm.dataLoading && !vm.noMore">
+      <div class="load-more" ng-show="vm.dataLoading && !vm.noMore" ng-hide="!krData.utls.isEmpty(vm.listData.data)">
         正在加载更多...
       </div>
       <div class="load-more" ng-if="vm.noMore">
