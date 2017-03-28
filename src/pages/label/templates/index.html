@@ -15,7 +15,7 @@
             <div class="clear-both">
               <div class="left-content">
                 <span class="label-name">{{parentVm.labelDetail.name}}</span>
-                <a href="javascript:void(0)" class="follow-btn" ng-class="{followed: !parentVm.labelDetail.isFollowed}" ng-click="parentVm.followLabel()" data-stat-click="followLabel">
+                <a href="javascript:void(0)" class="follow-btn" ng-show="parentVm.labelDetail.expose == 1" ng-class="{followed: !parentVm.labelDetail.isFollowed}" ng-click="parentVm.followLabel()" data-stat-click="followLabel">
                   <i class="icon-follow" ng-show="!parentVm.labelDetail.isFollowed"></i>
                   <i class="icon-followed" ng-show="parentVm.labelDetail.isFollowed"></i>
                   <span ng-if="parentVm.labelDetail.isFollowed">已</span>关注
