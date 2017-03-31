@@ -1,3 +1,13 @@
+<a name="1.11.7"></a>
+## [1.11.7](f2e/krData/compare/v1.11.6...v1.11.7) (2017-03-31)
+
+
+### Bug Fixes
+
+* 修改创投助手文案 ([d804d0e](f2e/krData/commits/d804d0e))
+
+
+
 <a name="1.11.6"></a>
 ## [1.11.6](f2e/krData/compare/v1.11.5...v1.11.6) (2017-03-30)
 
