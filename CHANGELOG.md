@@ -1,3 +1,13 @@
+<a name="1.11.8"></a>
+## [1.11.8](f2e/krData/compare/v1.11.7...v1.11.8) (2017-04-13)
+
+
+### Bug Fixes
+
+* 解决查看bp设置失效问题 ([549f1eb](f2e/krData/commits/549f1eb))
+
+
+
 <a name="1.11.7"></a>
 ## [1.11.7](f2e/krData/compare/v1.11.6...v1.11.7) (2017-03-31)
 
