@@ -136,9 +136,9 @@ export default class CreateProjectController {
 
   getPrivileges() {
     if (this.financeVM.finance.privilege === 'MUST_APPLY') {
-      this.financeVM.privileges = true;
+      this.privileges = true;
     } else {
-      this.financeVM.privileges = false;
+      this.privileges = false;
     }
   }
 
