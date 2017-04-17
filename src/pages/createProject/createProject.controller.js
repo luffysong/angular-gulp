@@ -5,11 +5,12 @@ const PROJECT_TYPE = krData.utls.getService('PROJECT_TYPE');
 const ROLE_META = krData.utls.getService('ROLE_META');
 const ROLE = krData.utls.getService('ROLE');
 const FINANCE = 'finance';
+
 function validate(ctl) {
   $validation.validate(ctl);
 }
 @Inject('$sce', 'FINANCE_NEED', 'PROJECT_TYPE', 'step', 'financeState', 'type', '$window',
-  '$scope', '$q', '$filter', '$stateParams', '$state', 'createProjectService','ngDialog','$timeout')
+  '$scope', '$q', '$filter', '$stateParams', '$state', 'createProjectService', 'ngDialog', '$timeout')
 export default class CreateProjectController {
 
   autocompleteOptions = {
@@ -41,18 +42,15 @@ export default class CreateProjectController {
 
   CLAIM_ROLE = [ROLE_META[0], ROLE_META[1]];
 
-  NOT_FOUNDER_FINANCE_NEED = [
-    {
-      desc:"暂无需求",
-      id:4,
-      value:"NO_NEED"
-    },
-    {
-      desc:"寻求收购",
-      id: 3,
-      value: "ACQUISITION"
-    }
-  ];
+  NOT_FOUNDER_FINANCE_NEED = [{
+    desc: "暂无需求",
+    id: 4,
+    value: "NO_NEED"
+  }, {
+    desc: "寻求收购",
+    id: 3,
+    value: "ACQUISITION"
+  }];
 
   project = this.createProjectService;
   baseInfo = {};
@@ -69,8 +67,8 @@ export default class CreateProjectController {
 
   isValidAfterSelect() {
     return this.baseInfo.brief &&
-        this.baseInfo.industry &&
-        this.baseInfo.logo;
+      this.baseInfo.industry &&
+      this.baseInfo.logo;
   }
 
   init() {
@@ -91,10 +89,10 @@ export default class CreateProjectController {
     this.project.getCreateNumberPermission()
       .then(data => {
         this.announcement();
-    }).catch((err) => {
-      this.createPermission = false;
-      this.loadSimilarProjects(err.data.industry);
-    });
+      }).catch((err) => {
+        this.createPermission = false;
+        this.loadSimilarProjects(err.data.industry);
+      });
   }
 
   ensureLogin() {
@@ -112,12 +110,14 @@ export default class CreateProjectController {
   initView() {
     if (this.$stateParams.id) {
       this.project.loadFinance(this.$stateParams.id, 'auditing')
-        .then((financeData) => { this.financeInfo = financeData; });
+        .then((financeData) => {
+          this.financeInfo = financeData;
+        });
 
       this.project.getFinanceInfo(this.$stateParams.id)
-      .then((financeData) => {
-        this.financeVM.finance = financeData;
-      });
+        .then((financeData) => {
+          this.financeVM.finance = financeData;
+        });
     }
     if (this.type === FINANCE) {
       this.title = '融资申请';
@@ -135,6 +135,8 @@ export default class CreateProjectController {
   }
 
   getPrivileges() {
+    console.log('=========getPrivileges=========');
+    console.log(this.financeVM.finance.privilege);
     if (this.financeVM.finance.privilege === 'MUST_APPLY') {
       this.privileges = true;
     } else {
@@ -226,7 +228,7 @@ export default class CreateProjectController {
 
   needFinance() {
     return this.isFunder() && !this.isClaiming &&
-    this.baseInfo.financingNeed === this.FINANCE_NEED.FINANCING;
+      this.baseInfo.financingNeed === this.FINANCE_NEED.FINANCING;
   }
 
   // 移除与所选产品类型不相关的属性
@@ -344,6 +346,8 @@ export default class CreateProjectController {
   }
 
   privilege() {
+    console.log('=========privilege=========');
+    console.log(this.privileges);
     if (this.privileges) {
       this.baseInfo.privilege = 'MUST_APPLY';
     } else {
@@ -420,7 +424,7 @@ export default class CreateProjectController {
       })
       .catch((err) => {
         krData.Alert.alert(`认领公司失败:${err.msg}`);
-          this.step = 4;
+        this.step = 4;
       });
   }
   call110(param) {
@@ -476,7 +480,9 @@ export default class CreateProjectController {
             this.financeInfo = financeData;
           });
       })
-      .catch((err) => { krData.Alert.alert(`申请融资失败：${err.msg}`); });
+      .catch((err) => {
+        krData.Alert.alert(`申请融资失败：${err.msg}`);
+      });
   }
 
   prev() {
@@ -513,7 +519,8 @@ export default class CreateProjectController {
           this.saveFinance(form);
         }
         break;
-      default: return;
+      default:
+        return;
     }
   }
   validate(form) {
@@ -579,7 +586,7 @@ export default class CreateProjectController {
     return deferred.promise;
   }
 
-  showMore(){
+  showMore() {
     this.moreInfo = !this.moreInfo;
   }
 
@@ -588,7 +595,7 @@ export default class CreateProjectController {
     this.announcementDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/createProject/templates/announcement.html\'">/div>',
       plain: true,
-      closeByDocument:false,
+      closeByDocument: false,
       closeByEscape: false,
       width: 727,
       height: 605,
