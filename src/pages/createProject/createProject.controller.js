@@ -82,7 +82,8 @@ export default class CreateProjectController {
     this['110'] = false;
     this.baseInfo.logoState = false;
     this.moreInfo = false;
-    this.getPrivileges();
+    this.privileges = false;
+    // this.getPrivileges();
   }
 
   getCreatePermission() {
