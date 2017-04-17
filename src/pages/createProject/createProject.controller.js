@@ -135,8 +135,6 @@ export default class CreateProjectController {
   }
 
   getPrivileges() {
-    console.log('=========getPrivileges=========');
-    console.log(this.financeVM.finance.privilege);
     if (this.financeVM.finance.privilege === 'MUST_APPLY') {
       this.privileges = true;
     } else {
@@ -346,8 +344,6 @@ export default class CreateProjectController {
   }
 
   privilege() {
-    console.log('=========privilege=========');
-    console.log(this.privileges);
     if (this.privileges) {
       this.baseInfo.privilege = 'MUST_APPLY';
     } else {
