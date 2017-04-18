@@ -104,6 +104,13 @@
                 placeholder="输入职位"
                 type="text" name="position" class="form-control" showTipMessage/>
       </div>
+
+      <div class="form-group">
+        <label for="">邀请码（选填）</label>
+        <input  ng-model="vm.baseInfo.recommendCode"
+                placeholder="输入邀请码"
+                type="text" name="recommendCode" class="form-control" />
+      </div>
     </form>
     <div class="submit-btn" ng-click="vm.submitInfo()">下一步，提交投资偏好信息</div>
   </div>
