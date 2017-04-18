@@ -1,3 +1,16 @@
+<a name="1.11.9"></a>
+## [1.11.9](f2e/krData/compare/v1.11.8...v1.11.9) (2017-04-18)
+
+
+### Bug Fixes
+
+* 修复bp查看设置问题 ([a97a261](f2e/krData/commits/a97a261))
+* 删除测试代码 ([fff68ee](f2e/krData/commits/fff68ee))
+* 投资人认证添加邀请码 ([522bdbe](f2e/krData/commits/522bdbe))
+* 调整申请查看bp设置 ([b4d200e](f2e/krData/commits/b4d200e))
+
+
+
 <a name="1.11.8"></a>
 ## [1.11.8](f2e/krData/compare/v1.11.7...v1.11.8) (2017-04-13)
 
