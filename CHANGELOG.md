@@ -1,3 +1,14 @@
+<a name="1.11.10"></a>
+## [1.11.10](f2e/krData/compare/v1.11.9...v1.11.10) (2017-04-25)
+
+
+### Bug Fixes
+
+* 修改文案 ([4dc85c5](f2e/krData/commits/4dc85c5))
+* 调整创建项目上传logo样式 ([81bf623](f2e/krData/commits/81bf623))
+
+
+
 <a name="1.11.9"></a>
 ## [1.11.9](f2e/krData/compare/v1.11.8...v1.11.9) (2017-04-18)
 
