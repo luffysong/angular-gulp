@@ -1,3 +1,13 @@
+<a name="1.11.12"></a>
+## [1.11.12](f2e/krData/compare/v1.11.11...v1.11.12) (2017-04-25)
+
+
+### Bug Fixes
+
+* 修改工商信息访问超限文案 ([cf84ce4](f2e/krData/commits/cf84ce4))
+
+
+
 <a name="1.11.11"></a>
 ## [1.11.11](f2e/krData/compare/v1.11.10...v1.11.11) (2017-04-25)
 
