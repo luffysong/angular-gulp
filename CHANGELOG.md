@@ -1,3 +1,13 @@
+<a name="1.11.11"></a>
+## [1.11.11](f2e/krData/compare/v1.11.10...v1.11.11) (2017-04-25)
+
+
+### Bug Fixes
+
+* 工商信息添加查看验证 ([54abf8d](f2e/krData/commits/54abf8d))
+
+
+
 <a name="1.11.10"></a>
 ## [1.11.10](f2e/krData/compare/v1.11.9...v1.11.10) (2017-04-25)
 
