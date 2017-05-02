@@ -1,4 +1,6 @@
-import { API } from 'krData' ;
+import {
+  API
+} from 'krData';
 
 const investorApi = new API('/investor/auth', [], {
   getState: {
@@ -47,7 +49,7 @@ const labelApi = new API('/label', [], {
   },
 });
 
-@Inject('$q','$state')
+@Inject('$q', '$state')
 export default class ProjectService extends API {
 
   constructor() {
@@ -81,88 +83,98 @@ export default class ProjectService extends API {
   }
 
   relateUser(id) {
-    this.user = new API('/company/:id/relate-user')
-    .query(id);
-    return this.user;
-  }
-  // 获取当前登录用户
+      this.user = new API('/company/:id/relate-user')
+        .query(id);
+      return this.user;
+    }
+    // 获取当前登录用户
   getUser() {
-    this.userinfo = new API('/user')
-    .get();
-    return this.userinfo;
-  }
-  // 获取用户收藏夹
+      this.userinfo = new API('/user')
+        .get();
+      return this.userinfo;
+    }
+    // 获取用户收藏夹
   collect(cid) {
-    const id = {
-      id: cid,
-    };
-    this.collections = new API('/user/follow/company/:id', {
-      group: {
-        isArray: true,
-      } })
-    .group(id);
-    return this.collections;
-  }
-  // 创建收藏夹
+      const id = {
+        id: cid,
+      };
+      this.collections = new API('/user/follow/company/:id', {
+          group: {
+            isArray: true,
+          }
+        })
+        .group(id);
+      return this.collections;
+    }
+    // 创建收藏夹
   createCollect(form) {
-    this.createCollection = new API('/user/follow/company', ['savegroup'])
-    .savegroup(form);
-    return this.createCollection;
-  }
-  // 收藏公司
+      this.createCollection = new API('/user/follow/company', ['savegroup'])
+        .savegroup(form);
+      return this.createCollection;
+    }
+    // 收藏公司
   collectCompany(form) {
-    const id = {
-      id: form.cid,
-    };
-    this.collected = new API('/user/follow/company/:id')
-    .save(id, form);
-    return this.collected;
-  }
-  // 取消收藏
+      const id = {
+        id: form.cid,
+      };
+      this.collected = new API('/user/follow/company/:id')
+        .save(id, form);
+      return this.collected;
+    }
+    // 取消收藏
   deconsteCompany(form) {
-    const id = {
-      id: form.cid,
-    };
-    this.deconste = new API(`/user/follow/company/:id?${$.param(form)}`)
-    .remove(id, form);
-    return this.deconste;
-  }
-  // 获取公司认领人信息
+      const id = {
+        id: form.cid,
+      };
+      this.deconste = new API(`/user/follow/company/:id?${$.param(form)}`)
+        .remove(id, form);
+      return this.deconste;
+    }
+    // 获取公司认领人信息
   getManager(id) {
-    this.manager = new API('/company/:id/privilege?type=manager').get(id);
-    return this.manager;
-  }
-  // 校验是否有权限查看bp
+      this.manager = new API('/company/:id/privilege?type=manager').get(id);
+      return this.manager;
+    }
+    // 校验是否有权限查看bp
   getBPPermission(cid) {
-    const id = {
-      id: cid,
-    };
-    this.permission = new API('/company/:id/funds/bp/permission-check').get(id);
-    return this.permission;
-  }
-  // 获取bp链接
+      const id = {
+        id: cid,
+      };
+      this.permission = new API('/company/:id/funds/bp/permission-check').get(id);
+      return this.permission;
+    }
+    // 获取bp链接
   getBPUrl(cid) {
-    const id = {
-      id: cid,
-    };
-    this.bpUrl = new API('/company/:id/funds/bp').get(id);
-    return this.bpUrl;
-  }
-  // 发送bp到邮箱
+      const id = {
+        id: cid,
+      };
+      this.bpUrl = new API('/company/:id/funds/bp').get(id);
+      return this.bpUrl;
+    }
+    // 发送bp到邮箱
   sendBP(cid) {
-    const id = {
-      id: cid,
-    };
-    this.sendBp = new API('/company/:id/funds/bp?action=send2email', ['']).save(id, id);
-    return this.sendBp;
-  }
-  // // 申请查看bp
+      const id = {
+        id: cid,
+      };
+      this.sendBp = new API('/company/:id/funds/bp?action=send2email', ['']).save(id, id);
+      return this.sendBp;
+    }
+    // // 申请查看bp
   applyBP(cid) {
     const id = {
       id: cid,
     };
     this.applyPermission = new API('/company/:id/funds/bp/permission', ['']).save(id, id);
     return this.applyPermission;
+  }
+
+  //是否上传bp
+	existBP(cid) {
+    const id = {
+      id: cid,
+    };
+    this.exist = new API('/company/:id/bp/status').get(id);
+    return this.exist;
   }
 
   getArea(id) {
@@ -208,7 +220,7 @@ export default class ProjectService extends API {
       id: cid,
     };
     this.claimpeding = new API('/company/:id/privilege?type=claim-pending')
-    .get(id);
+      .get(id);
     return this.claimpeding;
   }
 
@@ -254,7 +266,7 @@ export default class ProjectService extends API {
     return new API('/label/:id').get(id);
   }
 
-  getLabelId(obj){
+  getLabelId(obj) {
     const label = {
       industry: obj.value,
     };
@@ -269,7 +281,6 @@ export default class ProjectService extends API {
     };
     return new API('/label/:id/stats').get(id);
   }
-
 
 
 
@@ -341,21 +352,21 @@ export default class ProjectService extends API {
 
   /* 获取短信验证码*/
   getMsgCode(obj) {
-    return investorApi.getMsgCode(obj);
-  }
-  /* 验证短信码*/
+      return investorApi.getMsgCode(obj);
+    }
+    /* 验证短信码*/
   validateMsgCode(obj) {
-    return investorApi.validateMsgCode(obj);
-  }
-  /* 提交认证*/
+      return investorApi.validateMsgCode(obj);
+    }
+    /* 提交认证*/
   submitValidate(obj) {
-    return investorApi.save(null, obj);
-  }
-  /* 获取推荐投资人*/
+      return investorApi.save(null, obj);
+    }
+    /* 获取推荐投资人*/
   suggestInvestor(obj) {
-    return investorApi.suggestInvestor(obj);
-  }
-  /* 获取投资人认证状态*/
+      return investorApi.suggestInvestor(obj);
+    }
+    /* 获取投资人认证状态*/
   getState() {
     return investorApi.getState();
   }
@@ -412,7 +423,7 @@ export default class ProjectService extends API {
     return this.$q.all({
       baseInfo: this.get(id).catch((err) => {
         if (err.code === 404) {
-            this.$state.go('fail.404');
+          this.$state.go('fail.404');
         }
       }),
       product: this.product(id).catch(() => {}),

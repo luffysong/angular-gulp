@@ -7,17 +7,15 @@
     <span class="icon-Collected footer-icon"></span>
     <span>收藏</span>
   </span>
-  <a ng-href="{{vm.projectData.funds.fundsVo.bpUrl}}"
-    class="bp"
-    ng-click="vm.checkBp($event)"
+  <a class="bp" ng-click="vm.bpDialogs()"
     target="{{vm.hasPermission ? '_blank' : '' }}"
-    ng-if='vm.fundsVM.fundsVo && vm.fundsVM.fundsVo.bpUrl && vm.user=="commen"' data-stat-click="project.{{vm.id}}.checkBp">
+    ng-if='vm.existBP' data-stat-click="project.{{vm.id}}.checkBp">
     <span>
       <span class="icon-BP footer-icon"></span>
       <span>查看BP</span>
     </span>
   </a>
-  <span ng-click="vm.sendbp()" class="bp" ng-if='vm.fundsVM.fundsVo && vm.fundsVM.fundsVo.bpUrl && vm.user=="commen"' data-stat-click="project.{{vm.id}}.sendBp">
+  <span ng-click="vm.bpDialogs()" class="bp" ng-if='vm.existBP' data-stat-click="project.{{vm.id}}.sendBp">
     <span class="icon-BP footer-icon"></span>
     <span>发送BP至邮箱</span>
   </span>

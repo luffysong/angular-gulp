@@ -44,10 +44,11 @@ export default class ProjectIndexController {
       this.similarVM = new SimilarVM(this.projectData.similar);
       this.companyIntroduceVM = new CompanyIntroduceVM(this.projectData.baseInfo, this.id);
       this.setVM();
-      this.newsVM = new NewsVM(this.projectData.news,this.$scope, this.id);
+      this.newsVM = new NewsVM(this.projectData.news, this.$scope, this.id);
     }
     this.getRelateUser();
-    this.getBPPermission(this.id);
+    // this.getBPPermission(this.id);
+    this.getExistBP(this.id);
     this.setNavigation();
     this.getUser();
     this.getfundsState(this.id);
@@ -65,15 +66,16 @@ export default class ProjectIndexController {
       id: cid,
     };
     this.projectService.fundState(id)
-    .then(data => {
-      if (data.state === FINANCE_ALLOW || data.state === FINANCE_AUDITING) {
-        this.fundsState = true;
-        this.financeState = data.state;
-      }
-    });
+      .then(data => {
+        if (data.state === FINANCE_ALLOW || data.state === FINANCE_AUDITING) {
+          this.fundsState = true;
+          this.financeState = data.state;
+        }
+      });
   }
   talk() {
     const vm = this;
+
     function talkController() {
       this.id = vm.id;
       this.attachCid = vm.attachCid;
@@ -91,11 +93,12 @@ export default class ProjectIndexController {
   }
   investor() {
     const vm = this;
+
     function investorController() {
       this.investorCancle = function investorCancle() {
         vm.investorDialog.close();
       };
-      this.goInvest = function () {
+      this.goInvest = function() {
         vm.investorDialog.close();
         vm.$timeout(() => vm.$state.go('investorValidate'), 1000);
       };
@@ -111,40 +114,40 @@ export default class ProjectIndexController {
   getUser() {
     // 获取当前用户身份
     this.projectService.getUser()
-    .then((data) => {
-      this.userId = data.id;
-      if (!data.code) {
-        // 判断认领人
-        if (this.baseInfoVM.managerUid === data.id) {
-          this.user = 'admin';
-          this.$state.go('project.edit', {
-            id: this.id,
-          });
-          return
-        } else if (this.baseInfoVM.member) {
-          // 维护者身份
-          this.user = 'assert';
-          this.$state.go('project.edit', {
-            id: this.id,
-          });
-          return
-        } else {
-          // 普通用户
-          this.user = 'commen';
+      .then((data) => {
+        this.userId = data.id;
+        if (!data.code) {
+          // 判断认领人
+          if (this.baseInfoVM.managerUid === data.id) {
+            this.user = 'admin';
+            this.$state.go('project.edit', {
+              id: this.id,
+            });
+            return
+          } else if (this.baseInfoVM.member) {
+            // 维护者身份
+            this.user = 'assert';
+            this.$state.go('project.edit', {
+              id: this.id,
+            });
+            return
+          } else {
+            // 普通用户
+            this.user = 'commen';
+          }
+          if (data.investorType < 100) {
+            // 投资人
+            this.investorType = true;
+            this.talking = this.talk;
+          } else {
+            this.talking = this.investor;
+          }
+          this.claimVM = new ClaimVM(this.ngDialog, this.id, this.user);
+          this.collectionVM = new CollectionVM(this.ngDialog, this.id, data.investorType);
         }
-        if (data.investorType < 100) {
-          // 投资人
-          this.investorType = true;
-          this.talking = this.talk;
-        } else {
-          this.talking = this.investor;
-        }
-        this.claimVM = new ClaimVM(this.ngDialog, this.id, this.user);
-        this.collectionVM = new CollectionVM(this.ngDialog, this.id, data.investorType);
-      }
-    }, () => {
-      this.user = 'commen';
-    });
+      }, () => {
+        this.user = 'commen';
+      });
   }
 
   setNavigation() {
@@ -170,6 +173,7 @@ export default class ProjectIndexController {
 
   bpDialogs(className = '') {
     const vm = this;
+
     function BPController() {
       this.applyBpStatus = vm.applyBpStatus;
       this.id = vm.id;
@@ -178,15 +182,15 @@ export default class ProjectIndexController {
       this.BPCancle = function BPCancle() {
         vm.bpDialog.close();
       };
-      this.apply = function apply() {
-        vm.projectService.applyBP(vm.id)
-          .then(() => {
-            this.suc = true;
-            vm.applyBpStatus = 'APPLY';
-          }, (err) => {
-            krData.Alert.alert(err.msg);
-          });
-      };
+      // this.apply = function apply() {
+      //   vm.projectService.applyBP(vm.id)
+      //     .then(() => {
+      //       this.suc = true;
+      //       vm.applyBpStatus = 'APPLY';
+      //     }, (err) => {
+      //       krData.Alert.alert(err.msg);
+      //     });
+      // };
     }
     vm.bpDialog = this.ngDialog.open({
       template: '<div ng-include="\'/pages/project/templates/checkBP.html\'" center></div>',
@@ -217,7 +221,7 @@ export default class ProjectIndexController {
           // const vm = this;
           const outterVM = this;
           /* eslint-disable */
-          function BPController($validation,$scope) {
+          function BPController($validation, $scope) {
             // this.applyBpStatus = vm.applyBpStatus;
             // this.id = vm.id;
             const vm = this;
@@ -238,15 +242,15 @@ export default class ProjectIndexController {
                         });
                     } else {
                       outterVM.projectService.applyBP(outterVM.id)
-                      .then(() => {
-                        outterVM.suc = true;
-                        outterVM.applyBpStatus = 'APPLY';
-                        outterVM.bpDialogs();
-                        outterVM.bpApplyDialog.close();
-                      }, (error) => {
-                        krData.Alert.alert(error.msg);
-                        outterVM.bpApplyDialog.close();
-                      });
+                        .then(() => {
+                          outterVM.suc = true;
+                          outterVM.applyBpStatus = 'APPLY';
+                          outterVM.bpDialogs();
+                          outterVM.bpApplyDialog.close();
+                        }, (error) => {
+                          krData.Alert.alert(error.msg);
+                          outterVM.bpApplyDialog.close();
+                        });
                     }
                   }, (err1) => {
                     krData.Alert.alert(err1.msg);
@@ -261,8 +265,7 @@ export default class ProjectIndexController {
           /* eslint-enable */
 
           this.bpApplyDialog = this.ngDialog.open({
-            template:
-              '<div ng-include="\'/pages/project/templates/addBPEmail.html\'" center></div>',
+            template: '<div ng-include="\'/pages/project/templates/addBPEmail.html\'" center></div>',
             plain: true,
             appendTo: '#projectDetailWrapper',
             controller: ['$validation', '$scope', BPController],
@@ -284,16 +287,23 @@ export default class ProjectIndexController {
 
   getBPPermission(id) {
     this.projectService.getBPPermission(id)
-    .then((data) => {
-      this.applyBpStatus = data.applyBpStatus;
-      this.hasPermission = data.hasPermission;
-    })
-    .catch((err) => {
-      this.bpError = err;
-    }).finally(() => {
-      this.bpPermisstionChecked = true;
-      this.sendbp = this.send;
-    });
+      .then((data) => {
+        this.applyBpStatus = data.applyBpStatus;
+        this.hasPermission = data.hasPermission;
+      })
+      .catch((err) => {
+        this.bpError = err;
+      }).finally(() => {
+        this.bpPermisstionChecked = true;
+        this.sendbp = this.send;
+      });
+  }
+
+  getExistBP(id) {
+    this.projectService.existBP(id)
+      .then((data) => {
+        this.existBP = data.exist;
+      })
   }
 
   isViewMore() {
@@ -312,8 +322,8 @@ export default class ProjectIndexController {
       this.bpDialogs('bp-view-more-wrapper');
     } else if (this.applyBpStatus === BP_PERMISSION.REFUSE) {
       krData.Alert.alert('创业者拒绝查看BP');
-    // } else if (this.applyBpStatus === BP_PERMISSION.APPLY) {
-    //   this.bpDialogs();
+      // } else if (this.applyBpStatus === BP_PERMISSION.APPLY) {
+      //   this.bpDialogs();
     } else {
       this.bpDialogs();
     }
@@ -324,14 +334,16 @@ export default class ProjectIndexController {
     this.usrShow = false;
   }
   getRelateUser() {
-    this.projectService.relateUser({ id: this.id })
-    .then((data) => {
-      if (data.length > 3) {
-        this.usrShow = true;
-      }
-      this.usrlist = data;
-      this.relateUser = data.slice(0, 3);
-    });
+    this.projectService.relateUser({
+        id: this.id
+      })
+      .then((data) => {
+        if (data.length > 3) {
+          this.usrShow = true;
+        }
+        this.usrlist = data;
+        this.relateUser = data.slice(0, 3);
+      });
   }
 
 
