@@ -1,3 +1,14 @@
+<a name="1.11.13"></a>
+## [1.11.13](f2e/krData/compare/v1.11.12...v1.11.13) (2017-05-03)
+
+
+### Bug Fixes
+
+* 修改查看BP按钮展示逻辑 ([f2355fd](f2e/krData/commits/f2355fd))
+* 邮箱验证最大字符数改为50 ([2b162cb](f2e/krData/commits/2b162cb))
+
+
+
 <a name="1.11.12"></a>
 ## [1.11.12](f2e/krData/compare/v1.11.11...v1.11.12) (2017-04-25)
 
