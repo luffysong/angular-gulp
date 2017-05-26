@@ -1,3 +1,13 @@
+<a name="1.11.14"></a>
+## [1.11.14](f2e/krData/compare/v1.11.13...v1.11.14) (2017-05-26)
+
+
+### Bug Fixes
+
+* 添加访问次数限制 ([ba4cd3e](f2e/krData/commits/ba4cd3e))
+
+
+
 <a name="1.11.13"></a>
 ## [1.11.13](f2e/krData/compare/v1.11.12...v1.11.13) (2017-05-03)
 
