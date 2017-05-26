@@ -425,7 +425,7 @@ export default class ProjectService extends API {
         if (err.code === 404) {
           this.$state.go('fail.404');
         }else if(err.code === 403) {
-          krData.Alert.alert(err.msg);
+          krData.Alert.alert('需要登录后进行查看！');
           this.$timeout(() => window.location = 'https://passport.36kr.com/', 3000);
         }else if(err.code === 429) {
           krData.Alert.alert(err.msg);

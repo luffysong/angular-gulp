@@ -88,9 +88,11 @@ export default class listParentController {
         this.handleActive();
         this.updateData(data);
       }, (err) => {
-        krData.Alert.alert(err.msg);
         if(err.code === 403){
+          krData.Alert.alert('需要登录后进行查看！');
           this.$timeout(() => this.$scope.root.user.ensureLogin(), 3000);
+        } else {
+          krData.Alert.alert(err.msg);
         }
       });
     });
