@@ -49,7 +49,7 @@ const labelApi = new API('/label', [], {
   },
 });
 
-@Inject('$q', '$state')
+@Inject('$q', '$state', '$timeout')
 export default class ProjectService extends API {
 
   constructor() {
@@ -169,7 +169,7 @@ export default class ProjectService extends API {
   }
 
   //是否上传bp
-	existBP(cid) {
+    existBP(cid) {
     const id = {
       id: cid,
     };
@@ -424,6 +424,11 @@ export default class ProjectService extends API {
       baseInfo: this.get(id).catch((err) => {
         if (err.code === 404) {
           this.$state.go('fail.404');
+        }else if(err.code === 403) {
+          krData.Alert.alert(err.msg);
+          this.$timeout(() => window.location = 'https://passport.36kr.com/', 3000);
+        }else if(err.code === 429) {
+          krData.Alert.alert(err.msg);
         }
       }),
       product: this.product(id).catch(() => {}),

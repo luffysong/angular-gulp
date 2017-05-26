@@ -118,6 +118,11 @@ export default class landingParentController {
       }
       this.handleActive();
       this.updateData(data);
+    }, (err) => {
+        krData.Alert.alert(err.msg);
+        if(err.code === 403){
+          this.$timeout(() => this.$scope.root.user.ensureLogin(), 3000);
+        }
     });
   }
 

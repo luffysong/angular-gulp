@@ -87,6 +87,11 @@ export default class listParentController {
         }
         this.handleActive();
         this.updateData(data);
+      }, (err) => {
+        krData.Alert.alert(err.msg);
+        if(err.code === 403){
+          this.$timeout(() => this.$scope.root.user.ensureLogin(), 3000);
+        }
       });
     });
 
