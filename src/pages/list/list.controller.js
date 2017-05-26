@@ -157,6 +157,8 @@ export default class listIndexController {
       } else {
         this.currentPage = data.pageData.page;
       }
+    }, (err) => {
+      krData.Alert.alert(err.msg);
     });
 
   }
