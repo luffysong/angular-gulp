@@ -70,6 +70,8 @@ class UcMessageController {
           return `ng-if="notification.submitLoading !== item" ng-click="vm.triggerAction('
             ${$1.replace(/http:\/\//g, '//')}',item,$event)"`;
         })
+        .replace(/<img(?:.|\s)*?>/g, "")
+        .replace(/script/g, "")
         .replace(/class="actions"/g, 'class="actions"');
       item.content = utls.getService('$sce').trustAsHtml(item.content);
     });
