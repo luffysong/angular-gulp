@@ -1,3 +1,44 @@
+<a name="1.11.16"></a>
+## [1.11.16](f2e/krData/compare/v1.11.15...v1.11.16) (2017-05-26)
+
+
+### Bug Fixes
+
+* 列表滚动加载添加访问次数限制提示 ([f64a511](f2e/krData/commits/f64a511))
+
+
+
+<a name="1.11.15"></a>
+## [1.11.15](f2e/krData/compare/v1.11.14...v1.11.15) (2017-05-26)
+
+
+### Bug Fixes
+
+* 修改未登录提示文案 ([b2505a8](f2e/krData/commits/b2505a8))
+
+
+
+<a name="1.11.14"></a>
+## [1.11.14](f2e/krData/compare/v1.11.13...v1.11.14) (2017-05-26)
+
+
+### Bug Fixes
+
+* 添加访问次数限制 ([ba4cd3e](f2e/krData/commits/ba4cd3e))
+
+
+
+<a name="1.11.13"></a>
+## [1.11.13](f2e/krData/compare/v1.11.12...v1.11.13) (2017-05-03)
+
+
+### Bug Fixes
+
+* 修改查看BP按钮展示逻辑 ([f2355fd](f2e/krData/commits/f2355fd))
+* 邮箱验证最大字符数改为50 ([2b162cb](f2e/krData/commits/2b162cb))
+
+
+
 <a name="1.11.12"></a>
 ## [1.11.12](f2e/krData/compare/v1.11.11...v1.11.12) (2017-04-25)
 

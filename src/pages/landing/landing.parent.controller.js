@@ -118,6 +118,13 @@ export default class landingParentController {
       }
       this.handleActive();
       this.updateData(data);
+    }, (err) => {
+        if(err.code === 403){
+          krData.Alert.alert('需要登录后进行查看！');
+          this.$timeout(() => this.$scope.root.user.ensureLogin(), 3000);
+        } else {
+          krData.Alert.alert(err.msg);
+        }
     });
   }
 
