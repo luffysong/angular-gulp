@@ -1,17 +1,16 @@
 import _ from 'lodash';
 let debug = process.env.debug;
 let prod = process.env.prod;
-let online = process.env.prod;
+let zhost = process.env.zhost;
 let ucHost = null;
 let ucBasic = null;
 let zHost = null;
 /* eslint-disable */
 debug = _.isUndefined(debug) ? true : JSON.parse(debug);
 prod = _.isUndefined(prod) ? false : JSON.parse(prod);
-online = _.isUndefined(online) ? false : JSON.parse(online);
+zhost = _.isUndefined(zhost) ? false : JSON.parse(zhost);
 
-
-if (!online) {
+if (!zhost) {
   ucHost = 'https://uctest01.36kr.com';
   zHost = 'https://ztest01.36kr.com';
   ucBasic = `${ucHost}/#/uc/account/basic`
